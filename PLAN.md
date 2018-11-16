@@ -11,7 +11,6 @@
     + Menu
     + Drawer
 
-    
 - Data entry
     + Button
     + checkbox
