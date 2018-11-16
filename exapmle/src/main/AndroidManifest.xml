@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.uikit.UiKitExampleActivity"></activity>
+        <activity android:name=".module.uikit.UiKitExampleActivity" />
+        <activity android:name=".module.harware.HardwareExampleActivity" />
+        <activity android:name=".module.helper.HelperExampleActivity"></activity>
     </application>
 
 </manifest>

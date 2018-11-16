@@ -28,8 +28,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation project(':hardware')
-    implementation project(':helper')
-    implementation project(':uikit')
-    implementation project(':utils')
+    implementation project(':wyahardware:hardware')
+    implementation project(':wyahelper:helper')
+    implementation project(':wyauikit:uikit')
+    implementation project(':wyautils:utils')
 }
