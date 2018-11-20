@@ -27,8 +27,8 @@ public abstract class BaseToolBarActivity extends Activity {
 
     private WYAToolBarHelper wyaToolBarHelper;
     private TextView title, tv_left, tv_right;
-    private RelativeLayout rl_right, rl_left;
-    private ImageView img_right, img_left;
+    private LinearLayout ll_right, ll_left;
+    private ImageView img_right, img_left, img_right_anther;
     private RelativeLayout title_bar_bg;
 
     private LinearLayout parentLinearLayout;
@@ -56,9 +56,9 @@ public abstract class BaseToolBarActivity extends Activity {
     }
 
 
-
     /**
      * 设置左边点击事件内容和监听
+     *
      * @param onLeftOnclickListener
      */
     public void setLeftOnclickListener(onLeftOnclickListener onLeftOnclickListener) {
@@ -67,6 +67,7 @@ public abstract class BaseToolBarActivity extends Activity {
 
     /**
      * 设置右边边点击事件内容和监听
+     *
      * @param onRightOnclickListener
      */
     public void setRightOnclickListener(onRightOnclickListener onRightOnclickListener) {
@@ -91,38 +92,54 @@ public abstract class BaseToolBarActivity extends Activity {
         title = findViewById(R.id.title);
         tv_left = findViewById(R.id.tv_left);
         tv_right = findViewById(R.id.tv_right);
-        rl_right = findViewById(R.id.rl_right);
-        rl_left = findViewById(R.id.rl_left);
+        ll_right = findViewById(R.id.ll_right);
+        ll_left = findViewById(R.id.ll_left);
         img_right = findViewById(R.id.img_right);
+        img_right_anther = findViewById(R.id.img_right_anther);
         img_left = findViewById(R.id.img_left);
         title_bar_bg = findViewById(R.id.title_bar_bg);
 
-        initToolBarBgColor("#1890FF");
-        initToolBaseTitle(wyaToolBarHelper.getTitleStr(), wyaToolBarHelper.getTitleTextSize(), wyaToolBarHelper.getTitleTextColor(), wyaToolBarHelper.isShowTitle());
-        initLeft(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.isShowImgLeft(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
-        initRight(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.getTvRightStr(), wyaToolBarHelper.getTvRightTextColor(), wyaToolBarHelper.isShowImgRight(), wyaToolBarHelper.getTvRightTextSize(), wyaToolBarHelper.isShowTvRight());
 
+        initShowToolBar(wyaToolBarHelper.isShowTitle());
+        initToolBarBgColor("#1890FF");
+        initToolBarTitle(wyaToolBarHelper.getTitleStr(), wyaToolBarHelper.getTitleTextSize(), wyaToolBarHelper.getTitleTextColor(), wyaToolBarHelper.isShowTitle());
+        initTvLeft( wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
+        initImgLeft(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.isShowImgLeft());
+        initTvRight(wyaToolBarHelper.getTvRightStr(), wyaToolBarHelper.getTvRightTextColor(), wyaToolBarHelper.getTvRightTextSize(), wyaToolBarHelper.isShowTvRight());
+        initImgRight(wyaToolBarHelper.getImgRightRes(), wyaToolBarHelper.isShowImgRight(), wyaToolBarHelper.getImgRightResAnther(), wyaToolBarHelper.isShowImgRightAnther());
         initClick();
+    }
+
+    /**
+     * 是否显示标题
+     * @param showTitle
+     */
+    public void initShowToolBar(boolean showTitle) {
+        if(showTitle){
+            title_bar_bg.setVisibility(View.VISIBLE);
+        } else {
+            title_bar_bg.setVisibility(View.GONE);
+        }
     }
 
     /**
      * 左右两边点击事件监听设置
      */
     private void initClick() {
-        rl_left.setOnClickListener(new View.OnClickListener() {
+        ll_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(onLeftOnclickListener != null){
+                if (onLeftOnclickListener != null) {
                     onLeftOnclickListener.onLeftClick();
                 } else {
                     BaseToolBarActivity.this.finish();
                 }
             }
         });
-        rl_right.setOnClickListener(new View.OnClickListener() {
+        ll_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(onRightOnclickListener != null){
+                if (onRightOnclickListener != null) {
                     onRightOnclickListener.onRightClick();
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "右边", Toast.LENGTH_SHORT).show();
@@ -132,16 +149,13 @@ public abstract class BaseToolBarActivity extends Activity {
     }
 
     /**
-     * 设置标题右边的文字以及图片
-     * @param imgRightRes
-     * @param tvRightStr
-     * @param tvRightTextColor
-     * @param showImgRight
-     * @param tvRightTextSize
-     * @param showTvRight
+     * 设置标题右边的图片
+     *
+     * @param imgRightRes  资源图片 R.mimap.xx
+     * @param showImgRight 是否显示右边图片
      */
     @SuppressLint("NewApi")
-    public void initRight(int imgRightRes, String tvRightStr, int tvRightTextColor, boolean showImgRight, int tvRightTextSize, boolean showTvRight) {
+    public void initImgRight(int imgRightRes, boolean showImgRight, int imgRightAntherRes, boolean showImgAnther) {
         if (showImgRight) {
             if (imgRightRes != 0) {
                 img_right.setVisibility(View.VISIBLE);
@@ -152,8 +166,31 @@ public abstract class BaseToolBarActivity extends Activity {
         } else {
             img_right.setVisibility(View.GONE);
         }
-        if(showTvRight){
-            if(tvRightStr != null){
+        if (showImgAnther) {
+            if (imgRightAntherRes != 0) {
+                img_right_anther.setVisibility(View.VISIBLE);
+                img_right_anther.setBackground(getResources().getDrawable(imgRightAntherRes));
+            } else {
+                img_right_anther.setVisibility(View.GONE);
+            }
+        } else {
+            img_right_anther.setVisibility(View.GONE);
+        }
+    }
+
+
+    /**
+     * 设置标题右边的文字
+     *
+     * @param tvRightStr       文本内容
+     * @param tvRightTextColor 文本颜色
+     * @param tvRightTextSize  文字大小
+     * @param showTvRight      实现显示右边文字
+     */
+    @SuppressLint("NewApi")
+    public void initTvRight(String tvRightStr, int tvRightTextColor, int tvRightTextSize, boolean showTvRight) {
+        if (showTvRight) {
+            if (tvRightStr != null) {
                 tv_right.setTextColor(this.getResources().getColor(tvRightTextColor));
                 tv_right.setText(tvRightStr);
                 tv_right.setTextSize(tvRightTextSize);
@@ -166,29 +203,19 @@ public abstract class BaseToolBarActivity extends Activity {
         }
     }
 
+
     /**
-     * 设置标题左边文字以及图片
-     * @param imgLeftRes
-     * @param tvLeftStr
-     * @param tvLeftTextColor
-     * @param showImgLeft
-     * @param tvLeftTextSize
-     * @param showTvLeft
+     * 设置标题左边文字
+     *
+     * @param tvLeftStr       文本内容
+     * @param tvLeftTextColor 文本颜色
+     * @param tvLeftTextSize  文字大小
+     * @param showTvLeft      实现显示左边文字
      */
     @SuppressLint("NewApi")
-    public void initLeft(int imgLeftRes, String tvLeftStr, int tvLeftTextColor, boolean showImgLeft, int tvLeftTextSize, boolean showTvLeft) {
-        if (showImgLeft) {
-            if (imgLeftRes != 0) {
-                img_left.setVisibility(View.VISIBLE);
-                img_left.setBackground(getResources().getDrawable(imgLeftRes));
-            } else {
-                img_left.setVisibility(View.GONE);
-            }
-        } else {
-            img_left.setVisibility(View.GONE);
-        }
-        if(showTvLeft){
-            if(tvLeftStr != null){
+    public void initTvLeft(String tvLeftStr, int tvLeftTextColor, int tvLeftTextSize, boolean showTvLeft) {
+        if (showTvLeft) {
+            if (tvLeftStr != null) {
                 tv_left.setTextColor(this.getResources().getColor(tvLeftTextColor));
                 tv_left.setText(tvLeftStr);
                 tv_left.setTextSize(tvLeftTextSize);
@@ -202,13 +229,34 @@ public abstract class BaseToolBarActivity extends Activity {
     }
 
     /**
+     * 设置标题左边图片
+     *
+     * @param imgLeftRes  资源图片 R.mimap.xx
+     * @param showImgLeft 是否显示左边图片
+     */
+    @SuppressLint("NewApi")
+    public void initImgLeft(int imgLeftRes, boolean showImgLeft) {
+        if (showImgLeft) {
+            if (imgLeftRes != 0) {
+                img_left.setVisibility(View.VISIBLE);
+                img_left.setBackground(getResources().getDrawable(imgLeftRes));
+            } else {
+                img_left.setVisibility(View.GONE);
+            }
+        } else {
+            img_left.setVisibility(View.GONE);
+        }
+    }
+
+    /**
      * 设置标题的名字
+     *
      * @param titleStr
      * @param titleTextSize
      * @param titleTextColor
      * @param showTitle
      */
-    public void initToolBaseTitle(String titleStr, int titleTextSize, int titleTextColor, boolean showTitle) {
+    public void initToolBarTitle(String titleStr, int titleTextSize, int titleTextColor, boolean showTitle) {
         title.setText(titleStr);
         title.setTextSize(titleTextSize);
         title.setTextColor(titleTextColor);
@@ -221,6 +269,8 @@ public abstract class BaseToolBarActivity extends Activity {
 
     /**
      * 初始标题栏颜色
+     *
+     * @param toolbar_bg_color_value 颜色十六进制值
      */
     public void initToolBarBgColor(String toolbar_bg_color_value) {
         title_bar_bg.setBackgroundColor(Color.parseColor(toolbar_bg_color_value));

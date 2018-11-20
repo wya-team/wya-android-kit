@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.wya.example.module.uikit.ToolBar.ToolBarExampleActivity">
+    tools:context="com.wya.example.module.uikit.toolbar.ToolBarExampleActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,6 +14,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="是否显示标题"
+                android:padding="@dimen/dp_12"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_12">
+                <RadioButton
+                    android:id="@+id/radio_toolbar_show"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="是"/>
+                <RadioButton
+                    android:id="@+id/radio_toolbar_unshow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="否"/>
+            </RadioGroup>
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -97,6 +119,26 @@
                     android:text="是"/>
                 <RadioButton
                     android:id="@+id/radio_right_unshow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="否"/>
+            </RadioGroup>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="是否显示右边二个图标"
+                android:padding="@dimen/dp_12"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_12">
+                <RadioButton
+                    android:id="@+id/radio_right_anther_show"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="是"/>
+                <RadioButton
+                    android:id="@+id/radio_right_anther_unshow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="否"/>

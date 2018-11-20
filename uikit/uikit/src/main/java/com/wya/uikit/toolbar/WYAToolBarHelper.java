@@ -24,7 +24,7 @@ public class WYAToolBarHelper {
     private String tvLeftStr = "左边";//左边文字
     private int tvLeftTextSize = 14;//左边文字大小
     private int tvLeftTextColor = Color.parseColor("#FFFFFF");//标题颜色
-    private boolean isShowImgLeft = false;//是否显示左图标
+    private boolean isShowImgLeft = true;//是否显示左图标
     private int imgLeftRes;//做图标资源
 
 
@@ -35,8 +35,29 @@ public class WYAToolBarHelper {
     private int tvRightTextSize = 14;//右边文字大小
     private int tvRightTextColor = Color.parseColor("#FFFFFF");//标题颜色
     private boolean isShowImgRight = false;//是否显示右图标
+    private boolean isShowImgRightAnther = false;//是否显示第二个图标
     private int imgRightRes;//做图标资源
+    private int imgRightResAnther;//第二个图标资源
 
+    public void setToolbar_bg_color(int toolbar_bg_color) {
+        this.toolbar_bg_color = toolbar_bg_color;
+    }
+
+    public boolean isShowImgRightAnther() {
+        return isShowImgRightAnther;
+    }
+
+    public void setShowImgRightAnther(boolean showImgRightAnther) {
+        isShowImgRightAnther = showImgRightAnther;
+    }
+
+    public int getImgRightResAnther() {
+        return imgRightResAnther;
+    }
+
+    public void setImgRightResAnther(int imgRightResAnther) {
+        this.imgRightResAnther = imgRightResAnther;
+    }
 
     public boolean isShowTvLeft() {
         return isShowTvLeft;

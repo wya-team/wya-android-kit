@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
-import com.wya.example.module.uikit.ToolBar.ToolBarExampleActivity;
+import com.wya.example.module.uikit.toolbar.ToolBarExampleActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -23,7 +23,7 @@ public class UiKitExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        initLeft(R.mipmap.icon_back_white, "返回", R.color.white, true, 14, false);
+        initImgLeft(R.mipmap.icon_back_white,  true);
         setLeftOnclickListener(new onLeftOnclickListener() {
             @Override
             public void onLeftClick() {
