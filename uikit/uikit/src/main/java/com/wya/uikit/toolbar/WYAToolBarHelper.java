@@ -39,10 +39,6 @@ public class WYAToolBarHelper {
     private int imgRightRes;//做图标资源
     private int imgRightResAnther;//第二个图标资源
 
-    public void setToolbar_bg_color(int toolbar_bg_color) {
-        this.toolbar_bg_color = toolbar_bg_color;
-    }
-
     public boolean isShowImgRightAnther() {
         return isShowImgRightAnther;
     }
@@ -103,8 +99,8 @@ public class WYAToolBarHelper {
         return tvLeftTextColor;
     }
 
-    public void setTvLeftTextColor(int tvLeftTextColor) {
-        this.tvLeftTextColor = tvLeftTextColor;
+    public void setTvLeftTextColor(String  tvLeftTextColorValue) {
+        this.tvLeftTextColor = Color.parseColor(tvLeftTextColorValue);
     }
 
     public boolean isShowImgLeft() {
@@ -144,8 +140,8 @@ public class WYAToolBarHelper {
         return tvRightTextColor;
     }
 
-    public void setTvRightTextColor(int tvRightTextColor) {
-        this.tvRightTextColor = tvRightTextColor;
+    public void setTvRightTextColor(String tvRightTextColorValue) {
+        this.tvRightTextColor = Color.parseColor(tvRightTextColorValue);;
     }
 
     public boolean isShowImgRight() {
@@ -192,8 +188,8 @@ public class WYAToolBarHelper {
         return titleTextColor;
     }
 
-    public  void setTitleTextColor(int titleTextColor) {
-        this.titleTextColor = titleTextColor;
+    public  void setTitleTextColor(String titleTextColorValue) {
+        this.titleTextColor = Color.parseColor(titleTextColorValue);
     }
 
     public  int getToolbar_bg_color() {

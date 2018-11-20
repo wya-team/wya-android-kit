@@ -16,6 +16,33 @@ uikit开发
 字段  | 说明 
 ---- | -----   
 toolbar_bg_color_value | 背景颜色值（#000000形式） 
+
+* initWYAActionBarDefault(boolean showToolBar, String toolbarBgColorValue, boolean isShowTitle, String titleStr, int titleTextSize, String titleTextColorValue,
+                                          boolean isShowTvLeft, String tvLeftStr, int tvLeftTextSize, String tvLeftTextColorValue, boolean isShowImgLeft, int imgLeftRes,
+                                          boolean isShowTvRight, String tvRightStr, int tvRightTextSize, String tvRightTextColorValue, boolean isShowImgRight, boolean isShowImgRightAnther, int imgRightRes, int imgRightResAnther)
+
+##### 初始化标题（默认标题， 在baseActivity中调用）
+字段  | 说明 
+---- | -----   
+showToolBar | 是否显示标题栏 
+toolbarBgColorValue | 标题栏背景颜色 
+isShowTitle | 是否展示标题 
+titleStr | 标题内容 
+titleTextSize | 标题文字大小 
+titleTextColorValue | 标题文字颜色 
+isShowTvLeft | 是否显示左边文字
+tvLeftStr | 左边文字内容 
+tvLeftTextSize | 左边文字大小 
+tvLeftTextColorValue | 左边文字内容 
+isShowImgLeft | 左边图片是否显示 
+imgLeftRes | 左边图片资源 
+isShowTvRight | 是否显示右边文字
+tvRightStr | 右边文字内容
+tvRightTextColorValue | 右边文字的颜色
+isShowImgRight | 是否显示右边第一张图片
+isShowImgRightAnther | 是否显示右边第二张图片
+imgRightRes | 右边第一张图片
+imgRightResAnther | 右边第二章图片资源 
     
 * initToolBarTitle(String titleStr, int titleTextSize, int titleTextColor, boolean showTitle)
 #####  修改标题

@@ -3,6 +3,7 @@ package com.wya.example.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.wya.example.R;
 import com.wya.uikit.toolbar.BaseToolBarActivity;
 
 import butterknife.ButterKnife;
@@ -23,16 +24,11 @@ public abstract class BaseActivity extends BaseToolBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutID());
         unbinder = ButterKnife.bind(this);
-//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
-//            /**状态栏：5.1(不包含5.1)以上改为全屏，背景白色*/
-//            StatusUtil.setStatusBarColor(this, android.R.color.white);
-//            StatusUtil.setStatue(this, true);
-//        } else if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {/**5.1及5.1以下改为灰色*/
-//            StatusUtil.setStatusBarColor(this, android.R.color.black);
-//        }
+        initWYAActionBarDefault(true, "#000000",true, "初始化标题", 18, "#ffffff",
+        false, "", 14, "#ffffff", true, R.mipmap.icon_back_white,
+        false, "",14, "#ffffff", false, false, 0, 0);
         initView();
     }
-
     protected abstract void initView();
 
     protected abstract int getLayoutID();

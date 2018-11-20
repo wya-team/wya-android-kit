@@ -2,7 +2,6 @@ package com.wya.uikit.toolbar;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
@@ -82,12 +81,45 @@ public abstract class BaseToolBarActivity extends Activity {
         initWYAActionBar();
     }
 
+    public void initWYAActionBarDefault(boolean showToolBar, String toolbarBgColorValue, boolean isShowTitle, String titleStr, int titleTextSize, String titleTextColorValue,
+                                        boolean isShowTvLeft, String tvLeftStr, int tvLeftTextSize, String tvLeftTextColorValue, boolean isShowImgLeft, int imgLeftRes,
+                                        boolean isShowTvRight, String tvRightStr, int tvRightTextSize, String tvRightTextColorValue, boolean isShowImgRight, boolean isShowImgRightAnther, int imgRightRes, int imgRightResAnther) {
+        wyaToolBarHelper.setShowTitle(showToolBar);
+        wyaToolBarHelper.setToolbar_bg_color(toolbarBgColorValue);
+        wyaToolBarHelper.setShowTitle(isShowTitle);
+        wyaToolBarHelper.setTitleStr(titleStr);
+        wyaToolBarHelper.setTitleTextSize(titleTextSize);
+        wyaToolBarHelper.setTitleTextColor(titleTextColorValue);
+        wyaToolBarHelper.setShowTvLeft(isShowTvLeft);
+        wyaToolBarHelper.setTvLeftStr(tvLeftStr);
+        wyaToolBarHelper.setTvLeftTextSize(tvLeftTextSize);
+        wyaToolBarHelper.setTvLeftTextColor(tvLeftTextColorValue);
+        wyaToolBarHelper.setShowImgLeft(isShowImgLeft);
+        wyaToolBarHelper.setImgLeftRes(imgLeftRes);
+
+        wyaToolBarHelper.setShowTvRight(isShowTvRight);
+        wyaToolBarHelper.setTvRightStr(tvRightStr);
+        wyaToolBarHelper.setTvRightTextSize(tvRightTextSize);
+        wyaToolBarHelper.setTvRightTextColor(tvRightTextColorValue);
+        wyaToolBarHelper.setShowImgRight(isShowImgRight);
+        wyaToolBarHelper.setImgRightRes(imgRightRes);
+        wyaToolBarHelper.setImgRightResAnther(imgRightResAnther);
+        wyaToolBarHelper.setShowImgRightAnther(isShowImgRightAnther);
+
+        initShowToolBar(wyaToolBarHelper.isShowTitle());
+        initToolBarBgColor(wyaToolBarHelper.getToolbar_bg_color());
+        initToolBarTitle(wyaToolBarHelper.getTitleStr(), wyaToolBarHelper.getTitleTextSize(), wyaToolBarHelper.getTitleTextColor(), wyaToolBarHelper.isShowTitle());
+        initTvLeft(wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
+        initImgLeft(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.isShowImgLeft());
+        initTvRight(wyaToolBarHelper.getTvRightStr(), wyaToolBarHelper.getTvRightTextColor(), wyaToolBarHelper.getTvRightTextSize(), wyaToolBarHelper.isShowTvRight());
+        initImgRight(wyaToolBarHelper.getImgRightRes(), wyaToolBarHelper.isShowImgRight(), wyaToolBarHelper.getImgRightResAnther(), wyaToolBarHelper.isShowImgRightAnther());
+    }
+
     /**
      * uikit-ToolBar
      * 初始化控件
      */
-
-    private void initWYAActionBar() {
+    public void initWYAActionBar() {
         wyaToolBarHelper = new WYAToolBarHelper();
         title = findViewById(R.id.title);
         tv_left = findViewById(R.id.tv_left);
@@ -99,23 +131,24 @@ public abstract class BaseToolBarActivity extends Activity {
         img_left = findViewById(R.id.img_left);
         title_bar_bg = findViewById(R.id.title_bar_bg);
 
-
         initShowToolBar(wyaToolBarHelper.isShowTitle());
-        initToolBarBgColor("#1890FF");
+        initToolBarBgColor(wyaToolBarHelper.getToolbar_bg_color());
         initToolBarTitle(wyaToolBarHelper.getTitleStr(), wyaToolBarHelper.getTitleTextSize(), wyaToolBarHelper.getTitleTextColor(), wyaToolBarHelper.isShowTitle());
-        initTvLeft( wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
+        initTvLeft(wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
         initImgLeft(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.isShowImgLeft());
         initTvRight(wyaToolBarHelper.getTvRightStr(), wyaToolBarHelper.getTvRightTextColor(), wyaToolBarHelper.getTvRightTextSize(), wyaToolBarHelper.isShowTvRight());
         initImgRight(wyaToolBarHelper.getImgRightRes(), wyaToolBarHelper.isShowImgRight(), wyaToolBarHelper.getImgRightResAnther(), wyaToolBarHelper.isShowImgRightAnther());
         initClick();
     }
 
+
     /**
      * 是否显示标题
+     *
      * @param showTitle
      */
     public void initShowToolBar(boolean showTitle) {
-        if(showTitle){
+        if (showTitle) {
             title_bar_bg.setVisibility(View.VISIBLE);
         } else {
             title_bar_bg.setVisibility(View.GONE);
@@ -270,10 +303,10 @@ public abstract class BaseToolBarActivity extends Activity {
     /**
      * 初始标题栏颜色
      *
-     * @param toolbar_bg_color_value 颜色十六进制值
+     * @param toolbarBgColorValue 标题栏背景颜色
      */
-    public void initToolBarBgColor(String toolbar_bg_color_value) {
-        title_bar_bg.setBackgroundColor(Color.parseColor(toolbar_bg_color_value));
+    public void initToolBarBgColor(int toolbarBgColorValue) {
+        title_bar_bg.setBackgroundColor(toolbarBgColorValue);
     }
 
     /**

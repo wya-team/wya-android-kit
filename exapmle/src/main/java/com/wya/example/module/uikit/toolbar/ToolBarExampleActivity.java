@@ -1,5 +1,6 @@
 package com.wya.example.module.uikit.toolbar;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -71,13 +72,13 @@ public class ToolBarExampleActivity extends BaseActivity {
                 initShowToolBar(false);
                 break;
             case R.id.radio_red:
-                initToolBarBgColor("#FF0000");
+                initToolBarBgColor(this.getResources().getColor(R.color.red));
                 break;
             case R.id.radio_blue:
-                initToolBarBgColor("#0000FF");
+                initToolBarBgColor(this.getResources().getColor(R.color.blue));
                 break;
             case R.id.radio_greeen:
-                initToolBarBgColor("#00FF00");
+                initToolBarBgColor(this.getResources().getColor(R.color.green));
                 break;
             case R.id.radio_left_show:
                 initImgLeft(R.mipmap.icon_back_white, true);
