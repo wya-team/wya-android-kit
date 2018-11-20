@@ -8,6 +8,7 @@ uikit开发
 #### 使用说明
 #####（1）项目中BaseActivity继承BaseToolBarActivity添加标题栏ToolBar
 #####（2）API说明
+
 * initToolBarBgColor(String toolbar_bg_color_value)
     修改标题栏背景颜色
     字段  | 说明 
