@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".module.uikit.UiKitExampleActivity" />
         <activity android:name=".module.harware.HardwareExampleActivity" />
-        <activity android:name=".module.helper.HelperExampleActivity"></activity>
+        <activity android:name=".module.helper.HelperExampleActivity" />
+        <activity android:name=".module.uikit.ToolBar.ToolBarExampleActivity"></activity>
     </application>
 
 </manifest>

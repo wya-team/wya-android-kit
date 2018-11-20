@@ -22,14 +22,28 @@ android {
         }
     }
 
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     androidTestCompile(supportDepends.annotations) {
         force = true
     }
     implementation supportDepends.appcompat
+    compile supportDepends.butterknnife
+    annotationProcessor supportDepends.butterknife_compiler
+    implementation supportDepends.rxbinding
     implementation project(':hardware:hardware')
     implementation project(':helper:helper')
     implementation project(':uikit:uikit')

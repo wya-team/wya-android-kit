@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-
 def buildConfig = rootProject.extensions.getByName("ext")
 def supportDepends = rootProject.ext.supportDepends
 
@@ -24,7 +23,15 @@ android {
 
 }
 
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation supportDepends.appcompat
+    implementation supportDepends.rxbinding
 }
