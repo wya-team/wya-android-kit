@@ -19,8 +19,10 @@ public class TabBarExampleActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_tab_bar_example);
 		tab = findViewById(R.id.tab);
 		msg = findViewById(R.id.message);
-		//取消动画
+		//取消偏移
 		tab.disableShiftMode();
+		//取消item动画
+		tab.enableAnimation(false);
 		//item点击监听
 		tab.setOnNavigationItemSelectedListener(item -> {
 			switch (item.getItemId()) {

@@ -7,6 +7,8 @@ import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.widget.TextView;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -19,7 +21,13 @@ import java.lang.reflect.Method;
  * version: 1.0
  */
 public class TabBar extends BottomNavigationView {
-
+	private BottomNavigationMenuView mMenuView;
+	private BottomNavigationItemView[] mButtons;
+	private boolean animationRecord;
+	private float mScaleUpFactor;
+	private float mScaleDownFactor;
+	private float mLargeLabelSize;
+	private float mSmallLabelSize;
 
 	public TabBar(Context context) {
 		super(context);
@@ -34,7 +42,7 @@ public class TabBar extends BottomNavigationView {
 	}
 
 	/**
-	 * 取消动画
+	 * 取消偏移动画
 	 */
 	@SuppressLint("RestrictedApi")
 	public void disableShiftMode() {
@@ -62,7 +70,8 @@ public class TabBar extends BottomNavigationView {
 						("setLabelVisibilityMode", int.class);
 				setLabelVisibilityMode.invoke(menuView, 1);
 				for (int i = 0; i < menuView.getChildCount(); i++) {
-					BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
+					BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt
+							(i);
 					Class<? extends BottomNavigationItemView> itemClass = item.getClass();
 					Method setShifting = itemClass.getDeclaredMethod("setShifting", boolean.class);
 					setShifting.invoke(item, false);
@@ -74,4 +83,144 @@ public class TabBar extends BottomNavigationView {
 		}
 	}
 
+	/**
+	 * 取消item文字图片点击放大效果
+	 * @param enable false 取消
+	 */
+	@SuppressLint("RestrictedApi")
+	public void enableAnimation(boolean enable) {
+
+		// 1. get mMenuView
+		BottomNavigationMenuView mMenuView = getBottomNavigationMenuView();
+		// 2. get mButtons
+		BottomNavigationItemView[] mButtons = getBottomNavigationItemViews();
+		// 3. change field mShiftingMode value in mButtons
+		for (BottomNavigationItemView button : mButtons) {
+			TextView mSmallLabel, mLargeLabel;
+			if (Build.VERSION.SDK_INT < 28) {
+				mLargeLabel = getField(button.getClass(), button, "mLargeLabel");
+				mSmallLabel = getField(button.getClass(), button, "mSmallLabel");
+			} else {
+				mLargeLabel = getField(button.getClass(), button, "largeLabel");
+				mSmallLabel = getField(button.getClass(), button, "smallLabel");
+			}
+
+
+			// if disable animation, need animationRecord the source value
+			if (!enable) {
+				if (!animationRecord) {
+					animationRecord = true;
+					if (Build.VERSION.SDK_INT < 28){
+						int mShiftAmount = getField(button.getClass(), button, "mShiftAmount");
+						mScaleUpFactor = getField(button.getClass(), button, "mScaleUpFactor");
+						mScaleDownFactor = getField(button.getClass(), button, "mScaleDownFactor");
+					}else {
+						float mShiftAmount = getField(button.getClass(), button, "shiftAmount");
+						mScaleUpFactor = getField(button.getClass(), button, "scaleUpFactor");
+						mScaleDownFactor = getField(button.getClass(), button, "scaleDownFactor");
+					}
+
+
+					mLargeLabelSize = mLargeLabel.getTextSize();
+					mSmallLabelSize = mSmallLabel.getTextSize();
+
+				}
+				// disable
+				if (Build.VERSION.SDK_INT < 28){
+					setField(button.getClass(), button, "mShiftAmount", 0);
+					setField(button.getClass(), button, "mScaleUpFactor", 1);
+					setField(button.getClass(), button, "mScaleDownFactor", 1);
+				}else {
+					setField(button.getClass(), button, "shiftAmount", 0);
+					setField(button.getClass(), button, "scaleUpFactor", 1);
+					setField(button.getClass(), button, "scaleDownFactor", 1);
+				}
+
+
+				// let the mLargeLabel font size equal to mSmallLabel
+				mLargeLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX, mSmallLabelSize);
+
+
+			}
+		}
+		mMenuView.updateMenuView();
+	}
+
+	/**
+	 * get private mMenuView
+	 *
+	 * @return
+	 */
+	private BottomNavigationMenuView getBottomNavigationMenuView() {
+		if (null == mMenuView)
+			if (Build.VERSION.SDK_INT < 28) {
+				mMenuView = getField(BottomNavigationView.class, this, "mMenuView");
+			} else {
+				mMenuView = getField(BottomNavigationView.class, this, "menuView");
+			}
+		return mMenuView;
+	}
+
+	/**
+	 * get private mButtons in mMenuView
+	 *
+	 * @return
+	 */
+	public BottomNavigationItemView[] getBottomNavigationItemViews() {
+		if (null != mButtons)
+			return mButtons;
+		/*
+		 * 1 private final BottomNavigationMenuView mMenuView;
+		 * 2 private BottomNavigationItemView[] mButtons;
+		 */
+		BottomNavigationMenuView mMenuView = getBottomNavigationMenuView();
+		if (Build.VERSION.SDK_INT < 28) {
+			mButtons = getField(mMenuView.getClass(), mMenuView, "mButtons");
+		} else {
+			mButtons = getField(mMenuView.getClass(), mMenuView, "buttons");
+		}
+		return mButtons;
+	}
+
+	/**
+	 * get private filed in this specific object
+	 *
+	 * @param targetClass
+	 * @param instance    the filed owner
+	 * @param fieldName
+	 * @param <T>
+	 * @return field if success, null otherwise.
+	 */
+	private <T> T getField(Class targetClass, Object instance, String fieldName) {
+		try {
+			Field field = targetClass.getDeclaredField(fieldName);
+			field.setAccessible(true);
+			return (T) field.get(instance);
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 * change the field value
+	 *
+	 * @param targetClass
+	 * @param instance    the filed owner
+	 * @param fieldName
+	 * @param value
+	 */
+	private void setField(Class targetClass, Object instance, String fieldName, Object value) {
+		try {
+			Field field = targetClass.getDeclaredField(fieldName);
+			field.setAccessible(true);
+			field.set(instance, value);
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
 }

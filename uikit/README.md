@@ -99,12 +99,14 @@ showTitle  | 设置标题栏是否显示，默认显示
 
 ## 2.TabBar
 
-TabBar继承自design包下的BottomNavigationView,新增方法disableShiftMode()取消原生的动画效果
+TabBar继承自design包下的BottomNavigationView,
+1. 新增方法disableShiftMode()取消偏移效果
+2. 新增方法enableAnimation(boolean enable)设置是否取消item动画效果
 
 ##### xml文件下进行配置属性
 属性|说明
 ---|---
-menu|在menu文件夹下配置，具体可查看demo，里面可以配置图标和文字
+menu|在menu文件夹下配置，具体可查看demo，里面可以配置图标和文字,其中item个数最多5个
 itemIconTint|图标颜色，在drawable中配置选择和非选择颜色即可
 itemTextColor|图标颜色，在drawable中配置选择和非选择颜色即可，同itemIconTint
 itemBackground|item背景颜色，如果不需要动画效果可以设置为@null
