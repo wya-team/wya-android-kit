@@ -47,53 +47,54 @@ imgRightResAnther | 右边第二章图片资源
 * initToolBarTitle(String titleStr, int titleTextSize, int titleTextColor, boolean showTitle)
 #####  修改标题
 字段  | 说明 
-      ---|---  
-     titleStr  | 标题内容 
-     titleTextSize  | 标题字体大小，默认18 
-     titleTextColor  | 标题字体颜色， 默认白色 
-     showTitle  | 标题是否显示，默认显示
-     字段  | 说明 
+---|---  
+titleStr  | 标题内容 
+titleTextSize  | 标题字体大小，默认18 
+titleTextColor  | 标题字体颜色， 默认白色 
+showTitle  | 标题是否显示，默认显示
+字段  | 说明 
      
 * initImgLeft(int imgLeftRes, boolean showImgLeft)
 ##### 修改标题栏左边图标
- 字段  | 说明 
-       ---|--- 
-     imgLeftRes  | 左图标（R.mipmap.xxx/R.drawable.xxx）
-     showImgLeft  | 左图标是否显示，默认显示 
+字段  | 说明 
+---|--- 
+imgLeftRes  | 左图标（R.mipmap.xxx/R.drawable.xxx）
+showImgLeft  | 左图标是否显示，默认显示 
      
      
 * initTvLeft(String tvLeftStr, int tvLeftTextColor, int tvLeftTextSize, boolean showTvLeft)
 ##### 修改标题栏左边文字
- 字段  | 说明 
-       ---|---  
-     tvLeftStr  | 左文字内筒
-     tvLeftTextColor  | 左文字字体颜色
-     tvLeftTextSize  | 左文字字体字体大小
-     showTvLeft  | 左文字是否显示，默认不显示
+字段  | 说明 
+---|---  
+tvLeftStr  | 左文字内筒
+tvLeftTextColor  | 左文字字体颜色
+tvLeftTextSize  | 左文字字体字体大小
+showTvLeft  | 左文字是否显示，默认不显示
      
 * initImgRight(int imgRightRes, boolean showImgRight, int imgRightAntherRes, boolean showImgAnther)
 ##### 修改标题右边图标
- 字段  | 说明 
-      ---|---
-     imgRightRes  | 右图标（R.mipmap.xxx/R.drawable.xxx）
-     showImgRight  | 右左图标是否显示，默认不显示 
-     imgRightAntherRes  | 第二个右图标（R.mipmap.xxx/R.drawable.xxx）
-     showImgAnther  | 第二个右图标是否显示，默认不显示 
+字段  | 说明 
+---|---
+imgRightRes  | 右图标（R.mipmap.xxx/R.drawable.xxx）
+showImgRight  | 右左图标是否显示，默认不显示 
+imgRightAntherRes  | 第二个右图标（R.mipmap.xxx/R.drawable.xxx）
+showImgAnther  | 第二个右图标是否显示，默认不显示 
      
      
 * initTvRight(String tvRightStr, int tvRightTextColor, int tvRightTextSize, boolean showTvRight) 
 ##### 修改标题栏右边文字
- 字段  | 说明 
-       ---|---
-     tvRightStr  | 右文字内筒
-     tvRightTextColor  | 右文字字体颜色
-     tvRightTextSize  | 右文字字体字体大小
-     showTvRight  | 右文字是否显示，默认不显示
-* initShowToolBar(boolean showTitle)、
+字段  | 说明 
+---|---
+tvRightStr  | 右文字内筒
+tvRightTextColor  | 右文字字体颜色
+tvRightTextSize  | 右文字字体字体大小
+showTvRight  | 右文字是否显示，默认不显示
+
+* initShowToolBar(boolean showTitle)
 ##### 设置是否显示标题
-  字段  | 说明 
-       ---|---
-      showTitle  | 设置标题栏是否显示，默认显示
+字段  | 说明 
+---|---
+showTitle  | 设置标题栏是否显示，默认显示
 
 
 ## 2.TabBar
@@ -120,82 +121,82 @@ itemBackground|item背景颜色，如果不需要动画效果可以设置为@nul
 
 * setTitle(String title)
 ##### 修改dialog标题
- 字段  | 说明 
+字段  | 说明 
 ---|---  
-     title  | 标题文字，为空或者空的字符串时不显示标题
+title  | 标题文字，为空或者空的字符串时不显示标题
 
 
 * setTitleColor(int color, int text_color)
 ##### 修改dialog标题
- 字段  | 说明 
+字段  | 说明 
 ---|---
-     color  | 标题背景颜色
-     text_color  | 标题文字颜色
+color  | 标题背景颜色
+text_color  | 标题文字颜色
 
 * setMessage(String message)
 ##### 设置提示内容
- 字段  | 说明 
+字段  | 说明 
 ---|---  
-     message  | 内容文字，为空或者空的字符串时不显示内容
+message  | 内容文字，为空或者空的字符串时不显示内容
      
 * setEdit_text(String hint_text_str, String edit_text_str)
 ##### 设置编辑框内容
- 字段  | 说明 
+字段  | 说明 
 ---|--- 
-     hint_text_str  | 编辑框提示文字
-     edit_text_str  | 编辑框文字，为空或者空的字符串时不显示编辑框
+hint_text_str  | 编辑框提示文字
+edit_text_str  | 编辑框文字，为空或者空的字符串时不显示编辑框
      
 * setCancleText(String cancleText)
 ##### 设置取消按钮
- 字段  | 说明 
+字段  | 说明 
 ---|---
-     cancleText  | 取消按钮文字，为空或者空的字符串时不显示取消按钮
+cancleText  | 取消按钮文字，为空或者空的字符串时不显示取消按钮
 
 * setConfirmText(String confirmText)
 ##### 设置确定内容
- 字段  | 说明 
+字段  | 说明 
 ---|---  
-     confirmText  | 确定按钮文字
+confirmText  | 确定按钮文字
 
 * setNoButton()
 ##### 设置按钮不显示
 
 * setConfirmColor(int text_color)
 ##### 设置确定按钮字体颜色
- 字段  | 说明 
+字段  | 说明 
 ---|--- 
-     text_color  | 设置确定按钮颜色
+text_color  | 设置确定按钮颜色
      
 * setCancelColor(int text_color)
 ##### 设置取消按钮字体颜色
- 字段  | 说明 
+字段  | 说明 
 ---|--- 
-     text_color  | 设置确定按钮颜色
+text_color  | 设置确定按钮颜色
 
 * setRecyclerView(List<String> data, Context context)
 ##### 设置选择列表
- 字段  | 说明 
+字段  | 说明 
 ---|---  
-     data  | 数据
-     context  | 上下文
+data  | 数据
+context  | 上下文
 
 * setNoOnclickListener(onNoOnclickListener onNoOnclickListener)
 ##### 取消按钮的监听
- 字段  | 说明 
+字段  | 说明 
 ---|---  
-     onNoOnclickListener  | 取消按钮监听器
+onNoOnclickListener  | 取消按钮监听器
      
 * setYesOnclickListener(onYesOnclickListener onYesOnclickListener)
 ##### 确定按钮的监听
- 字段  | 说明 
+字段  | 说明 
 ---|---  
-     onYesOnclickListener  | 确定按钮监听器
+onYesOnclickListener  | 确定按钮监听器
      
 * setListOnclickListener(ListOnclickListener listOnclickListener)
 ##### 取消按钮的监听
- 字段  | 说明 
+字段  | 说明 
 ---|---   
-     listOnclickListener  | 列表点击监听器
+listOnclickListener  | 列表点击监听器
 
 ##### 第三方依赖库
       recyclerview: "com.android.support:recyclerview-v7:${androidSupportLibVersion}",
