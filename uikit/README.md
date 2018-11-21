@@ -114,4 +114,93 @@ itemBackground|item背景颜色，如果不需要动画效果可以设置为@nul
 3. 添加setOnNavigationItemSelectedListener回调监听方法，返回true
 
 
+## 3.Dialog
+#### 使用例子在 example module下的 uikit/dialog 依赖库在uikit/dialog
+##### API说明
+
+* setTitle(String title)
+##### 修改dialog标题
+ 字段  | 说明 
+       ---- | -----   
+     title  | 标题文字，为空或者空的字符串时不显示标题
+
+
+* setTitleColor(int color, int text_color)
+##### 修改dialog标题
+ 字段  | 说明 
+       ---- | -----   
+     color  | 标题背景颜色
+     text_color  | 标题文字颜色
+
+* setMessage(String message)
+##### 设置提示内容
+ 字段  | 说明 
+       ---- | -----   
+     message  | 内容文字，为空或者空的字符串时不显示内容
+     
+* setEdit_text(String hint_text_str, String edit_text_str)
+##### 设置编辑框内容
+ 字段  | 说明 
+       ---- | -----   
+     hint_text_str  | 编辑框提示文字
+     edit_text_str  | 编辑框文字，为空或者空的字符串时不显示编辑框
+     
+* setCancleText(String cancleText)
+##### 设置取消按钮
+ 字段  | 说明 
+       ---- | -----   
+     cancleText  | 取消按钮文字，为空或者空的字符串时不显示取消按钮
+
+* setConfirmText(String confirmText)
+##### 设置确定内容
+ 字段  | 说明 
+       ---- | -----   
+     confirmText  | 确定按钮文字
+
+* setNoButton()
+##### 设置按钮不显示
+
+* setConfirmColor(int text_color)
+##### 设置确定按钮字体颜色
+ 字段  | 说明 
+       ---- | -----   
+     text_color  | 设置确定按钮颜色
+     
+* setCancelColor(int text_color)
+##### 设置取消按钮字体颜色
+ 字段  | 说明 
+       ---- | -----   
+     text_color  | 设置确定按钮颜色
+
+* setRecyclerView(List<String> data, Context context)
+##### 设置选择列表
+ 字段  | 说明 
+       ---- | -----   
+     data  | 数据
+     context  | 上下文
+
+* setNoOnclickListener(onNoOnclickListener onNoOnclickListener)
+##### 取消按钮的监听
+ 字段  | 说明 
+       ---- | -----   
+     onNoOnclickListener  | 取消按钮监听器
+     
+* setYesOnclickListener(onYesOnclickListener onYesOnclickListener)
+##### 确定按钮的监听
+ 字段  | 说明 
+       ---- | -----   
+     onYesOnclickListener  | 确定按钮监听器
+     
+* setListOnclickListener(ListOnclickListener listOnclickListener)
+##### 取消按钮的监听
+ 字段  | 说明 
+       ---- | -----   
+     listOnclickListener  | 列表点击监听器
+
+
+
+
+
+
+
 

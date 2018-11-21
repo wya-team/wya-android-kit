@@ -48,6 +48,7 @@ dependencies {
     compile supportDepends.butterknnife
     annotationProcessor supportDepends.butterknife_compiler
     implementation supportDepends.rxbinding
+    compile supportDepends.base_adapter
     implementation project(':hardware:hardware')
     implementation project(':helper:helper')
     implementation project(':uikit:uikit')

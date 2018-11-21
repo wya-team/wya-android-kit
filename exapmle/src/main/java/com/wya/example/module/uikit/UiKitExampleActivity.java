@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.uikit.dialog.DialogExampleActivity;
 import com.wya.example.module.uikit.toolbar.ToolBarExampleActivity;
 import com.wya.example.module.uikit.tabbar.TabBarExampleActivity;
 
@@ -17,14 +18,17 @@ public class UiKitExampleActivity extends BaseActivity {
 
     @BindView(R.id.tv_tool_bar)
     TextView tvToolBar;
+    @BindView(R.id.tv_dialog)
+    TextView tvDialog;
     @BindView(R.id.tv_tab_bar)
     TextView tvTabBar;
     @BindView(R.id.tv_tab_layout)
     TextView tvTabLayout;
 
+    private  Intent intent = null;
     @Override
     protected void initView() {
-        initImgLeft(R.mipmap.icon_back_white,  true);
+        initImgLeft(R.mipmap.icon_back_white, true);
         setLeftOnclickListener(new onLeftOnclickListener() {
             @Override
             public void onLeftClick() {
@@ -39,11 +43,11 @@ public class UiKitExampleActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.tv_tool_bar, R.id.tv_tab_bar, R.id.tv_tab_layout})
+    @OnClick({R.id.tv_tool_bar, R.id.tv_tab_bar, R.id.tv_tab_layout, R.id.tv_dialog})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_tool_bar:
-                Intent intent = new Intent(UiKitExampleActivity.this, ToolBarExampleActivity.class);
+                intent = new Intent(UiKitExampleActivity.this, ToolBarExampleActivity.class);
                 UiKitExampleActivity.this.startActivity(intent);
                 break;
             case R.id.tv_tab_bar:
@@ -52,6 +56,10 @@ public class UiKitExampleActivity extends BaseActivity {
                 startActivity(intent1);
                 break;
             case R.id.tv_tab_layout:
+                break;
+            case R.id.tv_dialog:
+                intent = new Intent(UiKitExampleActivity.this, DialogExampleActivity.class);
+                UiKitExampleActivity.this.startActivity(intent);
                 break;
         }
     }

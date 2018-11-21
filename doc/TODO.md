@@ -1,6 +1,6 @@
 ### uikit开发 
 #### 1、~~toolbar~~
-#### 2、tabbar
+#### 2、~~tabbar~~
 #### 3、segmentedcontrol
 #### 4、popupwindow
 #### 5、paginationview
@@ -14,7 +14,7 @@
 #### 13、pickview
 #### 14、noticebar
 #### 15、banner
-#### 16、dialog
+#### 16、~~dialog~~
 #### 17、toast
 #### 18、keyboard
 

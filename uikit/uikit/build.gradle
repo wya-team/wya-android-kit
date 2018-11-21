@@ -21,6 +21,17 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layout/toolbar',
+                            'src/main/res/layout/dialog',
+                            'src/main/res'
+                    ]
+        }
+    }
+
 }
 
 buildscript {
@@ -35,4 +46,6 @@ dependencies {
     implementation supportDepends.appcompat
     implementation supportDepends.rxbinding
     implementation supportDepends.design
+    implementation supportDepends.recyclerview
+    compile supportDepends.base_adapter
 }
