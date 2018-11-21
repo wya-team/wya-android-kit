@@ -1,7 +1,7 @@
 ### uikit开发 
 #### 1、~~toolbar~~
 #### 2、~~tabbar~~
-#### 3、segmentedcontrol
+#### 3、segmentedcontrol(开发中)
 #### 4、popupwindow（开发中）
 #### 5、paginationview
 #### 6、choosemenu
