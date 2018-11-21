@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.uikit.toolbar.ToolBarExampleActivity;
+import com.wya.example.module.uikit.tabbar.TabBarExampleActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -46,6 +47,9 @@ public class UiKitExampleActivity extends BaseActivity {
                 UiKitExampleActivity.this.startActivity(intent);
                 break;
             case R.id.tv_tab_bar:
+                Intent intent1 = new Intent(UiKitExampleActivity.this, TabBarExampleActivity
+                        .class);
+                startActivity(intent1);
                 break;
             case R.id.tv_tab_layout:
                 break;

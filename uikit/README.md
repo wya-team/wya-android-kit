@@ -1,7 +1,7 @@
 uikit开发
 ======
 
-## 1、ToolBar
+## 1.ToolBar
 
 
 #### 使用例子在 example module下的 uikit/toolbar 依赖库在uikit/toolbar文件夹下
@@ -94,4 +94,24 @@ imgRightResAnther | 右边第二章图片资源
   字段  | 说明 
         ---- | -----   
       showTitle  | 设置标题栏是否显示，默认显示
- 
+
+
+## 2.TabBar
+
+TabBar继承自design包下的BottomNavigationView,新增方法disableShiftMode()取消原生的动画效果
+
+##### xml文件下进行配置属性
+属性|说明
+----|----
+menu|在menu文件夹下配置，具体可查看demo，里面可以配置图标和文字
+itemIconTint|图标颜色，在drawable中配置选择和非选择颜色即可
+itemTextColor|图标颜色，在drawable中配置选择和非选择颜色即可，同itemIconTint
+itemBackground|item背景颜色，如果不需要动画效果可以设置为@null
+
+##### 使用说明
+1. 在xml文件中使用TabBar，配置好属性menu和选择状态drawable等
+2. 在activity中初始化控件，并调用disableShiftMode()方法
+3. 添加setOnNavigationItemSelectedListener回调监听方法，返回true
+
+
+
