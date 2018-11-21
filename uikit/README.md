@@ -197,7 +197,9 @@ itemBackground|item背景颜色，如果不需要动画效果可以设置为@nul
        ---- | -----   
      listOnclickListener  | 列表点击监听器
 
-
+##### 第三方依赖库
+      recyclerview: "com.android.support:recyclerview-v7:${androidSupportLibVersion}",
+      base_adapter: "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30",
 
 
 
