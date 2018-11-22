@@ -237,3 +237,40 @@ yoff | 纵向偏移量
 popupWindowListOnclickListener | 列表点击监听回调
 
 
+
+## 5.Toast
+
+
+#### 使用例子在 example module下的 uikit/toast 依赖库在uikit/toast文件夹下
+     
+#### 使用说明
+#####（1）直接调用WYAToast.showShort,showLong,showToastWithImg方法显示Toast
+#####（2）API说明
+
+* showShort(Context context, CharSequence message)
+
+##### 短时间toast
+字段  | 说明 
+---- | -----   
+context | 上下文 
+message | Toast文本内容
+
+* showLong(Context context, CharSequence message)
+
+##### 长时间toast
+字段  | 说明 
+---- | -----   
+context | 上下文 
+message | Toast文本内容
+
+* showToastWithImg(Context context, final String tvStr, final int imageResource, int gravity)
+
+##### 长时间toast
+字段  | 说明 
+---- | -----   
+context | 上下文 
+tvStr | Toast文本内容
+imageResource | Toast图片资源（R.mipmap.xxx）
+gravity | Toast显示位子
+
+
