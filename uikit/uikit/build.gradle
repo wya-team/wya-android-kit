@@ -27,6 +27,8 @@ android {
                     [
                             'src/main/res/layout/toolbar',
                             'src/main/res/layout/dialog',
+                            'src/main/res/layout/popupwindow',
+                            'src/main/res/layout/toast',
                             'src/main/res'
                     ]
         }

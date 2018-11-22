@@ -44,14 +44,14 @@ public abstract class BaseToolBarActivity extends Activity {
      * 设置左边点击事件
      */
     public interface onLeftOnclickListener {
-        void onLeftClick();
+        void onLeftClick(View view);
     }
 
     /**
      * 设置右边点击事件
      */
     public interface onRightOnclickListener {
-        void onRightClick();
+        void onRightClick(View view);
     }
 
 
@@ -163,7 +163,7 @@ public abstract class BaseToolBarActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (onLeftOnclickListener != null) {
-                    onLeftOnclickListener.onLeftClick();
+                    onLeftOnclickListener.onLeftClick(view);
                 } else {
                     BaseToolBarActivity.this.finish();
                 }
@@ -173,7 +173,7 @@ public abstract class BaseToolBarActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (onRightOnclickListener != null) {
-                    onRightOnclickListener.onRightClick();
+                    onRightOnclickListener.onRightClick(view);
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "右边", Toast.LENGTH_SHORT).show();
                 }
@@ -299,6 +299,16 @@ public abstract class BaseToolBarActivity extends Activity {
             title.setVisibility(View.GONE);
         }
     }
+
+    /**
+     * 只设置标题的名字内容
+     * @param titleStr
+     */
+    public void setToolBarTitle(String titleStr) {
+        title.setText(titleStr);
+    }
+
+
 
     /**
      * 初始标题栏颜色

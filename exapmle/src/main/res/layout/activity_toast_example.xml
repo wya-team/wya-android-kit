@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wya.example.module.uikit.toast.ToastExampleActivity">
+
+    <TextView
+        android:id="@+id/tv_normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_12"
+        android:text="普通Toast"
+        android:textColor="@drawable/btn_c333333_click_color" />
+
+    <TextView
+        android:id="@+id/tv_long"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_12"
+        android:text="长时间Toast"
+        android:textColor="@drawable/btn_c333333_click_color" />
+
+    <TextView
+        android:id="@+id/tv_custom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_12"
+        android:text="自定义Toast"
+        android:textColor="@drawable/btn_c333333_click_color" />
+</LinearLayout>

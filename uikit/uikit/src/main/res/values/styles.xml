@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--自定义dialog背景全透明无边框theme -->
+    <!--dialog:自定义dialog背景全透明无边框theme -->
     <style name="WYACustomDialog" parent="android:style/Theme.Dialog">
         <!--背景颜色及和透明程度-->
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -14,4 +14,13 @@
         <!--是否模糊-->
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
+    <!--popupwindow:显示动画-->
+    <style name="pop_add">
+        <item name="android:windowEnterAnimation">@anim/popup_window_add_show</item>
+        <item name="android:windowExitAnimation">@anim/popup_window_add_hide</item>
+    </style>
+
+
+
 </resources>
