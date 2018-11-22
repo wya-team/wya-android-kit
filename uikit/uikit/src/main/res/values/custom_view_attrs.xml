@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WYASegmentedView">
+        <attr name="lineColor" format="color" />
+        <attr name="titleNormalColor" format="color" />
+        <attr name="titleSelectColor" format="color" />
+        <attr name="itemNormalBackground" format="color" />
+        <attr name="itemSelectBackground" format="color" />
+        <attr name="lineSize" format="dimension" />
+        <attr name="titleSize" format="dimension"/>
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="strokeColor" format="color" />
+        <attr name="radius" format="dimension" />
+    </declare-styleable>
+
+</resources>

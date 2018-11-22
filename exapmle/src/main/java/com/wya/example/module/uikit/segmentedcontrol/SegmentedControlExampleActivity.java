@@ -11,7 +11,8 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
 import com.wya.example.R;
-import com.wya.uikit.segmentedcontrol.TabLayoutControl;
+import com.wya.uikit.segmentedcontrol.WYASegmentedView;
+import com.wya.uikit.segmentedcontrol.WYATabLayoutControl;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,14 +32,14 @@ public class SegmentedControlExampleActivity extends AppCompatActivity implement
 	TabLayout mTabLayout;
 	@BindView(R.id.viewpager)
 	ViewPager mViewpager;
+	@BindView(R.id.segment_layout)
+	WYASegmentedView mSegmentLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_segmented_control_example);
 		ButterKnife.bind(this);
-
-
 
 
 		mFix.setOnCheckedChangeListener(this);
@@ -51,6 +52,14 @@ public class SegmentedControlExampleActivity extends AppCompatActivity implement
 		mTabLayout.getTabAt(0).setText("标题1");
 		mTabLayout.getTabAt(1).setText("标题2");
 		mTabLayout.getTabAt(2).setText("标题3");
+		mSegmentLayout.setVisibility(View.GONE);
+		mSegmentLayout.addTabs(new String[]{"标题1","标题2","标题3"});
+		mSegmentLayout.setOnItemClickListener(new WYASegmentedView.OnItemClickListener() {
+			@Override
+			public void itemClicked(int position) {
+				mViewpager.setCurrentItem(position);
+			}
+		});
 	}
 
 	@Override
@@ -60,26 +69,31 @@ public class SegmentedControlExampleActivity extends AppCompatActivity implement
 			switch (buttonView.getId()) {
 				case R.id.fix:
 					mTabLayout.setVisibility(View.VISIBLE);
-					TabLayoutControl.clear(mTabLayout);
+					WYATabLayoutControl.clear(mTabLayout);
 					mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+					mSegmentLayout.setVisibility(View.GONE);
 					break;
 				case R.id.scroll:
 					mTabLayout.setVisibility(View.VISIBLE);
-					TabLayoutControl.clear(mTabLayout);
+					mSegmentLayout.setVisibility(View.GONE);
+					WYATabLayoutControl.clear(mTabLayout);
 					mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 					break;
 				case R.id.line:
 					mTabLayout.setVisibility(View.VISIBLE);
-					TabLayoutControl.lineWidth(mTabLayout);
+					mSegmentLayout.setVisibility(View.GONE);
+					WYATabLayoutControl.lineWidth(mTabLayout);
 					break;
 				case R.id.segment:
 					mTabLayout.setVisibility(View.GONE);
+					mSegmentLayout.setVisibility(View.VISIBLE);
 					break;
 			}
 		}
 	}
 
-	FragmentPagerAdapter mFragmentPagerAdapter=new FragmentPagerAdapter(getSupportFragmentManager()) {
+	FragmentPagerAdapter mFragmentPagerAdapter = new FragmentPagerAdapter
+			(getSupportFragmentManager()) {
 		@Override
 		public Fragment getItem(int position) {
 			return ItemFragment.newInstance(position);

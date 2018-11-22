@@ -15,7 +15,7 @@ import java.lang.reflect.Field;
  * desc   : TabLayout控制器
  * version: 1.0
  */
-public class TabLayoutControl {
+public class WYATabLayoutControl {
 
 	/**
 	 * mTestView控制下划线宽度与文字一样

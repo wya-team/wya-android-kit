@@ -274,3 +274,28 @@ imageResource | Toast图片资源（R.mipmap.xxx）
 gravity | Toast显示位子
 
 
+## 6.SegmentControl
+##### 说明： SegmentControl包下包含2个功能
+* WYATabLayoutControl：design包下TabLayout控制器，lineWidth(final TabLayout layout)方法，利用反射技术，设置TabLayout的item下划线与文字同宽。以及clear(final TabLayout layout)清除设置的下滑长度。
+* WYASegmentedView ： 用于分段式选择，只能点击不能滑动
+
+##### WYASegmentedView属性说明
+属性|说明
+---|---
+lineColor|中间横线颜色
+lineSize|中间横线宽度
+titleNormalColor|标题普通颜色
+titleSelectColor|标题选择颜色
+itemNormalBackground|单个item普通颜色
+itemSelectBackground|单个item选择颜色
+titleSize|标题大小
+strokeWidth|边线的宽度
+strokeColor|边线的颜色
+radius|WYASegmentedView的圆角
+
+##### WYASegmentedView使用方法
+* setOnItemClickListener()设置item点击时间
+* addTabs()添加标题，数据源List/Array
+
+
+
