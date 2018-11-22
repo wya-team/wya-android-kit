@@ -20,8 +20,9 @@
         <activity android:name=".module.harware.HardwareExampleActivity" />
         <activity android:name=".module.helper.HelperExampleActivity" />
         <activity android:name=".module.uikit.toolbar.ToolBarExampleActivity" />
-        <activity android:name=".module.uikit.dialog.DialogExampleActivity"></activity>
+        <activity android:name=".module.uikit.dialog.DialogExampleActivity" />
         <activity android:name=".module.uikit.tabbar.TabBarExampleActivity" />
+        <activity android:name=".module.uikit.popupwindow.PopupWindowExampleActivity"></activity>
     </application>
 
 </manifest>

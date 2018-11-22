@@ -52,7 +52,13 @@ titleStr  | 标题内容
 titleTextSize  | 标题字体大小，默认18 
 titleTextColor  | 标题字体颜色， 默认白色 
 showTitle  | 标题是否显示，默认显示
+
+
+* setToolBarTitle(String titleStr)
+#####  只修改标题内容
 字段  | 说明 
+---|---  
+titleStr  | 标题内容 
      
 * initImgLeft(int imgLeftRes, boolean showImgLeft)
 ##### 修改标题栏左边图标
@@ -205,7 +211,29 @@ listOnclickListener  | 列表点击监听器
       base_adapter: "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30",
 
 
+## 4.PopupWindow
 
 
+#### 使用例子在 example module下的 uikit/popupwindow 依赖库在uikit/popupwindow文件夹下
+     
+#### 使用说明
+#####（1）实例化WYAPopupWindow，然后在项目中调用show方法显示
+#####（2）API说明
+
+* show(View view, int xoff, int yoff)
+
+##### 显示popupwindow
+字段  | 说明 
+---- | -----   
+view | 显示该view的下方 
+xoff | 横向偏移量 
+yoff | 纵向偏移量 
+
+* setPopupWindowListOnclickListener(PopupWindowListOnclickListener popupWindowListOnclickListener)
+
+##### 设置列表点击事件监听
+字段  | 说明 
+---- | -----   
+popupWindowListOnclickListener | 列表点击监听回调
 
 

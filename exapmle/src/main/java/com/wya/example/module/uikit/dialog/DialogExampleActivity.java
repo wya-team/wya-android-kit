@@ -64,7 +64,7 @@ public class DialogExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        initToolBarTitle("Dialog", 18,this.getResources().getColor(R.color.white), true);
+        setToolBarTitle("Dialog");
     }
 
     @Override

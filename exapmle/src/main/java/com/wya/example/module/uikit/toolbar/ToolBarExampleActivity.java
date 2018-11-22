@@ -1,7 +1,5 @@
 package com.wya.example.module.uikit.toolbar;
 
-import android.graphics.Color;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 
@@ -9,7 +7,6 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -54,7 +51,7 @@ public class ToolBarExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        setToolBarTitle("ToolBar");
     }
 
     @Override

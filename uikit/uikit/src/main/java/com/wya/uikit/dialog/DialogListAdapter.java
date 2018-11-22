@@ -11,12 +11,6 @@ import com.wya.uikit.R;
 
 import java.util.List;
 
-/**
- * 创建日期：2018/7/26 14:42
- * 作者： Mao Chunjiang
- * 文件名称： OrderDeliverAdapter
- * 类说明：物流信息适配器
- */
  /**
   * 创建日期：2018/11/21 11:58
   * 作者： Mao Chunjiang

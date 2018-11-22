@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.uikit.dialog.DialogExampleActivity;
+import com.wya.example.module.uikit.popupwindow.PopupWindowExampleActivity;
 import com.wya.example.module.uikit.toolbar.ToolBarExampleActivity;
 import com.wya.example.module.uikit.tabbar.TabBarExampleActivity;
 
@@ -22,6 +23,8 @@ public class UiKitExampleActivity extends BaseActivity {
     TextView tvDialog;
     @BindView(R.id.tv_tab_bar)
     TextView tvTabBar;
+    @BindView(R.id.tv_popupwindow)
+    TextView tvPopupWindow;
     @BindView(R.id.tv_tab_layout)
     TextView tvTabLayout;
 
@@ -29,12 +32,6 @@ public class UiKitExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         initImgLeft(R.mipmap.icon_back_white, true);
-        setLeftOnclickListener(new onLeftOnclickListener() {
-            @Override
-            public void onLeftClick() {
-                Toast.makeText(UiKitExampleActivity.this, "监听返回", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
@@ -43,7 +40,7 @@ public class UiKitExampleActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.tv_tool_bar, R.id.tv_tab_bar, R.id.tv_tab_layout, R.id.tv_dialog})
+    @OnClick({R.id.tv_tool_bar, R.id.tv_popupwindow, R.id.tv_tab_bar, R.id.tv_tab_layout, R.id.tv_dialog})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_tool_bar:
@@ -59,6 +56,10 @@ public class UiKitExampleActivity extends BaseActivity {
                 break;
             case R.id.tv_dialog:
                 intent = new Intent(UiKitExampleActivity.this, DialogExampleActivity.class);
+                UiKitExampleActivity.this.startActivity(intent);
+                break;
+            case R.id.tv_popupwindow:
+                intent = new Intent(UiKitExampleActivity.this, PopupWindowExampleActivity.class);
                 UiKitExampleActivity.this.startActivity(intent);
                 break;
         }
