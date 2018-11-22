@@ -1,9 +1,7 @@
 package com.wya.uikit.toast;
 
-import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;

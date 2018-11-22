@@ -9,13 +9,13 @@
 #### 8、imagepicker
 #### 9、customitems
 #### 10、textareaitem
-#### 11、searchbar
+#### 11、searchbar（毛春江开发中）
 #### 12、slider（加区间选择）
 #### 13、pickview
 #### 14、noticebar
 #### 15、banner
 #### 16、~~dialog~~
-#### 17、toast（毛春江开发中）
+#### 17、~~toast~~
 #### 18、keyboard
 
 ### help开发
