@@ -1,8 +1,8 @@
 ### uikit开发 
 #### 1、~~toolbar~~
 #### 2、~~tabbar~~
-#### 3、segmentedcontrol
-#### 4、popupwindow（开发中）
+#### 3、segmentedcontrol(徐冬林开发中)
+#### 4、~~popupwindow~~
 #### 5、paginationview
 #### 6、choosemenu
 #### 7、button
@@ -15,7 +15,7 @@
 #### 14、noticebar
 #### 15、banner
 #### 16、~~dialog~~
-#### 17、toast
+#### 17、toast（毛春江开发中）
 #### 18、keyboard
 
 ### help开发
