@@ -298,4 +298,38 @@ radius|WYASegmentedView的圆角
 * addTabs()添加标题，数据源List/Array
 
 
+## 7.SearchBar
+
+
+#### 使用例子在 example module下的 uikit/searchbar 依赖库在uikit/searchbar
+     
+#### 使用说明
+#####（1）布局文件中添加com.wya.uikit.searchbar.WYASearchBar控件
+#####（2）API说明
+
+* setOnTextChangeListener(OnTextChangeListener onTextChangeListener)
+
+##### 设置搜索框的监听
+字段  | 说明 
+---- | -----   
+onTextChangeListener | 设置搜索框的监听
+
+* setEditHint(String hint_text)
+##### 设置搜索框的提示文本内容
+字段  | 说明 
+---- | -----   
+hint_text | 搜索框的提示文本内容
+
+* setEtSearchLeftImg(int left_res)
+##### 设置编辑框左边的图片
+字段  | 说明 
+---- | -----   
+left_res | 图片资源（R.mipmap.xx） 当为0的时候不显示 
+
+* setOnClickCancelListener(OnClickCancelListener onClickCancelListener)
+##### 设置取消按钮的监听
+字段  | 说明 
+---- | -----   
+onClickCancelListener | 取消按钮的监听
+
 
