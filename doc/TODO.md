@@ -5,7 +5,7 @@
 #### 4、~~popupwindow~~
 #### 5、paginationview(许冬林开发中)
 #### 6、choosemenu
-#### 7、button
+#### 7、button(毛春江开发中)
 #### 8、imagepicker
 #### 9、customitems
 #### 10、textareaitem
@@ -16,7 +16,7 @@
 #### 15、banner
 #### 16、~~dialog~~
 #### 17、~~toast~~
-#### 18、keyboard（毛春江开发中）
+#### 18、~~keyboard~~
 
 ### help开发
 ### 1.globalconstant
