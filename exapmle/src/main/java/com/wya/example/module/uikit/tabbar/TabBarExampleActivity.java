@@ -4,11 +4,11 @@ import android.widget.TextView;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
-import com.wya.uikit.tabbar.TabBar;
+import com.wya.uikit.tabbar.WYATabBar;
 
 public class TabBarExampleActivity extends BaseActivity {
 
-	private TabBar tab;
+	private WYATabBar tab;
 	private TextView msg;
 
 	@Override

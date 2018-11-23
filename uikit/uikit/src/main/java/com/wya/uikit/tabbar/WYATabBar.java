@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
  * desc   :	底部导航栏
  * version: 1.0
  */
-public class TabBar extends BottomNavigationView {
+public class WYATabBar extends BottomNavigationView {
 	private BottomNavigationMenuView mMenuView;
 	private BottomNavigationItemView[] mButtons;
 	private boolean animationRecord;
@@ -29,15 +29,15 @@ public class TabBar extends BottomNavigationView {
 	private float mLargeLabelSize;
 	private float mSmallLabelSize;
 
-	public TabBar(Context context) {
+	public WYATabBar(Context context) {
 		super(context);
 	}
 
-	public TabBar(Context context, AttributeSet attrs) {
+	public WYATabBar(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	public TabBar(Context context, AttributeSet attrs, int defStyleAttr) {
+	public WYATabBar(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
 

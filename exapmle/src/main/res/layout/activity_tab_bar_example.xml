@@ -13,7 +13,7 @@
         android:layout_centerInParent="true"
         android:text="首页" />
 
-    <com.wya.uikit.tabbar.TabBar
+    <com.wya.uikit.tabbar.WYATabBar
         android:id="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
