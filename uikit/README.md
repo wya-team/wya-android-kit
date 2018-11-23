@@ -333,3 +333,22 @@ left_res | 图片资源（R.mipmap.xx） 当为0的时候不显示
 onClickCancelListener | 取消按钮的监听
 
 
+## 7.Keyboard
+
+
+#### 使用例子在 example module下的 uikit/keyboard 依赖库在uikit/keyboard
+     
+#### 使用说明
+#####（1）实例化WYACustomNumberKeyboard
+#####（2）API说明
+
+* WYKCustomNumberKeyboard(@NonNull Context context, final ChooseInterface chooseInterface)
+
+##### 实例化自定义数字软件盘
+字段  | 说明 
+---- | -----   
+context | 上下文
+chooseInterface | 按钮监听
+
+
+

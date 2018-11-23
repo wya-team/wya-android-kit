@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.uikit.dialog.DialogExampleActivity;
+import com.wya.example.module.uikit.keyboard.KeyboardExampleActivity;
 import com.wya.example.module.uikit.popupwindow.PopupWindowExampleActivity;
 import com.wya.example.module.uikit.searchbar.SearchBarExampleActivity;
 import com.wya.example.module.uikit.segmentedcontrol.SegmentedControlExampleActivity;
@@ -19,20 +20,24 @@ import butterknife.OnClick;
 
 public class UiKitExampleActivity extends BaseActivity {
 
-	@BindView(R.id.tv_tool_bar)
-	Button tvToolBar;
-	@BindView(R.id.tv_dialog)
-	Button tvDialog;
-	@BindView(R.id.tv_tab_bar)
-	Button tvTabBar;
-	@BindView(R.id.tv_popupwindow)
-	Button tvPopupWindow;
-	@BindView(R.id.tv_tab_layout)
-	Button tvTabLayout;
-	@BindView(R.id.tv_toast)
-	Button tvToast;
+    @BindView(R.id.tv_tool_bar)
+    Button tvToolBar;
+    @BindView(R.id.tv_dialog)
+    Button tvDialog;
+    @BindView(R.id.tv_tab_bar)
+    Button tvTabBar;
+    @BindView(R.id.tv_popupwindow)
+    Button tvPopupWindow;
+    @BindView(R.id.tv_tab_layout)
+    Button tvTabLayout;
+    @BindView(R.id.tv_toast)
+    Button tvToast;
+    @BindView(R.id.tv_search_bar)
+    Button tvSearchBar;
+    @BindView(R.id.tv_key_board)
+    Button tvKeyBoard;
 
-	private Intent intent = null;
+    private Intent intent = null;
 
     @Override
     protected void initView() {
@@ -45,7 +50,7 @@ public class UiKitExampleActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.tv_search_bar, R.id.tv_toast, R.id.tv_tool_bar, R.id.tv_popupwindow, R.id.tv_tab_bar, R.id.tv_tab_layout, R.id.tv_dialog})
+    @OnClick({R.id.tv_key_board, R.id.tv_search_bar, R.id.tv_toast, R.id.tv_tool_bar, R.id.tv_popupwindow, R.id.tv_tab_bar, R.id.tv_tab_layout, R.id.tv_dialog})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_tool_bar:
@@ -53,13 +58,13 @@ public class UiKitExampleActivity extends BaseActivity {
                 UiKitExampleActivity.this.startActivity(intent);
                 break;
             case R.id.tv_tab_bar:
-                Intent intent1 = new Intent(UiKitExampleActivity.this, TabBarExampleActivity
+                intent = new Intent(UiKitExampleActivity.this, TabBarExampleActivity
                         .class);
-                startActivity(intent1);
+                startActivity(intent);
                 break;
             case R.id.tv_tab_layout:
-				intent = new Intent(this, SegmentedControlExampleActivity.class);
-				startActivity(intent);
+                intent = new Intent(this, SegmentedControlExampleActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_dialog:
                 intent = new Intent(UiKitExampleActivity.this, DialogExampleActivity.class);
@@ -73,10 +78,14 @@ public class UiKitExampleActivity extends BaseActivity {
                 intent = new Intent(UiKitExampleActivity.this, ToastExampleActivity.class);
                 UiKitExampleActivity.this.startActivity(intent);
                 break;
-			case R.id.tv_search_bar:
-				intent = new Intent(UiKitExampleActivity.this, SearchBarExampleActivity.class);
-				UiKitExampleActivity.this.startActivity(intent);
-				break;
+            case R.id.tv_search_bar:
+                intent = new Intent(UiKitExampleActivity.this, SearchBarExampleActivity.class);
+                UiKitExampleActivity.this.startActivity(intent);
+                break;
+            case R.id.tv_key_board:
+                intent = new Intent(UiKitExampleActivity.this, KeyboardExampleActivity.class);
+                UiKitExampleActivity.this.startActivity(intent);
+                break;
         }
     }
 

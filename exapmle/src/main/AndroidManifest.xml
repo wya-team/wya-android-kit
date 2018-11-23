@@ -22,10 +22,11 @@
         <activity android:name=".module.uikit.toolbar.ToolBarExampleActivity" />
         <activity android:name=".module.uikit.dialog.DialogExampleActivity" />
         <activity android:name=".module.uikit.tabbar.TabBarExampleActivity" />
-        <activity android:name=".module.uikit.segmentedcontrol.SegmentedControlExampleActivity"></activity>
+        <activity android:name=".module.uikit.segmentedcontrol.SegmentedControlExampleActivity" />
         <activity android:name=".module.uikit.popupwindow.PopupWindowExampleActivity" />
         <activity android:name=".module.uikit.toast.ToastExampleActivity" />
-        <activity android:name=".module.uikit.searchbar.SearchBarExampleActivity"></activity>
+        <activity android:name=".module.uikit.searchbar.SearchBarExampleActivity" />
+        <activity android:name=".module.uikit.keyboard.KeyboardExampleActivity"></activity>
     </application>
 
 </manifest>
