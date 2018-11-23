@@ -30,6 +30,7 @@ android {
                             'src/main/res/layout/popupwindow',
                             'src/main/res/layout/toast',
                             'src/main/res/layout/searchbar',
+                            'src/main/res/layout/segmentcontrol',
                             'src/main/res'
                     ]
         }
