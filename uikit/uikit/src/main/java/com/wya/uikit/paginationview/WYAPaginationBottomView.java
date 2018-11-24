@@ -9,12 +9,16 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +38,8 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 	private TextView mPageTextCurrent;
 	private TextView mPageTextAll;
 	private EditText mChangeEdit;
+	private LinearLayout pageLayout;
+	private LinearLayout changeLayout;
 	private int allNum;
 	private int currentPage;
 	private String mLeftText;
@@ -45,6 +51,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 	private static final String TAG = "WYAPaginationBottomView";
 	private int mSelectColor;
 	private OnPageButtonClickListener mOnPageButtonClickListener;
+	private onPageSearchListener mPageSearchListener;
 
 
 	public WYAPaginationBottomView(@NonNull Context context, @Nullable AttributeSet attrs) {
@@ -69,10 +76,9 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 				.BLACK);
 		mSelectColor = typedArray.getColor(R.styleable.WYAPaginationBottomView_selectPageTextColor,
 				Color
-				.BLACK);
+						.BLACK);
 
 		typedArray.recycle();
-
 		init();
 	}
 
@@ -88,9 +94,12 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 		mButtonRight = view.findViewById(R.id.pagination_btn_right);
 		mPageTextCurrent = view.findViewById(R.id.pagination_show_page_current);
 		mPageTextAll = view.findViewById(R.id.pagination_show_page_all);
-//		mChangeEdit = view.findViewById(R.id.pagination_change_page);
+		mChangeEdit = view.findViewById(R.id.pagination_change_page);
+		pageLayout = view.findViewById(R.id.pagination_page_layout);
+		changeLayout = view.findViewById(R.id.pagination_change_layout);
 		mButtonLeft.setOnClickListener(this);
 		mButtonRight.setOnClickListener(this);
+		pageLayout.setOnClickListener(this);
 
 		mButtonLeft.setText(TextUtils.isEmpty(mLeftText) ? "上一页" : mLeftText);
 		mButtonRight.setText(TextUtils.isEmpty(mRightText) ? "下一页" : mRightText);
@@ -108,6 +117,54 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 		layoutParams.height = (int) mBtnHeight;
 		mButtonLeft.setLayoutParams(layoutParams);
 		mButtonRight.setLayoutParams(layoutParams);
+
+		searchListener();
+	}
+
+	/**
+	 * when you search page
+	 *
+	 * @param currentPage searched page
+	 */
+	public void setCurrentPage(int currentPage) {
+		changeLayout.setVisibility(GONE);
+		pageLayout.setVisibility(VISIBLE);
+		this.currentPage = currentPage;
+		setCurrentPage();
+	}
+
+
+	/**
+	 * search listener
+	 */
+	private void searchListener() {
+		mChangeEdit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				String edit = mChangeEdit.getText().toString();
+				if (actionId == EditorInfo.IME_ACTION_GO) {
+					if (TextUtils.isEmpty(edit)) {
+						changeLayout.setVisibility(GONE);
+						pageLayout.setVisibility(VISIBLE);
+						keyBoard(false);
+					} else {
+						long page = Long.parseLong(edit);
+						if (page > 0 && page <= allNum) {
+							if (mPageSearchListener != null) {
+								boolean search = mPageSearchListener.onSearch(page);
+								if (search) {
+									setCurrentPage((int) page);
+								}
+							}
+							keyBoard(false);
+						} else {
+							Toast.makeText(mContext, "请输入正确的页数", Toast.LENGTH_SHORT).show();
+						}
+					}
+				}
+				return false;
+			}
+		});
 	}
 
 	/**
@@ -127,6 +184,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 		mPageTextAll.setText(String.format("%d", allNum));
 	}
 
+	@SuppressLint("SetTextI18n")
 	@Override
 	public void onClick(View v) {
 		int i = v.getId();
@@ -151,12 +209,19 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 				setCurrentPage();
 			}
 
+		} else if (i == R.id.pagination_page_layout) {
+			pageLayout.setVisibility(GONE);
+			changeLayout.setVisibility(VISIBLE);
+			mChangeEdit.setText(String.valueOf(currentPage));
+			mChangeEdit.setSelection(mChangeEdit.getText().toString().length());
+			keyBoard(true);
 		}
 	}
 
 
 	/**
 	 * remeasure group and child
+	 *
 	 * @param widthMeasureSpec
 	 * @param heightMeasureSpec
 	 */
@@ -178,6 +243,8 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 					heightSize = childHeight;
 				}
 				break;
+			default:
+				break;
 		}
 
 		setMeasuredDimension(widthSize, heightSize);
@@ -188,8 +255,8 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 	/**
 	 * dp2px
 	 *
-	 * @param dp
-	 * @return
+	 * @param dp dp
+	 * @return px
 	 */
 
 	public float dp2px(int dp) {
@@ -200,13 +267,17 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 	/**
 	 * px2sp
 	 *
-	 * @param pxValue
-	 * @return
+	 * @param pxValue px
+	 * @return sp
 	 */
 	private float px2sp(float pxValue) {
 		return pxValue / getResources().getDisplayMetrics().scaledDensity + 0.5f;
 	}
 
+	/**
+	 * @param spValue sp
+	 * @return px
+	 */
 	private float sp2px(float spValue) {
 		final float fontScale = getResources().getDisplayMetrics().scaledDensity;
 		return spValue * fontScale + 0.5f;
@@ -216,15 +287,44 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 		mOnPageButtonClickListener = onPageButtonClickListener;
 	}
 
+	public void setPageSearchListener(onPageSearchListener pageSearchListener) {
+		mPageSearchListener = pageSearchListener;
+	}
+
 	/**
 	 * pageButton click Interface
-	 *
 	 */
-	public interface OnPageButtonClickListener{
+	public interface OnPageButtonClickListener {
 		/**
 		 * click callback
+		 *
 		 * @param type 1:page up 2:page down
 		 */
 		void onClick(int type);
+	}
+
+
+	public interface onPageSearchListener {
+		/**
+		 * @param page searched page
+		 * @return true success false failure
+		 */
+		boolean onSearch(long page);
+	}
+
+	/**
+	 * keyboard status
+	 * @param isShow true show false hide
+	 */
+	public void keyBoard(boolean isShow) {
+		InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context
+				.INPUT_METHOD_SERVICE);
+		if (isShow) {
+			imm.showSoftInputFromInputMethod(mChangeEdit.getWindowToken(), InputMethodManager
+					.SHOW_FORCED);
+		} else{
+			imm.hideSoftInputFromWindow(mChangeEdit.getWindowToken(), InputMethodManager
+					.HIDE_NOT_ALWAYS);
+		}
 	}
 }

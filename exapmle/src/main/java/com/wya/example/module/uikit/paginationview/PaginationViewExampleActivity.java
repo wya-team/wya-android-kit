@@ -23,6 +23,12 @@ public class PaginationViewExampleActivity extends AppCompatActivity {
 
 		mBottomView = findViewById(R.id.pagination_view);
 		mBottomView.setAllNum(20);
+		mBottomView.setPageSearchListener(new WYAPaginationBottomView.onPageSearchListener() {
+			@Override
+			public boolean onSearch(long page) {
+				return true;
+			}
+		});
 
 		mDot = findViewById(R.id.pagination_dot);
 		mDot.setPointNumber(5);

@@ -358,6 +358,8 @@ chooseInterface | 按钮监听
 ---|---
 setAllNum(int num)|设置分页总页数
 setOnPageButtonClickListener()|设置按钮监听事件
+setPageSearchListener()|设置搜索某一页监听事件
+setCurrentPage()|设置当前页数
 
 属性|说明
 ----|---

@@ -17,46 +17,67 @@
         android:textSize="14sp"
         tools:text="上一页" />
 
-    <TextView
-        android:id="@+id/pagination_show_page_current"
+    <LinearLayout
+        android:id="@+id/pagination_page_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/pagination_show_page_current"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:text="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:text="/" />
+
+        <TextView
+            android:id="@+id/pagination_show_page_all"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|left"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:text="10"
+            tools:ignore="RtlHardcoded" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/pagination_change_layout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center_vertical|right"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        tools:text="1" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:text="/" />
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/pagination_change_page"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/pagination_search_edit_bg"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:singleLine="true"
+            android:inputType="number"
+            android:padding="2dp"
+            android:imeOptions="actionGo"
+            tools:text="1/10" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/pagination_show_page_all"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center_vertical|left"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        tools:text="10"
-        tools:ignore="RtlHardcoded" />
 
-    <EditText
-        android:id="@+id/pagination_change_page"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@null"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:visibility="gone"
-        tools:text="1/10" />
 
     <Button
         android:id="@+id/pagination_btn_right"
