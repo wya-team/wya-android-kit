@@ -9,7 +9,6 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -52,7 +51,8 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 		super(context, attrs, defStyleAttr);
 		setOrientation(HORIZONTAL);
 
-		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WYASegmentedView);
+		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable
+				.WYASegmentedView);
 		lineColor = typedArray.getColor(R.styleable.WYASegmentedView_lineColor, getResources()
 				.getColor(R.color.segment_default));
 		lineSize = typedArray.getDimension(R.styleable.WYASegmentedView_lineSize, dp2px(2));
@@ -65,16 +65,16 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 		itemNormalColor = typedArray.getColor(R.styleable.WYASegmentedView_itemNormalBackground,
 				getResources().getColor(R.color.white));
 
-		strokeWidth = typedArray.getDimension(R.styleable.WYASegmentedView_strokeWidth,dp2px(2));
-		titleSize = typedArray.getDimension(R.styleable.WYASegmentedView_titleSize,14);
+		strokeWidth = typedArray.getDimension(R.styleable.WYASegmentedView_strokeWidth, dp2px(2));
+		titleSize = typedArray.getDimension(R.styleable.WYASegmentedView_titleSize, sp2px(14));
 		strokeColor = typedArray.getColor(R.styleable.WYASegmentedView_strokeColor, getResources()
 				.getColor(R.color.segment_default));
 
 		radius = typedArray.getDimension(R.styleable.WYASegmentedView_radius, dp2px(10));
+		typedArray.recycle();
 		mContext = context;
 		mPaint = new Paint();
 		mPaint.setColor(lineColor);
-		Log.i(TAG, "WYASegmentedView: "+titleNormalColor+" "+titleSelectedColor);
 		initBackground();
 	}
 
@@ -91,6 +91,7 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 
 	/**
 	 * add child item tab
+	 *
 	 * @param tabs item's name array
 	 */
 	public void addTabs(String[] tabs) {
@@ -106,6 +107,7 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 
 	/**
 	 * add child item tab
+	 *
 	 * @param tabs list
 	 */
 	public void addTabs(List<String> tabs) {
@@ -121,9 +123,10 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 
 	/**
 	 * add child item tab
+	 *
 	 * @param title name
 	 * @param index position
-	 * @param size childCount
+	 * @param size  childCount
 	 */
 	private void addTab(String title, int index, int size) {
 		View view = LayoutInflater.from(mContext).inflate(R.layout.segment_item, this, false);
@@ -142,6 +145,7 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 
 	/**
 	 * every child draw a line
+	 *
 	 * @param canvas
 	 */
 	private void drawLine(Canvas canvas) {
@@ -158,7 +162,8 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 
 	/**
 	 * when the item clicked,change the background
-	 * @param position  which you click
+	 *
+	 * @param position which you click
 	 */
 	private void setItemClicked(int position) {
 		int childCount = getChildCount();
@@ -182,11 +187,11 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 			}
 			LayerDrawable layerDrawable = new LayerDrawable(new Drawable[]{itemBg});
 			if (i == 0) {
-				layerDrawable.setLayerInset(0, 0,0, (int) -lineSize,0);
+				layerDrawable.setLayerInset(0, 0, 0, (int) -lineSize, 0);
 			} else if (i + 1 == childCount) {
 				layerDrawable.setLayerInset(0, (int) -lineSize, 0, 0, 0);
 			} else {
-				layerDrawable.setLayerInset(0, (int) -lineSize,0, (int) -lineSize,0);
+				layerDrawable.setLayerInset(0, (int) -lineSize, 0, (int) -lineSize, 0);
 			}
 			child.setBackgroundDrawable(layerDrawable);
 		}
@@ -203,7 +208,6 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
 		return false;
 	}
-
 
 
 	@Override
@@ -235,22 +239,30 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 
 	/**
 	 * dp2px
+	 *
 	 * @param dp
 	 * @return
 	 */
 
 	public float dp2px(int dp) {
-		return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,getResources().getDisplayMetrics());
+		return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources()
+				.getDisplayMetrics());
 	}
 
 
 	/**
 	 * px2sp
+	 *
 	 * @param pxValue
 	 * @return
 	 */
 	public float px2sp(float pxValue) {
-		return  pxValue / getResources().getDisplayMetrics().scaledDensity + 0.5f;
+		return pxValue / getResources().getDisplayMetrics().scaledDensity + 0.5f;
+	}
+
+	public float sp2px(float spValue) {
+		final float fontScale = getResources().getDisplayMetrics().scaledDensity;
+		return spValue * fontScale + 0.5f;
 	}
 
 }

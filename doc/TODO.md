@@ -3,8 +3,8 @@
 #### 2、~~tabbar~~
 #### 3、~~segmentedcontrol~~
 #### 4、~~popupwindow~~
-#### 5、paginationview(许冬林开发中)
-#### 6、choosemenu
+#### 5、~~paginationview~~
+#### 6、choosemenu(许冬林开发中)
 #### 7、button(毛春江开发中)
 #### 8、imagepicker
 #### 9、customitems

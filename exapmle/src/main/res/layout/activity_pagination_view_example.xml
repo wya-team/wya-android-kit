@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".module.uikit.paginationview.PaginationViewExampleActivity">
+
+    <com.wya.uikit.paginationview.WYAPaginationBottomView
+        android:id="@+id/pagination_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:buttonHeight="20dp"
+        app:buttonWidth="50dp"
+        app:leftText="上一页"
+        app:rightText="下一页"
+        app:selectPageTextColor="@color/blue"
+        app:textColor="@color/black"
+        app:textSize="13sp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pagination_dot"
+        android:layout_below="@+id/pagination_view" />
+
+
+    <com.wya.uikit.paginationview.WYAPaginationDot
+        android:id="@+id/pagination_dot"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue"
+        app:dotBackgroundResource="@drawable/pagination_selector_dot"
+        app:dotNumber="2" />
+
+</RelativeLayout>

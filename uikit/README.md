@@ -350,5 +350,44 @@ onClickCancelListener | 取消按钮的监听
 context | 上下文
 chooseInterface | 按钮监听
 
+## 8.PaginationView
+##### 使用说明:PaginationView包下包含2个View，PaginationBottomView和PaginationDot两个。
+* 1.PaginationBottomView 分页选择器,方法和属性如下:
+
+方法|说明
+---|---
+setAllNum(int num)|设置分页总页数
+setOnPageButtonClickListener()|设置按钮监听事件
+
+属性|说明
+----|---
+textSize|文字大小
+buttonWidth|按钮的宽度
+buttonHeight|按钮的高度
+textColor|普通文字的颜色
+leftText|左边按钮的文本
+rightText|右边按钮的文本
+selectPageTextColor|当前页数的文本颜色
+
+* 2.PaginationDot 分页小圆点，方法设属性如下:
+
+方法|说明
+---|---
+setPointNumber()|设置小圆点个数
+setUpWithViewPager()|和viewpager进行关联
+
+属性|说明
+----|---
+dotNumber|小圆点数量
+dotBackgroundResource|小圆点背景资源Id，这里必须使用有选中状态的资源文件，默认pagination_selector_dot_solid.xml和pagination_selector_dot_solid_dark.xml
+
+注：这里可以看到有多个设置小圆点数量的方法或属性，优先级：viewpager中的fragment数量 > setPointNumber()方法 > 属性dotNumber，同时选择只选其中最高级的数量。
+
+
+
+
+
+
+
 
 

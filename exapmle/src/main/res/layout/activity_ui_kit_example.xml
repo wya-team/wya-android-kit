@@ -25,6 +25,7 @@
         android:text="TabBar"
         android:textAllCaps="false"
         android:textColor="#000000" />
+
     <Button
         android:id="@+id/tv_popupwindow"
         android:layout_width="match_parent"
@@ -51,6 +52,7 @@
         android:text="SegmentedControl"
         android:textAllCaps="false"
         android:textColor="#000000" />
+
     <Button
         android:id="@+id/tv_toast"
         android:layout_width="match_parent"
@@ -59,12 +61,22 @@
         android:text="Toast"
         android:textAllCaps="false"
         android:textColor="#000000" />
+
     <Button
         android:id="@+id/tv_search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:text="SearchBar"
+        android:textAllCaps="false"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/tv_pagination_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="PaginationView"
         android:textAllCaps="false"
         android:textColor="#000000" />
 
