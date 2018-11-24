@@ -333,7 +333,7 @@ left_res | 图片资源（R.mipmap.xx） 当为0的时候不显示
 onClickCancelListener | 取消按钮的监听
 
 
-## 7.Keyboard
+## 8.Keyboard
 
 
 #### 使用例子在 example module下的 uikit/keyboard 依赖库在uikit/keyboard
@@ -350,7 +350,7 @@ onClickCancelListener | 取消按钮的监听
 context | 上下文
 chooseInterface | 按钮监听
 
-## 8.PaginationView
+## 9.PaginationView
 ##### 使用说明:PaginationView包下包含2个View，PaginationBottomView和PaginationDot两个。
 * 1.PaginationBottomView 分页选择器,方法和属性如下:
 
