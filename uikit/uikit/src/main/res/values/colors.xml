@@ -3,4 +3,5 @@
     <color name="segment_default">#118EE9</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="light_gray">#dddddd</color>
 </resources>

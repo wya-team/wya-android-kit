@@ -4,9 +4,9 @@
 #### 3、~~segmentedcontrol~~
 #### 4、~~popupwindow~~
 #### 5、~~paginationview~~
-#### 6、choosemenu(许冬林开发中)
+#### 6、~~choicemenu~~
 #### 7、button(毛春江开发中)
-#### 8、imagepicker
+#### 8、imagepicker(许冬林开发中)
 #### 9、customitems
 #### 10、textareaitem
 #### 11、~~searchbar~~
