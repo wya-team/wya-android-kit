@@ -28,9 +28,10 @@
         <activity android:name=".module.uikit.toast.ToastExampleActivity" />
         <activity android:name=".module.uikit.searchbar.SearchBarExampleActivity" />
         <activity android:name=".module.uikit.paginationview.PaginationViewExampleActivity" />
-        <activity android:name=".module.uikit.keyboard.KeyboardExampleActivity"/>
+        <activity android:name=".module.uikit.keyboard.KeyboardExampleActivity" />
         <activity android:name=".module.uikit.badge.BadgeExampleActivity" />
-        <activity android:name=".module.uikit.choicemenu.ChoiceMenuExampleActivity"></activity>
+        <activity android:name=".module.uikit.choicemenu.ChoiceMenuExampleActivity" />
+        <activity android:name=".module.uikit.gallery.GalleryExampleActivity"></activity>
     </application>
 
 </manifest>
