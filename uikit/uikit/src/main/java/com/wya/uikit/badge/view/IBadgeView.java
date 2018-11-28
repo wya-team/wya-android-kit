@@ -19,9 +19,7 @@ public interface IBadgeView {
     
     void setOmitMode(boolean isOmit);
     
-    void setBgColor(int color);
-    
-    void stroke(int color, float width);
+    void setBackgroundColor(int color);
     
     void setBackgroundDrawable(Drawable drawable);
     

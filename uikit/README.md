@@ -351,7 +351,7 @@ context | 上下文
 chooseInterface | 按钮监听
 
 ## 9.PaginationView
-##### 使用说明:PaginationView包下包含2个View，PaginationBottomView和PaginationDot两个。
+使用说明:PaginationView包下包含2个View，PaginationBottomView和PaginationDot两个。
 * 1.PaginationBottomView 分页选择器,方法和属性如下:
 
 方法|说明
@@ -384,6 +384,48 @@ dotNumber|小圆点数量
 dotBackgroundResource|小圆点背景资源Id，这里必须使用有选中状态的资源文件，默认pagination_selector_dot_solid.xml和pagination_selector_dot_solid_dark.xml
 
 注：这里可以看到有多个设置小圆点数量的方法或属性，优先级：viewpager中的fragment数量 > setPointNumber()方法 > 属性dotNumber，同时选择只选其中最高级的数量。
+
+## 10.ChoiceMenu
+一级二级分类选择
+##### 说明
+ChoiceMenu继承自PopupWindow的抽象类，创建ChoiceMenu对象时，构造方法有2个：
+1. public ChoiceMenu(Context context, List<T> list1, List<List<T>> list2, @LayoutRes int firstId,@LayoutRes int secondId)
+使用这个构造方法会创建二级分类 list1 第一级数据，list2 第二级数据，firstId 第一级中item的布局，secondId 第二级中item的数据
+2. public ChoiceMenu(Context context, List<T> list1, @LayoutRes int firstId)
+使用这个构造方法只会创建一级分类 参数如上
+
+方法|说明
+---|---
+setValueFirst|抽象方法传递第一级上的数据
+setValueSecond|抽象方法传递第二级上的数据
+addLine|第一级添加分割线
+addSecondLine|第二级添加分割线
+notifyAdapterData|更新数据
+
+在使用时，设置背景点击效果等，在setValueFirst和setValueSecond中进行。
+
+
+## 11.BadgeView
+消息提示
+##### 说明
+在目标View的指定位置设置消息提示，通过控制Gravity指定消息位置
+
+
+方法|说明
+---|---
+setBadgeNum|设置数字类型红点
+setBadgeText|设置文本类型红点
+setMaxBadgeNum|设置默认最大数字，OmitMode省略模式为true时且大于该值显示省略
+setOmitText|省略模式时的文本
+setTextColor|设置文本字体颜色
+setTextSize|设置文本字体大小
+setBackgroundColor|设置背景颜色
+setBackgroundDrawable|设置背景图片
+setPadding|设置间隔
+setGravity|设置位置
+setOffset|设置位置偏移
+bindToTarget|需要显示消息的View
+update|更新显示状态
 
 
 

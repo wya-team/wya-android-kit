@@ -362,7 +362,7 @@ public class WYABadgeView extends View implements IBadgeView {
     }
     
     @Override
-    public void setBgColor(int color) {
+    public void setBackgroundColor(int color) {
         mBackgroundColor = color;
         mTextPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN)); // 文本在最上层
         invalidate();
@@ -374,13 +374,6 @@ public class WYABadgeView extends View implements IBadgeView {
             mBackgroundDrawable = drawable;
             invalidate();
         }
-    }
-    
-    @Override
-    public void stroke(int color, float width) {
-        mBgBorderColor = color;
-        mBorderWidth = DisplayUtil.dp2px(getContext(), width);
-        invalidate();
     }
     
     @Override

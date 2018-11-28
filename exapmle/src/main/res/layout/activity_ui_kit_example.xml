@@ -8,86 +8,106 @@
     tools:context="com.wya.example.module.uikit.UiKitExampleActivity">
 
 
-    <Button
-        android:id="@+id/tv_tool_bar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="ToolBar"
-        android:textAllCaps="false"
-        android:textColor="#000000" />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/tv_tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="ToolBar"
+                android:textAllCaps="false"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/tv_tab_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="TabBar"
-        android:textAllCaps="false"
-        android:textColor="#000000" />
+            <Button
+                android:id="@+id/tv_tab_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="TabBar"
+                android:textAllCaps="false"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/tv_popupwindow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:textAllCaps="false"
-        android:text="PopupWindow"
-        android:textColor="#000000" />
+            <Button
+                android:id="@+id/tv_popupwindow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="PopupWindow"
+                android:textAllCaps="false"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/tv_dialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="Dialog"
-        android:textAllCaps="false"
-        android:textColor="#000000" />
+            <Button
+                android:id="@+id/tv_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Dialog"
+                android:textAllCaps="false"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/tv_tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="SegmentedControl"
-        android:textAllCaps="false"
-        android:textColor="#000000" />
+            <Button
+                android:id="@+id/tv_tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="SegmentedControl"
+                android:textAllCaps="false"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/tv_toast"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="Toast"
-        android:textAllCaps="false"
-        android:textColor="#000000" />
+            <Button
+                android:id="@+id/tv_toast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Toast"
+                android:textAllCaps="false"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/tv_search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="SearchBar"
-        android:textAllCaps="false"
-        android:textColor="#000000" />
+            <Button
+                android:id="@+id/tv_search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="SearchBar"
+                android:textAllCaps="false"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/tv_pagination_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="PaginationView"
-        android:textAllCaps="false"
-        android:textColor="#000000" />
+            <Button
+                android:id="@+id/tv_pagination_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="PaginationView"
+                android:textAllCaps="false"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/tv_key_board"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="Keyboard"
-        android:textAllCaps="false"
-        android:textColor="#000000" />
+            <Button
+                android:id="@+id/tv_key_board"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="Keyboard"
+                android:textAllCaps="false"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/tv_choice_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="ChoiceMenu"
+                android:textAllCaps="false"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+    </ScrollView>
+
 
     <Button
         android:id="@+id/tv_badge"

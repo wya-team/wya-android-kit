@@ -33,6 +33,7 @@ android {
                             'src/main/res/layout/searchbar',
                             'src/main/res/layout/segmentcontrol',
                             'src/main/res/layout/paginationview',
+                            'src/main/res/layout/choicemenu',
                             'src/main/res'
                     ]
         }

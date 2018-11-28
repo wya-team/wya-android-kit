@@ -116,8 +116,6 @@ public class Builder {
     public Builder setOffset(int xOffset, int yOffset) {
         gravity.xOffset = xOffset;
         gravity.yOffset = yOffset;
-        this.gravity.xOffset = xOffset;
-        this.gravity.yOffset = yOffset;
         return this;
     }
     
@@ -146,7 +144,7 @@ public class Builder {
         
         badgeView.setTextSize(textSize);
         badgeView.setTextColor(textColor);
-        badgeView.setBgColor(backgroundColor);
+        badgeView.setBackgroundColor(backgroundColor);
         
         badgeView.setPadding(padding);
         if (null != backgroundDrawable) {
