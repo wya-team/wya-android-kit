@@ -7,6 +7,22 @@ android {
 
     compileSdkVersion buildConfig.getAt("compileSdkVersion")
     buildToolsVersion buildConfig.getAt("buildToolsVersion")
+
+    signingConfigs {
+        debug {
+            keyAlias 'wya'
+            keyPassword 'wya123'
+            storeFile file("$rootDir/wya.jks")
+            storePassword 'wya123'
+        }
+        release {
+            keyAlias 'wya'
+            keyPassword 'wya123'
+            storeFile file("$rootDir/wya.jks")
+            storePassword 'wya123'
+        }
+    }
+
     defaultConfig {
         applicationId "com.wya.example"
         minSdkVersion buildConfig.getAt("minSdkVersion")

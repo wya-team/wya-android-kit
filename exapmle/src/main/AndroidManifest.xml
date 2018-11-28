@@ -3,6 +3,7 @@
     package="com.wya.example">
 
     <application
+        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -27,10 +28,8 @@
         <activity android:name=".module.uikit.toast.ToastExampleActivity" />
         <activity android:name=".module.uikit.searchbar.SearchBarExampleActivity" />
         <activity android:name=".module.uikit.paginationview.PaginationViewExampleActivity" />
-        <activity android:name=".module.uikit.searchbar.SearchBarExampleActivity" />
-        <activity android:name=".module.uikit.keyboard.KeyboardExampleActivity"></activity>
+        <activity android:name=".module.uikit.keyboard.KeyboardExampleActivity"/>
         <activity android:name=".module.uikit.badge.BadgeExampleActivity" />
-        <activity android:name=".module.uikit.keyboard.KeyboardExampleActivity" />
         <activity android:name=".module.uikit.choicemenu.ChoiceMenuExampleActivity"></activity>
     </application>
 

@@ -1,5 +1,6 @@
 package com.wya.example.module.uikit.dialog;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -8,12 +9,21 @@ import android.widget.Toast;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.uikit.dialog.WYACustomDialog;
+import com.wya.uikit.dialog.WYALoadingDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+/**
+ * 创建日期：2018/11/23 16:23
+ * 作者： Mao Chunjiang
+ * 文件名称：DialogExampleActivity
+ * 类说明：dialog例子
+ */
 
 public class DialogExampleActivity extends BaseActivity {
 
@@ -49,6 +59,8 @@ public class DialogExampleActivity extends BaseActivity {
     RadioButton radioTitleShow;
     @BindView(R.id.radio_title_unshow)
     RadioButton radioTitleUnshow;
+    @BindView(R.id.tv_loading)
+    TextView tvLoading;
 
     private boolean canceledOnTouch = true;
     private boolean cancelable = true;
@@ -97,12 +109,12 @@ public class DialogExampleActivity extends BaseActivity {
             wyaCustomDialog.dismiss();
         });
         wyaCustomDialog.setListOnclickListener(position -> {
-            Toast.makeText(DialogExampleActivity.this, position +"", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DialogExampleActivity.this, position + "", Toast.LENGTH_SHORT).show();
             wyaCustomDialog.dismiss();
         });
     }
 
-    @OnClick({R.id.radio_title_show, R.id.radio_title_unshow, R.id.radio_content_show, R.id.radio_content_unshow, R.id.radio_button_1, R.id.radio_button_2, R.id.radio_button_3, R.id.radio_edit_show, R.id.radio_edit_unshow, R.id.radio_list_show, R.id.radio_list_unshow, R.id.radio_canceled_on_touch, R.id.radio_uncanceled_on_touch, R.id.radio_cancelable, R.id.radio_un_cancelable, R.id.tv_show})
+    @OnClick({R.id.tv_loading, R.id.radio_title_show, R.id.radio_title_unshow, R.id.radio_content_show, R.id.radio_content_unshow, R.id.radio_button_1, R.id.radio_button_2, R.id.radio_button_3, R.id.radio_edit_show, R.id.radio_edit_unshow, R.id.radio_list_show, R.id.radio_list_unshow, R.id.radio_canceled_on_touch, R.id.radio_uncanceled_on_touch, R.id.radio_cancelable, R.id.radio_un_cancelable, R.id.tv_show})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.radio_title_show:
@@ -161,7 +173,16 @@ public class DialogExampleActivity extends BaseActivity {
             case R.id.tv_show:
                 showWYADialog();
                 break;
+            case R.id.tv_loading:
+                showWYADialogLoading();
+                break;
         }
+    }
+
+    private WYALoadingDialog wyaLoadingDialog;
+    private void showWYADialogLoading() {
+        wyaLoadingDialog = new WYALoadingDialog(this, canceledOnTouch, cancelable);
+        wyaLoadingDialog.show();
     }
 
 }
