@@ -29,6 +29,7 @@
         <activity android:name=".module.uikit.paginationview.PaginationViewExampleActivity"/>
         <activity android:name=".module.uikit.searchbar.SearchBarExampleActivity" />
         <activity android:name=".module.uikit.keyboard.KeyboardExampleActivity"></activity>
+        <activity android:name=".module.uikit.badge.BadgeExampleActivity" />
     </application>
 
 </manifest>

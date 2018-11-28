@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.uikit.badge.BadgeExampleActivity;
 import com.wya.example.module.uikit.dialog.DialogExampleActivity;
 import com.wya.example.module.uikit.keyboard.KeyboardExampleActivity;
 import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity;
@@ -37,6 +38,8 @@ public class UiKitExampleActivity extends BaseActivity {
 	Button tvSearchBar;
 	@BindView(R.id.tv_key_board)
 	Button tvKeyBoard;
+	@BindView(R.id.tv_badge)
+	Button tvKeyBadge;
 
 	private Intent intent = null;
 
@@ -53,7 +56,7 @@ public class UiKitExampleActivity extends BaseActivity {
 
 	@OnClick({R.id.tv_key_board, R.id.tv_search_bar, R.id.tv_toast, R.id.tv_tool_bar, R.id
 			.tv_popupwindow, R.id.tv_tab_bar, R.id.tv_tab_layout, R.id.tv_dialog, R.id
-            .tv_pagination_view})
+            .tv_pagination_view, R.id.tv_badge})
 	public void onViewClicked(View view) {
 		switch (view.getId()) {
 			case R.id.tv_tool_bar:
@@ -93,6 +96,9 @@ public class UiKitExampleActivity extends BaseActivity {
 				intent = new Intent(this, PaginationViewExampleActivity.class);
 				startActivity(intent);
 				break;
+            case R.id.tv_badge:
+                BadgeExampleActivity.start(UiKitExampleActivity.this);
+                break;
 		}
 	}
 

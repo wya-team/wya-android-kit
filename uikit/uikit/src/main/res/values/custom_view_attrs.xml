@@ -32,4 +32,13 @@
         <attr name="dotBackgroundResource" format="reference" />
     </declare-styleable>
 
+
+    <!--badge attrs-->
+    <declare-styleable name="WYABadge">
+        <attr name="solidColor" format="reference|color" />
+        <attr name="textEnable" format="boolean" />
+        <attr name="maxTextLength" format="integer" />
+        <attr name="maxText" format="string" />
+    </declare-styleable>
+
 </resources>

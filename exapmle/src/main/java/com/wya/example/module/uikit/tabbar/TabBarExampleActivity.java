@@ -1,22 +1,40 @@
 package com.wya.example.module.uikit.tabbar;
 
+import android.support.design.internal.BottomNavigationItemView;
 import android.widget.TextView;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.uikit.badge.view.Builder;
+import com.wya.uikit.badge.view.IBadgeView;
 import com.wya.uikit.tabbar.WYATabBar;
 
 public class TabBarExampleActivity extends BaseActivity {
-
-	private WYATabBar tab;
-	private TextView msg;
-
-	@Override
-	protected void initView() {
-		setToolBarTitle("TabBar");
-		setToolBar();
-	}
-
+    
+    private WYATabBar tab;
+    private TextView msg;
+    
+    @Override
+    protected void initView() {
+        setToolBarTitle("TabBar");
+        setToolBar();
+        showBadge(2, 999);
+    }
+    
+    public void showBadge(int index, int num) {
+        BottomNavigationItemView[] itemViews = tab.getBottomNavigationItemViews();
+        if (index < 0 || index >= tab.getBottomNavigationItemViews().length) {
+            return;
+        }
+        
+        BottomNavigationItemView itemView = itemViews[index];
+        IBadgeView badgeView = new Builder(this)
+                .setOffset(50, 0)
+                .setBadgeNum(num)
+                .create();
+        badgeView.bindToTarget(itemView);
+    }
+    
     private void setToolBar() {
         tab = findViewById(R.id.tab);
         msg = findViewById(R.id.message);
@@ -43,9 +61,9 @@ public class TabBarExampleActivity extends BaseActivity {
             return true;
         });
     }
-
+    
     @Override
-	protected int getLayoutID() {
-		return R.layout.activity_tab_bar_example;
-	}
+    protected int getLayoutID() {
+        return R.layout.activity_tab_bar_example;
+    }
 }

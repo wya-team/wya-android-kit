@@ -17,6 +17,8 @@
 #### 16、~~dialog~~
 #### 17、~~toast~~
 #### 18、~~keyboard~~
+#### 19、~~badge~~
+#### 20、shareview
 
 ### help开发
 ### 1.globalconstant
