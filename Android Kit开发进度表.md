@@ -84,15 +84,15 @@
 |    noticebar    |  曾彩琪  | 11.28 |   开发中   |
 |     banner      | 许冬林 | 12.03 ~ 12.04 |      |
 | globalconstant  |          |          |   待定   |
-|     camera      |          |          |      |
-|     gallery     |          |          |      |
-| mobilephoneinfo |          |          |      |
-|      array      |          |          |      |
-|       map       |          |          |      |
-|     string      |          |          |      |
-|     date      |          |          |      |
-|     sqlite      |          |          |      |
-|     image(code)      |          |          |      |
+|     camera      |     曾彩琪     |    12.03~12.04      |      |
+|     gallery     |     毛春江     |    12.03~12.04      |      |
+| mobilephoneinfo |   许冬林       |    12.05      |      |
+|      array      |      许冬林    |       12.05   |      |
+|       map       |     许冬林        |    12.05            |      |
+|     string      |      曾彩琪    |    12.05      |      |
+|     date      |        曾彩琪  |     12.05     |      |
+|     sqlite      |      毛春江    |       12.05   |      |
+|     image(code)      |      毛春江    |      12.05    |      |
 
 ---
 
