@@ -427,6 +427,16 @@ setOffset|设置位置偏移
 bindToTarget|需要显示消息的View
 update|更新显示状态
 
+## 12.Gallery
+相册浏览
+##### 使用说明
+GalleryCreator这个类控制进入相册预览界面
+
+GalleryCreator.create(Activity/Fragment).openPreviewGallery(position,List<string>)
+
+1. create方法中传入Activity或fragment创建GalleryCreator实例
+2. openPreviewGallery方法是进入预览页面
+
 
 
 

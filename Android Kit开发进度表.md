@@ -85,7 +85,7 @@
 |     banner      | 许冬林 | 12.03 ~ 12.04 |      |
 | globalconstant  |          |          |   待定   |
 |     camera      |     曾彩琪     |    12.03~12.04      |      |
-|     gallery     |     毛春江     |    12.03~12.04      |      |
+|     gallery     |     毛春江     |    12.03~12.04      |   完成   |
 | mobilephoneinfo |   许冬林       |    12.05      |      |
 |      array      |      许冬林    |       12.05   |      |
 |       map       |     许冬林        |    12.05            |      |

@@ -19,6 +19,7 @@
 #### 18、~~keyboard~~
 #### 19、~~badge~~
 #### 20、shareview
+#### 21、~~gallery~~
 
 ### help开发
 ### 1.globalconstant
@@ -27,9 +28,8 @@
 ### hardware开发
 ### 1.camera
 ### 2.videoplayer
-### 3.gallery
-### 4.mobilephoneinfo
-### 5.downloader
+### 3.mobilephoneinfo
+### 4.downloader
 
 ### utils开发
 ### 1.array

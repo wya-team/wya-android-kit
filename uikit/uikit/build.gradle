@@ -25,6 +25,7 @@ android {
         main {
             res.srcDirs =
                     [
+                            'src/main/res/layout/gallery',
                             'src/main/res/layout/keyboard',
                             'src/main/res/layout/toolbar',
                             'src/main/res/layout/dialog',
@@ -50,9 +51,11 @@ buildscript {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation supportDepends.appcompat
     implementation supportDepends.rxbinding
     implementation supportDepends.design
     implementation supportDepends.recyclerview
-    compile supportDepends.base_adapter
+    implementation supportDepends.base_adapter
 }
