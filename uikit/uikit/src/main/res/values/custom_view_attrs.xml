@@ -9,7 +9,7 @@
         <attr name="itemNormalBackground" format="color" />
         <attr name="itemSelectBackground" format="color" />
         <attr name="lineSize" format="dimension" />
-        <attr name="titleSize" format="dimension"/>
+        <attr name="titleSize" format="dimension" />
         <attr name="strokeWidth" format="dimension" />
         <attr name="strokeColor" format="color" />
         <attr name="radius" format="dimension" />
@@ -17,9 +17,9 @@
 
     <!--pagination bottom view attrs-->
     <declare-styleable name="WYAPaginationBottomView">
-        <attr name="textSize" format="dimension"/>
-        <attr name="buttonWidth" format="dimension"/>
-        <attr name="buttonHeight" format="dimension"/>
+        <attr name="textSize" format="dimension" />
+        <attr name="buttonWidth" format="dimension" />
+        <attr name="buttonHeight" format="dimension" />
         <attr name="textColor" format="color" />
         <attr name="leftText" format="string" />
         <attr name="rightText" format="string" />
@@ -27,8 +27,8 @@
     </declare-styleable>
 
     <!--pagination dot attrs-->
-    <declare-styleable name="WYAPaginationDot" >
-        <attr name="dotNumber" format="integer"/>
+    <declare-styleable name="WYAPaginationDot">
+        <attr name="dotNumber" format="integer" />
         <attr name="dotBackgroundResource" format="reference" />
     </declare-styleable>
 
@@ -41,4 +41,21 @@
         <attr name="maxText" format="string" />
     </declare-styleable>
 
+    <!--button attrs-->
+    <declare-styleable name="WYAButton">
+        <attr name="backColor" />
+        <attr name="backColorPress" />
+        <attr name="backGroundImage" />
+        <attr name="backGroundImagePress" />
+        <attr name="textColor" />
+        <attr name="textColorPress" />
+        <attr name="fillet" format="boolean" />
+        <attr name="wya_radius" format="float" />
+        <attr name="shape">
+            <enum name="rectangle" value="0" />
+            <enum name="oval" value="1" />
+            <enum name="line" value="2" />
+            <enum name="ring" value="3" />
+        </attr>
+    </declare-styleable>
 </resources>

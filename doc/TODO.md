@@ -5,9 +5,9 @@
 #### 4、~~popupwindow~~
 #### 5、~~paginationview~~
 #### 6、~~choicemenu~~
-#### 7、button(毛春江开发中)
+#### 7、~~button~~
 #### 8、imagepicker(许冬林开发中)
-#### 9、customitems
+#### 9、customitems(毛春江开发中)
 #### 10、textareaitem
 #### 11、~~searchbar~~
 #### 12、slider（加区间选择）

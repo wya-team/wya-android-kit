@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f4f4f4"
+    android:orientation="vertical"
+    tools:context="com.wya.example.module.uikit.button.ButtonExampleActivity">
+
+    <com.wya.uikit.button.WYAButton
+        android:id="@+id/wya_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="正常button"
+        android:textAlignment="center"
+        android:drawableLeft="@null"
+        android:textAllCaps="false"
+        android:layout_gravity="start"
+        android:textSize="14sp"
+        app:textColor="@color/white"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_12"
+                android:text="按钮属性" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_12">
+
+                <RadioButton
+                    android:id="@+id/radio_button_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="主按钮" />
+
+                <RadioButton
+                    android:id="@+id/radio_button_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="次按钮" />
+
+                <RadioButton
+                    android:id="@+id/radio_button_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="小按钮" />
+            </RadioGroup>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_12"
+                android:text="disabled" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_12">
+
+                <RadioButton
+                    android:id="@+id/radio_disabled_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="是" />
+
+                <RadioButton
+                    android:id="@+id/radio_disabled_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="否" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_12"
+                android:text="边框" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_12">
+
+                <RadioButton
+                    android:id="@+id/radio_frame_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="是" />
+
+                <RadioButton
+                    android:id="@+id/radio_frame_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="否" />
+            </RadioGroup>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_12"
+                android:text="加载"
+                android:visibility="gone"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_12"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/radio_loading_true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="是" />
+
+                <RadioButton
+                    android:id="@+id/radio_loading_false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="否" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
