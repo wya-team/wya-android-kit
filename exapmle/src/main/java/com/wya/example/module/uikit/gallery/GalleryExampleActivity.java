@@ -22,6 +22,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -37,6 +38,7 @@ import java.util.List;
 public class GalleryExampleActivity extends AppCompatActivity {
 
 	private RecyclerView image_recycler;
+	private TextView title;
 	private BaseQuickAdapter<String, BaseViewHolder> mAdapter;
 	private List<String> images = new ArrayList<>();
 	private static final Uri QUERY_URI = MediaStore.Files.getContentUri("external");
@@ -61,6 +63,8 @@ public class GalleryExampleActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_gallery_example);
 
 		image_recycler = findViewById(R.id.image_recycler);
+		title = findViewById(R.id.title);
+		title.setText("Galley");
 
 		mAdapter = new BaseQuickAdapter<String, BaseViewHolder>(R.layout.gallery_image_item,
 				images) {
