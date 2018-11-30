@@ -7,7 +7,7 @@
 #### 6、~~choicemenu~~
 #### 7、~~button~~
 #### 8、imagepicker(许冬林开发中)
-#### 9、customitems(毛春江开发中)
+#### 9、~~customitems~~
 #### 10、textareaitem
 #### 11、~~searchbar~~
 #### 12、slider（加区间选择）
@@ -20,6 +20,7 @@
 #### 19、~~badge~~
 #### 20、shareview
 #### 21、~~gallery~~
+#### 21、stepper(毛春江开发中)
 
 ### help开发
 ### 1.globalconstant

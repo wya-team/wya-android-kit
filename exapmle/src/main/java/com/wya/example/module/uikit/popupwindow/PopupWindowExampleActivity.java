@@ -1,6 +1,5 @@
 package com.wya.example.module.uikit.popupwindow;
 
-import android.view.View;
 import android.widget.Toast;
 
 import com.wya.example.R;
@@ -18,6 +17,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         setToolBarTitle("PopupWindow");
+        initImgRight( R.mipmap.icon_nav_more, true, 0, false);
         setPopupWindow();
     }
 
@@ -27,12 +27,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
         list.add("第二个");
         list.add("第三个最帅");
         list.add("四");
-        setRightOnclickListener(new onRightOnclickListener() {
-            @Override
-            public void onRightClick(View view) {
-                wyaPopupWindow.show(view,  -100, 0);
-            }
-        });
+        setRightOnclickListener(view -> wyaPopupWindow.show(view,  -100, 0));
         wyaPopupWindow = new WYAPopupWindow(PopupWindowExampleActivity.this, list);
         wyaPopupWindow.setPopupWindowListOnclickListener(position -> {
             wyaPopupWindow.dismiss();

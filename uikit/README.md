@@ -465,5 +465,82 @@ GalleryCreator.create(Activity/Fragment).openPreviewGallery(position,List<string
 2. openPreviewGallery方法是进入预览页面
 
 
+## 14.CardView
+
+#### 使用例子在 example module下的 uikit/customitems/cardview 依赖库在uikit/customitems/cardview文件夹下
+卡片布局
+##### 使用说明
+#####  1、布局使用
+ <com.wya.uikit.customitems.WYACardView
+        android:id="@+id/wya_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backColor="#999999"
+        app:titleTextColor="#ffffff"
+        app:rightTextColor="@color/red"
+        app:assistTextColor="@color/blue"
+        app:contentTextColor="@color/green"
+        app:wyaCardRadius="20"
+        android:layout_margin="@dimen/dp_10">
+    </com.wya.uikit.customitems.WYACardView>
+    
+#####  2、方法说明
+方法|说明
+---|---
+setTitleTextColor(ColorStateList titleTextColor)|设置标题字体颜色
+setRightTextColor(ColorStateList rightTextColor)|设置右边字体颜色
+setContentTextColor(ColorStateList contentTextColor)|设置内容字体颜色
+setAssistTextColor(ColorStateList assistTextColor)|设置辅助字体颜色
+setRadius(float radius)|设置圆角的角度
+setBackColor(int backColor)|设置背景的背景色
+setTitle(String title)|设置卡片标题
+
+## 15.Grid
+列表布局，动态改变列数
+#### 使用例子在 example module下的 uikit/customitems/grid 依赖库在uikit/customitems/grid 文件夹下
+##### wya_grid_item Grid布局文件
+
+## 16.InputItem
+#### 使用例子在 example module下的 uikit/customitems/inputitem 依赖库在uikit/customitems/inputitem 文件夹下
+
+##### 使用说明
+#####  1、布局使用
+  <com.wya.uikit.customitems.WYAInputItem
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         app:backColor="#ffffff"
+         app:canEdit="false"
+         app:contentHint="编辑文本提示"
+         app:leftImage="@mipmap/icon_nav_more"
+         app:leftTvText="左边"
+         app:lineViewColor="#000000"
+         app:rightCanEdit="false"
+         app:rightImage="@mipmap/icon_right_arrow"
+         app:rightText="右边文字"
+         app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
+    
+#####  2、方法说明
+方法|说明
+---|---
+setLeftBackgroundDrawable(Drawable leftDrawable)|设置左边的图片
+setRightBackgroundDrawable(Drawable rightDrawable)|设置右边的图片
+setLeftText(String leftText)|设置左边文字内容
+setLeftTextColor(ColorStateList leftTextColor)|设置左边文字的颜色
+setContentText(String contentText)|设置编辑框内容
+setContentHint(String contentHint)|设置编辑框提示语
+setContentEdit(boolean canEdit)|是否可以编辑
+setContentTextColor(ColorStateList contentTextColor)|设置编辑框文字
+setRightText(String rightText)|设置右边编辑框内容
+setRightHint(String rightHint)|设置右边编辑框提示语
+setRightEdit(boolean rightCanEdit)|右边编辑框是否可以编辑
+setRightTextColor(ColorStateList rightTextColor)|设置右边编辑框文字
+setLineViewColor(String lineViewColor) |设置分隔线颜色
+getLeftText()| 获取左边文字内容
+getContentText()|获取中间编辑框内容
+getRightText()|获取右边编辑框内容
+
+
+
+
 
 

@@ -50,7 +50,7 @@
         <attr name="textColor" />
         <attr name="textColorPress" />
         <attr name="fillet" format="boolean" />
-        <attr name="wya_radius" format="float" />
+        <attr name="wya_button_radius" format="float" />
         <attr name="shape">
             <enum name="rectangle" value="0" />
             <enum name="oval" value="1" />
@@ -58,4 +58,38 @@
             <enum name="ring" value="3" />
         </attr>
     </declare-styleable>
+
+
+    <!-- custom_item card-->
+    <declare-styleable name="WYACardView">
+        <attr name="backColor" />
+        <attr name="backGroundImage" />
+        <attr name="titleTextColor" />
+        <attr name="rightTextColor" />
+        <attr name="contentTextColor" />
+        <attr name="assistTextColor" />
+        <attr name="wyaCardRadius" format="float" />
+    </declare-styleable>
+
+    <!-- custom_item input_item-->
+    <declare-styleable name="WYAInputItem">
+        <attr name="backColor" />
+        <attr name="leftImage"  format = "reference"/>
+        <attr name="rightImage"  format = "reference"/>
+        <attr name="leftTvColor"  format = "color"/>
+        <attr name="leftTvText" />
+
+        <attr name="contentText" />
+        <attr name="contentHint" />
+        <attr name="contentTextColor" format = "color"/>
+        <attr name="canEdit" format = "boolean"/>
+
+        <attr name="rightText" />
+        <attr name="rightHint" />
+        <attr name="rightTextColor" format = "color"/>
+        <attr name="rightCanEdit" format = "boolean"/>
+
+        <attr name="lineViewColor" format = "color"/>
+    </declare-styleable>
+
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+    <com.wya.uikit.button.WYAButton
+        android:id="@+id/wya_button"
+        app:backColor="#108de9"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:text="正常button"
+        app:wya_button_radius="20"
+        android:textAlignment="center"
+        android:drawableLeft="@null"
+        android:textAllCaps="false"
+        android:layout_gravity="start"
+        android:textSize="14sp"
+        app:textColorPress="#50000000"
+        app:fillet="true"
+        app:textColor="@color/white"/>
+</LinearLayout>

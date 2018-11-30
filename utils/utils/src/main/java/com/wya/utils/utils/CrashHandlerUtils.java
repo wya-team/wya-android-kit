@@ -100,7 +100,7 @@ public class CrashHandlerUtils implements Thread.UncaughtExceptionHandler {
             @Override
             public void run() {
                 Looper.prepare();
-                Toast.makeText(mContext, "捕获到异常", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mContext, sb.toString(), Toast.LENGTH_SHORT).show();
                 Looper.loop();
             }
         }.start();
@@ -144,8 +144,9 @@ public class CrashHandlerUtils implements Thread.UncaughtExceptionHandler {
      *
      * @param e Throwable
      */
+    StringBuilder sb = null;
     private void saveErrorMessages(Throwable e) {
-        StringBuilder sb = new StringBuilder();
+        sb = new StringBuilder();
         for (Map.Entry<String, String> entry : mMessage.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();

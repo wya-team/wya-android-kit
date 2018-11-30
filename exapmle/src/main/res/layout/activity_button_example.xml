@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/f4f4f4"
     android:orientation="vertical"
     tools:context="com.wya.example.module.uikit.button.ButtonExampleActivity">
 
     <com.wya.uikit.button.WYAButton
         android:id="@+id/wya_button"
+        app:backColor="#ffffff"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +20,8 @@
         android:textAllCaps="false"
         android:layout_gravity="start"
         android:textSize="14sp"
+        app:fillet="true"
+        app:wya_button_radius="20"
         app:textColor="@color/white"/>
 
     <ScrollView

@@ -26,7 +26,7 @@ public abstract class BaseActivity extends BaseToolBarActivity {
         unbinder = ButterKnife.bind(this);
         initWYAActionBarDefault(true, "#666666",true, "初始化标题", 18, "#ffffff",
         false, "", 14, "#ffffff", true, R.mipmap.icon_back_white,
-        false, "",14, "#ffffff", true, false, R.mipmap.icon_nav_more, 0);
+        false, "",14, "#ffffff", false, false, R.mipmap.icon_nav_more, 0);
         initView();
     }
     protected abstract void initView();
