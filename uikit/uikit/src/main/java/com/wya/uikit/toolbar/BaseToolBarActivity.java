@@ -1,9 +1,9 @@
 package com.wya.uikit.toolbar;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +22,7 @@ import com.wya.uikit.R;
  * 类说明：标题栏
  */
 
-public abstract class BaseToolBarActivity extends Activity {
+public abstract class BaseToolBarActivity extends AppCompatActivity {
 
     private WYAToolBarHelper wyaToolBarHelper;
     private TextView title, tv_left, tv_right;
@@ -121,15 +121,15 @@ public abstract class BaseToolBarActivity extends Activity {
      */
     public void initWYAActionBar() {
         wyaToolBarHelper = new WYAToolBarHelper();
-        title = findViewById(R.id.title);
-        tv_left = findViewById(R.id.tv_left);
-        tv_right = findViewById(R.id.tv_right);
-        ll_right = findViewById(R.id.ll_right);
-        ll_left = findViewById(R.id.ll_left);
-        img_right = findViewById(R.id.img_right);
-        img_right_anther = findViewById(R.id.img_right_anther);
-        img_left = findViewById(R.id.img_left);
-        title_bar_bg = findViewById(R.id.title_bar_bg);
+        title = (TextView) findViewById(R.id.title);
+        tv_left = (TextView) findViewById(R.id.tv_left);
+        tv_right = (TextView) findViewById(R.id.tv_right);
+        ll_right = (LinearLayout) findViewById(R.id.ll_right);
+        ll_left = (LinearLayout) findViewById(R.id.ll_left);
+        img_right = (ImageView) findViewById(R.id.img_right);
+        img_right_anther = (ImageView) findViewById(R.id.img_right_anther);
+        img_left = (ImageView) findViewById(R.id.img_left);
+        title_bar_bg = (RelativeLayout) findViewById(R.id.title_bar_bg);
 
         initShowToolBar(wyaToolBarHelper.isShowTitle());
         initToolBarBgColor(wyaToolBarHelper.getToolbar_bg_color());
@@ -337,7 +337,7 @@ public abstract class BaseToolBarActivity extends Activity {
      * @param layoutResID
      */
     private void initContentView(int layoutResID) {
-        ViewGroup viewGroup = findViewById(android.R.id.content);
+        ViewGroup viewGroup = (ViewGroup) findViewById(android.R.id.content);
         viewGroup.removeAllViews();
         parentLinearLayout = new LinearLayout(this);
         parentLinearLayout.setOrientation(LinearLayout.VERTICAL);
