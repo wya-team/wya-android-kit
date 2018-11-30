@@ -1,12 +1,14 @@
 package com.wya.uikit.choicemenu;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
 import com.wya.uikit.R;
@@ -65,6 +67,9 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		mRecyclerSecond = view.findViewById(R.id.second_recycler);
 		initRecycler();
 		setOutsideTouchable(true);
+		setAnimationStyle(R.style.choiceMenuStyle);
+		// 设置pop透明效果
+		setBackgroundDrawable(new ColorDrawable(0x0000));
 	}
 
 	/**
@@ -72,6 +77,17 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 	 * the first adapter has do something that you can implemented in setValueFirst
 	 */
 	private void initRecycler() {
+
+		//has a bug:if recyclerView's set weight=1 and only has a recyclerView,recyclerView's
+		// item will be not fill in screen full.
+		if (data2 == null) {
+			mRecyclerSecond.setVisibility(View.GONE);
+			ViewGroup.LayoutParams layoutParams = mRecyclerFirst.getLayoutParams();
+			layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+			mRecyclerFirst.setLayoutParams(layoutParams);
+		}
+
+
 		mRecyclerFirst.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager
 				.VERTICAL, false));
 		mRecyclerSecond.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager

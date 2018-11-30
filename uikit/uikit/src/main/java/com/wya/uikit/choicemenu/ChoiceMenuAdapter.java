@@ -1,6 +1,7 @@
 package com.wya.uikit.choicemenu;
 
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,15 +26,15 @@ public abstract class ChoiceMenuAdapter<T> extends RecyclerView.Adapter<ChoiceMe
 		this.layoutId = layoutId;
 	}
 
+	@NonNull
 	@Override
-	public ChoiceMenuViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+	public ChoiceMenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
-		ChoiceMenuViewHolder mViewHolder = new ChoiceMenuViewHolder(view);
-		return mViewHolder;
+		return new ChoiceMenuViewHolder(view);
 	}
 
 	@Override
-	public void onBindViewHolder(ChoiceMenuViewHolder holder, int position) {
+	public void onBindViewHolder(@NonNull ChoiceMenuViewHolder holder, int position) {
 		convert(holder, mData.get(position));
 	}
 
