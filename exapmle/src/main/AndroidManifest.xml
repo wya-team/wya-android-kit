@@ -41,6 +41,7 @@
         <activity android:name=".module.uikit.customitems.CustomItemsExampleActivity" />
         <activity android:name=".module.uikit.customitems.cardview.CardViewExampleActivity" />
         <activity android:name=".module.uikit.customitems.grid.GridExampleActivity" />
+        <activity android:name=".module.uikit.imagepicker.ImagePickerExampleActivity"/>
         <activity android:name=".module.uikit.customitems.inputitem.InputItemExampleActivity"></activity>
     </application>
 

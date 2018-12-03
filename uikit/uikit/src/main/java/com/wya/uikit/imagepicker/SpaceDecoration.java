@@ -1,4 +1,4 @@
-package com.wya.example.module.uikit.gallery;
+package com.wya.uikit.imagepicker;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
@@ -11,12 +11,12 @@ import android.view.View;
  * desc   :
  * version: 1.0
  */
-public class GalleryDecoration extends RecyclerView.ItemDecoration {
+public class SpaceDecoration extends RecyclerView.ItemDecoration {
 	private int spanCount;
 	private int spacing;
 	private boolean includeEdge;
 
-	public GalleryDecoration(int spanCount, int spacing, boolean includeEdge) {
+	public SpaceDecoration(int spanCount, int spacing, boolean includeEdge) {
 		this.spanCount = spanCount;
 		this.spacing = spacing;
 		this.includeEdge = includeEdge;

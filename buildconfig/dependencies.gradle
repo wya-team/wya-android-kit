@@ -9,7 +9,7 @@ ext {
 
     // support config
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    androidSupportLibVersion = "25.4.0"
+    androidSupportLibVersion = "28.0.0"
     butterknnifeVersion = "8.5.1"
     rxbindingVersion = "2.0.0"
     supportDepends = [

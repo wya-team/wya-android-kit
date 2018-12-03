@@ -34,6 +34,7 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 	private ChoiceMenuAdapter<T> mAdapterSecond;
 	private String TAG = "ChoiceMenu";
 	private int selectPosition;
+	private OnFirstAdapterItemClickListener mOnFirstAdapterItemClickListener;
 
 
 	public ChoiceMenu(Context context, List<T> list1, List<List<T>> list2, @LayoutRes int firstId,
@@ -60,7 +61,6 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 	 */
 	private void init() {
 		setWidth(mContext.getResources().getDisplayMetrics().widthPixels);
-		setHeight(mContext.getResources().getDisplayMetrics().heightPixels / 2);
 		View view = LayoutInflater.from(mContext).inflate(R.layout.choice_layout, null);
 		setContentView(view);
 		mRecyclerFirst = view.findViewById(R.id.first_recycler);
@@ -102,6 +102,10 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 					public void onClick(View v) {
 						selectPosition = viewHolder.getLayoutPosition();
 						mAdapter.notifyDataSetChanged();
+						if (mOnFirstAdapterItemClickListener != null) {
+							mOnFirstAdapterItemClickListener.onClick(viewHolder.getLayoutPosition
+									(), v, ChoiceMenu.this);
+						}
 						if (data2 != null) {
 							data2Show.clear();
 							data2Show.addAll(data2.get(selectPosition));
@@ -171,6 +175,15 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		if (mAdapterSecond != null) {
 			mAdapterSecond.notifyDataSetChanged();
 		}
+	}
+
+	public void setOnFirstAdapterItemClickListener(OnFirstAdapterItemClickListener
+														   onFirstAdapterItemClickListener) {
+		mOnFirstAdapterItemClickListener = onFirstAdapterItemClickListener;
+	}
+
+	public interface OnFirstAdapterItemClickListener{
+		void onClick(int position, View v, ChoiceMenu menu);
 	}
 
 }

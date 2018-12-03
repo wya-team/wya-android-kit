@@ -6,14 +6,14 @@
 #### 5、~~paginationview~~
 #### 6、~~choicemenu~~
 #### 7、~~button~~
-#### 8、imagepicker(许冬林开发中)
+#### 8、~~imagepicker~~
 #### 9、~~customitems~~
 #### 10、textareaitem
 #### 11、~~searchbar~~
 #### 12、slider（加区间选择）
 #### 13、pickview
 #### 14、noticebar
-#### 15、banner
+#### 15、banner(许冬林开发中)
 #### 16、~~dialog~~
 #### 17、~~toast~~
 #### 18、~~keyboard~~

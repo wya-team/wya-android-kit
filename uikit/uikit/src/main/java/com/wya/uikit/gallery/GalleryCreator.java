@@ -13,7 +13,7 @@ import java.util.List;
  * author : XuDonglin
  * e-mail : 465715784@qq.com
  * time   : 2018/11/29
- * desc   :
+ * desc   : GalleryCreator
  * version: 1.0
  */
 public class GalleryCreator {
@@ -23,7 +23,6 @@ public class GalleryCreator {
 	private GalleryCreator(Activity activity) {
 		this(activity, null);
 	}
-
 	private GalleryCreator(Fragment fragment) {
 		this(fragment.getActivity(), fragment);
 	}
@@ -33,6 +32,7 @@ public class GalleryCreator {
 		mFragment = new WeakReference<>(fragment);
 	}
 
+
 	public static GalleryCreator create(Activity activity) {
 		return new GalleryCreator(activity);
 	}
@@ -41,8 +41,7 @@ public class GalleryCreator {
 		return new GalleryCreator(fragment);
 	}
 
-
-	public void openPreviewGallery(int position, List<String> images) {
+	public <T>void openPreviewGallery(int position, List<T> images) {
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), PicturePreviewActivity.class);
 		intent.putExtra(GalleryConfig.POSITION, position);
@@ -51,20 +50,19 @@ public class GalleryCreator {
 		getActivity().startActivity(intent);
 	}
 
-	public void openPreviewImagePicker(int position, List<String> images) {
+	public <T> void openPreviewImagePicker(int position, List<T> images,List<T> imagesSelected,
+										   String field,int result,int max) {
+
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), PicturePreviewActivity.class);
 		intent.putExtra(GalleryConfig.POSITION, position);
 		intent.putExtra(GalleryConfig.IMAGE_LIST, (Serializable) images);
-		getActivity().startActivity(intent);
-	}
-
-	/**
-	 * @return Activity.
-	 */
-	@Nullable
-	private Activity getActivity() {
-		return mActivity.get();
+		intent.putExtra(GalleryConfig.IMAGE_LIST_SELECTED, (Serializable) imagesSelected);
+		intent.putExtra(GalleryConfig.FIELD_NAME,  field);
+		intent.putExtra(GalleryConfig.TYPE, GalleryConfig.IMAGE_PICKER);
+		intent.putExtra(GalleryConfig.PICKER_FOR_RESULT, result);
+		intent.putExtra(GalleryConfig.MAX_NUM, max);
+		getActivity().startActivityForResult(intent,result);
 	}
 
 	@Nullable
@@ -72,4 +70,7 @@ public class GalleryCreator {
 		return mFragment.get();
 	}
 
+	public Activity getActivity() {
+		return mActivity.get();
+	}
 }

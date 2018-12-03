@@ -30,6 +30,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.wya.example.R;
 import com.wya.uikit.gallery.GalleryCreator;
+import com.wya.uikit.imagepicker.SpaceDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,7 @@ public class GalleryExampleActivity extends AppCompatActivity {
 
 		image_recycler.setLayoutManager(new GridLayoutManager(this, 4));
 		image_recycler.setAdapter(mAdapter);
-		image_recycler.addItemDecoration(new GalleryDecoration(4,3,false));
+		image_recycler.addItemDecoration(new SpaceDecoration(4,3,false));
 
 		mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
 			@Override
