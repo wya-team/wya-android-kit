@@ -6,6 +6,7 @@ import android.view.View;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
+import com.wya.example.module.uikit.banner.BannerExampleActivity;
 import com.wya.example.module.uikit.button.ButtonExampleActivity;
 import com.wya.example.module.uikit.choicemenu.ChoiceMenuExampleActivity;
 import com.wya.example.module.uikit.customitems.CustomItemsExampleActivity;
@@ -39,7 +40,7 @@ public class UiKitExampleActivity extends BaseActivity {
 
     @OnClick({R.id.tv_stepper, R.id.tv_custom_items, R.id.tv_button, R.id.tv_key_board, R.id.tv_search_bar, R.id.tv_toast, R.id.tv_tool_bar, R.id
             .tv_popupwindow, R.id.tv_tab_bar, R.id.tv_tab_layout, R.id.tv_dialog, R.id
-            .tv_pagination_view, R.id.tv_choice_menu, R.id.tv_badge, R.id.tv_gallery, R.id.tv_image_picker, R.id.tv_progress})
+            .tv_pagination_view, R.id.tv_choice_menu, R.id.tv_badge, R.id.tv_gallery, R.id.tv_image_picker, R.id.tv_progress, R.id.tv_banner})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_tool_bar:
@@ -93,6 +94,9 @@ public class UiKitExampleActivity extends BaseActivity {
             case R.id.tv_progress:
                 startActivity(new Intent(this, ProgressExampleActivity.class));
                 break;
+			case R.id.tv_banner:
+				startActivity(new Intent(this, BannerExampleActivity.class));
+				break;
         }
     }
 }
