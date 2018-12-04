@@ -17,6 +17,7 @@ import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity
 import com.wya.example.module.uikit.popupwindow.PopupWindowExampleActivity;
 import com.wya.example.module.uikit.searchbar.SearchBarExampleActivity;
 import com.wya.example.module.uikit.segmentedcontrol.SegmentedControlExampleActivity;
+import com.wya.example.module.uikit.stepper.StepperExampleActivity;
 import com.wya.example.module.uikit.tabbar.TabBarExampleActivity;
 import com.wya.example.module.uikit.toast.ToastExampleActivity;
 import com.wya.example.module.uikit.toolbar.ToolBarExampleActivity;
@@ -25,74 +26,70 @@ import butterknife.OnClick;
 
 public class UiKitExampleActivity extends BaseActivity {
 
-	@Override
-	protected void initView() {
-		initImgLeft(R.mipmap.icon_back_white, true);
-	}
+    @Override
+    protected void initView() {
+        initImgLeft(R.mipmap.icon_back_white, true);
+    }
 
-	@Override
-	protected int getLayoutID() {
-		return R.layout.activity_ui_kit_example;
-	}
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_ui_kit_example;
+    }
 
-	@OnClick({R.id.tv_custom_items, R.id.tv_button, R.id.tv_key_board, R.id.tv_search_bar,
-			R.id.tv_toast, R.id.tv_tool_bar, R.id.tv_popupwindow, R.id.tv_tab_bar,
-			R.id.tv_tab_layout, R.id.tv_dialog, R.id.tv_pagination_view, R.id.tv_choice_menu,
-			R.id.tv_badge, R.id.tv_gallery, R.id.tv_image_picker})
-	public void onViewClicked(View view) {
-		switch (view.getId()) {
-			case R.id.tv_tool_bar:
-				UiKitExampleActivity.this.startActivity(new Intent(UiKitExampleActivity.this,
-                        ToolBarExampleActivity.class));
-				break;
-			case R.id.tv_tab_bar:
-				startActivity(new Intent(UiKitExampleActivity.this, TabBarExampleActivity.class));
-				break;
-			case R.id.tv_tab_layout:
-				startActivity(new Intent(this, SegmentedControlExampleActivity.class));
-				break;
-			case R.id.tv_dialog:
-				UiKitExampleActivity.this.startActivity(new Intent(UiKitExampleActivity.this,
-                        DialogExampleActivity.class));
-				break;
-			case R.id.tv_popupwindow:
-				UiKitExampleActivity.this.startActivity(new Intent(UiKitExampleActivity.this,
-                        PopupWindowExampleActivity.class));
-				break;
-			case R.id.tv_toast:
-				UiKitExampleActivity.this.startActivity(new Intent(UiKitExampleActivity.this,
-                        ToastExampleActivity.class));
-				break;
-			case R.id.tv_search_bar:
-				UiKitExampleActivity.this.startActivity(new Intent(UiKitExampleActivity.this,
-                        SearchBarExampleActivity.class));
-				break;
-			case R.id.tv_key_board:
-				UiKitExampleActivity.this.startActivity(new Intent(UiKitExampleActivity.this,
-                        KeyboardExampleActivity.class));
-				break;
-			case R.id.tv_pagination_view:
-				startActivity(new Intent(this, PaginationViewExampleActivity.class));
-				break;
-			case R.id.tv_choice_menu:
-				startActivity(new Intent(this, ChoiceMenuExampleActivity.class));
-				break;
-			case R.id.tv_badge:
-				BadgeExampleActivity.start(UiKitExampleActivity.this);
-				break;
-			case R.id.tv_button:
-				startActivity(new Intent(this, ButtonExampleActivity.class));
-				break;
-			case R.id.tv_gallery:
-				startActivity(new Intent(this, GalleryExampleActivity.class));
-				break;
-			case R.id.tv_custom_items:
-				startActivity(new Intent(this, CustomItemsExampleActivity.class));
-				break;
-			case R.id.tv_image_picker:
-				startActivity(new Intent(this, ImagePickerExampleActivity.class));
-				break;
-		}
-	}
+    @OnClick({ R.id.tv_stepper, R.id.tv_custom_items, R.id.tv_button, R.id.tv_key_board, R.id.tv_search_bar, R.id.tv_toast, R.id.tv_tool_bar, R.id
+            .tv_popupwindow, R.id.tv_tab_bar, R.id.tv_tab_layout, R.id.tv_dialog, R.id
+            .tv_pagination_view, R.id.tv_choice_menu, R.id.tv_badge, R.id.tv_gallery, R.id.tv_image_picker})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_tool_bar:
+                UiKitExampleActivity.this.startActivity(new Intent(UiKitExampleActivity.this, ToolBarExampleActivity.class));
+                break;
+            case R.id.tv_tab_bar:
+                startActivity(new Intent(UiKitExampleActivity.this, TabBarExampleActivity.class));
+                break;
+            case R.id.tv_tab_layout:
+                startActivity(new Intent(this, SegmentedControlExampleActivity.class));
+                break;
+            case R.id.tv_dialog:
+                UiKitExampleActivity.this.startActivity(new Intent(UiKitExampleActivity.this, DialogExampleActivity.class));
+                break;
+            case R.id.tv_popupwindow:
+                UiKitExampleActivity.this.startActivity(new Intent(UiKitExampleActivity.this, PopupWindowExampleActivity.class));
+                break;
+            case R.id.tv_toast:
+                UiKitExampleActivity.this.startActivity(new Intent(UiKitExampleActivity.this, ToastExampleActivity.class));
+                break;
+            case R.id.tv_search_bar:
+                UiKitExampleActivity.this.startActivity(new Intent(UiKitExampleActivity.this, SearchBarExampleActivity.class));
+                break;
+            case R.id.tv_key_board:
+                UiKitExampleActivity.this.startActivity(new Intent(UiKitExampleActivity.this, KeyboardExampleActivity.class));
+                break;
+            case R.id.tv_pagination_view:
+                startActivity(new Intent(this, PaginationViewExampleActivity.class));
+                break;
+            case R.id.tv_choice_menu:
+                startActivity(new Intent(this, ChoiceMenuExampleActivity.class));
+                break;
+            case R.id.tv_badge:
+                BadgeExampleActivity.start(UiKitExampleActivity.this);
+                break;
+            case R.id.tv_button:
+                startActivity(new Intent(this, ButtonExampleActivity.class));
+                break;
+            case R.id.tv_gallery:
+                startActivity(new Intent(this, GalleryExampleActivity.class));
+                break;
+            case R.id.tv_custom_items:
+                startActivity(new Intent(this, CustomItemsExampleActivity.class));
+                break;
+            case R.id.tv_image_picker:
+                startActivity(new Intent(this, ImagePickerExampleActivity.class));
+                break;
+            case R.id.tv_stepper:
+                startActivity(new Intent(this, StepperExampleActivity.class));
+                break;
+        }
+    }
 
 }

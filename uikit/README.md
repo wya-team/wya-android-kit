@@ -551,7 +551,40 @@ forResult(int requestCode)|结果回调onActivityResult requestCode
 onActivityResult中返回结果中获取选中的图片list
 
 key是PickerConfig.IMAGE_SELECTED；
-value是Serializable类型的List<LocalImage>。
+value是Serializable类型的List<LocalImage>
+
+## 18.Stepper
+数字加减控制器
+#### 使用例子在 example module下的 uikit/customitems/stepper 依赖库在uikit/customitems/stepper 文件夹下
+
+##### 使用说明
+#####  1、布局使用
+   <com.wya.uikit.stepper.WYAStepper
+              android:id="@+id/stepper"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              app:addDrawable="@mipmap/add"
+              app:addDrawablePress="@mipmap/add_press"
+              app:max_num="120"
+              app:value="0"
+              app:min_num="0"
+              app:reduceDrawable="@mipmap/reduce"
+              app:reduceDrawablePress="@mipmap/reduce_press"/>
+
+    
+#####  2、方法说明
+方法|说明
+---|---
+setReduceBackgroundDrawable(Drawable reduceDrawable)|设置减号按钮默认背景图片
+setReduceBackgroundDrawablePress(Drawable reduceDrawablePress)|设置减号按钮点击图片
+setAddBackgroundDrawable(Drawable addDrawable)|设置加号按钮默认背景图片
+setAddBackgroundDrawablePress(Drawable reduceDrawablePress)|设置加号按钮点击图片
+setValue(int value)|设置左边的图片
+getValue()|获取当前值
+setMax_num(int max_num)|设置最大值
+setMin_num(int min_num)|设置最小值
+getMin_num()|获取最小值
+getMax_num()|获取最大值
 
 
 

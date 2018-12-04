@@ -22,7 +22,6 @@ public abstract class BaseActivity extends BaseToolBarActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutID());
         unbinder = ButterKnife.bind(this);
         initWYAActionBarDefault(true, "#666666",true, "初始化标题", 18, "#ffffff",
         false, "", 14, "#ffffff", true, R.mipmap.icon_back_white,
@@ -30,7 +29,5 @@ public abstract class BaseActivity extends BaseToolBarActivity {
         initView();
     }
     protected abstract void initView();
-
-    protected abstract int getLayoutID();
 
 }

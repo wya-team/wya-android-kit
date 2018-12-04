@@ -4,15 +4,10 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -100,7 +95,7 @@ public class CrashHandlerUtils implements Thread.UncaughtExceptionHandler {
             @Override
             public void run() {
                 Looper.prepare();
-//                Toast.makeText(mContext, sb.toString(), Toast.LENGTH_SHORT).show();
+                Log.e("WYACrash", sb.toString());
                 Looper.loop();
             }
         }.start();

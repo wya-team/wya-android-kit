@@ -25,6 +25,7 @@ android {
         main {
             res.srcDirs =
                     [
+                            'src/main/res/layout/stepper',
                             'src/main/res/layout/customitems',
                             'src/main/res/layout/base',
                             'src/main/res/layout/imagepicker',
