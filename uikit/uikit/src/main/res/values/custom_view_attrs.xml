@@ -94,7 +94,7 @@
 
 
 
-    <!-- custom_item input_item-->
+    <!-- stepper-->
     <declare-styleable name="WYAStepper">
         <attr name="reduceDrawable"  format = "reference"/>
         <attr name="reduceDrawablePress"  format = "reference"/>
@@ -106,7 +106,18 @@
         <attr name="min_num"  format = "integer"/>
     </declare-styleable>
 
-
+    <!-- progress -->
+    <declare-styleable name="WYAProgress">
+        <attr name="circleColor" format="color"/>
+        <attr name="progressCircleColor" format="color"/>
+        <attr name="circleThickness" format="dimension"/>
+        <attr name="maxProgress" format="integer"/>
+        <attr name="animationDuration" format="integer"/>
+        <attr name="progressStartColor" format="color"/>
+        <attr name="progressEndColor" format="color"/>
+        <attr name="progressArgbColor" format="boolean"/>
+        <attr name="smallCircleEnable" format="boolean"/>
+    </declare-styleable>
 
 
 </resources>

@@ -15,6 +15,7 @@ import com.wya.example.module.uikit.imagepicker.ImagePickerExampleActivity;
 import com.wya.example.module.uikit.keyboard.KeyboardExampleActivity;
 import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity;
 import com.wya.example.module.uikit.popupwindow.PopupWindowExampleActivity;
+import com.wya.example.module.uikit.progress.ProgressExampleActivity;
 import com.wya.example.module.uikit.searchbar.SearchBarExampleActivity;
 import com.wya.example.module.uikit.segmentedcontrol.SegmentedControlExampleActivity;
 import com.wya.example.module.uikit.stepper.StepperExampleActivity;
@@ -36,9 +37,9 @@ public class UiKitExampleActivity extends BaseActivity {
         return R.layout.activity_ui_kit_example;
     }
 
-    @OnClick({ R.id.tv_stepper, R.id.tv_custom_items, R.id.tv_button, R.id.tv_key_board, R.id.tv_search_bar, R.id.tv_toast, R.id.tv_tool_bar, R.id
+    @OnClick({R.id.tv_stepper, R.id.tv_custom_items, R.id.tv_button, R.id.tv_key_board, R.id.tv_search_bar, R.id.tv_toast, R.id.tv_tool_bar, R.id
             .tv_popupwindow, R.id.tv_tab_bar, R.id.tv_tab_layout, R.id.tv_dialog, R.id
-            .tv_pagination_view, R.id.tv_choice_menu, R.id.tv_badge, R.id.tv_gallery, R.id.tv_image_picker})
+            .tv_pagination_view, R.id.tv_choice_menu, R.id.tv_badge, R.id.tv_gallery, R.id.tv_image_picker, R.id.tv_progress})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_tool_bar:
@@ -89,7 +90,9 @@ public class UiKitExampleActivity extends BaseActivity {
             case R.id.tv_stepper:
                 startActivity(new Intent(this, StepperExampleActivity.class));
                 break;
+            case R.id.tv_progress:
+                startActivity(new Intent(this, ProgressExampleActivity.class));
+                break;
         }
     }
-
 }

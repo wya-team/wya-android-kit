@@ -471,7 +471,7 @@ GalleryCreator.create(Activity/Fragment).openPreviewGallery(position,List<string
 卡片布局
 ##### 使用说明
 #####  1、布局使用
- <com.wya.uikit.customitems.WYACardView
+    <com.wya.uikit.customitems.WYACardView
         android:id="@+id/wya_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -505,7 +505,7 @@ setTitle(String title)|设置卡片标题
 
 ##### 使用说明
 #####  1、布局使用
-  <com.wya.uikit.customitems.WYAInputItem
+    <com.wya.uikit.customitems.WYAInputItem
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          app:backColor="#ffffff"
@@ -559,7 +559,7 @@ value是Serializable类型的List<LocalImage>
 
 ##### 使用说明
 #####  1、布局使用
-   <com.wya.uikit.stepper.WYAStepper
+    <com.wya.uikit.stepper.WYAStepper
               android:id="@+id/stepper"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -585,6 +585,41 @@ setMax_num(int max_num)|设置最大值
 setMin_num(int min_num)|设置最小值
 getMin_num()|获取最小值
 getMax_num()|获取最大值
+
+## 19.Progress
+进度条，环形进度条和条形进度条
+#### 使用例子在 example module下的 uikit/customitems/stepper 依赖库在uikit/customitems/stepper 文件夹下
+##### （1）条形进度条用系统默认自带的ProgressBar，不做使用说明
+##### （2）环形进度条使用说明
+#####  1、布局使用
+    <com.wya.uikit.progress.WYAProgress
+          android:id="@+id/wya_progress"
+          android:layout_width="200dp"
+          android:layout_height="200dp"
+          android:layout_gravity="center_horizontal"
+          app:circleThickness="10dp"
+          app:progressArgbColor="true"
+          app:progressEndColor="#0000ff"
+          app:progressStartColor="#ff0000"
+          app:smallCircleEnable="false" />
+
+#####  2、方法说明
+方法|说明
+---|---
+setMaxProgress(double maxProgress)|设置进度的最大值
+setCurrentProgress(double currentProgress)|设置进度值
+setAnimation(double start, double end)|为进度设置动画（起始位置到结束位置的动画）
+setProgressArgbColor(boolean progressArgbColor)|颜色是否argb变化
+setProgressCircleColor(int progressCircleColor)|进度条的颜色
+setProgressStartColor(int progressCircleColor)|进度条起始颜色
+setProgressEndColor(int progressCircleColor)|进度条结束颜色
+setAnimationDuration(long animationDuration)|设置动画时长
+setCircleThickness(float circleThickness)|圆环厚度
+setSmallCircleEnable(boolean smallCircleEnable)|设置是否圆角
+
+
+
+
 
 
 

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -79,6 +80,7 @@ public class WYAStepper extends LinearLayout {
             max_num = a.getInt(R.styleable.WYAStepper_max_num, 0);
             min_num = a.getInt(R.styleable.WYAStepper_min_num, 0);
             setValue(value);
+            stepper_et_num.setCursorVisible(false);
             a.recycle();
         }
 
@@ -139,11 +141,11 @@ public class WYAStepper extends LinearLayout {
                     int now_num = Integer.valueOf(s.toString()).intValue();
                     if (now_num > max_num) {
                         WYAToast.showShort(getContext(), "输入的值太大");
-                        stepper_et_num.setText(input_before);
+                        setValue(Integer.valueOf(input_before).intValue());
                         stepper_et_num.setCursorVisible(false);
                     } else if (now_num < min_num) {
                         WYAToast.showShort(getContext(), "输入的值太小");
-                        stepper_et_num.setText(input_before);
+                        setValue(Integer.valueOf(input_before).intValue());
                         stepper_et_num.setCursorVisible(false);
                     } else {
                         value = now_num;
@@ -167,7 +169,6 @@ public class WYAStepper extends LinearLayout {
     private void setValue(int value) {
         stepper_et_num.setText(value + "");
         stepper_et_num.setHint(min_num + "");
-        stepper_et_num.setCursorVisible(false);
         if (value >= max_num) {
             stepper_img_add.setBackgroundDrawable(addDrawablePress);
             stepper_img_add.setEnabled(false);
@@ -288,6 +289,7 @@ public class WYAStepper extends LinearLayout {
             value++;
         }
         setValue(value);
+        stepper_et_num.setCursorVisible(false);
     }
 
     /**
@@ -298,6 +300,7 @@ public class WYAStepper extends LinearLayout {
             value--;
         }
         setValue(value);
+        stepper_et_num.setCursorVisible(false);
     }
 
 

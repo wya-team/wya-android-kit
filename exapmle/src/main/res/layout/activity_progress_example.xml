@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.wya.example.module.uikit.progress.ProgressExampleActivity">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_margin="10dp"
+        android:progressDrawable="@drawable/wya_custom_progress" />
+
+    <com.wya.uikit.progress.WYAProgress
+        android:id="@+id/wya_progress"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        app:circleThickness="10dp"
+        app:progressArgbColor="true"
+        app:progressEndColor="#0000ff"
+        app:progressStartColor="#ff0000"
+        app:smallCircleEnable="true" />
+
+
+    <com.wya.uikit.stepper.WYAStepper
+        android:id="@+id/stepper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:addDrawable="@mipmap/add"
+        app:addDrawablePress="@mipmap/add_press"
+        app:max_num="100"
+        app:min_num="0"
+        app:reduceDrawable="@mipmap/reduce"
+        app:reduceDrawablePress="@mipmap/reduce_press"
+        app:value="0" />
+
+    <com.wya.uikit.button.WYAButton
+        android:id="@+id/wya_button"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:text="确定"
+        app:backColor="#118EE9"
+        app:fillet="true"
+        app:textColor="#ffffff"
+        app:textColorPress="#50ffffff"
+        app:wya_button_radius="10" />
+
+
+</LinearLayout>

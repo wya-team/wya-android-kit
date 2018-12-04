@@ -6,4 +6,10 @@
     <color name="light_gray">#dddddd</color>
     <color name="color_orange">#E0FF6100</color>
     <color name="color_666">#666666</color>
+
+
+    <color name="progress_gray">#e4e4e4</color>
+    <color name="progress_start">#f1e134</color>
+    <color name="progress_end">#f14a34</color>
+
 </resources>
