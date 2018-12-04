@@ -2,7 +2,6 @@ package com.wya.uikit.tabbar;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -50,8 +49,10 @@ public class WYATabBar extends BottomNavigationView {
 		BottomNavigationMenuView menuView = (BottomNavigationMenuView) getChildAt(0);
 		try {
 			//28之后代码不一样需要改变
-			if (Build.VERSION.SDK_INT < 28) {
-				Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
+			Class<? extends BottomNavigationMenuView> menuViewClass = menuView.getClass();
+
+			if (hasField(menuViewClass,"mShiftingMode")) {
+				Field shiftingMode = menuViewClass.getDeclaredField("mShiftingMode");
 				shiftingMode.setAccessible(true);
 				shiftingMode.setBoolean(menuView, false);
 				shiftingMode.setAccessible(false);
@@ -65,7 +66,7 @@ public class WYATabBar extends BottomNavigationView {
 					item.setChecked(item.getItemData().isChecked());
 				}
 			} else {
-				Class<? extends BottomNavigationMenuView> menuViewClass = menuView.getClass();
+
 				Method setLabelVisibilityMode = menuViewClass.getDeclaredMethod
 						("setLabelVisibilityMode", int.class);
 				setLabelVisibilityMode.invoke(menuView, 1);
@@ -83,6 +84,16 @@ public class WYATabBar extends BottomNavigationView {
 		}
 	}
 
+	private boolean hasField(Class cls, String field) {
+		Field[] fields = cls.getFields();
+		for (int i = 0; i < fields.length; i++) {
+			if (fields[i].equals(field)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * 取消item文字图片点击放大效果
 	 * @param enable false 取消
@@ -97,7 +108,7 @@ public class WYATabBar extends BottomNavigationView {
 		// 3. change field mShiftingMode value in mButtons
 		for (BottomNavigationItemView button : mButtons) {
 			TextView mSmallLabel, mLargeLabel;
-			if (Build.VERSION.SDK_INT < 28) {
+			if (hasField(button.getClass(),"mLargeLabel")) {
 				mLargeLabel = getField(button.getClass(), button, "mLargeLabel");
 				mSmallLabel = getField(button.getClass(), button, "mSmallLabel");
 			} else {
@@ -110,7 +121,7 @@ public class WYATabBar extends BottomNavigationView {
 			if (!enable) {
 				if (!animationRecord) {
 					animationRecord = true;
-					if (Build.VERSION.SDK_INT < 28){
+					if (hasField(button.getClass(),"mShiftAmount")){
 						int mShiftAmount = getField(button.getClass(), button, "mShiftAmount");
 						mScaleUpFactor = getField(button.getClass(), button, "mScaleUpFactor");
 						mScaleDownFactor = getField(button.getClass(), button, "mScaleDownFactor");
@@ -126,7 +137,7 @@ public class WYATabBar extends BottomNavigationView {
 
 				}
 				// disable
-				if (Build.VERSION.SDK_INT < 28){
+				if (hasField(button.getClass(),"mShiftAmount")){
 					setField(button.getClass(), button, "mShiftAmount", 0);
 					setField(button.getClass(), button, "mScaleUpFactor", 1);
 					setField(button.getClass(), button, "mScaleDownFactor", 1);
@@ -153,7 +164,7 @@ public class WYATabBar extends BottomNavigationView {
 	 */
 	private BottomNavigationMenuView getBottomNavigationMenuView() {
 		if (null == mMenuView)
-			if (Build.VERSION.SDK_INT < 28) {
+			if (hasField(BottomNavigationView.class,"mMenuView")) {
 				mMenuView = getField(BottomNavigationView.class, this, "mMenuView");
 			} else {
 				mMenuView = getField(BottomNavigationView.class, this, "menuView");
@@ -174,7 +185,7 @@ public class WYATabBar extends BottomNavigationView {
 		 * 2 private BottomNavigationItemView[] mButtons;
 		 */
 		BottomNavigationMenuView mMenuView = getBottomNavigationMenuView();
-		if (Build.VERSION.SDK_INT < 28) {
+		if (hasField(mMenuView.getClass(),"mButtons")) {
 			mButtons = getField(mMenuView.getClass(), mMenuView, "mButtons");
 		} else {
 			mButtons = getField(mMenuView.getClass(), mMenuView, "buttons");

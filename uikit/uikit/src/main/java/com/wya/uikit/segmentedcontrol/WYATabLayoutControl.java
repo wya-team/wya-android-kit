@@ -1,6 +1,5 @@
 package com.wya.uikit.segmentedcontrol;
 
-import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -29,7 +28,7 @@ public class WYATabLayoutControl {
 				View tabView = mTabStrip.getChildAt(i);
 
 				Field mTextViewField = null;
-				if (Build.VERSION.SDK_INT < 28) {
+				if (hasField(tabView.getClass(),"mTextView")) {
 					mTextViewField = tabView.getClass().getDeclaredField("mTextView");
 				} else {
 					mTextViewField = tabView.getClass().getDeclaredField("textView");
@@ -69,6 +68,16 @@ public class WYATabLayoutControl {
 
 	}
 
+
+	private static boolean hasField(Class cls, String field) {
+		Field[] fields = cls.getFields();
+		for (int i = 0; i < fields.length; i++) {
+			if (fields[i].equals(field)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	/**
 	 * mTestView控制下划线宽度与文字一样
 	 *
@@ -81,7 +90,7 @@ public class WYATabLayoutControl {
 				View tabView = mTabStrip.getChildAt(i);
 
 				Field mTextViewField = null;
-				if (Build.VERSION.SDK_INT < 28) {
+				if (hasField(tabView.getClass(),"mTextView")) {
 					mTextViewField = tabView.getClass().getDeclaredField("mTextView");
 				} else {
 					mTextViewField = tabView.getClass().getDeclaredField("textView");
