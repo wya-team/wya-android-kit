@@ -20,7 +20,8 @@
 #### 19、~~badge~~
 #### 20、shareview
 #### 21、~~gallery~~
-#### 21、stepper(毛春江开发中)
+#### 21、~~stepper~~
+#### 21、progress(毛春江开发中)
 
 ### help开发
 ### 1.globalconstant
