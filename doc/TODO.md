@@ -21,14 +21,14 @@
 #### 20、shareview
 #### 21、~~gallery~~
 #### 21、~~stepper~~
-#### 21、progress(毛春江开发中)
+#### 21、~~progress~~
 
 ### help开发
 ### 1.globalconstant
 ### 2.instance
 
 ### hardware开发
-### 1.camera
+### 1.camera(毛春江开发中)
 ### 2.videoplayer
 ### 3.mobilephoneinfo
 ### 4.downloader

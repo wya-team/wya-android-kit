@@ -1,35 +1,19 @@
 package com.wya.example;
 
 import android.content.Intent;
-import android.widget.TextView;
+import android.view.View;
 
-import com.jakewharton.rxbinding2.view.RxView;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.hardware.HardwareExampleActivity;
 import com.wya.example.module.uikit.UiKitExampleActivity;
 
-import java.util.concurrent.TimeUnit;
-
-import butterknife.BindView;
+import butterknife.OnClick;
 
 public class ExampleActivity extends BaseActivity {
 
-
-    @BindView(R.id.tv_ui_kit)
-    TextView tvUiKit;
-
     @Override
     protected void initView() {
-        initClick();
-    }
-
-    private void initClick() {
-        RxView.clicks(tvUiKit)
-                .throttleFirst(500, TimeUnit.MILLISECONDS)
-                .subscribe(Observable -> {
-                    Intent intent = new Intent(ExampleActivity.this, UiKitExampleActivity.class);
-                    ExampleActivity.this.startActivity(intent);
-                });
-
+        setToolBarTitle("微一案");
     }
 
     @Override
@@ -37,4 +21,16 @@ public class ExampleActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
+
+    @OnClick({R.id.wya_button_hardware, R.id.wya_button_ui_kit})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.wya_button_hardware:
+                ExampleActivity.this.startActivity(new Intent(ExampleActivity.this, HardwareExampleActivity.class));
+                break;
+            case R.id.wya_button_ui_kit:
+                ExampleActivity.this.startActivity(new Intent(ExampleActivity.this, UiKitExampleActivity.class));
+                break;
+        }
+    }
 }

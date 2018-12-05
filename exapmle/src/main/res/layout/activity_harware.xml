@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wya.example.module.harware.HardwareExampleActivity">
+    android:orientation="vertical"
+    tools:context="com.wya.example.module.hardware.HardwareExampleActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <com.wya.uikit.button.WYAButton
+        android:id="@+id/wya_button_camera"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:text="相机（camera）"
+        android:textAllCaps="false"
+        app:backColor="#118EE9"
+        app:fillet="true"
+        app:textColor="#ffffff"
+        app:textColorPress="#50ffffff"
+        app:wya_button_radius="10" />
+
+    <com.wya.uikit.button.WYAButton
+        android:id="@+id/wya_button_video_player"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:text="播放器（VideoPlayer）"
+        android:textAllCaps="false"
+        app:backColor="#118EE9"
+        app:fillet="true"
+        app:textColor="#ffffff"
+        app:textColorPress="#50ffffff"
+        app:wya_button_radius="10" />
+
+</LinearLayout>

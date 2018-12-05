@@ -571,7 +571,7 @@ value是Serializable类型的List<LocalImage>
 
 ## 18.Stepper
 数字加减控制器
-#### 使用例子在 example module下的 uikit/customitems/stepper 依赖库在uikit/customitems/stepper 文件夹下
+#### 使用例子在 example module下的 uikit/stepper 依赖库在uikit/stepper 文件夹下
 
 ##### 使用说明
 #####  1、布局使用
@@ -604,7 +604,7 @@ getMax_num()|获取最大值
 
 ## 19.Progress
 进度条，环形进度条和条形进度条
-#### 使用例子在 example module下的 uikit/customitems/stepper 依赖库在uikit/customitems/stepper 文件夹下
+#### 使用例子在 example module下的 uikit/progress 依赖库在uikit/progress 文件夹下
 ##### （1）条形进度条用系统默认自带的ProgressBar，不做使用说明
 ##### （2）环形进度条使用说明
 #####  1、布局使用
