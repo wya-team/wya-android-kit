@@ -33,7 +33,7 @@ public class WYABanner<T> extends RelativeLayout {
 	private ViewPager mViewPager;
 	private WYAPaginationDot mDot;
 	private int num;
-	private static final int BANNER_ALL = 10;
+	private static final int BANNER_ALL = 100;
 	private List<T> mData = new ArrayList<>();
 	private OnBannerListener<T> mListener;
 	private boolean mIsTouch = false;
@@ -67,11 +67,11 @@ public class WYABanner<T> extends RelativeLayout {
 		mUpdateRun = new UpdateRun(this);
 
 		mDot = new WYAPaginationDot(mContext, null);
+		mDot.setPadding(0,0,0, (int) dp2px(5));
 
 		LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
 				ViewGroup.LayoutParams.WRAP_CONTENT);
 		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-		layoutParams.bottomMargin = (int) dp2px(10);
 
 		addView(mDot,-1, layoutParams);
 	}

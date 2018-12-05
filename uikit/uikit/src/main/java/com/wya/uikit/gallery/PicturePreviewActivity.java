@@ -41,6 +41,7 @@ public class PicturePreviewActivity<T> extends Activity implements View.OnClickL
 	private List<String> mList = new ArrayList<>();
 	private int requestCode;
 	private int max;
+	private String TAG = "PicturePreviewActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,34 +49,7 @@ public class PicturePreviewActivity<T> extends Activity implements View.OnClickL
 		setContentView(R.layout.activity_picture_preview);
 
 
-		type = getIntent().getIntExtra(GalleryConfig.TYPE, GalleryConfig.GALLERY);
-		position = getIntent().getIntExtra(GalleryConfig.POSITION, -1);
-		mImageSelected = (List<T>) getIntent().getSerializableExtra(GalleryConfig
-				.IMAGE_LIST_SELECTED);
-		field = getIntent().getStringExtra(GalleryConfig.FIELD_NAME);
-		requestCode = getIntent().getIntExtra(GalleryConfig.PICKER_FOR_RESULT, -1);
-		max = getIntent().getIntExtra(GalleryConfig.MAX_NUM, -1);
-
-
-		if (!TextUtils.isEmpty(field)) {
-			images = (List<T>) getIntent().getSerializableExtra(GalleryConfig.IMAGE_LIST);
-			for (int i = 0; i < images.size(); i++) {
-				T t = images.get(i);
-				try {
-					Field field1 = t.getClass().getDeclaredField(field);
-					field1.setAccessible(true);
-					String value = (String) field1.get(t);
-					mList.add(value);
-				} catch (NoSuchFieldException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				}
-			}
-
-		} else {
-			mList = (List<String>) getIntent().getSerializableExtra(GalleryConfig.IMAGE_LIST);
-		}
+		getIntentExtra();
 		initView();
 
 		switch (type) {
@@ -93,6 +67,39 @@ public class PicturePreviewActivity<T> extends Activity implements View.OnClickL
 		}
 
 
+	}
+
+	/**
+	 * init intent value
+	 */
+	private void getIntentExtra() {
+		mImageSelected = DataHelper.getInstance().getImageSelected();
+		position = getIntent().getIntExtra(GalleryConfig.POSITION, -1);
+		type = getIntent().getIntExtra(GalleryConfig.TYPE, GalleryConfig.GALLERY);
+		field = getIntent().getStringExtra(GalleryConfig.FIELD_NAME);
+		requestCode = getIntent().getIntExtra(GalleryConfig.PICKER_FOR_RESULT, -1);
+		max = getIntent().getIntExtra(GalleryConfig.MAX_NUM, -1);
+
+		if (!TextUtils.isEmpty(field)) {
+			images = DataHelper.getInstance().getImages();
+
+			for (int i = 0; i < images.size(); i++) {
+				T t = images.get(i);
+				try {
+					Field field1 = t.getClass().getDeclaredField(field);
+					field1.setAccessible(true);
+					String value = (String) field1.get(t);
+					mList.add(value);
+				} catch (NoSuchFieldException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			}
+
+		} else {
+			mList = (List<String>) getIntent().getSerializableExtra(GalleryConfig.IMAGE_LIST);
+		}
 	}
 
 	private void initView() {

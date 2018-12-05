@@ -23,6 +23,7 @@ public class GalleryCreator {
 	private GalleryCreator(Activity activity) {
 		this(activity, null);
 	}
+
 	private GalleryCreator(Fragment fragment) {
 		this(fragment.getActivity(), fragment);
 	}
@@ -41,7 +42,7 @@ public class GalleryCreator {
 		return new GalleryCreator(fragment);
 	}
 
-	public <T>void openPreviewGallery(int position, List<T> images) {
+	public <T> void openPreviewGallery(int position, List<T> images) {
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), PicturePreviewActivity.class);
 		intent.putExtra(GalleryConfig.POSITION, position);
@@ -50,19 +51,20 @@ public class GalleryCreator {
 		getActivity().startActivity(intent);
 	}
 
-	public <T> void openPreviewImagePicker(int position, List<T> images,List<T> imagesSelected,
-										   String field,int result,int max) {
+
+	public <T> void openPreviewImagePicker(int position, List<T>images, List<T>
+			imagesSelected, String field, int result, int max) {
 
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), PicturePreviewActivity.class);
 		intent.putExtra(GalleryConfig.POSITION, position);
-		intent.putExtra(GalleryConfig.IMAGE_LIST, (Serializable) images);
-		intent.putExtra(GalleryConfig.IMAGE_LIST_SELECTED, (Serializable) imagesSelected);
-		intent.putExtra(GalleryConfig.FIELD_NAME,  field);
+		DataHelper.getInstance().setImages(images);
+		DataHelper.getInstance().setImageSelected(imagesSelected);
+		intent.putExtra(GalleryConfig.FIELD_NAME, field);
 		intent.putExtra(GalleryConfig.TYPE, GalleryConfig.IMAGE_PICKER);
 		intent.putExtra(GalleryConfig.PICKER_FOR_RESULT, result);
 		intent.putExtra(GalleryConfig.MAX_NUM, max);
-		getActivity().startActivityForResult(intent,result);
+		getActivity().startActivityForResult(intent, result);
 	}
 
 	@Nullable

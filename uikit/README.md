@@ -464,6 +464,22 @@ GalleryCreator.create(Activity/Fragment).openPreviewGallery(position,List<string
 1. create方法中传入Activity或fragment创建GalleryCreator实例
 2. openPreviewGallery方法是进入预览页面
 
+新增方法:
+
+`public <T> void openPreviewImagePicker(int position, List<T>images, List<T>imagesSelected, String field, int result, int max)`
+
+用于选择图片imagepicker
+
+参数|说明
+---|---
+position|当前图片位置
+images|图片list
+imagesSelected|已选中的图片的list
+field|图片路径的属性名，用于反射获取图片路径
+result|请求码
+max|最大可选图片数量
+
+DataHelper类说明：这个单例类用于传递图片list，防止list过大，PicturePreviewActivity无法启动。
 
 ## 14.CardView
 

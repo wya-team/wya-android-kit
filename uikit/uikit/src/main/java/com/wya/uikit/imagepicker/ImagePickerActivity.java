@@ -59,6 +59,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
 	private List<LocalImage> mLocalImages = new ArrayList<>();
 	private int maxNum;
 	private String imagePath;
+	private LocalImageFolder mCurrentFolder;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,8 +110,9 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
 					@Override
 					public void onClick(int position, View v, ChoiceMenu menu) {
 						changeTitleImageAndStatus();
-						picture_title.setText(mFolders.get(position).getName());
-						mGridAdapter.bindData(position == 0, mFolders.get(position).getImages());
+						mCurrentFolder = mFolders.get(position);
+						picture_title.setText(mCurrentFolder.getName());
+						mGridAdapter.bindData(position == 0, mCurrentFolder.getImages());
 					}
 				});
 	}
@@ -221,6 +223,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
 						mFolders.clear();
 						mFolders.addAll(localImageFolders);
 						mChoiceMenu.notifyAdapterData();
+						mCurrentFolder = mFolders.get(0);
 					}
 
 				} else {
@@ -278,8 +281,8 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
 		}
 		if (v.getId() == R.id.tv_preview ) {
 			if (mSelected.size()>0) {
-				GalleryCreator.create(this).openPreviewImagePicker(0, mSelected,mSelected,"path",
-						PickerConfig.PICKER_GALLERY_RESULT,maxNum);
+				GalleryCreator.create(this).openPreviewImagePicker(0, mSelected,mSelected,
+						"path", PickerConfig.PICKER_GALLERY_RESULT,maxNum);
 			}
 		}
 

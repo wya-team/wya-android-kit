@@ -40,7 +40,7 @@ public class BannerExampleActivity extends BaseActivity {
 				});
 			}
 		});
-		mWYABanner.setAutoPlay(false);
+//		mWYABanner.setAutoPlay(false);
 	}
 
 	@Override
