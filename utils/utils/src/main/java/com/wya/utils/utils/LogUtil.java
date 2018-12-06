@@ -1,8 +1,8 @@
-package com.wya.hardware.camera.util;
+package com.wya.utils.utils;
 
 import android.util.Log;
 
-import static com.wya.hardware.BuildConfig.DEBUG;
+import com.wya.wyautils.BuildConfig;
 
  /**
   * 创建日期：2018/12/5 14:03
@@ -16,22 +16,22 @@ public class LogUtil {
     private static final String DEFAULT_TAG = "MCJ";
 
     public static void i(String tag, String msg) {
-        if (DEBUG)
+        if (BuildConfig.DEBUG)
             Log.i(tag, msg);
     }
 
     public static void v(String tag, String msg) {
-        if (DEBUG)
+        if (BuildConfig.DEBUG)
             Log.v(tag, msg);
     }
 
     public static void d(String tag, String msg) {
-        if (DEBUG)
+        if (BuildConfig.DEBUG)
             Log.d(tag, msg);
     }
 
     public static void e(String tag, String msg) {
-        if (DEBUG)
+        if (BuildConfig.DEBUG)
             Log.e(tag, msg);
     }
 

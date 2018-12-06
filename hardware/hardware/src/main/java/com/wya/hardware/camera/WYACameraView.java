@@ -29,10 +29,10 @@ import com.wya.hardware.camera.listener.ErrorListener;
 import com.wya.hardware.camera.listener.WYACameraListener;
 import com.wya.hardware.camera.listener.TypeListener;
 import com.wya.hardware.camera.state.CameraMachine;
-import com.wya.hardware.camera.util.FileUtil;
-import com.wya.hardware.camera.util.LogUtil;
-import com.wya.hardware.camera.util.ScreenUtils;
+import com.wya.utils.utils.FileUtil;
+import com.wya.utils.utils.LogUtil;
 import com.wya.hardware.camera.view.CameraView;
+import com.wya.utils.utils.ScreenUtils;
 
 import java.io.IOException;
 
@@ -403,7 +403,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     //启动Camera错误回调
     public void setErrorListener(ErrorListener errorListener) {
         this.errorListener = errorListener;
-        CameraInterface.getInstance().setErrorLinsenter(errorListener);
+        CameraInterface.getInstance().setErrorListener(errorListener);
     }
 
     //设置CaptureButton功能（拍照和录像）

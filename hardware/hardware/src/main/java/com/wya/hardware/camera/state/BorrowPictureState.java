@@ -5,7 +5,7 @@ import android.view.SurfaceHolder;
 
 import com.wya.hardware.camera.CameraInterface;
 import com.wya.hardware.camera.WYACameraView;
-import com.wya.hardware.camera.util.LogUtil;
+import com.wya.utils.utils.LogUtil;
 
 
  /**

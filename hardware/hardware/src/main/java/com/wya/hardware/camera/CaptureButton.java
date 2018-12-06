@@ -14,7 +14,7 @@ import android.view.View;
 
 import com.wya.hardware.camera.listener.CaptureListener;
 import com.wya.hardware.camera.util.CheckPermission;
-import com.wya.hardware.camera.util.LogUtil;
+import com.wya.utils.utils.LogUtil;
 
 import static com.wya.hardware.camera.WYACameraView.BUTTON_STATE_BOTH;
 import static com.wya.hardware.camera.WYACameraView.BUTTON_STATE_ONLY_CAPTURE;

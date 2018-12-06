@@ -1,6 +1,8 @@
 package com.wya.utils.utils;
 
 import android.content.Context;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 /**
  * author : XuDonglin
@@ -45,4 +47,29 @@ public class ScreenUtils {
 		return (int) (spValue * fontScale + 0.5f);
 
 	}
+
+	/**
+	 * 获取屏幕高
+	 * @param context
+	 * @return
+	 */
+	public static int getScreenHeight(Context context) {
+		DisplayMetrics metric = new DisplayMetrics();
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		wm.getDefaultDisplay().getMetrics(metric);
+		return metric.heightPixels;
+	}
+
+	/**
+	 * 获取屏幕宽
+	 * @param context
+	 * @return
+	 */
+	public static int getScreenWidth(Context context) {
+		DisplayMetrics metric = new DisplayMetrics();
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		wm.getDefaultDisplay().getMetrics(metric);
+		return metric.widthPixels;
+	}
+
 }

@@ -6,7 +6,7 @@ import android.view.SurfaceHolder;
 
 import com.wya.hardware.camera.CameraInterface;
 import com.wya.hardware.camera.WYACameraView;
-import com.wya.hardware.camera.util.LogUtil;
+import com.wya.utils.utils.LogUtil;
 
  /**
   * 创建日期：2018/12/5 13:52

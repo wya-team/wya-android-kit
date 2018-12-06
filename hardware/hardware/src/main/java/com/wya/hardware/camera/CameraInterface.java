@@ -28,9 +28,9 @@ import com.wya.hardware.camera.util.AngleUtil;
 import com.wya.hardware.camera.util.CameraParamUtil;
 import com.wya.hardware.camera.util.CheckPermission;
 import com.wya.hardware.camera.util.DeviceUtil;
-import com.wya.hardware.camera.util.FileUtil;
-import com.wya.hardware.camera.util.LogUtil;
-import com.wya.hardware.camera.util.ScreenUtils;
+import com.wya.utils.utils.FileUtil;
+import com.wya.utils.utils.LogUtil;
+import com.wya.utils.utils.ScreenUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -77,7 +77,7 @@ public class CameraInterface implements Camera.PreviewCallback {
     private String videoFileAbsPath;
     private Bitmap videoFirstFrame = null;
 
-    private ErrorListener errorLisenter;
+    private ErrorListener errorListener;
 
     private ImageView mSwitchView;
     private ImageView mFlashLamp;
@@ -289,8 +289,8 @@ public class CameraInterface implements Camera.PreviewCallback {
      */
     void doOpenCamera(CameraOpenOverCallback callback) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            if (!CheckPermission.isCameraUseable(SELECTED_CAMERA) && this.errorLisenter != null) {
-                this.errorLisenter.onError();
+            if (!CheckPermission.isCameraUseable(SELECTED_CAMERA) && this.errorListener != null) {
+                this.errorListener.onError();
                 return;
             }
         }
@@ -311,8 +311,8 @@ public class CameraInterface implements Camera.PreviewCallback {
             this.mCamera = Camera.open(id);
         } catch (Exception var3) {
             var3.printStackTrace();
-            if (this.errorLisenter != null) {
-                this.errorLisenter.onError();
+            if (this.errorListener != null) {
+                this.errorListener.onError();
             }
         }
 
@@ -422,7 +422,7 @@ public class CameraInterface implements Camera.PreviewCallback {
      * 销毁Camera
      */
     void doDestroyCamera() {
-        errorLisenter = null;
+        errorListener = null;
         if (null != mCamera) {
             try {
                 mCamera.setPreviewCallback(null);
@@ -605,14 +605,14 @@ public class CameraInterface implements Camera.PreviewCallback {
         } catch (IllegalStateException e) {
             e.printStackTrace();
             Log.i(TAG, "startRecord IllegalStateException");
-            if (this.errorLisenter != null) {
-                this.errorLisenter.onError();
+            if (this.errorListener != null) {
+                this.errorListener.onError();
             }
         } catch (IOException e) {
             e.printStackTrace();
             Log.i(TAG, "startRecord IOException");
-            if (this.errorLisenter != null) {
-                this.errorLisenter.onError();
+            if (this.errorListener != null) {
+                this.errorListener.onError();
             }
         } catch (RuntimeException e) {
             Log.i(TAG, "startRecord RuntimeException");
@@ -734,8 +734,8 @@ public class CameraInterface implements Camera.PreviewCallback {
         return x;
     }
 
-    void setErrorLinsenter(ErrorListener errorLisenter) {
-        this.errorLisenter = errorLisenter;
+    void setErrorListener(ErrorListener errorListener) {
+        this.errorListener = errorListener;
     }
 
 

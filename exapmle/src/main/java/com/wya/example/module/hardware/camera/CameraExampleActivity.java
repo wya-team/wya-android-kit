@@ -18,7 +18,7 @@ import com.wya.hardware.camera.listener.ClickListener;
 import com.wya.hardware.camera.listener.ErrorListener;
 import com.wya.hardware.camera.listener.WYACameraListener;
 import com.wya.hardware.camera.util.DeviceUtil;
-import com.wya.hardware.camera.util.FileUtil;
+import com.wya.utils.utils.FileUtil;
 
 import java.io.File;
 

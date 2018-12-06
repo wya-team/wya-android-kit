@@ -3,6 +3,8 @@ package com.wya.hardware;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.wya.utils.utils.DensityUtil;
+
 /**
   * 创建日期：2018/11/16 9:14
   * 作者： Mao Chunjiang

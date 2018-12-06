@@ -7,9 +7,10 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.wya.hardware.camera.util.ScreenUtils;
+import com.wya.utils.utils.ScreenUtils;
 
- /**
+
+/**
   * 创建日期：2018/12/5 14:18
   * 作者： Mao Chunjiang
   * 文件名称：FoucsView

@@ -28,8 +28,8 @@
 ### 2.instance
 
 ### hardware开发
-### 1.camera(毛春江开发中)
-### 2.videoplayer
+### 1.~~camera~~
+### 2.videoplayer（毛春江开发中）
 ### 3.mobilephoneinfo
 ### 4.downloader
 
