@@ -1,6 +1,9 @@
 package com.wya.utils.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
@@ -70,6 +73,25 @@ public class ScreenUtils {
 		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 		wm.getDefaultDisplay().getMetrics(metric);
 		return metric.widthPixels;
+	}
+
+	/**
+	 * 切换屏幕的方向.
+	 */
+	public static void toggleScreenOrientation(Activity activity) {
+		activity.setRequestedOrientation(isPortrait(activity)
+				? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+				: ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+	}
+
+	/**
+	 * 获得当前屏幕的方向.
+	 *
+	 * @return 是否竖屏.
+	 */
+	public static boolean isPortrait(Context context) {
+		int orientation = context.getResources().getConfiguration().orientation;
+		return orientation == Configuration.ORIENTATION_PORTRAIT;
 	}
 
 }

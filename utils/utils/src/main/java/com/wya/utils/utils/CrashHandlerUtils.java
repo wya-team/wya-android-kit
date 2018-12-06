@@ -95,7 +95,6 @@ public class CrashHandlerUtils implements Thread.UncaughtExceptionHandler {
             @Override
             public void run() {
                 Looper.prepare();
-                Log.e("WYACrash", sb.toString());
                 Looper.loop();
             }
         }.start();
@@ -162,7 +161,7 @@ public class CrashHandlerUtils implements Thread.UncaughtExceptionHandler {
         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA).format(new Date());
         String fileName = "crash-" + time + "-" + System.currentTimeMillis() + ".log";
 
-        Log.e("crash", sb.toString());
+        Log.e("WYACrash", sb.toString());
 
 //        // 有无SD卡
 //        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {

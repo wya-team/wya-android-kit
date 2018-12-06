@@ -4,10 +4,10 @@ package com.wya.example.module.hardware;
 import android.content.Intent;
 import android.view.View;
 
-import com.wya.example.ExampleActivity;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.hardware.camera.StartCameraExampleActivity;
+import com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity;
 
 import butterknife.OnClick;
 
@@ -30,6 +30,7 @@ public class HardwareExampleActivity extends BaseActivity {
                 HardwareExampleActivity.this.startActivity(new Intent(HardwareExampleActivity.this, StartCameraExampleActivity.class));
                 break;
             case R.id.wya_button_video_player:
+                HardwareExampleActivity.this.startActivity(new Intent(HardwareExampleActivity.this, VideoPlayerExampleActivity.class));
                 break;
         }
     }

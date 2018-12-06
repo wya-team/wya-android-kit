@@ -11,38 +11,42 @@
         android:id="@+id/image_photo"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_margin="@dimen/dp_10"/>
+        android:layout_margin="@dimen/dp_10"
+        android:layout_weight="1" />
+
 
     <TextView
         android:id="@+id/tv_path"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_10"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_10" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_10"
-        android:text="最长拍摄时间（s）" />
+        android:text="最长拍摄时间（s）"
+        android:textSize="@dimen/sp_10" />
+
     <EditText
         android:id="@+id/et_duration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="请输入最长拍摄时间(s)"
+        android:inputType="number"
+        android:maxLength="8"
         android:padding="@dimen/dp_10"
         android:text="10"
-        android:maxLength="8"
-        android:inputType="number"
         android:textColor="#000000"
         android:textSize="@dimen/sp_14" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_10"
-        android:text="拍摄类型" />
+        android:text="拍摄类型"
+        android:textSize="@dimen/sp_10" />
+
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -53,8 +57,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/dp_10"
-            android:textSize="@dimen/sp_10"
-            android:text="拍照" />
+            android:text="拍照"
+            android:textSize="@dimen/sp_10" />
 
         <RadioButton
             android:id="@+id/take_video"
@@ -62,8 +66,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/dp_10"
-            android:textSize="@dimen/sp_10"
-            android:text="录制" />
+            android:text="录制"
+            android:textSize="@dimen/sp_10" />
 
         <RadioButton
             android:id="@+id/take_video_and_photo"
@@ -71,8 +75,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/dp_10"
-            android:textSize="@dimen/sp_10"
-            android:text="拍照+录制"/>
+            android:text="拍照+录制"
+            android:textSize="@dimen/sp_10" />
 
     </RadioGroup>
 
@@ -96,7 +100,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:text="Andriod Device"
-        android:textSize="@dimen/sp_10"
-        android:textColor="#333333" />
+        android:textColor="#333333"
+        android:textSize="@dimen/sp_10" />
 
 </LinearLayout>

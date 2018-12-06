@@ -3,7 +3,6 @@
     package="com.wya.hardware">
 
     <application>
-        <activity android:name="com.wya.hardware.HardWareActivity"></activity>
     </application>
 
 </manifest>

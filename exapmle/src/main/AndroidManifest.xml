@@ -3,17 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.wya.example">
 
+
+    <!-- 2018.12.6 Mao Chunjiang videoplayer start -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 2018.12.6 Mao Chunjiang videoplayer end -->
+
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <!--2018.12.5 Mao Chunjiang camera start-->
+    <!-- 2018.12.5 Mao Chunjiang camera start -->
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <!--2018.12.5 Mao Chunjiang camera end-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
+    <!-- 2018.12.5 Mao Chunjiang camera end -->
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -52,10 +59,14 @@
         <activity android:name=".module.uikit.imagepicker.ImagePickerExampleActivity" />
         <activity android:name=".module.uikit.customitems.inputitem.InputItemExampleActivity" />
         <activity android:name=".module.uikit.stepper.StepperExampleActivity" />
-        <activity android:name=".module.uikit.banner.BannerExampleActivity"/>
-        <activity android:name=".module.uikit.progress.ProgressExampleActivity"></activity>
-        <activity android:name=".module.hardware.camera.StartCameraExampleActivity"></activity>
-        <activity android:name=".module.hardware.camera.CameraExampleActivity"></activity>
+        <activity android:name=".module.uikit.banner.BannerExampleActivity" />
+        <activity android:name=".module.uikit.progress.ProgressExampleActivity" />
+        <activity android:name=".module.hardware.camera.StartCameraExampleActivity" />
+        <activity android:name=".module.hardware.camera.CameraExampleActivity" />
+        <activity
+            android:name=".module.hardware.videoplayer.VideoPlayerExampleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

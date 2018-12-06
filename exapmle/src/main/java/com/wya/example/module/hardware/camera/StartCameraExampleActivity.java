@@ -94,7 +94,7 @@ public class StartCameraExampleActivity extends BaseActivity {
         if (resultCode == 101) {
             Log.i("MCJ", "picture");
             String path = data.getStringExtra("path");
-            tvPath.setText("照片路径："+path);
+            tvPath.setText("照片路径：" + path);
             imagePhoto.setImageBitmap(BitmapFactory.decodeFile(path));
         }
         if (resultCode == 102) {
@@ -102,7 +102,7 @@ public class StartCameraExampleActivity extends BaseActivity {
             String path = data.getStringExtra("path");
             String url = data.getStringExtra("url");
             imagePhoto.setImageBitmap(BitmapFactory.decodeFile(path));
-            tvPath.setText("视频路径:"+url+"\n首帧图片:"+path);
+            tvPath.setText("视频路径:" + url + "\n首帧图片:" + path);
         }
         if (resultCode == 103) {
             Toast.makeText(this, "请检查相机权限~", Toast.LENGTH_SHORT).show();
@@ -166,4 +166,5 @@ public class StartCameraExampleActivity extends BaseActivity {
                 break;
         }
     }
+
 }
