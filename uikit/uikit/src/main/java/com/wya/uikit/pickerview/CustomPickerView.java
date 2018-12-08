@@ -67,36 +67,29 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
 
 	}
 
-	public CustomPickerView setData(List<T> option1Items, List<List<T>> option2Items,
-									List<List<List<T>>> option3Items) {
+	public void setData(List<T> option1Items, List<List<T>> option2Items,
+						List<List<List<T>>> option3Items) {
 		option_picker_view.setData(option1Items, option2Items, option3Items);
-
-		return this;
 	}
 
-	public CustomPickerView setData(List<T> option1Items, List<List<T>> option2Items) {
+	public void setData(List<T> option1Items, List<List<T>> option2Items) {
 		option_picker_view.setData(option1Items, option2Items, null);
-		return this;
 	}
 
-	public CustomPickerView setData(List<T> option1Items) {
+	public void setData(List<T> option1Items) {
 		option_picker_view.setData(option1Items, null, null);
-		return this;
 	}
 
-	public CustomPickerView setNPData(List<T> option1Items, List<T> option2Items, List<T> option3Items) {
+	public void setNPData(List<T> option1Items, List<T> option2Items, List<T> option3Items) {
 		option_picker_view.setNPData(option1Items, option2Items, option3Items);
-		return this;
 	}
 
-	public CustomPickerView setNPData(List<T> option1Items, List<T> option2Items) {
+	public void setNPData(List<T> option1Items, List<T> option2Items) {
 		option_picker_view.setNPData(option1Items, option2Items, null);
-		return this;
 	}
 
-	public CustomPickerView setNPData(List<T> option1Items) {
+	public void setNPData(List<T> option1Items) {
 		option_picker_view.setNPData(option1Items, null, null);
-		return this;
 	}
 
 	public CustomPickerView setCycle(boolean isCycle) {
@@ -124,15 +117,17 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
 		return this;
 	}
 
+	public CustomPickerView setTitleContentColor(int color) {
+		picker_title_content.setBackgroundColor(color);
+		return this;
+	}
+
 	public CustomPickerView setDividerColor(int color) {
 		option_picker_view.setDividerColor(color);
 		return this;
 	}
 
-	public CustomPickerView setTitleContentColor(int color) {
-		picker_title_content.setBackgroundColor(color);
-		return this;
-	}
+
 
 	public CustomPickerView setTextSize(float textSize) {
 		option_picker_view.setTextSize(textSize);

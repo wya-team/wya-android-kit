@@ -85,9 +85,10 @@ public class WYATabBar extends BottomNavigationView {
 	}
 
 	private boolean hasField(Class cls, String field) {
-		Field[] fields = cls.getFields();
+
+		Field[] fields = cls.getDeclaredFields();
 		for (int i = 0; i < fields.length; i++) {
-			if (fields[i].equals(field)) {
+			if (fields[i].getName().equals(field)) {
 				return true;
 			}
 		}

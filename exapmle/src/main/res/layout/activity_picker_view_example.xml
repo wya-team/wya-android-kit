@@ -9,7 +9,16 @@
 
 
     <Button
+        android:id="@+id/picker_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/picker_link"/>
+        android:text="三级联动" />
+
+    <Button
+        android:id="@+id/time_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="时间选择" />
+
+
 </LinearLayout>

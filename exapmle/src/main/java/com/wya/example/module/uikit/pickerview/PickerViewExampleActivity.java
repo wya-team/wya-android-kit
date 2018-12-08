@@ -1,5 +1,6 @@
 package com.wya.example.module.uikit.pickerview;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -7,16 +8,21 @@ import android.widget.Toast;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.uikit.pickerview.CustomPickerView;
+import com.wya.uikit.pickerview.CustomTimePicker;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PickerViewExampleActivity extends BaseActivity {
 
-	private Button picker_link;
-	private List<String>data1=new ArrayList<>();
-	private List<List<String>>data2=new ArrayList<>();
-	private List<List<List<String>>>data3=new ArrayList<>();
+	private static final String TAG = "PickerViewExampleActivity";
+	private Button picker_link, time_picker;
+	private List<String> data1 = new ArrayList<>();
+	private List<List<String>> data2 = new ArrayList<>();
+	private List<List<List<String>>> data3 = new ArrayList<>();
+
 	@Override
 	protected int getLayoutID() {
 		return R.layout.activity_picker_view_example;
@@ -42,21 +48,20 @@ public class PickerViewExampleActivity extends BaseActivity {
 		}
 
 
-
 		picker_link = findViewById(R.id.picker_link);
-
+		time_picker = findViewById(R.id.time_picker);
 
 
 		picker_link.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				CustomPickerView customPickerView=new CustomPickerView(PickerViewExampleActivity
+				CustomPickerView customPickerView = new CustomPickerView(PickerViewExampleActivity
 						.this, new CustomPickerView.OnChooseItemListener() {
 					@Override
 					public void itemSelected(int position1, int position2, int position3) {
 						Toast.makeText(PickerViewExampleActivity.this,
-								"position1"+position1+"position2"+position2+"position3" +
-										""+position3,Toast.LENGTH_SHORT).show();
+								"position1" + position1 + "position2" + position2 + "position3" +
+										"" + position3, Toast.LENGTH_SHORT).show();
 					}
 				});
 				customPickerView.setData(data1, data2, data3);
@@ -64,5 +69,28 @@ public class PickerViewExampleActivity extends BaseActivity {
 
 			}
 		});
+
+
+		time_picker.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				CustomTimePicker customTimePicker = new CustomTimePicker(PickerViewExampleActivity
+						.this, new CustomTimePicker.OnTimePickerSelectedListener() {
+					@Override
+					public void selected(Date date) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						String format = dateFormat.format(date);
+						Toast.makeText(PickerViewExampleActivity.this, format, Toast.LENGTH_SHORT)
+								.show();
+
+					}
+				});
+				customTimePicker.setType(new boolean[]{true, true, true, false, false, false})
+						.setSecondSpace(5)
+						.show();
+			}
+		});
+
+
 	}
 }

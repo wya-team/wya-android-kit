@@ -11,7 +11,7 @@
 #### 10、textareaitem
 #### 11、~~searchbar~~
 #### 12、slider（加区间选择）
-#### 13、pickview(许冬林开发中)
+#### 13、~~pickview~~
 #### 14、noticebar
 #### 15、~~banner~~
 #### 16、~~dialog~~
