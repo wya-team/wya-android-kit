@@ -73,3 +73,4 @@ dependencies {
     implementation project(':uikit:uikit')
     implementation project(':utils:utils')
 }
+apply plugin: 'realm-android'

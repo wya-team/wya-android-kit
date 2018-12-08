@@ -6,6 +6,7 @@ import android.view.View;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.hardware.HardwareExampleActivity;
 import com.wya.example.module.uikit.UiKitExampleActivity;
+import com.wya.example.module.utils.UtilsExampleActivity;
 
 import butterknife.OnClick;
 
@@ -22,7 +23,7 @@ public class ExampleActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.wya_button_hardware, R.id.wya_button_ui_kit})
+    @OnClick({R.id.wya_button_hardware, R.id.wya_button_ui_kit, R.id.wya_button_util})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.wya_button_hardware:
@@ -30,6 +31,9 @@ public class ExampleActivity extends BaseActivity {
                 break;
             case R.id.wya_button_ui_kit:
                 ExampleActivity.this.startActivity(new Intent(ExampleActivity.this, UiKitExampleActivity.class));
+                break;
+            case R.id.wya_button_util:
+                ExampleActivity.this.startActivity(new Intent(ExampleActivity.this, UtilsExampleActivity.class));
                 break;
         }
     }

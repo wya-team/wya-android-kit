@@ -17,8 +17,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
     <!-- 2018.12.5 Mao Chunjiang camera end -->
+
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -65,7 +65,9 @@
             android:name=".module.hardware.videoplayer.VideoPlayerExampleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".module.uikit.pickerview.PickerViewExampleActivity"></activity>
+        <activity android:name=".module.uikit.pickerview.PickerViewExampleActivity" />
+        <activity android:name=".module.utils.realm.RealmExampleActivity" />
+        <activity android:name=".module.utils.UtilsExampleActivity"></activity>
     </application>
 
 </manifest>

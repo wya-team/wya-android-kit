@@ -12,13 +12,13 @@
         android:id="@+id/wya_button_hardware"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_margin="10dp"
         android:text="硬件（hardware）"
+        android:textAllCaps="false"
         app:backColor="#FF0000"
         app:fillet="true"
         app:textColor="#ffffff"
-        android:textAllCaps="false"
         app:textColorPress="#50ffffff"
-        android:layout_margin="10dp"
         app:wya_button_radius="10" />
 
 
@@ -26,13 +26,26 @@
         android:id="@+id/wya_button_ui_kit"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_margin="10dp"
         android:text="UI组件库（UiKit）"
+        android:textAllCaps="false"
         app:backColor="#118EE9"
         app:fillet="true"
         app:textColor="#ffffff"
-        android:textAllCaps="false"
         app:textColorPress="#50ffffff"
+        app:wya_button_radius="10" />
+
+    <com.wya.uikit.button.WYAButton
+        android:id="@+id/wya_button_util"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:layout_margin="10dp"
+        android:text="工具库（Utils）"
+        android:textAllCaps="false"
+        app:backColor="#333333"
+        app:fillet="true"
+        app:textColor="#ffffff"
+        app:textColorPress="#50ffffff"
         app:wya_button_radius="10" />
 
 </LinearLayout>

@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.wya.example.R;
+import com.wya.helper.WYAConstants;
 import com.wya.uikit.toolbar.BaseToolBarActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 
 /**
