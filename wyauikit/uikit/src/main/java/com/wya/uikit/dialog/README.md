@@ -13,10 +13,10 @@ cancelable|点击返回按钮是否隐藏dialog|boolean|false
 ## 用法说明
 
 - 项目中的使用
-
+```
         wyaCustomDialog = new WYACustomDialog(this, canceledOnTouch, cancelable);
         wyaCustomDialog.show();
-
+```
 - 方法
 
 方法|说明
@@ -49,7 +49,7 @@ cancelable|点击返回按钮是否隐藏dialog|boolean|false
 ## 用法说明
 
 - 项目中的使用
-
+```
         wyaLoadingDialog = new WYALoadingDialog(this, canceledOnTouch, cancelable);
-                wyaLoadingDialog.show();
-
+        wyaLoadingDialog.show();
+```

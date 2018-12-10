@@ -34,14 +34,12 @@ imgRightResAnther | 右边第二章图片资源 | int | null
 
 方法|说明
 ---|---
-initWYAActionBarDefault(boolean showToolBar, String toolbarBgColorValue, boolean isShowTitle, String titleStr, int titleTextSize, String titleTextColorValue,
-                                          boolean isShowTvLeft, String tvLeftStr, int tvLeftTextSize, String tvLeftTextColorValue, boolean isShowImgLeft, int imgLeftRes,
-                                          boolean isShowTvRight, String tvRightStr, int tvRightTextSize, String tvRightTextColorValue, boolean isShowImgRight, boolean isShowImgRightAnther, int imgRightRes, int imgRightResAnther)|初始化标题（默认标题， 在baseActivity中调用）
+initWYAActionBarDefault(boolean showToolBar, String toolbarBgColorValue, boolean isShowTitle, String titleStr, int titleTextSize, String titleTextColorValue, boolean isShowTvLeft, String tvLeftStr, int tvLeftTextSize, String tvLeftTextColorValue, boolean isShowImgLeft, int imgLeftRes, boolean isShowTvRight, String tvRightStr, int tvRightTextSize, String tvRightTextColorValue, boolean isShowImgRight, boolean isShowImgRightAnther, int imgRightRes, int imgRightResAnther)|初始化标题（默认标题， 在baseActivity中调用）
 initToolBarBgColor(String toolbar_bg_color_value)|修改标题栏背景颜色
 initToolBarTitle(String titleStr, int titleTextSize, int titleTextColor, boolean showTitle)|修改标题
 setBackGroundDrawablePress(Drawable backGroundDrawablePress)|设置按钮被按下时的背景图片
 setToolBarTitle(String titleStr)|只修改标题内容
 initImgLeft(int imgLeftRes, boolean showImgLeft)|修改标题栏左边图标
- initImgRight(int imgRightRes, boolean showImgRight, int imgRightAntherRes, boolean showImgAnther)|修改标题右边图标
+initImgRight(int imgRightRes, boolean showImgRight, int imgRightAntherRes, boolean showImgAnther)|修改标题右边图标
 initTvRight(String tvRightStr, int tvRightTextColor, int tvRightTextSize, boolean showTvRight) |修改标题栏右边文字
 initShowToolBar(boolean showTitle)|设置是否显示标题
