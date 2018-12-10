@@ -68,7 +68,7 @@ dependencies {
     implementation supportDepends.rxbinding
     implementation supportDepends.base_adapter
     implementation project(':helper:helper')
-    implementation project(':hardware:hardware')
+    implementation project(':wyahardware:hardware')
     implementation project(':uikit:uikit')
     implementation project(':utils:utils')
 }
