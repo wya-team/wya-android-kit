@@ -18,6 +18,7 @@ cancelable|点击返回按钮是否隐藏dialog|boolean|false
         wyaCustomDialog.show();
 
 - 方法
+
 方法|说明
 ---|---
 setTitle(String title)|设置标题，标题文字，为空或者空的字符串时不显示标题
