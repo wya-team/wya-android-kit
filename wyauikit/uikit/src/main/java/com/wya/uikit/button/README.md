@@ -16,7 +16,7 @@ backGroundDrawablePress|按钮按下时背景图片|Drawable|null
 
 ## 用法说明
 - 布局引用
-       
+```
         <com.wya.uikit.button.WYAButton
                android:layout_width="match_parent"
                android:layout_height="40dp"
@@ -28,7 +28,7 @@ backGroundDrawablePress|按钮按下时背景图片|Drawable|null
                app:textColor="#ffffff"
                app:textColorPress="#50ffffff"
                app:wya_button_radius="10" />
-
+```
 
 - 方法
 

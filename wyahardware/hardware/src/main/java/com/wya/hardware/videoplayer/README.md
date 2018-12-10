@@ -7,14 +7,14 @@
 
 ## 用法说明
 - 布局引用
-       
+```     
        <com.wya.hardware.videoplayer.WYAVideoView
                    android:id="@+id/video_player"
                    android:layout_width="match_parent"
                    android:layout_height="200dp"
                    android:background="#888">
                </com.wya.hardware.videoplayer.WYAVideoView>
-
+```
 - 方法
 
 方法|说明

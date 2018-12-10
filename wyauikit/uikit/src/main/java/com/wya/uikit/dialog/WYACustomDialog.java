@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.wya.uikit.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -126,12 +125,12 @@ public class WYACustomDialog extends Dialog {
     /**
      * 设置取消按钮的文字内容
      *
-     * @param cancleText
+     * @param cancelText
      */
-    public void setCancleText(String cancleText) {
-        if (cancleText != null && !cancleText.equals("")) {
+    public void setCancelText(String cancelText) {
+        if (cancelText != null && !cancelText.equals("")) {
             ll_cancel.setVisibility(View.VISIBLE);
-            cancel.setText(cancleText);
+            cancel.setText(cancelText);
         } else {
             ll_cancel.setVisibility(View.GONE);
         }

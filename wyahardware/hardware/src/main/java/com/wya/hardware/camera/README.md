@@ -13,7 +13,7 @@ iconSrc|右上角图片资源|int|-
 
 ## 用法说明
 - 布局引用
-       
+```       
        <com.wya.hardware.camera.WYACameraView
                    android:id="@+id/wya_camera_view"
                    android:layout_width="match_parent"
@@ -23,7 +23,7 @@ iconSrc|右上角图片资源|int|-
                    app:iconMargin="20dp"
                    app:iconSize="30dp"
                    app:iconSrc="@drawable/wya_camera_ic_camera" />
-
+```
 - 方法
 
 方法|说明

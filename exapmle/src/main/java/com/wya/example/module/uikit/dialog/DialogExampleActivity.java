@@ -94,7 +94,7 @@ public class DialogExampleActivity extends BaseActivity {
         wyaCustomDialog.setMessage(content);
         wyaCustomDialog.setTitle(title);
         if (isShowButton) {
-            wyaCustomDialog.setCancleText(cancel);
+            wyaCustomDialog.setCancelText(cancel);
             wyaCustomDialog.setConfirmText(sure);
         } else {
             wyaCustomDialog.setNoButton();
