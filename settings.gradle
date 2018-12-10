@@ -1,1 +1,1 @@
-include ':exapmle', 'helper:helper', 'wyahardware:hardware', 'utils:utils', 'uikit:uikit'
+include ':exapmle', 'wyahelper:helper', 'wyahardware:hardware', 'wyautils:utils', 'wyauikit:uikit'

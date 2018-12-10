@@ -67,9 +67,9 @@ dependencies {
     annotationProcessor supportDepends.butterknife_compiler
     implementation supportDepends.rxbinding
     implementation supportDepends.base_adapter
-    implementation project(':helper:helper')
+    implementation project(':wyahelper:helper')
     implementation project(':wyahardware:hardware')
-    implementation project(':uikit:uikit')
-    implementation project(':utils:utils')
+    implementation project(':wyauikit:uikit')
+    implementation project(':wyautils:utils')
 }
 apply plugin: 'realm-android'
