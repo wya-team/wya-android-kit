@@ -150,7 +150,7 @@ public class RealmExampleActivity extends BaseActivity {
         data = new ArrayList<>();
         for (int i = 0; i < userList.size(); i++) {
             data.add(userList.get(i).getId() + "---" + userList.get(i).getName() + "---" + userList.get(i).getAge());
-            LogUtil.e("realm_age---realm_name---realm_id", userList.get(i).getId() + "---" + userList.get(i).getName() + "---" + userList.get(i).getAge());
+            LogUtil.e( userList.get(i).getId() + "---" + userList.get(i).getName() + "---" + userList.get(i).getAge());
         }
         realmListAdapter.setNewData(data);
     }
