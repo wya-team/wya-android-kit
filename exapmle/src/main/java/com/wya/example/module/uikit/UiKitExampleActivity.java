@@ -43,7 +43,8 @@ public class UiKitExampleActivity extends BaseActivity {
 			.tv_search_bar, R.id.tv_toast, R.id.tv_tool_bar, R.id
 			.tv_popupwindow, R.id.tv_tab_bar, R.id.tv_tab_layout, R.id.tv_dialog, R.id
 			.tv_pagination_view, R.id.tv_choice_menu, R.id.tv_badge, R.id.tv_gallery, R.id
-			.tv_image_picker, R.id.tv_progress, R.id.tv_banner, R.id.tv_picker_view})
+			.tv_image_picker, R.id.tv_progress, R.id.tv_banner, R.id.tv_picker_view, R.id
+			.tv_crop_view})
 	public void onViewClicked(View view) {
 		switch (view.getId()) {
 			case R.id.tv_tool_bar:
@@ -108,6 +109,9 @@ public class UiKitExampleActivity extends BaseActivity {
 				break;
 			case R.id.tv_picker_view:
 				startActivity(new Intent(this, PickerViewExampleActivity.class));
+				break;
+			case R.id.tv_crop_view:
+				startActivity(new Intent(this, ImagePickerExampleActivity.class));
 				break;
 		}
 	}

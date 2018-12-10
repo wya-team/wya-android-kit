@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!--segment attrs-->
     <declare-styleable name="WYASegmentedView">
@@ -131,4 +131,12 @@
         <attr name="wheelview_dividerColor" format="color"/>
         <attr name="wheelview_lineSpacingMultiplier" format="float"/>
     </declare-styleable>
+
+    <declare-styleable name="EditColorRadio" tools:ignore="ResourceName">
+
+        <attr name="image_color" format="color" />
+        <attr name="image_stroke_color" format="color" />
+
+    </declare-styleable>
+
 </resources>
