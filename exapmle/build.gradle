@@ -1,5 +1,4 @@
-//修改被添加的依赖Module的build.gradle文件配置
-apply plugin: 'com.android.application' // --改成下面的代码
+apply plugin: 'com.android.application'
 def buildConfig = rootProject.extensions.getByName("ext")
 def supportDepends = rootProject.ext.supportDepends
 
@@ -68,8 +67,8 @@ dependencies {
     annotationProcessor supportDepends.butterknife_compiler
     implementation supportDepends.rxbinding
     implementation supportDepends.base_adapter
-    implementation project(':hardware:hardware')
     implementation project(':helper:helper')
+    implementation project(':hardware:hardware')
     implementation project(':uikit:uikit')
     implementation project(':utils:utils')
 }
