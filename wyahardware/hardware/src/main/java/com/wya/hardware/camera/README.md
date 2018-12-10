@@ -11,17 +11,6 @@ iconMargin|图片边距|int|-
 iconLeft|左图片资源|int|-
 iconSrc|右上角图片资源|int|-
 
-## 方法说明
-方法|说明
----|---
-setSaveVideoPath(String path)|设置视频保存路径
-setFeatures(int state)|设置只有拍照、只有录像、拍照和录像
-setTip(String tip)|设置拍照按钮上面的文字
-setMediaQuality(int quality)|设置录制质量
-setDuration(int duration)|设置最长录制时间
-setErrorListener(ErrorListener errorListener)|启动Camera错误回调
-setWyaCameraListener(WYACameraListener wyaCameraListener)|拍照和录制的回调监听
-
 ## 用法说明
 - 布局引用
        
@@ -35,7 +24,8 @@ setWyaCameraListener(WYACameraListener wyaCameraListener)|拍照和录制的回�
                    app:iconSize="30dp"
                    app:iconSrc="@drawable/wya_camera_ic_camera" />
 
-- 使用说明
+- 方法
+
 方法|说明
 ---|---
 setSaveVideoPath(String path)|设置视频保存路径
