@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,6 +118,9 @@ public class WYAButton extends Button {
             if (fillet && shape != 0) {
                 setShape(shape);
             }
+
+            this.setGravity(Gravity.CENTER);
+
             a.recycle();
         }
         setOnTouchListener(new OnTouchListener() {
