@@ -8,8 +8,10 @@
 
 
     <application>
-        <activity android:name=".gallery.PicturePreviewActivity" />
-        <activity android:name=".imagepicker.ImagePickerActivity"></activity>
+        <activity android:name=".gallery.PicturePreviewActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".imagepicker.ImagePickerActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
