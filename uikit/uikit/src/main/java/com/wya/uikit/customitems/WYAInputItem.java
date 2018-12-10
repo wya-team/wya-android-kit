@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wya.uikit.R;
+import com.wya.utils.utils.ColorUtil;
 
 /**
  * 创建日期：2018/11/30 17:12
@@ -524,7 +525,7 @@ public class WYAInputItem extends LinearLayout {
      */
     private void setLineViewColor(String lineViewColor) {
         this.lineViewColor = lineViewColor;
-        line_view.setBackgroundColor(Color.parseColor(lineViewColor));
+        line_view.setBackgroundColor(ColorUtil.hex2Int(lineViewColor));
     }
 
     /**

@@ -1,5 +1,5 @@
 ## 1.Realm
-数据的的增删改查
+数据的增删改查
 #### 使用例子在 example module下的 utils/realm  文件夹下
 ##### 使用说明
 ##### 配置说明 在项目的build.gradle中添加代码如下

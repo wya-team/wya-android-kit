@@ -7,6 +7,7 @@ import android.widget.RadioButton;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.uikit.button.WYAButton;
+import com.wya.utils.utils.ColorUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,10 +43,10 @@ public class ButtonExampleActivity extends BaseActivity {
         if (wyaButton != null) {
             wyaButton.setFillet(true);
             wyaButton.setRadius(10);//设置圆角大小
-            wyaButton.setTextColor(Color.parseColor("#ffffff"));//字体颜色
-            wyaButton.setTextColorPress(Color.parseColor("#ffffff"));//点击后的字体颜色
-            wyaButton.setBackColor(Color.parseColor("#1890FF"));//背景颜色
-            wyaButton.setBackColorPress(Color.parseColor("#0083d5"));//点击后的背景颜色
+            wyaButton.setTextColor(ColorUtil.hex2Int("#ffffff"));//字体颜色
+            wyaButton.setTextColorPress(ColorUtil.hex2Int("#ffffff"));//点击后的字体颜色
+            wyaButton.setBackColor(ColorUtil.hex2Int("#1890FF"));//背景颜色
+            wyaButton.setBackColorPress(ColorUtil.hex2Int("#0083d5"));//点击后的背景颜色
         }
     }
 
@@ -64,10 +65,10 @@ public class ButtonExampleActivity extends BaseActivity {
                 wyaButton.setBackGroundDrawable(null);
                 wyaButton.setBackGroundDrawablePress(null);
                 wyaButton.setSize(ButtonExampleActivity.this, 1, 0, 0);
-                wyaButton.setTextColor(Color.parseColor("#ffffff"));//字体颜色
-                wyaButton.setTextColorPress(Color.parseColor("#ffffff"));//点击后的字体颜色
-                wyaButton.setBackColor(Color.parseColor("#1890FF"));//背景颜色
-                wyaButton.setBackColorPress(Color.parseColor("#0083d5"));//点击后的背景颜色
+                wyaButton.setTextColor(ColorUtil.hex2Int("#ffffff"));//字体颜色
+                wyaButton.setTextColorPress(ColorUtil.hex2Int("#ffffff"));//点击后的字体颜色
+                wyaButton.setBackColor(ColorUtil.hex2Int("#1890FF"));//背景颜色
+                wyaButton.setBackColorPress(ColorUtil.hex2Int("#0083d5"));//点击后的背景颜色
                 wyaButton.setText("主按钮");
                 wyaButton.setTextSize(15);
                 break;
@@ -76,10 +77,10 @@ public class ButtonExampleActivity extends BaseActivity {
                 wyaButton.setBackGroundDrawable(null);
                 wyaButton.setBackGroundDrawablePress(null);
                 wyaButton.setSize(ButtonExampleActivity.this, 1, 0, 0);
-                wyaButton.setTextColor(Color.parseColor("#000000"));//字体颜色
-                wyaButton.setTextColorPress(Color.parseColor("#000000"));//点击后的字体颜色
-                wyaButton.setBackColor(Color.parseColor("#ffffff"));//背景颜色
-                wyaButton.setBackColorPress(Color.parseColor("#eeeeee"));//点击后的背景颜色
+                wyaButton.setTextColor(ColorUtil.hex2Int("#000000"));//字体颜色
+                wyaButton.setTextColorPress(ColorUtil.hex2Int("#000000"));//点击后的字体颜色
+                wyaButton.setBackColor(ColorUtil.hex2Int("#ffffff"));//背景颜色
+                wyaButton.setBackColorPress(ColorUtil.hex2Int("#eeeeee"));//点击后的背景颜色
                 wyaButton.setText("次按钮");
                 wyaButton.setTextSize(15);
                 break;
@@ -97,45 +98,45 @@ public class ButtonExampleActivity extends BaseActivity {
                 break;
             case R.id.radio_disabled_true:
                 if (radioButtonSecond.isChecked()) {
-                    wyaButton.setTextColor(Color.parseColor("#000000"));//字体颜色
-                    wyaButton.setTextColorPress(Color.parseColor("#000000"));//点击后的字体颜色
-                    wyaButton.setBackColor(Color.parseColor("#ffffff"));//背景颜色
-                    wyaButton.setBackColorPress(Color.parseColor("#eeeeee"));//点击后的背景颜色
+                    wyaButton.setTextColor(ColorUtil.hex2Int("#000000"));//字体颜色
+                    wyaButton.setTextColorPress(ColorUtil.hex2Int("#000000"));//点击后的字体颜色
+                    wyaButton.setBackColor(ColorUtil.hex2Int("#ffffff"));//背景颜色
+                    wyaButton.setBackColorPress(ColorUtil.hex2Int("#eeeeee"));//点击后的背景颜色
                     wyaButton.setText("次按钮");
                 } else if (radioButtonMain.isChecked()) {
-                    wyaButton.setTextColor(Color.parseColor("#ffffff"));//字体颜色
-                    wyaButton.setTextColorPress(Color.parseColor("#ffffff"));//点击后的字体颜色
-                    wyaButton.setBackColor(Color.parseColor("#1890FF"));//背景颜色
-                    wyaButton.setBackColorPress(Color.parseColor("#0083d5"));//点击后的背景颜色
+                    wyaButton.setTextColor(ColorUtil.hex2Int("#ffffff"));//字体颜色
+                    wyaButton.setTextColorPress(ColorUtil.hex2Int("#ffffff"));//点击后的字体颜色
+                    wyaButton.setBackColor(ColorUtil.hex2Int("#1890FF"));//背景颜色
+                    wyaButton.setBackColorPress(ColorUtil.hex2Int("#0083d5"));//点击后的背景颜色
                     wyaButton.setText("主按钮");
                 }
                 wyaButton.setEnabled(true);
                 break;
             case R.id.radio_disabled_false:
                 wyaButton.setEnabled(false);
-                wyaButton.setTextColor(Color.parseColor("#b2b2b2"));//字体颜色
-                wyaButton.setBackColor(Color.parseColor("#dddddd"));//背景颜色
+                wyaButton.setTextColor(ColorUtil.hex2Int("#b2b2b2"));//字体颜色
+                wyaButton.setBackColor(ColorUtil.hex2Int("#dddddd"));//背景颜色
                 break;
             case R.id.radio_frame_true:
                 wyaButton.setBackGroundDrawable(ButtonExampleActivity.this.getResources().getDrawable(R.drawable.wya_button_frame_normal_bg));
                 wyaButton.setBackGroundDrawablePress(ButtonExampleActivity.this.getResources().getDrawable(R.drawable.wya_button_frame_press_bg));
-                wyaButton.setTextColor(Color.parseColor("#1890FF"));//字体颜色
+                wyaButton.setTextColor(ColorUtil.hex2Int("#1890FF"));//字体颜色
                 wyaButton.setTextColorPress(Color.parseColor("#0083d5"));//点击后的字体颜色
                 break;
             case R.id.radio_frame_false:
                 wyaButton.setBackGroundDrawable(null);
                 wyaButton.setBackGroundDrawablePress(null);
                 if (radioButtonSecond.isChecked()) {
-                    wyaButton.setTextColor(Color.parseColor("#000000"));//字体颜色
-                    wyaButton.setTextColorPress(Color.parseColor("#000000"));//点击后的字体颜色
-                    wyaButton.setBackColor(Color.parseColor("#ffffff"));//背景颜色
-                    wyaButton.setBackColorPress(Color.parseColor("#eeeeee"));//点击后的背景颜色
+                    wyaButton.setTextColor(ColorUtil.hex2Int("#000000"));//字体颜色
+                    wyaButton.setTextColorPress(ColorUtil.hex2Int("#000000"));//点击后的字体颜色
+                    wyaButton.setBackColor(ColorUtil.hex2Int("#ffffff"));//背景颜色
+                    wyaButton.setBackColorPress(ColorUtil.hex2Int("#eeeeee"));//点击后的背景颜色
                     wyaButton.setText("次按钮");
                 } else if (radioButtonMain.isChecked()) {
-                    wyaButton.setTextColor(Color.parseColor("#ffffff"));//字体颜色
-                    wyaButton.setTextColorPress(Color.parseColor("#ffffff"));//点击后的字体颜色
-                    wyaButton.setBackColor(Color.parseColor("#1890FF"));//背景颜色
-                    wyaButton.setBackColorPress(Color.parseColor("#0083d5"));//点击后的背景颜色
+                    wyaButton.setTextColor(ColorUtil.hex2Int("#ffffff"));//字体颜色
+                    wyaButton.setTextColorPress(ColorUtil.hex2Int("#ffffff"));//点击后的字体颜色
+                    wyaButton.setBackColor(ColorUtil.hex2Int("#1890FF"));//背景颜色
+                    wyaButton.setBackColorPress(ColorUtil.hex2Int("#0083d5"));//点击后的背景颜色
                     wyaButton.setText("主按钮");
                 }
                 break;

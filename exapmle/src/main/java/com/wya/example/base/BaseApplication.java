@@ -1,6 +1,9 @@
 package com.wya.example.base;
 
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import com.wya.helper.WYAConstants;
 import com.wya.utils.BaseUtilsApplication;
 import com.wya.utils.utils.AppUtils;
@@ -42,9 +45,13 @@ public class BaseApplication extends BaseUtilsApplication {
     /**
      * 初始化常量
      */
+    @RequiresApi(api = Build.VERSION_CODES.DONUT)
     private void initConstants() {
         new WYAConstants.Builder(this)
                 .dBName("test")//设置数据库名称
+                .themeColor("#000000")//设置数据库名称
+                .isShowLog(true)//设置是否显示log，log 搜索WYA_LOG
+                .isDebug(AppUtils.isApkInDebug(getApplicationContext()))//是否是debug
                 .build();
     }
 }

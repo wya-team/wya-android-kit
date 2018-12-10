@@ -6,11 +6,10 @@ import android.support.annotation.Nullable;
 import com.wya.example.R;
 import com.wya.helper.WYAConstants;
 import com.wya.uikit.toolbar.BaseToolBarActivity;
+import com.wya.utils.utils.ColorUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 
 /**
@@ -26,7 +25,7 @@ public abstract class BaseActivity extends BaseToolBarActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         unbinder = ButterKnife.bind(this);
-        initWYAActionBarDefault(true, "#666666",true, "初始化标题", 18, "#ffffff",
+        initWYAActionBarDefault(true, ColorUtil.int2Hex(WYAConstants.THEME_COLOR),true, "初始化标题", 18, "#ffffff",
         false, "", 14, "#ffffff", true, R.mipmap.icon_back_white,
         false, "",14, "#ffffff", false, false, R.mipmap.icon_nav_more, 0);
         initView();

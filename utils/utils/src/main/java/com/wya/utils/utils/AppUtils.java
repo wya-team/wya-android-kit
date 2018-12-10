@@ -7,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 /**
  * 创建日期：2018/12/7 14:00
@@ -53,7 +55,7 @@ public class AppUtils {
     /**
      * [获取应用程序版本名称信息]
      * @param context
-     * @return 当前应用的版本名称
+     * @return 当前应用的版本号
      */
     public static synchronized int getVersionCode(Context context) {
         try {
@@ -105,6 +107,21 @@ public class AppUtils {
         BitmapDrawable bd = (BitmapDrawable) d;
         Bitmap bm = bd.getBitmap();
         return bm;
+    }
+
+
+    /**
+     * 判断当前应用是否是debug状态
+     */
+
+    @RequiresApi(api = Build.VERSION_CODES.DONUT)
+    public static boolean isApkInDebug(Context context) {
+        try {
+            ApplicationInfo info = context.getApplicationInfo();
+            return (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
 

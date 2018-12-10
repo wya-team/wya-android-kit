@@ -97,7 +97,7 @@ class PreviewState implements State {
 
     @Override
     public void zoom(float zoom, int type) {
-        LogUtil.i(TAG, "zoom");
+        LogUtil.i( "zoom");
         CameraInterface.getInstance().setZoom(zoom, type);
     }
 

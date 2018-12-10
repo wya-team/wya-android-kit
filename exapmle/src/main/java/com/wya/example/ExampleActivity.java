@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.hardware.HardwareExampleActivity;
+import com.wya.example.module.helper.HelperExampleActivity;
 import com.wya.example.module.uikit.UiKitExampleActivity;
 import com.wya.example.module.utils.UtilsExampleActivity;
 
@@ -23,7 +24,7 @@ public class ExampleActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.wya_button_hardware, R.id.wya_button_ui_kit, R.id.wya_button_util})
+    @OnClick({R.id.wya_button_hardware, R.id.wya_button_ui_kit, R.id.wya_button_util, R.id.wya_button_helper})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.wya_button_hardware:
@@ -34,6 +35,9 @@ public class ExampleActivity extends BaseActivity {
                 break;
             case R.id.wya_button_util:
                 ExampleActivity.this.startActivity(new Intent(ExampleActivity.this, UtilsExampleActivity.class));
+                break;
+            case R.id.wya_button_helper:
+                ExampleActivity.this.startActivity(new Intent(ExampleActivity.this, HelperExampleActivity.class));
                 break;
         }
     }
