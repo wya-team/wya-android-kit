@@ -18,9 +18,11 @@ import android.hardware.SensorManager;
 import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Environment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.wya.hardware.camera.listener.ErrorListener;
@@ -28,9 +30,6 @@ import com.wya.hardware.camera.util.AngleUtil;
 import com.wya.hardware.camera.util.CameraParamUtil;
 import com.wya.hardware.camera.util.CheckPermission;
 import com.wya.hardware.camera.util.DeviceUtil;
-import com.wya.utils.utils.FileUtil;
-import com.wya.utils.utils.LogUtil;
-import com.wya.utils.utils.ScreenUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -248,7 +247,6 @@ public class CameraInterface implements Camera.PreviewCallback {
                     mParams.setZoom(nowScaleRate);
                     mCamera.setParameters(mParams);
                 }
-                LogUtil.i("setZoom = " + nowScaleRate);
                 break;
         }
 
@@ -333,7 +331,6 @@ public class CameraInterface implements Camera.PreviewCallback {
             SELECTED_CAMERA = CAMERA_POST_POSITION;
         }
         doDestroyCamera();
-        LogUtil.i("open start");
         openCamera(SELECTED_CAMERA);
 //        mCamera = Camera.open();
         if (Build.VERSION.SDK_INT > 17 && this.mCamera != null) {
@@ -343,7 +340,6 @@ public class CameraInterface implements Camera.PreviewCallback {
                 e.printStackTrace();
             }
         }
-        LogUtil.i("open end");
         doStartPreview(holder, screenProp);
     }
 
@@ -351,9 +347,6 @@ public class CameraInterface implements Camera.PreviewCallback {
      * doStartPreview
      */
     public void doStartPreview(SurfaceHolder holder, float screenProp) {
-        if (isPreviewing) {
-            LogUtil.i("doStartPreview isPreviewing");
-        }
         if (this.screenProp < 0) {
             this.screenProp = screenProp;
         }
@@ -642,7 +635,7 @@ public class CameraInterface implements Camera.PreviewCallback {
                 isRecorder = false;
             }
             if (isShort) {
-                if (FileUtil.deleteFile(videoFileAbsPath)) {
+                if (deleteFile(videoFileAbsPath)) {
                     callback.recordResult(null, null);
                 }
                 return;
@@ -652,6 +645,20 @@ public class CameraInterface implements Camera.PreviewCallback {
             callback.recordResult(fileName, videoFirstFrame);
         }
     }
+
+     /**
+      * 删除文件
+      * @param url
+      * @return
+      */
+     private static boolean deleteFile(String url) {
+         boolean result = false;
+         File file = new File(url);
+         if (file.exists()) {
+             result = file.delete();
+         }
+         return result;
+     }
 
     private void findAvailableCameras() {
         Camera.CameraInfo info = new Camera.CameraInfo();
@@ -715,8 +722,8 @@ public class CameraInterface implements Camera.PreviewCallback {
     private static Rect calculateTapArea(float x, float y, float coefficient, Context context) {
         float focusAreaSize = 300;
         int areaSize = Float.valueOf(focusAreaSize * coefficient).intValue();
-        int centerX = (int) (x / ScreenUtils.getScreenWidth(context) * 2000 - 1000);
-        int centerY = (int) (y / ScreenUtils.getScreenHeight(context) * 2000 - 1000);
+        int centerX = (int) (x / getScreenWidth(context) * 2000 - 1000);
+        int centerY = (int) (y / getScreenHeight(context) * 2000 - 1000);
         int left = clamp(centerX - areaSize / 2, -1000, 1000);
         int top = clamp(centerY - areaSize / 2, -1000, 1000);
         RectF rectF = new RectF(left, top, left + areaSize, top + areaSize);
@@ -724,7 +731,32 @@ public class CameraInterface implements Camera.PreviewCallback {
                 .bottom));
     }
 
-    private static int clamp(int x, int min, int max) {
+     /**
+      * 获取屏幕高
+      * @param context
+      * @return
+      */
+     private static int getScreenHeight(Context context) {
+         DisplayMetrics metric = new DisplayMetrics();
+         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+         wm.getDefaultDisplay().getMetrics(metric);
+         return metric.heightPixels;
+     }
+
+     /**
+      * 获取屏幕宽
+      * @param context
+      * @return
+      */
+     private static int getScreenWidth(Context context) {
+         DisplayMetrics metric = new DisplayMetrics();
+         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+         wm.getDefaultDisplay().getMetrics(metric);
+         return metric.widthPixels;
+     }
+
+
+     private static int clamp(int x, int min, int max) {
         if (x > max) {
             return max;
         }

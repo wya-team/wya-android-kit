@@ -6,7 +6,6 @@ import android.view.SurfaceHolder;
 
 import com.wya.hardware.camera.CameraInterface;
 import com.wya.hardware.camera.WYACameraView;
-import com.wya.utils.utils.LogUtil;
 
  /**
   * 创建日期：2018/12/5 13:52
@@ -37,7 +36,6 @@ class PreviewState implements State {
 
     @Override
     public void focus(float x, float y, CameraInterface.FocusCallback callback) {
-        LogUtil.i("preview state foucs");
         if (machine.getView().handlerFocus(x, y)) {
             CameraInterface.getInstance().handleFocus(machine.getContext(), x, y, callback);
         }
@@ -60,7 +58,6 @@ class PreviewState implements State {
             public void captureResult(Bitmap bitmap, boolean isVertical) {
                 machine.getView().showPicture(bitmap, isVertical);
                 machine.setState(machine.getBorrowPictureState());
-                LogUtil.i("capture");
             }
         });
     }
@@ -87,17 +84,14 @@ class PreviewState implements State {
 
     @Override
     public void cancel(SurfaceHolder holder, float screenProp) {
-        LogUtil.i("浏览状态下,没有 cancle 事件");
     }
 
     @Override
     public void confirm() {
-        LogUtil.i("浏览状态下,没有 confirm 事件");
     }
 
     @Override
     public void zoom(float zoom, int type) {
-        LogUtil.i( "zoom");
         CameraInterface.getInstance().setZoom(zoom, type);
     }
 

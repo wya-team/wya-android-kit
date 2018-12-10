@@ -10,9 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wya.hardware.R;
-import com.wya.utils.utils.StringUtils;
 
- /**
+import java.util.Locale;
+
+/**
   * 创建日期：2018/12/6 14:20
   * 作者： Mao Chunjiang
   * 文件名称：VideoProgressOverlay
@@ -82,9 +83,30 @@ public class VideoProgressOverlay extends FrameLayout {
             // 前进
             mSeekIcon.setImageResource(R.drawable.wya_video_player_ic_video_speed);
         }
-        mSeekCurProgress.setText(StringUtils.stringForTime(targetProgress));
-        mSeekDuration.setText(StringUtils.stringForTime(mDuration));
+        mSeekCurProgress.setText(stringForTime(targetProgress));
+        mSeekDuration.setText(stringForTime(mDuration));
     }
+
+    /**
+     * 将毫秒值转化为时分秒显示
+     * @param timeMs 毫秒值
+     * @return
+     */
+    private String stringForTime(int timeMs) {
+        int totalSeconds = timeMs / 1000;
+
+        int seconds = totalSeconds % 60;
+        int minutes = (totalSeconds / 60) % 60;
+        int hours   = totalSeconds / 3600;
+
+        if (hours > 0) {
+            return String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds);
+        } else {
+            return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        }
+    }
+
+
 
     /**
      * 获取滑动结束后的目标进度

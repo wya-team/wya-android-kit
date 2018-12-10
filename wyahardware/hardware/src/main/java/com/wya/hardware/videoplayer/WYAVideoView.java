@@ -1,5 +1,6 @@
 package com.wya.hardware.videoplayer;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -27,15 +28,14 @@ import com.wya.hardware.videoplayer.view.VideoBehaviorView;
 import com.wya.hardware.videoplayer.view.VideoControllerView;
 import com.wya.hardware.videoplayer.view.VideoProgressOverlay;
 import com.wya.hardware.videoplayer.view.VideoSystemOverlay;
-import com.wya.utils.utils.NetworkUtils;
 
 
- /**
-  * 创建日期：2018/12/6 14:22
-  * 作者： Mao Chunjiang
-  * 文件名称：WYAVideoView
-  * 类说明：视频播放器View
-  */
+/**
+ * 创建日期：2018/12/6 14:22
+ * 作者： Mao Chunjiang
+ * 文件名称：WYAVideoView
+ * 类说明：视频播放器View
+ */
 
 public class WYAVideoView extends VideoBehaviorView {
 
@@ -291,7 +291,7 @@ public class WYAVideoView extends VideoBehaviorView {
             if (extra != null && extra instanceof NetworkInfo) {
                 NetworkInfo netInfo = (NetworkInfo) extra;
 
-                if (NetworkUtils.isNetworkConnected(context) && netInfo.getState() != NetworkInfo.State.CONNECTED) {
+                if (isNetworkConnected(context) && netInfo.getState() != NetworkInfo.State.CONNECTED) {
                     // 网络连接的情况下只处理连接完成状态
                     return;
                 }
@@ -300,4 +300,21 @@ public class WYAVideoView extends VideoBehaviorView {
             }
         }
     }
+
+
+    /**
+     * 判断是否有网络连接
+     */
+    private boolean isNetworkConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            @SuppressLint("MissingPermission") NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            if (mNetworkInfo != null) {
+                return mNetworkInfo.isAvailable();
+            }
+        }
+        return false;
+    }
+
 }

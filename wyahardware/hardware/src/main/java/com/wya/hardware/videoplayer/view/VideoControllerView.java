@@ -1,7 +1,10 @@
 package com.wya.hardware.videoplayer.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,9 +20,8 @@ import com.wya.hardware.videoplayer.WYAVideoPlayer;
 import com.wya.hardware.videoplayer.bean.IVideoInfo;
 import com.wya.hardware.videoplayer.listener.OnVideoControlListener;
 import com.wya.hardware.videoplayer.listener.SimpleOnVideoControlListener;
-import com.wya.utils.utils.NetworkUtils;
-import com.wya.utils.utils.ScreenUtils;
-import com.wya.utils.utils.StringUtils;
+
+import java.util.Locale;
 
 
 /**
@@ -163,14 +165,14 @@ public class VideoControllerView extends FrameLayout {
             mControllerTitle.setVisibility(VISIBLE);
             mControllerBottom.setVisibility(VISIBLE);
         } else {
-            if (!ScreenUtils.isPortrait(getContext())) {
+            if (!isPortrait(getContext())) {
                 mControllerBack.setVisibility(GONE);
             }
             mControllerTitle.setVisibility(GONE);
             mControllerBottom.setVisibility(GONE);
         }
 
-        if (!ScreenUtils.isPortrait(getContext())) {
+        if (!isPortrait(getContext())) {
             mScreenLock.setVisibility(VISIBLE);
         }
 
@@ -186,12 +188,23 @@ public class VideoControllerView extends FrameLayout {
         }
     }
 
+    /**
+     * 获得当前屏幕的方向.
+     *
+     * @return 是否竖屏.
+     */
+    private boolean isPortrait(Context context) {
+        int orientation = context.getResources().getConfiguration().orientation;
+        return orientation == Configuration.ORIENTATION_PORTRAIT;
+    }
+
+
     private void hide() {
         if (!mShowing) {
             return;
         }
 
-        if (!ScreenUtils.isPortrait(getContext())) {
+        if (!isPortrait(getContext())) {
             // 横屏才消失
             mControllerBack.setVisibility(GONE);
         }
@@ -239,19 +252,39 @@ public class VideoControllerView extends FrameLayout {
             mPlayerSeekBar.setSecondaryProgress(percent * 10);
         }
 
-        mVideoProgress.setText(StringUtils.stringForTime(position));
-        mVideoDuration.setText(StringUtils.stringForTime(duration));
+        mVideoProgress.setText(stringForTime(position));
+        mVideoDuration.setText(stringForTime(duration));
 
         return position;
+    }
+
+    /**
+     * 将毫秒值转化为时分秒显示
+     *
+     * @param timeMs 毫秒值
+     * @return
+     */
+    private String stringForTime(int timeMs) {
+        int totalSeconds = timeMs / 1000;
+
+        int seconds = totalSeconds % 60;
+        int minutes = (totalSeconds / 60) % 60;
+        int hours = totalSeconds / 3600;
+
+        if (hours > 0) {
+            return String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds);
+        } else {
+            return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        }
     }
 
     /**
      * 判断显示错误类型
      */
     public void checkShowError(boolean isNetChanged) {
-        boolean isConnect = NetworkUtils.isNetworkConnected(getContext());
-        boolean isMobileNet = NetworkUtils.isMobileConnected(getContext());
-        boolean isWifiNet = NetworkUtils.isWifiConnected(getContext());
+        boolean isConnect = isNetworkConnected(getContext());
+        boolean isMobileNet = isMobileConnected(getContext());
+        boolean isWifiNet = isWifiConnected(getContext());
 
         if (isConnect) {
             // 如果已经联网
@@ -275,6 +308,55 @@ public class VideoControllerView extends FrameLayout {
             showError(VideoErrorView.STATUS_NO_NETWORK_ERROR);
         }
     }
+
+    /**
+     * 判断WIFI网络是否可用
+     */
+    private boolean isWifiConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            @SuppressLint("MissingPermission") NetworkInfo mWiFiNetworkInfo = mConnectivityManager
+                    .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            if (mWiFiNetworkInfo != null) {
+                return mWiFiNetworkInfo.isConnected();
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * 判断是否有网络连接
+     */
+    private boolean isNetworkConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            @SuppressLint("MissingPermission") NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            if (mNetworkInfo != null) {
+                return mNetworkInfo.isAvailable();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断MOBILE网络是否可用
+     */
+    private boolean isMobileConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            @SuppressLint("MissingPermission") NetworkInfo mMobileNetworkInfo = mConnectivityManager
+                    .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            if (mMobileNetworkInfo != null) {
+                return mMobileNetworkInfo.isConnected();
+            }
+        }
+        return false;
+    }
+
 
     public void hideErrorView() {
         mErrorView.hideError();
@@ -307,7 +389,7 @@ public class VideoControllerView extends FrameLayout {
                 break;
             case VideoErrorView.STATUS_NO_NETWORK_ERROR:
                 // 无网络时
-                if (NetworkUtils.isNetworkConnected(getContext())) {
+                if (isNetworkConnected(getContext())) {
                     if (videoInfo == null) {
                         // 如果video为空，重新请求详情
                         retry(VideoErrorView.STATUS_VIDEO_DETAIL_ERROR);
@@ -345,7 +427,7 @@ public class VideoControllerView extends FrameLayout {
             mDraggingProgress = (duration * progress) / 1000L;
 
             if (mVideoProgress != null) {
-                mVideoProgress.setText(StringUtils.stringForTime((int) mDraggingProgress));
+                mVideoProgress.setText(stringForTime((int) mDraggingProgress));
             }
         }
 
@@ -446,7 +528,7 @@ public class VideoControllerView extends FrameLayout {
     }
 
     void toggleVideoLayoutParams() {
-        final boolean isPortrait = ScreenUtils.isPortrait(getContext());
+        final boolean isPortrait = isPortrait(getContext());
 
         if (isPortrait) {
             mControllerBack.setVisibility(VISIBLE);

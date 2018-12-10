@@ -5,7 +5,6 @@ import android.view.SurfaceHolder;
 
 import com.wya.hardware.camera.CameraInterface;
 import com.wya.hardware.camera.WYACameraView;
-import com.wya.utils.utils.LogUtil;
 
 
  /**
@@ -78,7 +77,6 @@ public class BorrowPictureState implements State {
 
     @Override
     public void zoom(float zoom, int type) {
-        LogUtil.i( "zoom");
     }
 
     @Override

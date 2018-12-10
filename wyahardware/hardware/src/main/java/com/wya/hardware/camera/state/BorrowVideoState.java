@@ -5,7 +5,6 @@ import android.view.SurfaceHolder;
 
 import com.wya.hardware.camera.CameraInterface;
 import com.wya.hardware.camera.WYACameraView;
-import com.wya.utils.utils.LogUtil;
 
  /**
   * 创建日期：2018/12/5 13:58
@@ -78,7 +77,6 @@ public class BorrowVideoState implements State {
 
     @Override
     public void zoom(float zoom, int type) {
-        LogUtil.i( "zoom");
     }
 
     @Override

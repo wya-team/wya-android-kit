@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -18,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.VideoView;
@@ -29,11 +31,9 @@ import com.wya.hardware.camera.listener.ErrorListener;
 import com.wya.hardware.camera.listener.WYACameraListener;
 import com.wya.hardware.camera.listener.TypeListener;
 import com.wya.hardware.camera.state.CameraMachine;
-import com.wya.utils.utils.FileUtil;
-import com.wya.utils.utils.LogUtil;
 import com.wya.hardware.camera.view.CameraView;
-import com.wya.utils.utils.ScreenUtils;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -140,11 +140,35 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     }
 
     private void initData() {
-        layout_width = ScreenUtils.getScreenWidth(mContext);
+        layout_width = getScreenWidth(mContext);
         //缩放梯度
         zoomGradient = (int) (layout_width / 16f);
-        LogUtil.i("zoom = " + zoomGradient);
         machine = new CameraMachine(getContext(), this, this);
+    }
+
+
+    /**
+     * 获取屏幕高
+     * @param context
+     * @return
+     */
+    private int getScreenHeight(Context context) {
+        DisplayMetrics metric = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metric);
+        return metric.heightPixels;
+    }
+
+    /**
+     * 获取屏幕宽
+     * @param context
+     * @return
+     */
+    private int getScreenWidth(Context context) {
+        DisplayMetrics metric = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metric);
+        return metric.widthPixels;
     }
 
     private void initView() {
@@ -213,7 +237,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
 
             @Override
             public void recordZoom(float zoom) {
-                LogUtil.i("recordZoom");
                 machine.zoom(zoom, CameraInterface.TYPE_RECORDER);
             }
 
@@ -280,7 +303,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
 
     //生命周期onResume
     public void onResume() {
-        LogUtil.i("JCameraView onResume");
         resetState(TYPE_DEFAULT); //重置状态
         CameraInterface.getInstance().registerSensorManager(mContext);
         CameraInterface.getInstance().setSwitchView(mSwitchCamera, mFlashLamp);
@@ -289,7 +311,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
 
     //生命周期onPause
     public void onPause() {
-        LogUtil.i("JCameraView onPause");
         stopVideo();
         resetState(TYPE_PICTURE);
         CameraInterface.getInstance().isPreview(false);
@@ -299,7 +320,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     //SurfaceView生命周期
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        LogUtil.i("JCameraView SurfaceCreated");
         new Thread() {
             @Override
             public void run() {
@@ -314,7 +334,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        LogUtil.i("JCameraView SurfaceDestroyed");
         CameraInterface.getInstance().doDestroyCamera();
     }
 
@@ -428,7 +447,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
             case TYPE_VIDEO:
                 stopVideo();    //停止播放
                 //初始化VideoView
-                FileUtil.deleteFile(videoUrl);
+                deleteFile(videoUrl);
                 mVideoView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                 machine.start(mVideoView.getHolder(), screenProp);
                 break;
@@ -444,6 +463,20 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         mSwitchCamera.setVisibility(VISIBLE);
         mFlashLamp.setVisibility(VISIBLE);
         mCaptureLayout.resetCaptureLayout();
+    }
+
+    /**
+     * 删除文件
+     * @param url
+     * @return
+     */
+    private static boolean deleteFile(String url) {
+        boolean result = false;
+        File file = new File(url);
+        if (file.exists()) {
+            result = file.delete();
+        }
+        return result;
     }
 
     @Override
@@ -544,7 +577,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
 
     @Override
     public void startPreviewCallback() {
-        LogUtil.i("startPreviewCallback");
         handlerFocus(mFoucsView.getWidth() / 2, mFoucsView.getHeight() / 2);
     }
 

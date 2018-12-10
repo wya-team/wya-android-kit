@@ -5,9 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.View;
-
-import com.wya.utils.utils.ScreenUtils;
+import android.view.WindowManager;
 
 
 /**
@@ -34,7 +34,7 @@ public class FoucsView extends View {
 
     public FoucsView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.size = ScreenUtils.getScreenWidth(context) / 3;
+        this.size = getScreenWidth(context) / 3;
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
@@ -42,6 +42,19 @@ public class FoucsView extends View {
         mPaint.setStrokeWidth(4);
         mPaint.setStyle(Paint.Style.STROKE);
     }
+
+    /**
+     * 获取屏幕宽
+     * @param context
+     * @return
+     */
+    private int getScreenWidth(Context context) {
+        DisplayMetrics metric = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metric);
+        return metric.widthPixels;
+    }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
