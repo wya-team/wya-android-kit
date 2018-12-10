@@ -65,5 +65,4 @@ dependencies {
     implementation supportDepends.design
     implementation supportDepends.recyclerview
     implementation supportDepends.base_adapter
-    implementation project(':wyautils:utils')
 }

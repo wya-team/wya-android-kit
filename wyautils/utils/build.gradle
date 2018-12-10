@@ -27,5 +27,4 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation supportDepends.appcompat
-    implementation project(':wyahelper:helper')
 }

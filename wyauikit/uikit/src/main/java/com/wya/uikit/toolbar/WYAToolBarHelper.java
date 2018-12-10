@@ -1,6 +1,7 @@
 package com.wya.uikit.toolbar;
 
-import com.wya.utils.utils.ColorUtil;
+
+import android.graphics.Color;
 
 /**
  * 创建日期：2018/11/19 13:33
@@ -11,29 +12,28 @@ import com.wya.utils.utils.ColorUtil;
 
 public class WYAToolBarHelper {
     private boolean showToolBar = true;//显示标题栏
-    private int toolbar_bg_color = ColorUtil.hex2Int("#1890FF"); //标题栏颜色
+    private int toolbar_bg_color = Color.parseColor("#1890FF"); //标题栏颜色
 
     //标题参数
     private boolean isShowTitle = true;//默认显示标题
     private String titleStr = "标题";//标题文字
     private int titleTextSize = 16;//标题大小
-    private int titleTextColor =  ColorUtil.hex2Int("#FFFFFF");//标题颜色
+    private int titleTextColor = Color.parseColor("#FFFFFF");//标题颜色
 
     //标题左边参数
     private boolean isShowTvLeft = false;//默认不显示左边文字
     private String tvLeftStr = "左边";//左边文字
     private int tvLeftTextSize = 14;//左边文字大小
-    private int tvLeftTextColor =  ColorUtil.hex2Int("#FFFFFF");//标题颜色
+    private int tvLeftTextColor = Color.parseColor("#FFFFFF");//标题颜色
     private boolean isShowImgLeft = true;//是否显示左图标
     private int imgLeftRes;//做图标资源
-
 
 
     //标题右边参数
     private boolean isShowTvRight = false;//默认不显示右边文字
     private String tvRightStr = "右边";//右边文字
     private int tvRightTextSize = 14;//右边文字大小
-    private int tvRightTextColor = ColorUtil.hex2Int("#FFFFFF");//标题颜色
+    private int tvRightTextColor = Color.parseColor("#FFFFFF");//标题颜色
     private boolean isShowImgRight = false;//是否显示右图标
     private boolean isShowImgRightAnther = false;//是否显示第二个图标
     private int imgRightRes;//做图标资源
@@ -99,8 +99,8 @@ public class WYAToolBarHelper {
         return tvLeftTextColor;
     }
 
-    public void setTvLeftTextColor(String  tvLeftTextColorValue) {
-        this.tvLeftTextColor = ColorUtil.hex2Int(tvLeftTextColorValue);
+    public void setTvLeftTextColor(String tvLeftTextColorValue) {
+        this.tvLeftTextColor = Color.parseColor(tvLeftTextColorValue);
     }
 
     public boolean isShowImgLeft() {
@@ -141,7 +141,8 @@ public class WYAToolBarHelper {
     }
 
     public void setTvRightTextColor(String tvRightTextColorValue) {
-        this.tvRightTextColor = ColorUtil.hex2Int(tvRightTextColorValue);;
+        this.tvRightTextColor = Color.parseColor(tvRightTextColorValue);
+        ;
     }
 
     public boolean isShowImgRight() {
@@ -160,7 +161,7 @@ public class WYAToolBarHelper {
         this.imgRightRes = imgRightRes;
     }
 
-    public  boolean isShowTitle() {
+    public boolean isShowTitle() {
         return isShowTitle;
     }
 
@@ -168,36 +169,36 @@ public class WYAToolBarHelper {
         isShowTitle = showTitle;
     }
 
-    public  String getTitleStr() {
+    public String getTitleStr() {
         return titleStr;
     }
 
-    public  void setTitleStr(String titleStr) {
+    public void setTitleStr(String titleStr) {
         this.titleStr = titleStr;
     }
 
-    public  int getTitleTextSize() {
+    public int getTitleTextSize() {
         return titleTextSize;
     }
 
-    public  void setTitleTextSize(int titleTextSize) {
+    public void setTitleTextSize(int titleTextSize) {
         this.titleTextSize = titleTextSize;
     }
 
-    public  int getTitleTextColor() {
+    public int getTitleTextColor() {
         return titleTextColor;
     }
 
-    public  void setTitleTextColor(String titleTextColorValue) {
-        this.titleTextColor = ColorUtil.hex2Int(titleTextColorValue);
+    public void setTitleTextColor(String titleTextColorValue) {
+        this.titleTextColor = Color.parseColor(titleTextColorValue);
     }
 
-    public  int getToolbar_bg_color() {
+    public int getToolbar_bg_color() {
         return toolbar_bg_color;
     }
 
-    public  void setToolbar_bg_color(String toolbar_bg_color_value) {
-        this.toolbar_bg_color = ColorUtil.hex2Int(toolbar_bg_color_value);
+    public void setToolbar_bg_color(String toolbar_bg_color_value) {
+        this.toolbar_bg_color = Color.parseColor(toolbar_bg_color_value);
     }
 
 }
