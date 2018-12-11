@@ -111,7 +111,7 @@ public class ImagePickerExampleActivity extends AppCompatActivity {
 				File file = new File(path);
 				Uri uri;
 				if (Build.VERSION.SDK_INT >= 24) {
-					uri = FileProvider.getUriForFile(this, "com.wya.uikit.imagepicker.fileprovider", file);
+					uri = FileProvider.getUriForFile(this, "com.wya.example.fileprovider", file);
 				} else {
 					uri = Uri.fromFile(file);
 				}
