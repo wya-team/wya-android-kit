@@ -6,7 +6,7 @@ import android.support.annotation.RequiresApi;
 
 import com.wya.helper.WYAConstants;
 import com.wya.utils.BaseUtilsApplication;
-import com.wya.utils.utils.AppUtils;
+import com.wya.utils.utils.AppUtil;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -34,7 +34,7 @@ public class BaseApplication extends BaseUtilsApplication {
         Realm.init(this);
         RealmConfiguration configuration = new RealmConfiguration.Builder()
                 .name(WYAConstants.DB_NAME)//指定数据库的名称，如果不指定默认为 default
-                .schemaVersion(AppUtils.getVersionCode(this)) //指定数据库的版本号
+                .schemaVersion(AppUtil.getVersionCode(this)) //指定数据库的版本号
                 // .deleteRealmIfMigrationNeeded()//声明版本冲突时自动删除原数据库
                 // .inMemory()//声明数据库只在内存中持久化
                 // .encryptionkey()//指定数据库的秘钥
@@ -51,7 +51,7 @@ public class BaseApplication extends BaseUtilsApplication {
                 .dBName("test")//设置数据库名称
                 .themeColor("#0000ff")//设置主题颜色
                 .isShowLog(true)//设置是否显示log，log 搜索WYA_LOG
-                .isDebug(AppUtils.isApkInDebug(getApplicationContext()))//是否是debug
+                .isDebug(AppUtil.isApkInDebug(getApplicationContext()))//是否是debug
                 .build();
     }
 }
