@@ -14,6 +14,7 @@
         app:canEdit="false"
         app:contentHint="编辑文本提示"
         app:leftImage="@mipmap/icon_nav_more"
+        app:contentTextColor="@color/black"
         app:leftTvText="左边"
         app:lineViewColor="#000000"
         app:rightCanEdit="false"
