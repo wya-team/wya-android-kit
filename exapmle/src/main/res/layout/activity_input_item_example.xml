@@ -9,7 +9,7 @@
 
     <com.wya.uikit.customitems.WYAInputItem
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         app:backColor="#ffffff"
         app:canEdit="false"
         app:contentHint="编辑文本提示"
@@ -55,6 +55,8 @@
         app:canEdit="false"
         app:contentHint="编辑文本提示"
         app:leftTvText="左边"
+        app:contentText="输入的内容"
+        app:contentTextColor="@color/black"
         app:lineViewColor="#000000"
         app:rightCanEdit="false"
         app:rightImage="@mipmap/icon_right_arrow"
