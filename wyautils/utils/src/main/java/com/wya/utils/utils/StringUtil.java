@@ -4,11 +4,11 @@ import java.util.Locale;
  /**
   * 创建日期：2018/12/6 11:25
   * 作者： Mao Chunjiang
-  * 文件名称：StringUtils
+  * 文件名称：StringUtil
   * 类说明：字符串工具类
   */
 
-public class StringUtils {
+public class StringUtil {
 
     /**
      * 将毫秒值转化为时分秒显示

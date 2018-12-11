@@ -192,7 +192,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
 		}
 		imagePath = file.getAbsolutePath();
 		if (Build.VERSION.SDK_INT >= 24) {
-			uri = FileProvider.getUriForFile(this, "com.wya.uikit.fileprovider",
+			uri = FileProvider.getUriForFile(this, "com.wya.uikit.imagepicker.fileprovider",
 					file);
 		} else {
 			uri = Uri.fromFile(file);

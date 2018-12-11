@@ -14,7 +14,7 @@ import android.view.WindowManager;
  * desc   :
  * version: 1.0
  */
-public class ScreenUtils {
+public class ScreenUtil {
 	/**
 	 * dp转px
 	 *

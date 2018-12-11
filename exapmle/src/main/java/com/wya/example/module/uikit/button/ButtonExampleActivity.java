@@ -41,6 +41,7 @@ public class ButtonExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         if (wyaButton != null) {
+            wyaButton = null;
             wyaButton.setFillet(true);
             wyaButton.setRadius(10);//设置圆角大小
             wyaButton.setTextColor(ColorUtil.hex2Int("#ffffff"));//字体颜色

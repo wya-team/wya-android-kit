@@ -13,7 +13,5 @@ public class BaseUtilsApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-//        CrashHandlerUtils crashHandler = CrashHandlerUtils.getInstance();
-//        crashHandler.init(this);
     }
 }

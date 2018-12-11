@@ -1,23 +1,22 @@
 package com.wya.example.module.uikit.segmentedcontrol;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
 import com.wya.example.R;
+import com.wya.example.base.BaseActivity;
 import com.wya.uikit.segmentedcontrol.WYASegmentedView;
 import com.wya.uikit.segmentedcontrol.WYATabLayoutControl;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SegmentedControlExampleActivity extends AppCompatActivity implements CompoundButton
+public class SegmentedControlExampleActivity extends BaseActivity implements CompoundButton
 		.OnCheckedChangeListener {
 
 	@BindView(R.id.fix)
@@ -36,9 +35,13 @@ public class SegmentedControlExampleActivity extends AppCompatActivity implement
 	WYASegmentedView mSegmentLayout;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_segmented_control_example);
+	protected int getLayoutID() {
+		return R.layout.activity_segmented_control_example;
+	}
+
+
+	@Override
+	protected void initView() {
 		ButterKnife.bind(this);
 
 

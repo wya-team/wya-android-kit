@@ -13,11 +13,11 @@ import android.support.annotation.RequiresApi;
 /**
  * 创建日期：2018/12/7 14:00
  * 作者： Mao Chunjiang
- * 文件名称： AppUtils
+ * 文件名称： AppUtil
  * 类说明：获取App相关的辅助类
  */
 
-public class AppUtils {
+public class AppUtil {
     /**
      * 获取应用程序名称
      */
@@ -73,7 +73,7 @@ public class AppUtils {
     /**
      * [获取应用程序版本名称信息]
      * @param context
-     * @return 当前应用的版本名称
+     * @return 当前应用的包名
      */
     public static synchronized String getPackageName(Context context) {
         try {
