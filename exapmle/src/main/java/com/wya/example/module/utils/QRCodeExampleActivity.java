@@ -39,8 +39,11 @@ public class QRCodeExampleActivity extends BaseActivity implements View.OnClickL
 				}
 				break;
 			case R.id.crate_line_image:
-				Bitmap barcode = QRCodeUtil.createBarcode(content, 600, 300);
-				imageview.setImageBitmap(barcode);
+
+				if (QRCodeUtil.createBarcode(content, 600, 300,path)) {
+					Bitmap bitmap = BitmapFactory.decodeFile(path);
+					imageview.setImageBitmap(bitmap);
+				}
 				break;
 		}
 	}
