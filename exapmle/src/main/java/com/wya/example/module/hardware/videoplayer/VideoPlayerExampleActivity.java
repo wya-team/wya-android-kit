@@ -7,7 +7,7 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.hardware.videoplayer.WYAVideoView;
 import com.wya.hardware.videoplayer.listener.SimpleOnVideoControlListener;
-import com.wya.utils.utils.ScreenUtils;
+import com.wya.utils.utils.ScreenUtil;
 
 import butterknife.BindView;
 
@@ -45,7 +45,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
 
             @Override
             public void onFullScreen() {
-                ScreenUtils.toggleScreenOrientation(VideoPlayerExampleActivity.this);
+                ScreenUtil.toggleScreenOrientation(VideoPlayerExampleActivity.this);
             }
         });
         videoPlayer.startPlayVideo(info);
@@ -82,9 +82,9 @@ public class VideoPlayerExampleActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (!ScreenUtils.isPortrait(this)) {
+        if (!ScreenUtil.isPortrait(this)) {
             if (!videoPlayer.isLock()) {
-                ScreenUtils.toggleScreenOrientation(this);
+                ScreenUtil.toggleScreenOrientation(this);
             }
         } else {
             super.onBackPressed();

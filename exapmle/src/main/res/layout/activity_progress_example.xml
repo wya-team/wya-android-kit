@@ -47,6 +47,7 @@
         android:text="确定"
         app:backColor="#118EE9"
         app:fillet="true"
+        android:padding="10dp"
         app:textColor="#ffffff"
         app:textColorPress="#50ffffff"
         app:wya_button_radius="10" />

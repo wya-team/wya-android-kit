@@ -7,11 +7,11 @@ import android.net.NetworkInfo;
  /**
   * 创建日期：2018/12/6 11:24
   * 作者： Mao Chunjiang
-  * 文件名称：NetworkUtils
+  * 文件名称：NetworkUtil
   * 类说明：网络判断工具类
   */
 
-public class NetworkUtils {
+public class NetworkUtil {
 
     /**
      * 判断是否有网络连接

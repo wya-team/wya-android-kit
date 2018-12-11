@@ -17,7 +17,6 @@ import java.io.IOException;
   */
 
 public class FileUtil {
-    private static final String TAG = "MCJ";
     private static final File parentPath = Environment.getExternalStorageDirectory();
     private static String storagePath = "";
     private static String DST_FOLDER_NAME = "wya";

@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.helper.WYAConstants;
-import com.wya.utils.utils.AppUtils;
+import com.wya.utils.utils.AppUtil;
 import com.wya.utils.utils.ColorUtil;
 import com.wya.utils.utils.PhoneUtil;
 
@@ -44,7 +44,7 @@ public class HelperExampleActivity extends BaseActivity {
                             + "sd卡是否挂载：" + PhoneUtil.getInstance().isSDCardMount() + "\n"
                             + "sd卡剩余空间的大小：" + PhoneUtil.getInstance().getSDFreeSize() + "\n"
                             + "sd卡空间的总大小：" + PhoneUtil.getInstance().getSDAllSize() + "\n"
-                            + "一个apk是否安装：" + PhoneUtil.getInstance().isApkInstalled(getApplicationContext(), AppUtils.getPackageName(getApplicationContext())) + "\n"
+                            + "一个apk是否安装：" + PhoneUtil.getInstance().isApkInstalled(getApplicationContext(), AppUtil.getPackageName(getApplicationContext())) + "\n"
                             + "是否是平板：" + PhoneUtil.getInstance().isTablet(getApplicationContext()) + "\n"
                             + "应用权限 名称列表：" + appPermissions
                             + "是否是平板：" + PhoneUtil.getInstance().isTablet(getApplicationContext()) + "\n"
@@ -57,10 +57,10 @@ public class HelperExampleActivity extends BaseActivity {
                         + "是否打印日志：" + WYAConstants.IS_SHOW_LOG + "\n"
                         + "数据库名称：" + WYAConstants.DB_NAME + "\n"
                         + "是否Debug：" + WYAConstants.IS_DEBUG + "\n"
-                        + "应用名称：" + AppUtils.getAppName(getApplicationContext()) + "\n"
-                        + "包名：" + AppUtils.getPackageName(getApplicationContext()) + "\n"
-                        + "当前应用的版本名称：" + AppUtils.getVersionName(getApplicationContext()) + "\n"
-                        + "当前应用的版本号：" + AppUtils.getVersionCode(getApplicationContext())
+                        + "应用名称：" + AppUtil.getAppName(getApplicationContext()) + "\n"
+                        + "包名：" + AppUtil.getPackageName(getApplicationContext()) + "\n"
+                        + "当前应用的版本名称：" + AppUtil.getVersionName(getApplicationContext()) + "\n"
+                        + "当前应用的版本号：" + AppUtil.getVersionCode(getApplicationContext())
         );
     }
 
