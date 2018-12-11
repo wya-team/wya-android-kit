@@ -15,17 +15,30 @@ setTextSize|设置文本字体大小
 setBackgroundColor|设置背景颜色
 setBackgroundDrawable|设置背景图片
 setPadding|设置间隔
-setGravity|设置位置
+setGravity|设置位置 BadgeGravity
 setOffset|设置位置偏移
 bindToTarget|需要显示消息的View
 update|更新显示状态
 
+- IBadgeView暴露所有支持的方法
 
 - 通过Builder创建
 
-- IBadgeView暴露所有支持的方法
+- bindToTarget 将红点绑定至目标View，不需在xml中设置
 
-- bindToTarget 将红点绑定至目标View，不需在xml中设置，通过gravity控制红点位置 offset控制偏移量
+- 通过gravity控制红点位置 offset控制偏移量
+
+```
+  Builder.Gravity gravity = new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_TOP, ScreenUtil.dp2px(12), ScreenUtil.dp2px(2));
+  IBadgeView badgeView = new Builder(this)
+                .setOffset(50, 0)
+                .setBadgeNum(num)
+                .setOmitText("99+")
+                .setgravity(grvity)
+                .create();
+        badgeView.bindToTarget(itemView);
+```
+
 
 ```
   @IntDef
@@ -46,10 +59,3 @@ update|更新显示状态
     }
 ```
 
-```
-  IBadgeView badgeView = new Builder(this)
-                .setOffset(50, 0)
-                .setBadgeNum(num)
-                .create();
-        badgeView.bindToTarget(itemView);
-```
