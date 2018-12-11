@@ -13,9 +13,9 @@ import android.widget.TextView;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
-import com.wya.uikit.badge.view.Builder;
-import com.wya.uikit.badge.view.DisplayUtil;
-import com.wya.uikit.badge.view.IBadgeView;
+import com.wya.uikit.badge.Builder;
+import com.wya.uikit.badge.DisplayUtil;
+import com.wya.uikit.badge.IBadgeView;
 
 import butterknife.BindView;
 import butterknife.OnClick;

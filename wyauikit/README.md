@@ -405,32 +405,6 @@ notifyAdapterData|更新数据
 在使用时，设置背景点击效果等，在setValueFirst和setValueSecond中进行。
 
 
-## 11.BadgeView
-消息提示
-##### 说明
-在目标View的指定位置设置消息提示，通过控制Gravity指定消息位置
-
-
-方法|说明
----|---
-setBadgeNum|设置数字类型红点
-setBadgeText|设置文本类型红点
-setMaxBadgeNum|设置默认最大数字，OmitMode省略模式为true时且大于该值显示省略
-setOmitText|省略模式时的文本
-setTextColor|设置文本字体颜色
-setTextSize|设置文本字体大小
-setBackgroundColor|设置背景颜色
-setBackgroundDrawable|设置背景图片
-setPadding|设置间隔
-setGravity|设置位置
-setOffset|设置位置偏移
-bindToTarget|需要显示消息的View
-update|更新显示状态
-
-
-
-
-
 
 ## 13.Gallery
 相册浏览

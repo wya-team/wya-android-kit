@@ -5,8 +5,8 @@ import android.widget.TextView;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
-import com.wya.uikit.badge.view.Builder;
-import com.wya.uikit.badge.view.IBadgeView;
+import com.wya.uikit.badge.Builder;
+import com.wya.uikit.badge.IBadgeView;
 import com.wya.uikit.tabbar.WYATabBar;
 
 public class TabBarExampleActivity extends BaseActivity {

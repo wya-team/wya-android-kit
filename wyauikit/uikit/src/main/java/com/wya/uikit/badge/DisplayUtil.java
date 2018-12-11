@@ -1,4 +1,4 @@
-package com.wya.uikit.badge.view;
+package com.wya.uikit.badge;
 
 import android.content.Context;
 
