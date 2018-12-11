@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * author : XuDonglin
  * e-mail : 465715784@qq.com
  * time   : 2018/12/11
- * desc   :
+ * desc   : 清除缓存
  * version: 1.0
  */
 public class DataCleanUtils {
@@ -119,7 +119,7 @@ public class DataCleanUtils {
 	// 获取文件
 	//Context.getExternalFilesDir() --> SDCard/Android/data/你的应用的包名/files/ 目录，一般放一些长时间保存的数据
 	//Context.getExternalCacheDir() --> SDCard/Android/data/你的应用的包名/cache/目录，一般存放临时缓存数据
-	public static long getFolderSize(File file) throws Exception {
+	public static long getFolderSize(File file) {
 		long size = 0;
 		try {
 			File[] fileList = file.listFiles();
