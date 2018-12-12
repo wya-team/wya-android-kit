@@ -120,12 +120,51 @@ isPortrait(Context context)|获得当前屏幕的方向
 
 
 
-# 2、StringUtil
+# 8、StringUtil
 ## 功能说明
 String工具类
+
 ## 属性说明
 
 ## 用法说明
 方法|说明
 ---|---
 stringForTime(int timeMs)| 将毫秒值转化为时分秒显示
+getStrSplitByCondition(String str, String split, String condition)| 字符拆分成数组
+getSign(String signStr)| MD5 加密
+String copy(Object... obj)| 拼接后的字符串
+replace(String strSc, String oldStr, String newStr)| 替换字符串
+isNull(Object... strArray)| 判断多个参数是否都为空
+String toHtml(String str)| 将字符串转换成HTML格式的字符串
+toText(String str)| 将HTML格式的字符串转换成常规显示的字符串
+getEncryptMobile(String phoneNum)| 获取加密的手机号
+checkMobile(String phoneNum) | 检查手机号
+checkPhone(String phone)| 验证固定电话号码
+checkPass(String pass)| 检查密码有效
+formatResourceString(Context context, int resource, Object... args)| 根据string.xml资源格式化字符串
+checkIdCard(String idCard)| 验证身份证号码
+numStrToInt(String numStr)| 将元单位数字转成int类型的元
+simpleFormat(int num)| 格式化数字
+newNumFormat(String numStr)| 数字转成以万、亿为单位，1.0–>1; 1.1–>1.1
+join(String[] strs, String token)| 将一字符串数组以某特定的字符串作为分隔来变成字符串
+check(String str, String test)| 验证字符串合法性
+String2Integer(String str, Integer defaultValue)| 将数值型字符串转换成Integer型
+Integer2String(Integer it, String ret)| 将数值型转换成字符串
+compare(String str1, String str2)| 比较两字符串大小(ASCII码顺序)
+num2Chinese(double num)| 将阿拉伯数字的钱数转换成中文方式
+firstToUpper(String str)| 将字符串的首字母改为大写
+listContain(List list, String str1)| 判断list中是否包含某一个字符串
+List2String(List<String> list, String sign)| list转String
+String2List(String target, String sign)| String转list 去除null 空串
+getStringFromId(Application app, int resId)| 根据Resource ID获取字符串
+doubleToString(double str)| 将浮点数进行四舍五入
+trimString(String text)| 去除字符串前后的空格
+escapeString(String text)| 去除转义
+appendUrlParams(String url, String params)| 添加url参数
+getColorSpan(Integer[] index, int[] colors, CharSequence... s)| 设置一段不同颜色的文字
+getSubStrSplit(String str, String split)| 字符拆分
+resizeContent(String content, int size)| 截取指定size的String
+encodeChineseStr(String srcStr)| 转码中文字符串
+compareToMin(String s1, String s2)| 用来比较手机号版本
+spliteTime(String dateStr, int start, int end)| 截取指定长度 从0开始，包左不包右
+hasChineseChar(String str)| 是否有中文字符

@@ -12,7 +12,7 @@ android {
         targetSdkVersion buildConfig.getAt("targetSdkVersion")
 
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
 
     buildTypes {
@@ -29,3 +29,5 @@ dependencies {
     implementation supportDepends.appcompat
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }
+//aar打包
+apply from: 'maven-release-aar.gradle'

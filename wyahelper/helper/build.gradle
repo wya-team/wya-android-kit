@@ -12,7 +12,7 @@ android {
         targetSdkVersion buildConfig.getAt("targetSdkVersion")
 
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
 
     buildTypes {
@@ -28,3 +28,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation supportDepends.appcompat
 }
+
+//aar打包
+apply from: 'maven-release-aar.gradle'

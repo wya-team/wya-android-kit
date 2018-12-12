@@ -7,12 +7,12 @@ android {
 
     compileSdkVersion buildConfig.getAt("compileSdkVersion")
     buildToolsVersion buildConfig.getAt("buildToolsVersion")
+
     defaultConfig {
         minSdkVersion buildConfig.getAt("minSdkVersion")
         targetSdkVersion buildConfig.getAt("targetSdkVersion")
-
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
     }
 
     buildTypes {
@@ -29,3 +29,5 @@ dependencies {
     implementation supportDepends.appcompat
     implementation 'com.google.zxing:core:3.3.3'
 }
+
+apply from: 'maven-release-aar.gradle'
