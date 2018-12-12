@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wya.uikit.R;
+import com.wya.uikit.toolbar.utils.StatusBarUtil;
 
 /**
  * 创建日期：2018/11/16 17:48
@@ -31,6 +32,8 @@ public abstract class BaseToolBarActivity extends AppCompatActivity {
     private RelativeLayout title_bar_bg;
 
     private LinearLayout parentLinearLayout;
+
+    private StatusBarUtil mStatusBarUtil;
 
 
     protected abstract int getLayoutID();
@@ -78,6 +81,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initContentView(R.layout.base_toolbar_layout);
         setContentView(getLayoutID());
+        mStatusBarUtil = StatusBarUtil.with(this);
         initWYAActionBar();
     }
 
@@ -317,7 +321,22 @@ public abstract class BaseToolBarActivity extends AppCompatActivity {
      */
     public void initToolBarBgColor(int toolbarBgColorValue) {
         title_bar_bg.setBackgroundColor(toolbarBgColorValue);
+        mStatusBarUtil.statusBarColor(int2Hex(toolbarBgColorValue));
+        mStatusBarUtil.navigationBarEnable(true).fullScreen(true).init();
     }
+
+
+    /**
+     * Color的Int整型转Color的16进制颜色值【方案一】
+     * colorInt - -12590395
+     * return Color的16进制颜色值——#3FE2C5
+     */
+    private String int2Hex(int colorInt) {
+        String hexCode = "";
+        hexCode = String.format("#%06X", Integer.valueOf(16777215 & colorInt));
+        return hexCode;
+    }
+
 
     /**
      * 将activity的布局添加到住布局中
@@ -342,6 +361,15 @@ public abstract class BaseToolBarActivity extends AppCompatActivity {
         parentLinearLayout = new LinearLayout(this);
         parentLinearLayout.setOrientation(LinearLayout.VERTICAL);
         viewGroup.addView(parentLinearLayout);
+        parentLinearLayout.setFitsSystemWindows(true);
         LayoutInflater.from(this).inflate(layoutResID, parentLinearLayout, true);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (null != mStatusBarUtil) {
+            mStatusBarUtil.release();
+        }
     }
 }
