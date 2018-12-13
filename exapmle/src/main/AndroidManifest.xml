@@ -63,6 +63,7 @@
         <activity android:name=".module.uikit.progress.ProgressExampleActivity" />
         <activity android:name=".module.hardware.camera.StartCameraExampleActivity" />
         <activity android:name=".module.hardware.camera.CameraExampleActivity" />
+        <activity android:name=".module.uikit.notice.NoticeExampleActivity" />
         <activity
             android:name=".module.hardware.videoplayer.VideoPlayerExampleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -71,7 +72,10 @@
         <activity android:name=".module.utils.realm.RealmExampleActivity" />
         <activity android:name=".module.utils.UtilsExampleActivity" />
         <activity android:name=".module.utils.QRCodeExampleActivity" />
+<<<<<<< HEAD
         <activity android:name=".module.uikit.customitems.expandrecyclerview.ExpandRecyclerViewActivity"></activity>
+=======
+>>>>>>> 87e51f3c6f8668143b8e16317ca9ea4fd89ff431
     </application>
 
 </manifest>

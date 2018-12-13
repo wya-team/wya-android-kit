@@ -14,6 +14,7 @@ import com.wya.example.module.uikit.dialog.DialogExampleActivity;
 import com.wya.example.module.uikit.gallery.GalleryExampleActivity;
 import com.wya.example.module.uikit.imagepicker.ImagePickerExampleActivity;
 import com.wya.example.module.uikit.keyboard.KeyboardExampleActivity;
+import com.wya.example.module.uikit.notice.NoticeExampleActivity;
 import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity;
 import com.wya.example.module.uikit.pickerview.PickerViewExampleActivity;
 import com.wya.example.module.uikit.popupwindow.PopupWindowExampleActivity;
@@ -44,7 +45,7 @@ public class UiKitExampleActivity extends BaseActivity {
 			.tv_popupwindow, R.id.tv_tab_bar, R.id.tv_tab_layout, R.id.tv_dialog, R.id
 			.tv_pagination_view, R.id.tv_choice_menu, R.id.tv_badge, R.id.tv_gallery, R.id
 			.tv_image_picker, R.id.tv_progress, R.id.tv_banner, R.id.tv_picker_view, R.id
-			.tv_crop_view})
+			.tv_crop_view, R.id.tv_notice_view})
 	public void onViewClicked(View view) {
 		switch (view.getId()) {
 			case R.id.tv_tool_bar:
@@ -112,6 +113,9 @@ public class UiKitExampleActivity extends BaseActivity {
 				break;
 			case R.id.tv_crop_view:
 				startActivity(new Intent(this, ImagePickerExampleActivity.class));
+				break;
+			case R.id.tv_notice_view:
+				NoticeExampleActivity.start(UiKitExampleActivity.this);
 				break;
 		}
 	}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/switch_title_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:background="#FDFCEC"
+    android:ellipsize="end"
+    android:gravity="center_vertical"
+    android:padding="@dimen/activity_switcher_item_margin"
+    android:paddingLeft="20dp"
+    android:textColor="#F86E21"
+    android:textSize="18sp" />
