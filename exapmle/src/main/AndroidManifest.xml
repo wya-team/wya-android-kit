@@ -61,6 +61,7 @@
         <activity android:name=".module.uikit.progress.ProgressExampleActivity" />
         <activity android:name=".module.hardware.camera.StartCameraExampleActivity" />
         <activity android:name=".module.hardware.camera.CameraExampleActivity" />
+        <activity android:name=".module.uikit.notice.NoticeExampleActivity" />
         <activity
             android:name=".module.hardware.videoplayer.VideoPlayerExampleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -68,7 +69,7 @@
         <activity android:name=".module.uikit.pickerview.PickerViewExampleActivity" />
         <activity android:name=".module.utils.realm.RealmExampleActivity" />
         <activity android:name=".module.utils.UtilsExampleActivity" />
-        <activity android:name=".module.utils.QRCodeExampleActivity"></activity>
+        <activity android:name=".module.utils.QRCodeExampleActivity" />
     </application>
 
 </manifest>

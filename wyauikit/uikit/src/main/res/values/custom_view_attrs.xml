@@ -139,4 +139,25 @@
 
     </declare-styleable>
 
+    <!-- switcher -->
+    <declare-styleable name="SwitcherView">
+        <attr name="switch_duration" format="integer" />
+        <attr name="anim_duration" format="integer" />
+        <attr name="anim_direction">
+            <enum name="down2up" value="0" />
+            <enum name="up2down" value="1" />
+            <enum name="left2right" value="2" />
+            <enum name="right2left" value="3" />
+        </attr>
+    </declare-styleable>
+
+    <!-- marquee -->
+    <declare-styleable name="MarqueeTextView">
+        <attr name="marquee_interval" format="integer" />
+        <attr name="marquee_mode">
+            <enum name="mode_repeat" value="0"/>
+            <enum name="mode_once" value="1"/>
+        </attr>
+    </declare-styleable>
+
 </resources>
