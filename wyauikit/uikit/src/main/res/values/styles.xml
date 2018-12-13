@@ -29,6 +29,13 @@
         <item name="android:windowExitAnimation">@anim/choice_menu_out</item>
     </style>
 
+    <!--WYACustomDialog animation-->
+    <style name="dialog_bottom_anim" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/dialog_out_bottom</item>
+    </style>
+
+
     <!--customPicker animation-->
     <style name="picker_view_slide_anim" mce_bogus="1" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/pickerview_slide_in_bottom</item>

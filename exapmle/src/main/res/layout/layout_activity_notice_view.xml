@@ -57,10 +57,6 @@
         app:anim_duration="400"
         app:switch_duration="3000" />
 
-    <com.wya.uikit.notice.NoticeView
-        android:id="@+id/nv_repeat"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_2" />
 
     <com.wya.uikit.notice.MarqueeTextView
         android:layout_width="match_parent"

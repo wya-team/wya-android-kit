@@ -25,9 +25,9 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="注销"
-                android:visibility="gone"
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/content"
@@ -49,28 +49,30 @@
                     android:paddingTop="12dp"
                     android:textColor="#666666"
                     android:textSize="14sp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <EditText
                     android:id="@+id/edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/c666666_r4_side_bg"
                     android:hint="我是编辑框"
+                    android:paddingBottom="8dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
                     android:textSize="14sp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/c666666_r4_side_bg"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0dp"/>
+                android:layout_height="0dp" />
+
             <View
                 android:id="@+id/line_view"
                 android:layout_width="match_parent"
@@ -87,30 +89,25 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/ll_cancel"
+
+                <TextView
+                    android:id="@+id/cancel"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:background="@null"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="取消"
+                    android:textColor="@drawable/btn_c333333_click_color"
+                    android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/cancel"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:text="取消"
-                        android:textColor="@drawable/btn_c333333_click_color"
-                        android:textSize="15sp" />
 
-                    <View
-                        android:layout_width="1px"
-                        android:layout_height="50dp"
-                        android:background="#eeeeee" />
-                </LinearLayout>
+                <View
+                    android:id="@+id/line_horizontal"
+                    android:layout_width="1px"
+                    android:layout_height="50dp"
+                    android:background="#eeeeee" />
 
 
                 <TextView
@@ -125,15 +122,8 @@
                     android:textColor="@drawable/btn_c00bfff_click_color"
                     android:textSize="15sp" />
 
+
             </LinearLayout>
-
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone">
-            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
 
