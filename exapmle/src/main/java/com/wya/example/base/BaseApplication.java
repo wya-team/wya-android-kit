@@ -5,6 +5,7 @@ import android.app.Application;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import com.arialyy.aria.core.Aria;
 import com.wya.helper.WYAConstants;
 import com.wya.uikit.toolbar.swipebacklayout.BGASwipeBackHelper;
 import com.wya.utils.utils.AppUtil;
@@ -32,6 +33,7 @@ public class BaseApplication extends Application {
          */
         BGASwipeBackHelper.init(this, null);
         initRealm();
+        Aria.init(this);
     }
 
     /**

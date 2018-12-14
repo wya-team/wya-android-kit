@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context="com.wya.example.module.utils.UtilsExampleActivity">
 
     <com.wya.uikit.button.WYAButton
@@ -27,6 +27,19 @@
         android:layout_height="40dp"
         android:layout_margin="10dp"
         android:text="Image"
+        android:textAllCaps="false"
+        app:backColor="#118EE9"
+        app:fillet="true"
+        app:textColor="#ffffff"
+        app:textColorPress="#50ffffff"
+        app:wya_button_radius="10" />
+
+    <com.wya.uikit.button.WYAButton
+        android:id="@+id/wya_button_download"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:text="FileDownload"
         android:textAllCaps="false"
         app:backColor="#118EE9"
         app:fillet="true"

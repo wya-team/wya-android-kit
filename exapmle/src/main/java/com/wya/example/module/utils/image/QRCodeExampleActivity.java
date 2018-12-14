@@ -1,4 +1,4 @@
-package com.wya.example.module.utils;
+package com.wya.example.module.utils.image;
 
 import android.content.Context;
 import android.graphics.Bitmap;

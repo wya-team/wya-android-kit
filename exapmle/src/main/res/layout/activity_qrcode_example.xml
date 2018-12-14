@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/light_gray"
-    tools:context=".module.utils.QRCodeExampleActivity">
+    tools:context=".module.utils.image.QRCodeExampleActivity">
 
     <Button
         android:id="@+id/crate_qr_image"
