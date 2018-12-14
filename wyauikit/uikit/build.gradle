@@ -25,6 +25,7 @@ android {
         main {
             res.srcDirs =
                     [
+                            'src/main/res/layout/customedittext',
                             'src/main/res/layout/imagecrop',
                             'src/main/res/layout/pickerview',
                             'src/main/res/layout/stepper',

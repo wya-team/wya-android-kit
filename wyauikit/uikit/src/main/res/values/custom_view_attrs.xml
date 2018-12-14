@@ -160,4 +160,18 @@
         </attr>
     </declare-styleable>
 
+
+    <!-- WYACustomEditText -->
+    <declare-styleable name="WYACustomEditText">
+        <attr name="backGroundImage" format = "reference" />
+        <attr name="hintTextColor" format="color"/>
+        <attr name="editTextColor" format="color"/>
+        <attr name="hintEditColor" format="color"/>
+        <attr name="hintTextStr" />
+        <attr name="editTextStr" />
+        <attr name="hintEditStr" />
+        <attr name="maxNum" format="integer"/>
+        <attr name="countTextColor" format="color"/>
+    </declare-styleable>
+
 </resources>
