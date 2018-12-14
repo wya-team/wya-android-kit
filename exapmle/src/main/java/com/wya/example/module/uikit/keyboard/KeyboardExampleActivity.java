@@ -58,34 +58,34 @@ public class KeyboardExampleActivity extends BaseActivity {
                     @Override
                     public void selectPosition(int position) {
                         if (position == 0) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, "0");
+                            getWyaToast().showShort( "0");
                         } else if (position == 1) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, "1");
+                            getWyaToast().showShort( "1");
                         } else if (position == 2) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, "2");
+                            getWyaToast().showShort( "2");
                         } else if (position == 3) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, "3");
+                            getWyaToast().showShort( "3");
                         } else if (position == 4) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, "4");
+                            getWyaToast().showShort( "4");
                         } else if (position == 5) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, "5");
+                            getWyaToast().showShort( "5");
                         } else if (position == 6) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, "6");
+                            getWyaToast().showShort( "6");
                         } else if (position == 7) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, "7");
+                            getWyaToast().showShort( "7");
                         } else if (position == 8) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, "8");
+                            getWyaToast().showShort( "8");
                         } else if (position == 9) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, "9");
+                            getWyaToast().showShort( "9");
                         } else if (position == 10) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, ".");
+                            getWyaToast().showShort( ".");
                         } else if (position == 11) {
                             wykCustomNumberKeyboard.dismiss();
-                            WYAToast.showShort(KeyboardExampleActivity.this, "hide");
+                            getWyaToast().showShort( "hide");
                         } else if (position == 12) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, "del");
+                            getWyaToast().showShort( "del");
                         } else if (position == 13) {
-                            WYAToast.showShort(KeyboardExampleActivity.this, "sure");
+                            getWyaToast().showShort( "sure");
                         }
                     }
                 });

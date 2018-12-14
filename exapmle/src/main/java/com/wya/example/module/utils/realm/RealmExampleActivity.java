@@ -108,7 +108,7 @@ public class RealmExampleActivity extends BaseActivity {
                 if (isAdd) {
                     add(user);
                 } else {
-                    WYAToast.showShort(RealmExampleActivity.this, "请输入正确的值");
+                    getWyaToast().showShort( "请输入正确的值");
                 }
                 break;
             case R.id.wya_button_reduce:
@@ -135,7 +135,7 @@ public class RealmExampleActivity extends BaseActivity {
                 if (isAdd2) {
                     add(user2);
                 } else {
-                    WYAToast.showShort(RealmExampleActivity.this, "请输入正确的值");
+                    getWyaToast().showShort( "请输入正确的值");
                 }
                 break;
             case R.id.wya_button_query:

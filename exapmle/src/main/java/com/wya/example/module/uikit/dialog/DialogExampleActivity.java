@@ -1,15 +1,11 @@
 package com.wya.example.module.uikit.dialog;
 
-import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.wya.example.R;
@@ -21,14 +17,12 @@ import com.wya.uikit.dialog.WYACustomDialog;
 import com.wya.uikit.dialog.WYALoadingDialog;
 import com.wya.uikit.expandrecyclerview.bean.RecyclerViewData;
 import com.wya.uikit.expandrecyclerview.listener.OnRecyclerViewListener;
-import com.wya.uikit.toast.WYAToast;
 import com.wya.utils.utils.ScreenUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * 创建日期：2018/11/23 16:23
@@ -178,7 +172,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            WYAToast.showShort(DialogExampleActivity.this, position + "");
+                                            getWyaToast().showShort(position + "");
                                         }
                                     });
                                 }
@@ -217,7 +211,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            WYAToast.showShort(DialogExampleActivity.this, position + "");
+                                            getWyaToast().showShort( position + "");
                                         }
                                     });
                                 }
@@ -277,7 +271,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            WYAToast.showShort(DialogExampleActivity.this, position + "");
+                                            getWyaToast().showShort( position + "");
                                         }
                                     });
                                 }
@@ -316,7 +310,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            WYAToast.showShort(DialogExampleActivity.this, position + "");
+                                            getWyaToast().showShort( position + "");
                                         }
                                     });
                                 }
@@ -388,7 +382,7 @@ public class DialogExampleActivity extends BaseActivity {
                             dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                    WYAToast.showShort(DialogExampleActivity.this, position + "");
+                                    getWyaToast().showShort( position + "");
                                 }
                             });
                         }

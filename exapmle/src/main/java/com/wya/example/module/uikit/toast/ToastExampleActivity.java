@@ -10,12 +10,13 @@ import com.wya.uikit.toast.WYAToast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
- /**
-  * 创建日期：2018/11/22 14:26
-  * 作者： Mao Chunjiang
-  * 文件名称：ToastExampleActivity
-  * 类说明：自定义Toast
-  */
+
+/**
+ * 创建日期：2018/11/22 14:26
+ * 作者： Mao Chunjiang
+ * 文件名称：ToastExampleActivity
+ * 类说明：自定义Toast
+ */
 
 public class ToastExampleActivity extends BaseActivity {
 
@@ -40,13 +41,13 @@ public class ToastExampleActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_normal:
-                WYAToast.showShort(ToastExampleActivity.this, "普通Toast");
+                getWyaToast().showShort("普通Toast");
                 break;
             case R.id.tv_long:
-                WYAToast.showLong(ToastExampleActivity.this, "长时间Toast");
+                getWyaToast().showLong("长时间Toast");
                 break;
             case R.id.tv_custom:
-                WYAToast.showToastWithImg(ToastExampleActivity.this, "自定义Toast", R.mipmap.ic_launcher, Gravity.CENTER);
+                getWyaToast().showToastWithImg("自定义Toast", R.mipmap.ic_launcher, Gravity.CENTER);
                 break;
         }
     }

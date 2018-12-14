@@ -1,12 +1,12 @@
 package com.wya.example.base;
 
 
+import android.app.Application;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import com.wya.helper.WYAConstants;
 import com.wya.uikit.toolbar.swipebacklayout.BGASwipeBackHelper;
-import com.wya.utils.BaseUtilsApplication;
 import com.wya.utils.utils.AppUtil;
 
 import io.realm.Realm;
@@ -19,7 +19,7 @@ import io.realm.RealmConfiguration;
  * 类说明：
  */
 
-public class BaseApplication extends BaseUtilsApplication {
+public class BaseApplication extends Application {
 
     @Override
     public void onCreate() {
