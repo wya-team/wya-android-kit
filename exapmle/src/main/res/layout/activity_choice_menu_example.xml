@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_constraintHorizontal_weight="1"
+    android:background="@color/white"
     tools:context=".module.uikit.choicemenu.ChoiceMenuExampleActivity"
     tools:layout_editor_absoluteY="25dp">
 
