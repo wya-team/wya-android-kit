@@ -57,15 +57,12 @@
         app:anim_duration="400"
         app:switch_duration="3000" />
 
-    <com.wya.uikit.notice.NoticeView
-        android:id="@+id/nv_repeat"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_2" />
-
     <com.wya.uikit.notice.MarqueeTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/image_ic_adjust"
+        android:drawablePadding="@dimen/dp_10"
         android:padding="@dimen/dp_20"
-        android:text="跑马灯 跑马灯 跑马灯 跑马灯跑马灯灯跑马灯 跑马灯跑马灯 跑马灯跑马灯 跑马灯" />
+        android:text="因全国公民身份系统升级，添加银行卡银行卡银行卡银行卡" />
 
 </LinearLayout>

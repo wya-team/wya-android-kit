@@ -44,7 +44,7 @@ public class NoticeExampleActivity extends AppCompatActivity {
                 });
             }
         });
-        vsUp2Down.inflate(R.layout.item_switch_view).startAutoPlay();
+        vsUp2Down.inflate(R.layout.item_switch_view).startSwitcher();
         
         // down2up
         vsDown2Up = findViewById(R.id.vs_down2up);
@@ -52,19 +52,19 @@ public class NoticeExampleActivity extends AppCompatActivity {
             @Override
             public void onSwitch(View nextView, int index) {
                 if (null == nextView) return;
-                if (index == 3) vsDown2Up.pauseAutoPlay();
+                if (index == 3) vsDown2Up.pauseSwitcher();
                 final String tostText = index + "--- 从下到上 ---";
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(tostText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        vsDown2Up.startAutoPlay();
+                        vsDown2Up.startSwitcher();
                         Toast.makeText(v.getContext().getApplicationContext(), tostText, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
-        vsDown2Up.inflate(R.layout.item_switch_view).startAutoPlay();
+        vsDown2Up.inflate(R.layout.item_switch_view).startSwitcher();
         
         // left2right
         vsLeft2Right = findViewById(R.id.vs_left2right);
@@ -82,7 +82,7 @@ public class NoticeExampleActivity extends AppCompatActivity {
                 });
             }
         });
-        vsLeft2Right.inflate(R.layout.item_switch_view).startAutoPlay();
+        vsLeft2Right.inflate(R.layout.item_switch_view).startSwitcher();
         
         // right2left
         vsRight2Left = findViewById(R.id.vs_right2left);
@@ -100,7 +100,7 @@ public class NoticeExampleActivity extends AppCompatActivity {
                 });
             }
         });
-        vsRight2Left.inflate(R.layout.item_switch_view).startAutoPlay();
+        vsRight2Left.inflate(R.layout.item_switch_view).startSwitcher();
         
         vsCusAnim = findViewById(R.id.vs_cus_anim);
         vsCusAnim.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
@@ -117,7 +117,7 @@ public class NoticeExampleActivity extends AppCompatActivity {
                 });
             }
         });
-        vsCusAnim.setAnimation(null, null).inflate(R.layout.item_switch_view).startAutoPlay();
+        vsCusAnim.setAnimation(null, null).inflate(R.layout.item_switch_view).startSwitcher();
     }
     
 }
