@@ -9,6 +9,7 @@ import com.wya.example.module.uikit.badge.BadgeExampleActivity;
 import com.wya.example.module.uikit.banner.BannerExampleActivity;
 import com.wya.example.module.uikit.button.ButtonExampleActivity;
 import com.wya.example.module.uikit.choicemenu.ChoiceMenuExampleActivity;
+import com.wya.example.module.uikit.customedittext.CustomEditTextExampleActivity;
 import com.wya.example.module.uikit.customitems.CustomItemsExampleActivity;
 import com.wya.example.module.uikit.dialog.DialogExampleActivity;
 import com.wya.example.module.uikit.gallery.GalleryExampleActivity;
@@ -46,7 +47,7 @@ public class UiKitExampleActivity extends BaseActivity {
 			.tv_popupwindow, R.id.tv_tab_bar, R.id.tv_tab_layout, R.id.tv_dialog, R.id
 			.tv_pagination_view, R.id.tv_choice_menu, R.id.tv_badge, R.id.tv_gallery, R.id
 			.tv_image_picker, R.id.tv_progress, R.id.tv_banner, R.id.tv_picker_view, R.id
-			.tv_crop_view, R.id.tv_notice_view, R.id.tv_slide_view})
+			.tv_crop_view, R.id.tv_notice_view, R.id.tv_custom_edit_text,R.id.tv_slide_view})
 	public void onViewClicked(View view) {
 		switch (view.getId()) {
 			case R.id.tv_tool_bar:
@@ -117,6 +118,9 @@ public class UiKitExampleActivity extends BaseActivity {
 				break;
 			case R.id.tv_notice_view:
 				NoticeExampleActivity.start(UiKitExampleActivity.this);
+				break;
+			case R.id.tv_custom_edit_text:
+				startActivity(new Intent(this, CustomEditTextExampleActivity.class));
 				break;
 			case R.id.tv_slide_view:
 				SlideViewExampleActivity.start(UiKitExampleActivity.this);

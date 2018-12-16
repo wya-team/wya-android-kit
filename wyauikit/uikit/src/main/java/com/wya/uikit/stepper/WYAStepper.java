@@ -7,16 +7,15 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.wya.uikit.R;
-import com.wya.uikit.toast.WYAToast;
 
 /**
  * 创建日期：2018/12/3 9:32
@@ -140,11 +139,11 @@ public class WYAStepper extends LinearLayout {
                 if (!s.toString().equals("")) {
                     int now_num = Integer.valueOf(s.toString()).intValue();
                     if (now_num > max_num) {
-                        WYAToast.showShort(getContext(), "输入的值太大");
+                        Toast.makeText(getContext(), "输入的值太大", Toast.LENGTH_SHORT);
                         setValue(Integer.valueOf(input_before).intValue());
                         stepper_et_num.setCursorVisible(false);
                     } else if (now_num < min_num) {
-                        WYAToast.showShort(getContext(), "输入的值太小");
+                        Toast.makeText(getContext(), "输入的值太小", Toast.LENGTH_SHORT);
                         setValue(Integer.valueOf(input_before).intValue());
                         stepper_et_num.setCursorVisible(false);
                     } else {

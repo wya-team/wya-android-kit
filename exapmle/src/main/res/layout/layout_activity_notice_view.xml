@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/image_ic_adjust"
         android:drawablePadding="@dimen/dp_10"
-        android:padding="@dimen/dp_20"
+        android:padding="@dimen/dp_6"
         android:text="因全国公民身份系统升级，添加银行卡银行卡银行卡银行卡" />
 
 </LinearLayout>

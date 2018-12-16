@@ -72,7 +72,7 @@ public class NoticeExampleActivity extends AppCompatActivity {
             @Override
             public void onSwitch(View nextView, int index) {
                 if (nextView == null) return;
-                final String tostText = index + "--- 从左到右从左到右长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长的文案 ---";
+                final String tostText = index + "--- 从左到右从左到右 ---";
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(tostText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override

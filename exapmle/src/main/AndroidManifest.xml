@@ -72,6 +72,7 @@
         <activity android:name=".module.utils.realm.RealmExampleActivity" />
         <activity android:name=".module.utils.UtilsExampleActivity" />
         <activity android:name=".module.utils.QRCodeExampleActivity" />
+        <activity android:name=".module.uikit.customedittext.CustomEditTextExampleActivity"></activity>
         <activity android:name=".module.uikit.slidder.SlideViewExampleActivity" />
     </application>
 

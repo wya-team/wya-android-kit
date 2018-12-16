@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.wya.example.module.uikit.customedittext.CustomEditTextExampleActivity">
+
+    <com.wya.uikit.customeditext.WYACustomEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        app:editTextStr="输入内容"
+        app:hintTextStr=""
+        app:hintEditStr="我是"
+        app:maxNum="20">
+    </com.wya.uikit.customeditext.WYACustomEditText>
+
+
+    <com.wya.uikit.customeditext.WYACustomEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        app:hintTextStr="提示"
+        app:hintEditStr="提示内容"
+        app:editTextColor="@color/white"
+        app:countTextColor="@color/white"
+        app:hintTextColor="@color/white"
+        app:maxNum="50"
+        app:backGroundImage="@drawable/black_r6_bg">
+    </com.wya.uikit.customeditext.WYACustomEditText>
+
+
+
+</LinearLayout>

@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -22,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.wya.example.R;
+import com.wya.example.base.BaseActivity;
 import com.wya.uikit.imagecrop.Crop;
 import com.wya.uikit.imagepicker.ImagePickerCreator;
 import com.wya.uikit.imagepicker.LocalImage;
@@ -32,7 +32,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImagePickerExampleActivity extends AppCompatActivity {
+public class ImagePickerExampleActivity extends BaseActivity {
 	private RecyclerView mRecyclerView;
 	private BaseQuickAdapter<LocalImage, BaseViewHolder> mAdapter;
 	private List<LocalImage> mLocalImages = new ArrayList<>();
@@ -40,10 +40,12 @@ public class ImagePickerExampleActivity extends AppCompatActivity {
 	private ImageView crop_image;
 
 	@Override
+	protected int getLayoutID() {
+		return R.layout.activity_image_picker_example;
+	}
 
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_image_picker_example);
+	@Override
+	protected void initView() {
 		mRecyclerView = findViewById(R.id.recycler_view);
 		input = findViewById(R.id.num_input);
 		crop_image = findViewById(R.id.crop_image);

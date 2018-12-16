@@ -2,14 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/group"
-    android:background="@color/colorAccent">
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:id="@+id/group">
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#ffffff"
-        android:padding="10dp"
-        android:textSize="18sp"/>
+        android:textColor="@drawable/btn_white_click_color"
+        android:padding="@dimen/sp_10"
+        android:textSize="@dimen/sp_18"/>
+
+    <include layout="@layout/line_ce"></include>
 
 </LinearLayout>
