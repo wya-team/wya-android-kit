@@ -9,10 +9,10 @@ import com.arialyy.aria.core.download.DownloadTask;
  * author : XuDonglin
  * e-mail : 465715784@qq.com
  * time   : 2018/12/14
- * desc   : AriaManagerUtil
+ * desc   : FileManagerUtil
  * version: 1.0
  */
-public class AriaManagerUtil {
+public class FileManagerUtil {
     public final static  int WAIT = 0;
     public static final int PREVIOUS = 1;
     public static final int TASK_START = 2;
@@ -24,18 +24,18 @@ public class AriaManagerUtil {
     public static final int TASK_COMPLETE = 8;
     public static final int TASK_NO_POINT = 9;
 
-    private static AriaManagerUtil sAriaManagerUtil;
+    private static FileManagerUtil sFileManagerUtil;
     private DownloadReceiver mDownload;
 
-    private AriaManagerUtil() {
+    private FileManagerUtil() {
         mDownload = Aria.download(this);
     }
 
-    public static AriaManagerUtil getInstance() {
-        if (sAriaManagerUtil == null) {
-            sAriaManagerUtil = new AriaManagerUtil();
+    public static FileManagerUtil getInstance() {
+        if (sFileManagerUtil == null) {
+            sFileManagerUtil = new FileManagerUtil();
         }
-        return sAriaManagerUtil;
+        return sFileManagerUtil;
     }
 
 

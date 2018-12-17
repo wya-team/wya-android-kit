@@ -168,3 +168,107 @@ encodeChineseStr(String srcStr)| 转码中文字符串
 compareToMin(String s1, String s2)| 用来比较手机号版本
 spliteTime(String dateStr, int start, int end)| 截取指定长度 从0开始，包左不包右
 hasChineseChar(String str)| 是否有中文字符
+
+# 9、FileManagerUtil
+## 功能说明
+文件下载工具类，文件上传下载采用第三方库Aria，FileManagerUtil对其进行了使用封装。
+
+## 属性说明
+
+## 用法说明
+
+- 首先需要在Application中初始化`Aria.init(this);`
+- 在使用时首先需要在onCreate()注册，在onDestroy()中注销
+
+方法|说明
+---|---
+getInstance()|单例获取FileManagerUtil对象
+register()|注册
+unRegister|注销
+getDownloadReceiver()|获取DownloadReceiver对象，所有的下载在这个对象下操作
+setOnDownLoaderListener(OnDownLoaderListener onDownLoaderListener)|设置监听事件
+void onDownloadState(int state, DownloadTask task, Exception e)|监听事件回调方法state代表状态，task代表所有下载信息，Exception 错误提示，在正常是返回null
+
+
+state状态|说明
+---|---
+TASK_START|任务开始时
+TASK_RUNNING|任务正在运行
+TASK_RESUME|任务重新启动
+TASK_STOP|任务被暂停
+TASK_CANCEL|任务取消
+TASK_FAIL|下载失败
+TASK_COMPLETE|下载完成
+TASK_NO_POINT|该下载任务不支持断点下载
+
+- 开始下载/重新开启（暂停之后）url代表文件地址，filepath 图片存储全路径
+````
+FileManagerUtil.getInstance().getDownloadReceiver().load(url)
+                  .setFilePath(filepath)
+                  .start();
+````
+- 暂停下载
+````
+FileManagerUtil.getInstance().getDownloadReceiver().load(url).stop();
+````
+- 取消下载 cancel方法中参数代表是否需要删除下载的文件
+````
+FileManagerUtil.getInstance().getDownloadReceiver().load(url).cancel(true);
+````
+
+10. DataCleanUtil
+## 功能说明
+清除应用缓存
+
+## 属性说明
+
+## 用法说明
+
+方法|说明
+---|---
+cleanInternalCache(Context context)|清除本应用内部缓存(/data/data/com.xxx.xxx/cache)
+cleanDatabases(Context context)|清除本应用所有数据库(/data/data/com.xxx.xxx/databases)
+cleanSharedPreference(Context context)|清除本应用SharedPreference(/data/data/com.xxx.xxx/shared_prefs)
+cleanDatabaseByName(Context context, String dbName)|按名字清除本应用数据库
+cleanFiles(Context context)|清除/data/data/com.xxx.xxx/files下的内容
+cleanExternalCache(Context context)|清除外部cache下的内容(/mnt/sdcard/android/data/com.xxx.xxx/cache)
+cleanCustomCache(String filePath)|清除自定义路径下的文件，使用需小心，请不要误删。而且只支持目录下的文件删除
+cleanApplicationData(Context context, String... filepath)|清除本应用所有的数据
+deleteFilesByDirectory(File directory)|删除方法 这里只会删除某个文件夹下的文件，如果传入的directory是个文件，将不做处理
+deleteFolderFile(String filePath, boolean deleteThisPath)|删除指定目录下文件及目录
+getCacheSize(File file)|获取文件缓存大小
+
+11. DateUtil
+## 功能说明
+时间格式化
+
+## 属性说明
+
+## 用法说明
+
+方法|说明
+---|---
+stamp2date(long stamp, String pattern)|时间戳转字符串时间stamp   时间戳pattern 时间格式
+stamp2date(long stamp)|时间戳转字符串时间 yyyy-MM-dd HH:mm:ss
+formatDate(String time, String pattern)|格式化时间
+date2Stamp(String time)|时间转时间戳
+getYear(Date date)|获取某日期的年份
+getMonth(Date date) |获取某日期的月份
+getDay(Date date)|获取某日期的日数
+getDayEndTime(final Date date)|获取指定时间的那天 23:59:59.999 的时间
+getDistanceDays(String str1, String str2)|两个时间之间相差距离多少天
+getDistanceTime(String str1, String str2)|两个时间相差距离多少天多少小时多少分多少秒
+
+12. QRCodeUtil
+## 功能说明
+二维码/条形码生成 需要用到Google zxing库
+
+## 属性说明
+
+## 用法说明
+
+方法|说明
+---|---
+createQRImage(String content, int widthPix, int heightPix, Bitmap logoBm, String filePath)|生成二维码Bitmap
+addLogo(Bitmap src, Bitmap logo)|在二维码中间添加Logo图案
+createBarcode(String content, int widthPix, int heightPix, String filePath)|绘制条形码

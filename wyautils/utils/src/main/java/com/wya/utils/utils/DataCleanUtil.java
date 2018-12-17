@@ -138,6 +138,16 @@ public class DataCleanUtil {
 	}
 
 	/**
+	 * 获取文件缓存大小
+	 * @param file
+	 * @return
+	 * @throws Exception
+	 */
+	public static String getCacheSize(File file) throws Exception {
+		return getFormatSize(getFolderSize(file));
+	}
+
+	/**
 	 * 删除指定目录下文件及目录
 	 *
 	 * @param deleteThisPath
@@ -207,7 +217,5 @@ public class DataCleanUtil {
 	}
 
 
-	public static String getCacheSize(File file) throws Exception {
-		return getFormatSize(getFolderSize(file));
-	}
+
 }

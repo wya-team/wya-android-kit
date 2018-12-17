@@ -153,9 +153,8 @@ public class QRCodeUtil {
 			// 图像数据转换，使用了矩阵转换 参数顺序分别为：编码内容，编码类型，生成图片宽度，生成图片高度，设置参数
 			BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.CODE_128, widthPix, heightPix, hints);
 
-			//增加：把宽度修改我们修改过后的真实的宽度
+			//增加：把宽度修改过后的真实的宽度
 			widthPix = bitMatrix.getWidth();
-			// Log.e("zmm", "---------->" + widthPix + "--->" + height);
 			int[] pixels = new int[widthPix * heightPix];
 //             下面这里按照条形码的算法，逐个生成条形码的图片，
 			// 两个for循环是图片横列扫描的结果

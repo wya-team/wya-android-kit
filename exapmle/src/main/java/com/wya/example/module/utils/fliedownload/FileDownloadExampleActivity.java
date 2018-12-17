@@ -12,13 +12,13 @@ import com.arialyy.aria.core.download.DownloadTask;
 import com.arialyy.aria.util.CommonUtil;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
-import com.wya.utils.utils.AriaManagerUtil;
+import com.wya.utils.utils.FileManagerUtil;
 
-import static com.wya.utils.utils.AriaManagerUtil.TASK_CANCEL;
-import static com.wya.utils.utils.AriaManagerUtil.TASK_COMPLETE;
-import static com.wya.utils.utils.AriaManagerUtil.TASK_RUNNING;
-import static com.wya.utils.utils.AriaManagerUtil.TASK_START;
-import static com.wya.utils.utils.AriaManagerUtil.TASK_STOP;
+import static com.wya.utils.utils.FileManagerUtil.TASK_CANCEL;
+import static com.wya.utils.utils.FileManagerUtil.TASK_COMPLETE;
+import static com.wya.utils.utils.FileManagerUtil.TASK_RUNNING;
+import static com.wya.utils.utils.FileManagerUtil.TASK_START;
+import static com.wya.utils.utils.FileManagerUtil.TASK_STOP;
 
 public class FileDownloadExampleActivity extends BaseActivity implements View.OnClickListener {
     private TextView percent;
@@ -48,7 +48,7 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
     @SuppressLint("CheckResult")
     @Override
     protected void initView() {
-        AriaManagerUtil.getInstance().register();
+        FileManagerUtil.getInstance().register();
         percent = findViewById(R.id.progress_percent);
         start = findViewById(R.id.start);
         pause = findViewById(R.id.pause);
@@ -80,7 +80,7 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
     }
 
     private void initListener() {
-        AriaManagerUtil.getInstance().setOnDownLoaderListener(new AriaManagerUtil.OnDownLoaderListener() {
+        FileManagerUtil.getInstance().setOnDownLoaderListener(new FileManagerUtil.OnDownLoaderListener() {
             @Override
             public void onDownloadState(int state, DownloadTask task, Exception e) {
                 String key = task.getKey();
@@ -163,12 +163,12 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
     }
 
     private void initHasDown() {
-        DownloadTarget load = AriaManagerUtil.getInstance().getDownloadReceiver().load(url);
+        DownloadTarget load = FileManagerUtil.getInstance().getDownloadReceiver().load(url);
         progress.setProgress(load.getPercent());
         down_file.setText(CommonUtil.formatFileSize(load.getCurrentProgress()));
         all_file.setText(load.getConvertFileSize());
 
-        DownloadTarget load2 = AriaManagerUtil.getInstance().getDownloadReceiver().load(url2);
+        DownloadTarget load2 = FileManagerUtil.getInstance().getDownloadReceiver().load(url2);
         progress2.setProgress(load2.getPercent());
         down_file2.setText(CommonUtil.formatFileSize(load2.getCurrentProgress()));
         all_file2.setText(load2.getConvertFileSize());
@@ -195,7 +195,7 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AriaManagerUtil.getInstance().unRegister();
+        FileManagerUtil.getInstance().unRegister();
     }
 
     @Override
@@ -207,33 +207,33 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                 setBtnState(true);
                 break;
             case R.id.pause:
-                AriaManagerUtil.getInstance().getDownloadReceiver().load(url).stop();
+                FileManagerUtil.getInstance().getDownloadReceiver().load(url).stop();
 
                 break;
             case R.id.delete:
-                AriaManagerUtil.getInstance().getDownloadReceiver().load(url).cancel(true);
+                FileManagerUtil.getInstance().getDownloadReceiver().load(url).cancel(true);
                 break;
             case R.id.start2:
                 start2();
                 setBtnState2(true);
                 break;
             case R.id.pause2:
-                AriaManagerUtil.getInstance().getDownloadReceiver().load(url2).stop();
+                FileManagerUtil.getInstance().getDownloadReceiver().load(url2).stop();
                 break;
             case R.id.delete2:
-                AriaManagerUtil.getInstance().getDownloadReceiver().load(url2).cancel(true);
+                FileManagerUtil.getInstance().getDownloadReceiver().load(url2).cancel(true);
                 break;
         }
     }
 
     private void start() {
-        AriaManagerUtil.getInstance().getDownloadReceiver().load(url)
+        FileManagerUtil.getInstance().getDownloadReceiver().load(url)
                 .setFilePath(filepath)
                 .start();
     }
 
     private void start2() {
-        AriaManagerUtil.getInstance().getDownloadReceiver().load(url2)
+        FileManagerUtil.getInstance().getDownloadReceiver().load(url2)
                 .setFilePath(filepath2)
                 .start();
     }

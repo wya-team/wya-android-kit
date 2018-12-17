@@ -891,7 +891,7 @@ public class DateUtil {
      * @param str2 时间参数 2：
      * @return 相差天数
      */
-    public static Long getDistanceDays(String str1, String str2) throws Exception {
+    public static Long getDistanceDays(String str1, String str2) {
         DateFormat df = new SimpleDateFormat(DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS);
         Date one;
         Date two;
@@ -915,22 +915,6 @@ public class DateUtil {
     }
 
     /**
-     * 获取指定时间的那天 00:00:00.000 的时间
-     *
-     * @param date
-     * @return
-     */
-    public static Date getDayBeginTime(final Date date) {
-        Calendar c = Calendar.getInstance();
-        c.setTime(date);
-        c.set(Calendar.HOUR_OF_DAY, 0);
-        c.set(Calendar.MINUTE, 0);
-        c.set(Calendar.SECOND, 0);
-        c.set(Calendar.MILLISECOND, 0);
-        return c.getTime();
-    }
-
-    /**
      * 获取指定时间的那天 23:59:59.999 的时间
      *
      * @param date
@@ -945,18 +929,6 @@ public class DateUtil {
         c.set(Calendar.MILLISECOND, 999);
         return c.getTime();
     }
-
- /*
-    public static void main(String [] args){
-        try {
-            DateUtil dateUtil = new DateUtil();
-            System.out.println();
-
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-
-    }  */
 
 
 }
