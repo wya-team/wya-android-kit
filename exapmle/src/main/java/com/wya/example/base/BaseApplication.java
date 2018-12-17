@@ -2,8 +2,6 @@ package com.wya.example.base;
 
 
 import android.app.Application;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 
 import com.arialyy.aria.core.Aria;
 import com.wya.helper.WYAConstants;
@@ -25,6 +23,10 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        initBase();
+    }
+
+    private void initBase() {
         initConstants();
         /**
          * 必须在 Application 的 onCreate 方法中执行 BGASwipeBackHelper.init 来初始化滑动返回
@@ -54,7 +56,6 @@ public class BaseApplication extends Application {
     /**
      * 初始化常量
      */
-    @RequiresApi(api = Build.VERSION_CODES.DONUT)
     private void initConstants() {
         new WYAConstants.Builder(this)
                 .dBName("test")//设置数据库名称

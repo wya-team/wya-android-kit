@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.uikit.customitems.cardview.CardViewExampleActivity;
-import com.wya.example.module.uikit.customitems.expandrecyclerview.ExpandRecyclerViewActivity;
 import com.wya.example.module.uikit.customitems.grid.GridExampleActivity;
 import com.wya.example.module.uikit.customitems.inputitem.InputItemExampleActivity;
 
@@ -28,7 +27,6 @@ public class CustomItemsExampleActivity extends BaseActivity {
         data.add("CardView");
         data.add("Grid");
         data.add("InputItem");
-        data.add("ExpandRecycleView");
         recycleView.setLayoutManager(new LinearLayoutManager(this));
         customItemsAdapter = new CustomItemsAdapter(this, R.layout.wya_custom_item, data);
         recycleView.setAdapter(customItemsAdapter);
@@ -39,8 +37,6 @@ public class CustomItemsExampleActivity extends BaseActivity {
                 startActivity(new Intent(CustomItemsExampleActivity.this, GridExampleActivity.class));
             } else if(position == 2){
                 startActivity(new Intent(CustomItemsExampleActivity.this, InputItemExampleActivity.class));
-            } else if(position == 3){
-                startActivity(new Intent(CustomItemsExampleActivity.this, ExpandRecyclerViewActivity.class));
             }
         });
     }

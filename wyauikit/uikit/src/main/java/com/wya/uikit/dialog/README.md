@@ -29,10 +29,6 @@ gravity|弹出框位置|int|Gravity.CENTER
 
 ## 用法说明
 
-
-
-
-
 - 项目中的使用
 ```
     wyaCustomDialog = new WYACustomDialog.Builder(this)

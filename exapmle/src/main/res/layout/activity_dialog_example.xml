@@ -8,11 +8,9 @@
     tools:context="com.wya.example.module.uikit.dialog.DialogExampleActivity">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycle_view"
+    <ExpandableListView
+        android:id="@+id/expend_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"></ExpandableListView>
 
 </LinearLayout>
