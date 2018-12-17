@@ -2,15 +2,16 @@ package com.wya.example.module.uikit.notice;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wya.example.R;
-import com.wya.example.base.BaseActivity;
 import com.wya.uikit.notice.switcher.SwitcherView;
 
-public class NoticeExampleActivity extends BaseActivity {
+public class NoticeExampleActivity extends AppCompatActivity {
     
     private SwitcherView vsDown2Up, vsUp2Down, vsLeft2Right, vsRight2Left, vsCusAnim;
     
@@ -21,15 +22,12 @@ public class NoticeExampleActivity extends BaseActivity {
         Intent intent = new Intent(activity, NoticeExampleActivity.class);
         activity.startActivity(intent);
     }
-
+    
     @Override
-    protected int getLayoutID() {
-        return R.layout.layout_activity_notice_view;
-    }
-
-
-    @Override
-    protected void initView() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout_activity_notice_view);
+        
         // up2down
         vsUp2Down = findViewById(R.id.vs_up2down);
         vsUp2Down.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
@@ -46,35 +44,35 @@ public class NoticeExampleActivity extends BaseActivity {
                 });
             }
         });
-        vsUp2Down.inflate(R.layout.item_switch_view).startAutoPlay();
-
+        vsUp2Down.inflate(R.layout.item_switch_view).startSwitcher();
+        
         // down2up
         vsDown2Up = findViewById(R.id.vs_down2up);
         vsDown2Up.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
                 if (null == nextView) return;
-                if (index == 3) vsDown2Up.pauseAutoPlay();
+                if (index == 3) vsDown2Up.pauseSwitcher();
                 final String tostText = index + "--- 从下到上 ---";
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(tostText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        vsDown2Up.startAutoPlay();
+                        vsDown2Up.startSwitcher();
                         Toast.makeText(v.getContext().getApplicationContext(), tostText, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
-        vsDown2Up.inflate(R.layout.item_switch_view).startAutoPlay();
-
+        vsDown2Up.inflate(R.layout.item_switch_view).startSwitcher();
+        
         // left2right
         vsLeft2Right = findViewById(R.id.vs_left2right);
         vsLeft2Right.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
                 if (nextView == null) return;
-                final String tostText = index + "--- 从左到右从左到右长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长的文案 ---";
+                final String tostText = index + "--- 从左到右从左到右 ---";
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(tostText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -84,8 +82,8 @@ public class NoticeExampleActivity extends BaseActivity {
                 });
             }
         });
-        vsLeft2Right.inflate(R.layout.item_switch_view).startAutoPlay();
-
+        vsLeft2Right.inflate(R.layout.item_switch_view).startSwitcher();
+        
         // right2left
         vsRight2Left = findViewById(R.id.vs_right2left);
         vsRight2Left.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
@@ -102,8 +100,8 @@ public class NoticeExampleActivity extends BaseActivity {
                 });
             }
         });
-        vsRight2Left.inflate(R.layout.item_switch_view).startAutoPlay();
-
+        vsRight2Left.inflate(R.layout.item_switch_view).startSwitcher();
+        
         vsCusAnim = findViewById(R.id.vs_cus_anim);
         vsCusAnim.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
@@ -119,8 +117,8 @@ public class NoticeExampleActivity extends BaseActivity {
                 });
             }
         });
-        vsCusAnim.setAnimation(null, null).inflate(R.layout.item_switch_view).startAutoPlay();
+        vsCusAnim.setAnimation(null, null).inflate(R.layout.item_switch_view).startSwitcher();
     }
-
+    
 }
 

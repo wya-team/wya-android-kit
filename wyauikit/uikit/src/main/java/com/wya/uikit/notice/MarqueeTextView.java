@@ -41,8 +41,8 @@ public class MarqueeTextView extends AppCompatTextView {
     private void parseAttrs(Context context, AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MarqueeTextView);
         if (null != typedArray) {
-            mMarqueeInterval = typedArray.getInt(R.styleable.MarqueeTextView_marquee_interval, MARQUEE_DEFAULT_INTERVAL);
-            mMarqueeMode = typedArray.getInt(R.styleable.MarqueeTextView_marquee_mode, MARQUEE_MODE_REPEAT);
+            mMarqueeInterval = typedArray.getInt(R.styleable.MarqueeTextView_mtv_interval, MARQUEE_DEFAULT_INTERVAL);
+            mMarqueeMode = typedArray.getInt(R.styleable.MarqueeTextView_mtv_mode, MARQUEE_MODE_REPEAT);
             typedArray.recycle();
         }
     }

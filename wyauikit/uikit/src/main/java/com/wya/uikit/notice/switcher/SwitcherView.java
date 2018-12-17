@@ -25,7 +25,7 @@ public class SwitcherView extends ViewSwitcher {
     private int mSwitchDuration;
     @LayoutRes
     private int mResLayout;
-    private AutoPlayTask mAutoPlayTask;
+    private AutoSwitcherTask mAutoPlayTask;
     private SwitcherViewListener mListener;
     private boolean mIsTaskLive;
     private int mIndex;
@@ -59,7 +59,7 @@ public class SwitcherView extends ViewSwitcher {
     }
     
     private void init() {
-        mAutoPlayTask = new AutoPlayTask(this);
+        mAutoPlayTask = new AutoSwitcherTask(this);
         initAnimation();
     }
     
@@ -141,7 +141,7 @@ public class SwitcherView extends ViewSwitcher {
         Log.e("ZCQ", "onAttachedToWindow");
         super.onAttachedToWindow();
         if (mIndex > 1) {
-            startAutoTask();
+            startAutoSwitcher();
         }
     }
     
@@ -149,39 +149,39 @@ public class SwitcherView extends ViewSwitcher {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         Log.e("ZCQ", "onDetachedFromWindow");
-        pauseAutoPlay();
+        pauseSwitcher();
     }
     
-    public void startAutoPlay() {
+    public void startSwitcher() {
         if (null == mAutoPlayTask) {
-            mAutoPlayTask = new AutoPlayTask(this);
+            mAutoPlayTask = new AutoSwitcherTask(this);
         }
         mIsTaskLive = true;
-        startAutoTask();
+        startAutoSwitcher();
     }
     
-    private void startAutoTask() {
+    private void startAutoSwitcher() {
         removeCallbacks(mAutoPlayTask);
         postDelayed(mAutoPlayTask, mSwitchDuration);
     }
     
-    public void resetAutoPlay() {
-        mIsTaskLive = false;
-        if (null != mAutoPlayTask) removeCallbacks(mAutoPlayTask);
-        if (mListener != null) mListener.onSwitch(this.getCurrentView(), mIndex = 0);
-    }
-    
-    public void pauseAutoPlay() {
+    public void pauseSwitcher() {
         mIsTaskLive = false;
         if (null != mAutoPlayTask) {
             removeCallbacks(mAutoPlayTask);
         }
     }
     
-    private class AutoPlayTask implements Runnable {
+    public void resetSwitcher() {
+        mIsTaskLive = false;
+        if (null != mAutoPlayTask) removeCallbacks(mAutoPlayTask);
+        if (mListener != null) mListener.onSwitch(this.getCurrentView(), mIndex = 0);
+    }
+    
+    private class AutoSwitcherTask implements Runnable {
         private final WeakReference<SwitcherView> mSwitcher;
         
-        private AutoPlayTask(SwitcherView switcher) {
+        private AutoSwitcherTask(SwitcherView switcher) {
             mSwitcher = new WeakReference<>(switcher);
         }
         
@@ -191,7 +191,7 @@ public class SwitcherView extends ViewSwitcher {
                 SwitcherView switcher = mSwitcher.get();
                 if (switcher != null) {
                     switcher.switchToNextView();
-                    switcher.startAutoTask();
+                    switcher.startAutoSwitcher();
                 }
             }
         }
@@ -207,6 +207,14 @@ public class SwitcherView extends ViewSwitcher {
     
     public int getCurIndex() {
         return mIndex;
+    }
+    
+    public void setAnimDirection(int direction) {
+        this.mAnimDirection = direction;
+    }
+    
+    public void setSwitchDuration(int duration) {
+        this.mAnimDuration = duration;
     }
     
     public interface SwitcherViewListener {

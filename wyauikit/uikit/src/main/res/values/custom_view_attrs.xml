@@ -153,13 +153,12 @@
 
     <!-- marquee -->
     <declare-styleable name="MarqueeTextView">
-        <attr name="marquee_interval" format="integer" />
-        <attr name="marquee_mode">
-            <enum name="mode_repeat" value="0"/>
-            <enum name="mode_once" value="1"/>
+        <attr name="mtv_interval" format="integer" />
+        <attr name="mtv_mode" format="enum">
+            <enum name="repeat" value="0" />
+            <enum name="once" value="1" />
         </attr>
     </declare-styleable>
-
 
     <!-- WYACustomEditText -->
     <declare-styleable name="WYACustomEditText">
@@ -172,6 +171,26 @@
         <attr name="hintEditStr" />
         <attr name="maxNum" format="integer"/>
         <attr name="countTextColor" format="color"/>
+    </declare-styleable>
+
+    <!-- slider -->
+    <declare-styleable name="RangeSlideView">
+        <attr name="rsd_slider_mode" format="enum">
+            <enum name="range" value="0" />
+            <enum name="single" value="1" />
+        </attr>
+        <attr name="rsd_progress_height" format="dimension" />
+        <attr name="rsd_progress_min" format="integer" />
+        <attr name="rsd_progress_max" format="integer" />
+        <attr name="rsd_progress_background_color" format="color" />
+        <attr name="rsd_progress_foreground_color" format="color" />
+
+        <attr name="rsd_region_padding" format="dimension" />
+        <attr name="rsd_region_drawable_min" format="reference" />
+        <attr name="rsd_region_drawable_max" format="reference" />
+        <attr name="rsd_region_bitmap_size" format="dimension" />
+        <attr name="rsd_region_text_color" format="dimension" />
+        <attr name="rsd_region_text_size" format="dimension" />
     </declare-styleable>
 
 </resources>
