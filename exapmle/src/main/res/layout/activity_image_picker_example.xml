@@ -9,13 +9,6 @@
     tools:context=".module.uikit.imagepicker.ImagePickerExampleActivity"
     tools:ignore="MissingDefaultResource">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_48"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/white"
-        android:text="ImagePicker"
-        android:gravity="center"/>
 
     <EditText
         android:id="@+id/num_input"
