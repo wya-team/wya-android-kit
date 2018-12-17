@@ -53,7 +53,7 @@ public class GridExampleActivity extends BaseActivity {
                 wyaPopupWindow.show(view, -100, 0);
             }
         });
-        wyaPopupWindow = new WYAPopupWindow(GridExampleActivity.this, list);
+        wyaPopupWindow = new WYAPopupWindow.Builder(GridExampleActivity.this).list(list).build();
         wyaPopupWindow.setPopupWindowListOnclickListener(position -> {
             wyaPopupWindow.dismiss();
             spanCount = position + 1;

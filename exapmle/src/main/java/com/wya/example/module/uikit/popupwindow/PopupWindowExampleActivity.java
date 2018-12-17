@@ -11,13 +11,13 @@ import java.util.List;
 
 public class PopupWindowExampleActivity extends BaseActivity {
 
-
     private List<String> list;
     private WYAPopupWindow wyaPopupWindow;
+
     @Override
     protected void initView() {
         setToolBarTitle("PopupWindow");
-        initImgRight( R.mipmap.icon_nav_more, true, 0, false);
+        initImgRight(R.mipmap.icon_nav_more, true, 0, false);
         setPopupWindow();
     }
 
@@ -27,8 +27,8 @@ public class PopupWindowExampleActivity extends BaseActivity {
         list.add("第二个");
         list.add("第三个最帅");
         list.add("四");
-        setRightOnclickListener(view -> wyaPopupWindow.show(view,  -100, 0));
-        wyaPopupWindow = new WYAPopupWindow(PopupWindowExampleActivity.this, list);
+        setRightOnclickListener(view -> wyaPopupWindow.show(view, -100, 0));
+        wyaPopupWindow = new WYAPopupWindow.Builder(PopupWindowExampleActivity.this).list(list).build();
         wyaPopupWindow.setPopupWindowListOnclickListener(position -> {
             wyaPopupWindow.dismiss();
             Toast.makeText(PopupWindowExampleActivity.this, list.get(position), Toast.LENGTH_SHORT).show();

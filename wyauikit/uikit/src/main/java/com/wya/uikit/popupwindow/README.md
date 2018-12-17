@@ -12,6 +12,31 @@ yoff|纵向偏移量 |int|0
 
 ## 用法说明
 
+- 项目中的使用
+```
+     //自定义样式
+     wyaPopupWindow = new WYAPopupWindow.Builder(PopupWindowExampleActivity.this).setLayoutRes(R.layout.activity_main, new CustomListener() {
+                @Override
+                public void customLayout(View v) {
+    
+                }
+            }).build();
+     wyaPopupWindow.show(view, -100, 0);
+     
+     //默认列表
+     list = new ArrayList<>();
+     list.add("我是第一个");
+     list.add("第二个");
+     list.add("第三个最帅");
+     list.add("四");
+     wyaPopupWindow = new WYAPopupWindow.Builder(PopupWindowExampleActivity.this).list(list).build();
+     wyaPopupWindow.setPopupWindowListOnclickListener(position -> {
+         wyaPopupWindow.dismiss();
+         Toast.makeText(PopupWindowExampleActivity.this, list.get(position), Toast.LENGTH_SHORT).show();
+     });
+     wyaPopupWindow.show(view, -100, 0); 
+```
+
 - 方法
 
 方法|说明
