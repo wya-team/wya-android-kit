@@ -1,24 +1,31 @@
 package com.wya.example.module.uikit.dialog.bean;
 
+import java.util.List;
+
 /**
- * 创建日期：2018/12/12 18:16
+ * 创建日期：2018/12/17 10:47
  * 作者： Mao Chunjiang
  * 文件名称： Item
- * 类说明：Item
+ * 类说明：
  */
 
 public class Item {
-    private String name;
+    private String title;
+    private List<String> child;
 
-    public Item(String name) {
-        this.name = name;
+    public String getTitle() {
+        return title;
     }
 
-    public String getName() {
-        return name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public List<String> getChild() {
+        return child;
+    }
+
+    public void setChild(List<String> child) {
+        this.child = child;
     }
 }
