@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">wya-android-kit</string>
+    <string name="example">事列</string>
+    <string name="about_us">我们</string>
+
+    <string name="example_name">WYA ANDROID KIT</string>
+    <string name="example_zh_name">微一案安卓组件库</string>
+
+
+
+
     <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+
     <string name="title_notifications">Notifications</string>
 
     <!-- TODO: Remove or change this placeholder text -->

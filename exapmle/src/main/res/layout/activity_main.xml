@@ -6,60 +6,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.wya.example.ExampleActivity">
+    tools:context="com.wya.example.module.example.ExampleActivity">
 
-
-    <com.wya.uikit.button.WYAButton
-        android:id="@+id/wya_button_hardware"
+    <FrameLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"
-        android:text="硬件（hardware）"
-        android:textAllCaps="false"
-        app:backColor="#FF0000"
-        app:fillet="true"
-        app:textColor="#ffffff"
-        app:textColorPress="#50ffffff"
-        app:wya_button_radius="10" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <com.wya.uikit.button.WYAButton
-        android:id="@+id/wya_button_helper"
+    </FrameLayout>
+
+
+    <com.wya.uikit.tabbar.WYATabBar
+        android:id="@+id/tab"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"
-        android:text="辅助（helper）"
-        android:textAllCaps="false"
-        app:backColor="#FF9933"
-        app:fillet="true"
-        app:textColor="#ffffff"
-        app:textColorPress="#50ffffff"
-        app:wya_button_radius="10" />
-
-
-    <com.wya.uikit.button.WYAButton
-        android:id="@+id/wya_button_ui_kit"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"
-        android:text="UI组件库（UiKit）"
-        android:textAllCaps="false"
-        app:backColor="#118EE9"
-        app:fillet="true"
-        app:textColor="#ffffff"
-        app:textColorPress="#50ffffff"
-        app:wya_button_radius="10" />
-
-    <com.wya.uikit.button.WYAButton
-        android:id="@+id/wya_button_util"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"
-        android:text="工具库（Utils）"
-        android:textAllCaps="false"
-        app:backColor="#333333"
-        app:fillet="true"
-        app:textColor="#ffffff"
-        app:textColorPress="#50ffffff"
-        app:wya_button_radius="10" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@null"
+        app:itemIconTint="@drawable/navigation_select"
+        app:itemTextColor="@drawable/navigation_select"
+        app:menu="@menu/navigation" />
 
 </LinearLayout>
