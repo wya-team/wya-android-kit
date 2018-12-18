@@ -12,7 +12,7 @@
 
     </item>
     <item>
-        <bitmap android:src="@drawable/ic_placeholder"
+        <bitmap android:src="@drawable/icon_photo"
             android:gravity="center"/>
     </item>
 </layer-list>
