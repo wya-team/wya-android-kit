@@ -27,7 +27,7 @@ public class StickerImageView extends StickerView {
     @Override
     public View onCreateContentView(Context context) {
         mImageView = new ImageView(context);
-        mImageView.setImageResource(R.drawable.ic_placeholder);
+        mImageView.setImageResource(R.drawable.icon_photo);
         return mImageView;
     }
 }

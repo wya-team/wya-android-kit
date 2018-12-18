@@ -10,7 +10,7 @@
         android:id="@+id/camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_camera"
+        android:src="@drawable/icon_camera"
         android:layout_centerHorizontal="true"/>
     <TextView
         android:id="@+id/tv_title_camera"

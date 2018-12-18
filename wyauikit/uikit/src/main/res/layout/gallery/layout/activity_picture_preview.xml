@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:padding="15dp"
-            android:src="@drawable/picture_back" />
+            android:src="@drawable/icon_back" />
 
         <TextView
             android:id="@+id/picture_title"

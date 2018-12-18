@@ -137,8 +137,8 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
 		initAdapter();
 
 
-		mDrawableUp = getResources().getDrawable(R.drawable.arrow_up);
-		mDrawableDown = getResources().getDrawable(R.drawable.arrow_down);
+		mDrawableUp = getResources().getDrawable(R.drawable.icon_up);
+		mDrawableDown = getResources().getDrawable(R.drawable.icon_down);
 		mDrawableUp.setBounds(0, 0, mDrawableUp.getMinimumWidth(), mDrawableUp.getMinimumHeight());
 		mDrawableDown.setBounds(0, 0, mDrawableDown.getMinimumWidth(), mDrawableDown
 				.getMinimumHeight());
