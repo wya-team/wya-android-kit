@@ -13,4 +13,8 @@
     <color name="progress_start">#f1e134</color>
     <color name="progress_end">#f14a34</color>
 
+    <color name="primary_color">#108DE7</color>
+    <color name="color_909090">#909090</color>
+    <color name="color_DEDEDE">#DEDEDE</color>
+
 </resources>
