@@ -2,28 +2,25 @@
 <com.wya.uikit.imagepicker.SquareRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/iv_picture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/image_placeholder"/>
+        android:src="@drawable/image_placeholder" />
 
-    <LinearLayout
-        android:id="@+id/ll_check"
+
+    <CheckBox
+        android:id="@+id/check_box"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:checked="true"
         android:layout_alignParentRight="true"
-        android:gravity="right"
-        android:orientation="vertical"
-        android:padding="8dp">
-
-        <CheckBox
-            android:id="@+id/check_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/GalleryCheckBox"
-            android:checked="true"/>
-    </LinearLayout>
+        android:layout_alignParentEnd="true"
+        android:button="@null"
+        android:gravity="bottom"
+        android:padding="8dp"
+        android:drawableRight="@drawable/picture_checkbox_selector"/>
 
 </com.wya.uikit.imagepicker.SquareRelativeLayout>

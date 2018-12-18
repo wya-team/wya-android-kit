@@ -25,7 +25,10 @@ public class BannerExampleActivity extends BaseActivity {
 
 
 		mWYABanner = findViewById(R.id.banner);
-		mWYABanner.setData(data);
+		mWYABanner.setData(data)
+				.setUpdateTime(1000)
+				.setDotVisible(false)
+				.start(true);
 		mWYABanner.setOnItemListener(new WYABanner.OnBannerListener<Integer>() {
 			@Override
 			public void bannerItem(View view, int position, Integer item) {

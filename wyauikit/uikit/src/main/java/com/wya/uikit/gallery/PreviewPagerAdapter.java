@@ -50,12 +50,7 @@ public class PreviewPagerAdapter extends PagerAdapter {
 	public Object instantiateItem(ViewGroup container, int position) {
 		final View contentView = LayoutInflater.from(container.getContext())
 				.inflate(R.layout.preview_item, container, false);
-		// 常规图控件
 		final PhotoView imageView = contentView.findViewById(R.id.preview_image);
-//		// 长图控件
-//		final SubsamplingScaleImageView longImg = (SubsamplingScaleImageView) contentView.findViewById(R.id.longImg);
-//
-//		ImageView iv_play = (ImageView) contentView.findViewById(R.id.iv_play);
 		String imageUrl = mList.get(position);
 		Glide.with(mContext).load(imageUrl).into(imageView);
 		container.addView(contentView, 0);

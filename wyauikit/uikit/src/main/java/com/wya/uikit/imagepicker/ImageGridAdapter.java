@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -149,14 +148,12 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 	}
 
 	class ImageViewHolder extends RecyclerView.ViewHolder {
-		LinearLayout check;
 		ImageView mImageView;
 		CheckBox mCheckBox;
 
 		public ImageViewHolder(@NonNull View itemView) {
 			super(itemView);
 			mImageView = itemView.findViewById(R.id.iv_picture);
-			check = itemView.findViewById(R.id.ll_check);
 			mCheckBox = itemView.findViewById(R.id.check_box);
 		}
 	}

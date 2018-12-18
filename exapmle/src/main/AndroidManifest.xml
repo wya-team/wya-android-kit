@@ -74,6 +74,7 @@
         <activity android:name=".module.utils.image.QRCodeExampleActivity" />
         <activity android:name=".module.uikit.customedittext.CustomEditTextExampleActivity" />
         <activity android:name=".module.uikit.slidder.SlideViewExampleActivity" />
+        <activity android:name=".module.uikit.customitems.expandrecyclerview.ExpandRecyclerViewActivity" />
         <activity android:name=".module.utils.fliedownload.FileDownloadExampleActivity"></activity>
     </application>
 
