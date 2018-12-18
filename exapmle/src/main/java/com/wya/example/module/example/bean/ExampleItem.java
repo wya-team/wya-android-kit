@@ -1,4 +1,4 @@
-package com.wya.example.module.uikit.dialog.bean;
+package com.wya.example.module.example.bean;
 
 import java.util.List;
 
@@ -9,18 +9,9 @@ import java.util.List;
  * 类说明：
  */
 
-public class Item {
+public class ExampleItem {
     private String title;
-    private boolean isOpen;
     private List<String> child;
-
-    public boolean isOpen() {
-        return isOpen;
-    }
-
-    public void setOpen(boolean open) {
-        isOpen = open;
-    }
 
     public String getTitle() {
         return title;
