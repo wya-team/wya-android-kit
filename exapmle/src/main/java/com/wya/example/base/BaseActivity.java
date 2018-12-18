@@ -27,9 +27,9 @@ public abstract class BaseActivity extends BaseToolBarActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         unbinder = ButterKnife.bind(this);
-//        initWYAActionBarDefault(true, ColorUtil.int2Hex(WYAConstants.THEME_COLOR),true, "初始化标题", 18, "#ffffff",
-//        false, "", 14, "#ffffff", true, R.mipmap.icon_back_white,
-//        false, "",14, "#ffffff", false, false, R.mipmap.icon_nav_more, 0);
+        initWYAActionBarDefault(true, ColorUtil.int2Hex(WYAConstants.THEME_COLOR),true, "初始化标题", 18, "#000000",
+        false, "", 14, "#000000", true, R.drawable.icon_backblue,
+        false, "",14, "#000000", false, false, R.drawable.icon_search, R.drawable.iocn_saoyisao,  false, "",14, "#000000");
         initView();
     }
 

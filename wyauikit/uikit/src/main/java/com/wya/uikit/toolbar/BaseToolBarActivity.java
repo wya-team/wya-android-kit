@@ -1,20 +1,12 @@
 package com.wya.uikit.toolbar;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.IntRange;
 import android.support.annotation.LayoutRes;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -35,7 +27,7 @@ import com.wya.uikit.toolbar.swipebacklayout.StatusBarUtil;
 public abstract class BaseToolBarActivity extends AppCompatActivity implements BGASwipeBackHelper.Delegate {
 
     private WYAToolBarHelper wyaToolBarHelper;
-    private TextView title, tv_left, tv_right;
+    private TextView title, tv_left, tv_right, tv_right_anther;
     private LinearLayout ll_right, ll_left;
     private ImageView img_right, img_left, img_right_anther;
     private RelativeLayout title_bar_bg;
@@ -46,7 +38,10 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
 
 
     private onLeftOnclickListener onLeftOnclickListener;//设置左边点击事件
-    private onRightOnclickListener onRightOnclickListener;//设置右边点击事件
+    private onRightTvOnclickListener onRightTvOnclickListener;//设置右边点击事件
+    private onRightTvAntherOnclickListener onRightTvAntherOnclickListener;//设置右边点击事件
+    private onRightImageOnclickListener onRightImageOnclickListener;//设置右边点击事件
+    private onRightImageAntherOnclickListener onRightImageAntherOnclickListener;//设置右边点击事件
 
 
     /**
@@ -57,10 +52,28 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
     }
 
     /**
-     * 设置右边点击事件
+     * 设置右边文字点击事件
      */
-    public interface onRightOnclickListener {
-        void onRightClick(View view);
+    public interface onRightTvOnclickListener {
+        void onRightTvOnclickListener(View view);
+    }
+    /**
+     * 设置右边第二个文字点击事件
+     */
+    public interface onRightTvAntherOnclickListener {
+        void onRightTvAntherOnclickListener(View view);
+    }
+    /**
+     * 设置图片点击事件
+     */
+    public interface onRightImageOnclickListener {
+        void onRightImageOnclickListener(View view);
+    }
+    /**
+     * 设置第二张点击事件
+     */
+    public interface onRightImageAntherOnclickListener {
+        void onRightImageAntherOnclickListener(View view);
     }
 
 
@@ -74,12 +87,36 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
     }
 
     /**
-     * 设置右边边点击事件内容和监听
+     * 设置右边文字点击事件
      *
-     * @param onRightOnclickListener
+     * @param onRightTvOnclickListener
      */
-    public void setRightOnclickListener(onRightOnclickListener onRightOnclickListener) {
-        this.onRightOnclickListener = onRightOnclickListener;
+    public void seRightTvOnclickListener(onRightTvOnclickListener onRightTvOnclickListener) {
+        this.onRightTvOnclickListener = onRightTvOnclickListener;
+    }
+    /**
+     * 设置右边第二个文字事件内容和监听
+     *
+     * @param onRightTvAntherOnclickListener
+     */
+    public void setRightTvAntherOnclickListener(onRightTvAntherOnclickListener onRightTvAntherOnclickListener) {
+        this.onRightTvAntherOnclickListener = onRightTvAntherOnclickListener;
+    }
+    /**
+     * 设置右边图片点击事件内容和监听
+     *
+     * @param onRightImageOnclickListener
+     */
+    public void setRightImageOnclickListener(onRightImageOnclickListener onRightImageOnclickListener) {
+        this.onRightImageOnclickListener = onRightImageOnclickListener;
+    }
+    /**
+     * 设置右边第二个图片点击事件内容和监听
+     *
+     * @param onRightImageAntherOnclickListener
+     */
+    public void setRightImageAntherOnclickListener(onRightImageAntherOnclickListener onRightImageAntherOnclickListener) {
+        this.onRightImageAntherOnclickListener = onRightImageAntherOnclickListener;
     }
 
     @Override
@@ -167,7 +204,9 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
 
     public void initWYAActionBarDefault(boolean showToolBar, String toolbarBgColorValue, boolean isShowTitle, String titleStr, int titleTextSize, String titleTextColorValue,
                                         boolean isShowTvLeft, String tvLeftStr, int tvLeftTextSize, String tvLeftTextColorValue, boolean isShowImgLeft, int imgLeftRes,
-                                        boolean isShowTvRight, String tvRightStr, int tvRightTextSize, String tvRightTextColorValue, boolean isShowImgRight, boolean isShowImgRightAnther, int imgRightRes, int imgRightResAnther) {
+                                        boolean isShowTvRight, String tvRightStr, int tvRightTextSize, String tvRightTextColorValue, boolean isShowImgRight,
+                                        boolean isShowImgRightAnther, int imgRightRes, int imgRightResAnther,
+                                        boolean isShowTvRightAnther, String tvRightAntherStr, int tvRightAntherTextSize, String tvRightAntherTextColorValue) {
         wyaToolBarHelper.setShowTitle(showToolBar);
         wyaToolBarHelper.setToolbar_bg_color(toolbarBgColorValue);
         wyaToolBarHelper.setShowTitle(isShowTitle);
@@ -185,6 +224,12 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
         wyaToolBarHelper.setTvRightStr(tvRightStr);
         wyaToolBarHelper.setTvRightTextSize(tvRightTextSize);
         wyaToolBarHelper.setTvRightTextColor(tvRightTextColorValue);
+        wyaToolBarHelper.setShowTvRightAnther(isShowTvRightAnther);
+        wyaToolBarHelper.setTvRightAntherStr(tvRightAntherStr);
+        wyaToolBarHelper.setTvRightAntherTextSize(tvRightAntherTextSize);
+        wyaToolBarHelper.setTvRightAntherTextColor(tvRightAntherTextColorValue);
+
+
         wyaToolBarHelper.setShowImgRight(isShowImgRight);
         wyaToolBarHelper.setImgRightRes(imgRightRes);
         wyaToolBarHelper.setImgRightResAnther(imgRightResAnther);
@@ -196,7 +241,9 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
         initTvLeft(wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
         initImgLeft(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.isShowImgLeft());
         initTvRight(wyaToolBarHelper.getTvRightStr(), wyaToolBarHelper.getTvRightTextColor(), wyaToolBarHelper.getTvRightTextSize(), wyaToolBarHelper.isShowTvRight());
-        initImgRight(wyaToolBarHelper.getImgRightRes(), wyaToolBarHelper.isShowImgRight(), wyaToolBarHelper.getImgRightResAnther(), wyaToolBarHelper.isShowImgRightAnther());
+        initTvRightAnther(wyaToolBarHelper.getTvRightAntherStr(), wyaToolBarHelper.getTvRightAntherTextColor(), wyaToolBarHelper.getTvRightAntherTextSize(), wyaToolBarHelper.isShowTvRightAnther());
+        initImgRight(wyaToolBarHelper.getImgRightRes(), wyaToolBarHelper.isShowImgRight());
+        initImgRightAnther(wyaToolBarHelper.getImgRightResAnther(), wyaToolBarHelper.isShowImgRightAnther());
     }
 
     /**
@@ -208,6 +255,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
         title = (TextView) findViewById(R.id.title);
         tv_left = (TextView) findViewById(R.id.tv_left);
         tv_right = (TextView) findViewById(R.id.tv_right);
+        tv_right_anther = (TextView) findViewById(R.id.tv_right_anther);
         ll_right = (LinearLayout) findViewById(R.id.ll_right);
         ll_left = (LinearLayout) findViewById(R.id.ll_left);
         img_right = (ImageView) findViewById(R.id.img_right);
@@ -221,7 +269,8 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
         initTvLeft(wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
         initImgLeft(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.isShowImgLeft());
         initTvRight(wyaToolBarHelper.getTvRightStr(), wyaToolBarHelper.getTvRightTextColor(), wyaToolBarHelper.getTvRightTextSize(), wyaToolBarHelper.isShowTvRight());
-        initImgRight(wyaToolBarHelper.getImgRightRes(), wyaToolBarHelper.isShowImgRight(), wyaToolBarHelper.getImgRightResAnther(), wyaToolBarHelper.isShowImgRightAnther());
+        initImgRight(wyaToolBarHelper.getImgRightRes(), wyaToolBarHelper.isShowImgRight());
+        initImgRightAnther(wyaToolBarHelper.getImgRightResAnther(), wyaToolBarHelper.isShowImgRightAnther());
         initClick();
     }
 
@@ -253,13 +302,45 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
                 }
             }
         });
-        ll_right.setOnClickListener(new View.OnClickListener() {
+
+        img_right_anther.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onRightOnclickListener != null) {
-                    onRightOnclickListener.onRightClick(view);
+                if (onRightImageAntherOnclickListener != null) {
+                    onRightImageAntherOnclickListener.onRightImageAntherOnclickListener(view);
                 } else {
-                    Toast.makeText(BaseToolBarActivity.this, "右边", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BaseToolBarActivity.this, "图片2", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        img_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onRightImageOnclickListener != null) {
+                    onRightImageOnclickListener.onRightImageOnclickListener(view);
+                } else {
+                    Toast.makeText(BaseToolBarActivity.this, "图片1", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        tv_right_anther.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onRightTvAntherOnclickListener != null) {
+                    onRightTvAntherOnclickListener.onRightTvAntherOnclickListener(view);
+                } else {
+                    Toast.makeText(BaseToolBarActivity.this, "文字2", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        tv_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onRightTvOnclickListener != null) {
+                    onRightTvOnclickListener.onRightTvOnclickListener(view);
+                } else {
+                    Toast.makeText(BaseToolBarActivity.this, "文字1", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -272,7 +353,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
      * @param showImgRight 是否显示右边图片
      */
     @SuppressLint("NewApi")
-    public void initImgRight(int imgRightRes, boolean showImgRight, int imgRightAntherRes, boolean showImgAnther) {
+    public void initImgRight(int imgRightRes, boolean showImgRight) {
         if (showImgRight) {
             if (imgRightRes != 0) {
                 img_right.setVisibility(View.VISIBLE);
@@ -283,6 +364,16 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
         } else {
             img_right.setVisibility(View.GONE);
         }
+
+    }
+    /**
+     * 设置标题右边另外的图片
+     *
+     * @param imgRightAntherRes  资源图片 R.mimap.xx
+     * @param showImgAnther 是否显示右边图片
+     */
+    @SuppressLint("NewApi")
+    public void initImgRightAnther( int imgRightAntherRes, boolean showImgAnther) {
         if (showImgAnther) {
             if (imgRightAntherRes != 0) {
                 img_right_anther.setVisibility(View.VISIBLE);
@@ -293,6 +384,7 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
         } else {
             img_right_anther.setVisibility(View.GONE);
         }
+
     }
 
 
@@ -317,6 +409,30 @@ public abstract class BaseToolBarActivity extends AppCompatActivity implements B
             }
         } else {
             tv_right.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 设置标题右边的文字
+     *
+     * @param tvRightAntherStr       文本内容
+     * @param tvRightAntherTextColor 文本颜色
+     * @param tvRightAntherTextSize  文字大小
+     * @param showTvRightAnther      实现显示右边文字
+     */
+    @SuppressLint("NewApi")
+    public void initTvRightAnther(String tvRightAntherStr, int tvRightAntherTextColor, int tvRightAntherTextSize, boolean showTvRightAnther) {
+        if (showTvRightAnther) {
+            if (tvRightAntherStr != null) {
+                tv_right_anther.setTextColor(this.getResources().getColor(tvRightAntherTextColor));
+                tv_right_anther.setText(tvRightAntherStr);
+                tv_right_anther.setTextSize(tvRightAntherTextSize);
+                tv_right_anther.setVisibility(View.VISIBLE);
+            } else {
+                tv_right_anther.setVisibility(View.GONE);
+            }
+        } else {
+            tv_right_anther.setVisibility(View.GONE);
         }
     }
 

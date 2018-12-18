@@ -26,7 +26,7 @@ public class GridExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         setToolBarTitle("Grid");
-        initImgRight( R.mipmap.icon_nav_more, true, 0, false);
+        initImgRight(R.drawable.icon_add, true);
         setPopupWindow();
         setGrid();
     }
@@ -47,9 +47,9 @@ public class GridExampleActivity extends BaseActivity {
         list.add("2列");
         list.add("3列");
         list.add("4列");
-        setRightOnclickListener(new onRightOnclickListener() {
+        setRightImageAntherOnclickListener(new onRightImageAntherOnclickListener() {
             @Override
-            public void onRightClick(View view) {
+            public void onRightImageAntherOnclickListener(View view) {
                 wyaPopupWindow.show(view, -100, 0);
             }
         });

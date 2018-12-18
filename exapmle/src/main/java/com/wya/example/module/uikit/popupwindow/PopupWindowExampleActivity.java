@@ -17,7 +17,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         setToolBarTitle("PopupWindow");
-        initImgRight(R.mipmap.icon_nav_more, true, 0, false);
+        initImgRight(R.drawable.icon_notice, true);
         setPopupWindow();
     }
 
@@ -27,7 +27,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
         list.add("第二个");
         list.add("第三个最帅");
         list.add("四");
-        setRightOnclickListener(view -> wyaPopupWindow.show(view, -100, 0));
+        setRightImageOnclickListener(view -> wyaPopupWindow.show(view, -100, 0));
         wyaPopupWindow = new WYAPopupWindow.Builder(PopupWindowExampleActivity.this).list(list).build();
         wyaPopupWindow.setPopupWindowListOnclickListener(position -> {
             wyaPopupWindow.dismiss();

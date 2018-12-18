@@ -31,9 +31,13 @@ public class WYAToolBarHelper {
 
     //标题右边参数
     private boolean isShowTvRight = false;//默认不显示右边文字
+    private boolean isShowTvRightAnther = false;//默认不显示右边文字
     private String tvRightStr = "右边";//右边文字
+    private String tvRightAntherStr = "右边第二个";//右边文字
     private int tvRightTextSize = 14;//右边文字大小
+    private int tvRightAntherTextSize = 14;//右边文字大小
     private int tvRightTextColor = Color.parseColor("#FFFFFF");//标题颜色
+    private int tvRightAntherTextColor = Color.parseColor("#FFFFFF");//标题颜色
     private boolean isShowImgRight = false;//是否显示右图标
     private boolean isShowImgRightAnther = false;//是否显示第二个图标
     private int imgRightRes;//做图标资源
@@ -201,4 +205,52 @@ public class WYAToolBarHelper {
         this.toolbar_bg_color = Color.parseColor(toolbar_bg_color_value);
     }
 
+    public void setToolbar_bg_color(int toolbar_bg_color) {
+        this.toolbar_bg_color = toolbar_bg_color;
+    }
+
+    public void setTitleTextColor(int titleTextColor) {
+        this.titleTextColor = titleTextColor;
+    }
+
+    public void setTvLeftTextColor(int tvLeftTextColor) {
+        this.tvLeftTextColor = tvLeftTextColor;
+    }
+
+    public boolean isShowTvRightAnther() {
+        return isShowTvRightAnther;
+    }
+
+    public void setShowTvRightAnther(boolean showTvRightAnther) {
+        isShowTvRightAnther = showTvRightAnther;
+    }
+
+
+    public int getTvRightAntherTextSize() {
+        return tvRightAntherTextSize;
+    }
+
+    public void setTvRightAntherTextSize(int tvRightAntherTextSize) {
+        this.tvRightAntherTextSize = tvRightAntherTextSize;
+    }
+
+    public void setTvRightTextColor(int tvRightTextColor) {
+        this.tvRightTextColor = tvRightTextColor;
+    }
+
+    public int getTvRightAntherTextColor() {
+        return tvRightAntherTextColor;
+    }
+
+    public void setTvRightAntherTextColor(String tvRightAntherTextColor) {
+        this.tvRightAntherTextColor = Color.parseColor(tvRightAntherTextColor);
+    }
+
+    public String getTvRightAntherStr() {
+        return tvRightAntherStr;
+    }
+
+    public void setTvRightAntherStr(String tvRightAntherStr) {
+        this.tvRightAntherStr = tvRightAntherStr;
+    }
 }

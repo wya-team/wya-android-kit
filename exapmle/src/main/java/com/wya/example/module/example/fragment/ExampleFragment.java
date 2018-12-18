@@ -28,6 +28,7 @@ import com.wya.example.module.uikit.imagepicker.ImagePickerExampleActivity;
 import com.wya.example.module.uikit.notice.NoticeExampleActivity;
 import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity;
 import com.wya.example.module.uikit.pickerview.PickerViewExampleActivity;
+import com.wya.example.module.uikit.popupwindow.PopupWindowExampleActivity;
 import com.wya.example.module.uikit.searchbar.SearchBarExampleActivity;
 import com.wya.example.module.uikit.segmentedcontrol.SegmentedControlExampleActivity;
 import com.wya.example.module.uikit.slidder.SlideViewExampleActivity;
@@ -176,9 +177,8 @@ public class ExampleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), SearchBarExampleActivity.class));
                 break;
             case "气泡(popupwindow)":
-                startActivity(new Intent(getActivity(), SearchBarExampleActivity.class));
+                startActivity(new Intent(getActivity(), PopupWindowExampleActivity.class));
                 break;
-
 
             case "按钮(button)":
                 startActivity(new Intent(getActivity(), ButtonExampleActivity.class));

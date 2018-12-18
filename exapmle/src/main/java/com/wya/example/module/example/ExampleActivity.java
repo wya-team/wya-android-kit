@@ -8,6 +8,7 @@ import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.fragment.AboutUsFragment;
 import com.wya.example.module.example.fragment.ExampleFragment;
 import com.wya.uikit.tabbar.WYATabBar;
+import com.wya.utils.utils.ColorUtil;
 
 import butterknife.BindView;
 
@@ -24,6 +25,7 @@ public class ExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         initShowToolBar(false);
+        initToolBarBgColor(ColorUtil.hex2Int("#f4f4f4"));
         initFragment();
         setTabBar();
     }

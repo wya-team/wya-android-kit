@@ -6,12 +6,12 @@
     android:gravity="center_vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:id="@+id/ll_left"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:padding="12dp">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/img_left"
@@ -20,20 +20,20 @@
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:gravity="center"
             android:text="保存"
+            android:textColor="#ffffff"
             android:textSize="15sp"
-            android:visibility="gone"
-            android:textColor="#ffffff"/>
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -52,23 +52,33 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/tv_right_anther"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="保存"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/img_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/img_right_anther"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_right"
@@ -77,8 +87,8 @@
             android:gravity="center"
             android:paddingRight="12dp"
             android:text="保存"
-            android:textSize="15sp"
             android:textColor="#ffffff"
+            android:textSize="15sp"
             android:visibility="gone" />
 
     </LinearLayout>

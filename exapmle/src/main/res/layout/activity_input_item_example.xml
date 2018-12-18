@@ -14,12 +14,12 @@
         app:backColor="#ffffff"
         app:canEdit="false"
         app:contentHint="编辑文本提示"
-        app:leftImage="@mipmap/icon_nav_more"
+        app:leftImage="@drawable/tabbar_item_22dp"
         app:contentTextColor="@color/black"
         app:leftTvText="左边"
         app:lineViewColor="#000000"
         app:rightCanEdit="false"
-        app:rightImage="@mipmap/icon_right_arrow"
+        app:rightImage="@drawable/icon_right_arrow"
         app:rightText="右边文字"
         app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
 
@@ -29,11 +29,11 @@
         app:backColor="#ffffff"
         app:canEdit="false"
         app:contentHint="编辑文本提示"
-        app:leftImage="@mipmap/icon_nav_more"
+        app:leftImage="@drawable/tabbar_item_22dp"
         app:leftTvText="左边"
         app:lineViewColor="#000000"
         app:rightCanEdit="false"
-        app:rightImage="@mipmap/icon_right_arrow"
+        app:rightImage="@drawable/icon_right_arrow"
         app:rightText=""
         app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
 
@@ -60,7 +60,7 @@
         app:contentTextColor="@color/black"
         app:lineViewColor="#000000"
         app:rightCanEdit="false"
-        app:rightImage="@mipmap/icon_right_arrow"
+        app:rightImage="@drawable/icon_right_arrow"
         app:rightText=""
         app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
 
@@ -73,7 +73,7 @@
         app:leftTvText="左边"
         app:lineViewColor="#000000"
         app:rightCanEdit="false"
-        app:rightImage="@mipmap/icon_right_arrow"
+        app:rightImage="@drawable/icon_right_arrow"
         app:rightText="右边文字"
         app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
 
@@ -83,11 +83,11 @@
         app:backColor="#ffffff"
         app:canEdit="true"
         app:contentHint="编辑文本提示"
-        app:leftImage="@mipmap/icon_nav_more"
+        app:leftImage="@drawable/tabbar_item_22dp"
         app:leftTvText="左边"
         app:lineViewColor="#000000"
         app:rightCanEdit="false"
-        app:rightImage="@mipmap/icon_right_arrow"
+        app:rightImage="@drawable/icon_right_arrow"
         app:rightText="右边文字"
         app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
 

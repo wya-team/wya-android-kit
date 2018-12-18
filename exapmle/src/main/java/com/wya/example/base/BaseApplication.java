@@ -59,7 +59,7 @@ public class BaseApplication extends Application {
     private void initConstants() {
         new WYAConstants.Builder(this)
                 .dBName("test")//设置数据库名称
-                .themeColor("#0000ff")//设置主题颜色
+                .themeColor("#ffffff")//设置主题颜色
                 .isShowLog(true)//设置是否显示log，log 搜索WYA_LOG
                 .isDebug(AppUtil.isApkInDebug(getApplicationContext()))//是否是debug
                 .build();
