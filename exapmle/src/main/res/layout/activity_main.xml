@@ -25,6 +25,6 @@
         app:itemBackground="@null"
         app:itemIconTint="@drawable/navigation_select"
         app:itemTextColor="@drawable/navigation_select"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/main" />
 
 </LinearLayout>

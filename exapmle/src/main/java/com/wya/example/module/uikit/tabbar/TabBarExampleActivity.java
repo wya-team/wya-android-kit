@@ -45,18 +45,18 @@ public class TabBarExampleActivity extends BaseActivity {
         //item点击监听
         tab.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
-//                case R.id.navigation_home:
-//                    msg.setText("首页");
-//                    break;
-//                case R.id.navigation_dashboard:
-//                    msg.setText("分类");
-//                    break;
-//                case R.id.navigation_notifications:
-//                    msg.setText("消息");
-//                    break;
-//                case R.id.navigation_notifications1:
-//                    msg.setText("消息2");
-//                    break;
+                case R.id.navigation_home:
+                    msg.setText("首页");
+                    break;
+                case R.id.navigation_dashboard:
+                    msg.setText("分类");
+                    break;
+                case R.id.navigation_notifications:
+                    msg.setText("消息");
+                    break;
+                case R.id.navigation_notifications1:
+                    msg.setText("消息2");
+                    break;
             }
             return true;
         });
