@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
@@ -54,6 +55,11 @@ public class WYAButton extends Button {
      * 是否设置圆角或者圆形等样式
      */
     private boolean fillet = false;
+
+    /**
+     * 是否可以点击
+     */
+    private boolean enabled = false;
     /**
      * 标示onTouch方法的返回值，用来解决onClick和onTouch冲突问题
      */
@@ -108,11 +114,30 @@ public class WYAButton extends Button {
                     setBackgroundDrawable(gradientDrawable);
                 }
             }
+
+            //设置是否可以点击
+            enabled = a.getBoolean(R.styleable.WYAButton_enabled, true);
+            if (enabled) {
+                setOnTouchListener(new OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View arg0, MotionEvent event) {
+                        //根据touch事件设置按下抬起的样式
+                        return setTouchStyle(event.getAction());
+                    }
+                });
+
+
+            } else {
+                setButtonEnabled(enabled);
+            }
             //设置圆角矩形的角度，fillet为true时才生效
             float radius = a.getFloat(R.styleable.WYAButton_wya_button_radius, 0);
             if (fillet && radius != 0) {
                 setRadius(radius);
             }
+
+
+
             //设置按钮形状，fillet为true时才生效
             int shape = a.getInteger(R.styleable.WYAButton_shape, 0);
             if (fillet && shape != 0) {
@@ -123,13 +148,30 @@ public class WYAButton extends Button {
 
             a.recycle();
         }
-        setOnTouchListener(new OnTouchListener() {
-            @Override
-            public boolean onTouch(View arg0, MotionEvent event) {
-                //根据touch事件设置按下抬起的样式
-                return setTouchStyle(event.getAction());
-            }
-        });
+    }
+
+    /**
+     * 设置是否可以点击
+     *
+     * @param enabled
+     */
+    private void setButtonEnabled(boolean enabled) {
+        if (enabled) {
+            setBackColor(Color.parseColor("#108de7"));
+            setTextColor(textColor);
+            setOnTouchListener(new OnTouchListener() {
+                @Override
+                public boolean onTouch(View arg0, MotionEvent event) {
+                    //根据touch事件设置按下抬起的样式
+                    return setTouchStyle(event.getAction());
+                }
+            });
+
+        } else {
+            setBackColor(Color.parseColor("#DEDEDE"));
+            setTextColor(Color.parseColor("#909090"));
+            setEnabled(enabled);
+        }
     }
 
     /**
@@ -238,9 +280,8 @@ public class WYAButton extends Button {
      */
     public void setTextColor(int textColor) {
         if (textColor == 0) return;
-        this.textColor = ColorStateList.valueOf(textColor);
         //此处应加super关键字，调用父类的setTextColor方法，否则会造成递归导致内存溢出
-        super.setTextColor(this.textColor);
+        super.setTextColor(ColorStateList.valueOf(textColor));
     }
 
     /**
@@ -317,19 +358,20 @@ public class WYAButton extends Button {
 
     /**
      * 设置按钮大小
-     * @param type 1正常， 2小， 3自定义
+     *
+     * @param type   1正常， 2小， 3自定义
      * @param height 自定义高 dp单位
-     * @param width 自定义宽 dp单位
+     * @param width  自定义宽 dp单位
      */
     public void setSize(Context context, int type, int height, int width) {
         ViewGroup.LayoutParams wya_button_params = this.getLayoutParams();
-        if(type == 1){
+        if (type == 1) {
             wya_button_params.width = ViewGroup.LayoutParams.MATCH_PARENT;
             wya_button_params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        } else if(type == 2){
+        } else if (type == 2) {
             wya_button_params.height = dip2px(context, 36);
             wya_button_params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-        }else if(type == 3){
+        } else if (type == 3) {
             wya_button_params.height = dip2px(context, height);
             wya_button_params.width = dip2px(context, width);
         }
@@ -351,18 +393,18 @@ public class WYAButton extends Button {
 
     @SuppressLint("NewApi")
     public void setLoading(Context context, Drawable drawableLeft, boolean showText) {
-        if(!showText){
-           setText("");
+        if (!showText) {
+            setText("");
         } else {
             setText("按钮");
         }
-        if(drawableLeft != null){
+        if (drawableLeft != null) {
             setTextAlignment(TEXT_ALIGNMENT_TEXT_START);
-            drawableLeft.setBounds(0,0,dip2px(context, 24),dip2px(context, 24));
-            setCompoundDrawables(drawableLeft,null,null,null);
+            drawableLeft.setBounds(0, 0, dip2px(context, 24), dip2px(context, 24));
+            setCompoundDrawables(drawableLeft, null, null, null);
         } else {
             setTextAlignment(TEXT_ALIGNMENT_CENTER);
-            setCompoundDrawables(null,null,null,null);
+            setCompoundDrawables(null, null, null, null);
         }
     }
 }

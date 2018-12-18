@@ -20,7 +20,7 @@ public class ToolBarExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setToolBarTitle("ToolBar");
+        setToolBarTitle("导航栏(toolbar)");
     }
 
     @Override

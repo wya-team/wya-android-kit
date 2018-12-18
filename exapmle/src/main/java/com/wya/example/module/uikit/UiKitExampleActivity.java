@@ -34,7 +34,7 @@ public class UiKitExampleActivity extends BaseActivity {
 
 	@Override
 	protected void initView() {
-		initImgLeft(R.mipmap.icon_back_white, true);
+		initImgLeft(R.drawable.icon_backblue, true);
 	}
 
 	@Override

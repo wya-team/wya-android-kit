@@ -15,11 +15,9 @@ public class AboutUsFragment extends Fragment {
 
     private View view;
 
-
     @SuppressLint("NewApi")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = View.inflate(getActivity(), R.layout.about_us_fragment, null);
         initView();
         return view;

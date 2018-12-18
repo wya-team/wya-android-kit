@@ -50,6 +50,7 @@
         <attr name="textColor" />
         <attr name="textColorPress" />
         <attr name="fillet" format="boolean" />
+        <attr name="enabled" format="boolean" />
         <attr name="wya_button_radius" format="float" />
         <attr name="shape">
             <enum name="rectangle" value="0" />
