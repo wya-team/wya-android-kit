@@ -1,5 +1,6 @@
 package com.wya.uikit.choicemenu;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.ColorRes;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.wya.uikit.R;
@@ -186,4 +188,45 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		void onClick(int position, View v, ChoiceMenu menu);
 	}
 
+	private void setBackground(float alpha) {
+		if (mContext instanceof Activity) {
+			WindowManager.LayoutParams lp=((Activity)mContext).getWindow().getAttributes();
+			lp.alpha = alpha;
+			((Activity)mContext).getWindow().setAttributes(lp);
+		}
+	}
+
+
+	@Override
+	public void dismiss() {
+		setBackground(1);
+		super.dismiss();
+	}
+
+
+	@Override
+	public void showAtLocation(View parent, int gravity, int x, int y) {
+		setBackground(0.5f);
+		super.showAtLocation(parent, gravity, x, y);
+	}
+
+
+
+	@Override
+	public void showAsDropDown(View anchor, int xoff, int yoff, int gravity) {
+		setBackground(0.5f);
+		super.showAsDropDown(anchor, xoff, yoff, gravity);
+	}
+
+	@Override
+	public void showAsDropDown(View anchor) {
+		setBackground(0.5f);
+		super.showAsDropDown(anchor);
+	}
+
+	@Override
+	public void showAsDropDown(View anchor, int xoff, int yoff) {
+		super.showAsDropDown(anchor, xoff, yoff);
+		setBackground(0.5f);
+	}
 }

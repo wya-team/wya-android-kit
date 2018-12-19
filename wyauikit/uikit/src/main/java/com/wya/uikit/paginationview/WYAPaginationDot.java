@@ -2,6 +2,7 @@ package com.wya.uikit.paginationview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -111,6 +112,14 @@ public class WYAPaginationDot extends LinearLayout {
 		}
 	}
 
+
+	public void setDotBackgroundResource(@DrawableRes int resourceId){
+		mDotBg = resourceId;
+	}
+
+	public void setDarkDefault() {
+		mDotBg = R.drawable.pagination_selector_dot_solid_dark;
+	}
 	/**
 	 * add dot
 	 *

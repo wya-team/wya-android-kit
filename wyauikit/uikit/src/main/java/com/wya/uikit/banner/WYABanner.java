@@ -1,6 +1,7 @@
 package com.wya.uikit.banner;
 
 import android.content.Context;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -8,10 +9,10 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.wya.uikit.R;
@@ -35,13 +36,12 @@ public class WYABanner<T> extends RelativeLayout {
     private int num;
     private static final int BANNER_ALL = 100;
     private List<T> mData = new ArrayList<>();
-    private OnBannerListener<T> mListener;
-    private boolean mIsTouch = false;
     private int mBannerPosition;
     private long updateTime = 2000;
     private UpdateRun mUpdateRun;
     private boolean auto = true;
-
+    private int itemId = R.layout.banner_default_item;
+    private BannerAdapter<T> mBannerAdapter;
     private static String TAG = "WYABanner";
 
     public WYABanner(Context context) {
@@ -157,8 +157,6 @@ public class WYABanner<T> extends RelativeLayout {
     }
 
 
-
-
     /**
      * banner adapter
      */
@@ -179,16 +177,12 @@ public class WYABanner<T> extends RelativeLayout {
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
             position %= num;
-            ImageView imageView1 = new ImageView(mContext);
-            imageView1.setBackgroundColor(getResources().getColor(R.color.color_666));
+            View view = LayoutInflater.from(mContext).inflate(itemId, null);
             ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams
                     .MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            container.addView(imageView1, layoutParams);
-            imageView1.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            if (mListener != null) {
-                mListener.bannerItem(imageView1, position, mData.get(position));
-            }
-            return imageView1;
+            container.addView(view, layoutParams);
+            mBannerAdapter.convert(view, position, mData.get(position));
+            return view;
         }
 
         @Override
@@ -230,9 +224,6 @@ public class WYABanner<T> extends RelativeLayout {
         }
     }
 
-    public interface OnBannerListener<T> {
-        void bannerItem(View view, int position, T item);
-    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -263,18 +254,6 @@ public class WYABanner<T> extends RelativeLayout {
     }
 
 
-    /**
-     * set item data and
-     *
-     * @param data list
-     */
-    public WYABanner setData(List<T> data) {
-        mData = data;
-        num = mData.size();
-        mDot.setPointNumber(num);
-        initViewpager();
-        return this;
-    }
 
     public WYABanner setUpdateTime(long updateTime) {
         this.updateTime = updateTime;
@@ -292,23 +271,36 @@ public class WYABanner<T> extends RelativeLayout {
     }
 
     public WYABanner setDotVisible(boolean isVisible) {
-        mDot.setVisibility(isVisible?INVISIBLE:INVISIBLE);
+        mDot.setVisibility(isVisible ? VISIBLE : INVISIBLE);
         return this;
     }
 
-    /**
-     * 设置自动
-     */
-    public void start() {
-        start(true);
+
+    public WYABanner autoPlay(boolean isAuto) {
+        this.auto = isAuto;
+        return this;
     }
 
-    public void start(boolean isAuto) {
-        this.auto = isAuto;
+    public WYABanner setDotBackgroundResource(@DrawableRes int source) {
+        mDot.setDotBackgroundResource(source);
+        return this;
+    }
+
+    public WYABanner setDotDark() {
+        mDot.setDarkDefault();
+        return this;
+    }
+
+
+    public void setAdapter(BannerAdapter<T> bannerAdapter) {
+        mBannerAdapter = bannerAdapter;
+        mData = mBannerAdapter.getData();
+        itemId = mBannerAdapter.getLayoutId();
+        num = mData.size();
+        mDot.setPointNumber(num);
+        initViewpager();
         startAutoPlay();
     }
 
-    public void setOnItemListener(OnBannerListener<T> listener) {
-        mListener = listener;
-    }
+
 }

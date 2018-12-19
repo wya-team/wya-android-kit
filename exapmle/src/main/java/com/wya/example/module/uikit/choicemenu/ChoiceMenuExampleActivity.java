@@ -1,9 +1,7 @@
 package com.wya.example.module.uikit.choicemenu;
 
-import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
@@ -11,77 +9,141 @@ import com.wya.uikit.choicemenu.ChoiceMenu;
 import com.wya.uikit.choicemenu.ChoiceMenuViewHolder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ChoiceMenuExampleActivity extends BaseActivity {
 
 
-	private RelativeLayout mRelativeLayout;
-	private Button showOne,showTwo;
+    private RelativeLayout mRelativeLayout;
+    private RelativeLayout showOne, showTwo;
+    private int selectPositionOne = 0;
+    private int selectPositionTwo = 0;
+    private int selectPositionTwo1 = 0;
+    private Map<String, Integer> selection = new HashMap<>();
 
-	@Override
-	protected int getLayoutID() {
-		return R.layout.activity_choice_menu_example;
-	}
+    List<String> data = new ArrayList<>();
+    List<List<String>> data2 = new ArrayList<>();
 
-	@Override
-	protected void initView() {
-		showOne = findViewById(R.id.show_one);
-		showTwo = findViewById(R.id.show_two);
-		List<String> data = new ArrayList<>();
-		List<List<String>> data2 = new ArrayList<>();
-		for (int i = 0; i < 10; i++) {
-			data.add("first item" + i);
-			List<String> list = new ArrayList<>();
-			for (int j = 0; j < 10; j++) {
-				list.add(i+"second item" + j);
-			}
-			data2.add(list);
-		}
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_choice_menu_example;
+    }
 
-		mRelativeLayout = findViewById(R.id.title_bar_bg);
-		ChoiceMenu<String> choiceMenu = new ChoiceMenu<String>(this,data,data2,R.layout
-				.choice_menu_item,R.layout.choice_menu_item2) {
+    @Override
+    protected void initView() {
+
+        setToolBarTitle("ChoiceMenu");
+        showOne = findViewById(R.id.show_one);
+        showTwo = findViewById(R.id.show_two);
+
+        initData();
+
+        mRelativeLayout = findViewById(R.id.title_bar_bg);
+        ChoiceMenu<String> choiceMenu2 = new ChoiceMenu<String>(this, data, data2, R.layout
+                .choice_menu_item, R.layout.choice_menu_item2) {
+            @Override
+            public void setValueFirst(ChoiceMenuViewHolder helper, String item) {
+                helper.setText(R.id.menu_title, item);
+            }
+
+            @Override
+            public void setValueSecond(ChoiceMenuViewHolder helper, String item) {
+                TextView textView = helper.getView(R.id.menu_titles);
+                helper.setText(R.id.menu_titles, item);
+                //注意这里只是为了模拟第五个数据时不可点击的
+                if (helper.getLayoutPosition() != 4) {
+                    Integer integer = selection.get("test");
+                    if (integer == null) {
+                        integer = 0;
+                    }
+                    if (integer==selectPositionTwo1&&selectPositionTwo == helper.getLayoutPosition()) {
+                        textView.setTextColor(getResources().getColor(R.color.primary_color));
+                    } else {
+                        textView.setTextColor(getResources().getColor(R.color.black));
+                    }
+                } else {
+                    textView.setTextColor(getResources().getColor(R.color.color_BEBEBE));
+                }
 
 
-			@Override
-			public void setValueFirst(ChoiceMenuViewHolder helper, String item) {
-				helper.setText(R.id.menu_title, item);
+                helper.itemView.setOnClickListener(v -> {
+                    if (helper.getLayoutPosition()!=4) {
+                        selectPositionTwo = helper.getLayoutPosition();
+                        selection.put("test", selectPositionTwo1);
+                        notifyAdapterData();
+                    }
+                });
+            }
+        };
+        choiceMenu2.setOnFirstAdapterItemClickListener((position, v, menu) -> selectPositionTwo1 = position);
 
-			}
+        ChoiceMenu<String> choiceMenu1 = new ChoiceMenu<String>(this, data, R.layout
+                .one_choice_menu_item) {
+            @Override
+            public void setValueFirst(ChoiceMenuViewHolder helper, String item) {
+                helper.setText(R.id.content, item);
+                TextView view = helper.getView(R.id.content);
+                view.setSelected(selectPositionOne == helper.getLayoutPosition());
+                helper.itemView.setSelected(selectPositionOne == helper.getLayoutPosition());
+            }
 
-			@Override
-			public void setValueSecond(ChoiceMenuViewHolder helper, String item) {
-				helper.setText(R.id.menu_titles, item);
-				helper.itemView.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Toast.makeText(ChoiceMenuExampleActivity.this,item,Toast.LENGTH_SHORT).show();
-					}
-				});
-			}
-		};
+            @Override
+            public void setValueSecond(ChoiceMenuViewHolder helper, String item) {
 
-		ChoiceMenu<String>choiceMenu1=new ChoiceMenu<String>(this,data,R.layout.choice_menu_item) {
-			@Override
-			public void setValueFirst(ChoiceMenuViewHolder helper, String item) {
-				helper.setText(R.id.menu_title, item);
-			}
+            }
+        };
 
-			@Override
-			public void setValueSecond(ChoiceMenuViewHolder helper, String item) {
+        choiceMenu1.setOnFirstAdapterItemClickListener((position, v, menu) -> {
+            selectPositionOne = position;
+            choiceMenu1.notifyAdapterData();
+        });
 
-			}
-		};
+        //设置高度
+        choiceMenu2.setHeight(getResources().getDisplayMetrics().heightPixels / 2);
 
-		//设置高度
-		choiceMenu.setHeight(getResources().getDisplayMetrics().heightPixels/2);
-		//设置分割线
-		choiceMenu.addLine(R.color.red,2);
-		choiceMenu.addSecondLine(R.color.blue,2);
+        showOne.setOnClickListener(v -> choiceMenu1.showAsDropDown(showOne));
+        showTwo.setOnClickListener(v -> choiceMenu2.showAsDropDown(showTwo));
 
-		showOne.setOnClickListener(v -> choiceMenu1.showAsDropDown(mRelativeLayout));
-		showTwo.setOnClickListener(v -> choiceMenu.showAsDropDown(mRelativeLayout));
+    }
 
-	}
+    private void initData() {
+        data.add("美食");
+        List<String> list1 = new ArrayList<>();
+        list1.add("谷类及制品");
+        list1.add("薯类、淀粉及制品");
+        list1.add("干豆类及制品");
+        list1.add("蔬菜类及制品");
+        list1.add("菌藻类");
+        list1.add("水果类及制品");
+        list1.add("坚果、种子类");
+        list1.add("畜肉类及制品");
+        list1.add("禽肉类及制品");
+        list1.add("乳类及制品");
+        list1.add("蛋类及制品");
+        list1.add("鱼虾蟹贝类");
+        data2.add(list1);
+
+
+        data.add("娱乐");
+        List<String> list2 = new ArrayList<>();
+        list2.add("歌舞厅");
+        list2.add("演艺厅");
+        list2.add("迪厅");
+        list2.add("KTV");
+        list2.add("夜总会");
+        list2.add("音乐茶座");
+        list2.add("台球");
+        list2.add("高尔夫球");
+        list2.add("保龄球场");
+        list2.add("游戏厅");
+        data2.add(list2);
+
+
+        data.add("丽人");
+        List<String> list3 = new ArrayList<>();
+        data2.add(list3);
+
+    }
 }

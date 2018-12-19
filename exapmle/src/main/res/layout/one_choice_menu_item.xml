@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:background="@drawable/choice_menu_item_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@drawable/choice_menu_text_selector"
+        android:text="啦啦啦啦啦"
+        android:textSize="16sp"
+        android:gravity="center"/>
+
+</LinearLayout>
