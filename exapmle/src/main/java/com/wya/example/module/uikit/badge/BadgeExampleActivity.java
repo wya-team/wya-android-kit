@@ -57,7 +57,7 @@ public class BadgeExampleActivity extends BaseActivity {
     
     @BindView(R.id.edt_text)
     EditText edtText;
-    
+
     @Override
     protected int getLayoutID() {
         return R.layout.activity_badge_example;

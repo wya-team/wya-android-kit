@@ -28,8 +28,8 @@ public class BannerExampleActivity extends BaseActivity {
         data.add(R.mipmap.img3);
 
 
-        mWYABanner = findViewById(R.id.banner);
-        mWYABanner2 = findViewById(R.id.banner2);
+        mWYABanner = (WYABanner<Integer>) findViewById(R.id.banner);
+        mWYABanner2 = (WYABanner<Integer>) findViewById(R.id.banner2);
         mWYABanner.setUpdateTime(2000)
                 .setDotVisible(true)
 //				.setDotDark()

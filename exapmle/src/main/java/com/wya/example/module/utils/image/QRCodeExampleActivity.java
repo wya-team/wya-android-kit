@@ -25,7 +25,7 @@ public class QRCodeExampleActivity extends BaseActivity implements View.OnClickL
 	protected void initView() {
 		findViewById(R.id.crate_qr_image).setOnClickListener(this);
 		findViewById(R.id.crate_line_image).setOnClickListener(this);
-		imageview = findViewById(R.id.imageview);
+		imageview = (ImageView) findViewById(R.id.imageview);
 		path = getDiskCachePath(this)+ "/test.jpg";
 	}
 

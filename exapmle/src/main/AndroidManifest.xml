@@ -49,7 +49,9 @@
         <activity android:name=".module.uikit.searchbar.SearchBarExampleActivity" />
         <activity android:name=".module.uikit.paginationview.PaginationViewExampleActivity" />
         <activity android:name=".module.uikit.keyboard.KeyboardExampleActivity" />
-        <activity android:name=".module.uikit.badge.BadgeExampleActivity" />
+        <activity
+            android:name=".module.uikit.badge.BadgeExampleActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".module.uikit.choicemenu.ChoiceMenuExampleActivity" />
         <activity android:name=".module.uikit.button.ButtonExampleActivity" />
         <activity android:name=".module.uikit.gallery.GalleryExampleActivity" />
@@ -57,7 +59,9 @@
         <activity android:name=".module.uikit.customitems.cardview.CardViewExampleActivity" />
         <activity android:name=".module.uikit.customitems.grid.GridExampleActivity" />
         <activity android:name=".module.uikit.imagepicker.ImagePickerExampleActivity" />
-        <activity android:name=".module.uikit.customitems.inputitem.InputItemExampleActivity" />
+        <activity
+            android:name=".module.uikit.customitems.inputitem.InputItemExampleActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".module.uikit.stepper.StepperExampleActivity" />
         <activity android:name=".module.uikit.banner.BannerExampleActivity" />
         <activity android:name=".module.uikit.progress.ProgressExampleActivity" />
@@ -74,7 +78,6 @@
         <activity android:name=".module.utils.image.QRCodeExampleActivity" />
         <activity android:name=".module.uikit.customedittext.CustomEditTextExampleActivity" />
         <activity android:name=".module.uikit.slidder.SlideViewExampleActivity" />
-        <activity android:name=".module.uikit.customitems.expandrecyclerview.ExpandRecyclerViewActivity" />
         <activity android:name=".module.utils.fliedownload.FileDownloadExampleActivity"></activity>
     </application>
 

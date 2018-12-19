@@ -23,17 +23,20 @@ import com.wya.example.module.uikit.customedittext.CustomEditTextExampleActivity
 import com.wya.example.module.uikit.customitems.cardview.CardViewExampleActivity;
 import com.wya.example.module.uikit.customitems.grid.GridExampleActivity;
 import com.wya.example.module.uikit.customitems.inputitem.InputItemExampleActivity;
+import com.wya.example.module.uikit.dialog.DialogExampleActivity;
 import com.wya.example.module.uikit.dialog.bean.Item;
 import com.wya.example.module.uikit.imagepicker.ImagePickerExampleActivity;
 import com.wya.example.module.uikit.notice.NoticeExampleActivity;
 import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity;
 import com.wya.example.module.uikit.pickerview.PickerViewExampleActivity;
 import com.wya.example.module.uikit.popupwindow.PopupWindowExampleActivity;
+import com.wya.example.module.uikit.progress.ProgressExampleActivity;
 import com.wya.example.module.uikit.searchbar.SearchBarExampleActivity;
 import com.wya.example.module.uikit.segmentedcontrol.SegmentedControlExampleActivity;
 import com.wya.example.module.uikit.slidder.SlideViewExampleActivity;
 import com.wya.example.module.uikit.stepper.StepperExampleActivity;
 import com.wya.example.module.uikit.tabbar.TabBarExampleActivity;
+import com.wya.example.module.uikit.toast.ToastExampleActivity;
 import com.wya.example.module.uikit.toolbar.ToolBarExampleActivity;
 import com.wya.example.module.utils.image.QRCodeExampleActivity;
 import com.wya.example.module.utils.realm.RealmExampleActivity;
@@ -114,7 +117,7 @@ public class ExampleFragment extends Fragment {
         bean4.add("活动指示器(dialog(WYALoadingDialog))");
         bean4.add("进度条(progressview)");
         bean4.add("轻提示(toast)");
-        item4.setChild(bean3);
+        item4.setChild(bean4);
 
         Item item5 = new Item();
         item5.setTitle("其他");
@@ -129,6 +132,7 @@ public class ExampleFragment extends Fragment {
         mDatas.add(item2);
         mDatas.add(item3);
         mDatas.add(item4);
+        mDatas.add(item5);
     }
 
     private void initExpandList() {
@@ -229,6 +233,20 @@ public class ExampleFragment extends Fragment {
                 break;
             case "二维码(utils(QRCodeUtil))":
                 startActivity(new Intent(getActivity(), QRCodeExampleActivity.class));
+                break;
+
+
+            case "弹框(dialog(WYACustomDialog))":
+                startActivity(new Intent(getActivity(), DialogExampleActivity.class));
+                break;
+            case "活动指示器(dialog(WYALoadingDialog))":
+                startActivity(new Intent(getActivity(), DialogExampleActivity.class));
+                break;
+            case "进度条(progressview)":
+                startActivity(new Intent(getActivity(), ProgressExampleActivity.class));
+                break;
+            case "轻提示(toast)":
+                startActivity(new Intent(getActivity(), ToastExampleActivity.class));
                 break;
 
 

@@ -46,9 +46,9 @@ public class ImagePickerExampleActivity extends BaseActivity {
 
 	@Override
 	protected void initView() {
-		mRecyclerView = findViewById(R.id.recycler_view);
-		input = findViewById(R.id.num_input);
-		crop_image = findViewById(R.id.crop_image);
+		mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+		input = (EditText) findViewById(R.id.num_input);
+		crop_image = (ImageView) findViewById(R.id.crop_image);
 
 		findViewById(R.id.select).setOnClickListener(new View.OnClickListener() {
 			@Override

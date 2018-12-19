@@ -35,12 +35,12 @@ public class ChoiceMenuExampleActivity extends BaseActivity {
     protected void initView() {
 
         setToolBarTitle("ChoiceMenu");
-        showOne = findViewById(R.id.show_one);
-        showTwo = findViewById(R.id.show_two);
+        showOne = (RelativeLayout) findViewById(R.id.show_one);
+        showTwo = (RelativeLayout) findViewById(R.id.show_two);
 
         initData();
 
-        mRelativeLayout = findViewById(R.id.title_bar_bg);
+        mRelativeLayout = (RelativeLayout) findViewById(R.id.title_bar_bg);
         ChoiceMenu<String> choiceMenu2 = new ChoiceMenu<String>(this, data, data2, R.layout
                 .choice_menu_item, R.layout.choice_menu_item2) {
             @Override

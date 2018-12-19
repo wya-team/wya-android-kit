@@ -48,8 +48,8 @@ public class PickerViewExampleActivity extends BaseActivity {
 		}
 
 
-		picker_link = findViewById(R.id.picker_link);
-		time_picker = findViewById(R.id.time_picker);
+		picker_link = (Button) findViewById(R.id.picker_link);
+		time_picker = (Button) findViewById(R.id.time_picker);
 
 
 		picker_link.setOnClickListener(new View.OnClickListener() {

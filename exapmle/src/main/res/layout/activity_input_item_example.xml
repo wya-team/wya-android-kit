@@ -135,7 +135,7 @@
                 app:backColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
-                app:contentText="1212167512682245"
+                app:contentText="34312167512682245"
                 app:contentTextColor="@color/black"
                 app:leftTvColor="@color/black"
                 app:leftTvText="银行卡"

@@ -24,7 +24,7 @@ public class PaginationViewExampleActivity extends BaseActivity {
 
 	@Override
 	protected void initView() {
-		mBottomView = findViewById(R.id.pagination_view);
+		mBottomView = (WYAPaginationBottomView) findViewById(R.id.pagination_view);
 		mBottomView.setAllNum(20);
 		mBottomView.setPageSearchListener(new WYAPaginationBottomView.onPageSearchListener() {
 			@Override
@@ -33,10 +33,10 @@ public class PaginationViewExampleActivity extends BaseActivity {
 			}
 		});
 
-		mDot = findViewById(R.id.pagination_dot);
+		mDot = (WYAPaginationDot) findViewById(R.id.pagination_dot);
 		mDot.setPointNumber(5);
 
-		mViewPager = findViewById(R.id.viewpager);
+		mViewPager = (ViewPager) findViewById(R.id.viewpager);
 		mViewPager.setAdapter(mAdapter);
 		mDot.setUpWithViewPager(mViewPager);
 	}

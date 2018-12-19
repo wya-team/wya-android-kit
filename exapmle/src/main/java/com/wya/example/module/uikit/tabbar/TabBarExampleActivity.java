@@ -47,8 +47,8 @@ public class TabBarExampleActivity extends BaseActivity {
     }
 
     private void setToolBar() {
-        tab = findViewById(R.id.tab);
-        msg = findViewById(R.id.msg);
+        tab = (WYATabBar) findViewById(R.id.tab);
+        msg = (TextView) findViewById(R.id.msg);
         //取消偏移
         tab.disableShiftMode();
         //取消item动画

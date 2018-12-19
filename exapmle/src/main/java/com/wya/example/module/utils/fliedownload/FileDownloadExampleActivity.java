@@ -49,25 +49,25 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
     @Override
     protected void initView() {
         FileManagerUtil.getInstance().register();
-        percent = findViewById(R.id.progress_percent);
-        start = findViewById(R.id.start);
-        pause = findViewById(R.id.pause);
-        delete = findViewById(R.id.delete);
-        progress = findViewById(R.id.progress);
-        all_file = findViewById(R.id.all_file);
-        down_file = findViewById(R.id.down_file);
+        percent = (TextView) findViewById(R.id.progress_percent);
+        start = (Button) findViewById(R.id.start);
+        pause = (Button) findViewById(R.id.pause);
+        delete = (Button) findViewById(R.id.delete);
+        progress = (ProgressBar) findViewById(R.id.progress);
+        all_file = (TextView) findViewById(R.id.all_file);
+        down_file = (TextView) findViewById(R.id.down_file);
 
         start.setOnClickListener(this);
         pause.setOnClickListener(this);
         delete.setOnClickListener(this);
 
-        percent2 = findViewById(R.id.progress_percent2);
-        start2 = findViewById(R.id.start2);
-        pause2 = findViewById(R.id.pause2);
-        delete2 = findViewById(R.id.delete2);
-        progress2 = findViewById(R.id.progress2);
-        all_file2 = findViewById(R.id.all_file2);
-        down_file2 = findViewById(R.id.down_file2);
+        percent2 = (TextView) findViewById(R.id.progress_percent2);
+        start2 = (Button) findViewById(R.id.start2);
+        pause2 = (Button) findViewById(R.id.pause2);
+        delete2 = (Button) findViewById(R.id.delete2);
+        progress2 = (ProgressBar) findViewById(R.id.progress2);
+        all_file2 = (TextView) findViewById(R.id.all_file2);
+        down_file2 = (TextView) findViewById(R.id.down_file2);
 
         start2.setOnClickListener(this);
         pause2.setOnClickListener(this);
