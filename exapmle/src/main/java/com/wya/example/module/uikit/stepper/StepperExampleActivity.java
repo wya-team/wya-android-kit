@@ -1,9 +1,5 @@
 package com.wya.example.module.uikit.stepper;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.LinearLayout;
-
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.uikit.stepper.WYAStepper;
@@ -29,6 +25,6 @@ public class StepperExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setToolBarTitle("Stepper");
+        setToolBarTitle("步进器(stepper)");
     }
 }

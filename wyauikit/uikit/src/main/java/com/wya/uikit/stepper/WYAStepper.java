@@ -36,6 +36,7 @@ public class WYAStepper extends LinearLayout {
      */
     private Drawable reduceDrawable = null;
     private Drawable reduceDrawablePress = null;
+    private Drawable reduceDisableDrawablePress = null;
     private ImageView stepper_img_reduce;
 
     /**
@@ -43,6 +44,7 @@ public class WYAStepper extends LinearLayout {
      */
     private Drawable addDrawable = null;
     private Drawable addDrawablePress = null;
+    private Drawable addDisableDrawablePress = null;
     private ImageView stepper_img_add;
 
     /**
@@ -51,7 +53,7 @@ public class WYAStepper extends LinearLayout {
     private String input_before;
 
     public WYAStepper(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public WYAStepper(Context context, @Nullable AttributeSet attrs) {
@@ -67,6 +69,9 @@ public class WYAStepper extends LinearLayout {
             //记录减号按钮被按下时的背景图片
             reduceDrawablePress = a.getDrawable(R.styleable.WYAStepper_reduceDrawablePress);
 
+            //记录减号按钮无法点击时的背景图片
+            reduceDisableDrawablePress = a.getDrawable(R.styleable.WYAStepper_reduceDisableDrawablePress);
+
 
             //设置加号背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
             addDrawable = a.getDrawable(R.styleable.WYAStepper_addDrawable);
@@ -74,6 +79,8 @@ public class WYAStepper extends LinearLayout {
 
             //记录加号按钮被按下时的背景图片
             addDrawablePress = a.getDrawable(R.styleable.WYAStepper_addDrawablePress);
+            //记录加号按钮无法点击时的背景图片
+            addDisableDrawablePress = a.getDrawable(R.styleable.WYAStepper_addDisableDrawablePress);
 
             value = a.getInt(R.styleable.WYAStepper_value, 0);
             max_num = a.getInt(R.styleable.WYAStepper_max_num, 0);
@@ -169,17 +176,34 @@ public class WYAStepper extends LinearLayout {
         stepper_et_num.setText(value + "");
         stepper_et_num.setHint(min_num + "");
         if (value >= max_num) {
-            stepper_img_add.setBackgroundDrawable(addDrawablePress);
+            if(addDisableDrawablePress == null){
+                stepper_img_add.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus_disable));
+            } else {
+                stepper_img_add.setBackgroundDrawable(addDisableDrawablePress);
+            }
             stepper_img_add.setEnabled(false);
         } else {
+            if(addDrawable == null){
+                stepper_img_add.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus));
+            } else {
+                stepper_img_add.setBackgroundDrawable(addDrawable);
+            }
             stepper_img_add.setBackgroundDrawable(addDrawable);
             stepper_img_add.setEnabled(true);
         }
         if (value <= min_num) {
-            stepper_img_reduce.setBackgroundDrawable(reduceDrawablePress);
+            if(reduceDisableDrawablePress == null){
+                stepper_img_reduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus_disable));
+            } else {
+                stepper_img_reduce.setBackgroundDrawable(reduceDisableDrawablePress);
+            }
             stepper_img_reduce.setEnabled(false);
         } else {
-            stepper_img_reduce.setBackgroundDrawable(reduceDrawable);
+            if(reduceDrawable == null){
+                stepper_img_reduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus));
+            } else {
+                stepper_img_reduce.setBackgroundDrawable(reduceDrawable);
+            }
             stepper_img_reduce.setEnabled(true);
         }
     }
@@ -233,7 +257,7 @@ public class WYAStepper extends LinearLayout {
         if (reduceDrawable != null) {
             stepper_img_reduce.setBackgroundDrawable(reduceDrawable);
         } else {
-            stepper_img_reduce.setImageDrawable(getResources().getDrawable(R.mipmap.reduce));
+            stepper_img_reduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus));
         }
     }
 
@@ -247,7 +271,7 @@ public class WYAStepper extends LinearLayout {
         if (reduceDrawablePress != null) {
             stepper_img_reduce.setBackgroundDrawable(reduceDrawablePress);
         } else {
-            stepper_img_reduce.setImageDrawable(getResources().getDrawable(R.mipmap.reduce_press));
+            stepper_img_reduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus_selected));
         }
     }
 
@@ -261,7 +285,7 @@ public class WYAStepper extends LinearLayout {
         if (reduceDrawable != null) {
             stepper_img_add.setBackgroundDrawable(addDrawable);
         } else {
-            stepper_img_add.setImageDrawable(getResources().getDrawable(R.mipmap.add));
+            stepper_img_add.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus));
         }
     }
 
@@ -275,7 +299,7 @@ public class WYAStepper extends LinearLayout {
         if (reduceDrawablePress != null) {
             stepper_img_add.setBackgroundDrawable(reduceDrawablePress);
         } else {
-            stepper_img_add.setImageDrawable(getResources().getDrawable(R.mipmap.add_press));
+            stepper_img_add.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus_selected));
         }
     }
 

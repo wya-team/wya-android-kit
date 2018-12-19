@@ -106,8 +106,10 @@
     <declare-styleable name="WYAStepper">
         <attr name="reduceDrawable" format="reference" />
         <attr name="reduceDrawablePress" format="reference" />
+        <attr name="reduceDisableDrawablePress" format="reference" />
         <attr name="addDrawable" format="reference" />
         <attr name="addDrawablePress" format="reference" />
+        <attr name="addDisableDrawablePress" format="reference" />
 
         <attr name="value" format="integer" />
         <attr name="max_num" format="integer" />

@@ -33,12 +33,8 @@
         android:id="@+id/stepper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:addDrawable="@mipmap/add"
-        app:addDrawablePress="@mipmap/add_press"
         app:max_num="100"
         app:min_num="0"
-        app:reduceDrawable="@mipmap/reduce"
-        app:reduceDrawablePress="@mipmap/reduce_press"
         app:value="0" />
 
     <com.wya.uikit.button.WYAButton
