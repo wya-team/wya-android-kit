@@ -69,6 +69,7 @@
         <attr name="rightTextColor" />
         <attr name="contentTextColor" />
         <attr name="assistTextColor" />
+        <attr name="imgTitleLeft" format="reference"/>
         <attr name="wyaCardRadius" format="float" />
     </declare-styleable>
 
