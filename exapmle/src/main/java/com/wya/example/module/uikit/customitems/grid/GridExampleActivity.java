@@ -1,8 +1,8 @@
 package com.wya.example.module.uikit.customitems.grid;
 
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
@@ -12,22 +12,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class GridExampleActivity extends BaseActivity {
     @BindView(R.id.recycle_view)
     RecyclerView recycleView;
+    @BindView(R.id.recycle_view2)
+    RecyclerView recycleView2;
+    @BindView(R.id.recycle_view3)
+    RecyclerView recycleView3;
+    @BindView(R.id.recycle_view4)
+    RecyclerView recycleView4;
     private List<String> data = new ArrayList<>();
     private GridAdapter gridAdapter;
-    private List<String> list;
-    private WYAPopupWindow wyaPopupWindow;
+    private GridAdapter gridAdapter2;
     private GridLayoutManager gridLayoutManager;
-    private int spanCount = 4;
+    private GridLayoutManager gridLayoutManager2;
+    private GridLayoutManager gridLayoutManager3;
+    private GridLayoutManager gridLayoutManager4;
 
     @Override
     protected void initView() {
-        setToolBarTitle("Grid");
-        initImgRight(R.drawable.icon_add, true);
-        setPopupWindow();
+        setToolBarTitle("宫格(grid)");
         setGrid();
     }
 
@@ -35,31 +41,20 @@ public class GridExampleActivity extends BaseActivity {
         for (int i = 0; i < 10; i++) {
             data.add("标题" + i);
         }
-        gridLayoutManager = new GridLayoutManager(this, spanCount);
+        gridLayoutManager = new GridLayoutManager(this, 4);
+        gridLayoutManager2 = new GridLayoutManager(this, 3);
+        gridLayoutManager3 = new GridLayoutManager(this, 2);
+        gridLayoutManager4 = new GridLayoutManager(this, 5);
         recycleView.setLayoutManager(gridLayoutManager);
+        recycleView2.setLayoutManager(gridLayoutManager2);
+        recycleView3.setLayoutManager(gridLayoutManager4);
+        recycleView4.setLayoutManager(gridLayoutManager3);
         gridAdapter = new GridAdapter(this, R.layout.wya_grid_item, data);
+        gridAdapter2 = new GridAdapter(this, R.layout.wya_grid_item2, data);
         recycleView.setAdapter(gridAdapter);
-    }
-
-    private void setPopupWindow() {
-        list = new ArrayList<>();
-        list.add("1列");
-        list.add("2列");
-        list.add("3列");
-        list.add("4列");
-        setRightImageAntherOnclickListener(new onRightImageAntherOnclickListener() {
-            @Override
-            public void onRightImageAntherOnclickListener(View view) {
-                wyaPopupWindow.show(view, -100, 0);
-            }
-        });
-        wyaPopupWindow = new WYAPopupWindow.Builder(GridExampleActivity.this).list(list).build();
-        wyaPopupWindow.setPopupWindowListOnclickListener(position -> {
-            wyaPopupWindow.dismiss();
-            spanCount = position + 1;
-            gridLayoutManager.setSpanCount(spanCount);
-            gridAdapter.notifyDataSetChanged();
-        });
+        recycleView2.setAdapter(gridAdapter);
+        recycleView3.setAdapter(gridAdapter);
+        recycleView4.setAdapter(gridAdapter2);
     }
 
     @Override

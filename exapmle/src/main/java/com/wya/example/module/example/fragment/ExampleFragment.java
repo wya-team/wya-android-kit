@@ -14,6 +14,7 @@ import com.wya.example.R;
 import com.wya.example.module.example.adapter.ExampleExpandableListAdapter;
 import com.wya.example.module.example.view.CustomerExpandableListView;
 import com.wya.example.module.hardware.camera.CameraExampleActivity;
+import com.wya.example.module.hardware.camera.StartCameraExampleActivity;
 import com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
 import com.wya.example.module.uikit.banner.BannerExampleActivity;
@@ -126,7 +127,7 @@ public class ExampleFragment extends Fragment {
         bean5.add("视频播放(dvideoplayer)");
         bean5.add("清理缓存(utils(DataCleanUtil))");
         bean5.add("数据库基本使用(realm)");
-        item5.setChild(bean3);
+        item5.setChild(bean5);
 
         mDatas.add(item1);
         mDatas.add(item2);
@@ -206,7 +207,7 @@ public class ExampleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), StepperExampleActivity.class));
                 break;
             case "拍照录制视频(camera)":
-                startActivity(new Intent(getActivity(), CameraExampleActivity.class));
+                startActivity(new Intent(getActivity(), StartCameraExampleActivity.class));
                 break;
             case "扫码(camera)":
 //                startActivity(new Intent(getActivity(), SearchBarExampleActivity.class));

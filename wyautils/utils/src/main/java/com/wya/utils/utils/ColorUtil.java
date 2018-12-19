@@ -1,5 +1,8 @@
 package com.wya.utils.utils;
+
 import android.graphics.Color;
+
+import java.util.Random;
 
 /**
  * 创建日期：2018/12/8 16:41
@@ -102,6 +105,26 @@ public class ColorUtil {
         int colorInt = 0;
         colorInt = Color.rgb(rgb[0], rgb[1], rgb[2]);
         return colorInt;
+    }
+
+    /**
+     * 获取十六进制的颜色代码.例如 "#6E36B4" , For HTML ,
+     *
+     * @return String
+     */
+
+    public static String getRandColorCode() {
+        String r, g, b;
+        Random random = new Random();
+        r = Integer.toHexString(random.nextInt(256)).toUpperCase();
+        g = Integer.toHexString(random.nextInt(256)).toUpperCase();
+        b = Integer.toHexString(random.nextInt(256)).toUpperCase();
+
+        r = r.length() == 1 ? "0" + r : r;
+        g = g.length() == 1 ? "0" + g : g;
+        b = b.length() == 1 ? "0" + b : b;
+
+        return "#"+r + g + b;
     }
 
 }
