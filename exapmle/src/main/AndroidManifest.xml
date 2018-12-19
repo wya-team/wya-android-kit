@@ -58,13 +58,12 @@
         <activity android:name=".module.uikit.customitems.CustomItemsExampleActivity" />
         <activity android:name=".module.uikit.customitems.cardview.CardViewExampleActivity" />
         <activity android:name=".module.uikit.customitems.grid.GridExampleActivity" />
-        <activity android:name=".module.uikit.imagepicker.ImagePickerExampleActivity" />
         <activity
             android:name=".module.uikit.customitems.inputitem.InputItemExampleActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".module.uikit.imagepicker.ImagePickerExampleActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name=".module.uikit.customitems.inputitem.InputItemExampleActivity" />
+        <activity
+            android:name=".module.uikit.imagepicker.ImagePickerExampleActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".module.uikit.stepper.StepperExampleActivity" />
         <activity android:name=".module.uikit.banner.BannerExampleActivity" />
         <activity android:name=".module.uikit.progress.ProgressExampleActivity" />
