@@ -5,90 +5,236 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/f4f4f4"
     tools:context="com.wya.example.module.uikit.customitems.inputitem.InputItemExampleActivity">
 
-    <com.wya.uikit.customitems.WYAInputItem
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:backColor="#ffffff"
-        app:canEdit="false"
-        app:contentHint="编辑文本提示"
-        app:leftImage="@drawable/tabbar_item_22dp"
-        app:contentTextColor="@color/black"
-        app:leftTvText="左边"
-        app:lineViewColor="#000000"
-        app:rightCanEdit="false"
-        app:rightImage="@drawable/icon_right_arrow"
-        app:rightText="右边文字"
-        app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
 
-    <com.wya.uikit.customitems.WYAInputItem
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:backColor="#ffffff"
-        app:canEdit="false"
-        app:contentHint="编辑文本提示"
-        app:leftImage="@drawable/tabbar_item_22dp"
-        app:leftTvText="左边"
-        app:lineViewColor="#000000"
-        app:rightCanEdit="false"
-        app:rightImage="@drawable/icon_right_arrow"
-        app:rightText=""
-        app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
+        android:fillViewport="true">
 
-    <com.wya.uikit.customitems.WYAInputItem
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backColor="#ffffff"
-        app:canEdit="false"
-        app:contentHint="编辑文本提示"
-        app:leftTvText="左边"
-        app:lineViewColor="#000000"
-        app:rightCanEdit="false"
-        app:rightText="右边文字"
-        app:rightTextColor="@color/blue"></com.wya.uikit.customitems.WYAInputItem>
 
-    <com.wya.uikit.customitems.WYAInputItem
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backColor="#ffffff"
-        app:canEdit="false"
-        app:contentHint="编辑文本提示"
-        app:leftTvText="左边"
-        app:contentText="输入的内容"
-        app:contentTextColor="@color/black"
-        app:lineViewColor="#000000"
-        app:rightCanEdit="false"
-        app:rightImage="@drawable/icon_right_arrow"
-        app:rightText=""
-        app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <com.wya.uikit.customitems.WYAInputItem
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backColor="#ffffff"
-        app:canEdit="false"
-        app:contentHint="编辑文本提示"
-        app:leftTvText="左边"
-        app:lineViewColor="#000000"
-        app:rightCanEdit="false"
-        app:rightImage="@drawable/icon_right_arrow"
-        app:rightText="右边文字"
-        app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="右侧注释"
+                android:padding="@dimen/dp_10"/>
 
-    <com.wya.uikit.customitems.WYAInputItem
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backColor="#ffffff"
-        app:canEdit="true"
-        app:contentHint="编辑文本提示"
-        app:leftImage="@drawable/tabbar_item_22dp"
-        app:leftTvText="左边"
-        app:lineViewColor="#000000"
-        app:rightCanEdit="false"
-        app:rightImage="@drawable/icon_right_arrow"
-        app:rightText="右边文字"
-        app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
+            <com.wya.uikit.customitems.WYAInputItem
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:backColor="#ffffff"
+                app:canEdit="true"
+                app:contentHint="我是暗提示"
+                app:contentText="输入内容"
+                app:leftTvColor="@color/black"
+                app:contentTextColor="@color/black"
+                app:leftTvText="标签"
+                app:lineViewColor="#000000"
+                app:rightCanEdit="false"
+                app:rightText="右侧注释"
+                app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
+
+            <com.wya.uikit.customitems.WYAInputItem
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:backColor="#ffffff"
+                app:canEdit="true"
+                app:contentHint="我是暗提示"
+                app:leftTvColor="@color/black"
+                app:contentTextColor="@color/black"
+                app:leftTvText="标签"
+                app:lineViewColor="#000000"
+                app:rightCanEdit="false"
+                app:rightImage="@drawable/icon_eye"
+                app:rightText=""
+                app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
+
+            <com.wya.uikit.customitems.WYAInputItem
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:backColor="#ffffff"
+                app:canEdit="true"
+                app:contentHint="我是暗提示"
+                app:contentText="输入内容"
+                app:leftTvColor="@color/black"
+                app:contentTextColor="@color/black"
+                app:leftTvText="标签"
+                app:lineViewColor="#000000"
+                app:rightCanEdit="false"
+                app:rightText="使用说明"
+                app:rightTextColor="@color/primary_color"></com.wya.uikit.customitems.WYAInputItem>
+
+            <com.wya.uikit.customitems.WYAInputItem
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:backColor="#ffffff"
+                app:canEdit="true"
+                app:contentHint="我是暗提示"
+                app:contentText="输入内容"
+                app:leftTvColor="@color/black"
+                app:contentTextColor="@color/black"
+                app:leftTvText="标签"
+                app:lineViewColor="#000000"
+                app:rightCanEdit="false"
+                app:rightImage="@drawable/icon_right_arrow"
+                app:rightText=""
+                app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
+
+
+            <com.wya.uikit.customitems.WYAInputItem
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:backColor="#ffffff"
+                app:canEdit="true"
+                app:contentHint="我是暗提示"
+                app:contentText="输入内容"
+                app:leftTvColor="@color/black"
+                app:contentTextColor="@color/black"
+                app:leftTvText="标签"
+                app:lineViewColor="#000000"
+                app:rightCanEdit="false"
+                app:rightImage="@drawable/icon_right_arrow"
+                app:rightText="右侧注释"
+                app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="格式"
+                android:padding="@dimen/dp_10"/>
+
+
+            <com.wya.uikit.customitems.WYAInputItem
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:backColor="#ffffff"
+                app:canEdit="true"
+                app:contentHint="我是暗提示"
+                app:leftTvColor="@color/black"
+                app:contentTextColor="@color/black"
+                app:leftTvText="手机号"
+                app:contentText="18079787890"
+                app:lineViewColor="#000000"
+                app:rightCanEdit="false"
+                app:rightImage="@drawable/icon_eye"
+                app:rightText=""
+                app:contentInputType="phone"
+                app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
+
+
+            <com.wya.uikit.customitems.WYAInputItem
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:backColor="#ffffff"
+                app:canEdit="true"
+                app:contentHint="我是暗提示"
+                app:contentText="1212167512682245"
+                app:contentTextColor="@color/black"
+                app:leftTvColor="@color/black"
+                app:leftTvText="银行卡"
+                app:lineViewColor="#000000"
+                app:rightCanEdit="false"
+                app:rightText=""
+                app:contentInputType="card"
+                app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
+
+
+            <com.wya.uikit.customitems.WYAInputItem
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:backColor="#ffffff"
+                app:canEdit="true"
+                app:contentHint="我是暗提示"
+                app:contentText="100"
+                app:contentTextColor="@color/black"
+                app:leftTvColor="@color/black"
+                app:leftTvText="金额    "
+                app:lineViewColor="#000000"
+                app:rightCanEdit="false"
+                app:rightText="无"
+                app:contentInputType="money"
+                app:rightTextColor="@color/black"></com.wya.uikit.customitems.WYAInputItem>
+
+            <com.wya.uikit.customitems.WYAInputItem
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:backColor="#ffffff"
+                app:canEdit="true"
+                app:contentHint="我是暗提示"
+                app:leftTvColor="@color/black"
+                app:contentTextColor="@color/black"
+                app:leftTvText="密码    "
+                app:contentText="125615"
+                app:lineViewColor="#000000"
+                app:rightCanEdit="false"
+                app:rightImage="@drawable/icon_eye"
+                app:rightText=""
+                app:contentInputType="password"
+                app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="不可编辑 禁用"
+                android:padding="@dimen/dp_10"/>
+
+            <com.wya.uikit.customitems.WYAInputItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:backColor="#ffffff"
+                app:canEdit="false"
+                app:contentHint="我是暗提示"
+                app:leftTvText="用户名"
+                app:leftTvColor="@color/black"
+                app:contentText="该用户不存在"
+                app:contentTextColor="@color/black"
+                app:lineViewColor="#000000"
+                app:rightCanEdit="false"
+                app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
+
+            <com.wya.uikit.customitems.WYAInputItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:backColor="#ffffff"
+                app:canEdit="false"
+                app:contentHint="我是暗提示"
+                app:leftTvText="标签      "
+                app:leftTvColor="#868686"
+                app:contentTextColor="#868686"
+                app:lineViewColor="#000000"
+                app:rightCanEdit="false"
+                app:rightText="右侧注释"
+                app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="左侧图标"
+                android:padding="@dimen/dp_10"/>
+
+            <com.wya.uikit.customitems.WYAInputItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:backColor="#ffffff"
+                app:canEdit="false"
+                app:contentHint=""
+                app:leftImage="@drawable/tabbar_item_22dp"
+                app:leftTvText="标签"
+                app:leftTvColor="@color/black"
+                app:lineViewColor="#000000"
+                app:rightCanEdit="false"
+                app:rightImage="@drawable/icon_right_arrow"
+                app:rightText=""
+                app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

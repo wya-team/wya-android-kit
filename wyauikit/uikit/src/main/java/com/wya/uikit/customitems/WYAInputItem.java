@@ -6,6 +6,8 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +59,7 @@ public class WYAInputItem extends LinearLayout {
     private ColorStateList contentTextColor = null;
     private EditText et_input_item_content;
     private boolean canEdit = false;
+    private int contentInputType = 0;
 
     /**
      * 右边编辑框内容
@@ -74,95 +77,98 @@ public class WYAInputItem extends LinearLayout {
     private String lineViewColor = null;
 
     public WYAInputItem(Context context) {
-        super(context);
-        LayoutInflater.from(context).inflate(R.layout.wya_input_item, this);
-        initView();
-        TypedArray a = context.obtainStyledAttributes(R.styleable.WYAInputItem);
-        if (a != null) {
-            //设置背景色
-            ColorStateList colorList = a.getColorStateList(R.styleable.WYAInputItem_backColor);
-            if (colorList != null) {
-                backColor = colorList.getColorForState(getDrawableState(), 0);
-                if (backColor != 0) {
-                    setBackgroundColor(backColor);
-                }
-            }
-
-            //设置左边背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
-            leftDrawable = a.getDrawable(R.styleable.WYAInputItem_leftImage);
-            setLeftBackgroundDrawable(leftDrawable);
-
-            //设置右边背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
-            rightDrawable = a.getDrawable(R.styleable.WYAInputItem_rightImage);
-            setRightBackgroundDrawable(rightDrawable);
-
-            //设置左边文字的颜色
-            leftTextColor = a.getColorStateList(R.styleable.WYAInputItem_leftTvColor);
-            if (leftTextColor != null) {
-                setLeftTextColor(leftTextColor);
-            }
-
-
-            //设置左边文字内容
-            leftText = a.getString(R.styleable.WYAInputItem_leftTvText);
-            if (leftText != null) {
-                setLeftText(leftText);
-            }
-
-            //设置中间文字内容
-            contentText = a.getString(R.styleable.WYAInputItem_contentText);
-            if (contentText != null) {
-                setContentText(contentText);
-            }
-
-            //设置中间文字提示内容
-            contentHint = a.getString(R.styleable.WYAInputItem_contentHint);
-            if (contentHint != null) {
-                setContentHint(contentHint);
-            }
-
-            //设置文本是否可以编辑
-            canEdit = a.getBoolean(R.styleable.WYAInputItem_canEdit, true);
-            setContentEdit(canEdit);
-
-            //设置中间文字的颜色
-            contentTextColor = a.getColorStateList(R.styleable.WYAInputItem_contentTextColor);
-            if (contentTextColor != null) {
-                setContentTextColor(contentTextColor);
-            }
-
-
-            //设置右边文字内容
-            rightText = a.getString(R.styleable.WYAInputItem_rightText);
-            if (rightText != null) {
-                setRightText(rightText);
-            }
-
-            //设置右边文字提示内容
-            rightHint = a.getString(R.styleable.WYAInputItem_rightHint);
-            if (rightHint != null) {
-                setRightHint(rightHint);
-            }
-
-            //设置右边文本是否可以编辑
-            rightCanEdit = a.getBoolean(R.styleable.WYAInputItem_rightCanEdit, true);
-            setRightEdit(rightCanEdit);
-
-            //设置右边文字的颜色
-            rightTextColor = a.getColorStateList(R.styleable.WYAInputItem_rightTextColor);
-            if (rightTextColor != null) {
-                setRightTextColor(rightTextColor);
-            }
-
-
-            //设置分割线的颜色
-            lineViewColor = a.getString(R.styleable.WYAInputItem_lineViewColor);
-            if (lineViewColor != null) {
-                setLineViewColor(lineViewColor);
-            }
-
-            a.recycle();
-        }
+        this(context, null);
+//        LayoutInflater.from(context).inflate(R.layout.wya_input_item, this);
+//        initView();
+//        TypedArray a = context.obtainStyledAttributes(R.styleable.WYAInputItem);
+//        if (a != null) {
+//            //设置背景色
+//            ColorStateList colorList = a.getColorStateList(R.styleable.WYAInputItem_backColor);
+//            if (colorList != null) {
+//                backColor = colorList.getColorForState(getDrawableState(), 0);
+//                if (backColor != 0) {
+//                    setBackgroundColor(backColor);
+//                }
+//            }
+//
+//            //设置左边背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
+//            leftDrawable = a.getDrawable(R.styleable.WYAInputItem_leftImage);
+//            setLeftBackgroundDrawable(leftDrawable);
+//
+//            //设置右边背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
+//            rightDrawable = a.getDrawable(R.styleable.WYAInputItem_rightImage);
+//            setRightBackgroundDrawable(rightDrawable);
+//
+//            //设置左边文字的颜色
+//            leftTextColor = a.getColorStateList(R.styleable.WYAInputItem_leftTvColor);
+//            if (leftTextColor != null) {
+//                setLeftTextColor(leftTextColor);
+//            }
+//
+//
+//            //设置左边文字内容
+//            leftText = a.getString(R.styleable.WYAInputItem_leftTvText);
+//            if (leftText != null) {
+//                setLeftText(leftText);
+//            }
+//
+//            //设置中间文字内容
+//            contentText = a.getString(R.styleable.WYAInputItem_contentText);
+//            if (contentText != null) {
+//                setContentText(contentText);
+//            }
+//
+//            //设置中间文字提示内容
+//            contentHint = a.getString(R.styleable.WYAInputItem_contentHint);
+//            if (contentHint != null) {
+//                setContentHint(contentHint);
+//            }
+//
+//            //设置文本是否可以编辑
+//            canEdit = a.getBoolean(R.styleable.WYAInputItem_canEdit, true);
+//            setContentEdit(canEdit);
+//
+//            //设置中间文字的颜色
+//            contentTextColor = a.getColorStateList(R.styleable.WYAInputItem_contentTextColor);
+//            if (contentTextColor != null) {
+//                setContentTextColor(contentTextColor);
+//            }
+//
+//            //设置输入样式
+//            contentInputType = a.getInt(R.styleable.WYAInputItem_contentInputType, 0);
+//            setContentInputType(contentInputType);
+//
+//            //设置右边文字内容
+//            rightText = a.getString(R.styleable.WYAInputItem_rightText);
+//            if (rightText != null) {
+//                setRightText(rightText);
+//            }
+//
+//            //设置右边文字提示内容
+//            rightHint = a.getString(R.styleable.WYAInputItem_rightHint);
+//            if (rightHint != null) {
+//                setRightHint(rightHint);
+//            }
+//
+//            //设置右边文本是否可以编辑
+//            rightCanEdit = a.getBoolean(R.styleable.WYAInputItem_rightCanEdit, true);
+//            setRightEdit(rightCanEdit);
+//
+//            //设置右边文字的颜色
+//            rightTextColor = a.getColorStateList(R.styleable.WYAInputItem_rightTextColor);
+//            if (rightTextColor != null) {
+//                setRightTextColor(rightTextColor);
+//            }
+//
+//
+//            //设置分割线的颜色
+//            lineViewColor = a.getString(R.styleable.WYAInputItem_lineViewColor);
+//            if (lineViewColor != null) {
+//                setLineViewColor(lineViewColor);
+//            }
+//
+//            a.recycle();
+//        }
     }
 
 
@@ -208,100 +214,9 @@ public class WYAInputItem extends LinearLayout {
                 setContentText(contentText);
             }
 
-
-            //设置中间文字提示内容
-            contentHint = a.getString(R.styleable.WYAInputItem_contentHint);
-            if (contentHint != null) {
-                setContentHint(contentHint);
-            }
-
-            //设置文本是否可以编辑
-            canEdit = a.getBoolean(R.styleable.WYAInputItem_canEdit, true);
-            setContentEdit(canEdit);
-
-
-            //设置中间文字的颜色
-            contentTextColor = a.getColorStateList(R.styleable.WYAInputItem_contentTextColor);
-            if (contentTextColor != null) {
-                setContentTextColor(contentTextColor);
-            }
-
-
-            //设置右边文字内容
-            rightText = a.getString(R.styleable.WYAInputItem_rightText);
-            if (rightText != null) {
-                setRightText(rightText);
-            }
-
-            //设置右边文字提示内容
-            rightHint = a.getString(R.styleable.WYAInputItem_rightHint);
-            if (rightHint != null) {
-                setRightHint(rightHint);
-            }
-
-            //设置右边文本是否可以编辑
-            canEdit = a.getBoolean(R.styleable.WYAInputItem_canEdit, true);
-            setRightEdit(canEdit);
-
-            //设置右边文字的颜色
-            rightTextColor = a.getColorStateList(R.styleable.WYAInputItem_rightTextColor);
-            if (rightTextColor != null) {
-                setRightTextColor(rightTextColor);
-            }
-
-            //设置分割线的颜色
-            lineViewColor = a.getString(R.styleable.WYAInputItem_lineViewColor);
-            if (lineViewColor != null) {
-                setLineViewColor(lineViewColor);
-            }
-
-            a.recycle();
-        }
-    }
-
-
-    public WYAInputItem(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        LayoutInflater.from(context).inflate(R.layout.wya_input_item, this);
-        initView();
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WYAInputItem, defStyleAttr, 0);
-        if (a != null) {
-
-            //设置背景色
-            ColorStateList colorList = a.getColorStateList(R.styleable.WYAInputItem_backColor);
-            if (colorList != null) {
-                backColor = colorList.getColorForState(getDrawableState(), 0);
-                if (backColor != 0) {
-                    setBackgroundColor(backColor);
-                }
-            }
-
-            //设置背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
-            leftDrawable = a.getDrawable(R.styleable.WYAInputItem_leftImage);
-            setLeftBackgroundDrawable(leftDrawable);
-
-            //设置右边背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
-            rightDrawable = a.getDrawable(R.styleable.WYAInputItem_rightImage);
-            setRightBackgroundDrawable(rightDrawable);
-
-            //设置左边文字的颜色
-            leftTextColor = a.getColorStateList(R.styleable.WYAInputItem_leftTvColor);
-            if (leftTextColor != null) {
-                setLeftTextColor(leftTextColor);
-            }
-
-            //设置左边文字内容
-            leftText = a.getString(R.styleable.WYAInputItem_leftTvText);
-            if (leftText != null) {
-                setLeftText(leftText);
-            }
-
-
-            //设置中间文字内容
-            contentText = a.getString(R.styleable.WYAInputItem_contentText);
-            if (contentText != null) {
-                setContentText(contentText);
-            }
+            //设置输入样式
+            contentInputType = a.getInt(R.styleable.WYAInputItem_contentInputType, 0);
+            setContentInputType(contentInputType);
 
 
             //设置中间文字提示内容
@@ -353,6 +268,100 @@ public class WYAInputItem extends LinearLayout {
             a.recycle();
         }
     }
+
+//    public WYAInputItem(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+//        super(context, attrs, defStyleAttr);
+//        LayoutInflater.from(context).inflate(R.layout.wya_input_item, this);
+//        initView();
+//        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WYAInputItem, defStyleAttr, 0);
+//        if (a != null) {
+//
+//            //设置背景色
+//            ColorStateList colorList = a.getColorStateList(R.styleable.WYAInputItem_backColor);
+//            if (colorList != null) {
+//                backColor = colorList.getColorForState(getDrawableState(), 0);
+//                if (backColor != 0) {
+//                    setBackgroundColor(backColor);
+//                }
+//            }
+//
+//            //设置背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
+//            leftDrawable = a.getDrawable(R.styleable.WYAInputItem_leftImage);
+//            setLeftBackgroundDrawable(leftDrawable);
+//
+//            //设置右边背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
+//            rightDrawable = a.getDrawable(R.styleable.WYAInputItem_rightImage);
+//            setRightBackgroundDrawable(rightDrawable);
+//
+//            //设置左边文字的颜色
+//            leftTextColor = a.getColorStateList(R.styleable.WYAInputItem_leftTvColor);
+//            if (leftTextColor != null) {
+//                setLeftTextColor(leftTextColor);
+//            }
+//
+//            //设置左边文字内容
+//            leftText = a.getString(R.styleable.WYAInputItem_leftTvText);
+//            if (leftText != null) {
+//                setLeftText(leftText);
+//            }
+//
+//
+//            //设置中间文字内容
+//            contentText = a.getString(R.styleable.WYAInputItem_contentText);
+//            if (contentText != null) {
+//                setContentText(contentText);
+//            }
+//
+//
+//            //设置中间文字提示内容
+//            contentHint = a.getString(R.styleable.WYAInputItem_contentHint);
+//            if (contentHint != null) {
+//                setContentHint(contentHint);
+//            }
+//
+//            //设置文本是否可以编辑
+//            canEdit = a.getBoolean(R.styleable.WYAInputItem_canEdit, true);
+//            setContentEdit(canEdit);
+//
+//
+//            //设置中间文字的颜色
+//            contentTextColor = a.getColorStateList(R.styleable.WYAInputItem_contentTextColor);
+//            if (contentTextColor != null) {
+//                setContentTextColor(contentTextColor);
+//            }
+//
+//
+//            //设置右边文字内容
+//            rightText = a.getString(R.styleable.WYAInputItem_rightText);
+//            if (rightText != null) {
+//                setRightText(rightText);
+//            }
+//
+//            //设置右边文字提示内容
+//            rightHint = a.getString(R.styleable.WYAInputItem_rightHint);
+//            if (rightHint != null) {
+//                setRightHint(rightHint);
+//            }
+//
+//            //设置右边文本是否可以编辑
+//            canEdit = a.getBoolean(R.styleable.WYAInputItem_canEdit, true);
+//            setRightEdit(canEdit);
+//
+//            //设置右边文字的颜色
+//            rightTextColor = a.getColorStateList(R.styleable.WYAInputItem_rightTextColor);
+//            if (rightTextColor != null) {
+//                setRightTextColor(rightTextColor);
+//            }
+//
+//            //设置分割线的颜色
+//            lineViewColor = a.getString(R.styleable.WYAInputItem_lineViewColor);
+//            if (lineViewColor != null) {
+//                setLineViewColor(lineViewColor);
+//            }
+//
+//            a.recycle();
+//        }
+//    }
 
 
     /**
@@ -461,6 +470,27 @@ public class WYAInputItem extends LinearLayout {
     private void setContentTextColor(ColorStateList contentTextColor) {
         this.contentTextColor = contentTextColor;
         et_input_item_content.setTextColor(contentTextColor);
+    }
+
+    /**
+     * 设置编辑框输入格式
+     *
+     * @param contentInputType
+     */
+    private void setContentInputType(int contentInputType) {
+        this.contentInputType = contentInputType;
+        if (contentInputType != 0) {
+            if (contentInputType == 1) {//电话
+                et_input_item_content.setInputType(InputType.TYPE_CLASS_NUMBER);
+                et_input_item_content.setFilters(new InputFilter[]{new InputFilter.LengthFilter(11)});
+            } else if (contentInputType == 2) {//卡
+                et_input_item_content.setInputType(InputType.TYPE_CLASS_NUMBER);
+            } else if (contentInputType == 3) {//密码
+                et_input_item_content.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            } else if (contentInputType == 4) {//钱
+                et_input_item_content.setInputType(InputType.TYPE_CLASS_NUMBER & InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            }
+        }
     }
 
 

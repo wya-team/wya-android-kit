@@ -75,62 +75,68 @@
     <!-- custom_item input_item-->
     <declare-styleable name="WYAInputItem">
         <attr name="backColor" />
-        <attr name="leftImage"  format = "reference"/>
-        <attr name="rightImage"  format = "reference"/>
-        <attr name="leftTvColor"  format = "color"/>
+        <attr name="leftImage" format="reference" />
+        <attr name="rightImage" format="reference" />
+        <attr name="leftTvColor" format="color" />
         <attr name="leftTvText" />
 
         <attr name="contentText" />
         <attr name="contentHint" />
-        <attr name="contentTextColor" format = "color"/>
-        <attr name="canEdit" format = "boolean"/>
+        <attr name="contentTextColor" format="color" />
+        <attr name="canEdit" format="boolean" />
+        <attr name="contentInputType">
+            <enum name="text" value="0" />
+            <enum name="phone" value="1" />
+            <enum name="card" value="2" />
+            <enum name="password" value="3" />
+            <enum name="money" value="4" />
+        </attr>
 
         <attr name="rightText" />
         <attr name="rightHint" />
-        <attr name="rightTextColor" format = "color"/>
-        <attr name="rightCanEdit" format = "boolean"/>
+        <attr name="rightTextColor" format="color" />
+        <attr name="rightCanEdit" format="boolean" />
 
-        <attr name="lineViewColor" format = "color"/>
+        <attr name="lineViewColor" format="color" />
     </declare-styleable>
-
 
 
     <!-- stepper-->
     <declare-styleable name="WYAStepper">
-        <attr name="reduceDrawable"  format = "reference"/>
-        <attr name="reduceDrawablePress"  format = "reference"/>
-        <attr name="addDrawable"  format = "reference"/>
-        <attr name="addDrawablePress"  format = "reference"/>
+        <attr name="reduceDrawable" format="reference" />
+        <attr name="reduceDrawablePress" format="reference" />
+        <attr name="addDrawable" format="reference" />
+        <attr name="addDrawablePress" format="reference" />
 
-        <attr name="value"  format = "integer"/>
-        <attr name="max_num"  format = "integer"/>
-        <attr name="min_num"  format = "integer"/>
+        <attr name="value" format="integer" />
+        <attr name="max_num" format="integer" />
+        <attr name="min_num" format="integer" />
     </declare-styleable>
 
     <!-- progress -->
     <declare-styleable name="WYAProgress">
-        <attr name="circleColor" format="color"/>
-        <attr name="progressCircleColor" format="color"/>
-        <attr name="circleThickness" format="dimension"/>
-        <attr name="maxProgress" format="integer"/>
-        <attr name="animationDuration" format="integer"/>
-        <attr name="progressStartColor" format="color"/>
-        <attr name="progressEndColor" format="color"/>
-        <attr name="progressArgbColor" format="boolean"/>
-        <attr name="smallCircleEnable" format="boolean"/>
+        <attr name="circleColor" format="color" />
+        <attr name="progressCircleColor" format="color" />
+        <attr name="circleThickness" format="dimension" />
+        <attr name="maxProgress" format="integer" />
+        <attr name="animationDuration" format="integer" />
+        <attr name="progressStartColor" format="color" />
+        <attr name="progressEndColor" format="color" />
+        <attr name="progressArgbColor" format="boolean" />
+        <attr name="smallCircleEnable" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="pickerview">
         <attr name="wheelview_gravity">
-            <enum name="center" value="17"/>
-            <enum name="left" value="3"/>
-            <enum name="right" value="5"/>
+            <enum name="center" value="17" />
+            <enum name="left" value="3" />
+            <enum name="right" value="5" />
         </attr>
-        <attr name="wheelview_textSize" format="dimension"/>
-        <attr name="wheelview_textColorOut" format="color"/>
-        <attr name="wheelview_textColorCenter" format="color"/>
-        <attr name="wheelview_dividerColor" format="color"/>
-        <attr name="wheelview_lineSpacingMultiplier" format="float"/>
+        <attr name="wheelview_textSize" format="dimension" />
+        <attr name="wheelview_textColorOut" format="color" />
+        <attr name="wheelview_textColorCenter" format="color" />
+        <attr name="wheelview_dividerColor" format="color" />
+        <attr name="wheelview_lineSpacingMultiplier" format="float" />
     </declare-styleable>
 
     <declare-styleable name="EditColorRadio" tools:ignore="ResourceName">
@@ -163,15 +169,15 @@
 
     <!-- WYACustomEditText -->
     <declare-styleable name="WYACustomEditText">
-        <attr name="backGroundImage" format = "reference" />
-        <attr name="hintTextColor" format="color"/>
-        <attr name="editTextColor" format="color"/>
-        <attr name="hintEditColor" format="color"/>
+        <attr name="backGroundImage" format="reference" />
+        <attr name="hintTextColor" format="color" />
+        <attr name="editTextColor" format="color" />
+        <attr name="hintEditColor" format="color" />
         <attr name="hintTextStr" />
         <attr name="editTextStr" />
         <attr name="hintEditStr" />
-        <attr name="maxNum" format="integer"/>
-        <attr name="countTextColor" format="color"/>
+        <attr name="maxNum" format="integer" />
+        <attr name="countTextColor" format="color" />
     </declare-styleable>
 
     <!-- slider -->
