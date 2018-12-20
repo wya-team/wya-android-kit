@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wya.example.R;
-import com.wya.example.module.uikit.dialog.bean.Item;
+import com.wya.example.module.example.bean.ExampleItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +23,10 @@ import java.util.List;
  */
 
 public class ExampleExpandableListAdapter extends BaseExpandableListAdapter {
-    private List<Item> mDatas = new ArrayList<>();
+    private List<ExampleItem> mDatas = new ArrayList<>();
     private Context context;
 
-    public ExampleExpandableListAdapter( Context context, List<Item> mDatas) {
+    public ExampleExpandableListAdapter( Context context, List<ExampleItem> mDatas) {
         this.mDatas = mDatas;
         this.context = context;
     }

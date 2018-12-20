@@ -5,10 +5,8 @@ import android.widget.ProgressBar;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.uikit.progress.WYAProgress;
-import com.wya.uikit.stepper.WYAStepper;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class ProgressExampleActivity extends BaseActivity {
 
@@ -16,9 +14,7 @@ public class ProgressExampleActivity extends BaseActivity {
     ProgressBar progressBar;
     @BindView(R.id.wya_progress)
     WYAProgress wyaProgress;
-    @BindView(R.id.stepper)
-    WYAStepper stepper;
-    private int progress = 0;
+    private int progress = 68;
 
     @Override
     protected int getLayoutID() {
@@ -27,13 +23,8 @@ public class ProgressExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setToolBarTitle(" Progress");
-    }
+        setToolBarTitle(" 进度条(progressview)");
 
-
-    @OnClick(R.id.wya_button)
-    public void onViewClicked() {
-        progress = stepper.getValue();
         progressBar.setProgress(progress);
         wyaProgress.setCurrentProgress(progress);
     }

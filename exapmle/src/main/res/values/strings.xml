@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">wya-android-kit</string>
-    <string name="example">事列</string>
-    <string name="about_us">我们</string>
+    <string name="example">事例</string>
+    <string name="about_us">关于</string>
 
     <string name="example_name">WYA ANDROID KIT</string>
     <string name="example_zh_name">微一案安卓组件库</string>
