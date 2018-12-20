@@ -81,7 +81,6 @@
         <activity android:name=".module.uikit.customedittext.CustomEditTextExampleActivity" />
         <activity android:name=".module.uikit.slidder.SlideViewExampleActivity" />
         <activity android:name=".module.utils.fliedownload.FileDownloadExampleActivity" />
-        <activity android:name=".module.uikit.dialog.LoadingDialogExampleActivity"/>
         <activity android:name=".module.uikit.tablayout.TabLayoutExampleActivity"></activity>
     </application>
 

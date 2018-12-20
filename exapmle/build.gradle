@@ -67,10 +67,10 @@ dependencies {
     annotationProcessor supportDepends.butterknife_compiler
     implementation supportDepends.rxbinding
     implementation supportDepends.base_adapter
-
     implementation project(':wyahelper:helper')
     implementation project(':wyahardware:hardware')
     implementation project(':wyauikit:uikit')
     implementation project(':wyautils:utils')
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
 apply plugin: 'realm-android'
