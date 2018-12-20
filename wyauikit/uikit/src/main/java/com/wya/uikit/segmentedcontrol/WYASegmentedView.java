@@ -41,7 +41,9 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 	private float lineSize;
 	private float radius;
 	private float titleSize;
+	private boolean isEnable = true;
 	private OnItemClickListener mOnItemClickListener;
+
 
 	public WYASegmentedView(Context context, @Nullable AttributeSet attrs) {
 		this(context, attrs, 0);
@@ -165,7 +167,7 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 	 *
 	 * @param position which you click
 	 */
-	private void setItemClicked(int position) {
+	public void setItemClicked(int position) {
 		int childCount = getChildCount();
 		for (int i = 0; i < childCount; i++) {
 			TextView child = getChildAt(i).findViewById(R.id.segment_item);
@@ -213,11 +215,13 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 	@Override
 	public void onClick(View v) {
 		int childCount = getChildCount();
-		for (int i = 0; i < childCount; i++) {
-			if (getChildAt(i).equals(v)) {
-				setItemClicked(i);
-				if (mOnItemClickListener != null) {
-					mOnItemClickListener.itemClicked(i);
+		if (isEnable) {
+			for (int i = 0; i < childCount; i++) {
+				if (getChildAt(i).equals(v)) {
+					setItemClicked(i);
+					if (mOnItemClickListener != null) {
+						mOnItemClickListener.itemClicked(i);
+					}
 				}
 			}
 		}
@@ -235,6 +239,12 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 
 	public interface OnItemClickListener {
 		void itemClicked(int position);
+	}
+
+
+	@Override
+	public void setEnabled(boolean enabled) {
+		this.isEnable = enabled;
 	}
 
 	/**

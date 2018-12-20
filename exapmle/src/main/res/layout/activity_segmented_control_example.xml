@@ -4,72 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/f4f4f4"
     android:orientation="vertical"
     tools:context=".module.uikit.segmentedcontrol.SegmentedControlExampleActivity">
 
 
-    <RadioGroup
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/fix"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="fix"
-            android:checked="true"/>
-
-        <RadioButton
-            android:id="@+id/scroll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="scroll" />
-
-        <RadioButton
-            android:id="@+id/line"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="line_width" />
-
-        <RadioButton
-            android:id="@+id/segment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="segment" />
-    </RadioGroup>
+        android:padding="10dp"
+        android:text="Simplest"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_10"/>
 
     <com.wya.uikit.segmentedcontrol.WYASegmentedView
-        android:id="@+id/segment_layout"
+        android:id="@+id/segment_normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        app:titleSelectColor="@color/white"
-        app:titleNormalColor="@color/red"
-        app:titleSize="14sp"
-        app:strokeColor="@color/red"
-        app:strokeWidth="2dp"
-        app:radius="5dp"
-        app:itemSelectBackground="@color/red"
         app:itemNormalBackground="@color/white"
-        app:lineColor="@color/red"
-        app:lineSize="2dp" />
+        app:itemSelectBackground="@color/primary_color"
+        app:lineColor="@color/primary_color"
+        app:lineSize="2dp"
+        app:radius="5dp"
+        app:strokeColor="@color/primary_color"
+        app:strokeWidth="2dp"
+        app:titleNormalColor="@color/primary_color"
+        app:titleSelectColor="@color/white"
+        app:titleSize="14sp" />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorColor="@color/colorAccent"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/colorAccent"
-        app:tabTextColor="@color/black" />
+        android:padding="10dp"
+        android:text="SelectedIndex"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16"
+        android:layout_marginTop="10dp"/>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
+    <com.wya.uikit.segmentedcontrol.WYASegmentedView
+        android:id="@+id/segment_more"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:itemNormalBackground="@color/white"
+        app:itemSelectBackground="@color/primary_color"
+        app:lineColor="@color/primary_color"
+        app:lineSize="2dp"
+        app:radius="5dp"
+        app:strokeColor="@color/primary_color"
+        app:strokeWidth="2dp"
+        app:titleNormalColor="@color/primary_color"
+        app:titleSelectColor="@color/white"
+        app:titleSize="14sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="TintColor"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16"
+        android:layout_marginTop="10dp"/>
+
+    <com.wya.uikit.segmentedcontrol.WYASegmentedView
+        android:id="@+id/segment_color"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:itemNormalBackground="@color/white"
+        app:itemSelectBackground="@color/red"
+        app:lineColor="@color/red"
+        app:lineSize="2dp"
+        app:radius="5dp"
+        app:strokeColor="@color/red"
+        app:strokeWidth="2dp"
+        app:titleNormalColor="@color/red"
+        app:titleSelectColor="@color/white"
+        app:titleSize="14sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Disable"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_10"/>
+
+    <com.wya.uikit.segmentedcontrol.WYASegmentedView
+        android:id="@+id/segment_enable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:itemNormalBackground="@color/white"
+        app:itemSelectBackground="#82C1F1"
+        app:lineColor="#82C1F1"
+        app:lineSize="2dp"
+        app:radius="5dp"
+        app:strokeColor="#82C1F1"
+        app:strokeWidth="2dp"
+        app:titleNormalColor="#82C1F1"
+        app:titleSelectColor="@color/white"
+        app:titleSize="14sp" />
 
 
 </LinearLayout>

@@ -13,7 +13,6 @@ import android.widget.ExpandableListView;
 import com.wya.example.R;
 import com.wya.example.module.example.adapter.ExampleExpandableListAdapter;
 import com.wya.example.module.example.view.CustomerExpandableListView;
-import com.wya.example.module.hardware.camera.CameraExampleActivity;
 import com.wya.example.module.hardware.camera.StartCameraExampleActivity;
 import com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
@@ -37,6 +36,7 @@ import com.wya.example.module.uikit.segmentedcontrol.SegmentedControlExampleActi
 import com.wya.example.module.uikit.slidder.SlideViewExampleActivity;
 import com.wya.example.module.uikit.stepper.StepperExampleActivity;
 import com.wya.example.module.uikit.tabbar.TabBarExampleActivity;
+import com.wya.example.module.uikit.tablayout.TabLayoutExampleActivity;
 import com.wya.example.module.uikit.toast.ToastExampleActivity;
 import com.wya.example.module.uikit.toolbar.ToolBarExampleActivity;
 import com.wya.example.module.utils.image.QRCodeExampleActivity;
@@ -176,7 +176,7 @@ public class ExampleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), TabBarExampleActivity.class));
                 break;
             case "分页控制器(tablayout)":
-//                startActivity(new Intent(getActivity(), TabL.class));
+                startActivity(new Intent(getActivity(), TabLayoutExampleActivity.class));
                 break;
             case "搜索栏(searchBar)":
                 startActivity(new Intent(getActivity(), SearchBarExampleActivity.class));

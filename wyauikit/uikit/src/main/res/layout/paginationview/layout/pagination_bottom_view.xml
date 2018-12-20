@@ -3,16 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@android:color/transparent"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="@dimen/dp_10">
 
-    <Button
+    <TextView
         android:id="@+id/pagination_btn_left"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/pagination_btn"
+        android:layout_height="44dp"
+        android:background="@drawable/pagination_item_click_bg"
+        android:gravity="center"
+        android:minWidth="80dp"
+        android:padding="5dp"
         android:textColor="@color/black"
         android:textSize="14sp"
         tools:text="上一页" />
@@ -21,8 +24,9 @@
         android:id="@+id/pagination_page_layout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/pagination_show_page_current"
             android:layout_width="0dp"
@@ -37,9 +41,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:text="/"
             android:textColor="@color/black"
-            android:textSize="14sp"
-            android:text="/" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/pagination_show_page_all"
@@ -49,10 +53,9 @@
             android:gravity="center_vertical|left"
             android:textColor="@color/black"
             android:textSize="14sp"
-            tools:text="10"
-            tools:ignore="RtlHardcoded" />
+            tools:ignore="RtlHardcoded"
+            tools:text="10" />
     </LinearLayout>
-
 
 
     <LinearLayout
@@ -62,28 +65,31 @@
         android:layout_weight="1"
         android:gravity="center"
         android:visibility="gone">
+
         <EditText
             android:id="@+id/pagination_change_page"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:background="@drawable/pagination_search_edit_bg"
             android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:singleLine="true"
+            android:imeOptions="actionGo"
             android:inputType="number"
             android:padding="2dp"
-            android:imeOptions="actionGo"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             tools:text="1/10" />
     </LinearLayout>
 
 
-
-    <Button
+    <TextView
         android:id="@+id/pagination_btn_right"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/pagination_btn"
+        android:layout_height="44dp"
+        android:background="@drawable/pagination_item_click_bg"
+        android:gravity="center"
+        android:minWidth="80dp"
+        android:padding="5dp"
         android:textColor="@color/black"
         android:textSize="14sp"
         tools:text="下一页" />
