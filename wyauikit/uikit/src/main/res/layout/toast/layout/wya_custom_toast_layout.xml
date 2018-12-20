@@ -10,7 +10,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/wya_toast_bg"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:layout_marginBottom="80dp"
+            android:layout_marginTop="80dp">
 
                 <ImageView
                     android:id="@+id/img_toast_custom"
@@ -23,7 +25,6 @@
                     android:id="@+id/tv_toast_custom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:textSize="14sp"
                     android:textColor="#ffffff" />
         </LinearLayout>
