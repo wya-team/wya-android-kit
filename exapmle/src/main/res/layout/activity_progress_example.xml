@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/f4f4f4"
     tools:context="com.wya.example.module.uikit.progress.ProgressExampleActivity">
 
     <ProgressBar
@@ -27,27 +27,6 @@
         app:progressEndColor="#0000ff"
         app:progressStartColor="#ff0000"
         app:smallCircleEnable="true" />
-
-
-    <com.wya.uikit.stepper.WYAStepper
-        android:id="@+id/stepper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:max_num="100"
-        app:min_num="0"
-        app:value="0" />
-
-    <com.wya.uikit.button.WYAButton
-        android:id="@+id/wya_button"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:text="确定"
-        app:backColor="#118EE9"
-        app:fillet="true"
-        android:padding="10dp"
-        app:textColor="#ffffff"
-        app:textColorPress="#50ffffff"
-        app:wya_button_radius="10" />
 
 
 </LinearLayout>

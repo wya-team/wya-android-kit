@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/f4f4f4"
     tools:context="com.wya.example.module.uikit.toast.ToastExampleActivity">
 
     <TextView
@@ -14,6 +13,19 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_12"
         android:text="普通Toast"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/white"
+        android:layout_marginBottom="1px"
+        android:textColor="@drawable/btn_c333333_click_color" />
+
+    <TextView
+        android:id="@+id/tv_more_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_12"
+        android:text="多文字提示"
+        android:background="@color/white"
+        android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
 
     <TextView
@@ -22,13 +34,35 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_12"
         android:text="长时间Toast"
+        android:background="@color/white"
+        android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
 
     <TextView
-        android:id="@+id/tv_custom"
+        android:id="@+id/tv_custom_success"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_12"
-        android:text="自定义Toast"
+        android:text="成功提示"
+        android:background="@color/white"
+        android:layout_marginBottom="1px"
+        android:textColor="@drawable/btn_c333333_click_color" />
+    <TextView
+        android:id="@+id/tv_custom_fail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_12"
+        android:text="失败提示"
+        android:background="@color/white"
+        android:layout_marginBottom="1px"
+        android:textColor="@drawable/btn_c333333_click_color" />
+    <TextView
+        android:id="@+id/tv_custom_warn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_12"
+        android:text="警告提示"
+        android:background="@color/white"
+        android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
 </LinearLayout>
