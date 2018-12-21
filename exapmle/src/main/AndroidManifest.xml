@@ -30,12 +30,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".module.example.ExampleActivity">
+        <activity
+            android:name=".module.example.ExampleActivity"
+            android:theme="@style/ExampleTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".module.uikit.UiKitExampleActivity" />
         <activity android:name=".module.hardware.HardwareExampleActivity" />
@@ -77,8 +80,9 @@
         <activity android:name=".module.uikit.pickerview.PickerViewExampleActivity" />
         <activity android:name=".module.utils.realm.RealmExampleActivity" />
         <activity android:name=".module.utils.UtilsExampleActivity" />
-        <activity android:name=".module.utils.image.QRCodeExampleActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".module.utils.image.QRCodeExampleActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".module.uikit.customedittext.CustomEditTextExampleActivity" />
         <activity android:name=".module.uikit.slidder.SlideViewExampleActivity" />
         <activity android:name=".module.utils.fliedownload.FileDownloadExampleActivity" />

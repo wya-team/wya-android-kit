@@ -21,6 +21,7 @@ import com.wya.example.base.BaseActivity;
 import com.wya.hardware.camera.WYACameraView;
 import com.wya.hardware.camera.util.DeviceUtil;
 import com.wya.uikit.button.WYAButton;
+import com.wya.utils.utils.DataCleanUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;

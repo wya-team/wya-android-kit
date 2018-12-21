@@ -226,7 +226,7 @@
                 app:backColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint=""
-                app:leftImage="@drawable/tabbar_item_22dp"
+                app:leftImage="@drawable/icon_card_icon"
                 app:leftTvText="标签"
                 app:leftTvColor="@color/black"
                 app:lineViewColor="#000000"
