@@ -25,6 +25,7 @@ import com.wya.example.module.uikit.customitems.cardview.CardViewExampleActivity
 import com.wya.example.module.uikit.customitems.grid.GridExampleActivity;
 import com.wya.example.module.uikit.customitems.inputitem.InputItemExampleActivity;
 import com.wya.example.module.uikit.dialog.DialogExampleActivity;
+import com.wya.example.module.uikit.drawerlayout.DrawerLayoutExampleActivity;
 import com.wya.example.module.uikit.imagepicker.ImagePickerExampleActivity;
 import com.wya.example.module.uikit.notice.NoticeExampleActivity;
 import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity;
@@ -163,6 +164,7 @@ public class ExampleFragment extends Fragment {
         String s = mDatas.get(groupPosition).getChild().get(childPosition);
         switch (s) {
             case "抽屉(drawerlayout)":
+                startActivity(new Intent(getActivity(), DrawerLayoutExampleActivity.class));
                 break;
             case "菜单(choicemenu)":
                 startActivity(new Intent(getActivity(), ChoiceMenuExampleActivity.class));

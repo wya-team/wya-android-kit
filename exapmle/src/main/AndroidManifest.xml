@@ -38,7 +38,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".module.uikit.UiKitExampleActivity" />
         <activity android:name=".module.hardware.HardwareExampleActivity" />
@@ -86,7 +85,8 @@
         <activity android:name=".module.uikit.customedittext.CustomEditTextExampleActivity" />
         <activity android:name=".module.uikit.slidder.SlideViewExampleActivity" />
         <activity android:name=".module.utils.fliedownload.FileDownloadExampleActivity" />
-        <activity android:name=".module.uikit.tablayout.TabLayoutExampleActivity"></activity>
+        <activity android:name=".module.uikit.tablayout.TabLayoutExampleActivity" />
+        <activity android:name=".module.uikit.drawerlayout.DrawerLayoutExampleActivity"></activity>
     </application>
 
 </manifest>
