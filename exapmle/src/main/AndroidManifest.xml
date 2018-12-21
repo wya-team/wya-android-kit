@@ -86,7 +86,8 @@
         <activity android:name=".module.uikit.slidder.SlideViewExampleActivity" />
         <activity android:name=".module.utils.fliedownload.FileDownloadExampleActivity" />
         <activity android:name=".module.uikit.tablayout.TabLayoutExampleActivity" />
-        <activity android:name=".module.uikit.drawerlayout.DrawerLayoutExampleActivity"></activity>
+        <activity android:name=".module.uikit.drawerlayout.DrawerLayoutExampleActivity" />
+        <activity android:name=".module.example.readme.ReadmeActivity"></activity>
     </application>
 
 </manifest>

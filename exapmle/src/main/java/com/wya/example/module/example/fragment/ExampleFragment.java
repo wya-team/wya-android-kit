@@ -58,6 +58,8 @@ public class ExampleFragment extends Fragment {
     private View view;
     WYACustomDialog wyaCustomDialog = null;
 
+    private final String UIKIT_URL = "https://github.com/wya-team/wya-android-kit/blob/develop/wyauikit/uikit/src/main/java/com/wya/uikit/";
+
     @SuppressLint("NewApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -188,11 +190,11 @@ public class ExampleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), SearchBarExampleActivity.class));
                 break;
             case "气泡(popupwindow)":
-                startActivity(new Intent(getActivity(), PopupWindowExampleActivity.class));
+                startActivity(new Intent(getActivity(), PopupWindowExampleActivity.class).putExtra("url", UIKIT_URL+"popupwindow"+"/README.md"));
                 break;
 
             case "按钮(button)":
-                startActivity(new Intent(getActivity(), ButtonExampleActivity.class));
+                startActivity(new Intent(getActivity(), ButtonExampleActivity.class).putExtra("url", UIKIT_URL+"button"+"/README.md"));
                 break;
             case "日期选择(pickerview)":
                 startActivity(new Intent(getActivity(), PickerViewExampleActivity.class));

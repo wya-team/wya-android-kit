@@ -1,9 +1,12 @@
 package com.wya.example.module.uikit.popupwindow;
 
+import android.content.Intent;
 import android.widget.Toast;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.example.module.uikit.button.ButtonExampleActivity;
 import com.wya.uikit.popupwindow.WYAPopupWindow;
 
 import java.util.ArrayList;
@@ -18,6 +21,11 @@ public class PopupWindowExampleActivity extends BaseActivity {
     protected void initView() {
         setToolBarTitle("PopupWindow");
         initImgRight(R.drawable.icon_notice, true);
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(PopupWindowExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
         setPopupWindow();
     }
 
