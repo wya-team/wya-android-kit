@@ -12,6 +12,15 @@ import java.util.List;
 public class ExampleItem {
     private String title;
     private List<String> child;
+    private boolean isOpen;
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setOpen(boolean open) {
+        isOpen = open;
+    }
 
     public String getTitle() {
         return title;

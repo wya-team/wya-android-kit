@@ -12,8 +12,8 @@ import android.widget.ExpandableListView;
 
 import com.wya.example.R;
 import com.wya.example.module.example.adapter.ExampleExpandableListAdapter;
+import com.wya.example.module.example.bean.ExampleItem;
 import com.wya.example.module.example.view.CustomerExpandableListView;
-import com.wya.example.module.hardware.camera.CameraExampleActivity;
 import com.wya.example.module.hardware.camera.StartCameraExampleActivity;
 import com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
@@ -25,7 +25,7 @@ import com.wya.example.module.uikit.customitems.cardview.CardViewExampleActivity
 import com.wya.example.module.uikit.customitems.grid.GridExampleActivity;
 import com.wya.example.module.uikit.customitems.inputitem.InputItemExampleActivity;
 import com.wya.example.module.uikit.dialog.DialogExampleActivity;
-import com.wya.example.module.uikit.dialog.bean.Item;
+import com.wya.example.module.uikit.drawerlayout.DrawerLayoutExampleActivity;
 import com.wya.example.module.uikit.imagepicker.ImagePickerExampleActivity;
 import com.wya.example.module.uikit.notice.NoticeExampleActivity;
 import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity;
@@ -37,10 +37,14 @@ import com.wya.example.module.uikit.segmentedcontrol.SegmentedControlExampleActi
 import com.wya.example.module.uikit.slidder.SlideViewExampleActivity;
 import com.wya.example.module.uikit.stepper.StepperExampleActivity;
 import com.wya.example.module.uikit.tabbar.TabBarExampleActivity;
+import com.wya.example.module.uikit.tablayout.TabLayoutExampleActivity;
 import com.wya.example.module.uikit.toast.ToastExampleActivity;
 import com.wya.example.module.uikit.toolbar.ToolBarExampleActivity;
+import com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity;
 import com.wya.example.module.utils.image.QRCodeExampleActivity;
 import com.wya.example.module.utils.realm.RealmExampleActivity;
+import com.wya.uikit.dialog.WYACustomDialog;
+import com.wya.utils.utils.DataCleanUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,9 +53,10 @@ import java.util.List;
 public class ExampleFragment extends Fragment {
 
     CustomerExpandableListView expendList;
-    private List<Item> mDatas;
+    private List<ExampleItem> mDatas;
     private ExampleExpandableListAdapter adapter;
     private View view;
+    WYACustomDialog wyaCustomDialog = null;
 
     @SuppressLint("NewApi")
     @Override
@@ -70,7 +75,7 @@ public class ExampleFragment extends Fragment {
 
     private void initItems() {
         mDatas = new ArrayList<>();
-        Item item1 = new Item();
+        ExampleItem item1 = new ExampleItem();
         item1.setTitle("导航");
         List<String> bean1 = new ArrayList<>();
         bean1.add("抽屉(drawerlayout)");
@@ -84,7 +89,7 @@ public class ExampleFragment extends Fragment {
         bean1.add("气泡(popupwindow)");
         item1.setChild(bean1);
 
-        Item item2 = new Item();
+        ExampleItem item2 = new ExampleItem();
         item2.setTitle("数据录入");
         List<String> bean2 = new ArrayList<>();
         bean2.add("按钮(button)");
@@ -99,7 +104,7 @@ public class ExampleFragment extends Fragment {
         item2.setChild(bean2);
 
 
-        Item item3 = new Item();
+        ExampleItem item3 = new ExampleItem();
         item3.setTitle("数据展示");
         List<String> bean3 = new ArrayList<>();
         bean3.add("徽标数(badge)");
@@ -111,7 +116,7 @@ public class ExampleFragment extends Fragment {
         bean3.add("二维码(utils(QRCodeUtil))");
         item3.setChild(bean3);
 
-        Item item4 = new Item();
+        ExampleItem item4 = new ExampleItem();
         item4.setTitle("操作反馈");
         List<String> bean4 = new ArrayList<>();
         bean4.add("弹框(dialog(WYACustomDialog))");
@@ -120,10 +125,10 @@ public class ExampleFragment extends Fragment {
         bean4.add("轻提示(toast)");
         item4.setChild(bean4);
 
-        Item item5 = new Item();
+        ExampleItem item5 = new ExampleItem();
         item5.setTitle("其他");
         List<String> bean5 = new ArrayList<>();
-        bean5.add("下载(-)");
+        bean5.add("下载(utils(FileManagerUtil)");
         bean5.add("视频播放(dvideoplayer)");
         bean5.add("清理缓存(utils(DataCleanUtil))");
         bean5.add("数据库基本使用(realm)");
@@ -159,6 +164,7 @@ public class ExampleFragment extends Fragment {
         String s = mDatas.get(groupPosition).getChild().get(childPosition);
         switch (s) {
             case "抽屉(drawerlayout)":
+                startActivity(new Intent(getActivity(), DrawerLayoutExampleActivity.class));
                 break;
             case "菜单(choicemenu)":
                 startActivity(new Intent(getActivity(), ChoiceMenuExampleActivity.class));
@@ -176,7 +182,7 @@ public class ExampleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), TabBarExampleActivity.class));
                 break;
             case "分页控制器(tablayout)":
-//                startActivity(new Intent(getActivity(), TabL.class));
+                startActivity(new Intent(getActivity(), TabLayoutExampleActivity.class));
                 break;
             case "搜索栏(searchBar)":
                 startActivity(new Intent(getActivity(), SearchBarExampleActivity.class));
@@ -238,10 +244,10 @@ public class ExampleFragment extends Fragment {
 
 
             case "弹框(dialog(WYACustomDialog))":
-                startActivity(new Intent(getActivity(), DialogExampleActivity.class));
+                startActivity(new Intent(getActivity(), DialogExampleActivity.class).putExtra("type", 1));
                 break;
             case "活动指示器(dialog(WYALoadingDialog))":
-                startActivity(new Intent(getActivity(), DialogExampleActivity.class));
+                startActivity(new Intent(getActivity(), DialogExampleActivity.class).putExtra("type", 2));
                 break;
             case "进度条(progressview)":
                 startActivity(new Intent(getActivity(), ProgressExampleActivity.class));
@@ -251,14 +257,31 @@ public class ExampleFragment extends Fragment {
                 break;
 
 
-            case "下载(-)":
-//                startActivity(new Intent(getActivity(), BadgeExampleActivity.class));
+            case "下载(utils(FileManagerUtil)":
+                startActivity(new Intent(getActivity(), FileDownloadExampleActivity.class));
                 break;
             case "视频播放(dvideoplayer)":
                 startActivity(new Intent(getActivity(), VideoPlayerExampleActivity.class));
                 break;
             case "清理缓存(utils(DataCleanUtil))":
-//                startActivity(new Intent(getActivity(), CardViewExampleActivity.class));
+                try {
+                    wyaCustomDialog = new WYACustomDialog.Builder(getActivity())
+                            .title("清理缓存")
+                            .message(String.format("%s%s%s","当前缓存",DataCleanUtil
+                                    .getTotalCacheSize(getActivity()),",是否清理"))
+                            .cancelable(true)
+                            .build();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                wyaCustomDialog.setNoOnclickListener(() -> {
+                    wyaCustomDialog.dismiss();
+                });
+                wyaCustomDialog.setYesOnclickListener(() -> {
+                    DataCleanUtil.cleanTotalCache(getActivity());
+                    wyaCustomDialog.dismiss();
+                });
+                wyaCustomDialog.show();
                 break;
             case "数据库基本使用(realm)":
                 startActivity(new Intent(getActivity(), RealmExampleActivity.class));

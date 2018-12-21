@@ -172,6 +172,10 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
         progress2.setProgress(load2.getPercent());
         down_file2.setText(CommonUtil.formatFileSize(load2.getCurrentProgress()));
         all_file2.setText(load2.getConvertFileSize());
+
+
+        percent.setText(load.getPercent()+"%");
+        percent2.setText(load2.getPercent()+"%");
     }
 
 
@@ -179,16 +183,16 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
         start.setEnabled(!isDown);
         pause.setEnabled(isDown);
 
-        start.setTextColor(getResources().getColor(isDown ? R.color.light_gray : R.color.red));
-        pause.setTextColor(getResources().getColor(!isDown ? R.color.light_gray : R.color.red));
+        start.setTextColor(getResources().getColor(isDown ? R.color.light_gray : R.color.primary_color));
+        pause.setTextColor(getResources().getColor(!isDown ? R.color.light_gray : R.color.primary_color));
     }
 
     private void setBtnState2(boolean isDown) {
         start2.setEnabled(!isDown);
         pause2.setEnabled(isDown);
 
-        start2.setTextColor(getResources().getColor(isDown ? R.color.light_gray : R.color.red));
-        pause2.setTextColor(getResources().getColor(!isDown ? R.color.light_gray : R.color.red));
+        start2.setTextColor(getResources().getColor(isDown ? R.color.light_gray : R.color.primary_color));
+        pause2.setTextColor(getResources().getColor(!isDown ? R.color.light_gray : R.color.primary_color));
     }
 
 

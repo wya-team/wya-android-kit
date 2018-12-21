@@ -1,6 +1,7 @@
 package com.wya.hardware.camera.state;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 
@@ -123,6 +124,7 @@ public class CameraMachine implements State {
 
     @Override
     public void flash(String mode) {
+        Log.i("mode-----------", mode);
         state.flash(mode);
     }
 

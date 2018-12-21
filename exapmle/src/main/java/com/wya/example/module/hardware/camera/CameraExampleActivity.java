@@ -40,13 +40,11 @@ public class CameraExampleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        overridePendingTransition(R.anim.activity_start_bottom_in, R.anim.activity_start_bottom);
         setContentView(R.layout.activity_camera_example);
         wyaCameraView = findViewById(R.id.wya_camera_view);
-
         duration = getIntent().getIntExtra("duration", 10000);
         state = getIntent().getIntExtra("state", WYACameraView.BUTTON_STATE_BOTH);
-
-
         //设置视频保存路径
         wyaCameraView.setSaveVideoPath(Environment.getExternalStorageDirectory().getPath() + File.separator + dir_name);
         wyaCameraView.setFeatures(state);
@@ -98,6 +96,7 @@ public class CameraExampleActivity extends AppCompatActivity {
             @Override
             public void onClick() {
                 CameraExampleActivity.this.finish();
+                overridePendingTransition(R.anim.activity_start_bottom, R.anim.activity_start_bottom_exit);
             }
         });
         wyaCameraView.setRightClickListener(new ClickListener() {
@@ -141,4 +140,9 @@ public class CameraExampleActivity extends AppCompatActivity {
         super.onPause();
         wyaCameraView.onPause();
     }
-}
+
+     @Override
+     protected void onDestroy() {
+         super.onDestroy();
+     }
+ }

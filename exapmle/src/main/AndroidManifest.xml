@@ -30,7 +30,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".module.example.ExampleActivity">
+        <activity
+            android:name=".module.example.ExampleActivity"
+            android:theme="@style/ExampleTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -77,10 +79,14 @@
         <activity android:name=".module.uikit.pickerview.PickerViewExampleActivity" />
         <activity android:name=".module.utils.realm.RealmExampleActivity" />
         <activity android:name=".module.utils.UtilsExampleActivity" />
-        <activity android:name=".module.utils.image.QRCodeExampleActivity" />
+        <activity
+            android:name=".module.utils.image.QRCodeExampleActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".module.uikit.customedittext.CustomEditTextExampleActivity" />
         <activity android:name=".module.uikit.slidder.SlideViewExampleActivity" />
-        <activity android:name=".module.utils.fliedownload.FileDownloadExampleActivity"></activity>
+        <activity android:name=".module.utils.fliedownload.FileDownloadExampleActivity" />
+        <activity android:name=".module.uikit.tablayout.TabLayoutExampleActivity" />
+        <activity android:name=".module.uikit.drawerlayout.DrawerLayoutExampleActivity"></activity>
     </application>
 
 </manifest>

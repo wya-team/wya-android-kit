@@ -10,8 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:duration_max="10000"
-        app:iconLeft="@drawable/wya_camera_ic_back"
         app:iconMargin="20dp"
-        app:iconSize="30dp"
-        app:iconSrc="@drawable/wya_camera_ic_camera" />
+        app:iconSize="30dp" />
 </LinearLayout>

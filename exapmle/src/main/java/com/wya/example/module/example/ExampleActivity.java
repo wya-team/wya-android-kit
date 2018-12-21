@@ -28,6 +28,7 @@ public class ExampleActivity extends BaseActivity {
         initToolBarBgColor(ColorUtil.hex2Int("#f4f4f4"));
         initFragment();
         setTabBar();
+        getSwipeBackLayout().setEnableGesture(false);
     }
 
     private void initFragment() {

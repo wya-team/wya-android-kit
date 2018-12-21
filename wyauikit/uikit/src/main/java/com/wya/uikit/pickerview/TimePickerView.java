@@ -48,7 +48,7 @@ public class TimePickerView extends LinearLayout {
 	private int secIndex;
 	private int hourSpace = 1;
 	private int minuteSpace = 1;
-	private int secondSpace = 5;
+	private int secondSpace = 1;
 	private int mStartYear;
 	private int mStartMonth;
 	private int mStartDay;
@@ -348,6 +348,9 @@ public class TimePickerView extends LinearLayout {
 				secIndex = index;
 			}
 		};
+		hourWheel.setOnItemSelectedListener(hourListener);
+		minWheel.setOnItemSelectedListener(minListener);
+		secWheel.setOnItemSelectedListener(secListener);
 	}
 
 	public TimePickerView setType(boolean[] type) {
@@ -399,14 +402,17 @@ public class TimePickerView extends LinearLayout {
 
 	public void setHourSpace(int space) {
 		this.hourSpace = space;
+		setHourMinSecAdapter();
 	}
 
 	public void setMinuteSpace(int space) {
 		this.minuteSpace = space;
+		setHourMinSecAdapter();
 	}
 
 	public void setSecondSpace(int space) {
 		this.secondSpace = space;
+		setHourMinSecAdapter();
 	}
 
 	public int getYear() {

@@ -2,6 +2,7 @@ package com.wya.uikit.toast;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -102,7 +103,11 @@ public class WYAToast {
             iv.setVisibility(View.GONE);
         }
         toast2.setView(view);
-        toast2.setGravity(gravity, 0, 0);
+        if(gravity == Gravity.CENTER){
+            toast2.setGravity(gravity, 0, 0);
+        } else if(gravity == Gravity.BOTTOM){
+            toast2.setGravity(gravity, 0, 0);
+        }
         toast2.show();
         return toast2;
 

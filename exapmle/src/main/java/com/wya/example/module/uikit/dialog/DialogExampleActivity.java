@@ -6,13 +6,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.view.CustomerExpandableListView;
 import com.wya.example.module.uikit.dialog.adapter.DialogExpandableListAdapter;
+import com.wya.example.module.uikit.dialog.adapter.DialogListAdapter;
+import com.wya.example.module.uikit.dialog.adapter.ShareDialogListAdapter;
 import com.wya.example.module.uikit.dialog.bean.Item;
+import com.wya.example.module.uikit.dialog.bean.ShareItem;
 import com.wya.uikit.dialog.CustomListener;
 import com.wya.uikit.dialog.WYACustomDialog;
 import com.wya.uikit.dialog.WYALoadingDialog;
@@ -33,11 +38,17 @@ import butterknife.BindView;
 public class DialogExampleActivity extends BaseActivity {
 
     @BindView(R.id.expend_list)
-    ExpandableListView expendList;
+    CustomerExpandableListView expendList;
+    @BindView(R.id.tab_loading)
+    TableRow tabLoading;
 
     private List<Item> mDatas;
     private DialogExpandableListAdapter adapter;
     private List<String> data = new ArrayList<>();
+
+    private List<ShareItem> shareItems = new ArrayList<>();
+    private String[] shareName = {"新浪微博", "微信好友", "生活圈", "QQ", "字号", "刷新", "复制链接", "投诉"};
+    private int[] image = {R.drawable.icon_weibo, R.drawable.icon_weixin, R.drawable.icon_pengyouquan, R.drawable.icon_qq, R.drawable.icon_font, R.drawable.icon_refresh, R.drawable.icon_link, R.drawable.icon_complain};
 
     private DialogListAdapter dialogListAdapter;
 
@@ -53,6 +64,8 @@ public class DialogExampleActivity extends BaseActivity {
     private boolean isShowButton = true;
     private String edit_text_str = "我是编辑框内容";
 
+    private int type;
+
 
     @Override
     protected int getLayoutID() {
@@ -62,7 +75,13 @@ public class DialogExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setToolBarTitle("Dialog");
+        type = getIntent().getIntExtra("type", 1);
+        if (type == 1) {
+            setToolBarTitle("弹框(dialog)");
+        } else {
+            setToolBarTitle("活动指示器(dialog)");
+            tabLoading.setVisibility(View.VISIBLE);
+        }
         initItems();
         initExpandList();
     }
@@ -81,6 +100,7 @@ public class DialogExampleActivity extends BaseActivity {
             return false;
         });
         adapter.notifyDataSetChanged();
+        expendList.setGroupIndicator(null);
     }
 
     private void setClick(int groupPosition, int childPosition) {
@@ -99,9 +119,6 @@ public class DialogExampleActivity extends BaseActivity {
                 });
                 wyaCustomDialog.setYesOnclickListener(() -> wyaCustomDialog.dismiss());
                 wyaCustomDialog.show();
-                break;
-            case "加载":
-                showWYADialogLoading();
                 break;
             case "两个按钮":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
@@ -269,33 +286,40 @@ public class DialogExampleActivity extends BaseActivity {
                 break;
             case "底部弹出分享":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
-                        .setLayoutRes(R.layout.way_dialog_custom_list_layout, new CustomListener() {
+                        .setLayoutRes(R.layout.way_dialog_custom_share_layout, new CustomListener() {
                             @Override
                             public void customLayout(View v) {
                                 RecyclerView recyclerView = v.findViewById(R.id.recycle_view);
                                 TextView title = v.findViewById(R.id.title);
-                                title.setText("分享");
-                                title.setVisibility(View.VISIBLE);
-                                data = new ArrayList<>();
-                                for (int i = 0; i < 50; i++) {
-                                    data.add("" + i);
+                                TextView cancel = v.findViewById(R.id.cancel);
+                                shareItems = new ArrayList<>();
+                                for (int i = 0; i < shareName.length; i++) {
+                                    ShareItem shareItem = new ShareItem();
+                                    shareItem.setName(shareName[i]);
+                                    shareItem.setImage(image[i]);
+                                    shareItems.add(shareItem);
                                 }
-                                if (data != null && data.size() > 0) {
+                                if (shareItems != null && shareItems.size() > 0) {
                                     recyclerView.setLayoutManager(new GridLayoutManager(DialogExampleActivity.this, 4));
-                                    dialogListAdapter = new DialogListAdapter(DialogExampleActivity.this, R.layout.wya_grid_item, data);
-                                    recyclerView.setAdapter(dialogListAdapter);
+                                    ShareDialogListAdapter shareDialogListAdapter = new ShareDialogListAdapter(DialogExampleActivity.this, R.layout.wya_share_item, shareItems);
+                                    recyclerView.setAdapter(shareDialogListAdapter);
 
                                     //RecyclerView条目点击事件
-                                    dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                                    shareDialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            getWyaToast().showShort(position + "");
+                                            getWyaToast().showShort(shareItems.get(position).getName() + "");
                                         }
                                     });
                                 }
+                                cancel.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        wyaCustomDialog.dismiss();
+                                    }
+                                });
                             }
                         })
-                        .height(ScreenUtil.dip2px(DialogExampleActivity.this, 200))
                         .cancelable(true)
                         .Gravity(Gravity.BOTTOM)
                         .cancelTouchout(true)
@@ -307,6 +331,35 @@ public class DialogExampleActivity extends BaseActivity {
                 wyaCustomDialog.show();
                 break;
 
+            case "菊花加载":
+                showWYADialogLoading();
+                break;
+
+            case "系统加载":
+                wyaCustomDialog = new WYACustomDialog.Builder(this)
+                        .setLayoutRes(R.layout.wya_dialog_system_loading, new CustomListener() {
+                            @Override
+                            public void customLayout(View v) {
+                            }
+                        })
+                        .cancelable(true)
+                        .cancelTouchout(true)
+                        .build();
+                wyaCustomDialog.show();
+                break;
+            case "自定义加载":
+                wyaCustomDialog = new WYACustomDialog.Builder(this)
+                        .setLayoutRes(R.layout.wya_dialog_custom_loading, new CustomListener() {
+                            @Override
+                            public void customLayout(View v) {
+                            }
+                        })
+                        .cancelable(true)
+                        .cancelTouchout(true)
+                        .build();
+                wyaCustomDialog.show();
+                break;
+
         }
     }
 
@@ -315,11 +368,11 @@ public class DialogExampleActivity extends BaseActivity {
         List<String> bean1 = new ArrayList<>();
         List<String> bean2 = new ArrayList<>();
         List<String> bean3 = new ArrayList<>();
+        List<String> bean4 = new ArrayList<>();
         // id , pid , label , 其他属性
         bean1.add("一个按钮");
         bean1.add("两个按钮");
         bean1.add("有文本编辑");
-        bean1.add("加载");
         Item item1 = new Item();
         item1.setTitle("提示框");
         item1.setChild(bean1);
@@ -337,13 +390,26 @@ public class DialogExampleActivity extends BaseActivity {
         item3.setTitle("底部弹出");
         item3.setChild(bean3);
 
-        mDatas.add(item1);
-        mDatas.add(item2);
-        mDatas.add(item3);
+
+        bean4.add("系统加载");
+        bean4.add("菊花加载");
+        bean4.add("自定义加载");
+        Item item4 = new Item();
+        item4.setTitle("加载");
+        item4.setChild(bean4);
+
+        if (type == 1) {
+            mDatas.add(item1);
+            mDatas.add(item2);
+            mDatas.add(item3);
+        } else {
+            mDatas.add(item4);
+        }
     }
 
     private void showWYADialogLoading() {
         wyaLoadingDialog = new WYALoadingDialog(this, canceledOnTouch, cancelable);
         wyaLoadingDialog.show();
     }
+
 }

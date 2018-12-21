@@ -145,8 +145,7 @@ public class CustomTimePicker extends Dialog implements View.OnClickListener {
 	public void onClick(View v) {
 		if (v.getId() == R.id.time_picker_sure) {
 			Calendar calendar = Calendar.getInstance();
-			Log.i(TAG, "onClick: "+time_picker_view.getMinute());
-			Log.i(TAG, "onClick: "+time_picker_view.getMonth());
+			Log.i(TAG, "onClick: "+time_picker_view.getMinute()+" "+time_picker_view.getSecond());
 			calendar.set(time_picker_view.getYear(), time_picker_view.getMonth()-1, time_picker_view
 							.getDay(), time_picker_view.getHour(), time_picker_view.getMinute(),
 					time_picker_view.getSecond());

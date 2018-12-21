@@ -50,8 +50,6 @@ public class WYABadgeView extends View implements IBadgeView {
     protected float mPadding;
     protected Builder.Gravity mGravity;
     
-    // TODO: 2018/12/21 ZCQ TEST 控制绘制后的宽度
-    
     public WYABadgeView(Context context) {
         this(context, null);
     }
@@ -328,7 +326,7 @@ public class WYABadgeView extends View implements IBadgeView {
     @Override
     public void setBadgeText(String badgeText) {
         mBadgeText = badgeText;
-        mBadgeNum = 0;  // TODO: 2018/12/21 ZCQ TEST
+        mBadgeNum = 0;
         measureText();
         invalidate();
     }

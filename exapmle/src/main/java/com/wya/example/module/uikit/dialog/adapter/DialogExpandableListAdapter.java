@@ -1,13 +1,15 @@
 package com.wya.example.module.uikit.dialog.adapter;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wya.example.R;
-import com.wya.example.module.uikit.dialog.DialogExampleActivity;
 import com.wya.example.module.uikit.dialog.bean.Item;
 
 import java.util.ArrayList;
@@ -22,9 +24,11 @@ import java.util.List;
 
 public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Item> mDatas = new ArrayList<>();
+    private Context context;
 
-    public DialogExpandableListAdapter(DialogExampleActivity dialogExampleActivity, List<Item> mDatas) {
+    public DialogExpandableListAdapter(Context context, List<Item> mDatas) {
         this.mDatas = mDatas;
+        this.context = context;
     }
 
 
@@ -79,18 +83,25 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
      * @param parent        返回的视图对象始终依附于的视图组
      */
 // 获取显示指定分组的视图
+    @SuppressLint("NewApi")
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         GroupViewHolder groupViewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.title_item_layout, parent, false);
             groupViewHolder = new GroupViewHolder();
-            groupViewHolder.tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
+            groupViewHolder.tvTitle = convertView.findViewById(R.id.tv_title);
+            groupViewHolder.imgDownUp = convertView.findViewById(R.id.img_down_up);
             convertView.setTag(groupViewHolder);
         } else {
             groupViewHolder = (GroupViewHolder) convertView.getTag();
         }
         groupViewHolder.tvTitle.setText(mDatas.get(groupPosition).getTitle());
+        if (mDatas.get(groupPosition).isOpen()) {
+            groupViewHolder.imgDownUp.setBackground(context.getResources().getDrawable(R.drawable.icon_up));
+        } else {
+            groupViewHolder.imgDownUp.setBackground(context.getResources().getDrawable(R.drawable.icon_down));
+        }
         return convertView;
     }
 
@@ -103,8 +114,8 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
      * @param convertView   重用已有的视图(View)对象
      * @param parent        返回的视图(View)对象始终依附于的视图组
      * @return
-     * @see android.widget.ExpandableListAdapter#getChildView(int, int, boolean, android.view.View,
-     * android.view.ViewGroup)
+     * @see android.widget.ExpandableListAdapter#getChildView(int, int, boolean, View,
+     * ViewGroup)
      */
 
     //取得显示给定分组给定子位置的数据用的视图
@@ -131,6 +142,7 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
 
     static class GroupViewHolder {
         TextView tvTitle;
+        ImageView imgDownUp;
     }
 
     static class ChildViewHolder {

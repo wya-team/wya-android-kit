@@ -3,9 +3,13 @@ package com.wya.hardware.camera;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.pm.FeatureInfo;
+import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -35,6 +39,7 @@ import com.wya.hardware.camera.view.CameraView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 创建日期：2018/12/5 14:25
@@ -49,6 +54,10 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
 
     //Camera状态机
     private CameraMachine machine;
+
+
+    //手电筒状态
+    private boolean type_flash_light = false;
 
     //闪关灯状态
     private static final int TYPE_FLASH_AUTO = 0x021;
@@ -86,7 +95,10 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     private VideoView mVideoView;
     private ImageView mPhoto;
     private ImageView mSwitchCamera;
+    private CameraManager manager;
+    private Camera mCamera = null;
     private ImageView mFlashLamp;
+    private ImageView imageFlashLight;
     private CaptureLayout mCaptureLayout;
     private FoucsView mFoucsView;
     private MediaPlayer mMediaPlayer;
@@ -130,8 +142,8 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
                 TypedValue.COMPLEX_UNIT_SP, 35, getResources().getDisplayMetrics()));
         iconMargin = a.getDimensionPixelSize(R.styleable.WYACameraView_iconMargin, (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_SP, 15, getResources().getDisplayMetrics()));
-        iconSrc = a.getResourceId(R.styleable.WYACameraView_iconSrc, R.drawable.wya_camera_ic_camera);
-        iconLeft = a.getResourceId(R.styleable.WYACameraView_iconLeft, 0);
+        iconSrc = a.getResourceId(R.styleable.WYACameraView_iconSrc, R.drawable.icon_camera_switch);
+        iconLeft = a.getResourceId(R.styleable.WYACameraView_iconLeft, R.drawable.icon_bottom);
         iconRight = a.getResourceId(R.styleable.WYACameraView_iconRight, 0);
         duration = a.getInteger(R.styleable.WYACameraView_duration_max, 10 * 1000);       //没设置默认为10s
         a.recycle();
@@ -149,6 +161,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
 
     /**
      * 获取屏幕高
+     *
      * @param context
      * @return
      */
@@ -161,6 +174,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
 
     /**
      * 获取屏幕宽
+     *
      * @param context
      * @return
      */
@@ -179,7 +193,13 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         mSwitchCamera = (ImageView) view.findViewById(R.id.image_switch);
         mSwitchCamera.setImageResource(iconSrc);
         mFlashLamp = (ImageView) view.findViewById(R.id.image_flash);
+        imageFlashLight = (ImageView) view.findViewById(R.id.image_flash_light);
         setFlashRes();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            manager = (CameraManager) getContext().getSystemService(Context.CAMERA_SERVICE);
+        }
+        //闪光灯
         mFlashLamp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -189,6 +209,16 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
                 setFlashRes();
             }
         });
+
+        //手电筒
+        imageFlashLight.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFlashLight();
+            }
+        });
+
+
         mCaptureLayout = (CaptureLayout) view.findViewById(R.id.capture_layout);
         mCaptureLayout.setDuration(duration);
         mCaptureLayout.setIconSrc(iconLeft, iconRight);
@@ -207,6 +237,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
             public void takePictures() {
                 mSwitchCamera.setVisibility(INVISIBLE);
                 mFlashLamp.setVisibility(INVISIBLE);
+                imageFlashLight.setVisibility(INVISIBLE);
                 machine.capture();
             }
 
@@ -214,6 +245,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
             public void recordStart() {
                 mSwitchCamera.setVisibility(INVISIBLE);
                 mFlashLamp.setVisibility(INVISIBLE);
+                imageFlashLight.setVisibility(INVISIBLE);
                 machine.record(mVideoView.getHolder().getSurface(), screenProp);
             }
 
@@ -222,6 +254,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
                 mCaptureLayout.setTextWithAnimation("录制时间过短");
                 mSwitchCamera.setVisibility(VISIBLE);
                 mFlashLamp.setVisibility(VISIBLE);
+                imageFlashLight.setVisibility(VISIBLE);
                 postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -462,11 +495,13 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         }
         mSwitchCamera.setVisibility(VISIBLE);
         mFlashLamp.setVisibility(VISIBLE);
+        imageFlashLight.setVisibility(VISIBLE);
         mCaptureLayout.resetCaptureLayout();
     }
 
     /**
      * 删除文件
+     *
      * @param url
      * @return
      */
@@ -621,17 +656,36 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     private void setFlashRes() {
         switch (type_flash) {
             case TYPE_FLASH_AUTO:
-                mFlashLamp.setImageResource(R.drawable.wya_camera_ic_flash_auto);
+                mFlashLamp.setImageResource(R.drawable.icon_camera_flash_yelow);
                 machine.flash(Camera.Parameters.FLASH_MODE_AUTO);
                 break;
             case TYPE_FLASH_ON:
-                mFlashLamp.setImageResource(R.drawable.wya_camera_ic_flash_on);
+                mFlashLamp.setImageResource(R.drawable.icon_camera_flash_open);
                 machine.flash(Camera.Parameters.FLASH_MODE_ON);
                 break;
             case TYPE_FLASH_OFF:
-                mFlashLamp.setImageResource(R.drawable.wya_camera_ic_flash_off);
+                mFlashLamp.setImageResource(R.drawable.icon_camera_flash_close);
                 machine.flash(Camera.Parameters.FLASH_MODE_OFF);
                 break;
         }
     }
+
+    private void setFlashLight() {
+        type_flash_light = !type_flash_light;
+        PackageManager packageManager = getContext().getPackageManager();
+        FeatureInfo[] features = packageManager.getSystemAvailableFeatures();
+        for (FeatureInfo featureInfo : features) {
+            if (PackageManager.FEATURE_CAMERA_FLASH.equals(featureInfo.name)) { // 判断设备是否支持闪光灯
+                if (type_flash_light) {
+                    machine.flash(Camera.Parameters.FLASH_MODE_TORCH);
+//                    CameraInterface.getInstance().setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                } else {
+                    machine.flash(Camera.Parameters.FLASH_MODE_OFF);
+//                    CameraInterface.getInstance().setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                }
+            }
+        }
+    }
+
+
 }

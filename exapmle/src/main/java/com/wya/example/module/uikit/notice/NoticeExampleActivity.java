@@ -29,6 +29,8 @@ public class NoticeExampleActivity extends BaseActivity {
     @BindView(R.id.vs_cus_anim)
     SwitcherView vsCusAnim;
     
+    private String noticeText = "这里是具体的通知，这里是具体的通知，这里...";
+    
     public static void start(Activity activity) {
         if (null == activity) {
             return;
@@ -44,18 +46,22 @@ public class NoticeExampleActivity extends BaseActivity {
     
     @Override
     protected void initView() {
-        
+        setToolBarTitle("notice");
+        showSwitcher();
+    }
+    
+    private void showSwitcher() {
         // up2down
         vsUp2Down.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
                 if (null == nextView) return;
-                final String tostText = index + "--- 从上到下 ---";
-                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(tostText);
+                //                final String tostText = index + "--- 从上到下 ---";
+                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(v.getContext().getApplicationContext(), tostText, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext().getApplicationContext(), "click 1", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -68,13 +74,13 @@ public class NoticeExampleActivity extends BaseActivity {
             public void onSwitch(View nextView, int index) {
                 if (null == nextView) return;
                 if (index == 3) vsDown2Up.pauseSwitcher();
-                final String tostText = index + "--- 从下到上 ---";
-                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(tostText);
+                //                final String tostText = index + "--- 从下到上 ---";
+                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         vsDown2Up.startSwitcher();
-                        Toast.makeText(v.getContext().getApplicationContext(), tostText, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext().getApplicationContext(), "click 2", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -86,12 +92,12 @@ public class NoticeExampleActivity extends BaseActivity {
             @Override
             public void onSwitch(View nextView, int index) {
                 if (nextView == null) return;
-                final String tostText = index + "--- 从左到右从左到右 ---";
-                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(tostText);
+                //                final String tostText = index + "--- 从左到右从左到右 ---";
+                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(v.getContext().getApplicationContext(), tostText, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext().getApplicationContext(), "click 3", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -103,12 +109,12 @@ public class NoticeExampleActivity extends BaseActivity {
             @Override
             public void onSwitch(View nextView, int index) {
                 if (nextView == null) return;
-                final String tostText = index + "--- 从右到左 ---";
-                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(tostText);
+                //                final String tostText = index + "--- 从右到左 ---";
+                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(v.getContext().getApplicationContext(), tostText, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext().getApplicationContext(), "click 4", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -119,12 +125,12 @@ public class NoticeExampleActivity extends BaseActivity {
             @Override
             public void onSwitch(View nextView, int index) {
                 if (nextView == null) return;
-                final String tag = "自定义进出动画....";
-                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(tag);
+                //                final String tag = "自定义进出动画....";
+                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(v.getContext().getApplicationContext(), tag, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext().getApplicationContext(), "click 5", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

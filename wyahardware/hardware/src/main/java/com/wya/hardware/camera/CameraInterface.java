@@ -271,7 +271,7 @@ public class CameraInterface implements Camera.PreviewCallback {
     }
 
 
-    public interface CameraOpenOverCallback {
+     public interface CameraOpenOverCallback {
         void cameraHasOpened();
     }
 
@@ -303,6 +303,7 @@ public class CameraInterface implements Camera.PreviewCallback {
         mParams.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH); //设置camera参数为Torch模式
         mCamera.setParameters(mParams);
     }
+
 
     private synchronized void openCamera(int id) {
         try {

@@ -27,10 +27,16 @@ public abstract class BaseActivity extends BaseToolBarActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         unbinder = ButterKnife.bind(this);
+        startActivityStyle();
+
         initWYAActionBarDefault(true, ColorUtil.int2Hex(WYAConstants.THEME_COLOR),true, "初始化标题", 18, "#000000",
         false, "", 14, "#000000", true, R.drawable.icon_backblue,
         false, "",14, "#000000", false, false, R.drawable.icon_search, R.drawable.iocn_saoyisao,  false, "",14, "#000000");
         initView();
+    }
+
+    private void startActivityStyle() {
+        overridePendingTransition(R.anim.activity_start_right, R.anim.activity_start_left);
     }
 
 
@@ -40,4 +46,9 @@ public abstract class BaseActivity extends BaseToolBarActivity {
 
     protected abstract void initView();
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        overridePendingTransition(R.anim.activity_start_left,R.anim.activity_start_left_exit );
+    }
 }
