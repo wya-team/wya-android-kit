@@ -11,7 +11,6 @@ import com.wya.example.base.BaseActivity;
 import com.wya.uikit.badge.Builder;
 import com.wya.uikit.badge.DisplayUtil;
 import com.wya.uikit.badge.IBadgeView;
-import com.wya.uikit.toolbar.AndroidBugWorkaround;
 
 import butterknife.BindView;
 

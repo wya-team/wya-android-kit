@@ -90,7 +90,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
         if (null != typedArray) {
             // progress
             mSlidderMode = typedArray.getInteger(R.styleable.RangeSlideView_rsd_slider_mode, SLIDDER_MODE_SINGLE);
-            mProgressHeight = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_progress_height, Utils.dp2px(context, 3))).intValue();
+            mProgressHeight = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_progress_height, Utils.dp2px(context, 2))).intValue();
             mProgressMin = typedArray.getInteger(R.styleable.RangeSlideView_rsd_progress_min, -1);
             mProgressMax = typedArray.getInteger(R.styleable.RangeSlideView_rsd_progress_max, -1);
             mPorgressBackgroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_background_color, Color.parseColor("#DDDDDD"));
@@ -513,6 +513,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
                     percent = x < getProgressLeft() ? 0 : (x - getProgressLeft()) * 1f / (mProgressWidth);
                     mLeftSlider.slide(percent);
                 }
+                // TODO: 2018/12/21 ZCQ TEST
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:

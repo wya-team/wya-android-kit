@@ -2,12 +2,11 @@ package com.wya.example.module.uikit.slidder;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.wya.example.R;
+import com.wya.example.base.BaseActivity;
 
-public class SlideViewExampleActivity extends AppCompatActivity {
+public class SlideViewExampleActivity extends BaseActivity {
     
     public static void start(Activity activity) {
         if (null == activity) {
@@ -18,9 +17,13 @@ public class SlideViewExampleActivity extends AppCompatActivity {
     }
     
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_activity_slide_view);
+    protected int getLayoutID() {
+        return R.layout.layout_activity_slide_view;
+    }
+    
+    @Override
+    protected void initView() {
+        setToolBarTitle("slidder");
     }
     
 }
