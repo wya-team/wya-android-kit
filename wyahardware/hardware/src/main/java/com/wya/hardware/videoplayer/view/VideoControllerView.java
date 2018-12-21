@@ -101,7 +101,7 @@ public class VideoControllerView extends FrameLayout {
         mVideoDuration = (TextView) mControllerBottom.findViewById(R.id.player_duration);
         mVideoFullScreen = (ImageView) mControllerBottom.findViewById(R.id.video_full_screen);
         mVideoPlayState.setOnClickListener(mOnPlayerPauseClick);
-        mVideoPlayState.setImageResource(R.drawable.wya_video_player_ic_video_pause);
+        mVideoPlayState.setImageResource(R.drawable.icon_pause);
         mPlayerSeekBar.setOnSeekBarChangeListener(mSeekListener);
         mVideoFullScreen.setOnClickListener(new OnClickListener() {
             @Override
@@ -496,9 +496,9 @@ public class VideoControllerView extends FrameLayout {
 
     public void updatePausePlay() {
         if (mPlayer.isPlaying()) {
-            mVideoPlayState.setImageResource(R.drawable.wya_video_player_ic_video_pause);
+            mVideoPlayState.setImageResource(R.drawable.icon_pause);
         } else {
-            mVideoPlayState.setImageResource(R.drawable.wya_video_player_ic_video_play);
+            mVideoPlayState.setImageResource(R.drawable.icon_begin);
         }
     }
 

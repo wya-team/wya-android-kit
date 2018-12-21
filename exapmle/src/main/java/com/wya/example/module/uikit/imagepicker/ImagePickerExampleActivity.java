@@ -1,16 +1,22 @@
 package com.wya.example.module.uikit.imagepicker;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -20,6 +26,9 @@ import android.widget.Toast;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.hardware.camera.CameraExampleActivity;
+import com.wya.example.module.hardware.camera.StartCameraExampleActivity;
+import com.wya.hardware.camera.WYACameraView;
 import com.wya.uikit.dialog.CustomListener;
 import com.wya.uikit.dialog.WYACustomDialog;
 import com.wya.uikit.gallery.GalleryCreator;
@@ -46,7 +55,6 @@ public class ImagePickerExampleActivity extends BaseActivity {
     public static final int CROP = 1002;
     public static final int PHOTO = 100;
 
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_image_picker_example;
@@ -70,7 +78,87 @@ public class ImagePickerExampleActivity extends BaseActivity {
         });
 
         initRecycler();
+
     }
+
+    /**
+     * 相机
+     */
+    private int state = WYACameraView.BUTTON_STATE_BOTH;//默认可以拍照和录制视频
+    private final int GET_PERMISSION_REQUEST = 100; //权限申请自定义码
+    private void openCamera() {
+        getPermissions();
+    }
+
+
+    /**
+     * 获取权限
+     */
+    private void getPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager
+                    .PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager
+                            .PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager
+                            .PERMISSION_GRANTED) {
+                Intent intent = new Intent(ImagePickerExampleActivity.this, CameraExampleActivity.class);
+                intent.putExtra("state", state);
+                intent.putExtra("duration", 10 * 1000);
+                startActivityForResult(intent, 10001);
+            } else {
+                //不具有获取权限，需要进行权限申请
+                ActivityCompat.requestPermissions(ImagePickerExampleActivity.this, new String[]{
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.RECORD_AUDIO,
+                        Manifest.permission.CAMERA}, GET_PERMISSION_REQUEST);
+            }
+        } else {
+            Intent intent = new Intent(ImagePickerExampleActivity.this, CameraExampleActivity.class);
+            intent.putExtra("state", state);
+            intent.putExtra("duration", 10 * 1000);
+            startActivityForResult(intent, 10001);
+        }
+    }
+
+    @TargetApi(23)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == GET_PERMISSION_REQUEST) {
+            int size = 0;
+            if (grantResults.length >= 1) {
+                int writeResult = grantResults[0];
+                //读写内存权限
+                boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;//读写内存权限
+                if (!writeGranted) {
+                    size++;
+                }
+                //录音权限
+                int recordPermissionResult = grantResults[1];
+                boolean recordPermissionGranted = recordPermissionResult == PackageManager.PERMISSION_GRANTED;
+                if (!recordPermissionGranted) {
+                    size++;
+                }
+                //相机权限
+                int cameraPermissionResult = grantResults[2];
+                boolean cameraPermissionGranted = cameraPermissionResult == PackageManager.PERMISSION_GRANTED;
+                if (!cameraPermissionGranted) {
+                    size++;
+                }
+                if (size == 0) {
+                    Intent intent = new Intent(ImagePickerExampleActivity.this, CameraExampleActivity.class);
+                    intent.putExtra("state", state);
+                    intent.putExtra("duration", 10 * 1000);
+                    startActivityForResult(intent, 10001);
+                } else {
+                    Toast.makeText(this, "请到设置-权限管理中开启", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+
 
 
     private void initRecycler() {
@@ -158,7 +246,30 @@ public class ImagePickerExampleActivity extends BaseActivity {
         if (requestCode == CROP && resultCode == RESULT_CANCELED) {
             Toast.makeText(this, "裁剪被取消了", Toast.LENGTH_SHORT).show();
         }
-
+        if(requestCode == 10001){
+            if (resultCode == 101) {
+                Log.i("MCJ", "take photo");
+                String path = data.getStringExtra("path");
+                mAllList.add(path);
+                if (mAllList.size() < num) {
+                    mAllList.add("");
+                }
+                mPickerAdapter.notifyDataSetChanged();
+            }
+            if (resultCode == 102) {
+                Log.i("MCJ", "video");
+                String path = data.getStringExtra("path");
+                String url = data.getStringExtra("url");
+                mAllList.add(path);
+                if (mAllList.size() < num) {
+                    mAllList.add("");
+                }
+                mPickerAdapter.notifyDataSetChanged();
+            }
+            if (resultCode == 103) {
+                Toast.makeText(this, "请检查相机权限~", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 
@@ -178,7 +289,10 @@ public class ImagePickerExampleActivity extends BaseActivity {
                             @Override
                             public void onClick(View v) {
                                 mWyaCustomDialog.dismiss();
-
+                                num = Integer.parseInt(TextUtils.isEmpty(input.getText().toString())
+                                        ? "1" : input.getText().toString());
+                                mAllList.remove(mAllList.size() - 1);
+                                openCamera();
                             }
                         });
                         dialog_photo.setOnClickListener(new View.OnClickListener() {

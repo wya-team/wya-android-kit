@@ -12,31 +12,53 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_12"
-        android:text="普通Toast"
+        android:text="系统短时间提示"
         android:layout_marginTop="@dimen/dp_10"
         android:background="@color/white"
         android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
+    <TextView
+        android:id="@+id/tv_long"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_12"
+        android:text="系统长时间提示"
+        android:background="@color/white"
+        android:layout_marginBottom="1px"
+        android:textColor="@drawable/btn_c333333_click_color" />
+
+
 
     <TextView
         android:id="@+id/tv_more_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_12"
-        android:text="多文字提示"
+        android:text="系统多文字提示"
         android:background="@color/white"
         android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
 
+
     <TextView
-        android:id="@+id/tv_long"
+        android:id="@+id/tv_normal_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_12"
-        android:text="长时间Toast"
+        android:text="自定义普通文字提示"
         android:background="@color/white"
         android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
+    <TextView
+        android:id="@+id/tv_more_custom_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_12"
+        android:text="自定义多文字提示"
+        android:background="@color/white"
+        android:layout_marginBottom="1px"
+        android:textColor="@drawable/btn_c333333_click_color" />
+
 
     <TextView
         android:id="@+id/tv_custom_success"
