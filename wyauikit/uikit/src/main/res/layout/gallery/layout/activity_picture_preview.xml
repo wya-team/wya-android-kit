@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/black"
+    android:orientation="vertical"
     tools:context=".gallery.PicturePreviewActivity">
 
     <RelativeLayout
@@ -45,9 +45,9 @@
 
             <CheckBox
                 android:id="@+id/check"
+                style="@style/GalleryCheckBox"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/GalleryCheckBox" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -59,6 +59,7 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+
     <RelativeLayout
         android:id="@+id/select_bar_layout"
         android:layout_width="match_parent"
@@ -67,9 +68,15 @@
         android:gravity="center_vertical">
 
         <TextView
+            android:id="@+id/crop_edit"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="预览"/>
+            android:layout_height="match_parent"
+            android:text="编辑"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/id_ll_ok"
@@ -90,6 +97,7 @@
                 android:text="(1)"
                 android:textColor="@color/color_orange"
                 android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/tv_ok"
                 android:layout_width="wrap_content"
@@ -102,7 +110,7 @@
                 android:textSize="14sp" />
 
 
-
         </LinearLayout>
     </RelativeLayout>
+
 </LinearLayout>

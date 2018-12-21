@@ -1,5 +1,7 @@
 package com.wya.example.module.uikit.choicemenu;
 
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -50,6 +52,7 @@ public class ChoiceMenuExampleActivity extends BaseActivity {
 
             @Override
             public void setValueSecond(ChoiceMenuViewHolder helper, String item) {
+                ImageView imageView = helper.getView(R.id.check);
                 TextView textView = helper.getView(R.id.menu_titles);
                 helper.setText(R.id.menu_titles, item);
                 //注意这里只是为了模拟第五个数据时不可点击的
@@ -60,10 +63,13 @@ public class ChoiceMenuExampleActivity extends BaseActivity {
                     }
                     if (integer==selectPositionTwo1&&selectPositionTwo == helper.getLayoutPosition()) {
                         textView.setTextColor(getResources().getColor(R.color.primary_color));
+                        imageView.setVisibility(View.VISIBLE);
                     } else {
+                        imageView.setVisibility(View.GONE);
                         textView.setTextColor(getResources().getColor(R.color.black));
                     }
                 } else {
+                    imageView.setVisibility(View.GONE);
                     textView.setTextColor(getResources().getColor(R.color.color_BEBEBE));
                 }
 
@@ -75,6 +81,7 @@ public class ChoiceMenuExampleActivity extends BaseActivity {
                         notifyAdapterData();
                     }
                 });
+
             }
         };
         choiceMenu2.setOnFirstAdapterItemClickListener((position, v, menu) -> selectPositionTwo1 = position);
@@ -103,7 +110,13 @@ public class ChoiceMenuExampleActivity extends BaseActivity {
         //设置高度
         choiceMenu2.setHeight(getResources().getDisplayMetrics().heightPixels / 2);
 
-        showOne.setOnClickListener(v -> choiceMenu1.showAsDropDown(showOne));
+        showOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                choiceMenu1.showAsDropDown(showOne);
+            }
+        });
         showTwo.setOnClickListener(v -> choiceMenu2.showAsDropDown(showTwo));
 
     }

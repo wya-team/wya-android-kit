@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -55,6 +56,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
     private onPageSearchListener mPageSearchListener;
     private int mBtnEnableBg = R.drawable.pagination_item_enable;
     private int mBtnBg = R.drawable.pagination_item_click_bg;
+    private boolean indexSearch = false;
 
 
     public WYAPaginationBottomView(@NonNull Context context, @Nullable AttributeSet attrs) {
@@ -177,6 +179,16 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
         pageLayout.setVisibility(isVisible ? VISIBLE : INVISIBLE);
     }
 
+    public void setButtonLeftDrawable(Drawable drawable) {
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        mButtonLeft.setCompoundDrawables(drawable, null, null, null);
+    }
+
+    public void setButtonRightDrawable(Drawable drawable) {
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        mButtonRight.setCompoundDrawables(null, null, drawable, null);
+    }
+
 
     /**
      * search listener
@@ -270,11 +282,13 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
             }
 
         } else if (i == R.id.pagination_page_layout) {
-            pageLayout.setVisibility(GONE);
-            changeLayout.setVisibility(VISIBLE);
-            mChangeEdit.setText(String.valueOf(currentPage));
-            mChangeEdit.setSelection(mChangeEdit.getText().toString().length());
-            keyBoard(true);
+            if (indexSearch) {
+                pageLayout.setVisibility(GONE);
+                changeLayout.setVisibility(VISIBLE);
+                mChangeEdit.setText(String.valueOf(currentPage));
+                mChangeEdit.setSelection(mChangeEdit.getText().toString().length());
+                keyBoard(true);
+            }
         }
     }
 
@@ -349,6 +363,10 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 
     public void setPageSearchListener(onPageSearchListener pageSearchListener) {
         mPageSearchListener = pageSearchListener;
+    }
+
+    public void setIndexSearch(boolean indexSearch) {
+        this.indexSearch = indexSearch;
     }
 
     /**

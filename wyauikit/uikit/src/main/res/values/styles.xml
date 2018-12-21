@@ -25,8 +25,8 @@
         <item name="android:button">@drawable/picture_checkbox_selector</item>
     </style>
     <style name="choiceMenuStyle">
-        <item name="android:windowEnterAnimation">@anim/choice_menu_in</item>
-        <item name="android:windowExitAnimation">@anim/choice_menu_out</item>
+        <!--<item name="android:windowEnterAnimation">@anim/choice_menu_in</item>-->
+        <!--<item name="android:windowExitAnimation">@anim/choice_menu_out</item>-->
     </style>
 
     <!--WYACustomDialog animation-->

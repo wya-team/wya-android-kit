@@ -70,6 +70,7 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		initRecycler();
 		setOutsideTouchable(true);
 		setAnimationStyle(R.style.choiceMenuStyle);
+		setFocusable(true);
 		// 设置pop透明效果
 		setBackgroundDrawable(new ColorDrawable(0x0000));
 	}
@@ -192,6 +193,13 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		if (mContext instanceof Activity) {
 			WindowManager.LayoutParams lp=((Activity)mContext).getWindow().getAttributes();
 			lp.alpha = alpha;
+			if (alpha < 1) {
+				((Activity) mContext).getWindow().addFlags(WindowManager.LayoutParams
+						.FLAG_DIM_BEHIND);
+			} else {
+				((Activity) mContext).getWindow().clearFlags(WindowManager.LayoutParams
+						.FLAG_DIM_BEHIND);
+			}
 			((Activity)mContext).getWindow().setAttributes(lp);
 		}
 	}

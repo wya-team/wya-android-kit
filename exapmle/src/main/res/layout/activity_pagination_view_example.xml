@@ -26,23 +26,23 @@
         app:textColor="@color/black"
         app:textSize="13sp" />
 
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:padding="10dp"-->
-        <!--android:text="按钮带图"-->
-        <!--android:textColor="@color/black"-->
-        <!--android:textSize="16sp" />-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="按钮带图"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
-    <!--<com.wya.uikit.paginationview.WYAPaginationBottomView-->
-        <!--android:id="@+id/pagination_view_with_icon"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:leftText="上一页"-->
-        <!--app:rightText="下一页"-->
-        <!--app:selectPageTextColor="@color/primary_color"-->
-        <!--app:textColor="@color/black"-->
-        <!--app:textSize="13sp" />-->
+    <com.wya.uikit.paginationview.WYAPaginationBottomView
+        android:id="@+id/pagination_view_with_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:leftText="上一页"
+        app:rightText="下一页"
+        app:selectPageTextColor="@color/primary_color"
+        app:textColor="@color/black"
+        app:textSize="13sp" />
 
     <TextView
         android:layout_width="match_parent"
