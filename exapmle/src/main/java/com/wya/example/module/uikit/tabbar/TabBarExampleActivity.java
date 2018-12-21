@@ -7,45 +7,47 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.uikit.badge.Builder;
 import com.wya.uikit.badge.IBadgeView;
+import com.wya.uikit.slideview.Utils;
 import com.wya.uikit.tabbar.WYATabBar;
 
 public class TabBarExampleActivity extends BaseActivity {
-
+    
     private WYATabBar tab;
     private TextView msg;
-
+    private IBadgeView badgeHome, badgeDashboard, badgeNotifications;
+    
     @Override
     protected void initView() {
         setToolBarTitle("TabBar");
         setToolBar();
         showBadge();
     }
-
+    
     public void showBadge() {
         BottomNavigationItemView[] itemViews = tab.getBottomNavigationItemViews();
-
+        
         BottomNavigationItemView itemView = itemViews[0];
-        IBadgeView badgeView = new Builder(this)
-                .setOffset(50, 10)
-                .setText("news")
+        badgeHome = new Builder(this)
+                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_TOP, Utils.dp2px(this, 20), Utils.dp2px(this, 1)))
+                .setText("new")
                 .create();
-        badgeView.bindToTarget(itemView);
-
+        badgeHome.bindToTarget(itemView);
+        
         BottomNavigationItemView itemView1 = itemViews[1];
-        IBadgeView badgeView1 = new Builder(this)
-                .setOffset(120, 20)
+        badgeDashboard = new Builder(this)
+                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_TOP, Utils.dp2px(this, 11), Utils.dp2px(this, 4)))
                 .setBadgeNum(0)
                 .create();
-        badgeView1.bindToTarget(itemView1);
-
+        badgeDashboard.bindToTarget(itemView1);
+        
         BottomNavigationItemView itemView2 = itemViews[2];
-        IBadgeView badgeView2 = new Builder(this)
-                .setOffset(80, 10)
+        badgeNotifications = new Builder(this)
+                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_TOP, Utils.dp2px(this, 11), Utils.dp2px(this, 1)))
                 .setBadgeNum(1)
                 .create();
-        badgeView2.bindToTarget(itemView2);
+        badgeNotifications.bindToTarget(itemView2);
     }
-
+    
     private void setToolBar() {
         tab = (WYATabBar) findViewById(R.id.tab);
         msg = (TextView) findViewById(R.id.msg);
@@ -60,12 +62,21 @@ public class TabBarExampleActivity extends BaseActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     msg.setText("点击了\"主页\"tab，这里是主页界面");
+                    if (null != badgeHome) {
+                        badgeHome.update(false);
+                    }
                     break;
                 case R.id.navigation_dashboard:
                     msg.setText("点击了\"朋友\"tab，这里是朋友界面");
+                    if (null != badgeDashboard) {
+                        badgeDashboard.update(false);
+                    }
                     break;
                 case R.id.navigation_notifications:
                     msg.setText("点击了\"消息\"tab，这里是消息界面");
+                    if (null != badgeNotifications) {
+                        badgeNotifications.update(false);
+                    }
                     break;
                 case R.id.navigation_my:
                     msg.setText("点击了\"我的\"tab，这里是消息界面");
@@ -74,7 +85,7 @@ public class TabBarExampleActivity extends BaseActivity {
             return true;
         });
     }
-
+    
     @Override
     protected int getLayoutID() {
         return R.layout.activity_tab_bar_example;

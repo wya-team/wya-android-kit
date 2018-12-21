@@ -2,18 +2,32 @@ package com.wya.example.module.uikit.notice;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wya.example.R;
+import com.wya.example.base.BaseActivity;
 import com.wya.uikit.notice.switcher.SwitcherView;
 
-public class NoticeExampleActivity extends AppCompatActivity {
+import butterknife.BindView;
+
+public class NoticeExampleActivity extends BaseActivity {
     
-    private SwitcherView vsDown2Up, vsUp2Down, vsLeft2Right, vsRight2Left, vsCusAnim;
+    @BindView(R.id.vs_up2down)
+    SwitcherView vsUp2Down;
+    
+    @BindView(R.id.vs_down2up)
+    SwitcherView vsDown2Up;
+    
+    @BindView(R.id.vs_left2right)
+    SwitcherView vsLeft2Right;
+    
+    @BindView(R.id.vs_right2left)
+    SwitcherView vsRight2Left;
+    
+    @BindView(R.id.vs_cus_anim)
+    SwitcherView vsCusAnim;
     
     public static void start(Activity activity) {
         if (null == activity) {
@@ -24,12 +38,14 @@ public class NoticeExampleActivity extends AppCompatActivity {
     }
     
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_activity_notice_view);
+    protected int getLayoutID() {
+        return R.layout.layout_activity_notice_view;
+    }
+    
+    @Override
+    protected void initView() {
         
         // up2down
-        vsUp2Down = findViewById(R.id.vs_up2down);
         vsUp2Down.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
@@ -47,7 +63,6 @@ public class NoticeExampleActivity extends AppCompatActivity {
         vsUp2Down.inflate(R.layout.item_switch_view).startSwitcher();
         
         // down2up
-        vsDown2Up = findViewById(R.id.vs_down2up);
         vsDown2Up.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
@@ -67,7 +82,6 @@ public class NoticeExampleActivity extends AppCompatActivity {
         vsDown2Up.inflate(R.layout.item_switch_view).startSwitcher();
         
         // left2right
-        vsLeft2Right = findViewById(R.id.vs_left2right);
         vsLeft2Right.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
@@ -85,7 +99,6 @@ public class NoticeExampleActivity extends AppCompatActivity {
         vsLeft2Right.inflate(R.layout.item_switch_view).startSwitcher();
         
         // right2left
-        vsRight2Left = findViewById(R.id.vs_right2left);
         vsRight2Left.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
@@ -102,7 +115,6 @@ public class NoticeExampleActivity extends AppCompatActivity {
         });
         vsRight2Left.inflate(R.layout.item_switch_view).startSwitcher();
         
-        vsCusAnim = findViewById(R.id.vs_cus_anim);
         vsCusAnim.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {

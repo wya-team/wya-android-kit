@@ -25,7 +25,7 @@ public class WYABadgeView extends View implements IBadgeView {
     protected RectF mTextRect;
     protected int mTextColor;
     protected int mBadgeNum;
-    private int mMaxBadgeNum = 99;
+    private int mOmitNum = 99;
     private String mOmitText = "···";
     protected String mBadgeText;
     protected float mTextSize;
@@ -49,6 +49,8 @@ public class WYABadgeView extends View implements IBadgeView {
     protected PointF mCenter;
     protected float mPadding;
     protected Builder.Gravity mGravity;
+    
+    // TODO: 2018/12/21 ZCQ TEST 控制绘制后的宽度
     
     public WYABadgeView(Context context) {
         this(context, null);
@@ -224,7 +226,7 @@ public class WYABadgeView extends View implements IBadgeView {
                 mCenter.y = mHeight / 2f;
                 break;
             case Builder.BadgeGravity.GRAVITY_CENTER_TOP:
-                mCenter.x = mWidth / 2f;
+                mCenter.x = mWidth / 2f + mGravity.xOffset;
                 mCenter.y = mGravity.yOffset + mPadding + mTextRect.height() / 2f;
                 break;
             case Builder.BadgeGravity.GRAVITY_CENTER_BOTTOM:
@@ -290,8 +292,11 @@ public class WYABadgeView extends View implements IBadgeView {
     }
     
     @Override
-    public void setMaxBadgeNum(int maxBadgeNum) {
-        this.mMaxBadgeNum = maxBadgeNum;
+    public void setOmitNum(int omitNum) {
+        this.mOmitNum = omitNum;
+        if (mBadgeNum > mOmitNum) {
+            setBadgeNum(mBadgeNum);
+        }
     }
     
     @Override
@@ -311,9 +316,9 @@ public class WYABadgeView extends View implements IBadgeView {
             mBadgeText = "";
         } else if (mBadgeNum == 0) { // = 0 显示红点
             mBadgeText = null;
-        } else if (mBadgeNum <= mMaxBadgeNum) {
+        } else if (mBadgeNum <= mOmitNum) {
             mBadgeText = String.valueOf(mBadgeNum);
-        } else { // > mMaxBadgeNum 根据是否省略显示
+        } else { // > mOmitNum 根据是否省略显示
             mBadgeText = isOmitMode ? mOmitText : String.valueOf(mBadgeNum);
         }
         measureText();
@@ -323,7 +328,7 @@ public class WYABadgeView extends View implements IBadgeView {
     @Override
     public void setBadgeText(String badgeText) {
         mBadgeText = badgeText;
-        mBadgeNum = 1;
+        mBadgeNum = 0;  // TODO: 2018/12/21 ZCQ TEST
         measureText();
         invalidate();
     }
@@ -348,7 +353,7 @@ public class WYABadgeView extends View implements IBadgeView {
     @Override
     public void setOmitMode(boolean isOmitMode) {
         this.isOmitMode = isOmitMode;
-        if (mBadgeNum > mMaxBadgeNum) {
+        if (mBadgeNum > mOmitNum) {
             setBadgeNum(mBadgeNum);
         }
     }
@@ -359,6 +364,9 @@ public class WYABadgeView extends View implements IBadgeView {
     @Override
     public void setOmitText(String omitText) {
         this.mOmitText = omitText;
+        if (mBadgeNum > mOmitNum) {
+            setBadgeNum(mBadgeNum);
+        }
     }
     
     @Override
