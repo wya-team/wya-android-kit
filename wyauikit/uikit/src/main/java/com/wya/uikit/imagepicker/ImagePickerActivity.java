@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -20,6 +21,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -64,6 +67,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_picker);
+        setColor(getResources().getColor(R.color.black));
         int selfPermission = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest
                 .permission.READ_EXTERNAL_STORAGE);
 
@@ -81,6 +85,38 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         initChoiceMenu();
 
     }
+
+    /**
+     * 设置状态栏颜色
+     *
+     */
+
+    public  void setColor( @ColorInt int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().setStatusBarColor(color);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
+            View fakeStatusBarView = decorView.findViewById(R.id.statusbarutil_fake_status_bar_view);
+            if (fakeStatusBarView != null) {
+                if (fakeStatusBarView.getVisibility() == View.GONE) {
+                    fakeStatusBarView.setVisibility(View.VISIBLE);
+                }
+                fakeStatusBarView.setBackgroundColor(color);
+            }
+            ViewGroup parent = findViewById(android.R.id.content);
+            for (int i = 0, count = parent.getChildCount(); i < count; i++) {
+                View childView = parent.getChildAt(i);
+                if (childView instanceof ViewGroup) {
+                    childView.setFitsSystemWindows(true);
+                    ((ViewGroup) childView).setClipToPadding(true);
+                }
+            }
+        }
+    }
+
 
     /**
      * init folder menu

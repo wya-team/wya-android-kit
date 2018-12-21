@@ -48,6 +48,8 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
     @SuppressLint("CheckResult")
     @Override
     protected void initView() {
+        setToolBarTitle("Downloader");
+
         FileManagerUtil.getInstance().register();
         percent = (TextView) findViewById(R.id.progress_percent);
         start = (Button) findViewById(R.id.start);

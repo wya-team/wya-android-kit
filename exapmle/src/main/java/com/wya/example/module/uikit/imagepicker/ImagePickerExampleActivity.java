@@ -27,7 +27,6 @@ import android.widget.Toast;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.hardware.camera.CameraExampleActivity;
-import com.wya.example.module.hardware.camera.StartCameraExampleActivity;
 import com.wya.hardware.camera.WYACameraView;
 import com.wya.uikit.dialog.CustomListener;
 import com.wya.uikit.dialog.WYACustomDialog;
@@ -62,6 +61,8 @@ public class ImagePickerExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+        setToolBarTitle("ImagePicker");
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         input = (EditText) findViewById(R.id.num_input);
         crop_crop = (ImageView) findViewById(R.id.crop_crop);
@@ -179,7 +180,9 @@ public class ImagePickerExampleActivity extends BaseActivity {
             public void onItemClick(int position) {
                 List<String> preview = new ArrayList<>();
                 preview.addAll(mAllList);
-                preview.remove(preview.size() - 1);
+                if (TextUtils.isEmpty(preview.get(preview.size()-1))) {
+                    preview.remove(preview.size() - 1);
+                }
                 GalleryCreator.create(ImagePickerExampleActivity.this).openPreviewGallery
                         (position, preview);
             }
@@ -267,7 +270,13 @@ public class ImagePickerExampleActivity extends BaseActivity {
                 mPickerAdapter.notifyDataSetChanged();
             }
             if (resultCode == 103) {
+                mAllList.add("");
+                mPickerAdapter.notifyDataSetChanged();
                 Toast.makeText(this, "请检查相机权限~", Toast.LENGTH_SHORT).show();
+            }
+            if (resultCode == RESULT_CANCELED) {
+                mAllList.add("");
+                mPickerAdapter.notifyDataSetChanged();
             }
         }
     }
