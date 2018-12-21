@@ -123,7 +123,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         initContentView(R.layout.base_toolbar_layout);
         setContentView(getLayoutID());
-        AndroidBugWorkaround.assistActivity(findViewById(android.R.id.content));
+
         initWYAActionBar();
     }
 

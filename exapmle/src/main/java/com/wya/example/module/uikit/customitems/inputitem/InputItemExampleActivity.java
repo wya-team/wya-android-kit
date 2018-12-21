@@ -2,6 +2,7 @@ package com.wya.example.module.uikit.customitems.inputitem;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.uikit.toolbar.AndroidBugWorkaround;
 
 /**
  * 创建日期：2018/11/30 18:03
@@ -13,6 +14,7 @@ import com.wya.example.base.BaseActivity;
 public class InputItemExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
+        AndroidBugWorkaround.assistActivity(findViewById(android.R.id.content));
         setToolBarTitle("文本输入(customitems)");
     }
 

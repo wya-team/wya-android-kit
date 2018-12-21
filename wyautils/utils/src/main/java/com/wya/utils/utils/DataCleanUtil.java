@@ -24,6 +24,7 @@ public class DataCleanUtil {
 		deleteFilesByDirectory(context.getCacheDir());
 	}
 
+
 	/**
 	 * * 清除本应用所有数据库(/data/data/com.xxx.xxx/databases) * *
 	 *
@@ -106,14 +107,19 @@ public class DataCleanUtil {
 	/**
 	 * * 删除方法 这里只会删除某个文件夹下的文件，如果传入的directory是个文件，将不做处理 * *
 	 *
-	 * @param directory
+	 * @param dir
 	 */
-	private static void deleteFilesByDirectory(File directory) {
-		if (directory != null && directory.exists() && directory.isDirectory()) {
-			for (File item : directory.listFiles()) {
-				item.delete();
+	private static boolean deleteFilesByDirectory(File dir) {
+		if (dir != null && dir.isDirectory()) {
+			String[] children = dir.list();
+			for (int i = 0; i < children.length; i++) {
+				boolean success = deleteFilesByDirectory(new File(dir, children[i]));
+				if (!success) {
+					return false;
+				}
 			}
 		}
+		return dir.delete();
 	}
 
 	// 获取文件
@@ -216,6 +222,30 @@ public class DataCleanUtil {
 				+ "TB";
 	}
 
+	/**
+	 * 获取本应用所有缓存大小并格式化
+	 * @param context
+	 * @return
+	 * @throws Exception
+	 */
+	public static String getTotalCacheSize(Context context) throws Exception {
+		long cacheSize = getFolderSize(context.getCacheDir());
+		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+			cacheSize += getFolderSize(context.getExternalCacheDir());
+		}
+		return getFormatSize(cacheSize);
+	}
 
-
+	/**
+	 * 清除本应用下所有缓存
+	 * 清除本应用内部缓存(/data/data/com.xxx.xxx/cache) * *
+	 * 清除本应用外部缓存(SDCard/Android/data/com.xxx.xxx/cache) * *
+	 * @param context
+	 */
+	public static void cleanTotalCache(Context context) {
+		deleteFilesByDirectory(context.getCacheDir());
+		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+			deleteFilesByDirectory(context.getExternalCacheDir());
+		}
+	}
 }

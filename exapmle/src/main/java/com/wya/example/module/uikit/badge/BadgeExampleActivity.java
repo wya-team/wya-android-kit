@@ -16,6 +16,7 @@ import com.wya.example.base.BaseActivity;
 import com.wya.uikit.badge.Builder;
 import com.wya.uikit.badge.DisplayUtil;
 import com.wya.uikit.badge.IBadgeView;
+import com.wya.uikit.toolbar.AndroidBugWorkaround;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -75,6 +76,7 @@ public class BadgeExampleActivity extends BaseActivity {
     
     @Override
     protected void initView() {
+        AndroidBugWorkaround.assistActivity(findViewById(android.R.id.content));
         initListener();
         showBadge(tvDot, 0);
         showBadge(tvDigital, 99);

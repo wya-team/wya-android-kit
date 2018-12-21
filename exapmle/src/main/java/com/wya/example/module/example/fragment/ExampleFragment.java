@@ -39,8 +39,11 @@ import com.wya.example.module.uikit.tabbar.TabBarExampleActivity;
 import com.wya.example.module.uikit.tablayout.TabLayoutExampleActivity;
 import com.wya.example.module.uikit.toast.ToastExampleActivity;
 import com.wya.example.module.uikit.toolbar.ToolBarExampleActivity;
+import com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity;
 import com.wya.example.module.utils.image.QRCodeExampleActivity;
 import com.wya.example.module.utils.realm.RealmExampleActivity;
+import com.wya.uikit.dialog.WYACustomDialog;
+import com.wya.utils.utils.DataCleanUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +55,7 @@ public class ExampleFragment extends Fragment {
     private List<ExampleItem> mDatas;
     private ExampleExpandableListAdapter adapter;
     private View view;
+    WYACustomDialog wyaCustomDialog = null;
 
     @SuppressLint("NewApi")
     @Override
@@ -123,7 +127,7 @@ public class ExampleFragment extends Fragment {
         ExampleItem item5 = new ExampleItem();
         item5.setTitle("其他");
         List<String> bean5 = new ArrayList<>();
-        bean5.add("下载(-)");
+        bean5.add("下载(utils(FileManagerUtil)");
         bean5.add("视频播放(dvideoplayer)");
         bean5.add("清理缓存(utils(DataCleanUtil))");
         bean5.add("数据库基本使用(realm)");
@@ -251,14 +255,31 @@ public class ExampleFragment extends Fragment {
                 break;
 
 
-            case "下载(-)":
-//                startActivity(new Intent(getActivity(), BadgeExampleActivity.class));
+            case "下载(utils(FileManagerUtil)":
+                startActivity(new Intent(getActivity(), FileDownloadExampleActivity.class));
                 break;
             case "视频播放(dvideoplayer)":
                 startActivity(new Intent(getActivity(), VideoPlayerExampleActivity.class));
                 break;
             case "清理缓存(utils(DataCleanUtil))":
-//                startActivity(new Intent(getActivity(), CardViewExampleActivity.class));
+                try {
+                    wyaCustomDialog = new WYACustomDialog.Builder(getActivity())
+                            .title("清理缓存")
+                            .message(String.format("%s%s%s","当前缓存",DataCleanUtil
+                                    .getTotalCacheSize(getActivity()),",是否清理"))
+                            .cancelable(true)
+                            .build();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                wyaCustomDialog.setNoOnclickListener(() -> {
+                    wyaCustomDialog.dismiss();
+                });
+                wyaCustomDialog.setYesOnclickListener(() -> {
+                    DataCleanUtil.cleanTotalCache(getActivity());
+                    wyaCustomDialog.dismiss();
+                });
+                wyaCustomDialog.show();
                 break;
             case "数据库基本使用(realm)":
                 startActivity(new Intent(getActivity(), RealmExampleActivity.class));
