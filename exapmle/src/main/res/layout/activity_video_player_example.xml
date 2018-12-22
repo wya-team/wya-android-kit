@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/white"
+    tools:context="com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity">
+
+    <com.wya.hardware.videoplayer.WYAVideoView
+        android:id="@+id/video_player"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#888">
+    </com.wya.hardware.videoplayer.WYAVideoView>
+
+    <TextView
+        android:text="WYAVideoPlayer视频地址：http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh.yinyuetai.com/4599015ED06F94848EBF877EAAE13886.mp4"
+        android:layout_width="wrap_content"
+        android:padding="12dp"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content" />
+</LinearLayout>

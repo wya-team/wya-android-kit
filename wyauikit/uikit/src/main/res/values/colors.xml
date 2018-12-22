@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="segment_default">#118EE9</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red">#ff0000</color>
+    <color name="light_gray">#dddddd</color>
+    <color name="color_orange">#E0FF6100</color>
+    <color name="color_666">#666666</color>
+
+
+    <color name="progress_gray">#e4e4e4</color>
+    <color name="progress_start">#f1e134</color>
+    <color name="progress_end">#f14a34</color>
+
+    <color name="primary_color">#108DE7</color>
+    <color name="color_909090">#909090</color>
+    <color name="color_DEDEDE">#DEDEDE</color>
+    <color name="color_f6f6f6">#f6f6f6</color>
+
+</resources>

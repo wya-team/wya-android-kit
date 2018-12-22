@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.wya.example.module.utils.realm.RealmExampleActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_db_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_12" />
+
+        <EditText
+            android:id="@+id/tv_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入序号（唯一）"
+            android:inputType="number"
+            android:maxLength="8"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入姓名"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/tv_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入年龄"
+            android:inputType="number"
+            android:maxLength="3"
+            android:padding="10dp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.wya.uikit.button.WYAButton
+                android:id="@+id/wya_button_add"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:text="增"
+                android:textAllCaps="false"
+                app:backColor="#118EE9"
+                app:fillet="true"
+                app:textColor="#ffffff"
+                app:textColorPress="#50ffffff"
+                app:wya_button_radius="10" />
+
+            <com.wya.uikit.button.WYAButton
+                android:id="@+id/wya_button_reduce"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:text="删"
+                android:textAllCaps="false"
+                app:backColor="#118EE9"
+                app:fillet="true"
+                app:textColor="#ffffff"
+                app:textColorPress="#50ffffff"
+                app:wya_button_radius="10" />
+
+            <com.wya.uikit.button.WYAButton
+                android:id="@+id/wya_button_update"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:text="改"
+                android:textAllCaps="false"
+                app:backColor="#118EE9"
+                app:fillet="true"
+                app:textColor="#ffffff"
+                app:textColorPress="#50ffffff"
+                app:wya_button_radius="10" />
+
+            <com.wya.uikit.button.WYAButton
+                android:id="@+id/wya_button_query"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:text="查"
+                android:textAllCaps="false"
+                app:backColor="#118EE9"
+                app:fillet="true"
+                app:textColor="#ffffff"
+                app:textColorPress="#50ffffff"
+                app:wya_button_radius="10" />
+
+        </TableRow>
+
+
+        <TextView
+            android:id="@+id/tv_choose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:textColor="@color/red"
+            android:textSize="@dimen/sp_15" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

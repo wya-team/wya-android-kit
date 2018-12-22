@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -37,3 +38,33 @@
 
 
 </LinearLayout>
+=======
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.wya.example.module.example.ExampleActivity">
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+
+    <com.wya.uikit.tabbar.WYATabBar
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@null"
+        app:itemIconTint="@drawable/navigation_select"
+        app:itemTextColor="@drawable/navigation_select"
+        app:menu="@menu/main" />
+
+</LinearLayout>
+>>>>>>> e6481e91f7f62f1d6717b2c46c8020af137ed2e1

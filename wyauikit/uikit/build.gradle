@@ -1,0 +1,71 @@
+apply plugin: 'com.android.library'
+def buildConfig = rootProject.extensions.getByName("ext")
+def supportDepends = rootProject.ext.supportDepends
+
+android {
+
+    compileSdkVersion buildConfig.getAt("compileSdkVersion")
+    buildToolsVersion buildConfig.getAt("buildToolsVersion")
+    defaultConfig {
+        minSdkVersion buildConfig.getAt("minSdkVersion")
+        targetSdkVersion buildConfig.getAt("targetSdkVersion")
+
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layout/customedittext',
+                            'src/main/res/layout/imagecrop',
+                            'src/main/res/layout/pickerview',
+                            'src/main/res/layout/stepper',
+                            'src/main/res/layout/banner',
+                            'src/main/res/layout/customitems',
+                            'src/main/res/layout/base',
+                            'src/main/res/layout/imagepicker',
+                            'src/main/res/layout/gallery',
+                            'src/main/res/layout/keyboard',
+                            'src/main/res/layout/toolbar',
+                            'src/main/res/layout/dialog',
+                            'src/main/res/layout/popupwindow',
+                            'src/main/res/layout/toast',
+                            'src/main/res/layout/searchbar',
+                            'src/main/res/layout/segmentcontrol',
+                            'src/main/res/layout/paginationview',
+                            'src/main/res/layout/choicemenu',
+                            'src/main/res'
+                    ]
+        }
+    }
+
+}
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+dependencies {
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation supportDepends.appcompat
+    implementation supportDepends.rxbinding
+    implementation supportDepends.design
+    implementation supportDepends.recyclerview
+    implementation supportDepends.base_adapter
+}
+
+//aar打包
+apply from: 'maven-release-aar.gradle'

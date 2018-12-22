@@ -2,14 +2,16 @@ ext {
 
     // build config
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    compileSdkVersion = 26
-    buildToolsVersion = "26.0.2"
-    minSdkVersion = 14
-    targetSdkVersion = 26
+    compileSdkVersion = 28
+    buildToolsVersion = "28.0.3"
+    minSdkVersion = 15
+    targetSdkVersion = 28
 
     // support config
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    androidSupportLibVersion = "25.4.0"
+    androidSupportLibVersion = "28.0.0"
+    butterknnifeVersion = "8.5.1"
+    rxbindingVersion = "2.0.0"
     supportDepends = [
             support_v4  : "com.android.support:support-v4:${androidSupportLibVersion}",
             support_v13 : "com.android.support:support-v13:${androidSupportLibVersion}",
@@ -17,6 +19,10 @@ ext {
             appcompat   : "com.android.support:appcompat-v7:${androidSupportLibVersion}",
             recyclerview: "com.android.support:recyclerview-v7:${androidSupportLibVersion}",
             annotations : "com.android.support:support-annotations:${androidSupportLibVersion}",
+            butterknnife: "com.jakewharton:butterknife:${butterknnifeVersion}",
+            butterknife_compiler: "com.jakewharton:butterknife-compiler:${butterknnifeVersion}",
+            rxbinding: "com.jakewharton.rxbinding2:rxbinding:${rxbindingVersion}",
+            base_adapter: "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30",
     ]
 
 }

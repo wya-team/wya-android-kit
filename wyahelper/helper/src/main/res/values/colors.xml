@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ToolBar Color -->
+    <color name="toolbar_bg_color">#000000</color>
+    <color name="toolbar_title_color">#ffffff</color>
+    <color name="toolbar_tv_right_color">#ffffff</color>
+
+
+    <!--Common-->
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="red">#ff0000</color>
+    <color name="green">#00ff00</color>
+    <color name="blue">#0000ff</color>
+
+
+    <!-- 页面背景 -->
+    <color name="f4f4f4">#f4f4f4</color>
+    <color name="f5f5f5">#f5f5f5</color>
+    <color name="f8f8f8">#f8f8f8</color>
+    <color name="f1f1f1">#f1f1f1</color>
+    <color name="f0f0f0">#f0f0f0</color>
+    <!--分割线-->
+    <color name="eeeeee">#eeeeee</color>
+    <color name="e5e5e5e">#e5e5e5</color>
+    <color name="d9d9d9">#d9d9d9</color>
+    <color name="d5d5d5">#d5d5d5</color>
+    <color name="dddddd">#dddddd</color>
+    <color name="b0b0b0">#b0b0b0</color>
+    <color name="c999999">#999999</color>
+
+
+
+</resources>

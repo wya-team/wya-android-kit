@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+
+def buildConfig = rootProject.extensions.getByName("ext")
+def supportDepends = rootProject.ext.supportDepends
+
+android {
+
+    compileSdkVersion buildConfig.getAt("compileSdkVersion")
+    buildToolsVersion buildConfig.getAt("buildToolsVersion")
+
+    defaultConfig {
+        minSdkVersion buildConfig.getAt("minSdkVersion")
+        targetSdkVersion buildConfig.getAt("targetSdkVersion")
+        versionCode 1
+        versionName "1.0.1"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation supportDepends.appcompat
+    api 'com.google.zxing:core:3.3.3'
+    api 'com.arialyy.aria:aria-core:3.5.2'
+    annotationProcessor  'com.arialyy.aria:aria-compiler:3.5.2'
+}
+
+apply from: 'maven-release-aar.gradle'

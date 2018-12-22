@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f4f4f4"
+    android:orientation="vertical"
+    tools:context="com.wya.example.module.uikit.customitems.cardview.CardViewExampleActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.wya.uikit.customitems.WYACardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                app:backColor="@color/white"
+                app:wyaCardRadius="0"></com.wya.uikit.customitems.WYACardView>
+
+            <com.wya.uikit.customitems.WYACardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                app:backColor="@color/white"
+                app:wyaCardRadius="10"></com.wya.uikit.customitems.WYACardView>
+
+            <com.wya.uikit.customitems.WYACardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                app:backColor="@color/white"
+                app:imgTitleLeft="@drawable/icon_card_icon"
+                app:wyaCardRadius="10"></com.wya.uikit.customitems.WYACardView>
+
+            <com.wya.uikit.customitems.WYACardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                app:assistTextColor="@color/blue"
+                app:backColor="#999999"
+                app:contentTextColor="@color/green"
+                app:rightTextColor="@color/red"
+                app:titleTextColor="#ffffff"
+                app:wyaCardRadius="10"></com.wya.uikit.customitems.WYACardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

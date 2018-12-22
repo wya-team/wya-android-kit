@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.wya.uikit.slideview.RangeSlideView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        app:rsd_slider_mode="single" />
+
+    <com.wya.uikit.slideview.RangeSlideView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        app:rsd_slider_mode="range"
+        app:rsd_progress_max="100"
+        app:rsd_progress_min="0" />
+
+    <com.wya.uikit.slideview.RangeSlideView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        app:rsd_slider_mode="range"
+        app:rsd_progress_background_color="@color/light_gray"
+        app:rsd_progress_height="@dimen/dp_3"
+        app:rsd_progress_max="100"
+        app:rsd_progress_min="0"
+        app:rsd_region_bitmap_size="@dimen/dp_20"
+        app:rsd_region_drawable_min="@drawable/image_ic_adjust"
+        app:rsd_region_drawable_max="@drawable/image_ic_adjust"
+        app:rsd_region_padding="@dimen/dp_5"
+        app:rsd_region_text_color="@color/black"
+        app:rsd_region_text_size="@dimen/sp_15" />
+
+</LinearLayout>

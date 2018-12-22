@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f4f4f4"
+    android:orientation="vertical"
+    tools:context="com.wya.example.module.uikit.dialog.DialogExampleActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.wya.example.module.example.view.CustomerExpandableListView
+                android:id="@+id/expend_list"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:divider="@null"
+                android:dividerHeight="0dp"></com.wya.example.module.example.view.CustomerExpandableListView>
+
+
+            <TableRow
+                android:id="@+id/tab_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_margin="@dimen/dp_10"
+                    android:indeterminateBehavior="repeat"
+                    android:indeterminateDrawable="@drawable/progressbg"
+                    android:indeterminateOnly="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ProgressBar
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="@dimen/dp_10"
+                        android:indeterminateBehavior="repeat"
+                        android:indeterminateDrawable="@drawable/progressbg"
+                        android:indeterminateOnly="true" />
+
+                    <TextView
+                        android:id="@+id/hintTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/img_load"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="加载中"
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ProgressBar
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_margin="@dimen/dp_10"
+                        android:indeterminateBehavior="repeat"
+                        android:indeterminateDrawable="@drawable/progressbg"
+                        android:indeterminateOnly="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/img_load"
+                        android:text="加载中..."
+                        android:textColor="#999999"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </TableRow>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

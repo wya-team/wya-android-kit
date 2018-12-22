@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f4f4f4"
+    android:orientation="vertical"
+    tools:context="com.wya.example.module.uikit.stepper.StepperExampleActivity">
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_10"
+            android:text="可以点击的"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14" />
+
+        <com.wya.uikit.stepper.WYAStepper
+            android:id="@+id/stepper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_10"
+            app:max_num="120"
+            app:min_num="0"
+            app:value="0" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp_1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_10"
+            android:text="不能点击的"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14" />
+
+        <com.wya.uikit.stepper.WYAStepper
+            android:id="@+id/stepper_disabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_10"
+            app:max_num="0"
+            app:min_num="0"
+            app:value="0" />
+    </TableRow>
+
+</LinearLayout>

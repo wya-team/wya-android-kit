@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f4f4f4"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/image_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_weight="1" />
+
+
+    <TextView
+        android:id="@+id/tv_path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_10" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="最长拍摄时间（s）"
+        android:textSize="@dimen/sp_10" />
+
+    <EditText
+        android:id="@+id/et_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="请输入最长拍摄时间(s)"
+        android:inputType="number"
+        android:maxLength="8"
+        android:padding="@dimen/dp_10"
+        android:text="10"
+        android:textColor="#000000"
+        android:textSize="@dimen/sp_14" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="拍摄类型"
+        android:textSize="@dimen/sp_10" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/take_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="拍照"
+            android:textSize="@dimen/sp_10" />
+
+        <RadioButton
+            android:id="@+id/take_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="录制"
+            android:textSize="@dimen/sp_10" />
+
+        <RadioButton
+            android:id="@+id/take_video_and_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="拍照+录制"
+            android:textSize="@dimen/sp_10" />
+
+    </RadioGroup>
+
+    <com.wya.uikit.button.WYAButton
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_margin="10dp"
+        android:text="拍照"
+        android:textSize="@dimen/sp_10"
+        app:backColor="#118EE9"
+        app:fillet="true"
+        app:textColor="#ffffff"
+        app:textColorPress="#50ffffff"
+        app:wya_button_radius="20" />
+
+    <TextView
+        android:id="@+id/device"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="Andriod Device"
+        android:textColor="#333333"
+        android:textSize="@dimen/sp_10" />
+
+</LinearLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f4f4f4"
+    android:orientation="vertical"
+    tools:context=".module.uikit.tablayout.TabLayoutExampleActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="基本平分"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/fixedTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/primary_color"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/primary_color"
+        app:tabTextColor="@color/black" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="基本自适应"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/scrollTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/primary_color"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/primary_color"
+        app:tabTextColor="@color/black" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="平分:下划线和title同宽"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/fixedTabText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/primary_color"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/primary_color"
+        app:tabTextColor="@color/black" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="自适应：下划线和title同宽"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/scrollTabText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/primary_color"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/primary_color"
+        app:tabTextColor="@color/black" />
+</LinearLayout>

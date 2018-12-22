@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.wya.uikit.notice.switcher.SwitcherView
+        android:id="@+id/vs_up2down"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_switcher_item_margin"
+        android:layout_marginBottom="10dp"
+        android:background="#ffffff"
+        app:anim_direction="up2down"
+        app:anim_duration="400"
+        app:switch_duration="3000" />
+
+    <com.wya.uikit.notice.switcher.SwitcherView
+        android:id="@+id/vs_down2up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_switcher_item_margin"
+        android:layout_marginBottom="10dp"
+        android:background="#ffffff"
+        app:anim_duration="400"
+        app:switch_duration="2000" />
+
+    <com.wya.uikit.notice.switcher.SwitcherView
+        android:id="@+id/vs_left2right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_switcher_item_margin"
+        android:layout_marginBottom="10dp"
+        android:background="#ffffff"
+        app:anim_direction="left2right"
+        app:anim_duration="400"
+        app:switch_duration="3000" />
+
+    <com.wya.uikit.notice.switcher.SwitcherView
+        android:id="@+id/vs_right2left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_switcher_item_margin"
+        android:layout_marginBottom="10dp"
+        android:background="#ffffff"
+        app:anim_direction="right2left"
+        app:anim_duration="400"
+        app:switch_duration="3000" />
+
+    <com.wya.uikit.notice.switcher.SwitcherView
+        android:id="@+id/vs_cus_anim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_switcher_item_margin"
+        android:background="#ffffff"
+        app:anim_duration="400"
+        app:switch_duration="3000" />
+
+    <com.wya.uikit.notice.MarqueeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/image_ic_adjust"
+        android:drawablePadding="@dimen/dp_10"
+        android:padding="@dimen/dp_6"
+        android:text="因全国公民身份系统升级，添加银行卡银行卡银行卡银行卡" />
+
+</LinearLayout>

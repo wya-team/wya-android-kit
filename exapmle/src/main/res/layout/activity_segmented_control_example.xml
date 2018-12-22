@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/f4f4f4"
+    android:orientation="vertical"
+    tools:context=".module.uikit.segmentedcontrol.SegmentedControlExampleActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Simplest"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_10"/>
+
+    <com.wya.uikit.segmentedcontrol.WYASegmentedView
+        android:id="@+id/segment_normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:itemNormalBackground="@color/white"
+        app:itemSelectBackground="@color/primary_color"
+        app:lineColor="@color/primary_color"
+        app:lineSize="2dp"
+        app:radius="5dp"
+        app:strokeColor="@color/primary_color"
+        app:strokeWidth="2dp"
+        app:titleNormalColor="@color/primary_color"
+        app:titleSelectColor="@color/white"
+        app:titleSize="14sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="SelectedIndex"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16"
+        android:layout_marginTop="10dp"/>
+
+    <com.wya.uikit.segmentedcontrol.WYASegmentedView
+        android:id="@+id/segment_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:itemNormalBackground="@color/white"
+        app:itemSelectBackground="@color/primary_color"
+        app:lineColor="@color/primary_color"
+        app:lineSize="2dp"
+        app:radius="5dp"
+        app:strokeColor="@color/primary_color"
+        app:strokeWidth="2dp"
+        app:titleNormalColor="@color/primary_color"
+        app:titleSelectColor="@color/white"
+        app:titleSize="14sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="TintColor"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16"
+        android:layout_marginTop="10dp"/>
+
+    <com.wya.uikit.segmentedcontrol.WYASegmentedView
+        android:id="@+id/segment_color"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:itemNormalBackground="@color/white"
+        app:itemSelectBackground="@color/red"
+        app:lineColor="@color/red"
+        app:lineSize="2dp"
+        app:radius="5dp"
+        app:strokeColor="@color/red"
+        app:strokeWidth="2dp"
+        app:titleNormalColor="@color/red"
+        app:titleSelectColor="@color/white"
+        app:titleSize="14sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Disable"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_10"/>
+
+    <com.wya.uikit.segmentedcontrol.WYASegmentedView
+        android:id="@+id/segment_enable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:itemNormalBackground="@color/white"
+        app:itemSelectBackground="#82C1F1"
+        app:lineColor="#82C1F1"
+        app:lineSize="2dp"
+        app:radius="5dp"
+        app:strokeColor="#82C1F1"
+        app:strokeWidth="2dp"
+        app:titleNormalColor="#82C1F1"
+        app:titleSelectColor="@color/white"
+        app:titleSize="14sp" />
+
+
+</LinearLayout>

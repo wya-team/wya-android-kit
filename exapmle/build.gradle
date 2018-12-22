@@ -1,35 +1,76 @@
-//修改被添加的依赖Module的build.gradle文件配置
-apply plugin: 'com.android.application' // --改成下面的代码
+apply plugin: 'com.android.application'
+def buildConfig = rootProject.extensions.getByName("ext")
+def supportDepends = rootProject.ext.supportDepends
+
 android {
-    compileSdkVersion 26
+
+    compileSdkVersion buildConfig.getAt("compileSdkVersion")
+    buildToolsVersion buildConfig.getAt("buildToolsVersion")
+
+    signingConfigs {
+        debug {
+            keyAlias 'wya'
+            keyPassword 'wya123'
+            storeFile file("$rootDir/wya.jks")
+            storePassword 'wya123'
+        }
+        release {
+            keyAlias 'wya'
+            keyPassword 'wya123'
+            storeFile file("$rootDir/wya.jks")
+            storePassword 'wya123'
+        }
+    }
+
     defaultConfig {
         applicationId "com.wya.example"
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion buildConfig.getAt("minSdkVersion")
+        targetSdkVersion buildConfig.getAt("targetSdkVersion")
+
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+}
 dependencies {
-    androidTestCompile('com.android.support:support-annotations:26.1.0') {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:support-vector-drawable:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    androidTestImplementation(supportDepends.annotations) {
         force = true
     }
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation project(':hardware')
-    implementation project(':helper')
-    implementation project(':uikit')
-    implementation project(':utils')
+    implementation supportDepends.appcompat
+    implementation supportDepends.butterknnife
+    annotationProcessor supportDepends.butterknife_compiler
+    implementation supportDepends.rxbinding
+    implementation supportDepends.base_adapter
+    implementation project(':wyahelper:helper')
+    implementation project(':wyahardware:hardware')
+    implementation project(':wyauikit:uikit')
+    implementation project(':wyautils:utils')
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
+apply plugin: 'realm-android'
