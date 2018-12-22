@@ -1,7 +1,10 @@
 package com.wya.example.module.uikit.stepper;
 
+import android.content.Intent;
+
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.stepper.WYAStepper;
 
 import butterknife.BindView;
@@ -26,5 +29,10 @@ public class StepperExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         setToolBarTitle("步进器(stepper)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(StepperExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
     }
 }

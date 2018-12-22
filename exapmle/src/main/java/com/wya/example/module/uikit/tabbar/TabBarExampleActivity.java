@@ -1,10 +1,12 @@
 package com.wya.example.module.uikit.tabbar;
 
+import android.content.Intent;
 import android.support.design.internal.BottomNavigationItemView;
 import android.widget.TextView;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.badge.Builder;
 import com.wya.uikit.badge.IBadgeView;
 import com.wya.uikit.slideview.Utils;
@@ -18,8 +20,12 @@ public class TabBarExampleActivity extends BaseActivity {
     
     @Override
     protected void initView() {
-        setToolBarTitle("TabBar");
-        setToolBar();
+        setToolBarTitle("底部导航(tabbar)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(TabBarExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });        setToolBar();
         showBadge();
     }
     

@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 
 public class SlideViewExampleActivity extends BaseActivity {
     
@@ -23,7 +24,12 @@ public class SlideViewExampleActivity extends BaseActivity {
     
     @Override
     protected void initView() {
-        setToolBarTitle("slidder");
+        setToolBarTitle("滑动输入条(slideview)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(SlideViewExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
         getSwipeBackLayout().setEnableGesture(false);
     }
     

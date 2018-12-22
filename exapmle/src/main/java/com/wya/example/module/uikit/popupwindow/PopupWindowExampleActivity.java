@@ -6,7 +6,6 @@ import android.widget.Toast;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
-import com.wya.example.module.uikit.button.ButtonExampleActivity;
 import com.wya.uikit.popupwindow.WYAPopupWindow;
 
 import java.util.ArrayList;

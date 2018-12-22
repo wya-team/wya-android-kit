@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.example.module.hardware.camera.CameraExampleActivity;
 import com.wya.hardware.camera.WYACameraView;
 import com.wya.uikit.dialog.CustomListener;
@@ -62,7 +63,13 @@ public class ImagePickerExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
 
-        setToolBarTitle("ImagePicker");
+        setToolBarTitle("图片选择器(imagepicker)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help, true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(ImagePickerExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         input = (EditText) findViewById(R.id.num_input);
         crop_crop = (ImageView) findViewById(R.id.crop_crop);
@@ -87,6 +94,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
      */
     private int state = WYACameraView.BUTTON_STATE_BOTH;//默认可以拍照和录制视频
     private final int GET_PERMISSION_REQUEST = 100; //权限申请自定义码
+
     private void openCamera() {
         getPermissions();
     }
@@ -160,8 +168,6 @@ public class ImagePickerExampleActivity extends BaseActivity {
     }
 
 
-
-
     private void initRecycler() {
         mAllList.add("");
         mPickerAdapter = new ImagePickerAdapter(mAllList, this);
@@ -180,7 +186,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
             public void onItemClick(int position) {
                 List<String> preview = new ArrayList<>();
                 preview.addAll(mAllList);
-                if (TextUtils.isEmpty(preview.get(preview.size()-1))) {
+                if (TextUtils.isEmpty(preview.get(preview.size() - 1))) {
                     preview.remove(preview.size() - 1);
                 }
                 GalleryCreator.create(ImagePickerExampleActivity.this).openPreviewGallery
@@ -249,7 +255,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
         if (requestCode == CROP && resultCode == RESULT_CANCELED) {
             Toast.makeText(this, "裁剪被取消了", Toast.LENGTH_SHORT).show();
         }
-        if(requestCode == 10001){
+        if (requestCode == 10001) {
             if (resultCode == 101) {
                 Log.i("MCJ", "take photo");
                 String path = data.getStringExtra("path");

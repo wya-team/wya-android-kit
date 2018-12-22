@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.notice.switcher.SwitcherView;
 
 import butterknife.BindView;
@@ -43,8 +44,12 @@ public class NoticeExampleActivity extends BaseActivity {
     
     @Override
     protected void initView() {
-        setToolBarTitle("notice");
-        showSwitcher();
+        setToolBarTitle("通告栏(notice)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help, true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(NoticeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });        showSwitcher();
     }
     
     private void showSwitcher() {

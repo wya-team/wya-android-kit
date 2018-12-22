@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.badge.Builder;
 import com.wya.uikit.badge.DisplayUtil;
 import com.wya.uikit.badge.IBadgeView;
@@ -42,7 +43,12 @@ public class BadgeExampleActivity extends BaseActivity {
     
     @Override
     protected void initView() {
-        setToolBarTitle("badge");
+        setToolBarTitle("徽标数(badge)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help, true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(BadgeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
         showBadge(llDot, 0);
         showBadgeCenterEnd(tvNumDot, 55, true, 50);
         showBadgeCenterStart(vStringDot, "new");

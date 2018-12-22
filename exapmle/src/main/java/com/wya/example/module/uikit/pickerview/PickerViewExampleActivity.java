@@ -1,5 +1,6 @@
 package com.wya.example.module.uikit.pickerview;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.pickerview.CustomPickerView;
 import com.wya.uikit.pickerview.CustomTimePicker;
 
@@ -49,18 +51,24 @@ public class PickerViewExampleActivity extends BaseActivity {
     protected void initView() {
 
         ButterKnife.bind(this);
-        setToolBarTitle("PickerView");
+        setToolBarTitle("日期选择(pickerview)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help, true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(PickerViewExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
+
         InputStream inputStream;
         String data = null;
         try {
-             inputStream = getAssets().open("data.txt");
+            inputStream = getAssets().open("data.txt");
             int size = inputStream.available();
             byte[] bytes = new byte[size];
             int len = -1;
             inputStream.read(bytes);
             inputStream.close();
-             data = new String(bytes);
-            Log.i("test", ": "+data);
+            data = new String(bytes);
+            Log.i("test", ": " + data);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -149,8 +157,8 @@ public class PickerViewExampleActivity extends BaseActivity {
                         .this, new CustomPickerView.OnChooseItemListener() {
                     @Override
                     public void itemSelected(int position1, int position2, int position3) {
-                        mAddressText.setText(data1.get(position1)+data2.get(position1).get
-                                (position2)+data3.get(position1).get(position2).get(position3));
+                        mAddressText.setText(data1.get(position1) + data2.get(position1).get
+                                (position2) + data3.get(position1).get(position2).get(position3));
                     }
                 });
                 customPickerView.setData(data1, data2, data3);

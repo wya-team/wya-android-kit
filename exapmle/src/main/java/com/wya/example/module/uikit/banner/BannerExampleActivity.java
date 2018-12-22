@@ -1,10 +1,12 @@
 package com.wya.example.module.uikit.banner;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.banner.BannerAdapter;
 import com.wya.uikit.banner.WYABanner;
 
@@ -21,7 +23,12 @@ public class BannerExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
 
-        setToolBarTitle("Banner");
+        setToolBarTitle("轮播图(banner)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(BannerExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
 
         data.add(R.mipmap.img1);
         data.add(R.mipmap.img2);

@@ -1,7 +1,10 @@
 package com.wya.example.module.uikit.customitems.inputitem;
 
+import android.content.Intent;
+
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.toolbar.AndroidBugWorkaround;
 
 /**
@@ -16,6 +19,11 @@ public class InputItemExampleActivity extends BaseActivity {
     protected void initView() {
         AndroidBugWorkaround.assistActivity(findViewById(android.R.id.content));
         setToolBarTitle("文本输入(customitems)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help, true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(InputItemExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
     }
 
     @Override

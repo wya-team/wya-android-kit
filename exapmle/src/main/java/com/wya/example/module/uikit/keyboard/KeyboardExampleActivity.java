@@ -8,7 +8,6 @@ import android.widget.Button;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.uikit.keyboard.WYKCustomNumberKeyboard;
-import com.wya.uikit.toast.WYAToast;
 
 import butterknife.BindView;
 import butterknife.OnClick;

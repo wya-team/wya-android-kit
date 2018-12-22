@@ -1,12 +1,12 @@
 package com.wya.example.module.uikit.toolbar;
 
+import android.content.Intent;
 import android.view.View;
-import android.widget.RadioButton;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -21,6 +21,11 @@ public class ToolBarExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         setToolBarTitle("导航栏(toolbar)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help, true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(ToolBarExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
     }
 
     @Override
@@ -65,10 +70,10 @@ public class ToolBarExampleActivity extends BaseActivity {
                 initImgRight(R.drawable.icon_search, false);
                 break;
             case R.id.radio_right_anther_show:
-                initImgRightAnther( R.drawable.iocn_saoyisao, true);
+                initImgRightAnther(R.drawable.iocn_saoyisao, true);
                 break;
             case R.id.radio_right_anther_unshow:
-                initImgRightAnther( R.drawable.iocn_saoyisao, false);
+                initImgRightAnther(R.drawable.iocn_saoyisao, false);
                 break;
             case R.id.radio_tv_right_show:
                 initTvRight("右边", R.color.white, 14, true);
