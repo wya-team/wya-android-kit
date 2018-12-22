@@ -9,7 +9,7 @@ public interface IBadgeView {
     
     void setBadgeText(String badgeText);
     
-    void setMaxBadgeNum(int maxBadgeNum);
+    void setOmitNum(int omitNum);
     
     void setOmitText(String omitText);
     

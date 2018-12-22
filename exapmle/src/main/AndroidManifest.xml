@@ -28,27 +28,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-<<<<<<< HEAD
-        android:theme="@style/AppTheme">
-
-        <activity android:name=".ExampleActivity">
-=======
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".module.example.ExampleActivity"
             android:theme="@style/ExampleTheme">
->>>>>>> e6481e91f7f62f1d6717b2c46c8020af137ed2e1
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-
-        <activity android:name=".module.uikit.UiKitExampleActivity" />
-=======
         <activity android:name=".module.uikit.UiKitExampleActivity" />
         <activity android:name=".module.hardware.HardwareExampleActivity" />
         <activity android:name=".module.helper.HelperExampleActivity" />
@@ -98,7 +88,6 @@
         <activity android:name=".module.uikit.tablayout.TabLayoutExampleActivity" />
         <activity android:name=".module.uikit.drawerlayout.DrawerLayoutExampleActivity" />
         <activity android:name=".module.example.readme.ReadmeActivity"></activity>
->>>>>>> e6481e91f7f62f1d6717b2c46c8020af137ed2e1
     </application>
 
 </manifest>

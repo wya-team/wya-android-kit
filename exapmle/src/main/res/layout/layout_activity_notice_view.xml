@@ -2,15 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:background="@color/f4f4f4"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_10">
 
     <com.wya.uikit.notice.switcher.SwitcherView
         android:id="@+id/vs_up2down"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_switcher_item_margin"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/activity_switcher_item_margin"
         android:background="#ffffff"
         app:anim_direction="up2down"
         app:anim_duration="400"
@@ -21,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_switcher_item_margin"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/activity_switcher_item_margin"
         android:background="#ffffff"
         app:anim_duration="400"
         app:switch_duration="2000" />
@@ -31,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_switcher_item_margin"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/activity_switcher_item_margin"
         android:background="#ffffff"
         app:anim_direction="left2right"
         app:anim_duration="400"
@@ -42,27 +45,70 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_switcher_item_margin"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/activity_switcher_item_margin"
         android:background="#ffffff"
         app:anim_direction="right2left"
-        app:anim_duration="400"
-        app:switch_duration="3000" />
-
-    <com.wya.uikit.notice.switcher.SwitcherView
-        android:id="@+id/vs_cus_anim"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_switcher_item_margin"
-        android:background="#ffffff"
         app:anim_duration="400"
         app:switch_duration="3000" />
 
     <com.wya.uikit.notice.MarqueeTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/image_ic_adjust"
-        android:drawablePadding="@dimen/dp_10"
-        android:padding="@dimen/dp_6"
-        android:text="因全国公民身份系统升级，添加银行卡银行卡银行卡银行卡" />
+        android:layout_marginTop="@dimen/activity_switcher_item_margin"
+        android:background="@color/notice_bg_color"
+        android:drawableLeft="@drawable/icon_voiceorange"
+        android:drawableRight="@drawable/icon_cancel_notice"
+        android:drawablePadding="@dimen/dp_14"
+        android:paddingLeft="@dimen/dp_15"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_6"
+        android:text="这里是具体的通知，这里是具体的通知，这里..."
+        android:textColor="@color/notice_text_color"
+        android:textSize="@dimen/sp_15" />
+
+    <com.wya.uikit.notice.MarqueeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_switcher_item_margin"
+        android:background="@color/notice_bg_color"
+        android:drawableLeft="@drawable/icon_voiceorange"
+        android:drawablePadding="@dimen/dp_14"
+        android:paddingLeft="@dimen/dp_15"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_6"
+        android:text="这里是具体的通知，这里是具体的通知，这里..."
+        android:textColor="@color/notice_text_color"
+        android:textSize="@dimen/sp_15" />
+
+    <com.wya.uikit.notice.MarqueeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_switcher_item_margin"
+        android:background="@color/notice_bg_color"
+        android:drawableRight="@drawable/icon_cancel_notice"
+        android:drawablePadding="@dimen/dp_14"
+        android:paddingLeft="@dimen/dp_15"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_6"
+        android:text="这里是具体的通知，这里是具体的通知，这里..."
+        android:textColor="@color/notice_text_color"
+        android:textSize="@dimen/sp_15" />
+
+    <com.wya.uikit.notice.MarqueeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_switcher_item_margin"
+        android:background="@color/notice_bg_color"
+        android:drawablePadding="@dimen/dp_14"
+        android:paddingLeft="@dimen/dp_15"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingRight="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_6"
+        android:text="这里是具体的通知，这里是具体的通知，这里..."
+        android:textColor="@color/notice_text_color"
+        android:textSize="@dimen/sp_15" />
 
 </LinearLayout>

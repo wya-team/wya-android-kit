@@ -13,6 +13,8 @@ public class Builder {
     private int textColor;
     private int backgroundColor;
     private boolean isOmitMode;
+    private int omitNum;
+    private String omitText;
     private Drawable backgroundDrawable;
     private float padding;
     private Gravity gravity;
@@ -124,6 +126,16 @@ public class Builder {
         return this;
     }
     
+    public Builder setOmitNum(int omitNum) {
+        this.omitNum = omitNum;
+        return this;
+    }
+    
+    public Builder setOmitText(String omitText) {
+        this.omitText = omitText;
+        return this;
+    }
+    
     public Builder setPadding(int padding) {
         this.padding = padding;
         return this;
@@ -155,6 +167,8 @@ public class Builder {
             badgeView.setGravity(gravity);
         }
         badgeView.setOmitMode(isOmitMode);
+        badgeView.setOmitNum(omitNum);
+        badgeView.setOmitText(omitText);
         badgeView.update(isShow);
         
         return badgeView;

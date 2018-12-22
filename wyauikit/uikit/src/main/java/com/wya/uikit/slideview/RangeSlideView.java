@@ -90,7 +90,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
         if (null != typedArray) {
             // progress
             mSlidderMode = typedArray.getInteger(R.styleable.RangeSlideView_rsd_slider_mode, SLIDDER_MODE_SINGLE);
-            mProgressHeight = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_progress_height, Utils.dp2px(context, 3))).intValue();
+            mProgressHeight = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_progress_height, Utils.dp2px(context, 2))).intValue();
             mProgressMin = typedArray.getInteger(R.styleable.RangeSlideView_rsd_progress_min, -1);
             mProgressMax = typedArray.getInteger(R.styleable.RangeSlideView_rsd_progress_max, -1);
             mPorgressBackgroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_background_color, Color.parseColor("#DDDDDD"));
@@ -292,8 +292,8 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     private void drawMinRegionText(Canvas canvas) {
-        String min = String.valueOf(mProgressMin);
-        float x = getProgressLeft() - getPaddingLeft() - mLeftSlider.getSliderSize() / 2 - mRegionPaint.measureText(min);
+        String min = String.valueOf(mLeftSlider.getCurPercent());
+        float x = getProgressLeft() - mRegionPadding - mLeftSlider.getSliderSize() / 2 - mRegionPaint.measureText(min);
         Paint.FontMetricsInt fontMetricsInt = mRegionPaint.getFontMetricsInt();
         float y = getProgressTop() + (getProgressHeight()) / 2 - (fontMetricsInt.bottom + fontMetricsInt.top) / 2;
         canvas.drawText(min, x, y, mRegionPaint);
@@ -316,7 +316,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     private void drawMaxRegionText(Canvas canvas) {
-        String max = String.valueOf(mProgressMax);
+        String max = String.valueOf(mRightSlider.getCurPercent());
         float x = getWidth() - getPaddingRight() - mRegionPaint.measureText(max);
         Paint.FontMetricsInt fontMetricsInt = mRegionPaint.getFontMetricsInt();
         float y = getProgressTop() + (getProgressHeight()) / 2 - (fontMetricsInt.bottom + fontMetricsInt.top) / 2;

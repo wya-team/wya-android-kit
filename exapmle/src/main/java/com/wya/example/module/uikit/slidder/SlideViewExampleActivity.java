@@ -16,12 +16,12 @@ public class SlideViewExampleActivity extends BaseActivity {
         Intent intent = new Intent(activity, SlideViewExampleActivity.class);
         activity.startActivity(intent);
     }
-
+    
     @Override
     protected int getLayoutID() {
         return R.layout.layout_activity_slide_view;
     }
-
+    
     @Override
     protected void initView() {
         setToolBarTitle("滑动输入条(slideview)");
@@ -30,6 +30,7 @@ public class SlideViewExampleActivity extends BaseActivity {
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(SlideViewExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
         });
+        getSwipeBackLayout().setEnableGesture(false);
     }
-
+    
 }

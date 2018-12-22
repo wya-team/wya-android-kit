@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 
 import com.wya.uikit.R;
 
+import java.math.BigDecimal;
+
 public class Slide {
     
     // round rectF
@@ -82,6 +84,13 @@ public class Slide {
     }
     
     public float getCurPercent() {
+        try {
+            BigDecimal bigDecimal = new BigDecimal((double) mCurPercent);
+            bigDecimal = bigDecimal.setScale(1, 4);
+            mCurPercent = bigDecimal.floatValue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return mCurPercent;
     }
     

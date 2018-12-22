@@ -18,4 +18,8 @@
     <color name="color_DEDEDE">#DEDEDE</color>
     <color name="color_f6f6f6">#f6f6f6</color>
 
+    <!-- notice -->
+    <color name="notice_text_color">#FF7135</color>
+    <color name="notice_bg_color">#FDFBED</color>
+
 </resources>

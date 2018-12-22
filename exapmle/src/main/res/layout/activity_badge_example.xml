@@ -3,186 +3,203 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/f4f4f4"
     android:orientation="vertical"
     tools:context="com.wya.example.module.uikit.toast.ToastExampleActivity">
 
-
-    <ScrollView
+    <!-- dot badge -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/bottom_line_grey"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_6">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/ll_dot"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dp_6"
+            android:paddingRight="@dimen/dp_6"
+            android:paddingBottom="@dimen/dp_6">
+
+            <View
+                android:id="@+id/v_img"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:background="#DDDDDD" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp_6"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:text="Dot badge"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_create_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_6"
+            android:drawableRight="@drawable/icon_right_arrow"
+            android:drawablePadding="@dimen/dp_6"
+            android:gravity="right"
+            android:text="extra"
+            android:textColor="#A4A4A4"
+            android:textSize="@dimen/sp_13" />
+
+    </LinearLayout>
+
+    <!-- num badge -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="@drawable/bottom_line_grey"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_6"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingBottom="@dimen/dp_6">
+
+        <View
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:background="#DDDDDD" />
+
+        <TextView
+            android:id="@+id/tv_num_dot"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_marginRight="@dimen/dp_6"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:text="Num Badge"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_6"
+            android:drawableRight="@drawable/icon_right_arrow"
+            android:gravity="right"
+            android:textColor="#A4A4A4"
+            android:textSize="@dimen/sp_13" />
+
+    </LinearLayout>
+
+    <!-- String badge -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="@drawable/bottom_line_grey"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingBottom="@dimen/dp_6">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_marginRight="@dimen/dp_6"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:text="String Badge"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14" />
+
+        <View
+            android:id="@+id/tv_string_dot"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_marginRight="@dimen/dp_6"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_6"
+            android:drawableRight="@drawable/icon_right_arrow"
+            android:drawablePadding="@dimen/dp_6"
+            android:gravity="right"
+            android:text="extra"
+            android:textColor="#A4A4A4"
+            android:textSize="@dimen/sp_13" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="@drawable/bottom_line_grey"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingBottom="@dimen/dp_6">
+
+        <LinearLayout
+            android:id="@+id/ll_badge_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/dp_25">
 
             <TextView
-                android:id="@+id/tv_dot"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_12"
-                android:text="红点提示"
-                android:textColor="@drawable/btn_c333333_click_color" />
-
-            <LinearLayout
-                android:id="@+id/ll_digital"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingRight="@dimen/dp_30">
-
-                <TextView
-                    android:id="@+id/tv_digital"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dp_12"
-                    android:paddingLeft="@dimen/dp_12"
-                    android:paddingRight="@dimen/dp_12"
-                    android:paddingTop="@dimen/dp_12"
-                    android:text="数字提示"
-                    android:textColor="@drawable/btn_c333333_click_color" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_12"
-                android:text="文本提示"
-                android:textColor="@drawable/btn_c333333_click_color" />
-
-            <TextView
-                android:id="@+id/tv_omit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_12"
-                android:text="省略提示" />
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/dp_12">
-
-                <RadioButton
-                    android:id="@+id/radio_omit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="是" />
-
-                <RadioButton
-                    android:id="@+id/radio_not_omitted"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="否" />
-
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/tv_isShow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_12"
-                android:text="是否显示" />
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/dp_12">
-
-                <RadioButton
-                    android:id="@+id/radio_show"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="是" />
-
-                <RadioButton
-                    android:id="@+id/radio_hide"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="否" />
-
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/tv_offset"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:padding="@dimen/dp_12"
-                android:text="调整offset" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_offset_x"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="GravityOffsetX : 1"
-                        android:textColor="@color/black" />
-
-                    <SeekBar
-                        android:id="@+id/sb_offset_x"
-                        style="@style/Widget.AppCompat.SeekBar.Discrete"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:max="20"
-                        android:progress="1" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_offset_y"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="GravityOffsetY : 1"
-                        android:textColor="@color/black" />
-
-                    <SeekBar
-                        android:id="@+id/sb_offset_y"
-                        style="@style/Widget.AppCompat.SeekBar.Discrete"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:max="20"
-                        android:progress="1" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/edt_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_12"
-                android:text="请输入消息提示"
-                android:textColorHint="@color/d5d5d5"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:layout_marginRight="@dimen/dp_6"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="Marketing"
+                android:textColor="@color/black"
                 android:textSize="@dimen/sp_14" />
 
         </LinearLayout>
 
-    </ScrollView>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_6"
+            android:drawableRight="@drawable/icon_right_arrow"
+            android:drawablePadding="@dimen/dp_6"
+            android:gravity="right"
+            android:text="extra"
+            android:textColor="#A4A4A4"
+            android:textSize="@dimen/sp_13" />
+
+    </LinearLayout>
 
 </LinearLayout>
