@@ -86,7 +86,7 @@ public class TabBarExampleActivity extends BaseActivity {
                     }
                     break;
                 case R.id.navigation_my:
-                    msg.setText("点击了\"我的\"tab，这里是消息界面");
+                    msg.setText("点击了\"我的\"tab，这里是我的界面");
                     break;
             }
             return true;

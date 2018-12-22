@@ -9,29 +9,32 @@ import com.wya.uikit.pickerview.WheelView.adapter.WheelAdapter;
  * desc   :
  * version: 1.0
  */
-public class TimePickerAdapter implements WheelAdapter<Integer> {
+public class TimePickerAdapter implements WheelAdapter<String> {
 
-	private int start,end,space;
+    private int start, end, space;
+    private String type;
 
-	public TimePickerAdapter(int start, int end,int space) {
-		this.start = start;
-		this.end = end;
-		this.space = space;
-	}
+    public TimePickerAdapter(int start, int end, int space, String type) {
+        this.start = start;
+        this.end = end;
+        this.space = space;
+        this.type = type;
+    }
 
-	@Override
-	public int getItemsCount() {
-		return (end-start+1)/space;
-	}
+    @Override
+    public int getItemsCount() {
+        return (end - start + 1) / space;
+    }
 
-	@Override
-	public Integer getItem(int index) {
-		return start+index*space;
-	}
+    @Override
+    public String getItem(int index) {
+        return (start + index * space) + type;
+    }
 
-	@Override
-	public int indexOf(Integer item) {
-		return (item-start)/space;
-	}
+    @Override
+    public int indexOf(String item) {
+        String items = item.replaceAll(type, "");
+        return (Integer.parseInt(items) - start) / space;
+    }
 
 }

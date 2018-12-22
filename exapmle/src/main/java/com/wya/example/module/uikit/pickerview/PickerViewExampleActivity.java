@@ -1,6 +1,8 @@
 package com.wya.example.module.uikit.pickerview;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -28,6 +30,8 @@ public class PickerViewExampleActivity extends BaseActivity {
     private static final String TAG = "PickerViewExampleActivity";
     @BindView(R.id.ymdhms_text)
     TextView mYmdhmsText;
+    @BindView(R.id.ymd_text_with)
+    TextView mYmdhmsTextWith;
     @BindView(R.id.ymd_text)
     TextView mYmdText;
     @BindView(R.id.hms_text)
@@ -49,13 +53,17 @@ public class PickerViewExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        Resources res = getResources();
+        Configuration config = new Configuration();
+        config.setToDefaults();
+        res.updateConfiguration(config, res.getDisplayMetrics());
         ButterKnife.bind(this);
         setToolBarTitle("日期选择(pickerview)");
         String url = getIntent().getStringExtra("url");
         initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
-            startActivity(new Intent(PickerViewExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(PickerViewExampleActivity.this, ReadmeActivity.class)
+                    .putExtra("url", url));
         });
 
         InputStream inputStream;
@@ -94,8 +102,8 @@ public class PickerViewExampleActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.ymdhms_layout, R.id.ymd_layout, R.id.hms_layout, R.id.hm_space_layout, R.id
-            .address_layout})
+    @OnClick({R.id.ymdhms_layout, R.id.ymdhms_layout_with, R.id.ymd_layout, R.id.hms_layout, R.id
+            .hm_space_layout, R.id.address_layout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ymdhms_layout:
@@ -109,7 +117,22 @@ public class PickerViewExampleActivity extends BaseActivity {
 
                     }
                 });
-                mCustomTimePicker.setType(new boolean[]{true, true, true, true, true, true}).show();
+                mCustomTimePicker.setType(new boolean[]{true, true, true, true, true, true})
+                        .show();
+                break;
+            case R.id.ymdhms_layout_with:
+                mCustomTimePicker = new CustomTimePicker(PickerViewExampleActivity
+                        .this, new CustomTimePicker.OnTimePickerSelectedListener() {
+                    @Override
+                    public void selected(Date date) {
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String format = dateFormat.format(date);
+                        mYmdhmsTextWith.setText(format);
+
+                    }
+                });
+                mCustomTimePicker.setType(new boolean[]{true, true, true, true, true, true})
+                        .setShowType(true).show();
                 break;
             case R.id.ymd_layout:
                 mCustomTimePicker = new CustomTimePicker(PickerViewExampleActivity
@@ -122,7 +145,8 @@ public class PickerViewExampleActivity extends BaseActivity {
 
                     }
                 });
-                mCustomTimePicker.setType(new boolean[]{true, true, true, false, false, false}).show();
+                mCustomTimePicker.setType(new boolean[]{true, true, true, false, false, false})
+                        .show();
                 break;
             case R.id.hms_layout:
                 mCustomTimePicker = new CustomTimePicker(PickerViewExampleActivity
@@ -135,7 +159,8 @@ public class PickerViewExampleActivity extends BaseActivity {
 
                     }
                 });
-                mCustomTimePicker.setType(new boolean[]{false, false, false, true, true, true}).show();
+                mCustomTimePicker.setType(new boolean[]{false, false, false, true, true, true})
+                        .show();
                 break;
             case R.id.hm_space_layout:
                 CustomTimePicker customTimePicker = new CustomTimePicker(PickerViewExampleActivity

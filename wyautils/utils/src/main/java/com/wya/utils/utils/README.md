@@ -182,7 +182,7 @@ hasChineseChar(String str)| 是否有中文字符
 
 方法|说明
 ---|---
-getInstance()|单例获取FileManagerUtil对象
+FileManagerUtil()|构造方法获取FileManagerUtil对象
 register()|注册
 unRegister|注销
 getDownloadReceiver()|获取DownloadReceiver对象，所有的下载在这个对象下操作
@@ -203,17 +203,17 @@ TASK_NO_POINT|该下载任务不支持断点下载
 
 - 开始下载/重新开启（暂停之后）url代表文件地址，filepath 图片存储全路径
 ````
-FileManagerUtil.getInstance().getDownloadReceiver().load(url)
+mFileManagerUtil.getDownloadReceiver().load(url)
                   .setFilePath(filepath)
                   .start();
 ````
 - 暂停下载
 ````
-FileManagerUtil.getInstance().getDownloadReceiver().load(url).stop();
+mFileManagerUtil.getDownloadReceiver().load(url).stop();
 ````
 - 取消下载 cancel方法中参数代表是否需要删除下载的文件
 ````
-FileManagerUtil.getInstance().getDownloadReceiver().load(url).cancel(true);
+mFileManagerUtil.getDownloadReceiver().load(url).cancel(true);
 ````
 
 10. DataCleanUtil
