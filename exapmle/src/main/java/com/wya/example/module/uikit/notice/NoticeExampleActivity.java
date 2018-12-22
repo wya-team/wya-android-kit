@@ -53,7 +53,6 @@ public class NoticeExampleActivity extends BaseActivity {
             @Override
             public void onSwitch(View nextView, int index) {
                 if (null == nextView) return;
-                //                final String tostText = index + "--- 从上到下 ---";
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -71,7 +70,6 @@ public class NoticeExampleActivity extends BaseActivity {
             public void onSwitch(View nextView, int index) {
                 if (null == nextView) return;
                 if (index == 3) vsDown2Up.pauseSwitcher();
-                //                final String tostText = index + "--- 从下到上 ---";
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -89,7 +87,6 @@ public class NoticeExampleActivity extends BaseActivity {
             @Override
             public void onSwitch(View nextView, int index) {
                 if (nextView == null) return;
-                //                final String tostText = index + "--- 从左到右从左到右 ---";
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -106,7 +103,6 @@ public class NoticeExampleActivity extends BaseActivity {
             @Override
             public void onSwitch(View nextView, int index) {
                 if (nextView == null) return;
-                //                final String tostText = index + "--- 从右到左 ---";
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
