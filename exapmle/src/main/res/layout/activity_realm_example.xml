@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/f4f4f4"
     android:orientation="vertical"
     tools:context="com.wya.example.module.utils.realm.RealmExampleActivity">
 
@@ -27,17 +27,25 @@
             android:id="@+id/tv_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="请输入序号（唯一）"
+            android:hint="请输入序号（主键）"
             android:inputType="number"
             android:maxLength="8"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:background="@drawable/white_r5_bg"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"/>
 
         <EditText
             android:id="@+id/tv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="请输入姓名"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:background="@drawable/white_r5_bg"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"/>
 
         <EditText
             android:id="@+id/tv_age"
@@ -46,7 +54,11 @@
             android:hint="请输入年龄"
             android:inputType="number"
             android:maxLength="3"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:background="@drawable/white_r5_bg"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"/>
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -114,7 +126,9 @@
             android:id="@+id/tv_choose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
             android:textColor="@color/red"
             android:textSize="@dimen/sp_15" />
 

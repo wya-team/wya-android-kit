@@ -23,8 +23,10 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0dp"
+                android:listSelector="@android:color/transparent"
                 android:divider="@null"
-                android:dividerHeight="0dp"></com.wya.example.module.example.view.CustomerExpandableListView>
+                android:layout_marginBottom="@dimen/dp_10"
+                android:dividerHeight="0dp" />
 
 
             <TableRow

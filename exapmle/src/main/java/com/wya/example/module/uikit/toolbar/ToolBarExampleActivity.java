@@ -43,13 +43,13 @@ public class ToolBarExampleActivity extends BaseActivity {
                 initShowToolBar(false);
                 break;
             case R.id.radio_red:
-                initToolBarBgColor(this.getResources().getColor(R.color.red));
+                initToolBarBgColor(this.getResources().getColor(R.color.red), false);
                 break;
             case R.id.radio_blue:
-                initToolBarBgColor(this.getResources().getColor(R.color.blue));
+                initToolBarBgColor(this.getResources().getColor(R.color.blue), false);
                 break;
             case R.id.radio_greeen:
-                initToolBarBgColor(this.getResources().getColor(R.color.green));
+                initToolBarBgColor(this.getResources().getColor(R.color.green), true);
                 break;
             case R.id.radio_left_show:
                 initImgLeft(R.drawable.icon_backblue, true);

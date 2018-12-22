@@ -19,10 +19,10 @@ public class PopupWindowExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         setToolBarTitle("PopupWindow");
-        initImgRight(R.drawable.icon_notice, true);
+        initImgRight(R.drawable.icon_help, true);
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
-        setRightImageAntherOnclickListener(view -> {
+        initImgRightAnther(R.drawable.icon_notice,true);
+        setRightImageOnclickListener(view -> {
             startActivity(new Intent(PopupWindowExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
         });
         setPopupWindow();
@@ -34,7 +34,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
         list.add("第二个");
         list.add("第三个最帅");
         list.add("四");
-        setRightImageOnclickListener(view -> wyaPopupWindow.show(view, -100, 0));
+        setRightImageAntherOnclickListener(view -> wyaPopupWindow.show(view, -100, 0));
         wyaPopupWindow = new WYAPopupWindow.Builder(PopupWindowExampleActivity.this).list(list).build();
         wyaPopupWindow.setPopupWindowListOnclickListener(position -> {
             wyaPopupWindow.dismiss();
