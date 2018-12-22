@@ -27,16 +27,10 @@ public class FileManagerUtil {
     private static FileManagerUtil sFileManagerUtil;
     private DownloadReceiver mDownload;
 
-    private FileManagerUtil() {
+    public FileManagerUtil() {
         mDownload = Aria.download(this);
     }
 
-    public static FileManagerUtil getInstance() {
-        if (sFileManagerUtil == null) {
-            sFileManagerUtil = new FileManagerUtil();
-        }
-        return sFileManagerUtil;
-    }
 
 
     private OnDownLoaderListener mOnDownLoaderListener;
