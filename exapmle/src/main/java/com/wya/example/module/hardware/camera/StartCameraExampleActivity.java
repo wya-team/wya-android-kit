@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.example.module.uikit.button.ButtonExampleActivity;
 import com.wya.hardware.camera.WYACameraView;
 import com.wya.hardware.camera.util.DeviceUtil;
 import com.wya.uikit.button.WYAButton;
@@ -56,6 +58,10 @@ public class StartCameraExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         setToolBarTitle("CameraExample");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(StartCameraExampleActivity.this, ReadmeActivity.class).putExtra("url","https://github.com/wya-team/wya-android-kit/blob/develop/wyahardware/hardware/src/main/java/com/wya/hardware/camera/README.md"));
+        });
         device.setText(DeviceUtil.getDeviceInfo());
     }
 
