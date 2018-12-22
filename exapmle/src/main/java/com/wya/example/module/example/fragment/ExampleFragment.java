@@ -24,6 +24,7 @@ import com.wya.example.module.uikit.customedittext.CustomEditTextExampleActivity
 import com.wya.example.module.uikit.customitems.cardview.CardViewExampleActivity;
 import com.wya.example.module.uikit.customitems.grid.GridExampleActivity;
 import com.wya.example.module.uikit.customitems.inputitem.InputItemExampleActivity;
+import com.wya.example.module.uikit.customitems.list.ListExampleActivity;
 import com.wya.example.module.uikit.dialog.DialogExampleActivity;
 import com.wya.example.module.uikit.drawerlayout.DrawerLayoutExampleActivity;
 import com.wya.example.module.uikit.imagepicker.ImagePickerExampleActivity;
@@ -237,7 +238,7 @@ public class ExampleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), BannerExampleActivity.class).putExtra("url", UIKIT_URL+"banner"+"/README.md"));
                 break;
             case "列表(list)":
-//                startActivity(new Intent(getActivity(), InputItemExampleActivity.class));
+                startActivity(new Intent(getActivity(), ListExampleActivity.class));
                 break;
             case "通告栏(notice)":
                 startActivity(new Intent(getActivity(), NoticeExampleActivity.class).putExtra("url", UIKIT_URL+"notice"+"/README.md"));

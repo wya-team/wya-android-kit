@@ -37,7 +37,7 @@ public class ReadmeActivity extends BaseActivity {
     @Override
     protected void initView() {
         url = getIntent().getStringExtra("url");
-        skip = getIntent().getBooleanExtra("url", false);
+        skip = getIntent().getBooleanExtra("skip", false);
         initWebView(url);
     }
 

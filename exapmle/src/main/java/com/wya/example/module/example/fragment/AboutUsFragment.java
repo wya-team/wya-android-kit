@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.wya.example.R;
 import com.wya.example.module.example.readme.ReadmeActivity;
-import com.wya.example.module.uikit.choicemenu.ChoiceMenuExampleActivity;
 import com.wya.uikit.customitems.WYAInputItem;
 import com.wya.utils.utils.AppUtil;
 
@@ -41,13 +40,13 @@ public class AboutUsFragment extends Fragment {
         git_hub_version = view.findViewById(R.id.git_hub_version);
         tv_version.setText(AppUtil.getVersionName(getActivity()));
         git_hub_address.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url","https://github.com/wya-team/wya-android-kit/blob/master/README.md").putExtra("skip", true));
+            startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url","https://github.com/wya-team/wya-android-kit/blob/develop/README.md").putExtra("skip", true));
         });
         git_hub_contributor.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url","https://github.com/wya-team/wya-android-kit/blob/master/CODE_OF_CONDUCT.md").putExtra("skip", true));
+            startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url","https://github.com/wya-team/wya-android-kit/blob/develop/CONTRIBUTING.md").putExtra("skip", true));
         });
         git_hub_version.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url","https://github.com/wya-team/wya-android-kit/blob/master/CHANGELOG.md"));
+            startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url","https://github.com/wya-team/wya-android-kit/blob/develop/CHANGELOG.md"));
         });
 
     }

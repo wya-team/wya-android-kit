@@ -7,6 +7,7 @@ import com.wya.example.R;
 import com.wya.helper.WYAConstants;
 import com.wya.uikit.toast.WYAToast;
 import com.wya.uikit.toolbar.BaseToolBarActivity;
+import com.wya.uikit.toolbar.StatusBarUtil;
 import com.wya.utils.utils.ColorUtil;
 
 import butterknife.ButterKnife;
@@ -28,10 +29,9 @@ public abstract class BaseActivity extends BaseToolBarActivity {
         super.onCreate(savedInstanceState);
         unbinder = ButterKnife.bind(this);
         startActivityStyle();
-
         initWYAActionBarDefault(true, ColorUtil.int2Hex(WYAConstants.THEME_COLOR),true, "初始化标题", 18, "#000000",
         false, "", 14, "#000000", true, R.drawable.icon_backblue,
-        false, "",14, "#000000", false, false, R.drawable.icon_search, R.drawable.iocn_saoyisao,  false, "",14, "#000000");
+        false, "",14, "#000000", false, false, R.drawable.icon_search, R.drawable.iocn_saoyisao,  false, "",14, "#000000", false);
         initView();
     }
 
