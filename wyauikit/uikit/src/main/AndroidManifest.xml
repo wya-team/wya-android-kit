@@ -6,15 +6,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
-
     <application>
-        <activity android:name=".gallery.PicturePreviewActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".imagepicker.ImagePickerActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".imagecrop.CropActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".gallery.PicturePreviewActivity" />
+        <activity android:name=".imagepicker.ImagePickerActivity" />
+        <activity android:name=".imagecrop.CropActivity" />
 
         <provider
             android:name=".imagepicker.PickerProvider"

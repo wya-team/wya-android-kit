@@ -1,6 +1,5 @@
 package com.wya.example.base;
 
-
 import android.app.Application;
 
 import com.arialyy.aria.core.Aria;
@@ -18,19 +17,26 @@ import io.realm.RealmConfiguration;
  */
 
 public class BaseApplication extends Application {
-
+    
+    private static BaseApplication INSTANCE;
+    
+    public static BaseApplication getInstance() {
+        return INSTANCE;
+    }
+    
     @Override
     public void onCreate() {
         super.onCreate();
         initBase();
+        INSTANCE = this;
     }
-
+    
     private void initBase() {
         initConstants();
         initRealm();
         Aria.init(this);
     }
-
+    
     /**
      * 初始化数据库
      */
@@ -45,7 +51,7 @@ public class BaseApplication extends Application {
                 .build();
         Realm.setDefaultConfiguration(configuration);
     }
-
+    
     /**
      * 初始化常量
      */

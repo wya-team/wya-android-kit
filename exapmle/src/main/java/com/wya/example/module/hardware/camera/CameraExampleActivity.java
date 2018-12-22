@@ -1,7 +1,6 @@
 package com.wya.example.module.hardware.camera;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,7 +38,7 @@ public class CameraExampleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         overridePendingTransition(R.anim.activity_start_bottom_in, R.anim.activity_start_bottom);
         setContentView(R.layout.activity_camera_example);
         wyaCameraView = findViewById(R.id.wya_camera_view);

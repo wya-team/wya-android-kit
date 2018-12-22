@@ -7,7 +7,6 @@ import android.view.WindowManager;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
-import com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity;
 import com.wya.hardware.videoplayer.WYAVideoView;
 import com.wya.hardware.videoplayer.listener.SimpleOnVideoControlListener;
 import com.wya.utils.utils.ScreenUtil;

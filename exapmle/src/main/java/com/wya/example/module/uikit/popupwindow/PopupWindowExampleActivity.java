@@ -11,23 +11,31 @@ import com.wya.uikit.popupwindow.WYAPopupWindow;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 使用SwipebackHelper时需设置theme为translucent,否则部分机型会出现黑屏
+ * 弹出PopupWindow时theme不能设置为trasnlucent
+ * 故页面禁用SwipebackLayout的手势，即设置 getSwipeBackLayout().setEnableGesture(false);
+ * 使用Gesture关闭Activity时设置动画的方式 即设置setSwipeBack(true);
+ */
 public class PopupWindowExampleActivity extends BaseActivity {
-
+    
     private List<String> list;
     private WYAPopupWindow wyaPopupWindow;
-
+    
     @Override
     protected void initView() {
+        getSwipeBackLayout().setEnableGesture(false);
+        setSwipeBack(true);
         setToolBarTitle("PopupWindow");
         initImgRight(R.drawable.icon_notice, true);
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
+        initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
-            startActivity(new Intent(PopupWindowExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+            startActivity(new Intent(PopupWindowExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
         setPopupWindow();
     }
-
+    
     private void setPopupWindow() {
         list = new ArrayList<>();
         list.add("我是第一个");
@@ -41,11 +49,10 @@ public class PopupWindowExampleActivity extends BaseActivity {
             Toast.makeText(PopupWindowExampleActivity.this, list.get(position), Toast.LENGTH_SHORT).show();
         });
     }
-
-
+    
     @Override
     protected int getLayoutID() {
         return R.layout.activity_popup_window_example;
     }
-
+    
 }

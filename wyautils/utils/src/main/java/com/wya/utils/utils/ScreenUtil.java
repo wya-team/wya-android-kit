@@ -2,7 +2,6 @@ package com.wya.utils.utils;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
@@ -79,9 +78,9 @@ public class ScreenUtil {
 	 * 切换屏幕的方向.
 	 */
 	public static void toggleScreenOrientation(Activity activity) {
-		activity.setRequestedOrientation(isPortrait(activity)
-				? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-				: ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//		activity.setRequestedOrientation(isPortrait(activity)
+//				? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+//				: ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
 
 	/**

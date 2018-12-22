@@ -37,7 +37,8 @@ public class ChoiceMenuExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        getSwipeBackLayout().setEnableGesture(false);
+        setSwipeBack(true);
         setToolBarTitle("菜单(choicemenu)");
         String url = getIntent().getStringExtra("url");
         initImgRightAnther(R.drawable.icon_help,true);
@@ -47,9 +48,7 @@ public class ChoiceMenuExampleActivity extends BaseActivity {
 
         showOne = (RelativeLayout) findViewById(R.id.show_one);
         showTwo = (RelativeLayout) findViewById(R.id.show_two);
-
         initData();
-
         mRelativeLayout = (RelativeLayout) findViewById(R.id.title_bar_bg);
         ChoiceMenu<String> choiceMenu2 = new ChoiceMenu<String>(this, data, data2, R.layout
                 .choice_menu_item, R.layout.choice_menu_item2) {

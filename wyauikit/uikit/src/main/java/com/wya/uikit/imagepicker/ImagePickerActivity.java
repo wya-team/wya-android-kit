@@ -40,6 +40,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 使用SwipebackHelper时需设置theme为translucent,否则部分机型会出现黑屏
+ * 弹出PopupWindow时theme不能设置为trasnlucent
+ * 故页面禁用SwipebackLayout的手势，即设置 getSwipeBackLayout().setEnableGesture(false);
+ * 使用Gesture关闭Activity时设置动画的方式 即设置setSwipeBack(true);
+ */
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class ImagePickerActivity extends AppCompatActivity implements View.OnClickListener,
         ImageGridAdapter.OnImageSelectedChangedListener {
@@ -67,7 +73,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_picker);
-        setColor(getResources().getColor(R.color.black));
+//        setColor(getResources().getColor(R.color.black)); // TODO: 2018/12/22 ZCQ TEST
         int selfPermission = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest
                 .permission.READ_EXTERNAL_STORAGE);
 
