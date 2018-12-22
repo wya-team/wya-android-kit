@@ -1,9 +1,11 @@
 package com.wya.example.module.uikit.segmentedcontrol;
 
+import android.content.Intent;
 import android.widget.Toast;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.segmentedcontrol.WYASegmentedView;
 
 import butterknife.BindView;
@@ -30,8 +32,12 @@ public class SegmentedControlExampleActivity extends BaseActivity {
     protected void initView() {
         ButterKnife.bind(this);
 
-        setToolBarTitle("SegmentControl");
-
+        setToolBarTitle("分段控制器(segmentedcontrol)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(SegmentedControlExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
 
         mSegmentNormal.addTabs(new String[]{"标题1", "标题2"});
         mSegmentNormal.setOnItemClickListener(new WYASegmentedView.OnItemClickListener() {

@@ -1,9 +1,11 @@
 package com.wya.example.module.uikit.tablayout;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.segmentedcontrol.WYATabLayoutControl;
 
 import butterknife.BindView;
@@ -30,7 +32,14 @@ public class TabLayoutExampleActivity extends BaseActivity {
     protected void initView() {
         ButterKnife.bind(this);
 
-        setToolBarTitle("TabLayout");
+        setToolBarTitle("分页控制器(tablayout)");
+
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(TabLayoutExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
+
 
         mFixedTab.addTab(mFixedTab.newTab().setText("标题1"));
         mFixedTab.addTab(mFixedTab.newTab().setText("标题2"));

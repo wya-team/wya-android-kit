@@ -1,5 +1,6 @@
 package com.wya.example.module.uikit.choicemenu;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.choicemenu.ChoiceMenu;
 import com.wya.uikit.choicemenu.ChoiceMenuViewHolder;
 
@@ -36,7 +38,13 @@ public class ChoiceMenuExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
 
-        setToolBarTitle("ChoiceMenu");
+        setToolBarTitle("菜单(choicemenu)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(ChoiceMenuExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
+
         showOne = (RelativeLayout) findViewById(R.id.show_one);
         showTwo = (RelativeLayout) findViewById(R.id.show_two);
 

@@ -2,19 +2,19 @@ package com.wya.example.module.uikit.notice;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wya.example.R;
+import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.notice.switcher.SwitcherView;
 
-public class NoticeExampleActivity extends AppCompatActivity {
-    
+public class NoticeExampleActivity extends BaseActivity {
+
     private SwitcherView vsDown2Up, vsUp2Down, vsLeft2Right, vsRight2Left, vsCusAnim;
-    
+
     public static void start(Activity activity) {
         if (null == activity) {
             return;
@@ -22,14 +22,23 @@ public class NoticeExampleActivity extends AppCompatActivity {
         Intent intent = new Intent(activity, NoticeExampleActivity.class);
         activity.startActivity(intent);
     }
-    
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_activity_notice_view);
-        
+    protected int getLayoutID() {
+        return R.layout.layout_activity_notice_view;
+    }
+
+    @Override
+    protected void initView() {
+        setToolBarTitle("通告栏(notice)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help, true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(NoticeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
+
         // up2down
-        vsUp2Down = findViewById(R.id.vs_up2down);
+        vsUp2Down = (SwitcherView) findViewById(R.id.vs_up2down);
         vsUp2Down.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
@@ -45,9 +54,9 @@ public class NoticeExampleActivity extends AppCompatActivity {
             }
         });
         vsUp2Down.inflate(R.layout.item_switch_view).startSwitcher();
-        
+
         // down2up
-        vsDown2Up = findViewById(R.id.vs_down2up);
+        vsDown2Up = (SwitcherView) findViewById(R.id.vs_down2up);
         vsDown2Up.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
@@ -65,9 +74,9 @@ public class NoticeExampleActivity extends AppCompatActivity {
             }
         });
         vsDown2Up.inflate(R.layout.item_switch_view).startSwitcher();
-        
+
         // left2right
-        vsLeft2Right = findViewById(R.id.vs_left2right);
+        vsLeft2Right = (SwitcherView) findViewById(R.id.vs_left2right);
         vsLeft2Right.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
@@ -83,9 +92,9 @@ public class NoticeExampleActivity extends AppCompatActivity {
             }
         });
         vsLeft2Right.inflate(R.layout.item_switch_view).startSwitcher();
-        
+
         // right2left
-        vsRight2Left = findViewById(R.id.vs_right2left);
+        vsRight2Left = (SwitcherView) findViewById(R.id.vs_right2left);
         vsRight2Left.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
@@ -101,8 +110,8 @@ public class NoticeExampleActivity extends AppCompatActivity {
             }
         });
         vsRight2Left.inflate(R.layout.item_switch_view).startSwitcher();
-        
-        vsCusAnim = findViewById(R.id.vs_cus_anim);
+
+        vsCusAnim = (SwitcherView) findViewById(R.id.vs_cus_anim);
         vsCusAnim.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
@@ -119,6 +128,6 @@ public class NoticeExampleActivity extends AppCompatActivity {
         });
         vsCusAnim.setAnimation(null, null).inflate(R.layout.item_switch_view).startSwitcher();
     }
-    
+
 }
 

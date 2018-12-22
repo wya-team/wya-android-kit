@@ -1,18 +1,15 @@
 package com.wya.example.module.uikit.customitems.grid;
 
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
-import com.wya.uikit.popupwindow.WYAPopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class GridExampleActivity extends BaseActivity {
     @BindView(R.id.recycle_view)

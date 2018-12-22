@@ -1,7 +1,11 @@
 package com.wya.example.module.uikit.searchbar;
 
+import android.content.Intent;
+
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.example.module.uikit.popupwindow.PopupWindowExampleActivity;
 import com.wya.uikit.searchbar.WYASearchBar;
 import com.wya.uikit.toast.WYAToast;
 
@@ -21,7 +25,12 @@ public class SearchBarExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setToolBarTitle("SearchBar");
+        setToolBarTitle("搜索栏(searchBar)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(SearchBarExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
         setWYASearchBar();
     }
 

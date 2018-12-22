@@ -1,10 +1,12 @@
 package com.wya.example.module.uikit.toast;
 
+import android.content.Intent;
 import android.view.Gravity;
 import android.view.View;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 
 import butterknife.OnClick;
 
@@ -20,6 +22,11 @@ public class ToastExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         setToolBarTitle("轻提示(toast)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(ToastExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
     }
 
     @Override

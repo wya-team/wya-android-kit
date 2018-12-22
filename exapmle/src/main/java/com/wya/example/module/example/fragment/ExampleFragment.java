@@ -59,6 +59,8 @@ public class ExampleFragment extends Fragment {
     WYACustomDialog wyaCustomDialog = null;
 
     private final String UIKIT_URL = "https://github.com/wya-team/wya-android-kit/blob/develop/wyauikit/uikit/src/main/java/com/wya/uikit/";
+    private final String HARDWARE_URL = "https://github.com/wya-team/wya-android-kit/blob/develop/wyahardware/hardware/src/main/java/com/wya/hardware/";
+    private final String UTILS_URL = "https://github.com/wya-team/wya-android-kit/blob/develop/wyautils/utils/src/main/java/com/wya/utils/utils/README.md";
 
     @SuppressLint("NewApi")
     @Override
@@ -169,25 +171,25 @@ public class ExampleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), DrawerLayoutExampleActivity.class));
                 break;
             case "菜单(choicemenu)":
-                startActivity(new Intent(getActivity(), ChoiceMenuExampleActivity.class));
+                startActivity(new Intent(getActivity(), ChoiceMenuExampleActivity.class).putExtra("url", UIKIT_URL+"choicemenu"+"/README.md"));
                 break;
             case "导航栏(toolbar)":
-                startActivity(new Intent(getActivity(), ToolBarExampleActivity.class));
+                startActivity(new Intent(getActivity(), ToolBarExampleActivity.class).putExtra("url", UIKIT_URL+"toolbar"+"/README.md"));
                 break;
             case "分页器(paginationview)":
-                startActivity(new Intent(getActivity(), PaginationViewExampleActivity.class));
+                startActivity(new Intent(getActivity(), PaginationViewExampleActivity.class).putExtra("url", UIKIT_URL+"paginationview"+"/README.md"));
                 break;
             case "分段控制器(segmentedcontrol)":
-                startActivity(new Intent(getActivity(), SegmentedControlExampleActivity.class));
+                startActivity(new Intent(getActivity(), SegmentedControlExampleActivity.class).putExtra("url", UIKIT_URL+"segmentedcontrol"+"/README.md"));
                 break;
             case "底部导航(tabbar)":
-                startActivity(new Intent(getActivity(), TabBarExampleActivity.class));
+                startActivity(new Intent(getActivity(), TabBarExampleActivity.class).putExtra("url", UIKIT_URL+"tabbar"+"/README.md"));
                 break;
             case "分页控制器(tablayout)":
-                startActivity(new Intent(getActivity(), TabLayoutExampleActivity.class));
+                startActivity(new Intent(getActivity(), TabLayoutExampleActivity.class).putExtra("url", UIKIT_URL+"segementedcontrol"+"/README.md"));
                 break;
             case "搜索栏(searchBar)":
-                startActivity(new Intent(getActivity(), SearchBarExampleActivity.class));
+                startActivity(new Intent(getActivity(), SearchBarExampleActivity.class).putExtra("url", UIKIT_URL+"searchbar"+"/README.md"));
                 break;
             case "气泡(popupwindow)":
                 startActivity(new Intent(getActivity(), PopupWindowExampleActivity.class).putExtra("url", UIKIT_URL+"popupwindow"+"/README.md"));
@@ -197,25 +199,25 @@ public class ExampleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), ButtonExampleActivity.class).putExtra("url", UIKIT_URL+"button"+"/README.md"));
                 break;
             case "日期选择(pickerview)":
-                startActivity(new Intent(getActivity(), PickerViewExampleActivity.class));
+                startActivity(new Intent(getActivity(), PickerViewExampleActivity.class).putExtra("url", UIKIT_URL+"pickerview"+"/README.md"));
                 break;
             case "图片选择器(imagepicker)":
-                startActivity(new Intent(getActivity(), ImagePickerExampleActivity.class));
+                startActivity(new Intent(getActivity(), ImagePickerExampleActivity.class).putExtra("url", UIKIT_URL+"imagepicker"+"/README.md"));
                 break;
             case "多行输入(customeditext)":
-                startActivity(new Intent(getActivity(), CustomEditTextExampleActivity.class));
+                startActivity(new Intent(getActivity(), CustomEditTextExampleActivity.class).putExtra("url", UIKIT_URL+"customeditext"+"/README.md"));
                 break;
             case "文本输入(customitems(WYAInputItem))":
-                startActivity(new Intent(getActivity(), InputItemExampleActivity.class));
+                startActivity(new Intent(getActivity(), InputItemExampleActivity.class).putExtra("url", UIKIT_URL+"customitems"+"/README.md"));
                 break;
             case "滑动输入条(slideview)":
-                startActivity(new Intent(getActivity(), SlideViewExampleActivity.class));
+                startActivity(new Intent(getActivity(), SlideViewExampleActivity.class).putExtra("url", UIKIT_URL+"slideview"+"/README.md"));
                 break;
             case "步进器(stepper)":
-                startActivity(new Intent(getActivity(), StepperExampleActivity.class));
+                startActivity(new Intent(getActivity(), StepperExampleActivity.class).putExtra("url", UIKIT_URL+"stepper"+"/README.md"));
                 break;
             case "拍照录制视频(camera)":
-                startActivity(new Intent(getActivity(), StartCameraExampleActivity.class));
+                startActivity(new Intent(getActivity(), StartCameraExampleActivity.class).putExtra("url", HARDWARE_URL+"camera"+"/README.md"));
                 break;
             case "扫码(camera)":
 //                startActivity(new Intent(getActivity(), SearchBarExampleActivity.class));
@@ -223,47 +225,47 @@ public class ExampleFragment extends Fragment {
 
 
             case "徽标数(badge)":
-                startActivity(new Intent(getActivity(), BadgeExampleActivity.class));
+                startActivity(new Intent(getActivity(), BadgeExampleActivity.class).putExtra("url", UIKIT_URL+"badge"+"/README.md"));
                 break;
             case "宫格(grid)":
                 startActivity(new Intent(getActivity(), GridExampleActivity.class));
                 break;
             case "卡片(customitems(WYACardView))":
-                startActivity(new Intent(getActivity(), CardViewExampleActivity.class));
+                startActivity(new Intent(getActivity(), CardViewExampleActivity.class).putExtra("url", UIKIT_URL+"customitems"+"/README.md"));
                 break;
             case "轮播图(banner)":
-                startActivity(new Intent(getActivity(), BannerExampleActivity.class));
+                startActivity(new Intent(getActivity(), BannerExampleActivity.class).putExtra("url", UIKIT_URL+"banner"+"/README.md"));
                 break;
             case "列表(list)":
 //                startActivity(new Intent(getActivity(), InputItemExampleActivity.class));
                 break;
             case "通告栏(notice)":
-                startActivity(new Intent(getActivity(), NoticeExampleActivity.class));
+                startActivity(new Intent(getActivity(), NoticeExampleActivity.class).putExtra("url", UIKIT_URL+"notice"+"/README.md"));
                 break;
             case "二维码(utils(QRCodeUtil))":
-                startActivity(new Intent(getActivity(), QRCodeExampleActivity.class));
+                startActivity(new Intent(getActivity(), QRCodeExampleActivity.class).putExtra("url", UTILS_URL));
                 break;
 
 
             case "弹框(dialog(WYACustomDialog))":
-                startActivity(new Intent(getActivity(), DialogExampleActivity.class).putExtra("type", 1));
+                startActivity(new Intent(getActivity(), DialogExampleActivity.class).putExtra("type", 1).putExtra("url", UIKIT_URL+"dialog"+"/README.md"));
                 break;
             case "活动指示器(dialog(WYALoadingDialog))":
-                startActivity(new Intent(getActivity(), DialogExampleActivity.class).putExtra("type", 2));
+                startActivity(new Intent(getActivity(), DialogExampleActivity.class).putExtra("type", 2).putExtra("url", UIKIT_URL+"dialog"+"/README.md"));
                 break;
             case "进度条(progressview)":
-                startActivity(new Intent(getActivity(), ProgressExampleActivity.class));
+                startActivity(new Intent(getActivity(), ProgressExampleActivity.class).putExtra("url", UIKIT_URL+"progress"+"/README.md"));
                 break;
             case "轻提示(toast)":
-                startActivity(new Intent(getActivity(), ToastExampleActivity.class));
+                startActivity(new Intent(getActivity(), ToastExampleActivity.class).putExtra("url", UIKIT_URL+"toast"+"/README.md"));
                 break;
 
 
             case "下载(utils(FileManagerUtil)":
-                startActivity(new Intent(getActivity(), FileDownloadExampleActivity.class));
+                startActivity(new Intent(getActivity(), FileDownloadExampleActivity.class).putExtra("url", UTILS_URL));
                 break;
-            case "视频播放(dvideoplayer)":
-                startActivity(new Intent(getActivity(), VideoPlayerExampleActivity.class));
+            case "视频播放(videoplayer)":
+                startActivity(new Intent(getActivity(), VideoPlayerExampleActivity.class).putExtra("url", HARDWARE_URL+"videoplayer"+"/README.md"));
                 break;
             case "清理缓存(utils(DataCleanUtil))":
                 try {

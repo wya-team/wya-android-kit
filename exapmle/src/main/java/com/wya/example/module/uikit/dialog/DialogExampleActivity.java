@@ -1,5 +1,6 @@
 package com.wya.example.module.uikit.dialog;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.example.module.example.view.CustomerExpandableListView;
 import com.wya.example.module.uikit.dialog.adapter.DialogExpandableListAdapter;
 import com.wya.example.module.uikit.dialog.adapter.DialogListAdapter;
@@ -56,14 +58,6 @@ public class DialogExampleActivity extends BaseActivity {
     private WYALoadingDialog wyaLoadingDialog;
     private boolean canceledOnTouch = true;
     private boolean cancelable = true;
-    private boolean list = false;
-    private String title = "我是标题";
-    private String content = "我是内容";
-    private String cancel = "取消";
-    private String sure = "确定";
-    private boolean isShowButton = true;
-    private String edit_text_str = "我是编辑框内容";
-
     private int type;
 
 
@@ -82,6 +76,11 @@ public class DialogExampleActivity extends BaseActivity {
             setToolBarTitle("活动指示器(dialog)");
             tabLoading.setVisibility(View.VISIBLE);
         }
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(DialogExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
         initItems();
         initExpandList();
     }

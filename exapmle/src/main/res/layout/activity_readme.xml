@@ -11,7 +11,7 @@
         android:id="@+id/progress_bar"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="2dp"
         android:progressDrawable="@drawable/wya_custom_progress" />
 
     <WebView

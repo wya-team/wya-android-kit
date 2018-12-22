@@ -1,9 +1,11 @@
 package com.wya.example.module.uikit.paginationview;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.paginationview.WYAPaginationBottomView;
 import com.wya.uikit.paginationview.WYAPaginationDot;
 
@@ -23,7 +25,13 @@ public class PaginationViewExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setToolBarTitle("PaginationView");
+        setToolBarTitle("分页器(paginationview)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(PaginationViewExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
+
         Drawable drawableLeft = getResources().getDrawable(R.drawable.icon_row_right);
         Drawable drawableRight = getResources().getDrawable(R.drawable.icon_row_left);
 

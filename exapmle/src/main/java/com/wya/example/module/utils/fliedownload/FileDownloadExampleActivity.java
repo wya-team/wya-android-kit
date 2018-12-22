@@ -1,6 +1,7 @@
 package com.wya.example.module.utils.fliedownload;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -12,6 +13,7 @@ import com.arialyy.aria.core.download.DownloadTask;
 import com.arialyy.aria.util.CommonUtil;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.utils.utils.FileManagerUtil;
 
 import static com.wya.utils.utils.FileManagerUtil.TASK_CANCEL;
@@ -49,6 +51,12 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
     @Override
     protected void initView() {
         setToolBarTitle("Downloader");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(FileDownloadExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
+
 
         FileManagerUtil.getInstance().register();
         percent = (TextView) findViewById(R.id.progress_percent);

@@ -1,10 +1,13 @@
 package com.wya.example.module.hardware.videoplayer;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.view.WindowManager;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity;
 import com.wya.hardware.videoplayer.WYAVideoView;
 import com.wya.hardware.videoplayer.listener.SimpleOnVideoControlListener;
 import com.wya.utils.utils.ScreenUtil;
@@ -18,6 +21,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
     WYAVideoView videoPlayer;
 
     private VideoDetailInfo info;
+
     @Override
     protected int getLayoutID() {
         return R.layout.activity_video_player_example;
@@ -26,9 +30,15 @@ public class VideoPlayerExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        initShowToolBar(false);
+        setToolBarTitle("视频播放(videoplayer)");
+        initImgLeft(0, false);
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help, true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(VideoPlayerExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
+
         info = new VideoDetailInfo();
-        info.title = "测试视频";
         info.videoPath = "http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh.yinyuetai.com/4599015ED06F94848EBF877EAAE13886.mp4";
         videoPlayer.setOnVideoControlListener(new SimpleOnVideoControlListener() {
 
