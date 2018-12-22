@@ -133,7 +133,7 @@ public class ExampleFragment extends Fragment {
         item5.setTitle("其他");
         List<String> bean5 = new ArrayList<>();
         bean5.add("下载(utils(FileManagerUtil)");
-        bean5.add("视频播放(dvideoplayer)");
+        bean5.add("视频播放(videoplayer)");
         bean5.add("清理缓存(utils(DataCleanUtil))");
         bean5.add("数据库基本使用(realm)");
         item5.setChild(bean5);

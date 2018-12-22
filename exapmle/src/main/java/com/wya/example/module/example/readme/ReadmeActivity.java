@@ -27,6 +27,7 @@ public class ReadmeActivity extends BaseActivity {
     ProgressBar progressBar;
 
     private String url = "";
+    private boolean skip;
 
     @Override
     protected int getLayoutID() {
@@ -36,6 +37,7 @@ public class ReadmeActivity extends BaseActivity {
     @Override
     protected void initView() {
         url = getIntent().getStringExtra("url");
+        skip = getIntent().getBooleanExtra("url", false);
         initWebView(url);
     }
 
@@ -70,7 +72,9 @@ public class ReadmeActivity extends BaseActivity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
 //            LogUtil.d("url:"+url);
-//            view.loadUrl(url);
+            if(skip){
+                view.loadUrl(url);
+            }
             return true;
         }
 
