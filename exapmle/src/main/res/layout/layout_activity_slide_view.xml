@@ -36,10 +36,11 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dp_30"
             android:layout_marginBottom="@dimen/dp_30"
-            android:paddingLeft="@dimen/dp_10"
+            android:paddingLeft="@dimen/dp_20"
             android:paddingRight="@dimen/dp_10"
             app:rsd_progress_max="100"
             app:rsd_progress_min="0"
+            app:rsd_region_padding="@dimen/dp_5"
             app:rsd_slider_mode="range" />
 
     </LinearLayout>
@@ -59,7 +60,6 @@
             android:paddingLeft="@dimen/dp_10"
             android:paddingRight="@dimen/dp_10"
             app:rsd_progress_background_color="@color/light_gray"
-            app:rsd_progress_height="@dimen/dp_3"
             app:rsd_progress_max="100"
             app:rsd_progress_min="0"
             app:rsd_region_bitmap_size="@dimen/dp_17"

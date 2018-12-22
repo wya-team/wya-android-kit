@@ -292,8 +292,8 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     private void drawMinRegionText(Canvas canvas) {
-        String min = String.valueOf(mProgressMin);
-        float x = getProgressLeft() - getPaddingLeft() - mLeftSlider.getSliderSize() / 2 - mRegionPaint.measureText(min);
+        String min = String.valueOf(mLeftSlider.getCurPercent());
+        float x = getProgressLeft() - mRegionPadding - mLeftSlider.getSliderSize() / 2 - mRegionPaint.measureText(min);
         Paint.FontMetricsInt fontMetricsInt = mRegionPaint.getFontMetricsInt();
         float y = getProgressTop() + (getProgressHeight()) / 2 - (fontMetricsInt.bottom + fontMetricsInt.top) / 2;
         canvas.drawText(min, x, y, mRegionPaint);
@@ -316,7 +316,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     private void drawMaxRegionText(Canvas canvas) {
-        String max = String.valueOf(mProgressMax);
+        String max = String.valueOf(mRightSlider.getCurPercent());
         float x = getWidth() - getPaddingRight() - mRegionPaint.measureText(max);
         Paint.FontMetricsInt fontMetricsInt = mRegionPaint.getFontMetricsInt();
         float y = getProgressTop() + (getProgressHeight()) / 2 - (fontMetricsInt.bottom + fontMetricsInt.top) / 2;
@@ -513,7 +513,6 @@ public class RangeSlideView extends View implements IRangeSlideView {
                     percent = x < getProgressLeft() ? 0 : (x - getProgressLeft()) * 1f / (mProgressWidth);
                     mLeftSlider.slide(percent);
                 }
-                // TODO: 2018/12/21 ZCQ TEST
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:

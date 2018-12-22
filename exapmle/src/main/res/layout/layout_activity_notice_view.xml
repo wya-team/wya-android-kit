@@ -51,16 +51,6 @@
         app:anim_duration="400"
         app:switch_duration="3000" />
 
-    <com.wya.uikit.notice.switcher.SwitcherView
-        android:id="@+id/vs_cus_anim"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_switcher_item_margin"
-        android:layout_marginBottom="@dimen/activity_switcher_item_margin"
-        android:background="#ffffff"
-        app:anim_duration="400"
-        app:switch_duration="3000" />
-
     <com.wya.uikit.notice.MarqueeTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,12 +82,12 @@
         android:textColor="@color/notice_text_color"
         android:textSize="@dimen/sp_15" />
 
-
     <com.wya.uikit.notice.MarqueeTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_switcher_item_margin"
         android:background="@color/notice_bg_color"
+        android:drawableRight="@drawable/icon_cancel_notice"
         android:drawablePadding="@dimen/dp_14"
         android:paddingLeft="@dimen/dp_15"
         android:paddingTop="@dimen/dp_6"
@@ -107,13 +97,11 @@
         android:textColor="@color/notice_text_color"
         android:textSize="@dimen/sp_15" />
 
-
     <com.wya.uikit.notice.MarqueeTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_switcher_item_margin"
         android:background="@color/notice_bg_color"
-        android:drawableRight="@drawable/icon_cancel_notice"
         android:drawablePadding="@dimen/dp_14"
         android:paddingLeft="@dimen/dp_15"
         android:paddingTop="@dimen/dp_6"

@@ -26,9 +26,6 @@ public class NoticeExampleActivity extends BaseActivity {
     @BindView(R.id.vs_right2left)
     SwitcherView vsRight2Left;
     
-    @BindView(R.id.vs_cus_anim)
-    SwitcherView vsCusAnim;
-    
     private String noticeText = "这里是具体的通知，这里是具体的通知，这里...";
     
     public static void start(Activity activity) {
@@ -121,21 +118,6 @@ public class NoticeExampleActivity extends BaseActivity {
         });
         vsRight2Left.inflate(R.layout.item_switch_view).startSwitcher();
         
-        vsCusAnim.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
-            @Override
-            public void onSwitch(View nextView, int index) {
-                if (nextView == null) return;
-                //                final String tag = "自定义进出动画....";
-                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
-                nextView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(v.getContext().getApplicationContext(), "click 5", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-        vsCusAnim.setAnimation(null, null).inflate(R.layout.item_switch_view).startSwitcher();
     }
     
 }

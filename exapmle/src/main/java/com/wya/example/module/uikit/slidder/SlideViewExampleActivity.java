@@ -24,6 +24,7 @@ public class SlideViewExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         setToolBarTitle("slidder");
+        getSwipeBackLayout().setEnableGesture(false);
     }
     
 }
