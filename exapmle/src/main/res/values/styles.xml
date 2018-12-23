@@ -1,12 +1,15 @@
 <resources>
 
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!--TODO ZCQ TEST-->
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/white</item>
-        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@style/SlideRightAnimation</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="ThemeWithoutTranslucent" parent="AppTheme">
@@ -35,16 +38,6 @@
         <item name="android:taskToFrontExitAnimation">@null</item>
         <item name="android:taskToBackEnterAnimation">@null</item>
         <item name="android:taskToBackExitAnimation">@anim/slide_out_right</item>
-    </style>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/white</item>
-        <item name="android:windowIsTranslucent">true</item>
     </style>
 
 </resources>

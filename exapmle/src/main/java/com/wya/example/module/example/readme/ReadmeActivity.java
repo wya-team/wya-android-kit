@@ -2,9 +2,6 @@ package com.wya.example.module.example.readme;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -14,10 +11,8 @@ import android.widget.ProgressBar;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
-import com.wya.utils.utils.LogUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ReadmeActivity extends BaseActivity {
 
@@ -27,6 +22,7 @@ public class ReadmeActivity extends BaseActivity {
     ProgressBar progressBar;
 
     private String url = "";
+    private boolean skip;
 
     @Override
     protected int getLayoutID() {
@@ -36,6 +32,7 @@ public class ReadmeActivity extends BaseActivity {
     @Override
     protected void initView() {
         url = getIntent().getStringExtra("url");
+        skip = getIntent().getBooleanExtra("skip", false);
         initWebView(url);
     }
 
@@ -70,7 +67,9 @@ public class ReadmeActivity extends BaseActivity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
 //            LogUtil.d("url:"+url);
-//            view.loadUrl(url);
+            if(skip){
+                view.loadUrl(url);
+            }
             return true;
         }
 

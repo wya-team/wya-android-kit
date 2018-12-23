@@ -33,10 +33,9 @@ public abstract class BaseActivity extends BaseToolBarActivity {
         super.onCreate(savedInstanceState);
         unbinder = ButterKnife.bind(this);
         startActivityStyle();
-        
-        initWYAActionBarDefault(true, ColorUtil.int2Hex(WYAConstants.THEME_COLOR),true, "初始化标题", 18, "#000000",
+        initWYAActionBarDefault(true, ColorUtil.int2Hex(WYAConstants.THEME_COLOR), true, "初始化标题", 18, "#000000",
                 false, "", 14, "#000000", true, R.drawable.icon_backblue,
-        false, "",14, "#000000", false, false, R.drawable.icon_search, R.drawable.iocn_saoyisao,  false, "",14, "#000000");
+                false, "", 14, "#000000", false, false, R.drawable.icon_search, R.drawable.iocn_saoyisao, false, "", 14, "#000000", false);
         initView();
         initGesture();
     }
@@ -57,6 +56,9 @@ public abstract class BaseActivity extends BaseToolBarActivity {
         overridePendingTransition(R.anim.activity_start_left, R.anim.activity_start_left_exit);
     }
     
+    /**
+     * 监听手势关闭finish并设置关闭动画
+     */
     @SuppressWarnings("deprecation")
     private void initGesture() {
         DisplayMetrics outMetrics = new DisplayMetrics();

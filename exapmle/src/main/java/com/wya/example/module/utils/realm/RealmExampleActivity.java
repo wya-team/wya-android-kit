@@ -11,7 +11,6 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.utils.realm.adapter.RealmListAdapter;
 import com.wya.example.module.utils.realm.bean.User;
-import com.wya.uikit.toast.WYAToast;
 import com.wya.utils.utils.LogUtil;
 
 import java.util.ArrayList;

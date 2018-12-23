@@ -25,7 +25,6 @@ public class SlideViewExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         getSwipeBackLayout().setEnableGesture(false);
-        setSwipeBack(true);
         setToolBarTitle("滑动输入条(slideview)");
         String url = getIntent().getStringExtra("url");
         initImgRightAnther(R.drawable.icon_help, true);

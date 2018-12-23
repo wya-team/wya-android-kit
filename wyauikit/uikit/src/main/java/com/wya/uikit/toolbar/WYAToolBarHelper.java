@@ -43,6 +43,16 @@ public class WYAToolBarHelper {
     private int imgRightRes;//做图标资源
     private int imgRightResAnther;//第二个图标资源
 
+    private boolean isLight;//是否是明亮的标题栏
+
+    public boolean isLight() {
+        return isLight;
+    }
+
+    public void setLight(boolean light) {
+        isLight = light;
+    }
+
     public boolean isShowImgRightAnther() {
         return isShowImgRightAnther;
     }

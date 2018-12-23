@@ -123,7 +123,6 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         initContentView(R.layout.base_toolbar_layout);
         setContentView(getLayoutID());
-
         initWYAActionBar();
     }
 
@@ -205,7 +204,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                                         boolean isShowTvLeft, String tvLeftStr, int tvLeftTextSize, String tvLeftTextColorValue, boolean isShowImgLeft, int imgLeftRes,
                                         boolean isShowTvRight, String tvRightStr, int tvRightTextSize, String tvRightTextColorValue, boolean isShowImgRight,
                                         boolean isShowImgRightAnther, int imgRightRes, int imgRightResAnther,
-                                        boolean isShowTvRightAnther, String tvRightAntherStr, int tvRightAntherTextSize, String tvRightAntherTextColorValue) {
+                                        boolean isShowTvRightAnther, String tvRightAntherStr, int tvRightAntherTextSize, String tvRightAntherTextColorValue, boolean isLight) {
         wyaToolBarHelper.setShowTitle(showToolBar);
         wyaToolBarHelper.setToolbar_bg_color(toolbarBgColorValue);
         wyaToolBarHelper.setShowTitle(isShowTitle);
@@ -234,8 +233,10 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         wyaToolBarHelper.setImgRightResAnther(imgRightResAnther);
         wyaToolBarHelper.setShowImgRightAnther(isShowImgRightAnther);
 
+        wyaToolBarHelper.setLight(isLight);
+
         initShowToolBar(wyaToolBarHelper.isShowTitle());
-        initToolBarBgColor(wyaToolBarHelper.getToolbar_bg_color());
+        initToolBarBgColor(wyaToolBarHelper.getToolbar_bg_color(), wyaToolBarHelper.isLight());
         initToolBarTitle(wyaToolBarHelper.getTitleStr(), wyaToolBarHelper.getTitleTextSize(), wyaToolBarHelper.getTitleTextColor(), wyaToolBarHelper.isShowTitle());
         initTvLeft(wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
         initImgLeft(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.isShowImgLeft());
@@ -263,7 +264,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         title_bar_bg = (RelativeLayout) findViewById(R.id.title_bar_bg);
 
         initShowToolBar(wyaToolBarHelper.isShowTitle());
-        initToolBarBgColor(wyaToolBarHelper.getToolbar_bg_color());
+        initToolBarBgColor(wyaToolBarHelper.getToolbar_bg_color(), wyaToolBarHelper.isLight());
         initToolBarTitle(wyaToolBarHelper.getTitleStr(), wyaToolBarHelper.getTitleTextSize(), wyaToolBarHelper.getTitleTextColor(), wyaToolBarHelper.isShowTitle());
         initTvLeft(wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
         initImgLeft(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.isShowImgLeft());
@@ -514,9 +515,14 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      *
      * @param toolbarBgColorValue 标题栏背景颜色
      */
-    public void initToolBarBgColor(int toolbarBgColorValue) {
+    public void initToolBarBgColor(int toolbarBgColorValue, boolean isLight) {
         title_bar_bg.setBackgroundColor(toolbarBgColorValue);
         StatusBarUtil.setColorForSwipeBack(this, toolbarBgColorValue, 0);
+        if(isLight){
+            StatusBarUtil.setLightMode(this);
+        } else {
+            StatusBarUtil.setDarkMode(this);
+        }
     }
 
 

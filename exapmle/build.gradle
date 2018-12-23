@@ -28,7 +28,7 @@ android {
         targetSdkVersion buildConfig.getAt("targetSdkVersion")
 
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -40,8 +40,8 @@ android {
     }
 
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        targetCompatibility '1.8'
+        sourceCompatibility '1.8'
     }
 }
 

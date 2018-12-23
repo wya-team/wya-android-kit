@@ -1,13 +1,108 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/f4f4f4">
 
-    <TextView
-        android:id="@+id/tv_example"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="关于我们"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:background="@color/f4f4f4"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_10"
+            android:background="@drawable/white_r5_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_10">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_10"
+                android:text="WYAKIT SDK Version"
+                android:textColor="@color/c999999"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:id="@+id/tv_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:paddingTop="@dimen/dp_10"
+                android:text="platform Android"
+                android:textColor="@color/c999999"
+                android:textSize="@dimen/sp_12" />
+
+        </LinearLayout>
+
+
+        <com.wya.uikit.customitems.WYAInputItem
+            android:id="@+id/git_hub_address"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:backColor="#ffffff"
+            app:canEdit="false"
+            app:contentHint=""
+            app:contentText=""
+            app:contentTextColor="@color/black"
+            app:leftTvColor="@color/black"
+            app:leftTvText="WYAKit GitHub地址"
+            app:lineViewColor="#999999"
+            app:rightCanEdit="false"
+            app:rightImage="@drawable/icon_right_arrow"
+            app:rightText=""
+            app:rightTextColor="#868686" />
+
+        <com.wya.uikit.customitems.WYAInputItem
+            android:id="@+id/git_hub_contributor"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:backColor="#ffffff"
+            app:canEdit="false"
+            app:contentHint=""
+            app:contentText=""
+            app:contentTextColor="@color/black"
+            app:leftTvColor="@color/black"
+            app:leftTvText="参与贡献"
+            app:lineViewColor="#999999"
+            app:rightCanEdit="false"
+            app:rightImage="@drawable/icon_right_arrow"
+            app:rightText=""
+            app:rightTextColor="#868686" />
+
+        <com.wya.uikit.customitems.WYAInputItem
+            android:id="@+id/git_hub_version"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:backColor="#ffffff"
+            app:canEdit="false"
+            app:contentHint=""
+            app:contentText=""
+            app:contentTextColor="@color/black"
+            app:leftTvColor="@color/black"
+            app:leftTvText="版本更新"
+            app:lineViewColor="#f4f4f4"
+            app:rightCanEdit="false"
+            app:rightImage="@drawable/icon_right_arrow"
+            app:rightText=""
+            app:rightTextColor="#868686" />
+
+
+    </LinearLayout>
+
 
 </FrameLayout>

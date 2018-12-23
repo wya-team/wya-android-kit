@@ -14,10 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:background="@color/white">
+        android:paddingRight="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,15 +36,41 @@
             android:textSize="@dimen/sp_14"
             tools:text="123123213123" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ymdhms_layout_with"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="年月日时分秒（带后缀）"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/ymd_text_with"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14"
+            tools:text="123123213123" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/ymd_layout"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
-        android:background="@color/white"
         android:paddingRight="10dp">
 
         <TextView
@@ -65,14 +91,16 @@
             tools:text="123123213123" />
     </LinearLayout>
 
+
+
     <LinearLayout
         android:id="@+id/hms_layout"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
-        android:background="@color/white"
         android:paddingRight="10dp">
 
         <TextView
@@ -98,9 +126,9 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
-        android:background="@color/white"
         android:paddingRight="10dp">
 
         <TextView
@@ -127,9 +155,9 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
-        android:background="@color/white"
         android:paddingRight="10dp">
 
         <TextView
@@ -149,8 +177,6 @@
             android:textSize="@dimen/sp_14"
             tools:text="123123213123" />
     </LinearLayout>
-
-
 
 
 </LinearLayout>

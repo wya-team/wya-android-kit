@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="取消"
-            android:textColor="@color/black"
+            android:textColor="@color/primary_color"
             android:textSize="16sp" />
 
         <TextView
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="确定"
-            android:textColor="@color/black"
+            android:textColor="@color/primary_color"
             android:textSize="16sp" />
     </LinearLayout>
 
