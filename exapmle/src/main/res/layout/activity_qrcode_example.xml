@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:background="@color/white"
-        android:layout_marginTop="@dimen/dp_10">
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center_vertical">
         <EditText
             android:id="@+id/qr_code_edit"
             android:layout_width="0dp"
@@ -24,11 +25,20 @@
             android:textSize="14sp"
             android:paddingLeft="15dp"
             android:textColor="@color/black"/>
-        <Button
+
+        <com.wya.uikit.button.WYAButton
             android:id="@+id/crate_qr_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="生成二维码" />
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_margin="10dp"
+            android:text="生成二维码"
+            android:textSize="12sp"
+            app:backColor="#108de7"
+            app:backColorPress="#0183d7"
+            app:fillet="true"
+            app:textColor="@color/white"
+            app:wya_button_radius="10" />
     </LinearLayout>
 
 
@@ -38,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/qr_code"
         android:background="@color/white"
+        android:gravity="center_vertical"
         android:layout_marginTop="1dp">
         <EditText
             android:id="@+id/line_code_edit"
@@ -50,11 +61,19 @@
             android:inputType=""
             android:textSize="14sp"
             android:textColor="@color/black"/>
-        <Button
+        <com.wya.uikit.button.WYAButton
             android:id="@+id/crate_line_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="生成条形码"/>
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_margin="10dp"
+            android:text="生成条形码"
+            android:textSize="12sp"
+            app:backColor="#108de7"
+            app:backColorPress="#0183d7"
+            app:fillet="true"
+            app:textColor="@color/white"
+            app:wya_button_radius="10" />
     </LinearLayout>
 
 

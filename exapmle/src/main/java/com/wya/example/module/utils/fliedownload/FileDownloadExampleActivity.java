@@ -1,7 +1,13 @@
 package com.wya.example.module.utils.fliedownload;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -88,7 +94,7 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
         initHasDown();
 
         initListener();
-
+        getPermissions();
     }
 
     private void initListener() {
@@ -255,5 +261,41 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
         mFileManagerUtil.getDownloadReceiver().load(url2)
                 .setFilePath(filepath2)
                 .start();
+    }
+
+    /**
+     * 获取权限
+     */
+    private void getPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager
+                    .PERMISSION_GRANTED) {
+            } else {
+                //不具有获取权限，需要进行权限申请
+                ActivityCompat.requestPermissions(this, new String[]{
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+            }
+        } else {
+        }
+    }
+
+    @TargetApi(23)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1000) {
+            if (grantResults.length >= 1) {
+                int writeResult = grantResults[0];
+                //读写内存权限
+                if (writeResult == PackageManager.PERMISSION_GRANTED) {
+
+                } else if (writeResult == PackageManager.PERMISSION_DENIED) {
+                    Toast.makeText(this, "读写权限被拒绝，无法进行下载，请开启读写权限！", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            }
+        }
     }
 }
