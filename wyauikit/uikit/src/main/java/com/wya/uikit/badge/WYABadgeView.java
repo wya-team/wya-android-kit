@@ -1,6 +1,7 @@
 package com.wya.uikit.badge;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -19,8 +20,12 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.RelativeLayout;
 
+import com.wya.uikit.R;
+import com.wya.uikit.slideview.Utils;
+
 public class WYABadgeView extends View implements IBadgeView {
     
+    // text
     protected TextPaint mTextPaint;
     protected RectF mTextRect;
     protected int mTextColor;
@@ -32,22 +37,28 @@ public class WYABadgeView extends View implements IBadgeView {
     protected Paint.FontMetrics mTextFontMetrics;
     protected boolean isOmitMode;
     
+    // background
     protected Paint mBackgroundPaint;
     protected RectF mBackgroundRect;
     protected int mBackgroundColor;
     protected Drawable mBackgroundDrawable;
     
+    // bitmap
+    protected Drawable mBadgeDrawable;
+    private int mBadgeBitmapSize;
+    
+    // border
     protected Paint mBorderPaint;
     protected int mBgBorderColor;
     protected float mBorderWidth;
     
+    private boolean mIsAttach = true;
     protected View mTargetView;
     
     protected int mWidth;
     protected int mHeight;
-    
-    protected PointF mCenter;
     protected float mPadding;
+    protected PointF mCenter;
     protected Builder.Gravity mGravity;
     
     public WYABadgeView(Context context) {
@@ -68,9 +79,20 @@ public class WYABadgeView extends View implements IBadgeView {
         initText();
         initBorder();
         initBackground();
+        initBadgeDrawable();
         
         mCenter = new PointF();
         mGravity = new Builder.Gravity(Builder.BadgeGravity.GRAVITY_END_TOP, 0, 0);
+    }
+    
+    private void initBadgeDrawable() {
+    }
+    
+    private Bitmap getBitmap(int size, Drawable drawable) {
+        if (null == drawable || size <= 0) {
+            return null;
+        }
+        return Utils.drawableToBitmap(size, drawable);
     }
     
     private void initText() {
@@ -108,8 +130,30 @@ public class WYABadgeView extends View implements IBadgeView {
     
     @Override
     protected void onDraw(Canvas canvas) {
-        PointF badgeCenter = getCenter();
-        drawBadge(canvas, badgeCenter);
+        if (null != mBadgeDrawable) {
+            drawBadgeBitmap(canvas);
+        } else {
+            PointF badgeCenter = getCenter();
+            drawBadge(canvas, badgeCenter);
+        }
+    }
+    
+    @Override
+    public void setBadgeDrawable(Drawable drawable) {
+        this.mBadgeDrawable = drawable;
+        invalidate();
+    }
+    
+    @Override
+    public void setBadgeBitmapSize(int size) {
+        this.mBadgeBitmapSize = size;
+    }
+    
+    private void drawBadgeBitmap(Canvas canvas) {
+        Bitmap bitmap = getBitmap(mBadgeBitmapSize, getResources().getDrawable(R.drawable.sale_badge)); // TODO: 2018/12/24 ZCQ TEST
+        if (null != bitmap) {
+            canvas.drawBitmap(bitmap, mWidth - getPaddingRight() - mBadgeBitmapSize, getTop() / 2, null);
+        }
     }
     
     private void drawBadge(Canvas canvas, PointF center) {
@@ -133,7 +177,7 @@ public class WYABadgeView extends View implements IBadgeView {
     private void drawDrawable(Canvas canvas) {
         mBackgroundDrawable.setBounds((int) mBackgroundRect.left, (int) mBackgroundRect.top, (int) mBackgroundRect.right, (int) mBackgroundRect.bottom);
         mBackgroundDrawable.draw(canvas);
-        canvas.drawRect(mBackgroundRect, mBorderPaint);
+        canvas.drawRect(mBackgroundRect, mBackgroundPaint);
     }
     
     private void drawBorder(Canvas canvas, PointF center) {
@@ -157,7 +201,6 @@ public class WYABadgeView extends View implements IBadgeView {
             float halfWidth = mTextRect.width() / 2f + mPadding * 0.5f;
             radius = mTextRect.height() > mTextRect.width() ? halfHeight : halfWidth;
         }
-        
         mBackgroundRect.left = center.x - (int) radius;
         mBackgroundRect.top = center.y - (int) radius;
         mBackgroundRect.right = center.x + (int) radius;
@@ -179,7 +222,6 @@ public class WYABadgeView extends View implements IBadgeView {
         mBackgroundRect.top = center.y - (mTextRect.height() / 2f + mPadding * 0.5f);
         mBackgroundRect.right = center.x + (mTextRect.width() / 2f + mPadding);
         mBackgroundRect.bottom = center.y + (mTextRect.height() / 2f + mPadding * 0.5f);
-        
         float radius = mBackgroundRect.height() / 2f;
         canvas.drawRoundRect(mBackgroundRect, radius, radius, mBackgroundPaint);
         if (mBgBorderColor != 0 && mBorderWidth > 0) {
@@ -415,6 +457,11 @@ public class WYABadgeView extends View implements IBadgeView {
         invalidate();
     }
     
+    @Override
+    public void setAttach(boolean isAttach) {
+        this.mIsAttach = isAttach;
+    }
+    
     private class BadgeContainer extends ViewGroup {
         
         @Override
@@ -450,7 +497,30 @@ public class WYABadgeView extends View implements IBadgeView {
             if (targetView == null) {
                 super.onMeasure(widthMeasureSpec, heightMeasureSpec);
             } else {
-                targetView.measure(widthMeasureSpec, heightMeasureSpec);
+                int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+                int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+                
+                int widthNeeded = widthSize;
+                if (!mIsAttach) {
+                    if (null == mBadgeDrawable) {
+                        mBackgroundRect.left = getCenter().x - (mTextRect.width() / 2f + mPadding);
+                        mBackgroundRect.right = getCenter().x + (mTextRect.width() / 2f + mPadding);
+                        widthNeeded = Double.valueOf(mBackgroundRect.right - mBackgroundRect.left).intValue();
+                    }
+                }
+                
+                switch (widthMode) {
+                    case MeasureSpec.EXACTLY:
+                        widthSize = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
+                        break;
+                    case MeasureSpec.AT_MOST:
+                        widthSize = MeasureSpec.makeMeasureSpec(widthNeeded, MeasureSpec.AT_MOST);
+                        break;
+                    default:
+                        widthSize = MeasureSpec.makeMeasureSpec(widthNeeded, MeasureSpec.EXACTLY);
+                        break;
+                }
+                targetView.measure(widthSize, heightMeasureSpec);
                 if (badgeView != null) {
                     badgeView.measure(MeasureSpec.makeMeasureSpec(targetView.getMeasuredWidth(), MeasureSpec.EXACTLY),
                             MeasureSpec.makeMeasureSpec(targetView.getMeasuredHeight(), MeasureSpec.EXACTLY));
@@ -459,4 +529,5 @@ public class WYABadgeView extends View implements IBadgeView {
             }
         }
     }
+    
 }

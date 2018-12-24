@@ -33,4 +33,10 @@ public interface IBadgeView {
     
     void update(boolean isShow);
     
+    void setAttach(boolean isAttach);
+    
+    void setBadgeDrawable(Drawable drawable);
+    
+    void setBadgeBitmapSize(int size);
+    
 }
