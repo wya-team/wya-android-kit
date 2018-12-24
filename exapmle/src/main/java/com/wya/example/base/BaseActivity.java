@@ -11,6 +11,7 @@ import com.wya.example.module.utils.GestureFlingRightHelper;
 import com.wya.helper.WYAConstants;
 import com.wya.uikit.toast.WYAToast;
 import com.wya.uikit.toolbar.BaseToolBarActivity;
+import com.wya.uikit.toolbar.swipeback.Utils;
 import com.wya.utils.utils.ColorUtil;
 
 import butterknife.ButterKnife;
@@ -38,6 +39,8 @@ public abstract class BaseActivity extends BaseToolBarActivity {
                 false, "", 14, "#000000", false, false, R.drawable.icon_search, R.drawable.iocn_saoyisao, false, "", 14, "#000000", false);
         initView();
         initGesture();
+//        Utils.convertActivityToTranslucent(this);
+        Utils.convertActivityFromTranslucent(this);
     }
     
     private void startActivityStyle() {

@@ -78,7 +78,7 @@ public class BadgeExampleActivity extends BaseActivity {
         });
         showDot(llDot);
         showBadgeCenterEnd(tvNumDot, 55, true, 50);
-        showStringBadge(vStringDot, "new");
+        showStringBadge(vStringDot, "new", false);
         
         showBadgeCenterStart(vMarketDot1, "减");
         showBadgeCenterStart(vMarketDot2, "惠");
@@ -138,7 +138,7 @@ public class BadgeExampleActivity extends BaseActivity {
         mNumDot.bindToTarget(view);
     }
     
-    public void showStringBadge(View view, String text) {
+    public void showStringBadge(View view, String text, boolean isAttach) {
         if (view == null) {
             return;
         }
@@ -146,6 +146,7 @@ public class BadgeExampleActivity extends BaseActivity {
                 .setText(text)
                 .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_START, 0, 0))
                 .setTextSize(DisplayUtil.sp2px(this, 10))
+                .setAttach(isAttach)
                 .create();
         mStringDot.bindToTarget(view);
     }

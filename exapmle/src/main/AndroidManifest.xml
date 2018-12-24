@@ -18,7 +18,9 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <!-- 2018.12.5 Mao Chunjiang camera end -->
     <application
@@ -78,7 +80,8 @@
         <activity android:name=".module.hardware.camera.CameraExampleActivity" />
         <activity
             android:name=".module.hardware.videoplayer.VideoPlayerExampleActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/ThemeWithoutTranslucent" />
         <activity android:name=".module.uikit.pickerview.PickerViewExampleActivity" />
         <activity android:name=".module.utils.realm.RealmExampleActivity" />
         <activity android:name=".module.utils.UtilsExampleActivity" />
@@ -92,7 +95,9 @@
         <activity android:name=".module.uikit.drawerlayout.DrawerLayoutExampleActivity" />
         <activity android:name=".module.example.readme.ReadmeActivity" />
         <activity android:name=".module.uikit.customitems.list.ListExampleActivity" />
-        <activity android:name=".module.hardware.scan.CustomCaptureActivity" />
+        <activity
+            android:name=".module.hardware.scan.CustomCaptureActivity"
+            android:theme="@style/ThemeWithoutTranslucent" />
     </application>
 
 </manifest>
