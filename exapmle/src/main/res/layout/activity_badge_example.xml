@@ -9,6 +9,7 @@
 
     <!-- dot badge -->
     <LinearLayout
+        android:id="@+id/ll_dot_container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_48"
         android:layout_marginTop="@dimen/dp_10"
@@ -63,6 +64,7 @@
 
     <!-- num badge -->
     <LinearLayout
+        android:id="@+id/ll_num_dot"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_48"
         android:background="@drawable/bottom_line_grey"
@@ -104,6 +106,7 @@
 
     <!-- String badge -->
     <LinearLayout
+        android:id="@+id/ll_string_dot"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_48"
         android:background="@drawable/bottom_line_grey"
@@ -125,7 +128,7 @@
             android:textSize="@dimen/sp_14" />
 
         <View
-            android:id="@+id/tv_string_dot"
+            android:id="@+id/v_string_dot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_6"
@@ -183,7 +186,7 @@
                 android:textSize="@dimen/sp_14" />
 
             <View
-                android:id="@+id/tv_market_dot_1"
+                android:id="@+id/v_market_dot_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_6"
@@ -195,7 +198,7 @@
                 android:textSize="@dimen/sp_14" />
 
             <View
-                android:id="@+id/tv_market_dot_2"
+                android:id="@+id/v_market_dot_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_6"
@@ -207,7 +210,7 @@
                 android:textSize="@dimen/sp_14" />
 
             <View
-                android:id="@+id/tv_market_dot_3"
+                android:id="@+id/v_market_dot_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_6"
@@ -219,7 +222,7 @@
                 android:textSize="@dimen/sp_14" />
 
             <View
-                android:id="@+id/tv_market_dot_4"
+                android:id="@+id/v_market_dot_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_6"
@@ -232,7 +235,7 @@
                 android:visibility="gone" />
 
             <View
-                android:id="@+id/tv_market_dot_5"
+                android:id="@+id/v_market_dot_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_6"
@@ -311,6 +314,43 @@
             android:maxLines="1"
             android:paddingRight="@dimen/dp_6"
             android:text="Corner Badge"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="@drawable/bottom_line_grey"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_6"
+        android:paddingTop="@dimen/dp_6"
+        android:paddingBottom="@dimen/dp_6">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_marginRight="@dimen/dp_6"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingRight="@dimen/dp_6"
+            android:text="Bitmap Badge"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14" />
+
+        <View
+            android:id="@+id/v_bitmap_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_marginRight="@dimen/dp_6"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_14" />
 
