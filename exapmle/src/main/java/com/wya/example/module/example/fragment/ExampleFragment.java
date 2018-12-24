@@ -15,6 +15,7 @@ import com.wya.example.module.example.adapter.ExampleExpandableListAdapter;
 import com.wya.example.module.example.bean.ExampleItem;
 import com.wya.example.module.example.view.CustomerExpandableListView;
 import com.wya.example.module.hardware.camera.StartCameraExampleActivity;
+import com.wya.example.module.hardware.scan.CustomCaptureActivity;
 import com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
 import com.wya.example.module.uikit.banner.BannerExampleActivity;
@@ -105,7 +106,6 @@ public class ExampleFragment extends Fragment {
         bean2.add("滑动输入条(slideview)");
         bean2.add("步进器(stepper)");
         bean2.add("拍照录制视频(camera)");
-        bean2.add("扫码(camera)");
         item2.setChild(bean2);
 
 
@@ -219,9 +219,6 @@ public class ExampleFragment extends Fragment {
                 break;
             case "拍照录制视频(camera)":
                 startActivity(new Intent(getActivity(), StartCameraExampleActivity.class).putExtra("url", HARDWARE_URL+"camera"+"/README.md"));
-                break;
-            case "扫码(camera)":
-//                startActivity(new Intent(getActivity(), SearchBarExampleActivity.class));
                 break;
 
 

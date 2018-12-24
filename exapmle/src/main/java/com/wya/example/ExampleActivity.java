@@ -14,15 +14,6 @@ public class ExampleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mStatusBarUtil = StatusBarUtil.with(this);
-        
-        //        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        //            try {
-        //                mStatusBarUtil = StatusBarUtil.with(this);
-        //                mStatusBarUtil.navigationBarEnable(true).fullScreen(true).init();
-        //            } catch (Exception e) {
-        //                e.printStackTrace();
-        //            }
-        //        }
     }
     
     @Override

@@ -14,6 +14,8 @@
     <string name="title_my">我的</string>
 
 
+    <string name="tips_scan_code">将二维码/条形码放入框内，即可自动扫码</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

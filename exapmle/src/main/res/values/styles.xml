@@ -40,4 +40,9 @@
         <item name="android:taskToBackExitAnimation">@anim/slide_out_right</item>
     </style>
 
+    <style name="OnClick">
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">OnClick</item>
+    </style>
+
 </resources>

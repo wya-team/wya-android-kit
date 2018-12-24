@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@color/white"
+    android:background="@color/f4f4f4"
     tools:context="com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity">
 
     <com.wya.hardware.videoplayer.WYAVideoView
