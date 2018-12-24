@@ -142,6 +142,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             
             }
         };
+        mChoiceMenu.setShadow(false);
         mChoiceMenu.setOutsideTouchable(false);
         mChoiceMenu.setOnFirstAdapterItemClickListener(
                 new ChoiceMenu.OnFirstAdapterItemClickListener() {

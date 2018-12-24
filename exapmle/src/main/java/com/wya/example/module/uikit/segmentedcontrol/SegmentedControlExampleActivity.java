@@ -43,7 +43,7 @@ public class SegmentedControlExampleActivity extends BaseActivity {
         mSegmentNormal.setOnItemClickListener(new WYASegmentedView.OnItemClickListener() {
             @Override
             public void itemClicked(int position) {
-                Toast.makeText(SegmentedControlExampleActivity.this, "标题" + position, Toast
+                Toast.makeText(SegmentedControlExampleActivity.this, "标题" + (position+1), Toast
                         .LENGTH_SHORT).show();
             }
 
@@ -54,7 +54,7 @@ public class SegmentedControlExampleActivity extends BaseActivity {
         mSegmentMore.setOnItemClickListener(new WYASegmentedView.OnItemClickListener() {
             @Override
             public void itemClicked(int position) {
-                Toast.makeText(SegmentedControlExampleActivity.this, "标题" + position, Toast
+                Toast.makeText(SegmentedControlExampleActivity.this, "标题" + (position+1), Toast
                         .LENGTH_SHORT).show();
             }
         });
@@ -64,7 +64,7 @@ public class SegmentedControlExampleActivity extends BaseActivity {
         mSegmentColor.setOnItemClickListener(new WYASegmentedView.OnItemClickListener() {
             @Override
             public void itemClicked(int position) {
-                Toast.makeText(SegmentedControlExampleActivity.this, "标题" + position, Toast
+                Toast.makeText(SegmentedControlExampleActivity.this, "标题" + (position+1), Toast
                         .LENGTH_SHORT).show();
             }
         });

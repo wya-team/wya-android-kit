@@ -36,6 +36,7 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 	private ChoiceMenuAdapter<T> mAdapterSecond;
 	private String TAG = "ChoiceMenu";
 	private int selectPosition;
+	private boolean isShadow = true;
 	private OnFirstAdapterItemClickListener mOnFirstAdapterItemClickListener;
 
 
@@ -168,6 +169,10 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		mRecyclerSecond.addItemDecoration(new ItemDecoration(mContext, colorId, height));
 	}
 
+	public void setShadow(boolean isShadow) {
+		this.isShadow = isShadow;
+	}
+
 	/**
 	 * update data
 	 */
@@ -190,17 +195,19 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 	}
 
 	private void setBackground(float alpha) {
-		if (mContext instanceof Activity) {
-			WindowManager.LayoutParams lp=((Activity)mContext).getWindow().getAttributes();
-			lp.alpha = alpha;
-			if (alpha < 1) {
-				((Activity) mContext).getWindow().addFlags(WindowManager.LayoutParams
-						.FLAG_DIM_BEHIND);
-			} else {
-				((Activity) mContext).getWindow().clearFlags(WindowManager.LayoutParams
-						.FLAG_DIM_BEHIND);
+		if (isShadow) {
+			if (mContext instanceof Activity) {
+				WindowManager.LayoutParams lp=((Activity)mContext).getWindow().getAttributes();
+				lp.alpha = alpha;
+				if (alpha < 1) {
+					((Activity) mContext).getWindow().addFlags(WindowManager.LayoutParams
+							.FLAG_DIM_BEHIND);
+				} else {
+					((Activity) mContext).getWindow().clearFlags(WindowManager.LayoutParams
+							.FLAG_DIM_BEHIND);
+				}
+				((Activity)mContext).getWindow().setAttributes(lp);
 			}
-			((Activity)mContext).getWindow().setAttributes(lp);
 		}
 	}
 

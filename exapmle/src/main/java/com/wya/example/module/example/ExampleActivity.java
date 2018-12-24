@@ -2,6 +2,7 @@ package com.wya.example.module.example;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
@@ -29,6 +30,7 @@ public class ExampleActivity extends BaseActivity {
         initFragment();
         setTabBar();
         getSwipeBackLayout().setEnableGesture(false);
+
     }
 
     private void initFragment() {
@@ -64,5 +66,11 @@ public class ExampleActivity extends BaseActivity {
     @Override
     protected int getLayoutID() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("test", "onStop: -----");
     }
 }
