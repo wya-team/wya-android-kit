@@ -14,7 +14,6 @@ import android.os.Parcelable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
@@ -268,7 +267,6 @@ public class WYABadgeView extends View implements IBadgeView {
      */
     private PointF getCenter() {
         float rectWidth = mTextRect.height() > mTextRect.width() ? mTextRect.height() : mTextRect.width();
-        Log.e("ZCQ", "getCenter ..");
         switch (mGravity.getGravity()) {
             case Builder.BadgeGravity.GRAVITY_START_TOP:
                 mCenter.x = mGravity.xOffset + mPadding + rectWidth / 2f;
@@ -532,7 +530,6 @@ public class WYABadgeView extends View implements IBadgeView {
                         mBackgroundRect.right = getCenter().x + (mTextRect.width() / 2f + mPadding);
                         widthNeeded = Double.valueOf(mBackgroundRect.right - mBackgroundRect.left).intValue();
                     } else {
-                        // TODO: 2018/12/24 ZCQ TEST
                         widthNeeded = getBitmap(mBadgeBitmapSize, mBadgeDrawable).getWidth();
                     }
                 }

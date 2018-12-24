@@ -123,18 +123,6 @@ public class BadgeExampleActivity extends BaseActivity {
         mDot.bindToTarget(view);
     }
     
-    //    public void updateBadge(View view, int num, boolean isShow) {
-    //        if (view == null) {
-    //            return;
-    //        }
-    //        mNumDot = new Builder(this)
-    //                .setOffset(0, 0)
-    //                .setBadgeNum(num)
-    //                .isShow(isShow)
-    //                .create();
-    //        mNumDot.bindToTarget(view);
-    //    }
-    
     public void showBadgeCenterEnd(View view, int num, boolean isOmitMode, int omit) {
         if (view == null) {
             return;
