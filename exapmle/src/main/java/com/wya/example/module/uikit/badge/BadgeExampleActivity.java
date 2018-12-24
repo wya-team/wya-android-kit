@@ -16,6 +16,7 @@ import com.wya.uikit.badge.IBadgeView;
 import com.wya.uikit.slideview.Utils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class BadgeExampleActivity extends BaseActivity {
     
@@ -25,22 +26,22 @@ public class BadgeExampleActivity extends BaseActivity {
     @BindView(R.id.tv_num_dot)
     TextView tvNumDot;
     
-    @BindView(R.id.tv_string_dot)
+    @BindView(R.id.v_string_dot)
     View vStringDot;
     
-    @BindView(R.id.tv_market_dot_1)
+    @BindView(R.id.v_market_dot_1)
     View vMarketDot1;
     
-    @BindView(R.id.tv_market_dot_2)
+    @BindView(R.id.v_market_dot_2)
     View vMarketDot2;
     
-    @BindView(R.id.tv_market_dot_3)
+    @BindView(R.id.v_market_dot_3)
     View vMarketDot3;
     
-    @BindView(R.id.tv_market_dot_4)
+    @BindView(R.id.v_market_dot_4)
     View vMarketDot4;
     
-    @BindView(R.id.tv_market_dot_5)
+    @BindView(R.id.v_market_dot_5)
     View vMarketDot5;
     
     @BindView(R.id.ll_corner_dot)
@@ -49,14 +50,17 @@ public class BadgeExampleActivity extends BaseActivity {
     @BindView(R.id.tv_corner_dot)
     TextView tvCornerDot;
     
+    @BindView(R.id.v_bitmap_dot)
+    View vBitmapDot;
+    
     @Override
     protected int getLayoutID() {
         return R.layout.activity_badge_example;
     }
     
-    private IBadgeView mBadgeOmit;
-    private IBadgeView mBadgeShow;
-    private IBadgeView mBadgeEdit;
+    private IBadgeView mDot;
+    private IBadgeView mNumDot;
+    private IBadgeView mStringDot;
     
     public static void start(Context context) {
         if (null != context) {
@@ -72,45 +76,64 @@ public class BadgeExampleActivity extends BaseActivity {
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(BadgeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        showBadge(llDot, 0);
+        showDot(llDot);
         showBadgeCenterEnd(tvNumDot, 55, true, 50);
-        showBadgeCenterStart(vStringDot, "new");
+        showStringBadge(vStringDot, "new");
+        
         showBadgeCenterStart(vMarketDot1, "减");
         showBadgeCenterStart(vMarketDot2, "惠");
         showBadgeCenterStart(vMarketDot3, "免");
         showBadgeCenterStart(vMarketDot4, "返");
         showBadgeCenterStart(vMarketDot5, "HOT");
-        showBadgeDrawableCenterStart(llCornerDot, getResources().getDrawable(R.drawable.sale_badge), true);
-        showBadgeDrawableCenterStart(tvCornerDot, getResources().getDrawable(R.drawable.sale_badge), true);
+        showBadgeDrawableCenterEnd(llCornerDot, getResources().getDrawable(R.drawable.icon_sale_badge), true);
+        showBadgeDrawableCenterEnd(tvCornerDot, getResources().getDrawable(R.drawable.icon_sale_badge), true);
+        showBadgeDrawableCenter(vBitmapDot, getResources().getDrawable(R.drawable.icon_on_sale));
     }
     
-    public void showBadge(View view, int num) {
-        showBadge(view, num, false);
-    }
-    
-    public void updateBadge(View view, int num, boolean isShow) {
-        if (view == null) {
-            return;
+    @OnClick({R.id.ll_dot_container, R.id.ll_num_dot, R.id.ll_string_dot})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_dot_container:
+                if (null != mDot) {
+                    mDot.update(false);
+                }
+                break;
+            case R.id.ll_num_dot:
+                if (null != mNumDot) {
+                    mNumDot.update(false);
+                }
+                break;
+            
+            case R.id.ll_string_dot:
+                if (null != mStringDot) {
+                    mStringDot.update(false);
+                }
+                break;
         }
-        mBadgeShow = new Builder(this)
-                .setOffset(0, 0)
-                .setBadgeNum(num)
-                .isShow(isShow)
-                .create();
-        mBadgeShow.bindToTarget(view);
     }
     
-    public void showBadge(View view, int num, boolean isOmitMode) {
+    public void showDot(View view) {
         if (view == null) {
             return;
         }
         Builder builder = new Builder(this)
                 .setOffset(0, 0)
-                .setBadgeNum(num)
-                .setOmitMode(isOmitMode);
-        mBadgeOmit = builder.create();
-        mBadgeOmit.bindToTarget(view);
+                .setBadgeNum(0);
+        mDot = builder.create();
+        mDot.bindToTarget(view);
     }
+    
+    //    public void updateBadge(View view, int num, boolean isShow) {
+    //        if (view == null) {
+    //            return;
+    //        }
+    //        mNumDot = new Builder(this)
+    //                .setOffset(0, 0)
+    //                .setBadgeNum(num)
+    //                .isShow(isShow)
+    //                .create();
+    //        mNumDot.bindToTarget(view);
+    //    }
     
     public void showBadgeCenterEnd(View view, int num, boolean isOmitMode, int omit) {
         if (view == null) {
@@ -123,8 +146,20 @@ public class BadgeExampleActivity extends BaseActivity {
                 .setOmitMode(isOmitMode)
                 .setOmitText(num + "+")
                 .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_END, 0, 0));
-        mBadgeOmit = builder.create();
-        mBadgeOmit.bindToTarget(view);
+        mNumDot = builder.create();
+        mNumDot.bindToTarget(view);
+    }
+    
+    public void showStringBadge(View view, String text) {
+        if (view == null) {
+            return;
+        }
+        mStringDot = new Builder(this)
+                .setText(text)
+                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_START, 0, 0))
+                .setTextSize(DisplayUtil.sp2px(this, 10))
+                .create();
+        mStringDot.bindToTarget(view);
     }
     
     public void showBadgeCenterStart(View view, String text) {
@@ -148,13 +183,26 @@ public class BadgeExampleActivity extends BaseActivity {
         badgeView.bindToTarget(view);
     }
     
-    public void showBadgeDrawableCenterStart(View view, Drawable badgeDrawable, boolean isAttach) {
+    public void showBadgeDrawableCenterEnd(View view, Drawable badgeDrawable, boolean isAttach) {
         if (view == null) {
             return;
         }
         IBadgeView badgeView = new Builder(this)
-                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_END, 0, 0))
+                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_END_TOP, 0, 0))
                 .setAttach(isAttach)
+                .setBadgeBitmapSize(Utils.dp2px(this, 20))
+                .setBadgeDrawable(badgeDrawable)
+                .create();
+        badgeView.bindToTarget(view);
+    }
+    
+    public void showBadgeDrawableCenter(View view, Drawable badgeDrawable) {
+        if (view == null) {
+            return;
+        }
+        IBadgeView badgeView = new Builder(this)
+                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER, 0, 0))
+                .setAttach(false)
                 .setBadgeBitmapSize(Utils.dp2px(this, 20))
                 .setBadgeDrawable(badgeDrawable)
                 .create();

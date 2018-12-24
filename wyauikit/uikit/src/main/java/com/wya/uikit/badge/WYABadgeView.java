@@ -14,13 +14,13 @@ import android.os.Parcelable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.RelativeLayout;
 
-import com.wya.uikit.R;
 import com.wya.uikit.slideview.Utils;
 
 public class WYABadgeView extends View implements IBadgeView {
@@ -150,10 +150,34 @@ public class WYABadgeView extends View implements IBadgeView {
     }
     
     private void drawBadgeBitmap(Canvas canvas) {
-        Bitmap bitmap = getBitmap(mBadgeBitmapSize, getResources().getDrawable(R.drawable.sale_badge)); // TODO: 2018/12/24 ZCQ TEST
-        if (null != bitmap) {
-            canvas.drawBitmap(bitmap, mWidth - getPaddingRight() - mBadgeBitmapSize, getTop() / 2, null);
+        if (null == mBadgeDrawable) {
+            return;
         }
+        Bitmap bitmap = getBitmap(mBadgeBitmapSize, mBadgeDrawable);
+        if (null != bitmap) {
+            int top = getBitmapTop(bitmap);
+            canvas.drawBitmap(bitmap, mWidth - getPaddingRight() - mBadgeBitmapSize, top, null);
+        }
+    }
+    
+    private int getBitmapTop(Bitmap bitmap) {
+        if (null == bitmap) {
+            return 0;
+        }
+        int top = 0;
+        switch (mGravity.getGravity()) {
+            case Builder.BadgeGravity.GRAVITY_CENTER:
+            case Builder.BadgeGravity.GRAVITY_CENTER_START:
+            case Builder.BadgeGravity.GRAVITY_CENTER_END:
+                top = top + (mHeight - bitmap.getHeight()) / 2;
+                break;
+            case Builder.BadgeGravity.GRAVITY_CENTER_BOTTOM:
+            case Builder.BadgeGravity.GRAVITY_START_BOTTOM:
+            case Builder.BadgeGravity.GRAVITY_END_BOTTOM:
+                top = top + (mHeight - bitmap.getHeight());
+                break;
+        }
+        return top;
     }
     
     private void drawBadge(Canvas canvas, PointF center) {
@@ -244,6 +268,7 @@ public class WYABadgeView extends View implements IBadgeView {
      */
     private PointF getCenter() {
         float rectWidth = mTextRect.height() > mTextRect.width() ? mTextRect.height() : mTextRect.width();
+        Log.e("ZCQ", "getCenter ..");
         switch (mGravity.getGravity()) {
             case Builder.BadgeGravity.GRAVITY_START_TOP:
                 mCenter.x = mGravity.xOffset + mPadding + rectWidth / 2f;
@@ -506,6 +531,9 @@ public class WYABadgeView extends View implements IBadgeView {
                         mBackgroundRect.left = getCenter().x - (mTextRect.width() / 2f + mPadding);
                         mBackgroundRect.right = getCenter().x + (mTextRect.width() / 2f + mPadding);
                         widthNeeded = Double.valueOf(mBackgroundRect.right - mBackgroundRect.left).intValue();
+                    } else {
+                        // TODO: 2018/12/24 ZCQ TEST
+                        widthNeeded = getBitmap(mBadgeBitmapSize, mBadgeDrawable).getWidth();
                     }
                 }
                 
