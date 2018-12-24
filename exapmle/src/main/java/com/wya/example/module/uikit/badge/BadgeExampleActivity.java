@@ -2,6 +2,7 @@ package com.wya.example.module.uikit.badge;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.badge.Builder;
 import com.wya.uikit.badge.DisplayUtil;
 import com.wya.uikit.badge.IBadgeView;
+import com.wya.uikit.slideview.Utils;
 
 import butterknife.BindView;
 
@@ -25,6 +27,27 @@ public class BadgeExampleActivity extends BaseActivity {
     
     @BindView(R.id.tv_string_dot)
     View vStringDot;
+    
+    @BindView(R.id.tv_market_dot_1)
+    View vMarketDot1;
+    
+    @BindView(R.id.tv_market_dot_2)
+    View vMarketDot2;
+    
+    @BindView(R.id.tv_market_dot_3)
+    View vMarketDot3;
+    
+    @BindView(R.id.tv_market_dot_4)
+    View vMarketDot4;
+    
+    @BindView(R.id.tv_market_dot_5)
+    View vMarketDot5;
+    
+    @BindView(R.id.ll_corner_dot)
+    LinearLayout llCornerDot;
+    
+    @BindView(R.id.tv_corner_dot)
+    TextView tvCornerDot;
     
     @Override
     protected int getLayoutID() {
@@ -52,17 +75,13 @@ public class BadgeExampleActivity extends BaseActivity {
         showBadge(llDot, 0);
         showBadgeCenterEnd(tvNumDot, 55, true, 50);
         showBadgeCenterStart(vStringDot, "new");
-    }
-    
-    private void updateOffset(View view, int num) {
-        if (null == view) {
-            return;
-        }
-        mBadgeEdit = new Builder(this)
-                .setOffset(0, 0)
-                .setBadgeNum(num)
-                .create();
-        mBadgeEdit.bindToTarget(view);
+        showBadgeCenterStart(vMarketDot1, "减");
+        showBadgeCenterStart(vMarketDot2, "惠");
+        showBadgeCenterStart(vMarketDot3, "免");
+        showBadgeCenterStart(vMarketDot4, "返");
+        showBadgeCenterStart(vMarketDot5, "HOT");
+        showBadgeDrawableCenterStart(llCornerDot, getResources().getDrawable(R.drawable.sale_badge), true);
+        showBadgeDrawableCenterStart(tvCornerDot, getResources().getDrawable(R.drawable.sale_badge), true);
     }
     
     public void showBadge(View view, int num) {
@@ -108,56 +127,39 @@ public class BadgeExampleActivity extends BaseActivity {
         mBadgeOmit.bindToTarget(view);
     }
     
-    public void showBadgeCenterEnd(View view, int num) {
-        if (view == null) {
-            return;
-        }
-        IBadgeView badgeView = new Builder(this)
-                .setOffset(0, 0)
-                .setBadgeNum(num)
-                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_END, 0, 0))
-                .setTextSize(DisplayUtil.sp2px(this, 10))
-                .create();
-        badgeView.bindToTarget(view);
-    }
-    
     public void showBadgeCenterStart(View view, String text) {
         if (view == null) {
             return;
         }
+        showBadgeCenterStart(view, text, null, false);
+    }
+    
+    public void showBadgeCenterStart(View view, String text, Drawable badgeDrawable, boolean isAttach) {
+        if (view == null) {
+            return;
+        }
         IBadgeView badgeView = new Builder(this)
-                .setOffset(0, 0)
                 .setText(text)
                 .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_START, 0, 0))
                 .setTextSize(DisplayUtil.sp2px(this, 10))
+                .setAttach(isAttach)
+                .setBackgroundDrawable(badgeDrawable)
                 .create();
         badgeView.bindToTarget(view);
     }
     
-    public void showBadgeCenterEnd(View view, String text) {
+    public void showBadgeDrawableCenterStart(View view, Drawable badgeDrawable, boolean isAttach) {
         if (view == null) {
             return;
         }
         IBadgeView badgeView = new Builder(this)
-                .setOffset(0, 0)
-                .setText(text)
                 .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_END, 0, 0))
-                .setTextSize(DisplayUtil.sp2px(this, 10))
+                .setAttach(isAttach)
+                .setBadgeBitmapSize(Utils.dp2px(this, 20))
+                .setBadgeDrawable(badgeDrawable)
                 .create();
         badgeView.bindToTarget(view);
     }
     
-    public void showBadge(View view, String text) {
-        if (view == null) {
-            return;
-        }
-        IBadgeView badgeView = new Builder(this)
-                .setOffset(0, 0)
-                .setText(text)
-                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_END, 0, 0))
-                .setTextSize(DisplayUtil.sp2px(this, 10))
-                .create();
-        badgeView.bindToTarget(view);
-    }
 }
 

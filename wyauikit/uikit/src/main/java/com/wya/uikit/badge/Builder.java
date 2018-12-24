@@ -21,6 +21,10 @@ public class Builder {
     private boolean isShow;
     private Context context;
     
+    private boolean isAttach;
+    private Drawable badgeDrawable;
+    private int badgeBitmapSize;
+    
     @IntDef
     public @interface BadgeGravity {
         
@@ -83,6 +87,7 @@ public class Builder {
         this.textColor = Color.WHITE;
         this.backgroundColor = Color.RED;
         this.isShow = true;
+        this.isAttach = true;
     }
     
     public Builder setBackgroundDrawable(Drawable drawable) {
@@ -146,31 +151,47 @@ public class Builder {
         return this;
     }
     
+    public Builder setAttach(boolean isAttach) {
+        this.isAttach = isAttach;
+        return this;
+    }
+    
+    public Builder setBadgeDrawable(Drawable drawable) {
+        this.badgeDrawable = drawable;
+        return this;
+    }
+    
+    public Builder setBadgeBitmapSize(int size) {
+        this.badgeBitmapSize = size;
+        return this;
+    }
+    
     public IBadgeView create() {
         IBadgeView badgeView = new WYABadgeView(context);
-        badgeView.setBadgeNum(badgeNum);
-        
-        if (!TextUtils.isEmpty(text)) {
-            badgeView.setBadgeText(text);
+        if (null != badgeDrawable) {
+            badgeView.setBadgeDrawable(badgeDrawable);
+            badgeView.setBadgeBitmapSize(badgeBitmapSize);
+        } else {
+            badgeView.setBadgeNum(badgeNum);
+            if (!TextUtils.isEmpty(text)) {
+                badgeView.setBadgeText(text);
+            }
+            badgeView.setTextSize(textSize);
+            badgeView.setTextColor(textColor);
+            badgeView.setBackgroundColor(backgroundColor);
+            if (null != backgroundDrawable) {
+                badgeView.setBackgroundDrawable(backgroundDrawable);
+            }
+            badgeView.setOmitMode(isOmitMode);
+            badgeView.setOmitNum(omitNum);
+            badgeView.setOmitText(omitText);
         }
-        
-        badgeView.setTextSize(textSize);
-        badgeView.setTextColor(textColor);
-        badgeView.setBackgroundColor(backgroundColor);
-        
-        badgeView.setPadding(padding);
-        if (null != backgroundDrawable) {
-            badgeView.setBackgroundDrawable(backgroundDrawable);
-        }
+        badgeView.setAttach(isAttach);
         badgeView.setPadding(padding);
         if (null != gravity) {
             badgeView.setGravity(gravity);
         }
-        badgeView.setOmitMode(isOmitMode);
-        badgeView.setOmitNum(omitNum);
-        badgeView.setOmitText(omitText);
         badgeView.update(isShow);
-        
         return badgeView;
     }
     
