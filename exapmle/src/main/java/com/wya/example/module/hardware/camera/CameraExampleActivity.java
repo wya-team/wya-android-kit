@@ -22,13 +22,13 @@ import com.wya.utils.utils.FileUtil;
 
 import java.io.File;
 
- /**
-  * 创建日期：2018/12/5 16:34
-  * 作者： Mao Chunjiang
-  * 文件名称：CameraExampleActivity
-  * 类说明：相机实例
-  */
- 
+/**
+ * 创建日期：2018/12/5 16:34
+ * 作者： Mao Chunjiang
+ * 文件名称：CameraExampleActivity
+ * 类说明：相机实例
+ */
+
 public class CameraExampleActivity extends AppCompatActivity {
     private WYACameraView wyaCameraView;
     private String dir_name = "WYACamera";
@@ -141,8 +141,8 @@ public class CameraExampleActivity extends AppCompatActivity {
         wyaCameraView.onPause();
     }
 
-     @Override
-     protected void onDestroy() {
-         super.onDestroy();
-     }
- }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+}
