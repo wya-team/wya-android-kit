@@ -70,6 +70,8 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		mRecyclerSecond = view.findViewById(R.id.second_recycler);
 		initRecycler();
 		setOutsideTouchable(true);
+		setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+		setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
 //		setAnimationStyle(R.style.choiceMenuStyle);
 		setFocusable(true);
 		// 设置pop透明效果

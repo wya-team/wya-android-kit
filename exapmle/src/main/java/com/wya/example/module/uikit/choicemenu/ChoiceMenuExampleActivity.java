@@ -116,12 +116,12 @@ public class ChoiceMenuExampleActivity extends BaseActivity {
         showOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
                 choiceMenu1.showAsDropDown(showOne);
             }
         });
         showTwo.setOnClickListener(v -> choiceMenu2.showAsDropDown(showTwo));
-        
+
     }
     
     private void initData() {
