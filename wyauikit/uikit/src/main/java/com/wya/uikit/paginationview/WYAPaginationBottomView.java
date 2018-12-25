@@ -152,6 +152,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
     public void setButtonBackgroundResource(@DrawableRes int resource) {
         mBtnBg = resource;
         mButtonRight.setBackgroundResource(resource);
+        mButtonLeft.setBackgroundResource(resource);
     }
 
 

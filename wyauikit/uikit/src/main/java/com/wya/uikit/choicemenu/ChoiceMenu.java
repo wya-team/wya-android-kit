@@ -70,7 +70,7 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		mRecyclerSecond = view.findViewById(R.id.second_recycler);
 		initRecycler();
 		setOutsideTouchable(true);
-		setAnimationStyle(R.style.choiceMenuStyle);
+//		setAnimationStyle(R.style.choiceMenuStyle);
 		setFocusable(true);
 		// 设置pop透明效果
 		setBackgroundDrawable(new ColorDrawable(0x0000));

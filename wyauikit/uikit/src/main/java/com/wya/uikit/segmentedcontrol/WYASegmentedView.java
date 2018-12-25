@@ -211,6 +211,17 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
 		return false;
 	}
 
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+		int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+		if (heightMode == MeasureSpec.AT_MOST) {
+			heightSize = (int) dp2px(30);
+		}
+
+		super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(heightSize, heightMode));
+	}
 
 	@Override
 	public void onClick(View v) {

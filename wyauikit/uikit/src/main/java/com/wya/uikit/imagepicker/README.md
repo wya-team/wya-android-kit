@@ -19,4 +19,4 @@ ImagePickerCreator.create(ImagePickerExampleActivity.this)
 		.forResult(1001);
 ````
 
-- onActivityResult中返回结果中获取选中的图片list,key是PickerConfig.IMAGE_SELECTED；value是Serializable类型的`List<LocalImage>`
+- onActivityResult中返回结果中获取选中的图片list,key是PickerConfig.IMAGE_SELECTED；value是StringArrayList类型的`List<String>`

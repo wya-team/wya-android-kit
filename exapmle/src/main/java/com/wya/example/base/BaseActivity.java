@@ -75,9 +75,9 @@ public abstract class BaseActivity extends BaseToolBarActivity {
     public boolean dispatchTouchEvent(MotionEvent ev) {
         return mGestureDetector != null ? (mGestureDetector.onTouchEvent(ev) || super.dispatchTouchEvent(ev)) : super.dispatchTouchEvent(ev);
     }
-    
+
     public void setSwipeBack(boolean swipeBack) {
         this.mIsSwipeBack = swipeBack;
     }
-    
+
 }
