@@ -1,12 +1,15 @@
 package com.wya.example.module.uikit.dialog;
 
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -77,9 +80,9 @@ public class DialogExampleActivity extends BaseActivity {
             tabLoading.setVisibility(View.VISIBLE);
         }
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
+        initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
-            startActivity(new Intent(DialogExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+            startActivity(new Intent(DialogExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
         initItems();
         initExpandList();
@@ -140,7 +143,6 @@ public class DialogExampleActivity extends BaseActivity {
                         .canEdit(true)
                         .editTextStr("编辑的内容")
                         .hintEditTextStr("提示内容")
-                        .message("内容")
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
                     wyaCustomDialog.dismiss();
@@ -156,7 +158,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 RecyclerView recyclerView = v.findViewById(R.id.recycle_view);
                                 data = new ArrayList<>();
                                 for (int i = 0; i < 50; i++) {
-                                    data.add("" + i);
+                                    data.add("列表" + i);
                                 }
                                 if (data != null && data.size() > 0) {
                                     recyclerView.setLayoutManager(new LinearLayoutManager(DialogExampleActivity.this));
@@ -167,7 +169,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            getWyaToast().showShort(position + "");
+                                            getWyaToast().showShort(data.get(position));
                                         }
                                     });
                                 }
@@ -195,7 +197,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 title.setVisibility(View.VISIBLE);
                                 data = new ArrayList<>();
                                 for (int i = 0; i < 50; i++) {
-                                    data.add("" + i);
+                                    data.add("列表" + i);
                                 }
                                 if (data != null && data.size() > 0) {
                                     recyclerView.setLayoutManager(new LinearLayoutManager(DialogExampleActivity.this));
@@ -206,7 +208,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            getWyaToast().showShort(position + "");
+                                            getWyaToast().showShort(data.get(position));
                                         }
                                     });
                                 }
@@ -247,15 +249,22 @@ public class DialogExampleActivity extends BaseActivity {
             case "底部弹出列表":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
                         .setLayoutRes(R.layout.way_dialog_custom_list_layout, new CustomListener() {
+                            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                             @Override
                             public void customLayout(View v) {
+                                LinearLayout parent = v.findViewById(R.id.parent);
                                 RecyclerView recyclerView = v.findViewById(R.id.recycle_view);
+                                parent.setBackground(null);
+                                parent.setBackgroundColor(getResources().getColor(R.color.white));
+                                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) parent.getLayoutParams();
+                                lp.setMargins(0, 0, 0, 0);
+                                parent.setLayoutParams(lp);
                                 TextView title = v.findViewById(R.id.title);
                                 title.setText("标题");
                                 title.setVisibility(View.VISIBLE);
                                 data = new ArrayList<>();
                                 for (int i = 0; i < 50; i++) {
-                                    data.add("" + i);
+                                    data.add("列表" + i);
                                 }
                                 if (data != null && data.size() > 0) {
                                     recyclerView.setLayoutManager(new LinearLayoutManager(DialogExampleActivity.this));
@@ -266,7 +275,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            getWyaToast().showShort(position + "");
+                                            getWyaToast().showShort(data.get(position));
                                         }
                                     });
                                 }
