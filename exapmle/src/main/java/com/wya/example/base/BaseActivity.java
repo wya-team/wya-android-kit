@@ -37,9 +37,9 @@ public abstract class BaseActivity extends BaseToolBarActivity {
         initWYAActionBarDefault(true, ColorUtil.int2Hex(WYAConstants.THEME_COLOR), true, "初始化标题", 18, "#000000",
                 false, "", 14, "#000000", true, R.drawable.icon_backblue,
                 false, "", 14, "#000000", false, false, R.drawable.icon_search, R.drawable.iocn_saoyisao, false, "", 14, "#000000", false);
+        initToolBarBgColor(ColorUtil.hex2Int("#ffffff"), true);
         initView();
         initGesture();
-//        Utils.convertActivityToTranslucent(this);
         Utils.convertActivityFromTranslucent(this);
     }
     

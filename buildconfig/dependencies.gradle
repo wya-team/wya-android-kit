@@ -23,6 +23,7 @@ ext {
             butterknife_compiler: "com.jakewharton:butterknife-compiler:${butterknnifeVersion}",
             rxbinding: "com.jakewharton.rxbinding2:rxbinding:${rxbindingVersion}",
             base_adapter: "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30",
+            zxing:"com.google.zxing:core:3.3.3"
     ]
 
 }
