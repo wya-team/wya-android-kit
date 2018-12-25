@@ -14,12 +14,13 @@ import com.wya.example.R;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.customitems.WYAInputItem;
 import com.wya.utils.utils.AppUtil;
+import com.wya.utils.utils.PhoneUtil;
 
 
 public class AboutUsFragment extends Fragment {
 
     private View view;
-    private TextView tv_version;
+    private TextView tv_version, tv_system_version, tv_device;
     private WYAInputItem git_hub_address;
     private WYAInputItem git_hub_contributor;
     private WYAInputItem git_hub_version;
@@ -38,15 +39,19 @@ public class AboutUsFragment extends Fragment {
         git_hub_address = view.findViewById(R.id.git_hub_address);
         git_hub_contributor = view.findViewById(R.id.git_hub_contributor);
         git_hub_version = view.findViewById(R.id.git_hub_version);
+        tv_device = view.findViewById(R.id.tv_device);
+        tv_system_version = view.findViewById(R.id.tv_system_version);
         tv_version.setText(AppUtil.getVersionName(getActivity()));
+        tv_device.setText("DEVICE:" + PhoneUtil.getInstance().getMobileBrand() + " " + PhoneUtil.getInstance().getPhoneModel());
+        tv_system_version.setText("SYSTEM:" + PhoneUtil.getInstance().getSDKVersion());
         git_hub_address.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url","https://github.com/wya-team/wya-android-kit/blob/develop/README.md").putExtra("skip", true));
+            startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url", "https://github.com/wya-team/wya-android-kit/blob/develop/README.md").putExtra("skip", true));
         });
         git_hub_contributor.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url","https://github.com/wya-team/wya-android-kit/blob/develop/CONTRIBUTING.md").putExtra("skip", true));
+            startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url", "https://github.com/wya-team/wya-android-kit/blob/develop/CONTRIBUTING.md").putExtra("skip", true));
         });
         git_hub_version.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url","https://github.com/wya-team/wya-android-kit/blob/develop/CHANGELOG.md"));
+            startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url", "https://github.com/wya-team/wya-android-kit/blob/develop/CHANGELOG.md"));
         });
 
     }
