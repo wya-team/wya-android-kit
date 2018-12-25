@@ -123,6 +123,8 @@ public class SwipeBackLayout extends FrameLayout {
      */
     private int mTrackingEdge;
     
+    private boolean mPageTranslucent = true;
+    
     public SwipeBackLayout(Context context) {
         this(context, null);
     }
@@ -638,14 +640,12 @@ public class SwipeBackLayout extends FrameLayout {
         }
     }
     
-    private boolean pageTranslucent = true;
-    
     public void setPageTranslucent(boolean pageTranslucent) {
-        this.pageTranslucent = pageTranslucent;
+        this.mPageTranslucent = pageTranslucent;
     }
     
     public boolean isPageTranslucent() {
-        return pageTranslucent;
+        return mPageTranslucent;
     }
     
 }
