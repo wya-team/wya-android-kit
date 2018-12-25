@@ -37,6 +37,7 @@ public class WYALoadingDialog extends Dialog {
        img_load = view.findViewById(R.id.img_load);
        hintText = view.findViewById(R.id.hintTv);
        animationDrawable = (AnimationDrawable) img_load.getBackground();
+       getWindow().setDimAmount(0);
        //取消dialog空白处点击消失事件
        this.setCanceledOnTouchOutside(canceledOnTouch);
        setCancelable(cancelable);

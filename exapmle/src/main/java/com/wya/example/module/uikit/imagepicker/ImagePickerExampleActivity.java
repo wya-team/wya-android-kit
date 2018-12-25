@@ -331,7 +331,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                     }
                 })
                 .cancelable(true)
-                .Gravity(Gravity.BOTTOM)
+                .gravity(Gravity.BOTTOM)
                 .cancelTouchout(true)
                 .build();
         mWyaCustomDialog.show();

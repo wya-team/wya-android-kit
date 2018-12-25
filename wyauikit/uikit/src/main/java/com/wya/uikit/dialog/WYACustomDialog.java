@@ -65,6 +65,8 @@ public class WYACustomDialog extends Dialog {
 
     private int gravity;
 
+    private float amount;
+
 
     public WYACustomDialog(Builder builder) {
         super(builder.context, R.style.WYACustomDialog);
@@ -89,6 +91,7 @@ public class WYACustomDialog extends Dialog {
         this.confirmColor = builder.confirmColor;
         this.cancelColor = builder.cancelColor;
         this.gravity = builder.gravity;
+        this.amount = builder.amount;
 
         initView(builder.context);
     }
@@ -146,6 +149,9 @@ public class WYACustomDialog extends Dialog {
         params.width = width;
         params.height = height;
         window.setAttributes(params);
+        if(amount != -1){
+            getWindow().setDimAmount(amount);
+        }
     }
 
 
@@ -391,6 +397,9 @@ public class WYACustomDialog extends Dialog {
         private int height = WindowManager.LayoutParams.WRAP_CONTENT;
         private int width = WindowManager.LayoutParams.MATCH_PARENT;
 
+        private float amount = -1;//默认不设置,边框透明
+
+
         public Builder(Context context) {
             this.context = context;
         }
@@ -484,8 +493,13 @@ public class WYACustomDialog extends Dialog {
         }
 
 
-        public Builder Gravity(int gravity) {
+        public Builder gravity(int gravity) {
             this.gravity = gravity;
+            return this;
+        }
+
+        public Builder amount(float amount) {
+            this.amount = amount;
             return this;
         }
 
