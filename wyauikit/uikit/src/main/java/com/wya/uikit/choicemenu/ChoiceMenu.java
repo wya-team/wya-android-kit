@@ -38,8 +38,8 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 	private int selectPosition;
 	private boolean isShadow = true;
 	private OnFirstAdapterItemClickListener mOnFirstAdapterItemClickListener;
-
-
+	
+	
 	public ChoiceMenu(Context context, List<T> list1, List<List<T>> list2, @LayoutRes int firstId,
 					  @LayoutRes int secondId) {
 		super(context);
@@ -50,7 +50,7 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		this.secondId = secondId;
 		init();
 	}
-
+	
 	public ChoiceMenu(Context context, List<T> list1, @LayoutRes int firstId) {
 		super(context);
 		mContext = context;
@@ -58,7 +58,7 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		this.firstId = firstId;
 		init();
 	}
-
+	
 	/**
 	 * init ChoiceMenu
 	 */
@@ -70,18 +70,20 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		mRecyclerSecond = view.findViewById(R.id.second_recycler);
 		initRecycler();
 		setOutsideTouchable(true);
-		setAnimationStyle(R.style.choiceMenuStyle);
+		setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+		setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+		//		setAnimationStyle(R.style.choiceMenuStyle);
 		setFocusable(true);
 		// 设置pop透明效果
 		setBackgroundDrawable(new ColorDrawable(0x0000));
 	}
-
+	
 	/**
 	 * init recyclerView
 	 * the first adapter has do something that you can implemented in setValueFirst
 	 */
 	private void initRecycler() {
-
+		
 		//has a bug:if recyclerView's set weight=1 and only has a recyclerView,recyclerView's
 		// item will be not fill in screen full.
 		if (data2 == null) {
@@ -90,8 +92,8 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 			layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
 			mRecyclerFirst.setLayoutParams(layoutParams);
 		}
-
-
+		
+		
 		mRecyclerFirst.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager
 				.VERTICAL, false));
 		mRecyclerSecond.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager
@@ -133,22 +135,22 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 			mRecyclerSecond.setVisibility(View.GONE);
 		}
 	}
-
+	
 	/**
 	 * first recyclerView convert value
 	 * @param helper viewHolder
 	 * @param item value
 	 */
 	public abstract void setValueFirst(ChoiceMenuViewHolder helper, T item);
-
+	
 	/**
 	 * second recyclerView convert value
 	 * @param helper viewHolder
 	 * @param item value
 	 */
 	public abstract void setValueSecond(ChoiceMenuViewHolder helper, T item);
-
-
+	
+	
 	/**
 	 * first recyclerView add lines
 	 *
@@ -158,7 +160,7 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 	public void addLine(@ColorRes int colorId, int height) {
 		mRecyclerFirst.addItemDecoration(new ItemDecoration(mContext, colorId, height));
 	}
-
+	
 	/**
 	 * second recyclerView add lines
 	 *
@@ -168,11 +170,11 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 	public void addSecondLine(@ColorRes int colorId, int height) {
 		mRecyclerSecond.addItemDecoration(new ItemDecoration(mContext, colorId, height));
 	}
-
+	
 	public void setShadow(boolean isShadow) {
 		this.isShadow = isShadow;
 	}
-
+	
 	/**
 	 * update data
 	 */
@@ -184,16 +186,16 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 			mAdapterSecond.notifyDataSetChanged();
 		}
 	}
-
+	
 	public void setOnFirstAdapterItemClickListener(OnFirstAdapterItemClickListener
 														   onFirstAdapterItemClickListener) {
 		mOnFirstAdapterItemClickListener = onFirstAdapterItemClickListener;
 	}
-
+	
 	public interface OnFirstAdapterItemClickListener{
 		void onClick(int position, View v, ChoiceMenu menu);
 	}
-
+	
 	private void setBackground(float alpha) {
 		if (isShadow) {
 			if (mContext instanceof Activity) {
@@ -210,35 +212,35 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 			}
 		}
 	}
-
-
+	
+	
 	@Override
 	public void dismiss() {
 		setBackground(1);
 		super.dismiss();
 	}
-
-
+	
+	
 	@Override
 	public void showAtLocation(View parent, int gravity, int x, int y) {
 		setBackground(0.5f);
 		super.showAtLocation(parent, gravity, x, y);
 	}
-
-
-
+	
+	
+	
 	@Override
 	public void showAsDropDown(View anchor, int xoff, int yoff, int gravity) {
 		setBackground(0.5f);
 		super.showAsDropDown(anchor, xoff, yoff, gravity);
 	}
-
+	
 	@Override
 	public void showAsDropDown(View anchor) {
 		setBackground(0.5f);
 		super.showAsDropDown(anchor);
 	}
-
+	
 	@Override
 	public void showAsDropDown(View anchor, int xoff, int yoff) {
 		super.showAsDropDown(anchor, xoff, yoff);

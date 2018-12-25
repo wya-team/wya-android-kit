@@ -3,6 +3,7 @@ package com.wya.example.module.uikit.notice;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,11 +16,14 @@ import butterknife.BindView;
 
 public class NoticeExampleActivity extends BaseActivity {
     
+    @BindView(R.id.vs_down2up)
+    SwitcherView vsDown2Up;
+    
     @BindView(R.id.vs_up2down)
     SwitcherView vsUp2Down;
     
-    @BindView(R.id.vs_down2up)
-    SwitcherView vsDown2Up;
+    @BindView(R.id.ll_closable_switcher)
+    LinearLayout llClosableSwitcher;
     
     @BindView(R.id.vs_left2right)
     SwitcherView vsLeft2Right;
@@ -27,7 +31,7 @@ public class NoticeExampleActivity extends BaseActivity {
     @BindView(R.id.vs_right2left)
     SwitcherView vsRight2Left;
     
-    private String noticeText = "这里是具体的通知，这里是具体的通知，这里...";
+    private String noticeText = "这里是具体的通知，这里是具体的通知，这里是具体的通知，这里是具体的通知";
     
     public static void start(Activity activity) {
         if (null == activity) {
@@ -54,6 +58,25 @@ public class NoticeExampleActivity extends BaseActivity {
     }
     
     private void showSwitcher() {
+        
+        // down2up
+        vsDown2Up.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
+            @Override
+            public void onSwitch(View nextView, int index) {
+                if (null == nextView) return;
+                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
+                nextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (vsDown2Up.isSkipable()) {
+                            Toast.makeText(NoticeExampleActivity.this, "onClick", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+        vsDown2Up.inflate(R.layout.item_switch_view).startSwitcher();
+        
         // up2down
         vsUp2Down.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
@@ -62,42 +85,31 @@ public class NoticeExampleActivity extends BaseActivity {
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        Toast.makeText(v.getContext().getApplicationContext(), "click 1", Toast.LENGTH_SHORT).show();
+                    public void onClick(View view) {
+                        if (vsUp2Down.isClosable()) {
+                            vsUp2Down.pauseSwitcher();
+                            llClosableSwitcher.setVisibility(View.GONE);
+                        } else if (vsUp2Down.isSkipable()) {
+                            Toast.makeText(NoticeExampleActivity.this, "onClick", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }
         });
         vsUp2Down.inflate(R.layout.item_switch_view).startSwitcher();
         
-        // down2up
-        vsDown2Up.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
-            @Override
-            public void onSwitch(View nextView, int index) {
-                if (null == nextView) return;
-                if (index == 3) vsDown2Up.pauseSwitcher();
-                ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
-                nextView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        vsDown2Up.startSwitcher();
-                        Toast.makeText(v.getContext().getApplicationContext(), "click 2", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-        vsDown2Up.inflate(R.layout.item_switch_view).startSwitcher();
-        
         // left2right
         vsLeft2Right.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
-                if (nextView == null) return;
+                if (null == nextView) return;
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        Toast.makeText(v.getContext().getApplicationContext(), "click 3", Toast.LENGTH_SHORT).show();
+                    public void onClick(View view) {
+                        if (vsLeft2Right.isSkipable()) {
+                            Toast.makeText(NoticeExampleActivity.this, "onClick", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }
@@ -108,18 +120,11 @@ public class NoticeExampleActivity extends BaseActivity {
         vsRight2Left.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
-                if (nextView == null) return;
+                if (null == nextView) return;
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
-                nextView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(v.getContext().getApplicationContext(), "click 4", Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         });
         vsRight2Left.inflate(R.layout.item_switch_view).startSwitcher();
-        
     }
     
 }

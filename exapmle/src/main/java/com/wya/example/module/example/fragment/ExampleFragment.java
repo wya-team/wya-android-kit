@@ -15,7 +15,6 @@ import com.wya.example.module.example.adapter.ExampleExpandableListAdapter;
 import com.wya.example.module.example.bean.ExampleItem;
 import com.wya.example.module.example.view.CustomerExpandableListView;
 import com.wya.example.module.hardware.camera.StartCameraExampleActivity;
-import com.wya.example.module.hardware.scan.CustomCaptureActivity;
 import com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
 import com.wya.example.module.uikit.banner.BannerExampleActivity;
@@ -187,7 +186,7 @@ public class ExampleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), TabBarExampleActivity.class).putExtra("url", UIKIT_URL+"tabbar"+"/README.md"));
                 break;
             case "分页控制器(tablayout)":
-                startActivity(new Intent(getActivity(), TabLayoutExampleActivity.class).putExtra("url", UIKIT_URL+"segementedcontrol"+"/README.md"));
+                startActivity(new Intent(getActivity(), TabLayoutExampleActivity.class).putExtra("url", UIKIT_URL+"segmentedcontrol"+"/README.md"));
                 break;
             case "搜索栏(searchBar)":
                 startActivity(new Intent(getActivity(), SearchBarExampleActivity.class).putExtra("url", UIKIT_URL+"searchbar"+"/README.md"));

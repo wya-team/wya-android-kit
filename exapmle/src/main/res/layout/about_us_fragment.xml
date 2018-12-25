@@ -42,13 +42,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="right"
+                android:paddingRight="@dimen/dp_5"
                 android:paddingTop="@dimen/dp_10"
-                android:text="platform Android"
+                android:text="Platform : Android"
+                android:textColor="@color/c999999"
+                android:textSize="@dimen/sp_12" />
+
+
+            <TextView
+                android:id="@+id/tv_system_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_10"
+                android:textColor="@color/c999999"
+                android:textSize="@dimen/sp_12" />
+
+
+            <TextView
+                android:id="@+id/tv_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_10"
                 android:textColor="@color/c999999"
                 android:textSize="@dimen/sp_12" />
 
         </LinearLayout>
-
 
         <com.wya.uikit.customitems.WYAInputItem
             android:id="@+id/git_hub_address"

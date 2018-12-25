@@ -28,6 +28,8 @@ public class SwitcherView extends ViewSwitcher {
     private SwitcherViewListener mListener;
     private boolean mIsTaskLive;
     private int mIndex;
+    private boolean mClosable;
+    private boolean mSkipable;
     
     public SwitcherView(Context context) {
         this(context, null);
@@ -51,6 +53,8 @@ public class SwitcherView extends ViewSwitcher {
             if (null != typedArray) {
                 mAnimDirection = typedArray.getInteger(R.styleable.SwitcherView_anim_direction, DEF_ANIMATOR_DIRENCTION);
                 mAnimDuration = typedArray.getInteger(R.styleable.SwitcherView_anim_duration, DEF_ANIMATOR_DURATION);
+                mClosable = typedArray.getBoolean(R.styleable.SwitcherView_switch_closable, false);
+                mSkipable = typedArray.getBoolean(R.styleable.SwitcherView_switch_skipable, false);
                 mSwitchDuration = typedArray.getInteger(R.styleable.SwitcherView_switch_duration, DEF_SWITCH_DURATION);
                 typedArray.recycle();
             }
@@ -195,7 +199,7 @@ public class SwitcherView extends ViewSwitcher {
     }
     
     public void switchToNextView() {
-        if (null != mListener) {
+        if (null != mListener && null != getNextView()) {
             mListener.onSwitch(this.getNextView(), mIndex);
             this.showNext();
             mIndex++;
@@ -215,11 +219,28 @@ public class SwitcherView extends ViewSwitcher {
     }
     
     public interface SwitcherViewListener {
+        
         void onSwitch(View view, int index);
+        
     }
     
     public void setSwitcheNextViewListener(SwitcherViewListener listener) {
         this.mListener = listener;
     }
     
+    public void setClosable(boolean closable) {
+        mClosable = closable;
+    }
+    
+    public boolean isClosable() {
+        return mClosable;
+    }
+    
+    public void setSkipable(boolean skipable) {
+        mSkipable = skipable;
+    }
+    
+    public boolean isSkipable() {
+        return mSkipable;
+    }
 }

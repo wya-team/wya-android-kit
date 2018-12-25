@@ -7,6 +7,7 @@
 
 ## 属性说明
 WYASegmentedView属性说明
+
 属性|说明
 ---|---
 lineColor|中间横线颜色
