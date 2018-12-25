@@ -289,7 +289,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         if (showImgRight) {
             if (imgRightRes != 0) {
                 img_right.setVisibility(View.VISIBLE);
-                img_right.setBackground(getResources().getDrawable(imgRightRes));
+                img_right.setImageDrawable(getResources().getDrawable(imgRightRes));
             } else {
                 img_right.setVisibility(View.GONE);
             }
@@ -310,7 +310,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         if (showImgAnther) {
             if (imgRightAntherRes != 0) {
                 img_right_anther.setVisibility(View.VISIBLE);
-                img_right_anther.setBackground(getResources().getDrawable(imgRightAntherRes));
+                img_right_anther.setImageDrawable(getResources().getDrawable(imgRightAntherRes));
             } else {
                 img_right_anther.setVisibility(View.GONE);
             }

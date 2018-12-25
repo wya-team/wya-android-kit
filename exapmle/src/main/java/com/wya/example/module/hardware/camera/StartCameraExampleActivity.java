@@ -19,12 +19,8 @@ import android.widget.Toast;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
-import com.wya.example.module.uikit.button.ButtonExampleActivity;
-import com.wya.example.module.uikit.stepper.StepperExampleActivity;
 import com.wya.hardware.camera.WYACameraView;
-import com.wya.hardware.camera.util.DeviceUtil;
 import com.wya.uikit.button.WYAButton;
-import com.wya.utils.utils.DataCleanUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,8 +38,6 @@ public class StartCameraExampleActivity extends BaseActivity {
     RadioButton takeVideoAndPhoto;
     @BindView(R.id.btn)
     WYAButton btn;
-    @BindView(R.id.device)
-    TextView device;
     @BindView(R.id.et_duration)
     EditText etDuration;
     @BindView(R.id.tv_path)
@@ -60,11 +54,10 @@ public class StartCameraExampleActivity extends BaseActivity {
     protected void initView() {
         setToolBarTitle("CameraExample");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
+        initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
-            startActivity(new Intent(StartCameraExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+            startActivity(new Intent(StartCameraExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        device.setText(DeviceUtil.getDeviceInfo());
     }
 
     /**

@@ -45,7 +45,7 @@ public class PhoneUtil {
     }
 
     /**
-     * 获取手机系统版本号
+     * 获取手机系统版本号 API
      *
      * @return
      */
@@ -59,12 +59,27 @@ public class PhoneUtil {
         }
         return sdkVersion;
     }
+    /**
+     * 获取手机系统版本号 6.0.1
+     *
+     * @return
+     */
+    public String getSDKVersion() {
+        return android.os.Build.VERSION.RELEASE;
+    }
 
     /**
      * 获取手机型号
      */
     public String getPhoneModel() {
         return android.os.Build.MODEL;
+    }
+
+    /**
+     * 获取手机型号
+     */
+    public String getMobileBrand() {
+        return android.os.Build.BRAND;
     }
 
     /**
