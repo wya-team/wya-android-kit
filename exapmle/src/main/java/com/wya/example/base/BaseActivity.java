@@ -11,7 +11,6 @@ import com.wya.example.module.utils.GestureFlingRightHelper;
 import com.wya.helper.WYAConstants;
 import com.wya.uikit.toast.WYAToast;
 import com.wya.uikit.toolbar.BaseToolBarActivity;
-import com.wya.uikit.toolbar.swipeback.Utils;
 import com.wya.utils.utils.ColorUtil;
 
 import butterknife.ButterKnife;
@@ -37,10 +36,9 @@ public abstract class BaseActivity extends BaseToolBarActivity {
         initWYAActionBarDefault(true, ColorUtil.int2Hex(WYAConstants.THEME_COLOR), true, "初始化标题", 18, "#000000",
                 false, "", 14, "#000000", true, R.drawable.icon_backblue,
                 false, "", 14, "#000000", false, false, R.drawable.icon_search, R.drawable.iocn_saoyisao, false, "", 14, "#000000", false);
+        initToolBarBgColor(ColorUtil.hex2Int("#ffffff"), true);
         initView();
         initGesture();
-//        Utils.convertActivityToTranslucent(this);
-        Utils.convertActivityFromTranslucent(this);
     }
     
     private void startActivityStyle() {
@@ -59,23 +57,18 @@ public abstract class BaseActivity extends BaseToolBarActivity {
         overridePendingTransition(R.anim.activity_start_left, R.anim.activity_start_left_exit);
     }
     
-    /**
-     * 监听手势关闭finish并设置关闭动画
-     */
     @SuppressWarnings("deprecation")
     private void initGesture() {
         DisplayMetrics outMetrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
-        mGestureDetector = GestureFlingRightHelper.getInstance().getGestureDetector(
-                () -> {
-                    if (mIsSwipeBack) {
-                        finish();
-                        overridePendingTransition(R.anim.push_right_in_org, R.anim.push_right_out);
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }, outMetrics.widthPixels);
+        mGestureDetector = GestureFlingRightHelper.getInstance().getGestureDetector(() -> {
+            if (mIsSwipeBack) {
+                finish();
+                return true;
+            } else {
+                return false;
+            }
+        }, outMetrics.widthPixels);
     }
     
     @Override

@@ -1,21 +1,19 @@
 package com.wya.uikit.toolbar.swipeback;
 
-
 /**
- *interface for {@link SwipeBackActivity} and {@link SwipeBackPreferenceActivity}
+ * @author Yrom
  */
 public interface SwipeBackActivityBase {
     /**
-     *the SwipeBackLayout associated with this activity.
+     * @return the SwipeBackLayout associated with this activity.
      */
     public abstract SwipeBackLayout getSwipeBackLayout();
-
-
+    
     public abstract void setSwipeBackEnable(boolean enable);
-
+    
     /**
      * Scroll out contentView and finish the activity
      */
     public abstract void scrollToFinishActivity();
-
+    
 }

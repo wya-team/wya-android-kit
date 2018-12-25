@@ -1,12 +1,15 @@
 package com.wya.example.module.uikit.dialog;
 
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -27,8 +30,11 @@ import com.wya.utils.utils.ScreenUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
+import io.realm.internal.IOException;
 
 /**
  * 创建日期：2018/11/23 16:23
@@ -56,8 +62,6 @@ public class DialogExampleActivity extends BaseActivity {
 
     private WYACustomDialog wyaCustomDialog;
     private WYALoadingDialog wyaLoadingDialog;
-    private boolean canceledOnTouch = true;
-    private boolean cancelable = true;
     private int type;
 
 
@@ -77,9 +81,9 @@ public class DialogExampleActivity extends BaseActivity {
             tabLoading.setVisibility(View.VISIBLE);
         }
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
+        initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
-            startActivity(new Intent(DialogExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+            startActivity(new Intent(DialogExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
         initItems();
         initExpandList();
@@ -140,7 +144,6 @@ public class DialogExampleActivity extends BaseActivity {
                         .canEdit(true)
                         .editTextStr("编辑的内容")
                         .hintEditTextStr("提示内容")
-                        .message("内容")
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
                     wyaCustomDialog.dismiss();
@@ -156,7 +159,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 RecyclerView recyclerView = v.findViewById(R.id.recycle_view);
                                 data = new ArrayList<>();
                                 for (int i = 0; i < 50; i++) {
-                                    data.add("" + i);
+                                    data.add("列表" + i);
                                 }
                                 if (data != null && data.size() > 0) {
                                     recyclerView.setLayoutManager(new LinearLayoutManager(DialogExampleActivity.this));
@@ -167,7 +170,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            getWyaToast().showShort(position + "");
+                                            getWyaToast().showShort(data.get(position));
                                         }
                                     });
                                 }
@@ -175,7 +178,7 @@ public class DialogExampleActivity extends BaseActivity {
                         })
                         .height(ScreenUtil.dip2px(DialogExampleActivity.this, 200))
                         .cancelable(true)
-                        .Gravity(Gravity.CENTER)
+                        .gravity(Gravity.CENTER)
                         .cancelTouchout(true)
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
@@ -195,7 +198,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 title.setVisibility(View.VISIBLE);
                                 data = new ArrayList<>();
                                 for (int i = 0; i < 50; i++) {
-                                    data.add("" + i);
+                                    data.add("列表" + i);
                                 }
                                 if (data != null && data.size() > 0) {
                                     recyclerView.setLayoutManager(new LinearLayoutManager(DialogExampleActivity.this));
@@ -206,7 +209,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            getWyaToast().showShort(position + "");
+                                            getWyaToast().showShort(data.get(position));
                                         }
                                     });
                                 }
@@ -214,7 +217,7 @@ public class DialogExampleActivity extends BaseActivity {
                         })
                         .height(ScreenUtil.dip2px(DialogExampleActivity.this, 200))
                         .cancelable(true)
-                        .Gravity(Gravity.CENTER)
+                        .gravity(Gravity.CENTER)
                         .cancelTouchout(true)
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
@@ -235,7 +238,7 @@ public class DialogExampleActivity extends BaseActivity {
                         })
                         .height(ScreenUtil.dip2px(DialogExampleActivity.this, 200))
                         .cancelable(true)
-                        .Gravity(Gravity.CENTER)
+                        .gravity(Gravity.CENTER)
                         .cancelTouchout(true)
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
@@ -247,15 +250,22 @@ public class DialogExampleActivity extends BaseActivity {
             case "底部弹出列表":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
                         .setLayoutRes(R.layout.way_dialog_custom_list_layout, new CustomListener() {
+                            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                             @Override
                             public void customLayout(View v) {
+                                LinearLayout parent = v.findViewById(R.id.parent);
                                 RecyclerView recyclerView = v.findViewById(R.id.recycle_view);
+                                parent.setBackground(null);
+                                parent.setBackgroundColor(getResources().getColor(R.color.white));
+                                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) parent.getLayoutParams();
+                                lp.setMargins(0, 0, 0, 0);
+                                parent.setLayoutParams(lp);
                                 TextView title = v.findViewById(R.id.title);
                                 title.setText("标题");
                                 title.setVisibility(View.VISIBLE);
                                 data = new ArrayList<>();
                                 for (int i = 0; i < 50; i++) {
-                                    data.add("" + i);
+                                    data.add("列表" + i);
                                 }
                                 if (data != null && data.size() > 0) {
                                     recyclerView.setLayoutManager(new LinearLayoutManager(DialogExampleActivity.this));
@@ -266,7 +276,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            getWyaToast().showShort(position + "");
+                                            getWyaToast().showShort(data.get(position));
                                         }
                                     });
                                 }
@@ -274,7 +284,7 @@ public class DialogExampleActivity extends BaseActivity {
                         })
                         .height(ScreenUtil.dip2px(DialogExampleActivity.this, 200))
                         .cancelable(true)
-                        .Gravity(Gravity.BOTTOM)
+                        .gravity(Gravity.BOTTOM)
                         .cancelTouchout(true)
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
@@ -320,7 +330,7 @@ public class DialogExampleActivity extends BaseActivity {
                             }
                         })
                         .cancelable(true)
-                        .Gravity(Gravity.BOTTOM)
+                        .gravity(Gravity.BOTTOM)
                         .cancelTouchout(true)
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
@@ -331,7 +341,9 @@ public class DialogExampleActivity extends BaseActivity {
                 break;
 
             case "菊花加载":
-                showWYADialogLoading();
+                wyaLoadingDialog = new WYALoadingDialog(this, false, false);
+                wyaLoadingDialog.show();
+                starTimer(1);
                 break;
 
             case "系统加载":
@@ -339,12 +351,15 @@ public class DialogExampleActivity extends BaseActivity {
                         .setLayoutRes(R.layout.wya_dialog_system_loading, new CustomListener() {
                             @Override
                             public void customLayout(View v) {
+
                             }
                         })
-                        .cancelable(true)
-                        .cancelTouchout(true)
+                        .cancelable(false)
+                        .cancelTouchout(false)
+                        .amount(0)
                         .build();
                 wyaCustomDialog.show();
+                starTimer(0);
                 break;
             case "自定义加载":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
@@ -353,14 +368,42 @@ public class DialogExampleActivity extends BaseActivity {
                             public void customLayout(View v) {
                             }
                         })
-                        .cancelable(true)
-                        .cancelTouchout(true)
+                        .amount(0)
+                        .cancelable(false)
+                        .cancelTouchout(false)
                         .build();
                 wyaCustomDialog.show();
+                starTimer(0);
                 break;
 
         }
     }
+
+    /**
+     * 设置计时器
+     *
+     * @param type loading类型
+     */
+    private void starTimer(int type) {
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    if (type == 0) {
+                        wyaCustomDialog.dismiss();
+                    } else {
+                        wyaLoadingDialog.dismiss();
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        timer.schedule(task, 3000);
+    }
+
 
     private void initItems() {
         mDatas = new ArrayList<>();
@@ -404,11 +447,6 @@ public class DialogExampleActivity extends BaseActivity {
         } else {
             mDatas.add(item4);
         }
-    }
-
-    private void showWYADialogLoading() {
-        wyaLoadingDialog = new WYALoadingDialog(this, canceledOnTouch, cancelable);
-        wyaLoadingDialog.show();
     }
 
 }

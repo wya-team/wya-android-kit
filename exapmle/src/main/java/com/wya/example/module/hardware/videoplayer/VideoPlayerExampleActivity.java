@@ -2,6 +2,7 @@ package com.wya.example.module.hardware.videoplayer;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.wya.example.R;
@@ -9,16 +10,17 @@ import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.hardware.videoplayer.WYAVideoView;
 import com.wya.hardware.videoplayer.listener.SimpleOnVideoControlListener;
+import com.wya.uikit.toolbar.StatusBarUtil;
 import com.wya.utils.utils.ScreenUtil;
 
 import butterknife.BindView;
 
 public class VideoPlayerExampleActivity extends BaseActivity {
 
-
     @BindView(R.id.video_player)
     WYAVideoView videoPlayer;
 
+    private ViewGroup contentView;
     private VideoDetailInfo info;
 
     @Override
@@ -29,6 +31,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        contentView = ((ViewGroup) findViewById(android.R.id.content));
         setToolBarTitle("视频播放(videoplayer)");
         initImgLeft(0, false);
         String url = getIntent().getStringExtra("url");
@@ -54,6 +57,8 @@ public class VideoPlayerExampleActivity extends BaseActivity {
 
             @Override
             public void onFullScreen() {
+                initShowToolBar(false);
+                contentView.setPadding(0, 0, 0, 0);
                 ScreenUtil.toggleScreenOrientation(VideoPlayerExampleActivity.this);
             }
         });
@@ -93,11 +98,12 @@ public class VideoPlayerExampleActivity extends BaseActivity {
     public void onBackPressed() {
         if (!ScreenUtil.isPortrait(this)) {
             if (!videoPlayer.isLock()) {
+                contentView.setPadding(0, StatusBarUtil.getStatusBarHeight(this), 0, 0);
+                initShowToolBar(true);
                 ScreenUtil.toggleScreenOrientation(this);
             }
         } else {
             super.onBackPressed();
         }
     }
-
 }

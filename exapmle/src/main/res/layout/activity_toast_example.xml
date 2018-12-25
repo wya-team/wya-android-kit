@@ -3,88 +3,122 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/f4f4f4"
+    android:orientation="vertical"
     tools:context="com.wya.example.module.uikit.toast.ToastExampleActivity">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="@dimen/dp_10"
+                android:text="非系统中间显示" />
+
+            <RadioButton
+                android:id="@+id/radio_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:text="非系统底部显示" />
+
+        </LinearLayout>
+
+
+    </RadioGroup>
 
     <TextView
         android:id="@+id/tv_normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_12"
-        android:text="系统短时间提示"
+        android:layout_marginBottom="1px"
         android:layout_marginTop="@dimen/dp_10"
         android:background="@color/white"
-        android:layout_marginBottom="1px"
+        android:padding="@dimen/dp_12"
+        android:text="系统短时间提示"
         android:textColor="@drawable/btn_c333333_click_color" />
+
     <TextView
         android:id="@+id/tv_long"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="@color/white"
         android:padding="@dimen/dp_12"
         android:text="系统长时间提示"
-        android:background="@color/white"
-        android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
-
-
 
     <TextView
         android:id="@+id/tv_more_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="@color/white"
         android:padding="@dimen/dp_12"
         android:text="系统多文字提示"
-        android:background="@color/white"
-        android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
-
 
     <TextView
         android:id="@+id/tv_normal_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="@color/white"
         android:padding="@dimen/dp_12"
         android:text="自定义普通文字提示"
-        android:background="@color/white"
-        android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
+
     <TextView
         android:id="@+id/tv_more_custom_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="@color/white"
         android:padding="@dimen/dp_12"
         android:text="自定义多文字提示"
-        android:background="@color/white"
-        android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
-
 
     <TextView
         android:id="@+id/tv_custom_success"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="@color/white"
         android:padding="@dimen/dp_12"
         android:text="成功提示"
-        android:background="@color/white"
-        android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
+
     <TextView
         android:id="@+id/tv_custom_fail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="@color/white"
         android:padding="@dimen/dp_12"
         android:text="失败提示"
-        android:background="@color/white"
-        android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
+
     <TextView
         android:id="@+id/tv_custom_warn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="@color/white"
         android:padding="@dimen/dp_12"
         android:text="警告提示"
-        android:background="@color/white"
-        android:layout_marginBottom="1px"
         android:textColor="@drawable/btn_c333333_click_color" />
+
+
 </LinearLayout>

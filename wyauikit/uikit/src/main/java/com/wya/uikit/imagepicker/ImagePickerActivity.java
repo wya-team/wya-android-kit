@@ -40,12 +40,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 使用SwipebackHelper时需设置theme为translucent,否则部分机型会出现黑屏
- * 弹出PopupWindow时theme不能设置为trasnlucent
- * 故页面禁用SwipebackLayout的手势，即设置 getSwipeBackLayout().setEnableGesture(false);
- * 使用Gesture关闭Activity时设置动画的方式 即设置setSwipeBack(true);
- */
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class ImagePickerActivity extends AppCompatActivity implements View.OnClickListener,
                                                                       ImageGridAdapter.OnImageSelectedChangedListener {
@@ -95,7 +89,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
      * 设置状态栏颜色
      */
     
-    public  void setColor( @ColorInt int color) {
+    public void setColor(@ColorInt int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -311,7 +305,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                 Bundle bundle = new Bundle();
                 
                 //                bundle.putSerializable(PickerConfig.IMAGE_SELECTED, (Serializable) mSelected);
-                bundle.putStringArrayList(PickerConfig.IMAGE_SELECTED,returnImagePaths(mSelected));
+                bundle.putStringArrayList(PickerConfig.IMAGE_SELECTED, returnImagePaths(mSelected));
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
                 finish();
@@ -385,7 +379,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                 Intent intent = getIntent();
                 Bundle bundle = new Bundle();
                 //                bundle.putSerializable(PickerConfig.IMAGE_SELECTED, (Serializable) mSelected);
-                bundle.putStringArrayList(PickerConfig.IMAGE_SELECTED,returnImagePaths(mSelected));
+                bundle.putStringArrayList(PickerConfig.IMAGE_SELECTED, returnImagePaths(mSelected));
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
                 finish();

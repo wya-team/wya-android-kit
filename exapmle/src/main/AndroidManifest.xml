@@ -48,9 +48,7 @@
         <activity android:name=".module.uikit.dialog.DialogExampleActivity" />
         <activity android:name=".module.uikit.tabbar.TabBarExampleActivity" />
         <activity android:name=".module.uikit.segmentedcontrol.SegmentedControlExampleActivity" />
-        <activity
-            android:name=".module.uikit.popupwindow.PopupWindowExampleActivity"
-            android:theme="@style/ThemeWithoutTranslucent" />
+        <activity android:name=".module.uikit.popupwindow.PopupWindowExampleActivity" />
         <activity android:name=".module.uikit.toast.ToastExampleActivity" />
         <activity android:name=".module.uikit.searchbar.SearchBarExampleActivity" />
         <activity android:name=".module.uikit.paginationview.PaginationViewExampleActivity" />
@@ -58,9 +56,7 @@
         <activity
             android:name=".module.uikit.badge.BadgeExampleActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name=".module.uikit.choicemenu.ChoiceMenuExampleActivity"
-            android:theme="@style/ThemeWithoutTranslucent" />
+        <activity android:name=".module.uikit.choicemenu.ChoiceMenuExampleActivity" />
         <activity android:name=".module.uikit.button.ButtonExampleActivity" />
         <activity android:name=".module.uikit.gallery.GalleryExampleActivity" />
         <activity android:name=".module.uikit.customitems.CustomItemsExampleActivity" />
@@ -80,8 +76,7 @@
         <activity android:name=".module.hardware.camera.CameraExampleActivity" />
         <activity
             android:name=".module.hardware.videoplayer.VideoPlayerExampleActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/ThemeWithoutTranslucent" />
+            android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity android:name=".module.uikit.pickerview.PickerViewExampleActivity" />
         <activity android:name=".module.utils.realm.RealmExampleActivity" />
         <activity android:name=".module.utils.UtilsExampleActivity" />
@@ -95,9 +90,7 @@
         <activity android:name=".module.uikit.drawerlayout.DrawerLayoutExampleActivity" />
         <activity android:name=".module.example.readme.ReadmeActivity" />
         <activity android:name=".module.uikit.customitems.list.ListExampleActivity" />
-        <activity
-            android:name=".module.hardware.scan.CustomCaptureActivity"
-            android:theme="@style/ThemeWithoutTranslucent" />
+        <activity android:name=".module.hardware.scan.CustomCaptureActivity" />
     </application>
 
 </manifest>

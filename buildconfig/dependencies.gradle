@@ -13,16 +13,17 @@ ext {
     butterknnifeVersion = "8.5.1"
     rxbindingVersion = "2.0.0"
     supportDepends = [
-            support_v4  : "com.android.support:support-v4:${androidSupportLibVersion}",
-            support_v13 : "com.android.support:support-v13:${androidSupportLibVersion}",
-            design      : "com.android.support:design:${androidSupportLibVersion}",
-            appcompat   : "com.android.support:appcompat-v7:${androidSupportLibVersion}",
-            recyclerview: "com.android.support:recyclerview-v7:${androidSupportLibVersion}",
-            annotations : "com.android.support:support-annotations:${androidSupportLibVersion}",
-            butterknnife: "com.jakewharton:butterknife:${butterknnifeVersion}",
+            support_v4          : "com.android.support:support-v4:${androidSupportLibVersion}",
+            support_v13         : "com.android.support:support-v13:${androidSupportLibVersion}",
+            design              : "com.android.support:design:${androidSupportLibVersion}",
+            appcompat           : "com.android.support:appcompat-v7:${androidSupportLibVersion}",
+            recyclerview        : "com.android.support:recyclerview-v7:${androidSupportLibVersion}",
+            annotations         : "com.android.support:support-annotations:${androidSupportLibVersion}",
+            butterknnife        : "com.jakewharton:butterknife:${butterknnifeVersion}",
             butterknife_compiler: "com.jakewharton:butterknife-compiler:${butterknnifeVersion}",
-            rxbinding: "com.jakewharton.rxbinding2:rxbinding:${rxbindingVersion}",
-            base_adapter: "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30",
+            rxbinding           : "com.jakewharton.rxbinding2:rxbinding:${rxbindingVersion}",
+            base_adapter        : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30",
+            zxing               : "com.google.zxing:core:3.3.3"
     ]
 
 }

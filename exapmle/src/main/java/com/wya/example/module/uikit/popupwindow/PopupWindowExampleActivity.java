@@ -20,35 +20,25 @@ import com.wya.uikit.toolbar.StatusBarUtil;
 
 import butterknife.BindView;
 
-/**
- * 使用SwipebackHelper时需设置theme为translucent,否则部分机型会出现黑屏
- * 弹出PopupWindow时theme不能设置为trasnlucent
- * 故页面禁用SwipebackLayout的手势，即设置 getSwipeBackLayout().setEnableGesture(false);
- * 使用Gesture关闭Activity时设置动画的方式 即设置setSwipeBack(true);
- */
 public class PopupWindowExampleActivity extends BaseActivity {
-
-
+    
     @BindView(R.id.tv_result)
     TextView tvResult;
     private WYAPopupWindow wyaPopupWindow;
-
+    
     private String url;
     public static final int REQUEST_CODE_SCAN = 0X01;
     public final int REQUEST_CAMERA = 111;
-
-
+    
     @Override
     protected void initView() {
         StatusBarUtil.setLightMode(this);
-        getSwipeBackLayout().setEnableGesture(false);
-        setSwipeBack(true);
         setToolBarTitle("PopupWindow");
         url = getIntent().getStringExtra("url");
         initImgRightAnther(R.drawable.icon_notice, true);
         setPopupWindow();
     }
-
+    
     private void setPopupWindow() {
         setRightImageAntherOnclickListener(view -> wyaPopupWindow.show(view, -100, 0));
         wyaPopupWindow = new WYAPopupWindow.Builder(PopupWindowExampleActivity.this).setLayoutRes(R.layout.popopwindow_custom_list, v -> {
@@ -58,7 +48,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
             tab_help.setOnClickListener(v12 -> startActivity(new Intent(PopupWindowExampleActivity.this, ReadmeActivity.class).putExtra("url", url)));
         }).build();
     }
-
+    
     /**
      * 点击显示联系人按钮相应
      * <p>
@@ -77,13 +67,13 @@ public class PopupWindowExampleActivity extends BaseActivity {
             startScan();
         }
     }
-
+    
     private void startScan() {
         wyaPopupWindow.dismiss();
         Intent intent = new Intent(this, CustomCaptureActivity.class);
         startActivityForResult(intent, REQUEST_CODE_SCAN);
     }
-
+    
     /**
      * 申请相机权限
      */
@@ -109,8 +99,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
                     REQUEST_CAMERA);
         }
     }
-
-
+    
     @TargetApi(23)
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -140,7 +129,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
             }
         }
     }
-
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -151,13 +140,13 @@ public class PopupWindowExampleActivity extends BaseActivity {
                     tvResult.setText("解析结果：" + result);
                     break;
             }
-
+            
         }
     }
-
+    
     @Override
     protected int getLayoutID() {
         return R.layout.activity_popup_window_example;
     }
-
+    
 }

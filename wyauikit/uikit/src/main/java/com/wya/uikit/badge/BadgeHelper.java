@@ -24,7 +24,6 @@ public class BadgeHelper {
                 .setBackgroundDrawable(badgeDrawable)
                 .create();
         badgeView.bindToTarget(view);
-        // TODO: 2018/12/24 ZCQ TEST
     }
     
     public static void showBadgeDrawableCenterStart(Context context, View view, Drawable badgeDrawable, boolean isAttach) {
@@ -37,7 +36,6 @@ public class BadgeHelper {
                 .setBackgroundDrawable(badgeDrawable)
                 .create();
         badgeView.bindToTarget(view);
-        // TODO: 2018/12/24 ZCQ TEST
     }
     
 }

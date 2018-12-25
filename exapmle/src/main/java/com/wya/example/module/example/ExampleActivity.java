@@ -26,11 +26,10 @@ public class ExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         initShowToolBar(false);
-        initToolBarBgColor(ColorUtil.hex2Int("#f4f4f4"), true);
         initFragment();
         setTabBar();
         getSwipeBackLayout().setEnableGesture(false);
-
+        initToolBarBgColor(ColorUtil.hex2Int("#f4f4f4"), true);
     }
 
     private void initFragment() {

@@ -353,7 +353,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                postDelayed(this, 1200);
+                postDelayed(this, 500);
                 break;
         }
         return onTouch(event);
