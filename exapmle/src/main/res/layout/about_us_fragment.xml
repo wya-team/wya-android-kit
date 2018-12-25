@@ -45,7 +45,7 @@
                 android:gravity="right"
                 android:paddingRight="@dimen/dp_5"
                 android:paddingTop="@dimen/dp_10"
-                android:text="PLATFORM:Android"
+                android:text="Platform : Android"
                 android:textColor="@color/c999999"
                 android:textSize="@dimen/sp_12" />
 

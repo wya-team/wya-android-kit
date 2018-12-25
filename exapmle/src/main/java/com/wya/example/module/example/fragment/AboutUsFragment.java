@@ -42,8 +42,8 @@ public class AboutUsFragment extends Fragment {
         tv_device = view.findViewById(R.id.tv_device);
         tv_system_version = view.findViewById(R.id.tv_system_version);
         tv_version.setText(AppUtil.getVersionName(getActivity()));
-        tv_device.setText("DEVICE:" + PhoneUtil.getInstance().getMobileBrand() + " " + PhoneUtil.getInstance().getPhoneModel());
-        tv_system_version.setText("SYSTEM:" + PhoneUtil.getInstance().getSDKVersion());
+        tv_device.setText("Device : " + PhoneUtil.getInstance().getMobileBrand() + " " + PhoneUtil.getInstance().getPhoneModel());
+        tv_system_version.setText("System : " + PhoneUtil.getInstance().getSDKVersion());
         git_hub_address.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url", "https://github.com/wya-team/wya-android-kit/blob/develop/README.md").putExtra("skip", true));
         });

@@ -187,7 +187,7 @@ public class ExampleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), TabBarExampleActivity.class).putExtra("url", UIKIT_URL+"tabbar"+"/README.md"));
                 break;
             case "分页控制器(tablayout)":
-                startActivity(new Intent(getActivity(), TabLayoutExampleActivity.class).putExtra("url", UIKIT_URL+"segementedcontrol"+"/README.md"));
+                startActivity(new Intent(getActivity(), TabLayoutExampleActivity.class).putExtra("url", UIKIT_URL+"segmentedcontrol"+"/README.md"));
                 break;
             case "搜索栏(searchBar)":
                 startActivity(new Intent(getActivity(), SearchBarExampleActivity.class).putExtra("url", UIKIT_URL+"searchbar"+"/README.md"));
