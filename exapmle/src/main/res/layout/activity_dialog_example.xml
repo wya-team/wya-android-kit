@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,40 +22,39 @@
             <com.wya.example.module.example.view.CustomerExpandableListView
                 android:id="@+id/expend_list"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
                 android:layout_height="0dp"
-                android:listSelector="@android:color/transparent"
-                android:divider="@null"
                 android:layout_marginBottom="@dimen/dp_10"
-                android:dividerHeight="0dp" />
+                android:layout_weight="1"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:listSelector="@android:color/transparent" />
 
 
-            <TableRow
+            <LinearLayout
                 android:id="@+id/tab_loading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:orientation="vertical">
 
-                <ProgressBar
+                <ImageView
+                    android:id="@+id/loading"
                     android:layout_width="26dp"
                     android:layout_height="26dp"
-                    android:layout_margin="@dimen/dp_10"
-                    android:indeterminateBehavior="repeat"
-                    android:indeterminateDrawable="@drawable/progressbg"
-                    android:indeterminateOnly="true" />
+                    app:srcCompat="@drawable/ic_spin"/>
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <ProgressBar
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                    <ImageView
+                        android:id="@+id/loading2"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
                         android:layout_margin="@dimen/dp_10"
-                        android:indeterminateBehavior="repeat"
-                        android:indeterminateDrawable="@drawable/progressbg"
-                        android:indeterminateOnly="true" />
+                        app:srcCompat="@drawable/ic_spin" />
 
                     <TextView
                         android:id="@+id/hintTv"
@@ -63,9 +63,9 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/img_load"
-                        android:paddingBottom="8dp"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
+                        android:paddingBottom="8dp"
                         android:text="加载中"
                         android:textColor="#999999"
                         android:textSize="14sp" />
@@ -74,16 +74,22 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                    <ProgressBar
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                    <!--<ProgressBar-->
+                    <!--android:layout_width="26dp"-->
+                    <!--android:layout_height="26dp"-->
+                    <!--android:layout_margin="@dimen/dp_10"-->
+                    <!--android:indeterminateBehavior="repeat"-->
+                    <!--android:indeterminateDrawable="@drawable/progressbg"-->
+                    <!--android:indeterminateOnly="true" />-->
+                    <ImageView
+                        android:id="@+id/loading3"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
                         android:layout_margin="@dimen/dp_10"
-                        android:indeterminateBehavior="repeat"
-                        android:indeterminateDrawable="@drawable/progressbg"
-                        android:indeterminateOnly="true" />
+                        app:srcCompat="@drawable/ic_spin"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -96,7 +102,7 @@
                         android:textSize="14sp" />
                 </LinearLayout>
 
-            </TableRow>
+            </LinearLayout>
 
         </LinearLayout>
 

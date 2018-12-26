@@ -3,14 +3,17 @@ package com.wya.example.module.uikit.dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -48,7 +51,7 @@ public class DialogExampleActivity extends BaseActivity {
     @BindView(R.id.expend_list)
     CustomerExpandableListView expendList;
     @BindView(R.id.tab_loading)
-    TableRow tabLoading;
+    LinearLayout tabLoading;
 
     private List<Item> mDatas;
     private DialogExpandableListAdapter adapter;
@@ -63,7 +66,12 @@ public class DialogExampleActivity extends BaseActivity {
     private WYACustomDialog wyaCustomDialog;
     private WYALoadingDialog wyaLoadingDialog;
     private int type;
-
+    private ImageView loading;
+    private ImageView loading2;
+    private ImageView loading3;
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
 
     @Override
     protected int getLayoutID() {
@@ -87,9 +95,23 @@ public class DialogExampleActivity extends BaseActivity {
         });
         initItems();
         initExpandList();
+        initLoading();
+    }
+
+    private void initLoading() {
+        loading = (ImageView) findViewById(R.id.loading);
+        loading2 = (ImageView) findViewById(R.id.loading2);
+        loading3 = (ImageView) findViewById(R.id.loading3);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        Animation animation2 = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        Animation animation3 = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        loading.startAnimation(animation);
+        loading2.startAnimation(animation2);
+        loading3.startAnimation(animation3);
     }
 
     private void initExpandList() {
+
         adapter = new DialogExpandableListAdapter(this, mDatas);
         expendList.setAdapter(adapter);
         expendList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -366,6 +388,10 @@ public class DialogExampleActivity extends BaseActivity {
                         .setLayoutRes(R.layout.wya_dialog_custom_loading, new CustomListener() {
                             @Override
                             public void customLayout(View v) {
+                                ImageView imageView = v.findViewById(R.id.round_image);
+                                Animation animation = AnimationUtils.loadAnimation
+                                        (DialogExampleActivity.this, R.anim.rotate);
+                                imageView.startAnimation(animation);
                             }
                         })
                         .amount(0)
