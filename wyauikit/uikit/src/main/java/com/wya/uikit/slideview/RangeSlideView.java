@@ -50,6 +50,11 @@ public class RangeSlideView extends View implements IRangeSlideView {
     private float reservePercent;
     private boolean mHasMin, mHasMax;
     
+    private final int REGION_MODE_INTEGER = 0;
+    private final int REGION_MODE_FLOAT = 1;
+    
+    private int mRegionMode = REGION_MODE_INTEGER;
+    
     private Context mContext;
     
     private float mCurDownX;
@@ -107,6 +112,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
             mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_foreground_color, Color.parseColor("#1F90E6"));
             
             // region
+            mRegionMode = typedArray.getInteger(R.styleable.RangeSlideView_rsd_region_mode, REGION_MODE_INTEGER);
             if (typedArray.hasValue(R.styleable.RangeSlideView_rsd_region_padding)) {
                 mRegionPadding = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_region_padding, Utils.dp2px(mContext, 10))).intValue();
             }
@@ -244,13 +250,13 @@ public class RangeSlideView extends View implements IRangeSlideView {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         // progress left
-        String minString = mProgressMax >= 1 || mProgressMin == 0 ? String.valueOf(mProgressMin) : String.valueOf(Float.valueOf(mProgressMin));
+        String minString = mRegionMode == REGION_MODE_INTEGER ? String.valueOf(mProgressMin) : String.valueOf(Float.valueOf(mProgressMin));
         int regionMinTextSize = mHasMin ? Double.valueOf(mRegionPaint.measureText(minString)).intValue() : 0;
         int regionMinSize = mHasMin ? Double.valueOf(null != mDrawableRegionMin ? mRegionBitmapSize : regionMinTextSize).intValue() : 0;
         mProgressLeft = getPaddingLeft() + regionMinSize + mRegionPadding + mLeftSlider.getSliderSize() / 2;
         
         // progress right
-        String maxString = mProgressMin >= 1 || mProgressMin == 0 ? String.valueOf(mProgressMax) : String.valueOf(Float.valueOf(mProgressMax));
+        String maxString = mRegionMode == REGION_MODE_INTEGER ? String.valueOf(mProgressMax) : String.valueOf(Float.valueOf(mProgressMax));
         int regionMaxTextSize = mHasMax ? Double.valueOf(mRegionPaint.measureText(maxString)).intValue() : 0;
         int regionMaxSize = mHasMax ? Double.valueOf(null != mDrawableRegionMax ? mRegionBitmapSize : regionMaxTextSize).intValue() : 0;
         int rightSliderSize = mLeftSlider.getSliderSize();
@@ -303,15 +309,22 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     private void drawMinRegionText(Canvas canvas) {
+        
         String min = String.valueOf(mLeftSlider.getCurPercent() * (mProgressMax - mProgressMin));
         BigDecimal bigDecimal = new BigDecimal((double) Float.parseFloat(min));
         bigDecimal = bigDecimal.setScale(1, 4);
         float minFloat = bigDecimal.floatValue();
-        if (minFloat >= 1 || minFloat == 0) {
-            int minInt = Double.valueOf(String.valueOf(minFloat)).intValue();
-            min = String.valueOf(minInt);
-        } else {
-            min = String.valueOf(minFloat);
+        
+        // TODO: 2018/12/26 ZCQ TEST
+        
+        switch (mRegionMode) {
+            case REGION_MODE_FLOAT:
+                min = String.valueOf(minFloat);
+                break;
+            case REGION_MODE_INTEGER:
+                int minInt = Double.valueOf(String.valueOf(minFloat)).intValue();
+                min = String.valueOf(minInt);
+                break;
         }
         
         float x = getProgressLeft() - mRegionPadding - mLeftSlider.getSliderSize() / 2 - mRegionPaint.measureText(min);
@@ -341,11 +354,15 @@ public class RangeSlideView extends View implements IRangeSlideView {
         BigDecimal bigDecimal = new BigDecimal((double) Float.parseFloat(max));
         bigDecimal = bigDecimal.setScale(2, 4);
         float maxFloat = bigDecimal.floatValue();
-        if (maxFloat >= 1 || maxFloat == 0) {
-            int minInt = Double.valueOf(String.valueOf(maxFloat)).intValue();
-            max = String.valueOf(minInt);
-        } else {
-            max = String.valueOf(maxFloat);
+        
+        switch (mRegionMode) {
+            case REGION_MODE_FLOAT:
+                max = String.valueOf(maxFloat);
+                break;
+            case REGION_MODE_INTEGER:
+                int minInt = Double.valueOf(String.valueOf(maxFloat)).intValue();
+                max = String.valueOf(minInt);
+                break;
         }
         
         float x = getWidth() - getPaddingRight() - mRegionPaint.measureText(max);

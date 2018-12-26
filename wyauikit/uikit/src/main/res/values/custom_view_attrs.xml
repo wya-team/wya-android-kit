@@ -205,6 +205,11 @@
         <attr name="rsd_region_bitmap_size" format="dimension" />
         <attr name="rsd_region_text_color" format="dimension" />
         <attr name="rsd_region_text_size" format="dimension" />
+
+        <attr name="rsd_region_mode" format="enum">
+            <enum name="mode_integer" value="0" />
+            <enum name="mode_float" value="1" />
+        </attr>
     </declare-styleable>
 
     <!-- swipe back attrs -->
