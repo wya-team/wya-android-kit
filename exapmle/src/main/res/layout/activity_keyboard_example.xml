@@ -1,41 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/f4f4f4"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:id="@+id/parent"
     tools:context="com.wya.example.module.uikit.keyboard.KeyboardExampleActivity">
 
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/et_number"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/white_r5_bg"
+        android:hint="自定义普通数字键盘"
+        android:padding="@dimen/dp_10"
+        android:textSize="@dimen/sp_14" />
 
-    <Button
-        android:id="@+id/btn_show_keyboard"
+    <EditText
+        android:id="@+id/et_number_random"
         android:layout_width="match_parent"
-        android:text="显示软件盘"
-        android:textColor="@drawable/btn_c333333_click_color"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
-        />
-    <Button
-        android:id="@+id/btn_hide_keyboard"
-        android:layout_width="match_parent"
-        android:text="影藏软件盘"
-        android:textColor="@drawable/btn_c333333_click_color"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
-        />
-    <Button
-        android:id="@+id/btn_custom_keyboard"
-        android:layout_width="match_parent"
-        android:text="显示自定义软件盘"
-        android:textColor="@drawable/btn_c333333_click_color"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
-        />
+        android:layout_below="@+id/et_number"
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/white_r5_bg"
+        android:hint="自定义随机数字键盘"
+        android:padding="@dimen/dp_10"
+        android:textSize="@dimen/sp_14" />
 
-</LinearLayout>
+    <com.wya.uikit.keyboard.WYACustomNumberKeyboardView
+        android:id="@+id/keyboard_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:keyBackground="@drawable/bg_keyboard_view"
+        android:keyPreviewOffset="0dp"
+        android:keyTextColor="#000"
+        android:paddingTop="0dp"
+        android:shadowColor="#fff"
+        android:shadowRadius="0.0" />
+
+
+</RelativeLayout>

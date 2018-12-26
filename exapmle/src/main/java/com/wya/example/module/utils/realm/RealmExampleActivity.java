@@ -157,15 +157,15 @@ public class RealmExampleActivity extends BaseActivity {
     private void delete() {
         //先查找到数据  
         final RealmResults<User> userList = realm.where(User.class).findAll();
-
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                userList.get(choose_position).deleteFromRealm();
-                query();
-            }
-        });
-
+        if(userList.size() > 0){
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    userList.get(choose_position).deleteFromRealm();
+                    query();
+                }
+            });
+        }
     }
 
     private void add(RealmObject realmObject) {

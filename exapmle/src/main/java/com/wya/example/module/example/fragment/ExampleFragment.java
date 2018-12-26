@@ -16,6 +16,7 @@ import com.wya.example.module.example.bean.ExampleItem;
 import com.wya.example.module.example.view.CustomerExpandableListView;
 import com.wya.example.module.hardware.camera.StartCameraExampleActivity;
 import com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity;
+import com.wya.example.module.uikit.UiKitExampleActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
 import com.wya.example.module.uikit.banner.BannerExampleActivity;
 import com.wya.example.module.uikit.button.ButtonExampleActivity;
@@ -28,6 +29,7 @@ import com.wya.example.module.uikit.customitems.list.ListExampleActivity;
 import com.wya.example.module.uikit.dialog.DialogExampleActivity;
 import com.wya.example.module.uikit.drawerlayout.DrawerLayoutExampleActivity;
 import com.wya.example.module.uikit.imagepicker.ImagePickerExampleActivity;
+import com.wya.example.module.uikit.keyboard.KeyboardExampleActivity;
 import com.wya.example.module.uikit.notice.NoticeExampleActivity;
 import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity;
 import com.wya.example.module.uikit.pickerview.PickerViewExampleActivity;
@@ -104,6 +106,7 @@ public class ExampleFragment extends Fragment {
         bean2.add("文本输入(customitems(WYAInputItem))");
         bean2.add("滑动输入条(slideview)");
         bean2.add("步进器(stepper)");
+        bean2.add("软键盘(keyboard)");
         bean2.add("拍照录制视频(camera)");
         item2.setChild(bean2);
 
@@ -215,6 +218,9 @@ public class ExampleFragment extends Fragment {
                 break;
             case "步进器(stepper)":
                 startActivity(new Intent(getActivity(), StepperExampleActivity.class).putExtra("url", UIKIT_URL+"stepper"+"/README.md"));
+                break;
+            case "软键盘(keyboard)":
+                startActivity(new Intent(getActivity(), KeyboardExampleActivity.class).putExtra("url", UIKIT_URL+"keyboard"+"/README.md"));
                 break;
             case "拍照录制视频(camera)":
                 startActivity(new Intent(getActivity(), StartCameraExampleActivity.class).putExtra("url", HARDWARE_URL+"camera"+"/README.md"));

@@ -1,16 +1,19 @@
 package com.wya.example.module.uikit.keyboard;
 
-import android.content.Context;
+import android.content.Intent;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
-import com.wya.uikit.keyboard.WYKCustomNumberKeyboard;
+import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.uikit.keyboard.WYACustomNumberKeyboard;
+import com.wya.uikit.keyboard.WYACustomNumberKeyboardView;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * 创建日期：2018/11/22 17:35
@@ -21,18 +24,26 @@ import butterknife.OnClick;
 
 public class KeyboardExampleActivity extends BaseActivity {
 
-    @BindView(R.id.btn_show_keyboard)
-    Button btnShowKeyboard;
-    @BindView(R.id.btn_hide_keyboard)
-    Button btnHideKeyboard;
-    @BindView(R.id.btn_custom_keyboard)
-    Button btnCustomKeyboard;
+    @BindView(R.id.keyboard_view)
+    WYACustomNumberKeyboardView keyboardView;
+    @BindView(R.id.et_number)
+    EditText etNumber;
+    @BindView(R.id.et_number_random)
+    EditText etNumberRandom;
+    @BindView(R.id.parent)
+    RelativeLayout parent;
 
-    private WYKCustomNumberKeyboard wykCustomNumberKeyboard;
+    private WYACustomNumberKeyboard keyboard = null;
 
     @Override
     protected void initView() {
-        setToolBarTitle("Keyboard");
+        setToolBarTitle("软键盘(keyboard)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help, true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(KeyboardExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
+        setKeyBoard();
     }
 
     @Override
@@ -40,56 +51,38 @@ public class KeyboardExampleActivity extends BaseActivity {
         return R.layout.activity_keyboard_example;
     }
 
-    private InputMethodManager imm;
-    @OnClick({R.id.btn_show_keyboard, R.id.btn_hide_keyboard, R.id.btn_custom_keyboard})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_show_keyboard:
-                imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(0, InputMethodManager.RESULT_SHOWN);
-                break;
-            case R.id.btn_hide_keyboard:
-                imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
-                break;
-            case R.id.btn_custom_keyboard:
-                wykCustomNumberKeyboard = new WYKCustomNumberKeyboard(this, new WYKCustomNumberKeyboard.ChooseInterface() {
-                    @Override
-                    public void selectPosition(int position) {
-                        if (position == 0) {
-                            getWyaToast().showShort( "0");
-                        } else if (position == 1) {
-                            getWyaToast().showShort( "1");
-                        } else if (position == 2) {
-                            getWyaToast().showShort( "2");
-                        } else if (position == 3) {
-                            getWyaToast().showShort( "3");
-                        } else if (position == 4) {
-                            getWyaToast().showShort( "4");
-                        } else if (position == 5) {
-                            getWyaToast().showShort( "5");
-                        } else if (position == 6) {
-                            getWyaToast().showShort( "6");
-                        } else if (position == 7) {
-                            getWyaToast().showShort( "7");
-                        } else if (position == 8) {
-                            getWyaToast().showShort( "8");
-                        } else if (position == 9) {
-                            getWyaToast().showShort( "9");
-                        } else if (position == 10) {
-                            getWyaToast().showShort( ".");
-                        } else if (position == 11) {
-                            wykCustomNumberKeyboard.dismiss();
-                            getWyaToast().showShort( "hide");
-                        } else if (position == 12) {
-                            getWyaToast().showShort( "del");
-                        } else if (position == 13) {
-                            getWyaToast().showShort( "sure");
-                        }
-                    }
-                });
-                wykCustomNumberKeyboard.show();
-                break;
-        }
+    private void setKeyBoard() {
+        keyboard = new WYACustomNumberKeyboard(KeyboardExampleActivity.this);//获取到keyboard对象
+        etNumberRandom.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                keyboard.attachTo(etNumberRandom, true);//eiditext绑定keyboard，true表示随机数字
+            }
+            etNumberRandom.setSelection(etNumberRandom.getText().toString().length());
+            etNumberRandom.requestFocus();//获取焦点 光标出现
+            return true;
+        });
+
+        etNumber.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                keyboard.attachTo(etNumber, false);//eiditext绑定keyboard，false表示普通数字键盘
+                etNumber.setSelection(etNumber.getText().toString().length());
+                etNumber.requestFocus();//获取焦点 光标出现
+            }
+            return true;
+        });
+
+        parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keyboard.hideKeyBoard();
+            }
+        });
+        /*
+        确定按钮
+         */
+        keyboard.setOnOkClick(() -> Toast.makeText(KeyboardExampleActivity.this, "确定按钮", Toast.LENGTH_SHORT).show());
+        //隐藏键盘按钮
+        keyboard.setOnCancelClick(() -> Toast.makeText(KeyboardExampleActivity.this, "隐藏键盘按钮", Toast.LENGTH_SHORT).show());
     }
+
 }

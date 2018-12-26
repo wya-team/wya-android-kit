@@ -22,4 +22,9 @@
     <color name="notice_text_color">#FF7135</color>
     <color name="notice_bg_color">#FDFBED</color>
 
+
+    <!-- keyboard -->
+    <color name="key_ok_color">#1280FA</color>
+    <color name="key_ok_color_pressed">#0174f1</color>
+
 </resources>
