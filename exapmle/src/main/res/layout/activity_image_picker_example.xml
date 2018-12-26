@@ -20,6 +20,7 @@
         android:background="@drawable/picker_add_item_bg"
         android:hint="请输入最大图片数量"
         android:inputType="number"
+        android:textSize="@dimen/sp_14"
         android:padding="@dimen/dp_10" />
 
     <android.support.v7.widget.RecyclerView
