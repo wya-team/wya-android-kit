@@ -10,10 +10,13 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.wya.uikit.R;
+
+import java.math.BigDecimal;
 public class RangeSlideView extends View implements IRangeSlideView {
     
     // progress
@@ -46,6 +49,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
     // range
     private int mProgressMin, mProgressMax;
     private float reservePercent;
+    private boolean mHasMin, mHasMax;
     
     private Context mContext;
     
@@ -91,13 +95,24 @@ public class RangeSlideView extends View implements IRangeSlideView {
             // progress
             mSlidderMode = typedArray.getInteger(R.styleable.RangeSlideView_rsd_slider_mode, SLIDDER_MODE_SINGLE);
             mProgressHeight = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_progress_height, Utils.dp2px(context, 2))).intValue();
-            mProgressMin = typedArray.getInteger(R.styleable.RangeSlideView_rsd_progress_min, -1);
-            mProgressMax = typedArray.getInteger(R.styleable.RangeSlideView_rsd_progress_max, -1);
+            
+            if (typedArray.hasValue(R.styleable.RangeSlideView_rsd_progress_min)) {
+                mProgressMin = typedArray.getInteger(R.styleable.RangeSlideView_rsd_progress_min, -1);
+                mHasMin = true;
+            }
+            
+            if (typedArray.hasValue(R.styleable.RangeSlideView_rsd_progress_max)) {
+                mProgressMax = typedArray.getInteger(R.styleable.RangeSlideView_rsd_progress_max, -1);
+                mHasMax = true;
+            }
+            
             mPorgressBackgroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_background_color, Color.parseColor("#DDDDDD"));
             mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_foreground_color, Color.parseColor("#1F90E6"));
             
             // region
-            mRegionPadding = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_region_padding, Utils.dp2px(mContext, 10))).intValue();
+            if (typedArray.hasValue(R.styleable.RangeSlideView_rsd_region_padding)) {
+                mRegionPadding = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_region_padding, Utils.dp2px(mContext, 10))).intValue();
+            }
             mDrawableRegionMin = typedArray.getDrawable(R.styleable.RangeSlideView_rsd_region_drawable_min);
             mDrawableRegionMax = typedArray.getDrawable(R.styleable.RangeSlideView_rsd_region_drawable_max);
             mRegionBitmapSize = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_region_bitmap_size, Utils.dp2px(mContext, 20))).intValue();
@@ -232,17 +247,23 @@ public class RangeSlideView extends View implements IRangeSlideView {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         // progress left
-        int regionMinTextSize = Double.valueOf(mRegionPaint.measureText(String.valueOf(mProgressMin))).intValue();
-        int regionMinSize = Double.valueOf(null != mDrawableRegionMin ? mRegionBitmapSize : regionMinTextSize).intValue();
+        int regionMinTextSize = mHasMin ? Double.valueOf(mRegionPaint.measureText(String.valueOf(Float.valueOf(mProgressMin)))).intValue() : 0;
+        int regionMinSize = mHasMin ? Double.valueOf(null != mDrawableRegionMin ? mRegionBitmapSize : regionMinTextSize).intValue() : 0;
         mProgressLeft = getPaddingLeft() + regionMinSize + mRegionPadding + mLeftSlider.getSliderSize() / 2;
         
         // progress right
-        int regionMaxTextSize = Double.valueOf(mRegionPaint.measureText(String.valueOf(mProgressMax))).intValue();
-        int regionMaxSize = Double.valueOf(null != mDrawableRegionMin ? mRegionBitmapSize : regionMaxTextSize).intValue();
+        int regionMaxTextSize = mHasMax ? Double.valueOf(mRegionPaint.measureText(String.valueOf(Float.valueOf(mProgressMax)))).intValue() : 0;
+        int regionMaxSize = mHasMax ? Double.valueOf(null != mDrawableRegionMax ? mRegionBitmapSize : regionMaxTextSize).intValue() : 0;
         int rightSliderSize = 0;
-        if (null != mRightSlider) {
-            rightSliderSize = mRightSlider.getSliderSize();
-        }
+        
+        rightSliderSize = mLeftSlider.getSliderSize();
+        
+        Log.e("ZCQ", "onSizeChanged .. w = " + w);
+        Log.e("ZCQ", "onSizeChanged .. getPaddingRight = " + getPaddingRight());
+        Log.e("ZCQ", "onSizeChanged .. regionMaxSize = " + regionMaxSize);
+        Log.e("ZCQ", "onSizeChanged .. mRegionPadding = " + mRegionPadding);
+        Log.e("ZCQ", "onSizeChanged .. rightSliderSize / 2 = " + rightSliderSize / 2);
+        
         mProgressRight = w - getPaddingRight() - regionMaxSize - mRegionPadding - rightSliderSize / 2;
         
         // progress rectF
@@ -286,13 +307,18 @@ public class RangeSlideView extends View implements IRangeSlideView {
         }
         if (null != mDrawableRegionMin) {
             drawMinRegionBitmap(canvas);
-        } else if (mProgressMax != mProgressMin) {
+        } else if (mProgressMax != mProgressMin && mHasMin) {
             drawMinRegionText(canvas);
         }
     }
     
     private void drawMinRegionText(Canvas canvas) {
-        String min = String.valueOf(mLeftSlider.getCurPercent());
+        String min = String.valueOf(mLeftSlider.getCurPercent() * (mProgressMax - mProgressMin));
+        
+        BigDecimal bigDecimal = new BigDecimal((double) Float.parseFloat(min));
+        bigDecimal = bigDecimal.setScale(1, 4);
+        min = String.valueOf(bigDecimal.floatValue());
+        
         float x = getProgressLeft() - mRegionPadding - mLeftSlider.getSliderSize() / 2 - mRegionPaint.measureText(min);
         Paint.FontMetricsInt fontMetricsInt = mRegionPaint.getFontMetricsInt();
         float y = getProgressTop() + (getProgressHeight()) / 2 - (fontMetricsInt.bottom + fontMetricsInt.top) / 2;
@@ -310,13 +336,16 @@ public class RangeSlideView extends View implements IRangeSlideView {
         }
         if (null != mDrawableRegionMax) {
             drawMaxRegionBitmap(canvas);
-        } else if (mProgressMax != mProgressMin) {
+        } else if (mProgressMax != mProgressMin && mHasMax) {
             drawMaxRegionText(canvas);
         }
     }
     
     private void drawMaxRegionText(Canvas canvas) {
-        String max = String.valueOf(mRightSlider.getCurPercent());
+        String max = String.valueOf(null == mRightSlider ? mProgressMax : (mProgressMax - mProgressMin) * mRightSlider.getCurPercent());
+        BigDecimal bigDecimal = new BigDecimal((double) Float.parseFloat(max));
+        bigDecimal = bigDecimal.setScale(1, 4);
+        max = String.valueOf(bigDecimal.floatValue());
         float x = getWidth() - getPaddingRight() - mRegionPaint.measureText(max);
         Paint.FontMetricsInt fontMetricsInt = mRegionPaint.getFontMetricsInt();
         float y = getProgressTop() + (getProgressHeight()) / 2 - (fontMetricsInt.bottom + fontMetricsInt.top) / 2;
@@ -385,6 +414,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
         RectF rectF = new RectF();
         float left = calProgressLeft();
         float sliderSize = calSliderSize(mLeftSlider.getCurPercent());
+        
         rectF.left = left;
         rectF.top = getProgressTop();
         rectF.right = left + sliderSize;

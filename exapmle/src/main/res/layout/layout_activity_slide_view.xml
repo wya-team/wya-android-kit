@@ -36,9 +36,30 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dp_30"
             android:layout_marginBottom="@dimen/dp_30"
-            android:paddingLeft="@dimen/dp_20"
+            android:paddingLeft="@dimen/dp_10"
             android:paddingRight="@dimen/dp_10"
-            app:rsd_progress_max="100"
+            app:rsd_progress_max="1"
+            app:rsd_progress_min="0"
+            app:rsd_region_padding="@dimen/dp_5"
+            app:rsd_slider_mode="single" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_38"
+        android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/white">
+
+        <com.wya.uikit.slideview.RangeSlideView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            app:rsd_progress_max="1"
             app:rsd_progress_min="0"
             app:rsd_region_padding="@dimen/dp_5"
             app:rsd_slider_mode="range" />
@@ -67,7 +88,6 @@
             app:rsd_region_drawable_min="@drawable/icon_voiceclose"
             app:rsd_region_padding="@dimen/dp_5"
             app:rsd_region_text_color="@color/black"
-            app:rsd_region_text_size="@dimen/sp_15"
             app:rsd_slider_mode="range" />
 
     </LinearLayout>
