@@ -19,6 +19,9 @@ import java.math.BigDecimal;
 public class RangeSlideView extends View implements IRangeSlideView {
     
     // progress
+    private final int SLIDDER_MODE_RANGDE = 0;
+    private final int SLIDDER_MODE_SINGLE = 1;
+    private int mSlidderMode = SLIDDER_MODE_RANGDE;
     private Paint mProgressPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private RectF mProgressBackgroundRectF = new RectF();
     private int mProgressLeft, mProgressTop, mProgressRight, mProgressBottom;
@@ -28,6 +31,9 @@ public class RangeSlideView extends View implements IRangeSlideView {
     private int mProgressForegroundColor;
     
     // region
+    private final int REGION_MODE_INTEGER = 0;
+    private final int REGION_MODE_FLOAT = 1;
+    private int mRegionMode = REGION_MODE_INTEGER;
     private Drawable mDrawableRegionMin;
     private Drawable mDrawableRegionMax;
     private int mRegionBitmapSize;
@@ -35,11 +41,6 @@ public class RangeSlideView extends View implements IRangeSlideView {
     private int mRegionTextSize;
     private int mRegionPadding;
     private Paint mRegionPaint;
-    
-    // mode
-    private final int SLIDDER_MODE_RANGDE = 0;
-    private final int SLIDDER_MODE_SINGLE = 1;
-    private int mSlidderMode = SLIDDER_MODE_RANGDE;
     
     // seekbar
     private Slide mLeftSlider, mRightSlider;
@@ -49,11 +50,6 @@ public class RangeSlideView extends View implements IRangeSlideView {
     private int mProgressMin, mProgressMax;
     private float reservePercent;
     private boolean mHasMin, mHasMax;
-    
-    private final int REGION_MODE_INTEGER = 0;
-    private final int REGION_MODE_FLOAT = 1;
-    
-    private int mRegionMode = REGION_MODE_INTEGER;
     
     private Context mContext;
     
@@ -314,9 +310,6 @@ public class RangeSlideView extends View implements IRangeSlideView {
         BigDecimal bigDecimal = new BigDecimal((double) Float.parseFloat(min));
         bigDecimal = bigDecimal.setScale(1, 4);
         float minFloat = bigDecimal.floatValue();
-        
-        // TODO: 2018/12/26 ZCQ TEST
-        
         switch (mRegionMode) {
             case REGION_MODE_FLOAT:
                 min = String.valueOf(minFloat);
@@ -354,7 +347,6 @@ public class RangeSlideView extends View implements IRangeSlideView {
         BigDecimal bigDecimal = new BigDecimal((double) Float.parseFloat(max));
         bigDecimal = bigDecimal.setScale(2, 4);
         float maxFloat = bigDecimal.floatValue();
-        
         switch (mRegionMode) {
             case REGION_MODE_FLOAT:
                 max = String.valueOf(maxFloat);

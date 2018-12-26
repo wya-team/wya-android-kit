@@ -37,6 +37,6 @@ public interface IBadgeView {
     
     void setBadgeDrawable(Drawable drawable);
     
-    void setBadgeBitmapSize(int size);
+    void setBadgeDrawableSize(int size);
     
 }

@@ -179,7 +179,7 @@ public class BadgeExampleActivity extends BaseActivity {
         IBadgeView badgeView = new Builder(this)
                 .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_END_TOP, 0, 0))
                 .setAttach(isAttach)
-                .setBadgeBitmapSize(Utils.dp2px(this, 20))
+                .setBadgeDrawableSize(Utils.dp2px(this, 20))
                 .setBadgeDrawable(badgeDrawable)
                 .create();
         badgeView.bindToTarget(view);
@@ -192,7 +192,7 @@ public class BadgeExampleActivity extends BaseActivity {
         IBadgeView badgeView = new Builder(this)
                 .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER, 0, 0))
                 .setAttach(false)
-                .setBadgeBitmapSize(Utils.dp2px(this, 20))
+                .setBadgeDrawableSize(Utils.dp2px(this, 20))
                 .setBadgeDrawable(badgeDrawable)
                 .create();
         badgeView.bindToTarget(view);

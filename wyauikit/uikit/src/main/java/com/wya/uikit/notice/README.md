@@ -17,7 +17,8 @@ pauseMarquee|暂停滚动|
 resetMarquee|重置滚动|
 setMarqueeMode|设置模式|
 
-MarqueeMod
+MarqueeMode
+
 属性 | 说明 |
 ---|---|
 repeat|重复|
@@ -36,6 +37,7 @@ setAnimDirection|设置切换动画方向|
 setSwitchDuration|设置切换动画间隔时长|
 
 AnimDirection
+
 属性 | 说明 |
 ---|---|
 down2up|从下至上|
@@ -47,7 +49,7 @@ right2left|从右至左|
 
 ## 基础用法
 
-- SwitcherView
+SwitcherView
 
 ```xml
     <com.wya.uikit.notice.switcher.SwitcherView
@@ -63,7 +65,7 @@ right2left|从右至左|
 
 ```
 
-- MarqueeTextView
+MarqueeTextView
 
 ```xml
     <com.wya.uikit.notice.MarqueeTextView

@@ -199,17 +199,16 @@
         <attr name="rsd_progress_background_color" format="color" />
         <attr name="rsd_progress_foreground_color" format="color" />
 
+        <attr name="rsd_region_mode" format="enum">
+            <enum name="mode_integer" value="0" />
+            <enum name="mode_float" value="1" />
+        </attr>
         <attr name="rsd_region_padding" format="dimension" />
         <attr name="rsd_region_drawable_min" format="reference" />
         <attr name="rsd_region_drawable_max" format="reference" />
         <attr name="rsd_region_bitmap_size" format="dimension" />
         <attr name="rsd_region_text_color" format="dimension" />
         <attr name="rsd_region_text_size" format="dimension" />
-
-        <attr name="rsd_region_mode" format="enum">
-            <enum name="mode_integer" value="0" />
-            <enum name="mode_float" value="1" />
-        </attr>
     </declare-styleable>
 
     <!-- swipe back attrs -->

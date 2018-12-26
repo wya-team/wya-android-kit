@@ -31,7 +31,7 @@ public class NoticeExampleActivity extends BaseActivity {
     @BindView(R.id.vs_right2left)
     SwitcherView vsRight2Left;
     
-    private String noticeText = "这里是具体的通知，这里是具体的通知，这里是具体的通知，这里是具体的通知";
+    private String noticeText;
     
     public static void start(Activity activity) {
         if (null == activity) {
@@ -50,6 +50,7 @@ public class NoticeExampleActivity extends BaseActivity {
     protected void initView() {
         setToolBarTitle("通告栏(notice)");
         String url = getIntent().getStringExtra("url");
+        noticeText = getResources().getString(R.string.string_uikit_notice_text);
         initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(NoticeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
@@ -83,7 +84,7 @@ public class NoticeExampleActivity extends BaseActivity {
             public void onSwitch(View nextView, int index) {
                 if (null == nextView) return;
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
-                nextView.setOnClickListener(new View.OnClickListener() {
+                llClosableSwitcher.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (vsUp2Down.isClosable()) {
