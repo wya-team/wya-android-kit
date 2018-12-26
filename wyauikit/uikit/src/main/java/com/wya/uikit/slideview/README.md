@@ -52,6 +52,7 @@ bange|双向
          app:rsd_region_drawable_max="@drawable/image_ic_adjust"
          app:rsd_region_padding="@dimen/dp_5"
          app:rsd_region_text_color="@color/black"
+         app:rsd_region_mode="mode_integer"
          app:rsd_region_text_size="@dimen/sp_15" />
 
 ```
