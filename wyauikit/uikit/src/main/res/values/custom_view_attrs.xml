@@ -69,7 +69,7 @@
         <attr name="rightTextColor" />
         <attr name="contentTextColor" />
         <attr name="assistTextColor" />
-        <attr name="imgTitleLeft" format="reference"/>
+        <attr name="imgTitleLeft" format="reference" />
         <attr name="wyaCardRadius" format="float" />
     </declare-styleable>
 
@@ -149,10 +149,12 @@
 
     </declare-styleable>
 
-    <!-- switcher -->
+    <!-- switcher attrs -->
     <declare-styleable name="SwitcherView">
         <attr name="switch_duration" format="integer" />
         <attr name="anim_duration" format="integer" />
+        <attr name="switch_closable" format="boolean" />
+        <attr name="switch_skipable" format="boolean" />
         <attr name="anim_direction">
             <enum name="down2up" value="0" />
             <enum name="up2down" value="1" />
@@ -161,9 +163,11 @@
         </attr>
     </declare-styleable>
 
-    <!-- marquee -->
+    <!-- marquee attrs -->
     <declare-styleable name="MarqueeTextView">
         <attr name="mtv_interval" format="integer" />
+        <attr name="mtv_closable" format="boolean" />
+        <attr name="mtv_skipable" format="boolean" />
         <attr name="mtv_mode" format="enum">
             <enum name="repeat" value="0" />
             <enum name="once" value="1" />
@@ -183,7 +187,7 @@
         <attr name="countTextColor" format="color" />
     </declare-styleable>
 
-    <!-- slider -->
+    <!-- slide attrs -->
     <declare-styleable name="RangeSlideView">
         <attr name="rsd_slider_mode" format="enum">
             <enum name="range" value="0" />
@@ -195,6 +199,10 @@
         <attr name="rsd_progress_background_color" format="color" />
         <attr name="rsd_progress_foreground_color" format="color" />
 
+        <attr name="rsd_region_mode" format="enum">
+            <enum name="mode_integer" value="0" />
+            <enum name="mode_float" value="1" />
+        </attr>
         <attr name="rsd_region_padding" format="dimension" />
         <attr name="rsd_region_drawable_min" format="reference" />
         <attr name="rsd_region_drawable_max" format="reference" />
@@ -203,21 +211,20 @@
         <attr name="rsd_region_text_size" format="dimension" />
     </declare-styleable>
 
-
-    <!-- SwipeBackLayout -->
+    <!-- swipe back attrs -->
     <declare-styleable name="SwipeBackLayout">
-        <attr name="edge_size" format="dimension"/>
+        <attr name="edge_size" format="dimension" />
         <attr name="edge_flag">
             <enum name="left" value="0" />
             <enum name="right" value="1" />
             <enum name="bottom" value="2" />
             <enum name="all" value="3" />
         </attr>
-        <attr name="shadow_left" format="reference"/>
-        <attr name="shadow_right" format="reference"/>
-        <attr name="shadow_bottom" format="reference"/>
+        <attr name="shadow_left" format="reference" />
+        <attr name="shadow_right" format="reference" />
+        <attr name="shadow_bottom" format="reference" />
     </declare-styleable>
 
-    <attr name="SwipeBackLayoutStyle" format="reference"/>
+    <attr name="SwipeBackLayoutStyle" format="reference" />
 
 </resources>

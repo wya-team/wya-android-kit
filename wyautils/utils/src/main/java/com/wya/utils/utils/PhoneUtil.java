@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 
 public class PhoneUtil {
     private static PhoneUtil phoneUtil;
-
+    
     public static PhoneUtil getInstance() {
         if (phoneUtil == null) {
             synchronized (PhoneUtil.class) {
@@ -43,7 +43,7 @@ public class PhoneUtil {
         }
         return phoneUtil;
     }
-
+    
     /**
      * 获取手机系统版本号 API
      *
@@ -67,21 +67,21 @@ public class PhoneUtil {
     public String getSDKVersion() {
         return android.os.Build.VERSION.RELEASE;
     }
-
+    
     /**
      * 获取手机型号
      */
     public String getPhoneModel() {
         return android.os.Build.MODEL;
     }
-
+    
     /**
      * 获取手机型号
      */
     public String getMobileBrand() {
         return android.os.Build.BRAND;
     }
-
+    
     /**
      * 获取手机宽度
      */
@@ -91,7 +91,7 @@ public class PhoneUtil {
                 .getSystemService(Context.WINDOW_SERVICE);
         return wm.getDefaultDisplay().getWidth();
     }
-
+    
     /**
      * 获取手机高度
      *
@@ -103,7 +103,7 @@ public class PhoneUtil {
                 .getSystemService(Context.WINDOW_SERVICE);
         return wm.getDefaultDisplay().getHeight();
     }
-
+    
     /**
      * 获取手机imei串号 ,GSM手机的 IMEI 和 CDMA手机的 MEID.
      *
@@ -117,7 +117,7 @@ public class PhoneUtil {
             return null;
         return tm.getDeviceId();
     }
-
+    
     /**
      * 获取手机sim卡号
      *
@@ -131,7 +131,7 @@ public class PhoneUtil {
             return null;
         return tm.getSubscriberId();
     }
-
+    
     /**
      * 获取手机号
      *
@@ -145,7 +145,7 @@ public class PhoneUtil {
             return null;
         return tm.getLine1Number();
     }
-
+    
     /**
      * 判断sd卡是否挂载
      */
@@ -157,7 +157,7 @@ public class PhoneUtil {
             return false;
         }
     }
-
+    
     /**
      * 获取sd卡剩余空间的大小
      */
@@ -170,7 +170,7 @@ public class PhoneUtil {
         // 返回SD卡空闲大小
         return (freeBlocks * blockSize) / 1024 / 1024; // 单位MB
     }
-
+    
     /**
      * 获取sd卡空间的总大小
      */
@@ -183,14 +183,14 @@ public class PhoneUtil {
         // 返回SD卡大小
         return (allBlocks * blockSize) / 1024 / 1024; // 单位MB
     }
-
+    
     /**
      * 判断是否是平板
      */
     public boolean isTablet(Context context) {
         return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
-
+    
     /**
      * 判断一个apk是否安装
      *
@@ -206,7 +206,7 @@ public class PhoneUtil {
         }
         return true;
     }
-
+    
     /**
      * 拨打电话
      *
@@ -220,7 +220,7 @@ public class PhoneUtil {
             context.startActivity(intent);
         }
     }
-
+    
     /**
      * 打开网页
      */
@@ -232,23 +232,23 @@ public class PhoneUtil {
             e.printStackTrace();
         }
     }
-
+    
     /**
      * 获取应用权限 名称列表
      */
     public String[] getAppPermissions(Context context)
-            throws NameNotFoundException {
+    throws NameNotFoundException {
         PackageManager pm = context.getPackageManager();
         PackageInfo packageInfo = pm.getPackageInfo(context.getPackageName(),
                 PackageManager.GET_PERMISSIONS);
         return getAppPermissions(packageInfo);
     }
-
+    
     public String[] getAppPermissions(PackageInfo packageInfo)
-            throws NameNotFoundException {
+    throws NameNotFoundException {
         return packageInfo.requestedPermissions;
     }
-
+    
     /**
      * 获取手机内安装的应用
      */
@@ -256,7 +256,7 @@ public class PhoneUtil {
         PackageManager pm = context.getPackageManager();
         return pm.getInstalledPackages(0);
     }
-
+    
     /**
      * 获取手机安装非系统应用
      */
@@ -273,7 +273,7 @@ public class PhoneUtil {
         infos = null;
         return apps;
     }
-
+    
     /**
      * 获取安装应用的信息
      */
@@ -287,7 +287,7 @@ public class PhoneUtil {
         appInfos.put("packageName", aif.packageName);
         return appInfos;
     }
-
+    
     /**
      * 打开指定包名的应用
      */
@@ -297,7 +297,7 @@ public class PhoneUtil {
         startIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(startIntent);
     }
-
+    
     /**
      * 卸载指定包名的应用
      */
@@ -307,7 +307,7 @@ public class PhoneUtil {
         intent.setData(uri);
         context.startActivity(intent);
     }
-
+    
     /**
      * 手机号判断
      */
@@ -317,5 +317,5 @@ public class PhoneUtil {
         Matcher m = p.matcher(mobile);
         return m.matches();
     }
-
+    
 }

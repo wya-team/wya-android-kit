@@ -23,7 +23,7 @@ public class Builder {
     
     private boolean isAttach;
     private Drawable badgeDrawable;
-    private int badgeBitmapSize;
+    private int badgeDrawableSize;
     
     @IntDef
     public @interface BadgeGravity {
@@ -161,8 +161,8 @@ public class Builder {
         return this;
     }
     
-    public Builder setBadgeBitmapSize(int size) {
-        this.badgeBitmapSize = size;
+    public Builder setBadgeDrawableSize(int size) {
+        this.badgeDrawableSize = size;
         return this;
     }
     
@@ -170,7 +170,7 @@ public class Builder {
         IBadgeView badgeView = new WYABadgeView(context);
         if (null != badgeDrawable) {
             badgeView.setBadgeDrawable(badgeDrawable);
-            badgeView.setBadgeBitmapSize(badgeBitmapSize);
+            badgeView.setBadgeDrawableSize(badgeDrawableSize);
         } else {
             badgeView.setBadgeNum(badgeNum);
             if (!TextUtils.isEmpty(text)) {

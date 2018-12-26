@@ -44,7 +44,7 @@ public class WYABadgeView extends View implements IBadgeView {
     
     // bitmap
     protected Drawable mBadgeDrawable;
-    private int mBadgeBitmapSize;
+    private int mBadgeDrawableSize;
     
     // border
     protected Paint mBorderPaint;
@@ -144,18 +144,18 @@ public class WYABadgeView extends View implements IBadgeView {
     }
     
     @Override
-    public void setBadgeBitmapSize(int size) {
-        this.mBadgeBitmapSize = size;
+    public void setBadgeDrawableSize(int size) {
+        this.mBadgeDrawableSize = size;
     }
     
     private void drawBadgeBitmap(Canvas canvas) {
         if (null == mBadgeDrawable) {
             return;
         }
-        Bitmap bitmap = getBitmap(mBadgeBitmapSize, mBadgeDrawable);
+        Bitmap bitmap = getBitmap(mBadgeDrawableSize, mBadgeDrawable);
         if (null != bitmap) {
             int top = getBitmapTop(bitmap);
-            canvas.drawBitmap(bitmap, mWidth - getPaddingRight() - mBadgeBitmapSize, top, null);
+            canvas.drawBitmap(bitmap, mWidth - getPaddingRight() - mBadgeDrawableSize, top, null);
         }
     }
     
@@ -530,7 +530,7 @@ public class WYABadgeView extends View implements IBadgeView {
                         mBackgroundRect.right = getCenter().x + (mTextRect.width() / 2f + mPadding);
                         widthNeeded = Double.valueOf(mBackgroundRect.right - mBackgroundRect.left).intValue();
                     } else {
-                        widthNeeded = getBitmap(mBadgeBitmapSize, mBadgeDrawable).getWidth();
+                        widthNeeded = getBitmap(mBadgeDrawableSize, mBadgeDrawable).getWidth();
                     }
                 }
                 

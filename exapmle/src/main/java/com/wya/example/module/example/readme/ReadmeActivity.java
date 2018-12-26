@@ -15,27 +15,28 @@ import com.wya.example.base.BaseActivity;
 import butterknife.BindView;
 
 public class ReadmeActivity extends BaseActivity {
-
+    
     @BindView(R.id.web_view)
     WebView webView;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-
+    
     private String url = "";
     private boolean skip;
-
+    
     @Override
     protected int getLayoutID() {
         return R.layout.activity_readme;
     }
-
+    
     @Override
     protected void initView() {
         url = getIntent().getStringExtra("url");
         skip = getIntent().getBooleanExtra("skip", false);
+        setToolBarTitle(url.split("/")[url.split("/").length - 1].replace(".md", ""));
         initWebView(url);
     }
-
+    
     @SuppressLint("NewApi")
     private void initWebView(String content) {
         WebSettings settings = webView.getSettings();
@@ -51,7 +52,7 @@ public class ReadmeActivity extends BaseActivity {
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                if(newProgress != 100){
+                if (newProgress != 100) {
                     progressBar.setProgress(newProgress);
                     progressBar.setVisibility(View.VISIBLE);
                 } else {
@@ -59,27 +60,27 @@ public class ReadmeActivity extends BaseActivity {
                 }
             }
         });
+        webView.setInitialScale(150);
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        //不显示webview缩放按钮
+        settings.setDisplayZoomControls(false);
     }
-
-
+    
+    
     //Web视图
     class HelloWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//            LogUtil.d("url:"+url);
-            if(skip){
+            if (skip) {
                 view.loadUrl(url);
             }
             return true;
         }
-
+        
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            view.loadUrl("javascript:window.local_obj.showSource('<head>'+"
-                    + "document.getElementsByTagName('html')[0].innerHTML+'</head>');");
         }
-
     }
-
 }

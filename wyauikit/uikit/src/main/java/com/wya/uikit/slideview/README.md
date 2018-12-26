@@ -20,6 +20,7 @@ setRegionDrawableMax|设置最大区间图片|drawable|-
 setRegionBitmapSize|设置图片尺寸|dimension|@dimen/dp_20
 setRegionTextColor|设置区间文本颜色|color|@color/black
 setRegionTextSize|设置区间文本尺寸|dimension|@dimen/sp_14
+setRegionMode|设置区间类型|enum|mode_integer / mode_float
 
 ### slider_mode
 
@@ -51,6 +52,7 @@ bange|双向
          app:rsd_region_drawable_max="@drawable/image_ic_adjust"
          app:rsd_region_padding="@dimen/dp_5"
          app:rsd_region_text_color="@color/black"
+         app:rsd_region_mode="mode_integer"
          app:rsd_region_text_size="@dimen/sp_15" />
 
 ```

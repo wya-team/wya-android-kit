@@ -7,6 +7,7 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.animation.LinearInterpolator;
 import android.widget.Scroller;
+import android.widget.Toast;
 
 import com.wya.uikit.R;
 
@@ -21,8 +22,11 @@ public class MarqueeTextView extends AppCompatTextView {
     private int mCurStartX = 0;
     private int mMarqueeInterval;
     private int mMarqueeMode;
+    private boolean mClosable;
+    private boolean mSkipable;
     
     private boolean mIsPaused = true;
+    private Context mContext;
     
     public MarqueeTextView(Context context) {
         this(context, null);
@@ -34,6 +38,7 @@ public class MarqueeTextView extends AppCompatTextView {
     
     public MarqueeTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        mContext = context;
         parseAttrs(context, attrs);
         init();
     }
@@ -43,6 +48,8 @@ public class MarqueeTextView extends AppCompatTextView {
         if (null != typedArray) {
             mMarqueeInterval = typedArray.getInt(R.styleable.MarqueeTextView_mtv_interval, MARQUEE_DEFAULT_INTERVAL);
             mMarqueeMode = typedArray.getInt(R.styleable.MarqueeTextView_mtv_mode, MARQUEE_MODE_REPEAT);
+            mClosable = typedArray.getBoolean(R.styleable.MarqueeTextView_mtv_closable, false);
+            mSkipable = typedArray.getBoolean(R.styleable.MarqueeTextView_mtv_skipable, false);
             typedArray.recycle();
         }
     }
@@ -52,6 +59,15 @@ public class MarqueeTextView extends AppCompatTextView {
         setEllipsize(null);
         setHorizontallyScrolling(true);
         startMarquee();
+        
+        setOnClickListener(view -> {
+            if (isClosable()) {
+                pauseMarquee();
+                setVisibility(GONE);
+            } else if (isSkipable()) {
+                Toast.makeText(mContext, "click ", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     
     public void startMarquee() {
@@ -147,4 +163,21 @@ public class MarqueeTextView extends AppCompatTextView {
     public boolean isPaused() {
         return mIsPaused;
     }
+    
+    public boolean isClosable() {
+        return mClosable;
+    }
+    
+    public void setClosable(boolean closable) {
+        this.mClosable = closable;
+    }
+    
+    public boolean isSkipable() {
+        return mSkipable;
+    }
+    
+    public void setSkipable(boolean clickable) {
+        mSkipable = clickable;
+    }
+    
 }
