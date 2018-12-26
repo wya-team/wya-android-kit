@@ -340,7 +340,6 @@ public class RangeSlideView extends View implements IRangeSlideView {
         String max = String.valueOf(null == mRightSlider ? mProgressMax : (mProgressMax - mProgressMin) * mRightSlider.getCurPercent());
         BigDecimal bigDecimal = new BigDecimal((double) Float.parseFloat(max));
         bigDecimal = bigDecimal.setScale(2, 4);
-        
         float maxFloat = bigDecimal.floatValue();
         if (maxFloat >= 1 || maxFloat == 0) {
             int minInt = Double.valueOf(String.valueOf(maxFloat)).intValue();
@@ -348,8 +347,6 @@ public class RangeSlideView extends View implements IRangeSlideView {
         } else {
             max = String.valueOf(maxFloat);
         }
-        
-        //        max = String.valueOf(bigDecimal.floatValue());
         
         float x = getWidth() - getPaddingRight() - mRegionPaint.measureText(max);
         Paint.FontMetricsInt fontMetricsInt = mRegionPaint.getFontMetricsInt();
