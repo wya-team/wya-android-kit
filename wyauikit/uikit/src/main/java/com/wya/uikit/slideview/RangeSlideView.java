@@ -10,7 +10,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -95,12 +94,10 @@ public class RangeSlideView extends View implements IRangeSlideView {
             // progress
             mSlidderMode = typedArray.getInteger(R.styleable.RangeSlideView_rsd_slider_mode, SLIDDER_MODE_SINGLE);
             mProgressHeight = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_progress_height, Utils.dp2px(context, 2))).intValue();
-            
             if (typedArray.hasValue(R.styleable.RangeSlideView_rsd_progress_min)) {
                 mProgressMin = typedArray.getInteger(R.styleable.RangeSlideView_rsd_progress_min, -1);
                 mHasMin = true;
             }
-            
             if (typedArray.hasValue(R.styleable.RangeSlideView_rsd_progress_max)) {
                 mProgressMax = typedArray.getInteger(R.styleable.RangeSlideView_rsd_progress_max, -1);
                 mHasMax = true;
@@ -247,23 +244,16 @@ public class RangeSlideView extends View implements IRangeSlideView {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         // progress left
-        int regionMinTextSize = mHasMin ? Double.valueOf(mRegionPaint.measureText(String.valueOf(Float.valueOf(mProgressMin)))).intValue() : 0;
+        String minString = mProgressMax >= 1 || mProgressMin == 0 ? String.valueOf(mProgressMin) : String.valueOf(Float.valueOf(mProgressMin));
+        int regionMinTextSize = mHasMin ? Double.valueOf(mRegionPaint.measureText(minString)).intValue() : 0;
         int regionMinSize = mHasMin ? Double.valueOf(null != mDrawableRegionMin ? mRegionBitmapSize : regionMinTextSize).intValue() : 0;
         mProgressLeft = getPaddingLeft() + regionMinSize + mRegionPadding + mLeftSlider.getSliderSize() / 2;
         
         // progress right
-        int regionMaxTextSize = mHasMax ? Double.valueOf(mRegionPaint.measureText(String.valueOf(Float.valueOf(mProgressMax)))).intValue() : 0;
+        String maxString = mProgressMin >= 1 || mProgressMin == 0 ? String.valueOf(mProgressMax) : String.valueOf(Float.valueOf(mProgressMax));
+        int regionMaxTextSize = mHasMax ? Double.valueOf(mRegionPaint.measureText(maxString)).intValue() : 0;
         int regionMaxSize = mHasMax ? Double.valueOf(null != mDrawableRegionMax ? mRegionBitmapSize : regionMaxTextSize).intValue() : 0;
-        int rightSliderSize = 0;
-        
-        rightSliderSize = mLeftSlider.getSliderSize();
-        
-        Log.e("ZCQ", "onSizeChanged .. w = " + w);
-        Log.e("ZCQ", "onSizeChanged .. getPaddingRight = " + getPaddingRight());
-        Log.e("ZCQ", "onSizeChanged .. regionMaxSize = " + regionMaxSize);
-        Log.e("ZCQ", "onSizeChanged .. mRegionPadding = " + mRegionPadding);
-        Log.e("ZCQ", "onSizeChanged .. rightSliderSize / 2 = " + rightSliderSize / 2);
-        
+        int rightSliderSize = mLeftSlider.getSliderSize();
         mProgressRight = w - getPaddingRight() - regionMaxSize - mRegionPadding - rightSliderSize / 2;
         
         // progress rectF
@@ -314,10 +304,15 @@ public class RangeSlideView extends View implements IRangeSlideView {
     
     private void drawMinRegionText(Canvas canvas) {
         String min = String.valueOf(mLeftSlider.getCurPercent() * (mProgressMax - mProgressMin));
-        
         BigDecimal bigDecimal = new BigDecimal((double) Float.parseFloat(min));
         bigDecimal = bigDecimal.setScale(1, 4);
-        min = String.valueOf(bigDecimal.floatValue());
+        float minFloat = bigDecimal.floatValue();
+        if (minFloat >= 1 || minFloat == 0) {
+            int minInt = Double.valueOf(String.valueOf(minFloat)).intValue();
+            min = String.valueOf(minInt);
+        } else {
+            min = String.valueOf(minFloat);
+        }
         
         float x = getProgressLeft() - mRegionPadding - mLeftSlider.getSliderSize() / 2 - mRegionPaint.measureText(min);
         Paint.FontMetricsInt fontMetricsInt = mRegionPaint.getFontMetricsInt();
@@ -344,8 +339,18 @@ public class RangeSlideView extends View implements IRangeSlideView {
     private void drawMaxRegionText(Canvas canvas) {
         String max = String.valueOf(null == mRightSlider ? mProgressMax : (mProgressMax - mProgressMin) * mRightSlider.getCurPercent());
         BigDecimal bigDecimal = new BigDecimal((double) Float.parseFloat(max));
-        bigDecimal = bigDecimal.setScale(1, 4);
-        max = String.valueOf(bigDecimal.floatValue());
+        bigDecimal = bigDecimal.setScale(2, 4);
+        
+        float maxFloat = bigDecimal.floatValue();
+        if (maxFloat >= 1 || maxFloat == 0) {
+            int minInt = Double.valueOf(String.valueOf(maxFloat)).intValue();
+            max = String.valueOf(minInt);
+        } else {
+            max = String.valueOf(maxFloat);
+        }
+        
+        //        max = String.valueOf(bigDecimal.floatValue());
+        
         float x = getWidth() - getPaddingRight() - mRegionPaint.measureText(max);
         Paint.FontMetricsInt fontMetricsInt = mRegionPaint.getFontMetricsInt();
         float y = getProgressTop() + (getProgressHeight()) / 2 - (fontMetricsInt.bottom + fontMetricsInt.top) / 2;
@@ -414,7 +419,6 @@ public class RangeSlideView extends View implements IRangeSlideView {
         RectF rectF = new RectF();
         float left = calProgressLeft();
         float sliderSize = calSliderSize(mLeftSlider.getCurPercent());
-        
         rectF.left = left;
         rectF.top = getProgressTop();
         rectF.right = left + sliderSize;
@@ -522,7 +526,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
                 float x = getEventX(event);
                 if (mSlidderMode == SLIDDER_MODE_RANGDE) {
                     // 重合
-                    if (mLeftSlider.getCurPercent() == mRightSlider.getCurPercent()) {
+                    if (mLeftSlider.getCurPercent() >= mRightSlider.getCurPercent()) {
                         if (callback != null) {
                             callback.onStopTrackingTouch(this, mCurSlider == mLeftSlider);
                         }

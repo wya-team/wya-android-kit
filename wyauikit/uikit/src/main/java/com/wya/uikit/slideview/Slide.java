@@ -86,7 +86,7 @@ public class Slide {
     public float getCurPercent() {
         try {
             BigDecimal bigDecimal = new BigDecimal((double) mCurPercent);
-            bigDecimal = bigDecimal.setScale(1, 4);
+            bigDecimal = bigDecimal.setScale(2, 4);
             mCurPercent = bigDecimal.floatValue();
         } catch (Exception e) {
             e.printStackTrace();
