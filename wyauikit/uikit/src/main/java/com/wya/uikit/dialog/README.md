@@ -23,6 +23,8 @@ cancelTextStr|取消按钮文字|String|取消
 confirmColor|确定按钮文字颜色|int|R.drawable.btn_c00bfff_click_color
 cancelColor|取消按钮文字颜色|int|R.drawable.btn_c333333_click_color
 gravity|弹出框位置|int|Gravity.CENTER
+height|弹出框高度|int|WindowManager.LayoutParams.WRAP_CONTENT
+width|弹出框宽度|int|WindowManager.LayoutParams.MATCH_PARENT
 
 
 
@@ -32,7 +34,7 @@ gravity|弹出框位置|int|Gravity.CENTER
 - 项目中的使用
 ```
     wyaCustomDialog = new WYACustomDialog.Builder(this)
-                    .Gravity(Gravity.BOTTOM)
+                    .gravity(Gravity.BOTTOM)
                     .cancelTouchout(boolean val)
                     .cancelTouchout(boolean val) 
                     .cancelable(boolean val) 
@@ -49,6 +51,8 @@ gravity|弹出框位置|int|Gravity.CENTER
                     .confirmColor(int confirmColor)
                     .cancelColor(int cancelColor) 
                     .Gravity(int gravity) 
+                    .width(ScreenUtil.getScreenWidth(this) * 3/4)
+                    .height(ScreenUtil.dip2px(DialogExampleActivity.this, 200))
                     .setLayoutRes(R.layout.way_dialog_custom_list_layout, new CustomListener() {
                                         @Override
                                         public void customLayout(View v) {

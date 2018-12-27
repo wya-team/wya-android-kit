@@ -25,6 +25,7 @@ isShowImgRight | 是否显示右边第一张图片| boolean | false
 isShowImgRightAnther | 是否显示右边第二张图片| boolean | false
 imgRightRes | 右边第一张图片| int | null
 imgRightResAnther | 右边第二章图片资源 | int | null
+isLight | 是否是明亮的标题栏 | boolean | false
 
 
 ## 用法说明
@@ -37,9 +38,16 @@ imgRightResAnther | 右边第二章图片资源 | int | null
 initWYAActionBarDefault(boolean showToolBar, String toolbarBgColorValue, boolean isShowTitle, String titleStr, int titleTextSize, String titleTextColorValue, boolean isShowTvLeft, String tvLeftStr, int tvLeftTextSize, String tvLeftTextColorValue, boolean isShowImgLeft, int imgLeftRes, boolean isShowTvRight, String tvRightStr, int tvRightTextSize, String tvRightTextColorValue, boolean isShowImgRight, boolean isShowImgRightAnther, int imgRightRes, int imgRightResAnther)|初始化标题（默认标题， 在baseActivity中调用）
 initToolBarBgColor(String toolbar_bg_color_value)|修改标题栏背景颜色
 initToolBarTitle(String titleStr, int titleTextSize, int titleTextColor, boolean showTitle)|修改标题
-setBackGroundDrawablePress(Drawable backGroundDrawablePress)|设置按钮被按下时的背景图片
 setToolBarTitle(String titleStr)|只修改标题内容
 initImgLeft(int imgLeftRes, boolean showImgLeft)|修改标题栏左边图标
-initImgRight(int imgRightRes, boolean showImgRight, int imgRightAntherRes, boolean showImgAnther)|修改标题右边图标
-initTvRight(String tvRightStr, int tvRightTextColor, int tvRightTextSize, boolean showTvRight) |修改标题栏右边文字
+initToolBarBgColor(int toolbarBgColorValue, boolean isLight)|设置标题栏颜色和状态栏颜色
+initImgRight(int imgRightRes, boolean showImgRight)|设置标题右边的图片
+initImgRightAnther(int imgRightAntherRes, boolean showImgAnther)|设置标题右边另外的图片
+initTvRight(String tvRightStr, int tvRightTextColor, int tvRightTextSize, boolean showTvRight) |设置标题右边的文字
+initTvRightAnther(String tvRightAntherStr, int tvRightAntherTextColor, int tvRightAntherTextSize, boolean showTvRightAnther) |设置标题右边的文字
 initShowToolBar(boolean showTitle)|设置是否显示标题
+setLeftOnclickListener(onLeftOnclickListener onLeftOnclickListener)|设置左边点击事件内容和监听
+seRightTvOnclickListener(onRightTvOnclickListener onRightTvOnclickListener)|设置右边文字点击事件
+setRightTvAntherOnclickListener(onRightTvAntherOnclickListener onRightTvAntherOnclickListener)|设置右边第二个点击事件监听
+setRightImageOnclickListener(onRightImageOnclickListener onRightImageOnclickListener)|设置右边图片点击事件监听
+setRightImageAntherOnclickListener(onRightImageAntherOnclickListener onRightImageAntherOnclickListener)|设置右边第二个图片点击事件监听

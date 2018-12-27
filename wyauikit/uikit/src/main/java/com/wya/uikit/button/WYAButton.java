@@ -92,11 +92,6 @@ public class WYAButton extends Button {
             if (colorListPress != null) {
                 backColorPress = colorListPress.getColorForState(getDrawableState(), 0);
             }
-            //设置背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
-            backGroundDrawable = a.getDrawable(R.styleable.WYAButton_backGroundImage);
-            if (backGroundDrawable != null) {
-                setBackgroundDrawable(backGroundDrawable);
-            }
             //记录按钮被按下时的背景图片
             backGroundDrawablePress = a.getDrawable(R.styleable.WYAButton_backGroundImagePress);
             //设置文字的颜色
@@ -137,14 +132,16 @@ public class WYAButton extends Button {
                 setRadius(radius);
             }
 
-
-
             //设置按钮形状，fillet为true时才生效
             int shape = a.getInteger(R.styleable.WYAButton_shape, 0);
             if (fillet && shape != 0) {
                 setShape(shape);
             }
-
+            //设置背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
+            backGroundDrawable = a.getDrawable(R.styleable.WYAButton_backGroundImage);
+            if (backGroundDrawable != null) {
+                setBackgroundDrawable(backGroundDrawable);
+            }
             this.setGravity(Gravity.CENTER);
 
             a.recycle();
