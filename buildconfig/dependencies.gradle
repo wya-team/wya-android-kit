@@ -18,6 +18,7 @@ ext {
             design                 : "com.android.support:design:${supportLibVersion}",
             appcompat_v7           : "com.android.support:appcompat-v7:${supportLibVersion}",
             recyclerview_v7        : "com.android.support:recyclerview-v7:${supportLibVersion}",
+
             support_annotations    : "com.android.support:support-annotations:${supportLibVersion}",
             support_vector_drawable: "com.android.support:support-vector-drawable:${supportLibVersion}",
             constraint_layout      : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
@@ -42,11 +43,13 @@ ext {
             rxbinding                    : "com.jakewharton.rxbinding2:rxbinding:${rxbindingVersion}",
             BaseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:${baseRecyclerViewAdapterHelperVersion}",
             zxing                        : "com.google.zxing:core:${coreVersion}",
+
             glide                        : "com.github.bumptech.glide:glide:${glideVersion}",
             compiler                     : "com.github.bumptech.glide:compiler:${glideVersion}",
             gson                         : "com.google.code.gson:gson:${gsonVersion}",
             aria_core                    : "com.arialyy.aria:aria-core:${ariaCoreVersion}",
             aria_compiler                : "com.arialyy.aria:aria-compiler:${ariaCoreVersion}",
+            
     ]
 
 }
