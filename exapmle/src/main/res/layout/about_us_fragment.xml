@@ -87,7 +87,7 @@
             app:lineViewColor="#999999"
             app:rightCanEdit="false"
             app:rightImage="@drawable/icon_right_arrow"
-            app:rightText=""
+            app:rightTextStr=""
             app:rightTextColor="#868686" />
 
         <com.wya.uikit.customitems.WYAInputItem
@@ -104,7 +104,7 @@
             app:lineViewColor="#999999"
             app:rightCanEdit="false"
             app:rightImage="@drawable/icon_right_arrow"
-            app:rightText=""
+            app:rightTextStr=""
             app:rightTextColor="#868686" />
 
         <com.wya.uikit.customitems.WYAInputItem
@@ -121,7 +121,7 @@
             app:lineViewColor="#f4f4f4"
             app:rightCanEdit="false"
             app:rightImage="@drawable/icon_right_arrow"
-            app:rightText=""
+            app:rightTextStr=""
             app:rightTextColor="#868686" />
 
 

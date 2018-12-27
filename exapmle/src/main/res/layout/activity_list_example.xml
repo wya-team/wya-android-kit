@@ -41,7 +41,7 @@
                 app:lineViewColor="#999999"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_list_selected"
-                app:rightText=""
+                app:rightTextStr=""
                 app:rightTextColor="#868686" />
 
             <com.wya.uikit.customitems.WYAInputItem
@@ -58,7 +58,7 @@
                 app:lineViewColor="#999999"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
-                app:rightText=""
+                app:rightTextStr=""
                 app:rightTextColor="#868686" />
 
             <com.wya.uikit.customitems.WYAInputItem
@@ -75,7 +75,7 @@
                 app:lineViewColor="#f4f4f4"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
-                app:rightText="详细信息"
+                app:rightTextStr="详细信息"
                 app:rightTextColor="#868686" />
 
             <TextView
@@ -222,7 +222,7 @@
                 app:lineViewColor="#999999"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
-                app:rightText="详细信息"
+                app:rightTextStr="详细信息"
                 app:rightTextColor="#868686" />
 
             <TextView
@@ -244,7 +244,7 @@
                 app:lineViewColor="#999999"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_list_selected"
-                app:rightText=""
+                app:rightTextStr=""
                 app:rightTextColor="#868686" />
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
@@ -259,7 +259,7 @@
                 app:lineViewColor="#f4f4f4"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_list_selected"
-                app:rightText=""
+                app:rightTextStr=""
                 app:rightTextColor="#868686" />
 
 
@@ -297,7 +297,7 @@
                 app:leftTvText="多项选择"
                 app:lineViewColor="#f4f4f4"
                 app:rightCanEdit="false"
-                app:rightText=""
+                app:rightTextStr=""
                 app:rightTextColor="#868686" />
 
             <TextView
@@ -319,7 +319,7 @@
                 app:leftTvText="多项选择"
                 app:lineViewColor="#999999"
                 app:rightCanEdit="false"
-                app:rightText=""
+                app:rightTextStr=""
                 app:rightTextColor="#868686" />
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
@@ -334,7 +334,7 @@
                 app:leftTvText="多项选择"
                 app:lineViewColor="#f4f4f4"
                 app:rightCanEdit="false"
-                app:rightText=""
+                app:rightTextStr=""
                 app:rightTextColor="#868686" />
 
         </LinearLayout>
