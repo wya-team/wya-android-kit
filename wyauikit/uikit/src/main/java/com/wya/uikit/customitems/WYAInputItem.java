@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wya.uikit.R;
+import com.wya.uikit.customitems.view.MyEditText;
 
 /**
  * 创建日期：2018/11/30 17:12
@@ -67,7 +68,7 @@ public class WYAInputItem extends LinearLayout {
     private String rightText = null;
     private String rightHint = null;
     private ColorStateList rightTextColor = null;
-    private EditText et_input_item_right;
+    private MyEditText et_input_item_right;
     private boolean rightCanEdit = false;
 
     /**
@@ -159,8 +160,8 @@ public class WYAInputItem extends LinearLayout {
             }
 
             //设置右边文本是否可以编辑
-            canEdit = a.getBoolean(R.styleable.WYAInputItem_canEdit, true);
-            setRightEdit(canEdit);
+            rightCanEdit = a.getBoolean(R.styleable.WYAInputItem_rightCanEdit, true);
+            setRightEdit(rightCanEdit);
 
             //设置右边文字的颜色
             rightTextColor = a.getColorStateList(R.styleable.WYAInputItem_rightTextColor);
@@ -273,7 +274,9 @@ public class WYAInputItem extends LinearLayout {
      */
     private void setContentEdit(boolean canEdit) {
         this.canEdit = canEdit;
+        et_input_item_content.setFocusable(canEdit);
         et_input_item_content.setEnabled(canEdit);
+        et_input_item_content.setFocusableInTouchMode(canEdit);
     }
 
 
@@ -347,7 +350,9 @@ public class WYAInputItem extends LinearLayout {
      */
     private void setRightEdit(boolean rightCanEdit) {
         this.rightCanEdit = rightCanEdit;
+        et_input_item_right.setFocusable(rightCanEdit);
         et_input_item_right.setEnabled(rightCanEdit);
+        et_input_item_right.setFocusableInTouchMode(rightCanEdit);
     }
 
 

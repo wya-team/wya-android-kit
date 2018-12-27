@@ -138,6 +138,7 @@ public class DialogExampleActivity extends BaseActivity {
                         .title("标题")
                         .message("内容")
                         .cancelShow(false)
+                        .width(ScreenUtil.getScreenWidth(this) * 3/4)
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
                     wyaCustomDialog.dismiss();
@@ -151,6 +152,7 @@ public class DialogExampleActivity extends BaseActivity {
                         .cancelTouchout(true)
                         .title("标题")
                         .message("内容")
+                        .width(ScreenUtil.getScreenWidth(this) * 3/4)
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
                     wyaCustomDialog.dismiss();
@@ -166,6 +168,7 @@ public class DialogExampleActivity extends BaseActivity {
                         .canEdit(true)
                         .editTextStr("编辑的内容")
                         .hintEditTextStr("提示内容")
+                        .width(ScreenUtil.getScreenWidth(this) * 3/4)
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
                     wyaCustomDialog.dismiss();
@@ -198,6 +201,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 }
                             }
                         })
+                        .width(ScreenUtil.getScreenWidth(this) * 3/4)
                         .height(ScreenUtil.dip2px(DialogExampleActivity.this, 200))
                         .cancelable(true)
                         .gravity(Gravity.CENTER)
@@ -237,6 +241,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 }
                             }
                         })
+                        .width(ScreenUtil.getScreenWidth(this) * 3/4)
                         .height(ScreenUtil.dip2px(DialogExampleActivity.this, 200))
                         .cancelable(true)
                         .gravity(Gravity.CENTER)
@@ -258,6 +263,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 title.setVisibility(View.VISIBLE);
                             }
                         })
+                        .width(ScreenUtil.getScreenWidth(this) * 3/4)
                         .height(ScreenUtil.dip2px(DialogExampleActivity.this, 200))
                         .cancelable(true)
                         .gravity(Gravity.CENTER)

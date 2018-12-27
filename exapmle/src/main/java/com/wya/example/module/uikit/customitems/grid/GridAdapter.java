@@ -30,6 +30,6 @@ public class GridAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
    @Override
    protected void convert(BaseViewHolder helper, String item) {
        helper.setText(R.id.tv_grid_item, item);
-       helper.setBackgroundColor(R.id.img_grid_item, ColorUtil.hex2Int(ColorUtil.getRandColorCode()));
+       helper.setBackgroundColor(R.id.img_grid_item, ColorUtil.hex2Int("#eeeeee"));
    }
 }

@@ -29,7 +29,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"/>
 
-        <EditText
+        <com.wya.uikit.customitems.view.MyEditText
             android:id="@+id/et_input_item_content"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -38,7 +38,7 @@
             android:textSize="14sp"
             android:padding="10dp"/>
 
-        <EditText
+        <com.wya.uikit.customitems.view.MyEditText
             android:id="@+id/et_input_item_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
