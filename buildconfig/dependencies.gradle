@@ -32,6 +32,7 @@ ext {
     baseRecyclerViewAdapterHelperVersion = "2.9.30"
     coreVersion = "3.3.3"
     glideVersion = "4.8.0"
+
     gsonVersion = "2.8.5"
     ariaCoreVersion = "3.5.2"
 
