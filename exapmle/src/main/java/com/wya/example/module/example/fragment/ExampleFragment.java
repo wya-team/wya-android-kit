@@ -48,6 +48,7 @@ import com.wya.example.module.utils.image.QRCodeExampleActivity;
 import com.wya.example.module.utils.realm.RealmExampleActivity;
 import com.wya.uikit.dialog.WYACustomDialog;
 import com.wya.utils.utils.DataCleanUtil;
+import com.wya.utils.utils.ScreenUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -277,6 +278,7 @@ public class ExampleFragment extends Fragment {
                             .message(String.format("%s%s%s","当前缓存",DataCleanUtil
                                     .getTotalCacheSize(getActivity()),",是否清理"))
                             .cancelable(true)
+                            .width(ScreenUtil.getScreenWidth(getActivity()) * 3/4)
                             .build();
                 } catch (Exception e) {
                     e.printStackTrace();

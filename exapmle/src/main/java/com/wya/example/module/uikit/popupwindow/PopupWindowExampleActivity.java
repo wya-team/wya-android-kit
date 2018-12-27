@@ -17,6 +17,7 @@ import com.wya.hardware.scan.Intents;
 import com.wya.uikit.dialog.WYACustomDialog;
 import com.wya.uikit.popupwindow.WYAPopupWindow;
 import com.wya.uikit.toolbar.StatusBarUtil;
+import com.wya.utils.utils.ScreenUtil;
 
 import butterknife.BindView;
 
@@ -87,6 +88,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
                     .title("提示")
                     .message("请获取相机权限进行扫码!")
                     .cancelShow(false)
+                    .width(ScreenUtil.getScreenWidth(this) * 3/4)
                     .build();
             wyaCustomDialog.setNoOnclickListener(() -> {
                 wyaCustomDialog.dismiss();
@@ -119,6 +121,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
                             .title("提示")
                             .message("请获取相机权限进行扫码!")
                             .cancelShow(false)
+                            .width(ScreenUtil.getScreenWidth(this) * 3/4)
                             .build();
                     wyaCustomDialog.setNoOnclickListener(() -> {
                         wyaCustomDialog.dismiss();
