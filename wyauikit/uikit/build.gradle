@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 def buildConfig = rootProject.extensions.getByName("ext")
 def supportDepends = rootProject.ext.supportDepends
+def depends = rootProject.ext.depends
 
 android {
 
@@ -62,13 +63,18 @@ buildscript {
 }
 
 dependencies {
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-    implementation supportDepends.appcompat
-    implementation supportDepends.rxbinding
+
+    implementation supportDepends.appcompat_v7
     implementation supportDepends.design
-    implementation supportDepends.recyclerview
-    implementation supportDepends.base_adapter
+    implementation supportDepends.recyclerview_v7
+
+    // glide
+    implementation depends.glide
+    annotationProcessor depends.compiler
+
+    implementation depends.BaseRecyclerViewAdapterHelper
+    implementation depends.rxbinding
+
 }
 
 //aar打包
