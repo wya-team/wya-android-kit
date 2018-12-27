@@ -267,7 +267,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                 Log.i("MCJ", "video");
                 String path = data.getStringExtra("path");
                 String url = data.getStringExtra("url");
-                mAllList.add(path);
+                mAllList.add(url);
                 if (mAllList.size() < num) {
                     mAllList.add("");
                 }

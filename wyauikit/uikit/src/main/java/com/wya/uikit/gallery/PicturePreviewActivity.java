@@ -44,7 +44,6 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
     private List<LocalMedia> images = new ArrayList<>();
     private List<LocalMedia> mImageSelected = new ArrayList<>();
     private PreviewPagerAdapter mAdapter;
-    private String field;
     private List<String> mList = new ArrayList<>();
     private int requestCode;
     private int max;
@@ -85,7 +84,6 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
 
         position = getIntent().getIntExtra(GalleryConfig.POSITION, -1);
         type = getIntent().getIntExtra(GalleryConfig.TYPE, GalleryConfig.GALLERY);
-//        field = getIntent().getStringExtra(GalleryConfig.FIELD_NAME);
         requestCode = getIntent().getIntExtra(GalleryConfig.PICKER_FOR_RESULT, -1);
         max = getIntent().getIntExtra(GalleryConfig.MAX_NUM, -1);
 

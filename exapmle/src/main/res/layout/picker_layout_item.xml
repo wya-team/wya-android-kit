@@ -24,4 +24,29 @@
             android:layout_height="wrap_content"
             android:src="@drawable/icon_delete" />
     </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/video_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/image_picker_video" />
+
+        <TextView
+            android:id="@+id/video_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="10:00"
+            android:textSize="12sp"
+            android:layout_marginLeft="5dp"/>
+    </LinearLayout>
 </com.wya.uikit.imagepicker.SquareRelativeLayout>

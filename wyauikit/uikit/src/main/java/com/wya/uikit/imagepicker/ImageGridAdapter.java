@@ -1,6 +1,8 @@
 package com.wya.uikit.imagepicker;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +36,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 	private OnImageClickListener mImageClickListener;
 	private OnTakePhotoClickListener mPhotoClickListener;
 	private int max;
+	private String TAG="ImageGridAdapter";
 
 	public ImageGridAdapter(Context context, OnImageSelectedChangedListener listener, int max) {
 		mContext = context;
@@ -110,7 +115,23 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 			final LocalMedia localMedia = mImages.get(currentPosition);
 			imageViewHolder.mCheckBox.setChecked(mSelectedImages.contains(localMedia));
 
+			//if type is video then show the first frame
+			if (localMedia.getType().contains("video")) {
+				MediaMetadataRetriever metadataRetriever = new MediaMetadataRetriever();
+				metadataRetriever.setDataSource(localMedia.getPath());
+				Bitmap bitmap = metadataRetriever.getFrameAtTime();
+				String duration = metadataRetriever.extractMetadata(android.media.MediaMetadataRetriever
+						.METADATA_KEY_DURATION);
+//				imageViewHolder.mImageView.setImageBitmap(bitmap);
+                imageViewHolder.mVideoLayout.setVisibility(View.VISIBLE);
+                imageViewHolder.mDuration.setText(dateFormate(duration));
+                metadataRetriever.release();
+
+			} else if (localMedia.getType().contains("image")) {
+                imageViewHolder.mVideoLayout.setVisibility(View.GONE);
+			}
 			Glide.with(mContext).load(localMedia.getPath()).into(imageViewHolder.mImageView);
+
 
 			//add checkBox listener  change selected images
 			imageViewHolder.mCheckBox.setOnClickListener(new View.OnClickListener() {
@@ -119,8 +140,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 					if (((CheckBox) v).isChecked()) {
 						if (max == mSelectedImages.size()) {
 							((CheckBox) v).setChecked(false);
-							Toast.makeText(mContext, "最多选择" + max + "张图片", Toast.LENGTH_SHORT)
-									.show();
+							Toast.makeText(mContext, "最多选择" + max + "张图片", Toast.LENGTH_SHORT).show();
 							return;
 						}
 						mSelectedImages.add(localMedia);
@@ -151,11 +171,15 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 	class ImageViewHolder extends RecyclerView.ViewHolder {
 		ImageView mImageView;
 		CheckBox mCheckBox;
+        LinearLayout mVideoLayout;
+        TextView mDuration;
 
 		public ImageViewHolder(@NonNull View itemView) {
 			super(itemView);
 			mImageView = itemView.findViewById(R.id.iv_picture);
 			mCheckBox = itemView.findViewById(R.id.check_box);
+            mVideoLayout = itemView.findViewById(R.id.video_msg);
+            mDuration = itemView.findViewById(R.id.video_duration);
 		}
 	}
 
@@ -187,4 +211,13 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 		void onClick();
 	}
 
+
+    private String dateFormate(String duration) {
+        long time = Long.parseLong(duration);
+        String min = String.valueOf(time / 60000);
+        String sec = String.valueOf((time % 60000) / 1000);
+        min = min.length() == 1 ? String.format("%s%s", "0", min) : min;
+        sec = sec.length() == 1 ? String.format("%s%s", "0", sec) : sec;
+        return String.format("%s%s%s", min, ":", sec);
+    }
 }

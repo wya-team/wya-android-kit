@@ -1,6 +1,7 @@
 package com.wya.example.module.uikit.imagepicker;
 
 import android.content.Context;
+import android.media.MediaMetadataRetriever;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wya.example.R;
@@ -23,11 +25,12 @@ import java.util.List;
  * version: 1.0
  */
 public class ImagePickerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<String>images;
+    private List<String> images;
     private Context mContext;
     private static final int ADD = 1;
     private static final int IMG = 2;
     private OnItemClickListener mOnItemClickListener;
+    private static final String type = "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
 
     public ImagePickerAdapter(List<String> images, Context context) {
         this.images = images;
@@ -40,10 +43,10 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = null;
         if (viewType == ADD) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.picker_layout_add_item, viewGroup,false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.picker_layout_add_item, viewGroup, false);
             return new AddViewHolder(view);
         } else {
-            view = LayoutInflater.from(mContext).inflate(R.layout.picker_layout_item, viewGroup,false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.picker_layout_item, viewGroup, false);
             return new ImageViewHolder(view);
         }
     }
@@ -59,7 +62,24 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
 
         if (viewHolder instanceof ImageViewHolder) {
-            Glide.with(mContext).load(images.get(position)).into(((ImageViewHolder) viewHolder)
+
+            String url = images.get(position);
+            String[] split = url.split("[.]");
+            //check is video type
+            if (isVideo(split[split.length - 1])) {
+                MediaMetadataRetriever metadataRetriever = new MediaMetadataRetriever();
+                metadataRetriever.setDataSource(url);
+                String duration = metadataRetriever.extractMetadata(android.media.MediaMetadataRetriever
+                        .METADATA_KEY_DURATION);
+                ((ImageViewHolder) viewHolder).video_msg.setVisibility(View.VISIBLE);
+                ((ImageViewHolder) viewHolder).video_duration.setText(dateFormate(duration));
+                metadataRetriever.release();
+            } else {
+                ((ImageViewHolder) viewHolder).video_msg.setVisibility(View.GONE);
+            }
+
+
+            Glide.with(mContext).load(url).into(((ImageViewHolder) viewHolder)
                     .mImageView);
             ((ImageViewHolder) viewHolder).mImageView.setOnClickListener(v -> {
                 if (mOnItemClickListener != null) {
@@ -105,13 +125,17 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     class ImageViewHolder extends RecyclerView.ViewHolder {
         ImageView mImageView;
         LinearLayout delete;
+        LinearLayout video_msg;
+        TextView video_duration;
+
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.image_test);
             delete = itemView.findViewById(R.id.delete);
+            video_msg = itemView.findViewById(R.id.video_msg);
+            video_duration = itemView.findViewById(R.id.video_duration);
         }
     }
-
 
 
     public interface OnItemClickListener {
@@ -122,4 +146,17 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         void onAddClick();
     }
 
+
+    private String dateFormate(String duration) {
+        long time = Long.parseLong(duration);
+        String min = String.valueOf(time / 60000);
+        String sec = String.valueOf((time % 60000) / 1000);
+        min = min.length() == 1 ? String.format("%s%s", "0", min) : min;
+        sec = sec.length() == 1 ? String.format("%s%s", "0", sec) : sec;
+        return String.format("%s%s%s", min, ":", sec);
+    }
+
+    private boolean isVideo(String mediaType) {
+        return type.contains(mediaType.toUpperCase());
+    }
 }

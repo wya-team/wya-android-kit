@@ -14,23 +14,17 @@ import android.os.Parcelable;
 public class LocalMedia implements Parcelable {
 	private String path;
 	private String type;
-	private int width;
-	private int height;
 	private String cropPath;
 	private Bitmap cropBitmap;
 
-	public LocalMedia(String path, String type, int width, int height) {
+	public LocalMedia(String path, String type) {
 		this.path = path;
 		this.type = type;
-		this.width = width;
-		this.height = height;
 	}
 
 	protected LocalMedia(Parcel in) {
 		path = in.readString();
 		type = in.readString();
-		width = in.readInt();
-		height = in.readInt();
 		cropPath = in.readString();
 	}
 
@@ -62,21 +56,6 @@ public class LocalMedia implements Parcelable {
 		this.type = type;
 	}
 
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
 
 	@Override
 	public int describeContents() {
@@ -87,8 +66,6 @@ public class LocalMedia implements Parcelable {
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(this.path);
 		dest.writeString(this.type);
-		dest.writeInt(this.width);
-		dest.writeInt(this.height);
 		dest.writeString(this.cropPath);
 	}
 

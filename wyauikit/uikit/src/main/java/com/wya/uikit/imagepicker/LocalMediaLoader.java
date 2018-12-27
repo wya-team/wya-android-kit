@@ -1,6 +1,7 @@
 package com.wya.uikit.imagepicker;
 
 import android.database.Cursor;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -69,9 +70,9 @@ public class LocalMediaLoader {
                     @Override
                     public Loader<Cursor> onCreateLoader(int i, @Nullable Bundle bundle) {
                         CursorLoader cursorLoader = new CursorLoader(mActivity, QUERY_URI,
-                                PROJECTION,SELECTION, new
-                                String[]{String.valueOf
-                                (MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE)}, ORDER_BY);
+                                PROJECTION,getSelectionArgsForAllMediaCondition(getDurationCondition(0,0)), new
+                                String[]{String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE),String.valueOf
+                                (MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO)}, ORDER_BY);
                         return cursorLoader;
                     }
 
@@ -96,18 +97,32 @@ public class LocalMediaLoader {
 //                                            (cursor.getColumnIndexOrThrow(PROJECTION[4]));
 
                                     Log.i("test", "onLoadFinished: "+pictureType);
-                                    LocalMedia localMedia = new LocalMedia(path, pictureType,
-                                            0, 0);
-                                    //add all
-                                    mAllLocalMedia.add(localMedia);
+                                    LocalMedia localMedia = new LocalMedia(path, pictureType);
+                                    //check video is damaged
+                                    boolean isDamage = false;
+                                    if (pictureType.contains("video")) {
+                                        try {
+                                            MediaMetadataRetriever metadataRetriever = new MediaMetadataRetriever();
+                                            metadataRetriever.setDataSource(localMedia.getPath());
+                                            metadataRetriever.release();
+                                        } catch (IllegalArgumentException e) {
+                                            e.printStackTrace();
+                                            isDamage = true;
+                                        }
+                                    }
 
-                                    //add single folder
-                                    LocalMediaFolder imageFolder = getImageFolder(path,
-                                            mReturnFolders);
-                                    List<LocalMedia> images = imageFolder.getImages();
-                                    images.add(localMedia);
-                                    int imageNum = imageFolder.getImageNum();
-                                    imageFolder.setImageNum(imageNum + 1);
+                                    if (!isDamage) {
+                                        //add all
+                                        mAllLocalMedia.add(localMedia);
+
+                                        //add single folder
+                                        LocalMediaFolder imageFolder = getImageFolder(path,
+                                                mReturnFolders);
+                                        List<LocalMedia> images = imageFolder.getImages();
+                                        images.add(localMedia);
+                                        int imageNum = imageFolder.getImageNum();
+                                        imageFolder.setImageNum(imageNum + 1);
+                                    }
 
 
                                 } while (cursor.moveToPrevious());

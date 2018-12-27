@@ -389,7 +389,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             final File file = new File(imagePath);
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
             
-            LocalMedia localMedia = new LocalMedia(imagePath, "image/jpg", -1, -1);
+            LocalMedia localMedia = new LocalMedia(imagePath, "image/jpg");
             //add all folder
             LocalMediaFolder firstFolder = mFolders.get(0);
             List<LocalMedia> firstImages = firstFolder.getImages();
