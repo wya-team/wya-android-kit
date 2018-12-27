@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wya.uikit.R;
-import com.wya.uikit.customitems.view.MyEditText;
 
 /**
  * 创建日期：2018/11/30 17:12
@@ -68,7 +67,7 @@ public class WYAInputItem extends LinearLayout {
     private String rightText = null;
     private String rightHint = null;
     private ColorStateList rightTextColor = null;
-    private MyEditText et_input_item_right;
+    private EditText et_input_item_right;
     private boolean rightCanEdit = false;
 
     /**
@@ -148,7 +147,7 @@ public class WYAInputItem extends LinearLayout {
 
 
             //设置右边文字内容
-            rightText = a.getString(R.styleable.WYAInputItem_rightText);
+            rightText = a.getString(R.styleable.WYAInputItem_rightTextStr);
             if (rightText != null) {
                 setRightText(rightText);
             }
@@ -306,7 +305,7 @@ public class WYAInputItem extends LinearLayout {
             } else if (contentInputType == 3) {//密码
                 et_input_item_content.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             } else if (contentInputType == 4) {//钱
-                et_input_item_content.setInputType(InputType.TYPE_CLASS_NUMBER & InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                et_input_item_content.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             }
         }
     }

@@ -81,8 +81,8 @@
         <attr name="leftTvColor" format="color" />
         <attr name="leftTvText" />
 
-        <attr name="contentText" />
-        <attr name="contentHint" />
+        <attr name="contentText" format="string"/>
+        <attr name="contentHint" format="string"/>
         <attr name="contentTextColor" format="color" />
         <attr name="canEdit" format="boolean" />
         <attr name="contentInputType">
@@ -93,8 +93,8 @@
             <enum name="money" value="4" />
         </attr>
 
-        <attr name="rightText" />
-        <attr name="rightHint" />
+        <attr name="rightTextStr" format="string"/>
+        <attr name="rightHint" format="string"/>
         <attr name="rightTextColor" format="color" />
         <attr name="rightCanEdit" format="boolean" />
 

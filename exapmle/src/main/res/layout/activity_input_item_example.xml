@@ -38,7 +38,7 @@
                 app:leftTvText="标签"
                 app:lineViewColor="#000000"
                 app:rightCanEdit="false"
-                app:rightText="右侧注释"
+                app:rightTextStr="右侧注释"
                 app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
 
             <com.wya.uikit.customitems.WYAInputItem
@@ -53,7 +53,7 @@
                 app:lineViewColor="#000000"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_eye"
-                app:rightText=""
+                app:rightTextStr=""
                 app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
 
             <com.wya.uikit.customitems.WYAInputItem
@@ -68,7 +68,7 @@
                 app:leftTvText="标签"
                 app:lineViewColor="#000000"
                 app:rightCanEdit="false"
-                app:rightText="使用说明"
+                app:rightTextStr="使用说明"
                 app:rightTextColor="@color/primary_color"></com.wya.uikit.customitems.WYAInputItem>
 
             <com.wya.uikit.customitems.WYAInputItem
@@ -84,7 +84,7 @@
                 app:lineViewColor="#000000"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
-                app:rightText=""
+                app:rightTextStr=""
                 app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
 
 
@@ -101,7 +101,7 @@
                 app:lineViewColor="#000000"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
-                app:rightText="右侧注释"
+                app:rightTextStr="右侧注释"
                 app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
 
             <TextView
@@ -124,7 +124,7 @@
                 app:lineViewColor="#000000"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_eye"
-                app:rightText=""
+                app:rightTextStr=""
                 app:contentInputType="phone"
                 app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
 
@@ -141,7 +141,7 @@
                 app:leftTvText="银行卡"
                 app:lineViewColor="#000000"
                 app:rightCanEdit="false"
-                app:rightText=""
+                app:rightTextStr=""
                 app:contentInputType="card"
                 app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
 
@@ -158,7 +158,7 @@
                 app:leftTvText="金额    "
                 app:lineViewColor="#000000"
                 app:rightCanEdit="false"
-                app:rightText="无"
+                app:rightTextStr="元"
                 app:contentInputType="money"
                 app:rightTextColor="@color/black"></com.wya.uikit.customitems.WYAInputItem>
 
@@ -175,7 +175,7 @@
                 app:lineViewColor="#000000"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_eye"
-                app:rightText=""
+                app:rightTextStr=""
                 app:contentInputType="password"
                 app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
 
@@ -206,12 +206,12 @@
                 app:backColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint="我是暗提示"
-                app:leftTvText="标签      "
+                app:leftTvText="标签    "
                 app:leftTvColor="#868686"
                 app:contentTextColor="#868686"
                 app:lineViewColor="#000000"
                 app:rightCanEdit="false"
-                app:rightText="右侧注释"
+                app:rightTextStr="右侧注释"
                 app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
 
             <TextView
@@ -232,7 +232,7 @@
                 app:lineViewColor="#000000"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
-                app:rightText=""
+                app:rightTextStr=""
                 app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
         </LinearLayout>
     </ScrollView>

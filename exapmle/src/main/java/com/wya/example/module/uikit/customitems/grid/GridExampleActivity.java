@@ -52,6 +52,15 @@ public class GridExampleActivity extends BaseActivity {
         recycleView2.setAdapter(gridAdapter);
         recycleView3.setAdapter(gridAdapter);
         recycleView4.setAdapter(gridAdapter2);
+
+        recycleView.setHasFixedSize(true);
+        recycleView.setNestedScrollingEnabled(false);
+        recycleView2.setHasFixedSize(true);
+        recycleView2.setNestedScrollingEnabled(false);
+        recycleView3.setHasFixedSize(true);
+        recycleView3.setNestedScrollingEnabled(false);
+        recycleView4.setHasFixedSize(true);
+        recycleView4.setNestedScrollingEnabled(false);
     }
 
     @Override
