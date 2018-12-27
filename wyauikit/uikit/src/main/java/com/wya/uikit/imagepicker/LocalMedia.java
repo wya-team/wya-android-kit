@@ -1,5 +1,6 @@
 package com.wya.uikit.imagepicker;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -10,37 +11,38 @@ import android.os.Parcelable;
  * desc   : local image info
  * version: 1.0
  */
-public class LocalImage implements Parcelable {
+public class LocalMedia implements Parcelable {
 	private String path;
 	private String type;
 	private int width;
 	private int height;
-	private boolean isChecked;
+	private String cropPath;
+	private Bitmap cropBitmap;
 
-	public LocalImage(String path, String type, int width, int height) {
+	public LocalMedia(String path, String type, int width, int height) {
 		this.path = path;
 		this.type = type;
 		this.width = width;
 		this.height = height;
 	}
 
-	protected LocalImage(Parcel in) {
+	protected LocalMedia(Parcel in) {
 		path = in.readString();
 		type = in.readString();
 		width = in.readInt();
 		height = in.readInt();
-		isChecked = in.readInt() == 1;
+		cropPath = in.readString();
 	}
 
-	public static final Creator<LocalImage> CREATOR = new Creator<LocalImage>() {
+	public static final Creator<LocalMedia> CREATOR = new Creator<LocalMedia>() {
 		@Override
-		public LocalImage createFromParcel(Parcel in) {
-			return new LocalImage(in);
+		public LocalMedia createFromParcel(Parcel in) {
+			return new LocalMedia(in);
 		}
 
 		@Override
-		public LocalImage[] newArray(int size) {
-			return new LocalImage[size];
+		public LocalMedia[] newArray(int size) {
+			return new LocalMedia[size];
 		}
 	};
 
@@ -87,20 +89,30 @@ public class LocalImage implements Parcelable {
 		dest.writeString(this.type);
 		dest.writeInt(this.width);
 		dest.writeInt(this.height);
-		dest.writeInt(this.isChecked ? 1 : 0);
+		dest.writeString(this.cropPath);
 	}
 
-	public boolean isChecked() {
-		return isChecked;
-	}
 
-	public void setChecked(boolean checked) {
-		isChecked = checked;
-	}
 
 	@Override
 	public boolean equals( Object obj) {
-		LocalImage localImage = (LocalImage) obj;
-		return localImage.getPath().equals(path);
+		LocalMedia localMedia = (LocalMedia) obj;
+		return localMedia.getPath().equals(path);
+	}
+
+	public String getCropPath() {
+		return cropPath;
+	}
+
+	public void setCropPath(String cropPath) {
+		this.cropPath = cropPath;
+	}
+
+	public Bitmap getCropBitmap() {
+		return cropBitmap;
+	}
+
+	public void setCropBitmap(Bitmap cropBitmap) {
+		this.cropBitmap = cropBitmap;
 	}
 }

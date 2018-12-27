@@ -14,6 +14,11 @@
         android:textSize="15sp"
         android:background="@color/white"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/f4f4f4" />
+
     <TextView
         android:id="@+id/dialog_photo"
         android:layout_width="match_parent"
@@ -22,9 +27,11 @@
         android:text="相册"
         android:textColor="@color/primary_color"
         android:textSize="15sp"
-        android:layout_marginTop="1dp"
         android:background="@color/white"/>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/f4f4f4" />
     <TextView
         android:id="@+id/dialog_cancel"
         android:layout_width="match_parent"
@@ -33,7 +40,6 @@
         android:text="取消"
         android:textColor="@color/primary_color"
         android:textSize="15sp"
-        android:layout_marginTop="5dp"
         android:background="@color/white"/>
 
 

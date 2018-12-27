@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.FileProvider;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -20,14 +19,14 @@ import android.widget.Toast;
 
 import com.wya.uikit.R;
 import com.wya.uikit.imagecrop.Crop;
+import com.wya.uikit.imagepicker.LocalMedia;
 
 import java.io.File;
 import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PicturePreviewActivity<T> extends Activity implements View.OnClickListener {
+public class PicturePreviewActivity extends Activity implements View.OnClickListener {
 
     private ImageView picture_left_back;
     private TextView picture_title;
@@ -42,8 +41,8 @@ public class PicturePreviewActivity<T> extends Activity implements View.OnClickL
 
     private int type;
     private int position;
-    private List<T> images = new ArrayList<>();
-    private List<T> mImageSelected = new ArrayList<>();
+    private List<LocalMedia> images = new ArrayList<>();
+    private List<LocalMedia> mImageSelected = new ArrayList<>();
     private PreviewPagerAdapter mAdapter;
     private String field;
     private List<String> mList = new ArrayList<>();
@@ -77,69 +76,34 @@ public class PicturePreviewActivity<T> extends Activity implements View.OnClickL
 
     }
 
-    /**
-     * 设置状态栏颜色
-     */
 
-    public void setColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.black));
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
-            View fakeStatusBarView = decorView.findViewById(R.id
-                    .statusbarutil_fake_status_bar_view);
-            if (fakeStatusBarView != null) {
-                if (fakeStatusBarView.getVisibility() == View.GONE) {
-                    fakeStatusBarView.setVisibility(View.VISIBLE);
-                }
-                fakeStatusBarView.setBackgroundColor(getResources().getColor(R.color.black));
-            }
-            ViewGroup parent = findViewById(android.R.id.content);
-            for (int i = 0, count = parent.getChildCount(); i < count; i++) {
-                View childView = parent.getChildAt(i);
-                if (childView instanceof ViewGroup) {
-                    childView.setFitsSystemWindows(true);
-                    ((ViewGroup) childView).setClipToPadding(true);
-                }
-            }
-        }
-    }
     /**
      * init intent value
      */
     private void getIntentExtra() {
-        List<T> datas = DataHelper.getInstance().getImageSelected();
+
 
         position = getIntent().getIntExtra(GalleryConfig.POSITION, -1);
         type = getIntent().getIntExtra(GalleryConfig.TYPE, GalleryConfig.GALLERY);
-        field = getIntent().getStringExtra(GalleryConfig.FIELD_NAME);
+//        field = getIntent().getStringExtra(GalleryConfig.FIELD_NAME);
         requestCode = getIntent().getIntExtra(GalleryConfig.PICKER_FOR_RESULT, -1);
         max = getIntent().getIntExtra(GalleryConfig.MAX_NUM, -1);
 
-        if (!TextUtils.isEmpty(field)) {
-            mImageSelected.addAll(datas);
-            List<T>alllist = DataHelper.getInstance().getImages();
-            images.addAll(alllist);
-
-            for (int i = 0; i < images.size(); i++) {
-                T t = images.get(i);
-                try {
-                    Field field1 = t.getClass().getDeclaredField(field);
-                    field1.setAccessible(true);
-                    String value = (String) field1.get(t);
-                    mList.add(value);
-                } catch (NoSuchFieldException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
+        switch (type) {
+            case GalleryConfig.GALLERY:
+                mList = getIntent().getStringArrayListExtra(GalleryConfig.IMAGE_LIST);
+                break;
+            case GalleryConfig.IMAGE_PICKER:
+                List<LocalMedia> datas = DataHelper.getInstance().getImageSelected();
+                mImageSelected.addAll(datas);
+                List<LocalMedia>alllist = DataHelper.getInstance().getImages();
+                images.addAll(alllist);
+                for (int i = 0; i < alllist.size(); i++) {
+                    mList.add(alllist.get(i).getPath());
                 }
-            }
-
-        } else {
-            mList = (List<String>) getIntent().getSerializableExtra(GalleryConfig.IMAGE_LIST);
+                break;
+            default:
+                break;
         }
     }
 
@@ -269,5 +233,36 @@ public class PicturePreviewActivity<T> extends Activity implements View.OnClickL
             setResult(RESULT_CANCELED, intent);
         }
         finish();
+    }
+
+    /**
+     * 设置状态栏颜色
+     */
+
+    public void setColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.black));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
+            View fakeStatusBarView = decorView.findViewById(R.id
+                    .statusbarutil_fake_status_bar_view);
+            if (fakeStatusBarView != null) {
+                if (fakeStatusBarView.getVisibility() == View.GONE) {
+                    fakeStatusBarView.setVisibility(View.VISIBLE);
+                }
+                fakeStatusBarView.setBackgroundColor(getResources().getColor(R.color.black));
+            }
+            ViewGroup parent = findViewById(android.R.id.content);
+            for (int i = 0, count = parent.getChildCount(); i < count; i++) {
+                View childView = parent.getChildAt(i);
+                if (childView instanceof ViewGroup) {
+                    childView.setFitsSystemWindows(true);
+                    ((ViewGroup) childView).setClipToPadding(true);
+                }
+            }
+        }
     }
 }

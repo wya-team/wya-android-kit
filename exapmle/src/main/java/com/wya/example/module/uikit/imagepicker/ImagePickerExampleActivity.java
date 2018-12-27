@@ -35,7 +35,6 @@ import com.wya.uikit.gallery.GalleryCreator;
 import com.wya.uikit.imagecrop.Crop;
 import com.wya.uikit.imagepicker.ImagePickerCreator;
 import com.wya.uikit.imagepicker.PickerConfig;
-import com.wya.uikit.imagepicker.SpaceDecoration;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -184,7 +183,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
 
             @Override
             public void onItemClick(int position) {
-                List<String> preview = new ArrayList<>();
+                ArrayList<String> preview = new ArrayList<>();
                 preview.addAll(mAllList);
                 if (TextUtils.isEmpty(preview.get(preview.size() - 1))) {
                     preview.remove(preview.size() - 1);
@@ -200,7 +199,6 @@ public class ImagePickerExampleActivity extends BaseActivity {
         });
 
 
-        mRecyclerView.addItemDecoration(new SpaceDecoration(4, 10, false));
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         mRecyclerView.setAdapter(mPickerAdapter);
     }

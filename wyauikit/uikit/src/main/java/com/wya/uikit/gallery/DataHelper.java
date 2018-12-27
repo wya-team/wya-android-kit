@@ -1,5 +1,7 @@
 package com.wya.uikit.gallery;
 
+import com.wya.uikit.imagepicker.LocalMedia;
+
 import java.util.List;
 
 /**
@@ -9,9 +11,9 @@ import java.util.List;
  * desc   : instance that to save data
  * version: 1.0
  */
-public class DataHelper<T> {
-	private List<T> mImages;
-	private List<T> mImageSelected;
+public class DataHelper {
+	private List<LocalMedia> mImages;
+	private List<LocalMedia> mImageSelected;
 	private String value;
 	private static  final DataHelper mDataHelper = new DataHelper();
 
@@ -23,11 +25,11 @@ public class DataHelper<T> {
 		return mDataHelper;
 	}
 
-	public List<T> getImages() {
+	public List<LocalMedia> getImages() {
 		return mImages;
 	}
 
-	public void setImages(List<T> images) {
+	public void setImages(List<LocalMedia> images) {
 		mImages =  images;
 	}
 
@@ -39,11 +41,11 @@ public class DataHelper<T> {
 		this.value = value;
 	}
 
-	public List<T> getImageSelected() {
+	public List<LocalMedia> getImageSelected() {
 		return mImageSelected;
 	}
 
-	public void setImageSelected(List<T> imageSelected) {
+	public void setImageSelected(List<LocalMedia> imageSelected) {
 		mImageSelected = imageSelected;
 	}
 }

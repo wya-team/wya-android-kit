@@ -25,8 +25,8 @@ import java.util.List;
  */
 public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 	private Context mContext;
-	private List<LocalImage> mImages;
-	private List<LocalImage> mSelectedImages = new ArrayList<>();
+	private List<LocalMedia> mImages;
+	private List<LocalMedia> mSelectedImages = new ArrayList<>();
 	private boolean hasPhoto;
 	private OnImageSelectedChangedListener mOnImageSelectedChangedListener;
 	private OnImageClickListener mImageClickListener;
@@ -45,7 +45,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 	 * @param hasPhoto take photo item  is Visible
 	 * @param images data list
 	 */
-	public void bindData(boolean hasPhoto, List<LocalImage> images) {
+	public void bindData(boolean hasPhoto, List<LocalMedia> images) {
 		this.hasPhoto = hasPhoto;
 		this.mImages = images;
 		notifyDataSetChanged();
@@ -55,7 +55,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 	 * update selected iamges
 	 * @param imageSelected
 	 */
-	public void notifySelectedData(List<LocalImage> imageSelected) {
+	public void notifySelectedData(List<LocalMedia> imageSelected) {
 		this.mSelectedImages = imageSelected;
 		notifyDataSetChanged();
 	}
@@ -104,12 +104,13 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 			imageViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					mImageClickListener.onClick(currentPosition, mImages, mSelectedImages, "path");
+					mImageClickListener.onClick(currentPosition, mImages, mSelectedImages);
 				}
 			});
-			final LocalImage localImage = mImages.get(currentPosition);
-			imageViewHolder.mCheckBox.setChecked(mSelectedImages.contains(localImage));
-			Glide.with(mContext).load(localImage.getPath()).into(imageViewHolder.mImageView);
+			final LocalMedia localMedia = mImages.get(currentPosition);
+			imageViewHolder.mCheckBox.setChecked(mSelectedImages.contains(localMedia));
+
+			Glide.with(mContext).load(localMedia.getPath()).into(imageViewHolder.mImageView);
 
 			//add checkBox listener  change selected images
 			imageViewHolder.mCheckBox.setOnClickListener(new View.OnClickListener() {
@@ -122,9 +123,9 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 									.show();
 							return;
 						}
-						mSelectedImages.add(localImage);
+						mSelectedImages.add(localMedia);
 					} else {
-						mSelectedImages.remove(localImage);
+						mSelectedImages.remove(localMedia);
 					}
 					mOnImageSelectedChangedListener.change(mSelectedImages);
 
@@ -169,15 +170,14 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 	 * selected images change listener interface
 	 */
 	public interface OnImageSelectedChangedListener {
-		void change(List<LocalImage> mSelectedImages);
+		void change(List<LocalMedia> mSelectedImages);
 	}
 
 	/**
 	 * image click listener interface that go to gallery
 	 */
 	public interface OnImageClickListener {
-		void onClick(int position, List<LocalImage> mImages, List<LocalImage> mImageSelected,
-					 String field);
+		void onClick(int position, List<LocalMedia> mImages, List<LocalMedia> mImageSelected);
 	}
 
 	/**

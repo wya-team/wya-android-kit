@@ -51,17 +51,17 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     private TextView tv_commit;
     private RelativeLayout picker_title_layout;
     private ImageGridAdapter mGridAdapter;
-    private ChoiceMenu<LocalImageFolder> mChoiceMenu;
-    private List<LocalImageFolder> mFolders = new ArrayList<>();
+    private ChoiceMenu<LocalMediaFolder> mChoiceMenu;
+    private List<LocalMediaFolder> mFolders = new ArrayList<>();
     private Drawable mDrawableUp;
     private Drawable mDrawableDown;
     private boolean isDown;
     private String TAG = "ImagePickerActivity";
-    private List<LocalImage> mSelected = new ArrayList<>();
-    private List<LocalImage> mLocalImages = new ArrayList<>();
+    private List<LocalMedia> mSelected = new ArrayList<>();
+    private List<LocalMedia> mLocalMedia = new ArrayList<>();
     private int maxNum;
     private String imagePath;
-    private LocalImageFolder mCurrentFolder;
+    private LocalMediaFolder mCurrentFolder;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,10 +119,10 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
      * init folder menu
      */
     private void initChoiceMenu() {
-        mChoiceMenu = new ChoiceMenu<LocalImageFolder>(this, mFolders, R.layout
+        mChoiceMenu = new ChoiceMenu<LocalMediaFolder>(this, mFolders, R.layout
                 .folder_choice_item) {
             @Override
-            public void setValueFirst(final ChoiceMenuViewHolder helper, final LocalImageFolder
+            public void setValueFirst(final ChoiceMenuViewHolder helper, final LocalMediaFolder
                     item) {
                 helper.setText(R.id.folder_name, item.getName())
                         .setText(R.id.folder_image_num, item.getImageNum() + "");
@@ -132,7 +132,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             }
             
             @Override
-            public void setValueSecond(ChoiceMenuViewHolder helper, LocalImageFolder item) {
+            public void setValueSecond(ChoiceMenuViewHolder helper, LocalMediaFolder item) {
             
             }
         };
@@ -187,10 +187,10 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         picture_recycler.setAdapter(mGridAdapter);
         mGridAdapter.setImageClickListener(new ImageGridAdapter.OnImageClickListener() {
             @Override
-            public void onClick(int position, List<LocalImage> mImages, List<LocalImage>
-                    mImageSelected, String field) {
+            public void onClick(int position, List<LocalMedia> mImages, List<LocalMedia>
+                    mImageSelected) {
                 GalleryCreator.create(ImagePickerActivity.this).openPreviewImagePicker
-                        (position, mImages, mImageSelected, field, PickerConfig
+                        (position, mImages, mImageSelected,  PickerConfig
                                 .PICKER_GALLERY_RESULT, maxNum);
             }
         });
@@ -239,19 +239,19 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
      * load images
      */
     private void readLocalImage() {
-        LocalImageLoader.create(this).LoadImage(new LocalImageLoader.OnLoadImageListener() {
+        LocalMediaLoader.create(this).LoadImage(new LocalMediaLoader.OnLoadImageListener() {
             @Override
-            public void completed(List<LocalImageFolder> localImageFolders) {
-                if (localImageFolders.size() > 0) {
-                    LocalImageFolder localImageFolder = localImageFolders.get(0);
+            public void completed(List<LocalMediaFolder> localMediaFolders) {
+                if (localMediaFolders.size() > 0) {
+                    LocalMediaFolder localMediaFolder = localMediaFolders.get(0);
                     //数据没有变化（拍照返回或直接返回）
-                    if (mLocalImages.size() != localImageFolder.getImages().size()) {
-                        mLocalImages.clear();
-                        mLocalImages.addAll(localImageFolder.getImages());
-                        picture_title.setText(localImageFolder.getName());
-                        mGridAdapter.bindData(true, localImageFolder.getImages());
+                    if (mLocalMedia.size() != localMediaFolder.getImages().size()) {
+                        mLocalMedia.clear();
+                        mLocalMedia.addAll(localMediaFolder.getImages());
+                        picture_title.setText(localMediaFolder.getName());
+                        mGridAdapter.bindData(true, localMediaFolder.getImages());
                         mFolders.clear();
-                        mFolders.addAll(localImageFolders);
+                        mFolders.addAll(localMediaFolders);
                         mChoiceMenu.notifyAdapterData();
                         mCurrentFolder = mFolders.get(0);
                     }
@@ -313,8 +313,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         }
         if (v.getId() == R.id.tv_preview) {
             if (mSelected.size() > 0) {
-                GalleryCreator.create(this).openPreviewImagePicker(0, mSelected, mSelected,
-                        "path", PickerConfig.PICKER_GALLERY_RESULT, maxNum);
+                GalleryCreator.create(this).openPreviewImagePicker(0, mSelected, mSelected, PickerConfig.PICKER_GALLERY_RESULT, maxNum);
             }
         }
         
@@ -340,7 +339,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
      * @param mSelectedImages selected images
      */
     @Override
-    public void change(List<LocalImage> mSelectedImages) {
+    public void change(List<LocalMedia> mSelectedImages) {
         if (mSelectedImages.size() > 0) {
             tv_commit.setText("(" + mSelectedImages.size() + ")" + "确定");
             tv_commit.setEnabled(true);
@@ -365,7 +364,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             if (resultCode == RESULT_CANCELED && data != null && data.hasExtra(GalleryConfig
                     .IMAGE_LIST_SELECTED)) {
                 Bundle extras = data.getExtras();
-                mSelected = (List<LocalImage>) extras.getSerializable
+                mSelected = (List<LocalMedia>) extras.getSerializable
                         (GalleryConfig.IMAGE_LIST_SELECTED);
                 change(mSelected);
                 mGridAdapter.notifySelectedData(mSelected);
@@ -374,7 +373,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             if (resultCode == RESULT_OK && data != null && data.hasExtra(GalleryConfig
                     .IMAGE_LIST_SELECTED)) {
                 Bundle extras = data.getExtras();
-                mSelected = (List<LocalImage>) extras.getSerializable
+                mSelected = (List<LocalMedia>) extras.getSerializable
                         (GalleryConfig.IMAGE_LIST_SELECTED);
                 Intent intent = getIntent();
                 Bundle bundle = new Bundle();
@@ -390,18 +389,18 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             final File file = new File(imagePath);
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
             
-            LocalImage localImage = new LocalImage(imagePath, "image/jpg", -1, -1);
+            LocalMedia localMedia = new LocalMedia(imagePath, "image/jpg", -1, -1);
             //add all folder
-            LocalImageFolder firstFolder = mFolders.get(0);
-            List<LocalImage> firstImages = firstFolder.getImages();
-            firstImages.add(localImage);
+            LocalMediaFolder firstFolder = mFolders.get(0);
+            List<LocalMedia> firstImages = firstFolder.getImages();
+            firstImages.add(localMedia);
             firstFolder.setFirstImagePath(imagePath);
             firstFolder.setImageNum(firstFolder.getImageNum() + 1);
             
             //add or new folder's item
-            LocalImageFolder imageFolder = getImageFolder(imagePath, mFolders);
-            List<LocalImage> images = imageFolder.getImages();
-            images.add(localImage);
+            LocalMediaFolder imageFolder = getImageFolder(imagePath, mFolders);
+            List<LocalMedia> images = imageFolder.getImages();
+            images.add(localMedia);
             imageFolder.setImageNum(imageFolder.getImageNum() + 1);
             
             //update
@@ -413,29 +412,29 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     }
     
     /**
-     * create LocalImageFolder to save LocalImage
+     * create LocalMediaFolder to save LocalMedia
      *
      * @param path         image path
      * @param imageFolders folder list
      * @return
      */
-    private LocalImageFolder getImageFolder(String path, List<LocalImageFolder> imageFolders) {
+    private LocalMediaFolder getImageFolder(String path, List<LocalMediaFolder> imageFolders) {
         File imageFile = new File(path);
         File folderFile = imageFile.getParentFile();
-        for (LocalImageFolder folder : imageFolders) {
+        for (LocalMediaFolder folder : imageFolders) {
             if (folder.getName().equals(folderFile.getName())) {
                 return folder;
             }
         }
         //create new folder and set the first image's path
-        LocalImageFolder newFolder = new LocalImageFolder();
+        LocalMediaFolder newFolder = new LocalMediaFolder();
         newFolder.setName(folderFile.getName());
         newFolder.setFirstImagePath(path);
         imageFolders.add(newFolder);
         return newFolder;
     }
     
-    private ArrayList<String> returnImagePaths(List<LocalImage> selected) {
+    private ArrayList<String> returnImagePaths(List<LocalMedia> selected) {
         ArrayList<String> returnList = new ArrayList<>();
         for (int i = 0; i < selected.size(); i++) {
             returnList.add(selected.get(i).getPath());

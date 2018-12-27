@@ -13,32 +13,32 @@ import java.util.List;
  * desc   :
  * version: 1.0
  */
-public class LocalImageFolder implements Parcelable {
+public class LocalMediaFolder implements Parcelable {
 	private String name;
-	private List<LocalImage>mImages;
+	private List<LocalMedia>mImages;
 	private int imageNum;
 	private String firstImagePath;
 
 
-	public LocalImageFolder() {
+	public LocalMediaFolder() {
 	}
 
-	protected LocalImageFolder(Parcel in) {
+	protected LocalMediaFolder(Parcel in) {
 		name = in.readString();
-		mImages = in.createTypedArrayList(LocalImage.CREATOR);
+		mImages = in.createTypedArrayList(LocalMedia.CREATOR);
 		imageNum = in.readInt();
 		firstImagePath = in.readString();
 	}
 
-	public static final Creator<LocalImageFolder> CREATOR = new Creator<LocalImageFolder>() {
+	public static final Creator<LocalMediaFolder> CREATOR = new Creator<LocalMediaFolder>() {
 		@Override
-		public LocalImageFolder createFromParcel(Parcel in) {
-			return new LocalImageFolder(in);
+		public LocalMediaFolder createFromParcel(Parcel in) {
+			return new LocalMediaFolder(in);
 		}
 
 		@Override
-		public LocalImageFolder[] newArray(int size) {
-			return new LocalImageFolder[size];
+		public LocalMediaFolder[] newArray(int size) {
+			return new LocalMediaFolder[size];
 		}
 	};
 
@@ -50,14 +50,14 @@ public class LocalImageFolder implements Parcelable {
 		this.name = name;
 	}
 
-	public List<LocalImage> getImages() {
+	public List<LocalMedia> getImages() {
 		if (mImages == null) {
 			mImages = new ArrayList<>();
 		}
 		return mImages;
 	}
 
-	public void setImages(List<LocalImage> images) {
+	public void setImages(List<LocalMedia> images) {
 		mImages = images;
 	}
 

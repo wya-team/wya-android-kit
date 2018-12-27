@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
-import java.io.Serializable;
+import com.wya.uikit.imagepicker.LocalMedia;
+
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,25 +44,24 @@ public class GalleryCreator {
 		return new GalleryCreator(fragment);
 	}
 
-	public <T> void openPreviewGallery(int position, List<T> images) {
+	public void openPreviewGallery(int position, ArrayList<String> images) {
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), PicturePreviewActivity.class);
 		intent.putExtra(GalleryConfig.POSITION, position);
-		intent.putExtra(GalleryConfig.IMAGE_LIST, (Serializable) images);
+		intent.putStringArrayListExtra(GalleryConfig.IMAGE_LIST, images);
 		intent.putExtra(GalleryConfig.TYPE, GalleryConfig.GALLERY);
 		getActivity().startActivity(intent);
 	}
 
 
-	public <T> void openPreviewImagePicker(int position, List<T>images, List<T>
-			imagesSelected, String field, int result, int max) {
+	public void openPreviewImagePicker(int position, List<LocalMedia>images, List<LocalMedia>
+			imagesSelected, int result, int max) {
 
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), PicturePreviewActivity.class);
 		intent.putExtra(GalleryConfig.POSITION, position);
 		DataHelper.getInstance().setImages(images);
 		DataHelper.getInstance().setImageSelected(imagesSelected);
-		intent.putExtra(GalleryConfig.FIELD_NAME, field);
 		intent.putExtra(GalleryConfig.TYPE, GalleryConfig.IMAGE_PICKER);
 		intent.putExtra(GalleryConfig.PICKER_FOR_RESULT, result);
 		intent.putExtra(GalleryConfig.MAX_NUM, max);

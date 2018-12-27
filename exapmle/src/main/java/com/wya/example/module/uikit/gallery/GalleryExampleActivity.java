@@ -33,7 +33,6 @@ import com.wya.uikit.gallery.GalleryCreator;
 import com.wya.uikit.imagepicker.SpaceDecoration;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class GalleryExampleActivity extends AppCompatActivity {
@@ -41,7 +40,7 @@ public class GalleryExampleActivity extends AppCompatActivity {
 	private RecyclerView image_recycler;
 	private TextView title;
 	private BaseQuickAdapter<String, BaseViewHolder> mAdapter;
-	private List<String> images = new ArrayList<>();
+	private ArrayList<String> images = new ArrayList<>();
 	private static final Uri QUERY_URI = MediaStore.Files.getContentUri("external");
 	private static final String ORDER_BY =  MediaStore.Files.FileColumns.DATE_MODIFIED;
 

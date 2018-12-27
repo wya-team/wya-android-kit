@@ -10,17 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/icon_photo"/>
+        android:src="@drawable/icon_photo"
+        android:layout_margin="5dp"/>
     <LinearLayout
         android:id="@+id/delete"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
-        android:gravity="center">
+        android:gravity="right">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_delete"/>
+            android:src="@drawable/icon_delete" />
     </LinearLayout>
 </com.wya.uikit.imagepicker.SquareRelativeLayout>
