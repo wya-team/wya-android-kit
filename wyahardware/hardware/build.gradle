@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 
 def buildConfig = rootProject.extensions.getByName("ext")
 def supportDepends = rootProject.ext.supportDepends
+def depends = rootProject.ext.depends
 
 android {
 
@@ -26,9 +27,10 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation supportDepends.appcompat
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    api supportDepends.zxing//scan
+    implementation supportDepends.appcompat_v7
+    implementation supportDepends.constraint_layout
+    api depends.zxing  // scan
+
 }
 //aar打包
 apply from: 'maven-release-aar.gradle'

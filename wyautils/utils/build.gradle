@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 
 def buildConfig = rootProject.extensions.getByName("ext")
 def supportDepends = rootProject.ext.supportDepends
+def depends = rootProject.ext.depends
 
 android {
 
@@ -26,10 +27,10 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation supportDepends.appcompat
-    api supportDepends.zxing
-    api 'com.arialyy.aria:aria-core:3.5.2'
-    annotationProcessor  'com.arialyy.aria:aria-compiler:3.5.2'
+    implementation supportDepends.appcompat_v7
+    api depends.zxing
+    api depends.aria_core
+    annotationProcessor depends.aria_compiler
 }
 
 apply from: 'maven-release-aar.gradle'
