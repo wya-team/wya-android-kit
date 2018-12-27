@@ -27,7 +27,6 @@ ext {
 
     // config
     // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     butterknifeVersion = "8.5.1"
     rxbindingVersion = "2.0.0"
     baseRecyclerViewAdapterHelperVersion = "2.9.30"
@@ -49,7 +48,7 @@ ext {
             gson                         : "com.google.code.gson:gson:${gsonVersion}",
             aria_core                    : "com.arialyy.aria:aria-core:${ariaCoreVersion}",
             aria_compiler                : "com.arialyy.aria:aria-compiler:${ariaCoreVersion}",
-            
+
     ]
 
 }
