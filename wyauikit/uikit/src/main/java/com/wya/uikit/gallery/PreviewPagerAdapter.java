@@ -6,11 +6,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.wya.uikit.R;
@@ -80,9 +80,12 @@ public class PreviewPagerAdapter extends PagerAdapter {
                     uri = Uri.fromFile(file);
                 }
 
-                Log.i("test", "onClick: " + uri+" "+mediaType);
                 intent.setDataAndType(uri, "video/" + mediaType);
-                mContext.startActivity(intent);
+                if (intent.resolveActivity(mContext.getPackageManager()) != null) {
+                    mContext.startActivity(intent);
+                } else {
+                    Toast.makeText(mContext, "没有播放器可以播放视频", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         container.addView(contentView, 0);

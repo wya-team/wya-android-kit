@@ -1,7 +1,6 @@
 package com.wya.uikit.imagepicker;
 
 import android.database.Cursor;
-import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -11,7 +10,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,11 +28,14 @@ public class LocalMediaLoader {
 
     private static final Uri QUERY_URI = MediaStore.Files.getContentUri("external");
     private static final String ORDER_BY = MediaStore.Files.FileColumns.DATE_ADDED;
+    //时间长度
+    private static final String DURATION = "duration";
     // 媒体文件数据库字段
     private static final String[] PROJECTION = {
             MediaStore.Files.FileColumns._ID,
             MediaStore.MediaColumns.DATA,
-            MediaStore.MediaColumns.MIME_TYPE,};
+            MediaStore.MediaColumns.MIME_TYPE,
+            DURATION};
 
     // 图片
     private static final String SELECTION = MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
@@ -43,9 +44,10 @@ public class LocalMediaLoader {
     private long videoMinS = 0;
 
     private OnLoadImageListener mListener;
+
     // 全部模式下条件
     private static String getSelectionArgsForAllMediaCondition(String time_condition) {
-        String condition = "(" +  MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
+        String condition = "(" + MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
                 + " AND " + MediaStore.MediaColumns.SIZE + ">0"
                 + " OR "
                 + (MediaStore.Files.FileColumns.MEDIA_TYPE + "=? AND " + time_condition) + ")"
@@ -70,8 +72,8 @@ public class LocalMediaLoader {
                     @Override
                     public Loader<Cursor> onCreateLoader(int i, @Nullable Bundle bundle) {
                         CursorLoader cursorLoader = new CursorLoader(mActivity, QUERY_URI,
-                                PROJECTION,getSelectionArgsForAllMediaCondition(getDurationCondition(0,0)), new
-                                String[]{String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE),String.valueOf
+                                PROJECTION, getSelectionArgsForAllMediaCondition(getDurationCondition(0, 0)), new
+                                String[]{String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE), String.valueOf
                                 (MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO)}, ORDER_BY);
                         return cursorLoader;
                     }
@@ -95,16 +97,15 @@ public class LocalMediaLoader {
 //                                            (cursor.getColumnIndexOrThrow(PROJECTION[3]));
 //                                    int height = cursor.getInt
 //                                            (cursor.getColumnIndexOrThrow(PROJECTION[4]));
+                                    String duration=cursor.getString
+                                            (cursor.getColumnIndexOrThrow(PROJECTION[3]));
 
-                                    Log.i("test", "onLoadFinished: "+pictureType);
                                     LocalMedia localMedia = new LocalMedia(path, pictureType);
                                     //check video is damaged
                                     boolean isDamage = false;
                                     if (pictureType.contains("video")) {
                                         try {
-                                            MediaMetadataRetriever metadataRetriever = new MediaMetadataRetriever();
-                                            metadataRetriever.setDataSource(localMedia.getPath());
-                                            metadataRetriever.release();
+                                            localMedia.setVideoDuration(duration);
                                         } catch (IllegalArgumentException e) {
                                             e.printStackTrace();
                                             isDamage = true;
