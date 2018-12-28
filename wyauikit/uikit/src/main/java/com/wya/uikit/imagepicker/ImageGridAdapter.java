@@ -1,8 +1,6 @@
 package com.wya.uikit.imagepicker;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.media.MediaMetadataRetriever;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -115,18 +113,10 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 			final LocalMedia localMedia = mImages.get(currentPosition);
 			imageViewHolder.mCheckBox.setChecked(mSelectedImages.contains(localMedia));
 
-			//if type is video then show the first frame
+			//check is video type
 			if (localMedia.getType().contains("video")) {
-				MediaMetadataRetriever metadataRetriever = new MediaMetadataRetriever();
-				metadataRetriever.setDataSource(localMedia.getPath());
-				Bitmap bitmap = metadataRetriever.getFrameAtTime();
-				String duration = metadataRetriever.extractMetadata(android.media.MediaMetadataRetriever
-						.METADATA_KEY_DURATION);
-//				imageViewHolder.mImageView.setImageBitmap(bitmap);
                 imageViewHolder.mVideoLayout.setVisibility(View.VISIBLE);
-                imageViewHolder.mDuration.setText(dateFormate(duration));
-                metadataRetriever.release();
-
+                imageViewHolder.mDuration.setText(dateFormate(localMedia.getVideoDuration()));
 			} else if (localMedia.getType().contains("image")) {
                 imageViewHolder.mVideoLayout.setVisibility(View.GONE);
 			}

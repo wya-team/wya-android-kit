@@ -16,6 +16,7 @@ public class LocalMedia implements Parcelable {
 	private String type;
 	private String cropPath;
 	private Bitmap cropBitmap;
+	private String videoDuration;
 
 	public LocalMedia(String path, String type) {
 		this.path = path;
@@ -26,6 +27,7 @@ public class LocalMedia implements Parcelable {
 		path = in.readString();
 		type = in.readString();
 		cropPath = in.readString();
+		videoDuration = in.readString();
 	}
 
 	public static final Creator<LocalMedia> CREATOR = new Creator<LocalMedia>() {
@@ -67,6 +69,7 @@ public class LocalMedia implements Parcelable {
 		dest.writeString(this.path);
 		dest.writeString(this.type);
 		dest.writeString(this.cropPath);
+		dest.writeString(this.videoDuration);
 	}
 
 
@@ -91,5 +94,13 @@ public class LocalMedia implements Parcelable {
 
 	public void setCropBitmap(Bitmap cropBitmap) {
 		this.cropBitmap = cropBitmap;
+	}
+
+	public String getVideoDuration() {
+		return videoDuration;
+	}
+
+	public void setVideoDuration(String videoDuration) {
+		this.videoDuration = videoDuration;
 	}
 }
