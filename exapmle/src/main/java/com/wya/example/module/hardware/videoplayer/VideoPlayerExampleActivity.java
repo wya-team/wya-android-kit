@@ -11,6 +11,7 @@ import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.hardware.videoplayer.WYAVideoView;
 import com.wya.hardware.videoplayer.listener.SimpleOnVideoControlListener;
 import com.wya.uikit.toolbar.StatusBarUtil;
+import com.wya.utils.utils.LogUtil;
 import com.wya.utils.utils.ScreenUtil;
 
 import butterknife.BindView;
@@ -31,6 +32,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        getSwipeBackLayout().setEnableGesture(false);
         contentView = ((ViewGroup) findViewById(android.R.id.content));
         setToolBarTitle("视频播放(videoplayer)");
         initImgLeft(0, false);
@@ -46,8 +48,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
 
             @Override
             public void onRetry(int errorStatus) {
-                // TODO:  调用业务接口重新获取数据
-                // get info and call method "videoPlayer.startPlayVideo(info);"
+                videoPlayer.startPlayVideo(info);
             }
 
             @Override

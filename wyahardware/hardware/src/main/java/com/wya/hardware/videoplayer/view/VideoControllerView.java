@@ -400,6 +400,7 @@ public class VideoControllerView extends FrameLayout {
                         // 视频未准备好，重新加载
                         reload();
                     }
+                    hideErrorView();
                 } else {
                     Toast.makeText(getContext(), "网络未连接", Toast.LENGTH_SHORT).show();
                 }
@@ -482,6 +483,7 @@ public class VideoControllerView extends FrameLayout {
         // TODO: 2017/6/19 check me
         if (mPlayer.isInPlaybackState()) {
             mPlayer.start();
+            hideErrorView();
         } else {
             mPlayer.restart();
         }
