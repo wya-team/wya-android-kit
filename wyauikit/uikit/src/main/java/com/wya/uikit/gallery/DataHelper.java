@@ -14,6 +14,7 @@ import java.util.List;
 public class DataHelper {
 	private List<LocalMedia> mImages;
 	private List<LocalMedia> mImageSelected;
+	private List<String>mCropList;
 	private String value;
 	private static  final DataHelper mDataHelper = new DataHelper();
 
@@ -47,5 +48,13 @@ public class DataHelper {
 
 	public void setImageSelected(List<LocalMedia> imageSelected) {
 		mImageSelected = imageSelected;
+	}
+
+	public List<String> getCropList() {
+		return mCropList;
+	}
+
+	public void setCropList(List<String> cropList) {
+		mCropList = cropList;
 	}
 }

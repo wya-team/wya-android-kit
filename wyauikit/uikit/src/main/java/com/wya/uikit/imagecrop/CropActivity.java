@@ -130,6 +130,7 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 1;
         options.inJustDecodeBounds = true;
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
 
 
         if (options.outWidth > MAX_WIDTH) {

@@ -55,13 +55,14 @@ public class GalleryCreator {
 
 
 	public void openPreviewImagePicker(int position, List<LocalMedia>images, List<LocalMedia>
-			imagesSelected, int result, int max) {
+			imagesSelected, List<String>cropList,int result, int max) {
 
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), PicturePreviewActivity.class);
 		intent.putExtra(GalleryConfig.POSITION, position);
 		DataHelper.getInstance().setImages(images);
 		DataHelper.getInstance().setImageSelected(imagesSelected);
+		DataHelper.getInstance().setCropList(cropList);
 		intent.putExtra(GalleryConfig.TYPE, GalleryConfig.IMAGE_PICKER);
 		intent.putExtra(GalleryConfig.PICKER_FOR_RESULT, result);
 		intent.putExtra(GalleryConfig.MAX_NUM, max);

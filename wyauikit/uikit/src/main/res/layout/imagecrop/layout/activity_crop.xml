@@ -72,8 +72,8 @@
 
             <ImageButton
                 android:id="@+id/ib_clip_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="40dp"
                 android:layout_marginLeft="40dp"
@@ -94,8 +94,8 @@
 
             <ImageButton
                 android:id="@+id/ib_clip_done"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginEnd="40dp"
                 android:layout_marginRight="40dp"

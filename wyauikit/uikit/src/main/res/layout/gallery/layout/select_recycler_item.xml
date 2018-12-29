@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.wya.uikit.imagepicker.SquareRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="70dp"
+    android:layout_height="70dp"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/select_pic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_placeholder" />
+
+    <ImageView
+        android:id="@+id/select_is_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_picker_video"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <View
+        android:id="@+id/select_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gallery_selected_bg"/>
+
+
+
+</com.wya.uikit.imagepicker.SquareRelativeLayout>

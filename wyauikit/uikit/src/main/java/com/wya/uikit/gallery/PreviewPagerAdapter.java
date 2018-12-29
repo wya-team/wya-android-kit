@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -29,12 +30,19 @@ import java.util.List;
 public class PreviewPagerAdapter extends PagerAdapter {
     private List<String> mList;
     private Context mContext;
+    private int changePosition = -1;
     private static final String type = "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
 
     public PreviewPagerAdapter(List<String> list, Context context) {
         mList = list;
         mContext = context;
     }
+
+    public void updateData(int position) {
+        changePosition = position;
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getCount() {
@@ -50,6 +58,17 @@ public class PreviewPagerAdapter extends PagerAdapter {
     }
 
     @Override
+    public int getItemPosition(@NonNull Object object) {
+        View view = (View) object;
+        int tag = (int) view.getTag();
+        if (tag == changePosition) {
+            return POSITION_NONE;
+        } else {
+            return POSITION_UNCHANGED;
+        }
+    }
+
+    @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
@@ -62,6 +81,8 @@ public class PreviewPagerAdapter extends PagerAdapter {
         ImageView play = contentView.findViewById(R.id.preview_video_play);
         String imageUrl = mList.get(position);
         Glide.with(mContext).load(imageUrl).into(imageView);
+
+        contentView.setTag(position);
 
         String[] split = imageUrl.split("[.]");
         String mediaType = split[split.length - 1];

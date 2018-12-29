@@ -1,6 +1,5 @@
 package com.wya.uikit.imagepicker;
 
-import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -15,7 +14,6 @@ public class LocalMedia implements Parcelable {
 	private String path;
 	private String type;
 	private String cropPath;
-	private Bitmap cropBitmap;
 	private String videoDuration;
 
 	public LocalMedia(String path, String type) {
@@ -88,13 +86,6 @@ public class LocalMedia implements Parcelable {
 		this.cropPath = cropPath;
 	}
 
-	public Bitmap getCropBitmap() {
-		return cropBitmap;
-	}
-
-	public void setCropBitmap(Bitmap cropBitmap) {
-		this.cropBitmap = cropBitmap;
-	}
 
 	public String getVideoDuration() {
 		return videoDuration;

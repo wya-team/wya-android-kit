@@ -3,6 +3,7 @@ package com.wya.uikit.imagepicker;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,11 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 	 */
 	public void bindData(boolean hasPhoto, List<LocalMedia> images) {
 		this.hasPhoto = hasPhoto;
+		this.mImages = images;
+		notifyDataSetChanged();
+	}
+
+	public void bindData(List<LocalMedia> images) {
 		this.mImages = images;
 		notifyDataSetChanged();
 	}
@@ -120,7 +126,14 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 			} else if (localMedia.getType().contains("image")) {
                 imageViewHolder.mVideoLayout.setVisibility(View.GONE);
 			}
-			Glide.with(mContext).load(localMedia.getPath()).into(imageViewHolder.mImageView);
+			String cropPath = localMedia.getCropPath();
+			if (TextUtils.isEmpty(cropPath)) {
+				Glide.with(mContext).load(localMedia.getPath()).into(imageViewHolder.mImageView);
+				imageViewHolder.crop_tag.setVisibility(View.INVISIBLE);
+			} else {
+				Glide.with(mContext).load(cropPath).into(imageViewHolder.mImageView);
+				imageViewHolder.crop_tag.setVisibility(View.VISIBLE);
+			}
 
 
 			//add checkBox listener  change selected images
@@ -160,6 +173,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 	class ImageViewHolder extends RecyclerView.ViewHolder {
 		ImageView mImageView;
+		ImageView crop_tag;
 		CheckBox mCheckBox;
         LinearLayout mVideoLayout;
         TextView mDuration;
@@ -170,6 +184,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 			mCheckBox = itemView.findViewById(R.id.check_box);
             mVideoLayout = itemView.findViewById(R.id.video_msg);
             mDuration = itemView.findViewById(R.id.video_duration);
+			crop_tag = itemView.findViewById(R.id.crop_tag);
 		}
 	}
 

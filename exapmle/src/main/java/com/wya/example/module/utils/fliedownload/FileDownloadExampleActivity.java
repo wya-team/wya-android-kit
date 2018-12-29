@@ -24,6 +24,7 @@ import com.wya.utils.utils.FileManagerUtil;
 
 import static com.wya.utils.utils.FileManagerUtil.TASK_CANCEL;
 import static com.wya.utils.utils.FileManagerUtil.TASK_COMPLETE;
+import static com.wya.utils.utils.FileManagerUtil.TASK_FAIL;
 import static com.wya.utils.utils.FileManagerUtil.TASK_RUNNING;
 import static com.wya.utils.utils.FileManagerUtil.TASK_START;
 import static com.wya.utils.utils.FileManagerUtil.TASK_STOP;
@@ -41,10 +42,15 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
     private ProgressBar progress2;
     private FileManagerUtil mFileManagerUtil;
 
-    private String url = "http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh.yinyuetai" +
+    private String url = "http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh" +
+            ".yinyuetai" +
             ".com/4599015ED06F94848EBF877EAAE13886.mp4";
     private String filepath = "/sdcard/testdownload.mp4";
-    private String url2 = "https://video.pc6.com/v/1810/pyqxxjc3.mp4";
+        private String url2 = "https://video.pc6.com/v/1810/pyqxxjc3.mp4";
+//    private String url2 = "https://ugcydzd.qq" +
+//            ".com/uwMRJfz-r5jAYaQXGdGnC2_ppdhgmrDlPaRvaV7F2Ic/f0377ohr6ph" +
+//            ".p712.1.mp4?sdtfrom=v1010&guid=190311d5693f25480207bbe135ce28b0&vkey" +
+//            "=2DEC7E613D9B1A05D041731B9EF8045259DDD32301998410226BE956DDC3BCB1DA59CC3E5AC32AFD950B501330B1835D37EDA1881393A0476647FDE31B7D536C8E991B38DAA492EE01B23E2452ED5B075467398BB179DDBEFC04884F59E0009DD50B0440A8900CDCB62FC976552E8E73AB9D6627CD337911#t=4";
     private String filepath2 = "/sdcard/testdownload2.mp4";
 
 
@@ -59,9 +65,10 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
     protected void initView() {
         setToolBarTitle("Downloader");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
+        initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
-            startActivity(new Intent(FileDownloadExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+            startActivity(new Intent(FileDownloadExampleActivity.this, ReadmeActivity.class)
+                    .putExtra("url", url));
         });
 
 
@@ -139,22 +146,26 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                             progress.setProgress(100);
                             percent.setText("100%");
                             down_file.setText(task.getConvertFileSize());
-                            Toast.makeText(FileDownloadExampleActivity.this, "文件1：下载完成", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FileDownloadExampleActivity.this, "文件1：下载完成", Toast
+                                    .LENGTH_SHORT).show();
                         }
                         if (url2.equals(key)) {
                             progress2.setProgress(100);
                             percent2.setText("100%");
                             down_file2.setText(task.getConvertFileSize());
-                            Toast.makeText(FileDownloadExampleActivity.this, "文件2：下载完成", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FileDownloadExampleActivity.this, "文件2：下载完成", Toast
+                                    .LENGTH_SHORT).show();
                         }
                         break;
                     case TASK_STOP:
                         if (url.equals(key)) {
-                            Toast.makeText(FileDownloadExampleActivity.this, "文件1：暂停下载", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FileDownloadExampleActivity.this, "文件1：暂停下载", Toast
+                                    .LENGTH_SHORT).show();
                             setBtnState(false);
                         }
                         if (url2.equals(key)) {
-                            Toast.makeText(FileDownloadExampleActivity.this, "文件2：暂停下载", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FileDownloadExampleActivity.this, "文件2：暂停下载", Toast
+                                    .LENGTH_SHORT).show();
                             setBtnState2(false);
                         }
                         break;
@@ -164,7 +175,8 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                             percent.setText(0 + "%");
                             progress.setProgress(0);
                             down_file.setText("0");
-                            Toast.makeText(FileDownloadExampleActivity.this, "文件1：取消下载,并删除了", Toast.LENGTH_SHORT)
+                            Toast.makeText(FileDownloadExampleActivity.this, "文件1：取消下载,并删除了",
+                                    Toast.LENGTH_SHORT)
                                     .show();
                         }
                         if (url2.equals(key)) {
@@ -172,7 +184,27 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                             percent2.setText(0 + "%");
                             progress2.setProgress(0);
                             down_file2.setText("0");
-                            Toast.makeText(FileDownloadExampleActivity.this, "文件2：取消下载,并删除了", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FileDownloadExampleActivity.this, "文件2：取消下载,并删除了",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case TASK_FAIL:
+                        if (url.equals(key)) {
+                            setBtnState(false);
+                            percent.setText(0 + "%");
+                            progress.setProgress(0);
+                            down_file.setText("0");
+                            Toast.makeText(FileDownloadExampleActivity.this, "文件1：下载失败！请确认文件地址是否可用!",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                        }
+                        if (url2.equals(key)) {
+                            setBtnState2(false);
+                            percent2.setText(0 + "%");
+                            progress2.setProgress(0);
+                            down_file2.setText("0");
+                            Toast.makeText(FileDownloadExampleActivity.this, "文件2：下载失败！请确认文件地址是否可用!",
+                                    Toast.LENGTH_SHORT).show();
                         }
                         break;
                 }
@@ -192,8 +224,8 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
         all_file2.setText(load2.getConvertFileSize());
 
 
-        percent.setText(load.getPercent()+"%");
-        percent2.setText(load2.getPercent()+"%");
+        percent.setText(load.getPercent() + "%");
+        percent2.setText(load2.getPercent() + "%");
 
         setBtnState(load.isRunning());
         setBtnState2(load2.isRunning());
@@ -204,16 +236,20 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
         start.setEnabled(!isDown);
         pause.setEnabled(isDown);
 
-        start.setTextColor(getResources().getColor(isDown ? R.color.light_gray : R.color.primary_color));
-        pause.setTextColor(getResources().getColor(!isDown ? R.color.light_gray : R.color.primary_color));
+        start.setTextColor(getResources().getColor(isDown ? R.color.light_gray : R.color
+                .primary_color));
+        pause.setTextColor(getResources().getColor(!isDown ? R.color.light_gray : R.color
+                .primary_color));
     }
 
     private void setBtnState2(boolean isDown) {
         start2.setEnabled(!isDown);
         pause2.setEnabled(isDown);
 
-        start2.setTextColor(getResources().getColor(isDown ? R.color.light_gray : R.color.primary_color));
-        pause2.setTextColor(getResources().getColor(!isDown ? R.color.light_gray : R.color.primary_color));
+        start2.setTextColor(getResources().getColor(isDown ? R.color.light_gray : R.color
+                .primary_color));
+        pause2.setTextColor(getResources().getColor(!isDown ? R.color.light_gray : R.color
+                .primary_color));
     }
 
 
@@ -268,7 +304,8 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
      */
     private void getPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission
+                    .WRITE_EXTERNAL_STORAGE) == PackageManager
                     .PERMISSION_GRANTED) {
             } else {
                 //不具有获取权限，需要进行权限申请
@@ -281,7 +318,8 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
 
     @TargetApi(23)
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[]
+            grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1000) {
             if (grantResults.length >= 1) {
@@ -292,7 +330,6 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                 } else if (writeResult == PackageManager.PERMISSION_DENIED) {
                     Toast.makeText(this, "读写权限被拒绝，无法进行下载，请开启读写权限！", Toast.LENGTH_SHORT).show();
                 }
-
 
 
             }
