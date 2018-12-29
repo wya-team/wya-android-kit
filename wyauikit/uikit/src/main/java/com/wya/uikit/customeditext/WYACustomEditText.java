@@ -57,47 +57,47 @@ public class WYACustomEditText extends RelativeLayout {
         initView();
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WYACustomEditText);
         if (a != null) {
-            gradientDrawable = (GradientDrawable) a.getDrawable(R.styleable.WYACustomEditText_backGroundImage);
+            gradientDrawable = (GradientDrawable) a.getDrawable(R.styleable.WYACustomEditText_wyaBackGroundImage);
             if (gradientDrawable != null) {
                 setMyBackgroundDrawable(gradientDrawable);
             }
 
-            countTextColor = a.getColorStateList(R.styleable.WYACustomEditText_countTextColor);
+            countTextColor = a.getColorStateList(R.styleable.WYACustomEditText_wyaCountTextColor);
             if (countTextColor != null) {
                 setCountTextColor(countTextColor);
             }
 
-            hintEditColor = a.getColorStateList(R.styleable.WYACustomEditText_hintEditColor);
+            hintEditColor = a.getColorStateList(R.styleable.WYACustomEditText_wyaHintEditColor);
             if (hintEditColor != null) {
                 setHintEditColor(hintEditColor);
             }
 
-            hintTextColor = a.getColorStateList(R.styleable.WYACustomEditText_hintTextColor);
+            hintTextColor = a.getColorStateList(R.styleable.WYACustomEditText_wyaHintTextColor);
             if (hintTextColor != null) {
                 setHintTextColor(hintTextColor);
             }
 
-            editTextColor = a.getColorStateList(R.styleable.WYACustomEditText_editTextColor);
+            editTextColor = a.getColorStateList(R.styleable.WYACustomEditText_wyaEditTextColor);
             if (editTextColor != null) {
                 setEditTextColor(editTextColor);
             }
 
-            hintTextStr = a.getString(R.styleable.WYACustomEditText_hintTextStr);
+            hintTextStr = a.getString(R.styleable.WYACustomEditText_wyaHintTextStr);
             if (hintTextStr != null && !hintTextStr.equals("")) {
                 setHintTextStr(hintTextStr);
             }
 
-            editTextStr = a.getString(R.styleable.WYACustomEditText_editTextStr);
+            editTextStr = a.getString(R.styleable.WYACustomEditText_wyaEditTextStr);
             if (editTextStr != null) {
                 setEditTextStr(editTextStr);
             }
 
-            hintEditStr = a.getString(R.styleable.WYACustomEditText_hintEditStr);
+            hintEditStr = a.getString(R.styleable.WYACustomEditText_wyaHintEditStr);
             if (hintEditStr != null) {
                 setHintEditStr(hintEditStr);
             }
 
-            maxNum = a.getInt(R.styleable.WYACustomEditText_maxNum, 100);
+            maxNum = a.getInt(R.styleable.WYACustomEditText_wyaMaxNum, 100);
             setTextNumCount();
             a.recycle();
         }

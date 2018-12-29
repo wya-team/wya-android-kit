@@ -127,7 +127,7 @@ public class SwipeBackLayout extends FrameLayout {
 
 
     /**
-     * 默认滑动过程中动态改变主题透明度（当有popupWindow的时候），当有videoPlayer的时候不改变，一直为透明不随滑动改变，防止变黑
+     * 榛樿婊戝姩杩囩▼涓姩鎬佹敼鍙樹富棰橀�忔槑搴︼紙褰撴湁popupWindow鐨勬椂鍊欙級,褰撴湁videoPlayer鐨勬椂鍊欎笉鏀瑰彉锛屼竴鐩翠负閫忔槑锛屼笉闅忎簰鍔ㄦ敼鍙橈紝闃叉鍙橀粦
      */
     private boolean toChangeWindowTranslucent = true;
 

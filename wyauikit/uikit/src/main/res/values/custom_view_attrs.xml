@@ -176,15 +176,15 @@
 
     <!-- WYACustomEditText -->
     <declare-styleable name="WYACustomEditText">
-        <attr name="backGroundImage" format="reference" />
-        <attr name="hintTextColor" format="color" />
-        <attr name="editTextColor" format="color" />
-        <attr name="hintEditColor" format="color" />
-        <attr name="hintTextStr" />
-        <attr name="editTextStr" />
-        <attr name="hintEditStr" />
-        <attr name="maxNum" format="integer" />
-        <attr name="countTextColor" format="color" />
+        <attr name="wyaBackGroundImage" format="reference" />
+        <attr name="wyaHintTextColor" format="color" />
+        <attr name="wyaEditTextColor" format="color" />
+        <attr name="wyaHintEditColor" format="color" />
+        <attr name="wyaHintTextStr" />
+        <attr name="wyaEditTextStr" />
+        <attr name="wyaHintEditStr" />
+        <attr name="wyaMaxNum" format="integer" />
+        <attr name="wyaCountTextColor" format="color" />
     </declare-styleable>
 
     <!-- slide attrs -->
