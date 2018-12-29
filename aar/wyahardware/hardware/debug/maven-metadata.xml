@@ -3,10 +3,10 @@
   <groupId>wyahardware.hardware</groupId>
   <artifactId>debug</artifactId>
   <versioning>
-    <release>1.0.0</release>
+    <release>0.1.0</release>
     <versions>
-      <version>1.0.0</version>
+      <version>0.1.0</version>
     </versions>
-    <lastUpdated>20181229032252</lastUpdated>
+    <lastUpdated>20181229061648</lastUpdated>
   </versioning>
 </metadata>

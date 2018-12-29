@@ -4,7 +4,7 @@ apply plugin: 'maven'
 ext {// ext is a gradle closure allowing the declaration of global properties
     PUBLISH_GROUP_ID = 'wyauikit.uikit'
     PUBLISH_ARTIFACT_ID = 'debug'
-    PUBLISH_VERSION = '1.0.0'
+    PUBLISH_VERSION = android.defaultConfig.versionName
 }
 // 3.maven-路径
 uploadArchives {
