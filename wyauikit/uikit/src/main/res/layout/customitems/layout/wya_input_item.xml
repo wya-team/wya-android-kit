@@ -35,6 +35,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:hint="我是提示内容"
+            android:textColorHint="#999999"
             android:textSize="14sp"
             android:padding="10dp"/>
 
