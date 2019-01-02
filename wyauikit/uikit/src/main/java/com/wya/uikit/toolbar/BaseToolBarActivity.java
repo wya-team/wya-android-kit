@@ -26,7 +26,6 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
 
     private WYAToolBarHelper wyaToolBarHelper;
     private TextView title, tv_left, tv_right, tv_right_anther;
-    private LinearLayout ll_right, ll_left;
     private ImageView img_right, img_left, img_right_anther;
     private RelativeLayout title_bar_bg;
 
@@ -35,7 +34,8 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     protected abstract int getLayoutID();
 
 
-    private onLeftOnclickListener onLeftOnclickListener;//设置左边点击事件
+    private onLeftImgOnclickListener onLeftImgOnclickListener;//设置左边点击事件
+    private onLeftTvOnclickListener onLeftTvOnclickListener;//设置左边点击事件
     private onRightTvOnclickListener onRightTvOnclickListener;//设置右边点击事件
     private onRightTvAntherOnclickListener onRightTvAntherOnclickListener;//设置右边点击事件
     private onRightImageOnclickListener onRightImageOnclickListener;//设置右边点击事件
@@ -45,8 +45,15 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     /**
      * 设置左边点击事件
      */
-    public interface onLeftOnclickListener {
-        void onLeftClick(View view);
+    public interface onLeftImgOnclickListener {
+        void onLeftImgClick(View view);
+    }
+
+    /**
+     * 设置左边点击事件
+     */
+    public interface onLeftTvOnclickListener {
+        void onLeftTvClick(View view);
     }
 
     /**
@@ -81,10 +88,19 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     /**
      * 设置左边点击事件内容和监听
      *
-     * @param onLeftOnclickListener
+     * @param onLeftImgOnclickListener
      */
-    public void setLeftOnclickListener(onLeftOnclickListener onLeftOnclickListener) {
-        this.onLeftOnclickListener = onLeftOnclickListener;
+    public void setLeftImgOnclickListener(onLeftImgOnclickListener onLeftImgOnclickListener) {
+        this.onLeftImgOnclickListener = onLeftImgOnclickListener;
+    }
+
+    /**
+     * 设置左边点击事件内容和监听
+     *
+     * @param onLeftTvOnclickListener
+     */
+    public void setLeftTvOnclickListener(onLeftTvOnclickListener onLeftTvOnclickListener) {
+        this.onLeftTvOnclickListener = onLeftTvOnclickListener;
     }
 
     /**
@@ -92,7 +108,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      *
      * @param onRightTvOnclickListener
      */
-    public void seRightTvOnclickListener(onRightTvOnclickListener onRightTvOnclickListener) {
+    public void setRightTvOnclickListener(onRightTvOnclickListener onRightTvOnclickListener) {
         this.onRightTvOnclickListener = onRightTvOnclickListener;
     }
 
@@ -188,8 +204,6 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         tv_left = (TextView) findViewById(R.id.tv_left);
         tv_right = (TextView) findViewById(R.id.tv_right);
         tv_right_anther = (TextView) findViewById(R.id.tv_right_anther);
-        ll_right = (LinearLayout) findViewById(R.id.ll_right);
-        ll_left = (LinearLayout) findViewById(R.id.ll_left);
         img_right = (ImageView) findViewById(R.id.img_right);
         img_right_anther = (ImageView) findViewById(R.id.img_right_anther);
         img_left = (ImageView) findViewById(R.id.img_left);
@@ -224,11 +238,22 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      * 左右两边点击事件监听设置
      */
     private void initClick() {
-        ll_left.setOnClickListener(new View.OnClickListener() {
+        img_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onLeftOnclickListener != null) {
-                    onLeftOnclickListener.onLeftClick(view);
+                if (onLeftImgOnclickListener != null) {
+                    onLeftImgOnclickListener.onLeftImgClick(view);
+                } else {
+                    BaseToolBarActivity.this.finish();
+                }
+            }
+        });
+
+        tv_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onLeftTvOnclickListener != null) {
+                    onLeftTvOnclickListener.onLeftTvClick(view);
                 } else {
                     BaseToolBarActivity.this.finish();
                 }
@@ -405,7 +430,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         if (showImgLeft) {
             if (imgLeftRes != 0) {
                 img_left.setVisibility(View.VISIBLE);
-                img_left.setBackground(getResources().getDrawable(imgLeftRes));
+                img_left.setImageDrawable(getResources().getDrawable(imgLeftRes));
             } else {
                 img_left.setVisibility(View.GONE);
             }
