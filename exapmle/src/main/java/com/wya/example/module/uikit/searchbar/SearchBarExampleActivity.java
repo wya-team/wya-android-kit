@@ -38,7 +38,6 @@ public class SearchBarExampleActivity extends BaseActivity {
     }
     
     private void setWYASearchBar() {
-        wyaSearchBar.setEditHint("我是提示语");
         wyaSearchBar.setOnClickCancelListener(new WYASearchBar.OnTvClickListener() {
             @Override
             public void onClickCancel() {
