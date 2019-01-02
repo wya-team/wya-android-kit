@@ -46,6 +46,8 @@ public class RangeSlideView extends View implements IRangeSlideView {
     private Slide mLeftSlider, mRightSlider;
     private Slide mCurSlider;
     
+    private Drawable mSlideDrawable;
+    
     // range
     private int mProgressMin, mProgressMax;
     private float reservePercent;
@@ -104,8 +106,12 @@ public class RangeSlideView extends View implements IRangeSlideView {
                 mHasMax = true;
             }
             
-            mPorgressBackgroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_background_color, Color.parseColor("#DDDDDD"));
-            mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_foreground_color, Color.parseColor("#1F90E6"));
+            if (typedArray.hasValue(R.styleable.RangeSlideView_rsd_drawable)) {
+                mSlideDrawable = typedArray.getDrawable(R.styleable.RangeSlideView_rsd_drawable);
+            }
+            
+            mPorgressBackgroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_background_color, getResources().getColor(R.color.slide_bg_default_color));
+            mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_foreground_color, getResources().getColor(R.color.slide_fg_default_color));
             
             // region
             mRegionMode = typedArray.getInteger(R.styleable.RangeSlideView_rsd_region_mode, REGION_MODE_INTEGER);
@@ -182,8 +188,14 @@ public class RangeSlideView extends View implements IRangeSlideView {
     
     private void initSlider() {
         mLeftSlider = new Slide(mContext, this);
+        if (null != mSlideDrawable) {
+            mLeftSlider.setSliderDrawable(mSlideDrawable);
+        }
         if (mSlidderMode == SLIDDER_MODE_RANGDE) {
             mRightSlider = new Slide(mContext, this);
+            if (null != mSlideDrawable) {
+                mRightSlider.setSliderDrawable(mSlideDrawable);
+            }
         }
     }
     
@@ -214,7 +226,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
     
     private void initProgressPaint() {
         mProgressPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mProgressPaint.setColor(Color.parseColor("#1F90E6"));
+        mProgressPaint.setColor(getResources().getColor(R.color.slide_fg_default_color));
         mProgressPaint.setStyle(Paint.Style.FILL);
     }
     
@@ -305,7 +317,6 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     private void drawMinRegionText(Canvas canvas) {
-        
         String min = String.valueOf(mLeftSlider.getCurPercent() * (mProgressMax - mProgressMin));
         BigDecimal bigDecimal = new BigDecimal((double) Float.parseFloat(min));
         bigDecimal = bigDecimal.setScale(1, 4);
@@ -503,6 +514,8 @@ public class RangeSlideView extends View implements IRangeSlideView {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        boolean isReset;
+        
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
                 mCurDownX = getEventX(event);
@@ -530,29 +543,46 @@ public class RangeSlideView extends View implements IRangeSlideView {
             case MotionEvent.ACTION_MOVE:
                 float percent;
                 float x = getEventX(event);
+                boolean touchable = null != getRangeForegroundRectF() && getRangeForegroundRectF().right - getRangeForegroundRectF().left <= mLeftSlider.getSliderSize();
+                isReset = true;
+                float curLeftPercent;
+                float curRightPercent;
+                
+                float slidePercent = mLeftSlider.getSliderSize() * 1f / mProgressWidth;
                 if (mSlidderMode == SLIDDER_MODE_RANGDE) {
-                    // 重合
-                    if (mLeftSlider.getCurPercent() >= mRightSlider.getCurPercent()) {
-                        if (callback != null) {
-                            callback.onStopTrackingTouch(this, mCurSlider == mLeftSlider);
-                        }
-                        mCurSlider = exchangeCurTouch(x, mCurDownX);
-                        if (callback != null) {
-                            callback.onStartTrackingTouch(this, mCurSlider == mLeftSlider);
-                        }
-                    }
                     // right
-                    if (mCurSlider == mRightSlider) {
+                    if (null != mRightSlider && mCurSlider == mRightSlider) {
+                        if (mCurDownX < x) {
+                            isReset = false;
+                        }
+                        if (isReset && touchable) {
+                            break;
+                        }
                         percent = x > getProgressRight() ? 1 : (x - getProgressLeft()) * 1f / (mProgressWidth);
-                        mRightSlider.slide(percent);
+                        curRightPercent = percent;
+                        if (null != mRightSlider && curRightPercent - mLeftSlider.getCurPercent() <= slidePercent) {
+                            curRightPercent = Math.max(mLeftSlider.getCurPercent() + slidePercent, 0);
+                        }
+                        mRightSlider.slide(curRightPercent);
                     }
                 }
-                mCurDownX = x;
                 // left
                 if (mCurSlider == mLeftSlider) {
+                    if (mCurDownX > x) {
+                        isReset = false;
+                    }
+                    if (isReset && touchable) {
+                        break;
+                    }
                     percent = x < getProgressLeft() ? 0 : (x - getProgressLeft()) * 1f / (mProgressWidth);
-                    mLeftSlider.slide(percent);
+                    curLeftPercent = percent;
+                    if (null != mRightSlider && mRightSlider.getCurPercent() - curLeftPercent <= slidePercent) {
+                        curLeftPercent = Math.max(mRightSlider.getCurPercent() - slidePercent, 0);
+                    }
+                    mLeftSlider.slide(curLeftPercent);
                 }
+                mCurDownX = x;
+                
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:

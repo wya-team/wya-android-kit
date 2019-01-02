@@ -22,6 +22,11 @@
     <color name="notice_text_color">#FF7135</color>
     <color name="notice_bg_color">#FDFBED</color>
 
+    <!-- slide -->
+    <color name="slide_fg_red_color">#FC0D1B</color>
+    <color name="slide_fg_default_color">#1F90E6</color>
+    <color name="slide_bg_default_color">#DDDDDD</color>
+
 
     <!-- keyboard -->
     <color name="key_ok_color">#1280FA</color>

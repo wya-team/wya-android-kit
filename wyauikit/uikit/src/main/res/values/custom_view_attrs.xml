@@ -81,8 +81,8 @@
         <attr name="leftTvColor" format="color" />
         <attr name="leftTvText" />
 
-        <attr name="contentText" format="string"/>
-        <attr name="contentHint" format="string"/>
+        <attr name="contentText" format="string" />
+        <attr name="contentHint" format="string" />
         <attr name="contentTextColor" format="color" />
         <attr name="canEdit" format="boolean" />
         <attr name="contentInputType">
@@ -93,8 +93,8 @@
             <enum name="money" value="4" />
         </attr>
 
-        <attr name="rightTextStr" format="string"/>
-        <attr name="rightHint" format="string"/>
+        <attr name="rightTextStr" format="string" />
+        <attr name="rightHint" format="string" />
         <attr name="rightTextColor" format="color" />
         <attr name="rightCanEdit" format="boolean" />
 
@@ -198,6 +198,7 @@
         <attr name="rsd_progress_max" format="integer" />
         <attr name="rsd_progress_background_color" format="color" />
         <attr name="rsd_progress_foreground_color" format="color" />
+        <attr name="rsd_drawable" format="reference" />
 
         <attr name="rsd_region_mode" format="enum">
             <enum name="mode_integer" value="0" />
