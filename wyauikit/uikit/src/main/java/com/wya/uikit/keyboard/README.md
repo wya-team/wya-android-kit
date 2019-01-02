@@ -24,6 +24,7 @@
 
 - 方法
 keyboard = new WYACustomNumberKeyboard(KeyboardExampleActivity.this);//获取到keyboard对象
+
 方法|说明
 ---|---
 attachTo(editext, true)|eiditext绑定keyboard并且显示，true表示随机数字
