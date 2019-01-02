@@ -23,6 +23,7 @@
 ```
 
 - 方法
+
 keyboard = new WYACustomNumberKeyboard(KeyboardExampleActivity.this);//获取到keyboard对象
 
 方法|说明
