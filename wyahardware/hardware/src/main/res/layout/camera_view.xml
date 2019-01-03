@@ -12,7 +12,8 @@
         <VideoView
             android:id="@+id/video_preview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="#000"/>
 
         <ImageView
             android:id="@+id/image_photo"
