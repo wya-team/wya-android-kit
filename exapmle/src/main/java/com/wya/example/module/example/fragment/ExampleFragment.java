@@ -16,7 +16,6 @@ import com.wya.example.module.example.bean.ExampleItem;
 import com.wya.example.module.example.view.CustomerExpandableListView;
 import com.wya.example.module.hardware.camera.StartCameraExampleActivity;
 import com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity;
-import com.wya.example.module.uikit.UiKitExampleActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
 import com.wya.example.module.uikit.banner.BannerExampleActivity;
 import com.wya.example.module.uikit.button.ButtonExampleActivity;
@@ -172,7 +171,7 @@ public class ExampleFragment extends Fragment {
         String s = mDatas.get(groupPosition).getChild().get(childPosition);
         switch (s) {
             case "抽屉(drawerlayout)":
-                startActivity(new Intent(getActivity(), DrawerLayoutExampleActivity.class));
+                startActivity(new Intent(getActivity(), DrawerLayoutExampleActivity.class).putExtra("url", UIKIT_URL+"drawerlayout"+"/README.md"));
                 break;
             case "菜单(choicemenu)":
                 startActivity(new Intent(getActivity(), ChoiceMenuExampleActivity.class).putExtra("url", UIKIT_URL+"choicemenu"+"/README.md"));

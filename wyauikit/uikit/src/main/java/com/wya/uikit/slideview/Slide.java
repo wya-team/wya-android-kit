@@ -3,10 +3,9 @@ package com.wya.uikit.slideview;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 
 import com.wya.uikit.R;
-
-import java.math.BigDecimal;
 
 public class Slide {
     
@@ -15,7 +14,7 @@ public class Slide {
     private float mCurPercent;
     
     private int mSliderSize;
-    private int mSliderDrawable = R.drawable.rsb_default_slide;
+    private Drawable mSliderDrawable;
     private Bitmap mSliderBitmap;
     
     private Context mContext;
@@ -26,6 +25,7 @@ public class Slide {
         mContext = context;
         mRangeSlidder = rangeSlidder;
         mSliderSize = Utils.dp2px(context, 20);
+        mSliderDrawable = context.getResources().getDrawable(R.drawable.rsb_default_slide);
     }
     
     void onSizeChanged(int centerX, int centerY, int progressWidth) {
@@ -38,7 +38,7 @@ public class Slide {
     }
     
     private Bitmap getBitmap() {
-        return Utils.drawableToBitmap(mSliderSize, mContext.getResources().getDrawable(mSliderDrawable));
+        return Utils.drawableToBitmap(mSliderSize, mSliderDrawable);
     }
     
     public boolean isSliding(float x, float y) {
@@ -84,17 +84,14 @@ public class Slide {
     }
     
     public float getCurPercent() {
-        try {
-            BigDecimal bigDecimal = new BigDecimal((double) mCurPercent);
-            bigDecimal = bigDecimal.setScale(2, 4);
-            mCurPercent = bigDecimal.floatValue();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return mCurPercent;
     }
     
     public void setCurPercent(float percent) {
         this.mCurPercent = percent;
+    }
+    
+    public void setSliderDrawable(Drawable drawable) {
+        this.mSliderDrawable = drawable;
     }
 }

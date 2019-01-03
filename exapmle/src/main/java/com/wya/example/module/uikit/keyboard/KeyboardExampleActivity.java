@@ -1,6 +1,8 @@
 package com.wya.example.module.uikit.keyboard;
 
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -71,6 +73,45 @@ public class KeyboardExampleActivity extends BaseActivity {
             return true;
         });
 
+        etNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (count(s.toString(), ".") > 1) {
+                    etNumber.setText(s.toString().substring(0, s.toString().length() - 1));
+                    etNumber.setSelection(s.toString().length() - 1);
+                }
+            }
+        });
+        etNumberRandom.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (count(s.toString(), ".") > 1) {
+                    etNumberRandom.setText(s.toString().substring(0, s.toString().length() - 1));
+                    etNumberRandom.setSelection(s.toString().length() - 1);
+                }
+            }
+        });
+
         parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +124,16 @@ public class KeyboardExampleActivity extends BaseActivity {
         keyboard.setOnOkClick(() -> Toast.makeText(KeyboardExampleActivity.this, "确定按钮", Toast.LENGTH_SHORT).show());
         //隐藏键盘按钮
         keyboard.setOnCancelClick(() -> Toast.makeText(KeyboardExampleActivity.this, "隐藏键盘按钮", Toast.LENGTH_SHORT).show());
+    }
+
+
+    public int count(String text, String sub) {
+        int count = 0, start = 0;
+        while ((start = text.indexOf(sub, start)) >= 0) {
+            start += sub.length();
+            count++;
+        }
+        return count;
     }
 
 }

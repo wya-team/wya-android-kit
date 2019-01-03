@@ -1,6 +1,7 @@
 package com.wya.example.module.uikit.drawerlayout;
 
 
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.RelativeLayout;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.example.module.uikit.banner.BannerExampleActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -29,6 +32,11 @@ public class DrawerLayoutExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         setToolBarTitle("抽屉(drawerlayout)");
+        String url = getIntent().getStringExtra("url");
+        initImgRightAnther(R.drawable.icon_help,true);
+        setRightImageAntherOnclickListener(view -> {
+            startActivity(new Intent(DrawerLayoutExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
         getSwipeBackLayout().setEnableGesture(false);
         setDrawerLayout();
     }

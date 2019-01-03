@@ -85,6 +85,9 @@ public class WYAStepper extends LinearLayout {
             value = a.getInt(R.styleable.WYAStepper_value, 0);
             max_num = a.getInt(R.styleable.WYAStepper_max_num, 0);
             min_num = a.getInt(R.styleable.WYAStepper_min_num, 0);
+
+            setWidth(max_num);
+
             setValue(value);
             stepper_et_num.setCursorVisible(false);
             a.recycle();
@@ -130,6 +133,20 @@ public class WYAStepper extends LinearLayout {
         setValueListener();
     }
 
+    private void setWidth(int max_num) {
+        stepper_et_num.setWidth((max_num + "").length() * dip2px(getContext(), 10));
+    }
+
+    /**
+     * dp转px
+     *
+     * @param dp
+     * @return
+     */
+    public int dip2px(Context context, int dp) {
+        float density = context.getResources().getDisplayMetrics().density;
+        return (int) (dp * density + 0.5);
+    }
 
     /**
      * 设置输入监听
@@ -138,7 +155,11 @@ public class WYAStepper extends LinearLayout {
         stepper_et_num.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                input_before = s.toString();
+                if (s.toString().equals("")) {
+                    input_before = min_num + "";
+                } else {
+                    input_before = s.toString();
+                }
             }
 
             @Override
@@ -176,14 +197,14 @@ public class WYAStepper extends LinearLayout {
         stepper_et_num.setText(value + "");
         stepper_et_num.setHint(min_num + "");
         if (value >= max_num) {
-            if(addDisableDrawablePress == null){
+            if (addDisableDrawablePress == null) {
                 stepper_img_add.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus_disable));
             } else {
                 stepper_img_add.setBackgroundDrawable(addDisableDrawablePress);
             }
             stepper_img_add.setEnabled(false);
         } else {
-            if(addDrawable == null){
+            if (addDrawable == null) {
                 stepper_img_add.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus));
             } else {
                 stepper_img_add.setBackgroundDrawable(addDrawable);
@@ -192,14 +213,14 @@ public class WYAStepper extends LinearLayout {
             stepper_img_add.setEnabled(true);
         }
         if (value <= min_num) {
-            if(reduceDisableDrawablePress == null){
+            if (reduceDisableDrawablePress == null) {
                 stepper_img_reduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus_disable));
             } else {
                 stepper_img_reduce.setBackgroundDrawable(reduceDisableDrawablePress);
             }
             stepper_img_reduce.setEnabled(false);
         } else {
-            if(reduceDrawable == null){
+            if (reduceDrawable == null) {
                 stepper_img_reduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus));
             } else {
                 stepper_img_reduce.setBackgroundDrawable(reduceDrawable);
