@@ -29,6 +29,8 @@ import com.wya.hardware.videoplayer.view.VideoControllerView;
 import com.wya.hardware.videoplayer.view.VideoProgressOverlay;
 import com.wya.hardware.videoplayer.view.VideoSystemOverlay;
 
+import static android.graphics.Color.TRANSPARENT;
+
 
 /**
  * 创建日期：2018/12/6 14:22
@@ -79,7 +81,6 @@ public class WYAVideoView extends VideoBehaviorView {
         videoProgressOverlay = (VideoProgressOverlay) findViewById(R.id.video_progress_overlay);
 
         initPlayer();
-
         mSurfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
@@ -140,6 +141,17 @@ public class WYAVideoView extends VideoBehaviorView {
 
             @Override
             public void onPrepared(MediaPlayer mp) {
+                mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+                    @Override
+                    public boolean onInfo(MediaPlayer mp, int what, int extra) {
+                        if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
+                            // video started
+                            mSurfaceView.setBackgroundColor(TRANSPARENT);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
                 mMediaPlayer.start();
                 mediaController.show();
                 mediaController.hideErrorView();

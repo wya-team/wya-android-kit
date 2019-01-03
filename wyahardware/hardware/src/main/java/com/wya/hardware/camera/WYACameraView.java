@@ -2,17 +2,19 @@ package com.wya.hardware.camera;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.pm.FeatureInfo;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
-import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -32,14 +34,15 @@ import com.wya.hardware.R;
 import com.wya.hardware.camera.listener.CaptureListener;
 import com.wya.hardware.camera.listener.ClickListener;
 import com.wya.hardware.camera.listener.ErrorListener;
-import com.wya.hardware.camera.listener.WYACameraListener;
 import com.wya.hardware.camera.listener.TypeListener;
+import com.wya.hardware.camera.listener.WYACameraListener;
 import com.wya.hardware.camera.state.CameraMachine;
 import com.wya.hardware.camera.view.CameraView;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+
+import static android.graphics.Color.TRANSPARENT;
 
 /**
  * 创建日期：2018/12/5 14:25
@@ -332,6 +335,19 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     @Override
     public void cameraHasOpened() {
         CameraInterface.getInstance().doStartPreview(mVideoView.getHolder(), screenProp);
+        getActivityFromView(this).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mVideoView.setBackgroundColor(TRANSPARENT);
+                    }
+                }, 80);
+
+            }
+        });
     }
 
     //生命周期onResume
@@ -687,5 +703,16 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         }
     }
 
-
+    public Activity getActivityFromView(View view) {
+        if (null != view) {
+            Context context = view.getContext();
+            while (context instanceof ContextWrapper) {
+                if (context instanceof Activity) {
+                    return (Activity) context;
+                }
+                context = ((ContextWrapper) context).getBaseContext();
+            }
+        }
+        return null;
+    }
 }
