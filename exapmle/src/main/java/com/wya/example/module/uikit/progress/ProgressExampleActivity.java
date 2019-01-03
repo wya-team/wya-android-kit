@@ -7,6 +7,7 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.progress.WYAProgress;
+import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 
@@ -30,6 +31,10 @@ public class ProgressExampleActivity extends BaseActivity {
         initImgRightAnther(R.drawable.icon_help,true);
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(ProgressExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(ProgressExampleActivity.this, url);
         });
         progressBar.setProgress(progress);
         wyaProgress.setCurrentProgress(progress);

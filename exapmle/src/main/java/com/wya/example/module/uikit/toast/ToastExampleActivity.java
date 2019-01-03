@@ -8,6 +8,7 @@ import android.widget.RadioButton;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -34,6 +35,10 @@ public class ToastExampleActivity extends BaseActivity {
         initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(ToastExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(ToastExampleActivity.this, url);
         });
     }
     

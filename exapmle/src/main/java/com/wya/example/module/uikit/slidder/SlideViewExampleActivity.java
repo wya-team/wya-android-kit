@@ -6,9 +6,10 @@ import android.content.Intent;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.utils.utils.StringUtil;
 
 public class SlideViewExampleActivity extends BaseActivity {
-    
+
     public static void start(Activity activity) {
         if (null == activity) {
             return;
@@ -16,12 +17,12 @@ public class SlideViewExampleActivity extends BaseActivity {
         Intent intent = new Intent(activity, SlideViewExampleActivity.class);
         activity.startActivity(intent);
     }
-    
+
     @Override
     protected int getLayoutID() {
         return R.layout.layout_activity_slide_view;
     }
-    
+
     @Override
     protected void initView() {
         getSwipeBackLayout().setEnableGesture(false);
@@ -30,6 +31,10 @@ public class SlideViewExampleActivity extends BaseActivity {
         initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(SlideViewExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(SlideViewExampleActivity.this, url);
         });
     }
 }

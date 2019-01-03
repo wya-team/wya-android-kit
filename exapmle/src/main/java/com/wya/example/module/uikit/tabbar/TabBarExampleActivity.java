@@ -11,6 +11,7 @@ import com.wya.uikit.badge.Builder;
 import com.wya.uikit.badge.IBadgeView;
 import com.wya.uikit.slideview.Utils;
 import com.wya.uikit.tabbar.WYATabBar;
+import com.wya.utils.utils.StringUtil;
 
 public class TabBarExampleActivity extends BaseActivity {
     
@@ -25,6 +26,10 @@ public class TabBarExampleActivity extends BaseActivity {
         initImgRightAnther(R.drawable.icon_help,true);
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(TabBarExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(TabBarExampleActivity.this, url);
         });
         setToolBar();
         showBadge();

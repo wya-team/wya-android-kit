@@ -6,6 +6,7 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.stepper.WYAStepper;
+import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 
@@ -33,6 +34,10 @@ public class StepperExampleActivity extends BaseActivity {
         initImgRightAnther(R.drawable.icon_help,true);
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(StepperExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(StepperExampleActivity.this, url);
         });
     }
 }

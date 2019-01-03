@@ -6,11 +6,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
-import com.wya.example.module.uikit.banner.BannerExampleActivity;
+import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -37,6 +38,11 @@ public class DrawerLayoutExampleActivity extends BaseActivity {
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(DrawerLayoutExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
         });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(DrawerLayoutExampleActivity.this, url);
+        });
+
         getSwipeBackLayout().setEnableGesture(false);
         setDrawerLayout();
     }

@@ -6,6 +6,7 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.toolbar.AndroidBugWorkaround;
+import com.wya.utils.utils.StringUtil;
 
 /**
  * 创建日期：2018/11/30 18:03
@@ -23,6 +24,10 @@ public class InputItemExampleActivity extends BaseActivity {
         initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(InputItemExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(InputItemExampleActivity.this, url);
         });
     }
 

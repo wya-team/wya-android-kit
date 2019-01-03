@@ -21,6 +21,7 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.utils.utils.FileManagerUtil;
+import com.wya.utils.utils.StringUtil;
 
 import static com.wya.utils.utils.FileManagerUtil.TASK_CANCEL;
 import static com.wya.utils.utils.FileManagerUtil.TASK_COMPLETE;
@@ -70,7 +71,10 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
             startActivity(new Intent(FileDownloadExampleActivity.this, ReadmeActivity.class)
                     .putExtra("url", url));
         });
-
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(FileDownloadExampleActivity.this, url);
+        });
 
         mFileManagerUtil = new FileManagerUtil();
         mFileManagerUtil.register();

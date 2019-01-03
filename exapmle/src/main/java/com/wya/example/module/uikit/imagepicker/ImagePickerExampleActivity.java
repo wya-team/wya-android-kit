@@ -35,6 +35,7 @@ import com.wya.uikit.gallery.GalleryCreator;
 import com.wya.uikit.imagecrop.Crop;
 import com.wya.uikit.imagepicker.ImagePickerCreator;
 import com.wya.uikit.imagepicker.PickerConfig;
+import com.wya.utils.utils.StringUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
     public static final int CROP_PHOTO = 1001;
     public static final int CROP = 1002;
     public static final int PHOTO = 100;
-    private String TAG="ImagePickerExampleActivity";
+    private String TAG = "ImagePickerExampleActivity";
 
     @Override
     protected int getLayoutID() {
@@ -68,6 +69,10 @@ public class ImagePickerExampleActivity extends BaseActivity {
         initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(ImagePickerExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(ImagePickerExampleActivity.this, url);
         });
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);

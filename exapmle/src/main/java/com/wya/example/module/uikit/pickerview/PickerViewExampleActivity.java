@@ -10,8 +10,10 @@ import com.google.gson.Gson;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity;
 import com.wya.uikit.pickerview.CustomPickerView;
 import com.wya.uikit.pickerview.CustomTimePicker;
+import com.wya.utils.utils.StringUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -64,7 +66,10 @@ public class PickerViewExampleActivity extends BaseActivity {
             startActivity(new Intent(PickerViewExampleActivity.this, ReadmeActivity.class)
                     .putExtra("url", url));
         });
-
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(PickerViewExampleActivity.this, url);
+        });
         InputStream inputStream;
         String data = null;
         try {

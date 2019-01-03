@@ -38,9 +38,9 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     private onLeftTvOnclickListener onLeftTvOnclickListener;//设置左边点击事件
     private onRightTvOnclickListener onRightTvOnclickListener;//设置右边点击事件
     private onRightTvAntherOnclickListener onRightTvAntherOnclickListener;//设置右边点击事件
+    private onRightImageAntherOnLongClickListener onRightImageAntherOnLongClickListener;//设置右边长按点击事件
     private onRightImageOnclickListener onRightImageOnclickListener;//设置右边点击事件
     private onRightImageAntherOnclickListener onRightImageAntherOnclickListener;//设置右边点击事件
-
 
     /**
      * 设置左边点击事件
@@ -82,6 +82,13 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      */
     public interface onRightImageAntherOnclickListener {
         void onRightImageAntherOnclickListener(View view);
+    }
+
+    /**
+     * 设置第二张长按点击事件
+     */
+    public interface onRightImageAntherOnLongClickListener {
+        void onRightImageAntherOnLongClickListener(View view);
     }
 
 
@@ -137,6 +144,15 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      */
     public void setRightImageAntherOnclickListener(onRightImageAntherOnclickListener onRightImageAntherOnclickListener) {
         this.onRightImageAntherOnclickListener = onRightImageAntherOnclickListener;
+    }
+
+    /**
+     * 设置右边第二个图片长按点击事件监听
+     *
+     * @param onRightImageAntherOnLongClickListener
+     */
+    public void setRightImageAntherOnLongClickListener(onRightImageAntherOnLongClickListener onRightImageAntherOnLongClickListener) {
+        this.onRightImageAntherOnLongClickListener = onRightImageAntherOnLongClickListener;
     }
 
     @Override
@@ -268,6 +284,17 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "图片2", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        img_right_anther.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (onRightImageAntherOnLongClickListener != null) {
+                    onRightImageAntherOnLongClickListener.onRightImageAntherOnLongClickListener(view);
+                } else {
+                    Toast.makeText(BaseToolBarActivity.this, "图片2长按", Toast.LENGTH_SHORT).show();
+                }
+                return true;
             }
         });
         img_right.setOnClickListener(new View.OnClickListener() {

@@ -21,6 +21,7 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.example.module.example.view.CustomerExpandableListView;
+import com.wya.example.module.uikit.customitems.inputitem.InputItemExampleActivity;
 import com.wya.example.module.uikit.dialog.adapter.DialogExpandableListAdapter;
 import com.wya.example.module.uikit.dialog.adapter.DialogListAdapter;
 import com.wya.example.module.uikit.dialog.adapter.ShareDialogListAdapter;
@@ -30,6 +31,7 @@ import com.wya.uikit.dialog.CustomListener;
 import com.wya.uikit.dialog.WYACustomDialog;
 import com.wya.uikit.dialog.WYALoadingDialog;
 import com.wya.utils.utils.ScreenUtil;
+import com.wya.utils.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +71,7 @@ public class DialogExampleActivity extends BaseActivity {
     private ImageView loading;
     private ImageView loading2;
     private ImageView loading3;
+
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
@@ -92,6 +95,10 @@ public class DialogExampleActivity extends BaseActivity {
         initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(DialogExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(DialogExampleActivity.this, url);
         });
         initItems();
         initExpandList();
@@ -138,7 +145,7 @@ public class DialogExampleActivity extends BaseActivity {
                         .title("标题")
                         .message("内容")
                         .cancelShow(false)
-                        .width(ScreenUtil.getScreenWidth(this) * 3/4)
+                        .width(ScreenUtil.getScreenWidth(this) * 3 / 4)
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
                     wyaCustomDialog.dismiss();
@@ -152,7 +159,7 @@ public class DialogExampleActivity extends BaseActivity {
                         .cancelTouchout(true)
                         .title("标题")
                         .message("内容")
-                        .width(ScreenUtil.getScreenWidth(this) * 3/4)
+                        .width(ScreenUtil.getScreenWidth(this) * 3 / 4)
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
                     wyaCustomDialog.dismiss();
@@ -168,7 +175,7 @@ public class DialogExampleActivity extends BaseActivity {
                         .canEdit(true)
                         .editTextStr("编辑的内容")
                         .hintEditTextStr("提示内容")
-                        .width(ScreenUtil.getScreenWidth(this) * 3/4)
+                        .width(ScreenUtil.getScreenWidth(this) * 3 / 4)
                         .build();
                 wyaCustomDialog.setNoOnclickListener(() -> {
                     wyaCustomDialog.dismiss();
@@ -201,7 +208,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 }
                             }
                         })
-                        .width(ScreenUtil.getScreenWidth(this) * 3/4)
+                        .width(ScreenUtil.getScreenWidth(this) * 3 / 4)
                         .height(ScreenUtil.dip2px(DialogExampleActivity.this, 200))
                         .cancelable(true)
                         .gravity(Gravity.CENTER)
@@ -241,7 +248,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 }
                             }
                         })
-                        .width(ScreenUtil.getScreenWidth(this) * 3/4)
+                        .width(ScreenUtil.getScreenWidth(this) * 3 / 4)
                         .height(ScreenUtil.dip2px(DialogExampleActivity.this, 200))
                         .cancelable(true)
                         .gravity(Gravity.CENTER)
@@ -263,7 +270,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 title.setVisibility(View.VISIBLE);
                             }
                         })
-                        .width(ScreenUtil.getScreenWidth(this) * 3/4)
+                        .width(ScreenUtil.getScreenWidth(this) * 3 / 4)
                         .height(ScreenUtil.dip2px(DialogExampleActivity.this, 200))
                         .cancelable(true)
                         .gravity(Gravity.CENTER)

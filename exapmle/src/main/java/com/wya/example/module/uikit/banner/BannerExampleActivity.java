@@ -9,6 +9,7 @@ import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.banner.BannerAdapter;
 import com.wya.uikit.banner.WYABanner;
+import com.wya.utils.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,10 @@ public class BannerExampleActivity extends BaseActivity {
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(BannerExampleActivity.this, ReadmeActivity.class).putExtra
                     ("url", url));
+        });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(BannerExampleActivity.this, url);
         });
 
         data.add(R.mipmap.img1);

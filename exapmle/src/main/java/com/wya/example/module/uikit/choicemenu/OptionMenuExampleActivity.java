@@ -11,6 +11,7 @@ import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.optionmenu.OptionMenu;
 import com.wya.uikit.optionmenu.OptionMenuViewHolder;
+import com.wya.utils.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public class OptionMenuExampleActivity extends BaseActivity {
     private int selectPositionTwo = 0;
     private int selectPositionTwo1 = 0;
     private Map<String, Integer> selection = new HashMap<>();
-
+    
     List<String> data = new ArrayList<>();
     List<List<String>> data2 = new ArrayList<>();
     int[] location1 = new int[2];
@@ -34,7 +35,7 @@ public class OptionMenuExampleActivity extends BaseActivity {
     protected int getLayoutID() {
         return R.layout.activity_choice_menu_example;
     }
-
+    
     @Override
     protected void initView() {
         setToolBarTitle("菜单(optionmenu)");
@@ -43,6 +44,10 @@ public class OptionMenuExampleActivity extends BaseActivity {
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(OptionMenuExampleActivity.this, ReadmeActivity.class)
                     .putExtra("url", url));
+        });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(OptionMenuExampleActivity.this, url);
         });
 
         showOne = (RelativeLayout) findViewById(R.id.show_one);

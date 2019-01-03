@@ -8,6 +8,7 @@ import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.paginationview.WYAPaginationBottomView;
 import com.wya.uikit.paginationview.WYAPaginationDot;
+import com.wya.utils.utils.StringUtil;
 
 public class PaginationViewExampleActivity extends BaseActivity {
 
@@ -31,7 +32,10 @@ public class PaginationViewExampleActivity extends BaseActivity {
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(PaginationViewExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
         });
-
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(PaginationViewExampleActivity.this, url);
+        });
         Drawable drawableLeft = getResources().getDrawable(R.drawable.icon_row_right);
         Drawable drawableRight = getResources().getDrawable(R.drawable.icon_row_left);
 

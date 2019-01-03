@@ -7,6 +7,7 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.segmentedcontrol.WYATabLayoutControl;
+import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +40,10 @@ public class TabLayoutExampleActivity extends BaseActivity {
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(TabLayoutExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
         });
-
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(TabLayoutExampleActivity.this, url);
+        });
 
         mFixedTab.addTab(mFixedTab.newTab().setText("标题1"));
         mFixedTab.addTab(mFixedTab.newTab().setText("标题2"));

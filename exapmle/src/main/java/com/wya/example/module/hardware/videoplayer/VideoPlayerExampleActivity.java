@@ -12,6 +12,7 @@ import com.wya.hardware.videoplayer.WYAVideoView;
 import com.wya.hardware.videoplayer.listener.SimpleOnVideoControlListener;
 import com.wya.uikit.toolbar.StatusBarUtil;
 import com.wya.utils.utils.ScreenUtil;
+import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 
@@ -39,6 +40,10 @@ public class VideoPlayerExampleActivity extends BaseActivity {
         initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(VideoPlayerExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(VideoPlayerExampleActivity.this, url);
         });
 
         info = new VideoDetailInfo();

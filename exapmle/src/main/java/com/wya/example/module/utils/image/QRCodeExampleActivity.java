@@ -18,6 +18,7 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.utils.utils.QRCodeUtil;
+import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,7 +49,10 @@ public class QRCodeExampleActivity extends BaseActivity {
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(QRCodeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(QRCodeExampleActivity.this, url);
+        });
         ButterKnife.bind(this);
         path = getDiskCachePath(this) + "/test.jpg";
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -108,7 +112,7 @@ public class QRCodeExampleActivity extends BaseActivity {
             case R.id.crate_line_image:
                 String line = mLineCodeEdit.getText().toString();
                 if (TextUtils.isEmpty(line) || line.getBytes().length != line.length()) {
-                    Toast.makeText(this,"请输入数字、英文字母或其他特殊字符",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "请输入数字、英文字母或其他特殊字符", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (QRCodeUtil.createBarcode(line, 600, 300, path)) {

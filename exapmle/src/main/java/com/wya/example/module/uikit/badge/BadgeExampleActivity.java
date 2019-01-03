@@ -14,6 +14,7 @@ import com.wya.uikit.badge.Builder;
 import com.wya.uikit.badge.DisplayUtil;
 import com.wya.uikit.badge.IBadgeView;
 import com.wya.uikit.slideview.Utils;
+import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -75,6 +76,10 @@ public class BadgeExampleActivity extends BaseActivity {
         initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(BadgeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+        });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(BadgeExampleActivity.this, url);
         });
         showDot(llDot);
         showBadgeCenterEnd(tvNumDot, 55, true, 50);

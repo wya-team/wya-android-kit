@@ -11,28 +11,29 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.notice.switcher.SwitcherView;
+import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 
 public class NoticeExampleActivity extends BaseActivity {
-    
+
     @BindView(R.id.vs_down2up)
     SwitcherView vsDown2Up;
-    
+
     @BindView(R.id.vs_up2down)
     SwitcherView vsUp2Down;
-    
+
     @BindView(R.id.ll_closable_switcher)
     LinearLayout llClosableSwitcher;
-    
+
     @BindView(R.id.vs_left2right)
     SwitcherView vsLeft2Right;
-    
+
     @BindView(R.id.vs_right2left)
     SwitcherView vsRight2Left;
-    
+
     private String noticeText;
-    
+
     public static void start(Activity activity) {
         if (null == activity) {
             return;
@@ -40,12 +41,12 @@ public class NoticeExampleActivity extends BaseActivity {
         Intent intent = new Intent(activity, NoticeExampleActivity.class);
         activity.startActivity(intent);
     }
-    
+
     @Override
     protected int getLayoutID() {
         return R.layout.layout_activity_notice_view;
     }
-    
+
     @Override
     protected void initView() {
         setToolBarTitle("通告栏(notice)");
@@ -55,11 +56,15 @@ public class NoticeExampleActivity extends BaseActivity {
         setRightImageAntherOnclickListener(view -> {
             startActivity(new Intent(NoticeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
+        setRightImageAntherOnLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(NoticeExampleActivity.this, url);
+        });
         showSwitcher();
     }
-    
+
     private void showSwitcher() {
-        
+
         // down2up
         vsDown2Up.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
@@ -77,7 +82,7 @@ public class NoticeExampleActivity extends BaseActivity {
             }
         });
         vsDown2Up.inflate(R.layout.item_switch_view).startSwitcher();
-        
+
         // up2down
         vsUp2Down.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
@@ -98,7 +103,7 @@ public class NoticeExampleActivity extends BaseActivity {
             }
         });
         vsUp2Down.inflate(R.layout.item_switch_view).startSwitcher();
-        
+
         // left2right
         vsLeft2Right.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
@@ -116,7 +121,7 @@ public class NoticeExampleActivity extends BaseActivity {
             }
         });
         vsLeft2Right.inflate(R.layout.item_switch_view).startSwitcher();
-        
+
         // right2left
         vsRight2Left.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
@@ -127,6 +132,6 @@ public class NoticeExampleActivity extends BaseActivity {
         });
         vsRight2Left.inflate(R.layout.item_switch_view).startSwitcher();
     }
-    
+
 }
 
