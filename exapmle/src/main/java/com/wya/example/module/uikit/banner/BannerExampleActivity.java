@@ -18,6 +18,7 @@ public class BannerExampleActivity extends BaseActivity {
 
     private WYABanner<Integer> mWYABanner;
     private WYABanner<Integer> mWYABanner2;
+    private WYABanner<Integer> scale_banner;
     private List<Integer> data = new ArrayList<>();
 
     @Override
@@ -25,9 +26,10 @@ public class BannerExampleActivity extends BaseActivity {
 
         setToolBarTitle("轮播图(banner)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
+        initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
-            startActivity(new Intent(BannerExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+            startActivity(new Intent(BannerExampleActivity.this, ReadmeActivity.class).putExtra
+                    ("url", url));
         });
 
         data.add(R.mipmap.img1);
@@ -37,6 +39,9 @@ public class BannerExampleActivity extends BaseActivity {
 
         mWYABanner = (WYABanner<Integer>) findViewById(R.id.banner);
         mWYABanner2 = (WYABanner<Integer>) findViewById(R.id.banner2);
+        scale_banner = (WYABanner<Integer>) findViewById(R.id.scale_banner);
+
+
         mWYABanner.setUpdateTime(2000)
                 .setDotVisible(true)
 //				.setDotDark()
@@ -48,6 +53,21 @@ public class BannerExampleActivity extends BaseActivity {
                 imageView.setImageResource(item);
             }
         });
+
+
+        scale_banner.setUpdateTime(2000)
+                .setDotVisible(true)
+//				.setDotDark()
+                .setScale(20, 60, 60)
+                .autoPlay(true);
+        scale_banner.setAdapter(new BannerAdapter<Integer>(data, R.layout.banner_example_item) {
+            @Override
+            public void convert(View view, int position, Integer item) {
+                ImageView imageView = view.findViewById(R.id.image);
+                imageView.setImageResource(item);
+            }
+        });
+
 
         mWYABanner2.setUpdateTime(2000)
                 .setDotVisible(true)

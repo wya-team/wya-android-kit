@@ -1,6 +1,8 @@
 package com.wya.example.module.uikit.segmentedcontrol;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.widget.Toast;
 
 import com.wya.example.R;
@@ -31,6 +33,8 @@ public class SegmentedControlExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         ButterKnife.bind(this);
+
+        initTextStyle();
 
         setToolBarTitle("分段控制器(segmentedcontrol)");
         String url = getIntent().getStringExtra("url");
@@ -71,6 +75,16 @@ public class SegmentedControlExampleActivity extends BaseActivity {
         mSegmentEnable.addTabs(new String[]{"标题1", "标题2"});
         mSegmentEnable.setEnabled(false);
 
+    }
+
+    /**
+     * 设置字体不随系统大小
+     */
+    private void initTextStyle() {
+        Resources res = getResources();
+        Configuration config = new Configuration();
+        config.setToDefaults();
+        res.updateConfiguration(config, res.getDisplayMetrics());
     }
 
 }

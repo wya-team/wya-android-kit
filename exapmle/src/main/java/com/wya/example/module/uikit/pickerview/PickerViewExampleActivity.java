@@ -3,7 +3,6 @@ package com.wya.example.module.uikit.pickerview;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -76,7 +75,6 @@ public class PickerViewExampleActivity extends BaseActivity {
             inputStream.read(bytes);
             inputStream.close();
             data = new String(bytes);
-            Log.i("test", ": " + data);
         } catch (IOException e) {
             e.printStackTrace();
         }

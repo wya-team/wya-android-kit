@@ -74,6 +74,7 @@ public class WYABanner<T> extends RelativeLayout {
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 
         addView(mDot, -1, layoutParams);
+        initViewpager();
     }
 
     /**
@@ -148,12 +149,15 @@ public class WYABanner<T> extends RelativeLayout {
      */
     private void initViewpager() {
         mViewPager = new ViewPager(mContext);
+        mViewPager.setOffscreenPageLimit(2);
         LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup
                 .LayoutParams.MATCH_PARENT);
         addView(mViewPager, 0, layoutParams);
         BannerPagerAdapter bannerPagerAdapter = new BannerPagerAdapter();
         mViewPager.setAdapter(bannerPagerAdapter);
         mViewPager.addOnPageChangeListener(bannerPagerAdapter);
+
+
     }
 
 
@@ -236,7 +240,6 @@ public class WYABanner<T> extends RelativeLayout {
         if (heightMode == MeasureSpec.AT_MOST) {
             heightSize = widthSize / 2;
         }
-
         super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(heightSize, heightMode));
     }
 
@@ -291,6 +294,29 @@ public class WYABanner<T> extends RelativeLayout {
         return this;
     }
 
+    /**
+     * scale style
+     * @param pageMargin viewpager item margin
+     * @param leftMargin viewpager marginLeft
+     * @param rightMargin viewpager marginRight
+     * @return banner
+     */
+    public WYABanner setScale(int pageMargin, int leftMargin, int rightMargin) {
+
+        setClipChildren(false);
+        mViewPager.setClipChildren(false);
+        mViewPager.setPageMargin(pageMargin);
+        mViewPager.setClipChildren(false);
+        mViewPager.setPageTransformer(true, new ScaleInTransformer());
+        LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup
+                .LayoutParams.MATCH_PARENT);
+        layoutParams.leftMargin =  leftMargin;
+        layoutParams.rightMargin = rightMargin;
+        mViewPager.setLayoutParams(layoutParams);
+        invalidate();
+        return this;
+    }
+
 
     public void setAdapter(BannerAdapter<T> bannerAdapter) {
         mBannerAdapter = bannerAdapter;
@@ -298,7 +324,7 @@ public class WYABanner<T> extends RelativeLayout {
         itemId = mBannerAdapter.getLayoutId();
         num = mData.size();
         mDot.setPointNumber(num);
-        initViewpager();
+
         startAutoPlay();
     }
 

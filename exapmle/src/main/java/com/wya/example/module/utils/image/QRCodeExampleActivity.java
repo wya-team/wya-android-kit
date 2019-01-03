@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
@@ -30,6 +33,8 @@ public class QRCodeExampleActivity extends BaseActivity {
     ImageView mImageview;
     private String path;
 
+    public static final String TAG = "QRCodeExampleActivity";
+
     @Override
     protected int getLayoutID() {
         return R.layout.activity_qrcode_example;
@@ -47,6 +52,27 @@ public class QRCodeExampleActivity extends BaseActivity {
         ButterKnife.bind(this);
         path = getDiskCachePath(this) + "/test.jpg";
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+        mLineCodeEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 80) {
+                    s = s.subSequence(0, 80);
+                    mLineCodeEdit.setText(s);
+                    mLineCodeEdit.setSelection(80);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
 
@@ -82,6 +108,7 @@ public class QRCodeExampleActivity extends BaseActivity {
             case R.id.crate_line_image:
                 String line = mLineCodeEdit.getText().toString();
                 if (TextUtils.isEmpty(line) || line.getBytes().length != line.length()) {
+                    Toast.makeText(this,"请输入数字、英文字母或其他特殊字符",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (QRCodeUtil.createBarcode(line, 600, 300, path)) {

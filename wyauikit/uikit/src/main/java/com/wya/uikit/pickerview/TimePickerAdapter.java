@@ -28,7 +28,8 @@ public class TimePickerAdapter implements WheelAdapter<String> {
 
     @Override
     public String getItem(int index) {
-        return (start + index * space) + type;
+        int value = start + index * space;
+        return value < 10 ? "0"+value + type : value + type;
     }
 
     @Override

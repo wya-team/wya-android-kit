@@ -53,6 +53,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
     public static final int CROP_PHOTO = 1001;
     public static final int CROP = 1002;
     public static final int PHOTO = 100;
+    private String TAG="ImagePickerExampleActivity";
 
     @Override
     protected int getLayoutID() {
