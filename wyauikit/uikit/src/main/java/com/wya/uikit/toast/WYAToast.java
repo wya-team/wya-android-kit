@@ -31,14 +31,7 @@ public class WYAToast {
      * 初始化Toast(消息，时间)
      */
     private Toast initToast(CharSequence message, int duration) {
-        if (toast == null) {
-            toast = Toast.makeText(context, message, duration);
-        } else {
-            //设置文字
-            toast.setText(message);
-            //设置存续期间
-            toast.setDuration(duration);
-        }
+        toast = Toast.makeText(context, message, duration);
         return toast;
     }
 
@@ -103,9 +96,9 @@ public class WYAToast {
             iv.setVisibility(View.GONE);
         }
         toast2.setView(view);
-        if(gravity == Gravity.CENTER){
+        if (gravity == Gravity.CENTER) {
             toast2.setGravity(gravity, 0, 0);
-        } else if(gravity == Gravity.BOTTOM){
+        } else if (gravity == Gravity.BOTTOM) {
             toast2.setGravity(gravity, 0, 0);
         }
         toast2.show();
