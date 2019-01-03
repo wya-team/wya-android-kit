@@ -1,4 +1,4 @@
-package com.wya.example.module.uikit.choicemenu;
+package com.wya.example.module.uikit.optionmenu;
 
 import android.content.Intent;
 import android.view.View;

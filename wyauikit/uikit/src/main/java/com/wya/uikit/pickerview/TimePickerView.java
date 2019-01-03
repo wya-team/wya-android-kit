@@ -303,6 +303,7 @@ public class TimePickerView extends LinearLayout {
                         : ""));
                 int sizeDays = dayends - daystarts;
                 dayWheel.setCurrentItem(dayIndex > sizeDays ? sizeDays : dayIndex);
+                dayListener.onItemSelected(dayIndex > sizeDays ? sizeDays : dayIndex);
             }
         };
 

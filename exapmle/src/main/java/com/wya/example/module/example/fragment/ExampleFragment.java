@@ -19,7 +19,7 @@ import com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
 import com.wya.example.module.uikit.banner.BannerExampleActivity;
 import com.wya.example.module.uikit.button.ButtonExampleActivity;
-import com.wya.example.module.uikit.choicemenu.OptionMenuExampleActivity;
+import com.wya.example.module.uikit.optionmenu.OptionMenuExampleActivity;
 import com.wya.example.module.uikit.customedittext.CustomEditTextExampleActivity;
 import com.wya.example.module.uikit.customitems.cardview.CardViewExampleActivity;
 import com.wya.example.module.uikit.customitems.grid.GridExampleActivity;

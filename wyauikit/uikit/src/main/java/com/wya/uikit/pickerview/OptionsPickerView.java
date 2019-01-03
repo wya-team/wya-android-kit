@@ -118,7 +118,7 @@ public class OptionsPickerView<T> extends LinearLayout {
 				if (mData2 != null) {
 					List<T> list = mData2.get(index);
 					mWheelView2.setAdapter(new PickerViewAdapter<>(list));
-					int indexs = list.size() > index2 ? index2 : list.size();
+					int indexs = list.size() > index2 ? index2 : list.size()-1;
 					mWheelView2.setCurrentItem(indexs);
 					mSelectedListener2.onItemSelected(indexs);
 				}
@@ -132,7 +132,7 @@ public class OptionsPickerView<T> extends LinearLayout {
 					if (mData3 != null) {
 						List<T> list = mData3.get(index1).get(index);
 						mWheelView3.setAdapter(new PickerViewAdapter<>(list));
-						int indexs = list.size() > index3 ? index3 : list.size();
+						int indexs = list.size() > index3 ? index3 : list.size()-1;
 						mWheelView3.setCurrentItem(indexs);
 						mSelectedListener3.onItemSelected(indexs);
 					}
