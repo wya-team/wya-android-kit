@@ -6,13 +6,13 @@
     <SurfaceView
         android:id="@+id/video_surface"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#000" />
 
     <com.wya.hardware.videoplayer.view.VideoControllerView
         android:id="@+id/video_controller"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
     </com.wya.hardware.videoplayer.view.VideoControllerView>
 
