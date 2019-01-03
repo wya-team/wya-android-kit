@@ -1,4 +1,4 @@
-package com.wya.uikit.choicemenu;
+package com.wya.uikit.optionmenu;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,25 +22,25 @@ import java.util.List;
  * author : XuDonglin
  * e-mail : 465715784@qq.com
  * time   : 2018/11/24
- * desc   : ChoiceMenu
+ * desc   : OptionMenu
  * version: 1.0
  */
-public abstract class ChoiceMenu<T> extends PopupWindow {
+public abstract class OptionMenu<T> extends PopupWindow {
 	private Context mContext;
 	private RecyclerView mRecyclerFirst, mRecyclerSecond;
 	private List<T> data1;
 	private List<List<T>> data2;
 	private List<T> data2Show = new ArrayList<>();
 	private int firstId, secondId;
-	private ChoiceMenuAdapter<T> mAdapter;
-	private ChoiceMenuAdapter<T> mAdapterSecond;
-	private String TAG = "ChoiceMenu";
+	private OptionMenuAdapter<T> mAdapter;
+	private OptionMenuAdapter<T> mAdapterSecond;
+	private String TAG = "OptionMenu";
 	private int selectPosition;
 	private boolean isShadow = true;
 	private OnFirstAdapterItemClickListener mOnFirstAdapterItemClickListener;
 	
 	
-	public ChoiceMenu(Context context, List<T> list1, List<List<T>> list2, @LayoutRes int firstId,
+	public OptionMenu(Context context, List<T> list1, List<List<T>> list2, @LayoutRes int firstId,
 					  @LayoutRes int secondId) {
 		super(context);
 		mContext = context;
@@ -51,7 +51,7 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		init();
 	}
 	
-	public ChoiceMenu(Context context, List<T> list1, @LayoutRes int firstId) {
+	public OptionMenu(Context context, List<T> list1, @LayoutRes int firstId) {
 		super(context);
 		mContext = context;
 		this.data1 = list1;
@@ -60,7 +60,7 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 	}
 	
 	/**
-	 * init ChoiceMenu
+	 * init OptionMenu
 	 */
 	private void init() {
 		setWidth(mContext.getResources().getDisplayMetrics().widthPixels);
@@ -72,7 +72,7 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		setOutsideTouchable(true);
 		setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
 		setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-		//		setAnimationStyle(R.style.choiceMenuStyle);
+//				setAnimationStyle(R.style.choiceMenuStyle);
 		setFocusable(true);
 		// 设置pop透明效果
 		setBackgroundDrawable(new ColorDrawable(0x0000));
@@ -98,9 +98,9 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 				.VERTICAL, false));
 		mRecyclerSecond.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager
 				.VERTICAL, false));
-		mAdapter = new ChoiceMenuAdapter<T>(data1, firstId) {
+		mAdapter = new OptionMenuAdapter<T>(data1, firstId) {
 			@Override
-			protected void convert(final ChoiceMenuViewHolder viewHolder, T item) {
+			protected void convert(final OptionMenuViewHolder viewHolder, T item) {
 				setValueFirst(viewHolder, item);
 				viewHolder.itemView.setSelected(viewHolder.getLayoutPosition() == selectPosition);
 				viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +110,7 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 						mAdapter.notifyDataSetChanged();
 						if (mOnFirstAdapterItemClickListener != null) {
 							mOnFirstAdapterItemClickListener.onClick(viewHolder.getLayoutPosition
-									(), v, ChoiceMenu.this);
+									(), v, OptionMenu.this);
 						}
 						if (data2 != null) {
 							data2Show.clear();
@@ -124,9 +124,9 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 		mRecyclerFirst.setAdapter(mAdapter);
 		if (data2 != null && secondId != 0) {
 			data2Show.addAll(data2.get(0));
-			mAdapterSecond = new ChoiceMenuAdapter<T>(data2Show, secondId) {
+			mAdapterSecond = new OptionMenuAdapter<T>(data2Show, secondId) {
 				@Override
-				protected void convert(ChoiceMenuViewHolder viewHolder, T item) {
+				protected void convert(OptionMenuViewHolder viewHolder, T item) {
 					setValueSecond(viewHolder, item);
 				}
 			};
@@ -141,14 +141,14 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 	 * @param helper viewHolder
 	 * @param item value
 	 */
-	public abstract void setValueFirst(ChoiceMenuViewHolder helper, T item);
+	public abstract void setValueFirst(OptionMenuViewHolder helper, T item);
 	
 	/**
 	 * second recyclerView convert value
 	 * @param helper viewHolder
 	 * @param item value
 	 */
-	public abstract void setValueSecond(ChoiceMenuViewHolder helper, T item);
+	public abstract void setValueSecond(OptionMenuViewHolder helper, T item);
 	
 	
 	/**
@@ -193,7 +193,7 @@ public abstract class ChoiceMenu<T> extends PopupWindow {
 	}
 	
 	public interface OnFirstAdapterItemClickListener{
-		void onClick(int position, View v, ChoiceMenu menu);
+		void onClick(int position, View v, OptionMenu menu);
 	}
 	
 	private void setBackground(float alpha) {

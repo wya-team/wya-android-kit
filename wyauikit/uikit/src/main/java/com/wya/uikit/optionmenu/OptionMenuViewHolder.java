@@ -1,4 +1,4 @@
-package com.wya.uikit.choicemenu;
+package com.wya.uikit.optionmenu;
 
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
@@ -14,10 +14,10 @@ import android.widget.TextView;
  * desc   :
  * version: 1.0
  */
-public class ChoiceMenuViewHolder extends RecyclerView.ViewHolder {
+public class OptionMenuViewHolder extends RecyclerView.ViewHolder {
 	private SparseArray<View> mView;
 
-	public ChoiceMenuViewHolder(View itemView) {
+	public OptionMenuViewHolder(View itemView) {
 		super(itemView);
 		mView = new SparseArray<>();
 	}
@@ -33,13 +33,13 @@ public class ChoiceMenuViewHolder extends RecyclerView.ViewHolder {
 
 
 
-	public ChoiceMenuViewHolder setText(@IdRes int id, String value) {
+	public OptionMenuViewHolder setText(@IdRes int id, String value) {
 		TextView view = getView(id);
 		view.setText(value);
 		return this;
 	}
 
-	public ChoiceMenuViewHolder setText(@IdRes int id, @StringRes  int value) {
+	public OptionMenuViewHolder setText(@IdRes int id, @StringRes  int value) {
 		TextView view = getView(id);
 		view.setText(value);
 		return this;

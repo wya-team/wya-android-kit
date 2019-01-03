@@ -19,7 +19,7 @@ import com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
 import com.wya.example.module.uikit.banner.BannerExampleActivity;
 import com.wya.example.module.uikit.button.ButtonExampleActivity;
-import com.wya.example.module.uikit.choicemenu.ChoiceMenuExampleActivity;
+import com.wya.example.module.uikit.choicemenu.OptionMenuExampleActivity;
 import com.wya.example.module.uikit.customedittext.CustomEditTextExampleActivity;
 import com.wya.example.module.uikit.customitems.cardview.CardViewExampleActivity;
 import com.wya.example.module.uikit.customitems.grid.GridExampleActivity;
@@ -86,7 +86,7 @@ public class ExampleFragment extends Fragment {
         item1.setTitle("导航");
         List<String> bean1 = new ArrayList<>();
         bean1.add("抽屉(drawerlayout)");
-        bean1.add("菜单(choicemenu)");
+        bean1.add("菜单(optionmenu)");
         bean1.add("导航栏(toolbar)");
         bean1.add("分页器(paginationview)");
         bean1.add("分段控制器(segmentedcontrol)");
@@ -173,8 +173,8 @@ public class ExampleFragment extends Fragment {
             case "抽屉(drawerlayout)":
                 startActivity(new Intent(getActivity(), DrawerLayoutExampleActivity.class).putExtra("url", UIKIT_URL+"drawerlayout"+"/README.md"));
                 break;
-            case "菜单(choicemenu)":
-                startActivity(new Intent(getActivity(), ChoiceMenuExampleActivity.class).putExtra("url", UIKIT_URL+"choicemenu"+"/README.md"));
+            case "菜单(optionmenu)":
+                startActivity(new Intent(getActivity(), OptionMenuExampleActivity.class).putExtra("url", UIKIT_URL+"optionmenu"+"/README.md"));
                 break;
             case "导航栏(toolbar)":
                 startActivity(new Intent(getActivity(), ToolBarExampleActivity.class).putExtra("url", UIKIT_URL+"toolbar"+"/README.md"));

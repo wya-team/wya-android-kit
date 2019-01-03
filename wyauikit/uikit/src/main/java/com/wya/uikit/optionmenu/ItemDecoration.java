@@ -1,4 +1,4 @@
-package com.wya.uikit.choicemenu;
+package com.wya.uikit.optionmenu;
 
 import android.content.Context;
 import android.graphics.Canvas;

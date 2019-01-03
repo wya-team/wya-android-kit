@@ -2,7 +2,6 @@ package com.wya.uikit.banner;
 
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 
 public class ScaleInTransformer implements ViewPager.PageTransformer {
@@ -12,7 +11,7 @@ public class ScaleInTransformer implements ViewPager.PageTransformer {
 
     @Override
     public void transformPage(@NonNull View view, float position) {
-        Log.i(TAG, "transformPage: " + position);
+//        Log.i(TAG, "transformPage: " + position);
         int pageWidth = view.getWidth();
         int pageHeight = view.getHeight();
 

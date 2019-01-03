@@ -1,4 +1,4 @@
-package com.wya.uikit.choicemenu;
+package com.wya.uikit.optionmenu;
 
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -16,25 +16,25 @@ import java.util.List;
  * desc   :
  * version: 1.0
  */
-public abstract class ChoiceMenuAdapter<T> extends RecyclerView.Adapter<ChoiceMenuViewHolder> {
+public abstract class OptionMenuAdapter<T> extends RecyclerView.Adapter<OptionMenuViewHolder> {
 	private List<T> mData;
 	private int layoutId;
-	private String TAG = "ChoiceMenuAdapter";
+	private String TAG = "OptionMenuAdapter";
 
-	public ChoiceMenuAdapter(List<T> data, @LayoutRes int layoutId) {
+	public OptionMenuAdapter(List<T> data, @LayoutRes int layoutId) {
 		mData = data;
 		this.layoutId = layoutId;
 	}
 
 	@NonNull
 	@Override
-	public ChoiceMenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+	public OptionMenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
-		return new ChoiceMenuViewHolder(view);
+		return new OptionMenuViewHolder(view);
 	}
 
 	@Override
-	public void onBindViewHolder(@NonNull ChoiceMenuViewHolder holder, int position) {
+	public void onBindViewHolder(@NonNull OptionMenuViewHolder holder, int position) {
 		convert(holder, mData.get(position));
 	}
 
@@ -44,5 +44,5 @@ public abstract class ChoiceMenuAdapter<T> extends RecyclerView.Adapter<ChoiceMe
 	}
 
 
-	protected abstract void convert(ChoiceMenuViewHolder viewHolder, T item);
+	protected abstract void convert(OptionMenuViewHolder viewHolder, T item);
 }

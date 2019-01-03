@@ -32,8 +32,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.wya.uikit.R;
-import com.wya.uikit.choicemenu.ChoiceMenu;
-import com.wya.uikit.choicemenu.ChoiceMenuViewHolder;
+import com.wya.uikit.optionmenu.OptionMenu;
+import com.wya.uikit.optionmenu.OptionMenuViewHolder;
 import com.wya.uikit.gallery.DataHelper;
 import com.wya.uikit.gallery.GalleryConfig;
 import com.wya.uikit.gallery.GalleryCreator;
@@ -54,7 +54,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     private TextView tv_commit;
     private RelativeLayout picker_title_layout;
     private ImageGridAdapter mGridAdapter;
-    private ChoiceMenu<LocalMediaFolder> mChoiceMenu;
+    private OptionMenu<LocalMediaFolder> mOptionMenu;
     private List<LocalMediaFolder> mFolders = new ArrayList<>();
     private List<String> mCropList = new ArrayList<>();
     private Drawable mDrawableUp;
@@ -124,10 +124,10 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
      * init folder menu
      */
     private void initChoiceMenu() {
-        mChoiceMenu = new ChoiceMenu<LocalMediaFolder>(this, mFolders, R.layout
+        mOptionMenu = new OptionMenu<LocalMediaFolder>(this, mFolders, R.layout
                 .folder_choice_item) {
             @Override
-            public void setValueFirst(final ChoiceMenuViewHolder helper, final LocalMediaFolder
+            public void setValueFirst(final OptionMenuViewHolder helper, final LocalMediaFolder
                     item) {
                 helper.setText(R.id.folder_name, item.getName())
                         .setText(R.id.folder_image_num, item.getImageNum() + "");
@@ -137,16 +137,16 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             }
 
             @Override
-            public void setValueSecond(ChoiceMenuViewHolder helper, LocalMediaFolder item) {
+            public void setValueSecond(OptionMenuViewHolder helper, LocalMediaFolder item) {
 
             }
         };
-        mChoiceMenu.setShadow(false);
-        mChoiceMenu.setOutsideTouchable(false);
-        mChoiceMenu.setOnFirstAdapterItemClickListener(
-                new ChoiceMenu.OnFirstAdapterItemClickListener() {
+        mOptionMenu.setShadow(false);
+        mOptionMenu.setOutsideTouchable(false);
+        mOptionMenu.setOnFirstAdapterItemClickListener(
+                new OptionMenu.OnFirstAdapterItemClickListener() {
                     @Override
-                    public void onClick(int position, View v, ChoiceMenu menu) {
+                    public void onClick(int position, View v, OptionMenu menu) {
                         changeTitleImageAndStatus();
                         mCurrentFolder = mFolders.get(position);
                         mLocalMedia = mCurrentFolder.getImages();
@@ -258,7 +258,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                         mGridAdapter.bindData(true, mLocalMedia);
                         mFolders.clear();
                         mFolders.addAll(localMediaFolders);
-                        mChoiceMenu.notifyAdapterData();
+                        mOptionMenu.notifyAdapterData();
                         mCurrentFolder = mFolders.get(0);
                     }
 
@@ -351,11 +351,11 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
      */
     private void changeTitleImageAndStatus() {
         if (!isDown) {
-            mChoiceMenu.showAsDropDown(picker_title_layout);
+            mOptionMenu.showAsDropDown(picker_title_layout);
             picture_title.setCompoundDrawables(null, null, mDrawableUp, null);
         } else {
             picture_title.setCompoundDrawables(null, null, mDrawableDown, null);
-            mChoiceMenu.dismiss();
+            mOptionMenu.dismiss();
         }
         isDown = !isDown;
     }
@@ -461,7 +461,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
 
             //update
             mGridAdapter.bindData(true, mLocalMedia);
-            mChoiceMenu.notifyAdapterData();
+            mOptionMenu.notifyAdapterData();
 
         }
 

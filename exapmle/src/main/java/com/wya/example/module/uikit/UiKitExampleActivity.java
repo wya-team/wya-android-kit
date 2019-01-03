@@ -8,7 +8,7 @@ import com.wya.example.base.BaseActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
 import com.wya.example.module.uikit.banner.BannerExampleActivity;
 import com.wya.example.module.uikit.button.ButtonExampleActivity;
-import com.wya.example.module.uikit.choicemenu.ChoiceMenuExampleActivity;
+import com.wya.example.module.uikit.choicemenu.OptionMenuExampleActivity;
 import com.wya.example.module.uikit.customedittext.CustomEditTextExampleActivity;
 import com.wya.example.module.uikit.customitems.CustomItemsExampleActivity;
 import com.wya.example.module.uikit.dialog.DialogExampleActivity;
@@ -84,7 +84,7 @@ public class UiKitExampleActivity extends BaseActivity {
 				startActivity(new Intent(this, PaginationViewExampleActivity.class));
 				break;
 			case R.id.tv_choice_menu:
-				startActivity(new Intent(this, ChoiceMenuExampleActivity.class));
+				startActivity(new Intent(this, OptionMenuExampleActivity.class));
 				break;
 			case R.id.tv_badge:
 				BadgeExampleActivity.start(UiKitExampleActivity.this);
