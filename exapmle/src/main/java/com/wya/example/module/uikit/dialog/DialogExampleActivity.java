@@ -430,7 +430,7 @@ public class DialogExampleActivity extends BaseActivity {
 
         ScheduledExecutorService service = Executors.newScheduledThreadPool(10);
         long initialDelay = 0;
-        long period = 1;
+        long period = 3;
         // 从现在开始1秒钟之后，每隔1秒钟执行一次job1
         service.scheduleAtFixedRate(new Runnable() {
             @Override
