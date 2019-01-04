@@ -164,12 +164,13 @@ public class WYATabBar extends BottomNavigationView {
 	 * @return
 	 */
 	private BottomNavigationMenuView getBottomNavigationMenuView() {
-		if (null == mMenuView)
-			if (hasField(BottomNavigationView.class,"mMenuView")) {
-				mMenuView = getField(BottomNavigationView.class, this, "mMenuView");
-			} else {
-				mMenuView = getField(BottomNavigationView.class, this, "menuView");
-			}
+		if (null == mMenuView) {
+            if (hasField(BottomNavigationView.class, "mMenuView")) {
+                mMenuView = getField(BottomNavigationView.class, this, "mMenuView");
+            } else {
+                mMenuView = getField(BottomNavigationView.class, this, "menuView");
+            }
+        }
 		return mMenuView;
 	}
 
@@ -179,8 +180,9 @@ public class WYATabBar extends BottomNavigationView {
 	 * @return
 	 */
 	public BottomNavigationItemView[] getBottomNavigationItemViews() {
-		if (null != mButtons)
-			return mButtons;
+		if (null != mButtons) {
+            return mButtons;
+        }
 		/*
 		 * 1 private final BottomNavigationMenuView mMenuView;
 		 * 2 private BottomNavigationItemView[] mButtons;

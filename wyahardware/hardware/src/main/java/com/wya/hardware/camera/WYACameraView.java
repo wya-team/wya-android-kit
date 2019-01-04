@@ -207,8 +207,8 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
             @Override
             public void onClick(View v) {
                 typeFlash++;
-                if (typeFlash > 0x023)
-                    typeFlash = TYPE_FLASH_AUTO;
+                if (typeFlash > 0x023){
+                    typeFlash = TYPE_FLASH_AUTO;}
                 setFlashRes();
             }
         });

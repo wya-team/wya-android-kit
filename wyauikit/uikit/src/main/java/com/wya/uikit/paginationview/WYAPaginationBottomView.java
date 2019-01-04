@@ -156,11 +156,13 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
     }
 
 
+    @Override
     public void setBackgroundResource(@DrawableRes int resource) {
         View child = getChildAt(0);
         child.setBackgroundResource(resource);
     }
 
+    @Override
     public void setBackgroundColor(@ColorInt int color) {
         View child = getChildAt(0);
         child.setBackgroundColor(color);

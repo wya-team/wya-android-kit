@@ -60,7 +60,9 @@ public class VideoProgressOverlay extends FrameLayout {
      * @param duration    player总长度
      */
     public void show(int delProgress, int curPosition, int duration) {
-        if (duration <= 0) return;
+        if (duration <= 0) {
+            return;
+        }
 
         // 获取第一次显示时的开始进度
         if (mSeekDialogStartProgress == -1) {
@@ -117,8 +119,12 @@ public class VideoProgressOverlay extends FrameLayout {
         }
 
         int newSeekProgress = mSeekDialogStartProgress + mDelSeekDialogProgress;
-        if (newSeekProgress <= 0) newSeekProgress = 0;
-        if (newSeekProgress >= mDuration) newSeekProgress = mDuration;
+        if (newSeekProgress <= 0) {
+            newSeekProgress = 0;
+        }
+        if (newSeekProgress >= mDuration) {
+            newSeekProgress = mDuration;
+        }
         return newSeekProgress;
     }
 

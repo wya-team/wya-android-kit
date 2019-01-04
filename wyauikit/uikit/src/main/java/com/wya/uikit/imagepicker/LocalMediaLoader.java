@@ -188,7 +188,9 @@ public class LocalMediaLoader {
      */
     private String getDurationCondition(long exMaxLimit, long exMinLimit) {
         long maxS = videoMaxS == 0 ? Long.MAX_VALUE : videoMaxS;
-        if (exMaxLimit != 0) maxS = Math.min(maxS, exMaxLimit);
+        if (exMaxLimit != 0) {
+            maxS = Math.min(maxS, exMaxLimit);
+        }
 
         return String.format(Locale.CHINA, "%d <%s duration and duration <= %d",
                 Math.max(exMinLimit, videoMinS),

@@ -276,8 +276,11 @@ public class WYAButton extends Button {
      *
      * @param textColor
      */
+    @Override
     public void setTextColor(int textColor) {
-        if (textColor == 0) return;
+        if (textColor == 0) {
+            return;
+        }
         //此处应加super关键字，调用父类的setTextColor方法，否则会造成递归导致内存溢出
         super.setTextColor(ColorStateList.valueOf(textColor));
     }
@@ -288,7 +291,9 @@ public class WYAButton extends Button {
      * @param textColorPress
      */
     public void setTextColorPress(int textColorPress) {
-        if (textColorPress == 0) return;
+        if (textColorPress == 0) {
+            return;
+        }
         this.textColorPress = ColorStateList.valueOf(textColorPress);
     }
 
@@ -308,7 +313,9 @@ public class WYAButton extends Button {
      * @param radius
      */
     public void setRadius(float radius) {
-        if (!fillet) return;
+        if (!fillet) {
+            return;
+        }
         getGradientDrawable();
         gradientDrawable.setCornerRadius(radius);
         setBackgroundDrawable(gradientDrawable);
@@ -320,7 +327,9 @@ public class WYAButton extends Button {
      * @param shape
      */
     public void setShape(int shape) {
-        if (!fillet) return;
+        if (!fillet) {
+            return;
+        }
         getGradientDrawable();
         gradientDrawable.setShape(shape);
         setBackgroundDrawable(gradientDrawable);

@@ -117,8 +117,11 @@ public class VideoControllerView extends FrameLayout {
         mScreenLock.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isScreenLock) unlock();
-                else lock();
+                if (isScreenLock) {
+                    unlock();
+                } else {
+                    lock();
+                }
                 show();
             }
         });

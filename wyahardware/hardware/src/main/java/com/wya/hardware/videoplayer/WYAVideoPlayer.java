@@ -41,8 +41,8 @@ public class WYAVideoPlayer {
     }
 
     private MediaPlayer.OnErrorListener mErrorListener = new MediaPlayer.OnErrorListener() {
+        @Override
         public boolean onError(MediaPlayer mp, int frameworkErr, int implErr) {
-            Log.d(TAG, "Error: " + frameworkErr + "," + implErr);
             setCurrentState(STATE_ERROR);
             if (callback != null) {
                 callback.onError(player, frameworkErr, implErr);
@@ -83,7 +83,9 @@ public class WYAVideoPlayer {
                 @Override
                 public void onBufferingUpdate(MediaPlayer mp, int percent) {
                     currentBufferPercentage = percent;
-                    if (callback != null) callback.onBufferingUpdate(mp, percent);
+                    if (callback != null) {
+                        callback.onBufferingUpdate(mp, percent);
+                    }
                 }
             });
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -112,7 +114,9 @@ public class WYAVideoPlayer {
             player.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                 @Override
                 public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
-                    if (callback != null) callback.onVideoSizeChanged(mp, width, height);
+                    if (callback != null) {
+                        callback.onVideoSizeChanged(mp, width, height);
+                    }
                 }
             });
             player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {

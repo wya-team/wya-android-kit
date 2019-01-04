@@ -30,6 +30,7 @@ public class GestureFlingRightHelper implements GestureDetector.OnGestureListene
         this.mGestureCallBack = callBack;
         if (this.mGestureCallBack == null) {
             this.mGestureCallBack = new GestureRightCallBack() {
+                @Override
                 public boolean handleFlingRightAction() {
                     return false;
                 }
@@ -39,10 +40,12 @@ public class GestureFlingRightHelper implements GestureDetector.OnGestureListene
         return new GestureDetector(this);
     }
     
+    @Override
     public boolean onDown(MotionEvent e) {
         return false;
     }
     
+    @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         boolean result = false;
         if (e1 != null && e2 != null) {
@@ -56,16 +59,20 @@ public class GestureFlingRightHelper implements GestureDetector.OnGestureListene
         return result;
     }
     
+    @Override
     public void onLongPress(MotionEvent e) {
     }
     
+    @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
         return false;
     }
     
+    @Override
     public void onShowPress(MotionEvent e) {
     }
     
+    @Override
     public boolean onSingleTapUp(MotionEvent e) {
         return false;
     }

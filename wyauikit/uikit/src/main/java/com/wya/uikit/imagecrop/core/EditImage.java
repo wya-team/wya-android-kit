@@ -169,7 +169,9 @@ public class EditImage {
 
     public void setMode(EditMode mode) {
 
-        if (this.mMode == mode) return;
+        if (this.mMode == mode) {
+            return;
+        }
 
         moveToBackground(mForeSticker);
 
@@ -382,7 +384,9 @@ public class EditImage {
     }
 
     public void addPath(EditPath path, float sx, float sy) {
-        if (path == null) return;
+        if (path == null) {
+            return;
+        }
 
         float scale = 1f / getScale();
 
@@ -406,7 +410,9 @@ public class EditImage {
     }
 
     private void moveToForeground(Sticker sticker) {
-        if (sticker == null) return;
+        if (sticker == null) {
+            return;
+        }
 
         moveToBackground(mForeSticker);
 
@@ -414,11 +420,15 @@ public class EditImage {
             mForeSticker = sticker;
             // 从BackStickers中移除
             mBackStickers.remove(sticker);
-        } else sticker.show();
+        } else {
+            sticker.show();
+        }
     }
 
     private void moveToBackground(Sticker sticker) {
-        if (sticker == null) return;
+        if (sticker == null) {
+            return;
+        }
 
         if (!sticker.isShowing()) {
             // 加入BackStickers中
@@ -429,7 +439,9 @@ public class EditImage {
             if (mForeSticker == sticker) {
                 mForeSticker = null;
             }
-        } else sticker.dismiss();
+        } else {
+            sticker.dismiss();
+        }
     }
 
     public void stickAll() {
@@ -572,7 +584,9 @@ public class EditImage {
     }
 
     public void onDrawStickers(Canvas canvas) {
-        if (mBackStickers.isEmpty()) return;
+        if (mBackStickers.isEmpty()) {
+            return;
+        }
         canvas.save();
         for (Sticker sticker : mBackStickers) {
             if (!sticker.isShowing()) {
@@ -688,7 +702,9 @@ public class EditImage {
 
     public void onScale(float factor, float focusX, float focusY) {
 
-        if (factor == 1f) return;
+        if (factor == 1f) {
+            return;
+        }
 
         if (Math.max(mClipFrame.width(), mClipFrame.height()) >= MAX_SIZE
                 || Math.min(mClipFrame.width(), mClipFrame.height()) <= MIN_SIZE) {

@@ -274,10 +274,11 @@ public class DateUtil {
             DateFormat dateFormat = new SimpleDateFormat(timeFromat);
             return dateFormat.format(time);
         } catch (Exception e) {
-            if (defaultValue != null)
+            if (defaultValue != null) {
                 return parseDateToStr(defaultValue, timeFromat);
-            else
+            } else {
                 return parseDateToStr(new Date(), timeFromat);
+            }
         }
     }
 
@@ -345,8 +346,9 @@ public class DateUtil {
      * @return
      */
     public static Date strToDate(String strTime) {
-        if (strTime == null || strTime.trim().length() <= 0)
+        if (strTime == null || strTime.trim().length() <= 0) {
             return null;
+        }
 
         Date date = null;
         List<String> list = new ArrayList<String>(0);
@@ -366,15 +368,19 @@ public class DateUtil {
 
         for (Iterator iter = list.iterator(); iter.hasNext(); ) {
             String format = (String) iter.next();
-            if (strTime.indexOf("-") > 0 && format.indexOf("-") < 0)
+            if (strTime.indexOf("-") > 0 && format.indexOf("-") < 0) {
                 continue;
-            if (strTime.indexOf("-") < 0 && format.indexOf("-") > 0)
+            }
+            if (strTime.indexOf("-") < 0 && format.indexOf("-") > 0) {
                 continue;
-            if (strTime.length() > format.length())
+            }
+            if (strTime.length() > format.length()) {
                 continue;
+            }
             date = parseStrToDate(strTime, format);
-            if (date != null)
+            if (date != null) {
                 break;
+            }
         }
 
         return date;
@@ -632,7 +638,7 @@ public class DateUtil {
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
 
-        int day = c.getActualMinimum(c.DAY_OF_MONTH);
+        int day = c.getActualMinimum(Calendar.DAY_OF_MONTH);
 
         c.set(Calendar.DAY_OF_MONTH, day);
         c.set(Calendar.HOUR_OF_DAY, 0);
@@ -654,7 +660,7 @@ public class DateUtil {
         Calendar c = Calendar.getInstance();
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
-        int day = c.getActualMaximum(c.DAY_OF_MONTH);
+        int day = c.getActualMaximum(Calendar.DAY_OF_MONTH);
         c.set(Calendar.DAY_OF_MONTH, day);
         c.set(Calendar.HOUR_OF_DAY, 23);
         c.set(Calendar.MINUTE, 59);
@@ -675,8 +681,9 @@ public class DateUtil {
         cal.setTime(date);
 
         int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
-        if (w < 0)
+        if (w < 0) {
             w = 0;
+        }
 
         return weekDays[w];
     }
@@ -702,8 +709,9 @@ public class DateUtil {
      * @return null时返回false;true为日期，false不为日期
      */
     public static boolean validateIsDate(String strTime) {
-        if (strTime == null || strTime.trim().length() <= 0)
+        if (strTime == null || strTime.trim().length() <= 0) {
             return false;
+        }
 
         Date date = null;
         List<String> list = new ArrayList<String>(0);
@@ -722,15 +730,19 @@ public class DateUtil {
 
         for (Iterator iter = list.iterator(); iter.hasNext(); ) {
             String format = (String) iter.next();
-            if (strTime.indexOf("-") > 0 && format.indexOf("-") < 0)
+            if (strTime.indexOf("-") > 0 && format.indexOf("-") < 0) {
                 continue;
-            if (strTime.indexOf("-") < 0 && format.indexOf("-") > 0)
+            }
+            if (strTime.indexOf("-") < 0 && format.indexOf("-") > 0) {
                 continue;
-            if (strTime.length() > format.length())
+            }
+            if (strTime.length() > format.length()) {
                 continue;
+            }
             date = parseStrToDate(strTime.trim(), format);
-            if (date != null)
+            if (date != null) {
                 break;
+            }
         }
 
         if (date != null) {
@@ -809,7 +821,9 @@ public class DateUtil {
         if (year1 == year2) {
             int month1 = getMonth(date1);
             int month2 = getMonth(date2);
-            if (month1 == month2) flag = true;
+            if (month1 == month2) {
+                flag = true;
+            }
         }
         return flag;
     }

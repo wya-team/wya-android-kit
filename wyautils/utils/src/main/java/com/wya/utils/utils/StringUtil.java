@@ -109,9 +109,12 @@ public class StringUtil {
 
             for (byte aB : b) {
                 i = aB;
-                if (i < 0) i += 256;
-                if (i < 16)
+                if (i < 0) {
+                    i += 256;
+                }
+                if (i < 16) {
                     buf.append("0");
+                }
                 buf.append(Integer.toHexString(i));
             }
         } catch (NoSuchAlgorithmException e) {
@@ -305,9 +308,9 @@ public class StringUtil {
      * @param phoneNum
      * @return
      */
+    private static  Pattern PHONE_PATTERN = Pattern.compile("^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\\\d{8}$");
     public static boolean checkMobile(String phoneNum) {
-        Pattern p = Pattern.compile("^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\\\d{8}$");
-        Matcher m = p.matcher(phoneNum);
+        Matcher m = PHONE_PATTERN.matcher(phoneNum);
         return m.matches();
     }
 
@@ -502,8 +505,8 @@ public class StringUtil {
      * @since 1.0
      */
     public static boolean check(String str, String test) {
-        if (str == null || "".equals(str))
-            return true;
+        if (str == null || "".equals(str)){
+            return true;}
         boolean flag = false;
         for (int i = 0; i < test.length(); i++) {
             if (str.indexOf(test.charAt(i)) != -1) {
@@ -649,10 +652,11 @@ public class StringUtil {
     }
 
     public static String getString(String str, int count) {
-        if (!(str.charAt(count - 1) >= 'a' && str.charAt(count - 1) <= 'z' || str.charAt(count - 1) >= 'A' && str.charAt(count - 1) <= 'Z'))
+        if (!(str.charAt(count - 1) >= 'a' && str.charAt(count - 1) <= 'z' || str.charAt(count - 1) >= 'A' && str.charAt(count - 1) <= 'Z')) {
             return str.substring(0, count - 1);
-        else
+        } else {
             return str.substring(0, count);
+        }
     }
 
     private static String getConvert(char num) {
@@ -752,8 +756,8 @@ public class StringUtil {
      * @return
      */
     public static String list2String(List<String> list, String sign) {
-        if (list == null || list.size() == 0)
-            return null;
+        if (list == null || list.size() == 0){
+            return null;}
         StringBuffer sb = new StringBuffer();
         for (String string : list) {
             sb.append(string).append(sign);
@@ -773,16 +777,18 @@ public class StringUtil {
         if (!StringUtil.isEmpty(target)) {
             String[] vs = target.split(sign);
             for (String v : vs) {
-                if (!StringUtil.isEmpty(v))
+                if (!StringUtil.isEmpty(v)) {
                     usersList.add(v);
+                }
             }
         }
         return usersList;
     }
 
     public static String escapeHtmlSign(String value) {
-        if (value == null)
+        if (value == null) {
             return null;
+        }
 
         if (value instanceof String) {
             String result = value;
@@ -797,8 +803,9 @@ public class StringUtil {
     }
 
     public static String unEscapeHtmlSign(String value) {
-        if (value == null)
+        if (value == null) {
             return null;
+        }
 
         if (value instanceof String) {
             String result = value;
@@ -880,7 +887,9 @@ public class StringUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (TextUtils.isEmpty(text)) text = "";
+        if (TextUtils.isEmpty(text)) {
+            text = "";
+        }
         return text;
     }
 
@@ -891,6 +900,7 @@ public class StringUtil {
      * @param params
      * @return
      */
+    private static  Pattern URL_PATTERN = Pattern.compile("\\?[\\w]*=");
     public static String appendUrlParams(String url, String params) {
         if (TextUtils.isEmpty(url)) {
             return url;
@@ -898,8 +908,7 @@ public class StringUtil {
         if (url.endsWith("/")) {
             url = url.substring(0, url.length() - 1);
         }
-        Pattern pattern = Pattern.compile("\\?[\\w]*=");
-        Matcher matcher = pattern.matcher(url);
+        Matcher matcher = URL_PATTERN.matcher(url);
         if (matcher.find()) {
             return url + "&" + params;
         } else {
@@ -1025,10 +1034,10 @@ public class StringUtil {
      * @param str
      * @return
      */
+    private static  Pattern CHINESE_CHAR_PATTERN = Pattern.compile("\\?[\\w]*=");
     public static boolean hasChineseChar(String str) {
         boolean temp = false;
-        Pattern p = Pattern.compile("[\u4e00-\u9fa5]");
-        Matcher m = p.matcher(str);
+        Matcher m = CHINESE_CHAR_PATTERN.matcher(str);
         if (m.find()) {
             temp = true;
         }
@@ -1073,8 +1082,9 @@ public class StringUtil {
         try {
             byte[] data = new byte[BUFFER_SIZE];
             int count = -1;
-            while ((count = in.read(data, 0, BUFFER_SIZE)) != -1)
+            while ((count = in.read(data, 0, BUFFER_SIZE)) != -1) {
                 outStream.write(data, 0, count);
+            }
 
             data = null;
         } catch (Exception e) {

@@ -175,8 +175,12 @@ public class SwitcherView extends ViewSwitcher {
     
     public void resetSwitcher() {
         mIsTaskLive = false;
-        if (null != mAutoPlayTask) removeCallbacks(mAutoPlayTask);
-        if (mListener != null) mListener.onSwitch(this.getCurrentView(), mIndex = 0);
+        if (null != mAutoPlayTask) {
+            removeCallbacks(mAutoPlayTask);
+        }
+        if (mListener != null) {
+            mListener.onSwitch(this.getCurrentView(), mIndex = 0);
+        }
     }
     
     private class AutoSwitcherTask implements Runnable {

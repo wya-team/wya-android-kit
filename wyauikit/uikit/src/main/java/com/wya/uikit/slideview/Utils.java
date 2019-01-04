@@ -30,7 +30,9 @@ public class Utils {
     }
     
     public static int dp2px(Context context, float dpValue) {
-        if (context == null || compareFloat(0f, dpValue) == 0) return 0;
+        if (context == null || compareFloat(0f, dpValue) == 0) {
+            return 0;
+        }
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
