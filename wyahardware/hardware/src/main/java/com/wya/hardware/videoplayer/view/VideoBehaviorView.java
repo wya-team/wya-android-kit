@@ -24,12 +24,15 @@ import android.widget.FrameLayout;
 public class VideoBehaviorView extends FrameLayout implements GestureDetector.OnGestureListener {
 
     private GestureDetector mGestureDetector;
-
-    public static final int FINGER_BEHAVIOR_PROGRESS = 0x01;  //进度调节
-    public static final int FINGER_BEHAVIOR_VOLUME = 0x02;  //音量调节
-    public static final int FINGER_BEHAVIOR_BRIGHTNESS = 0x03;  //亮度调节
+     //进度调节
+    public static final int FINGER_BEHAVIOR_PROGRESS = 0x01;
+     //音量调节
+    public static final int FINGER_BEHAVIOR_VOLUME = 0x02;
+     //亮度调节
+    public static final int FINGER_BEHAVIOR_BRIGHTNESS = 0x03;
     private int mFingerBehavior;
-    private float mCurrentVolume; // 鉴于音量范围值比较小 使用float类型施舍五入处理.
+     // 鉴于音量范围值比较小 使用float类型施舍五入处理.
+    private float mCurrentVolume;
     private int mMaxVolume;
     private int mCurrentBrightness, mMaxBrightness;
 
@@ -141,14 +144,16 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
         }
 
         switch (mFingerBehavior) {
-            case FINGER_BEHAVIOR_PROGRESS: { // 进度变化
+            case FINGER_BEHAVIOR_PROGRESS: {
+                // 进度变化
                 // 默认滑动一个屏幕 视频移动八分钟.
                 int delProgress = (int) (1.0f * distanceX / width * 480 * 1000);
                 // 更新快进弹框
                 updateSeekUI(delProgress);
                 break;
             }
-            case FINGER_BEHAVIOR_VOLUME: { // 音量变化
+            case FINGER_BEHAVIOR_VOLUME: {
+                // 音量变化
                 float progress = mMaxVolume * (distanceY / height) + mCurrentVolume;
 
                 if (progress <= 0) {
@@ -163,7 +168,8 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
                 mCurrentVolume = progress;
                 break;
             }
-            case FINGER_BEHAVIOR_BRIGHTNESS: { // 亮度变化
+            case FINGER_BEHAVIOR_BRIGHTNESS: {
+                // 亮度变化
                 try {
                     if (Settings.System.getInt(getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE)
                             == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC) {

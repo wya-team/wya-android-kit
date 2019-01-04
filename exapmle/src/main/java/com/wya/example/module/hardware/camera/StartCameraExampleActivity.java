@@ -28,7 +28,8 @@ import butterknife.OnClick;
 
 
 public class StartCameraExampleActivity extends BaseActivity {
-    private final int GET_PERMISSION_REQUEST = 100; //权限申请自定义码
+    //权限申请自定义码
+    private final int GET_PERMISSION_REQUEST = 100;
     @BindView(R.id.image_photo)
     ImageView imagePhoto;
     @BindView(R.id.take_photo)
@@ -43,8 +44,13 @@ public class StartCameraExampleActivity extends BaseActivity {
     EditText etDuration;
     @BindView(R.id.tv_path)
     TextView tvPath;
-
-    private int state = WYACameraView.BUTTON_STATE_BOTH;//默认可以拍照和录制视频
+    /**
+     * 默认可以拍照和录制视频
+     */
+    private int state = WYACameraView.BUTTON_STATE_BOTH;
+    public static final int TAKE_PHOTO = 101;
+    public static final int VIDEO = 102;
+    public static final int NO_PERMISSIONS_CAMEAR = 103;
 
     @Override
     protected int getLayoutID() {
@@ -98,20 +104,20 @@ public class StartCameraExampleActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 101) {
+        if (resultCode == TAKE_PHOTO) {
             Log.i("MCJ", "picture");
             String path = data.getStringExtra("path");
             tvPath.setText("照片路径：" + path);
             imagePhoto.setImageBitmap(BitmapFactory.decodeFile(path));
         }
-        if (resultCode == 102) {
+        if (resultCode == VIDEO) {
             Log.i("MCJ", "video");
             String path = data.getStringExtra("path");
             String url = data.getStringExtra("url");
             imagePhoto.setImageBitmap(BitmapFactory.decodeFile(path));
             tvPath.setText("视频路径:" + url + "\n首帧图片:" + path);
         }
-        if (resultCode == 103) {
+        if (resultCode == NO_PERMISSIONS_CAMEAR) {
             Toast.makeText(this, "请检查相机权限~", Toast.LENGTH_SHORT).show();
         }
     }
@@ -125,7 +131,7 @@ public class StartCameraExampleActivity extends BaseActivity {
             if (grantResults.length >= 1) {
                 int writeResult = grantResults[0];
                 //读写内存权限
-                boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;//读写内存权限
+                boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;
                 if (!writeGranted) {
                     size++;
                 }

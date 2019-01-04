@@ -70,7 +70,8 @@ public class WYABadgeView extends View implements IBadgeView {
     
     private WYABadgeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setLayerType(View.LAYER_TYPE_SOFTWARE, null); // 取消硬件加速
+        // 取消硬件加速
+        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         init();
     }
     
@@ -103,7 +104,8 @@ public class WYABadgeView extends View implements IBadgeView {
         mTextColor = Color.WHITE;
         mTextPaint.setColor(mTextColor);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
-        mTextPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN)); // 文本在最上层
+        // 文本在最上层
+        mTextPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         mTextRect = new RectF();
         
         mBadgeNum = 0;
@@ -377,9 +379,11 @@ public class WYABadgeView extends View implements IBadgeView {
     @Override
     public void setBadgeNum(int badgeNumber) {
         mBadgeNum = badgeNumber;
-        if (mBadgeNum < 0) { // < 0 不显示
+        if (mBadgeNum < 0) {
+            // < 0 不显示
             mBadgeText = "";
-        } else if (mBadgeNum == 0) { // = 0 显示红点
+        } else if (mBadgeNum == 0) {
+            // = 0 显示红点
             mBadgeText = null;
         } else if (mBadgeNum <= mOmitNum) {
             mBadgeText = String.valueOf(mBadgeNum);
@@ -401,7 +405,8 @@ public class WYABadgeView extends View implements IBadgeView {
     private void measureText() {
         mTextRect.left = 0;
         mTextRect.top = 0;
-        if (TextUtils.isEmpty(mBadgeText)) {  // 文本为空 显示红点
+        if (TextUtils.isEmpty(mBadgeText)) {
+            // 文本为空 显示红点
             mTextRect.right = 0;
             mTextRect.bottom = 0;
         } else {
@@ -437,7 +442,8 @@ public class WYABadgeView extends View implements IBadgeView {
     @Override
     public void setBackgroundColor(int color) {
         mBackgroundColor = color;
-        mTextPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN)); // 文本在最上层
+        // 文本在最上层
+        mTextPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         invalidate();
     }
     

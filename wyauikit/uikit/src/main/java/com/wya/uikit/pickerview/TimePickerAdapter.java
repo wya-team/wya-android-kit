@@ -1,6 +1,6 @@
 package com.wya.uikit.pickerview;
 
-import com.wya.uikit.pickerview.WheelView.adapter.WheelAdapter;
+import com.wya.uikit.pickerview.wheelview.adapter.WheelAdapter;
 
 /**
  * author : XuDonglin

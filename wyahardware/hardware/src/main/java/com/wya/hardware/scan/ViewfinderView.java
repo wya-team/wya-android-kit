@@ -57,11 +57,14 @@ public final class ViewfinderView extends View {
     private static final int CURRENT_POINT_OPACITY = 0xA0;
     private static final int MAX_RESULT_POINTS = 20;
     private static final int POINT_SIZE = 6;
-
-    private static final int    CORNER_RECT_WIDTH             =   8;  //扫描区边角的宽
-    private static final int    CORNER_RECT_HEIGHT            =   40; //扫描区边角的高
-    private static final int    SCANNER_LINE_MOVE_DISTANCE    =   6;  //扫描线移动距离
-    private static final int    SCANNER_LINE_HEIGHT           =   10;  //扫描线宽度
+    //扫描区边角的宽
+    private static final int    CORNER_RECT_WIDTH             =   8;
+    //扫描区边角的高
+    private static final int    CORNER_RECT_HEIGHT            =   40;
+    //扫描线移动距离
+    private static final int    SCANNER_LINE_MOVE_DISTANCE    =   6;
+    //扫描线宽度
+    private static final int    SCANNER_LINE_HEIGHT           =   10;
 
     private CameraManager cameraManager;
     private final Paint paint;
@@ -191,11 +194,6 @@ public final class ViewfinderView extends View {
             canvas.drawBitmap(resultBitmap, null, frame, paint);
         } else {
 
-            // Draw a red "laser scanner" line through the middle to show decoding is active
-//            paint.setColor(laserColor);
-//            paint.setAlpha(SCANNER_ALPHA[scannerAlpha]);
-//            scannerAlpha = (scannerAlpha + 1) % SCANNER_ALPHA.length;
-            // Draw a two pixel solid black border inside the framing rect
             drawFrame(canvas, frame);
             // 绘制边角
             drawCorner(canvas, frame);
@@ -352,16 +350,6 @@ public final class ViewfinderView extends View {
     public void setShowResultPoint(boolean showResultPoint) {
         isShowResultPoint = showResultPoint;
     }
-
-//    /**
-//     * Draw a bitmap with the result points highlighted instead of the live scanning display.
-//     *
-//     * @param barcode An image of the decoded barcode.
-//     */
-//    public void drawResultBitmap(Bitmap barcode) {
-//        resultBitmap = barcode;
-//        invalidate();
-//    }
 
     public void addPossibleResultPoint(ResultPoint point) {
         if(isShowResultPoint){

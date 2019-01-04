@@ -250,15 +250,18 @@ public class WYACustomDialog extends Dialog {
      * @param confirmShow
      */
     private void setButton(boolean confirmShow, boolean cancelShow) {
-        if (confirmShow && cancelShow) {//都显示
+        if (confirmShow && cancelShow) {
+            //都显示
             cancel.setVisibility(View.VISIBLE);
             confirm.setVisibility(View.VISIBLE);
             lineHorizontal.setVisibility(View.VISIBLE);
-        } else if (cancelShow) {//显示取消按钮
+        } else if (cancelShow) {
+            //显示取消按钮
             cancel.setVisibility(View.VISIBLE);
             confirm.setVisibility(View.GONE);
             lineHorizontal.setVisibility(View.GONE);
-        } else if (confirmShow) {//显示确定按钮
+        } else if (confirmShow) {
+            //显示确定按钮
             cancel.setVisibility(View.GONE);
             confirm.setVisibility(View.VISIBLE);
             lineHorizontal.setVisibility(View.GONE);
@@ -345,9 +348,10 @@ public class WYACustomDialog extends Dialog {
     public interface onNoOnclickListener {
         void onNoClick();
     }
-    
-    private onNoOnclickListener noOnclickListener;//取消按钮被点击了的监听器
-    private onYesOnclickListener yesOnclickListener;//确定按钮被点击了的监听器
+    //取消按钮被点击了的监听器
+    private onNoOnclickListener noOnclickListener;
+    //确定按钮被点击了的监听器
+    private onYesOnclickListener yesOnclickListener;
     
     /**
      * 设置取消按钮的显示内容和监听
@@ -373,11 +377,12 @@ public class WYACustomDialog extends Dialog {
         private CustomListener customListener;
         private boolean canceledOnTouch = true;
         private boolean cancelable = false;
-        
-        private String title = "";//默认标题
-        private int textColor = R.color.black;//默认标题文字颜色
-        
-        private String message = "我是提示内容";//默认提示内容
+        //默认标题
+        private String title = "";
+        //默认标题文字颜色
+        private int textColor = R.color.black;
+        //默认提示内容
+        private String message = "我是提示内容";
         
         
         private String hintEditTextStr = "";
@@ -396,8 +401,8 @@ public class WYACustomDialog extends Dialog {
         
         private int height = WindowManager.LayoutParams.WRAP_CONTENT;
         private int width = WindowManager.LayoutParams.MATCH_PARENT;
-        
-        private float amount = -1;//默认不设置,边框透明
+        //默认不设置,边框透明
+        private float amount = -1;
         
         
         public Builder(Context context) {

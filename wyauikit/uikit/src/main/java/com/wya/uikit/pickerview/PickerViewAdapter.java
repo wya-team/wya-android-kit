@@ -2,7 +2,7 @@ package com.wya.uikit.pickerview;
 
 import android.support.annotation.NonNull;
 
-import com.wya.uikit.pickerview.WheelView.adapter.WheelAdapter;
+import com.wya.uikit.pickerview.wheelview.adapter.WheelAdapter;
 
 import java.util.List;
 

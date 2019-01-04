@@ -11,37 +11,61 @@ import android.graphics.Color;
  */
 
 public class WYAToolBarHelper {
-    private boolean showToolBar = true;//显示标题栏
-    private int toolbarBgColor = Color.parseColor("#000000"); //标题栏颜色
+    //显示标题栏
+    private boolean showToolBar = true;
+    //标题栏颜色
+    private int toolbarBgColor = Color.parseColor("#000000");
 
     //标题参数
-    private boolean isShowTitle = true;//默认显示标题
-    private String titleStr = "标题";//标题文字
-    private int titleTextSize = 16;//标题大小
-    private int titleTextColor = Color.parseColor("#FFFFFF");//标题颜色
+    //默认显示标题
+    private boolean isShowTitle = true;
+    //标题文字
+    private String titleStr = "标题";
+    //标题大小
+    private int titleTextSize = 16;
+    //标题颜色
+    private int titleTextColor = Color.parseColor("#FFFFFF");
 
     //标题左边参数
-    private boolean isShowTvLeft = false;//默认不显示左边文字
-    private String tvLeftStr = "左边";//左边文字
-    private int tvLeftTextSize = 14;//左边文字大小
-    private int tvLeftTextColor = Color.parseColor("#FFFFFF");//标题颜色
-    private boolean isShowImgLeft = true;//是否显示左图标
-    private int imgLeftRes;//做图标资源
+    //默认不显示左边文字
+    private boolean isShowTvLeft = false;
+    //左边文字
+    private String tvLeftStr = "左边";
+    //左边文字大小
+    private int tvLeftTextSize = 14;
+    //标题颜色
+    private int tvLeftTextColor = Color.parseColor("#FFFFFF");
+    //是否显示左图标
+    private boolean isShowImgLeft = true;
+    //做图标资源
+    private int imgLeftRes;
 
 
     //标题右边参数
-    private boolean isShowTvRight = false;//默认不显示右边文字
-    private boolean isShowTvRightAnther = false;//默认不显示右边文字
-    private String tvRightStr = "右边";//右边文字
-    private String tvRightAntherStr = "右边第二个";//右边文字
-    private int tvRightTextSize = 14;//右边文字大小
-    private int tvRightAntherTextSize = 14;//右边文字大小
-    private int tvRightTextColor = Color.parseColor("#FFFFFF");//标题颜色
-    private int tvRightAntherTextColor = Color.parseColor("#FFFFFF");//标题颜色
-    private boolean isShowImgRight = false;//是否显示右图标
-    private boolean isShowImgRightAnther = false;//是否显示第二个图标
-    private int imgRightRes;//做图标资源
-    private int imgRightResAnther;//第二个图标资源
+    //默认不显示右边文字
+    private boolean isShowTvRight = false;
+    //默认不显示右边文字
+    private boolean isShowTvRightAnther = false;
+    //右边文字
+    private String tvRightStr = "右边";
+    //右边文字
+    private String tvRightAntherStr = "右边第二个";
+    //右边文字大小
+    private int tvRightTextSize = 14;
+    //右边文字大小
+    private int tvRightAntherTextSize = 14;
+    //标题颜色
+    private int tvRightTextColor = Color.parseColor("#FFFFFF");
+    //标题颜色
+    private int tvRightAntherTextColor = Color.parseColor("#FFFFFF");
+    //是否显示右图标
+    private boolean isShowImgRight = false;
+    //是否显示第二个图标
+    private boolean isShowImgRightAnther = false;
+    //做图标资源
+    private int imgRightRes;
+    //第二个图标资源
+    private int imgRightResAnther;
 
     private boolean isLight;//是否是明亮的标题栏
 

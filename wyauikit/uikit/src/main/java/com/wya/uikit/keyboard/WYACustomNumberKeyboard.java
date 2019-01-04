@@ -84,8 +84,9 @@ public class WYACustomNumberKeyboard {
         public void onKey(int primaryCode, int[] keyCodes) {
             Editable editable = editText.getText();
             int start = editText.getSelectionStart();
-            if (primaryCode == Keyboard.KEYCODE_DELETE)//key  codes 为-5
+            if (primaryCode == Keyboard.KEYCODE_DELETE)
             {
+                //key  codes 为-5
                 if (editable != null && editable.length() > 0) {
                     if (start > 0) {
                         editable.delete(start - 1, start);
@@ -207,7 +208,7 @@ public class WYACustomNumberKeyboard {
      */
     private static void hideSystemSofeKeyboard(Context context, EditText editText) {
         int sdkInt = Build.VERSION.SDK_INT;
-        if (sdkInt >= 11) {
+        if (sdkInt >= Build.VERSION_CODES.HONEYCOMB) {
             try {
                 Class<EditText> cls = EditText.class;
                 Method setShowSoftInputOnFocus;

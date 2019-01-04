@@ -184,8 +184,8 @@ public class CaptureButton extends View {
                 centerY - (buttonRadius + outsideAddSize - strokeWidth / 2),
                 centerX + (buttonRadius + outsideAddSize - strokeWidth / 2),
                 centerY + (buttonRadius + outsideAddSize - strokeWidth / 2));
-
-        timer = new RecordCountDownTimer(duration, duration / 360);    //录制定时器
+        //录制定时器
+        timer = new RecordCountDownTimer(duration, duration / 360);
     }
 
     @Override
@@ -222,12 +222,15 @@ public class CaptureButton extends View {
                 if (event.getPointerCount() > 1 || state != STATE_IDLE) {
                     break;
                 }
-                eventY = event.getY();     //记录Y值
-                state = STATE_PRESS;        //修改当前状态为点击按下
+                //记录Y值
+                eventY = event.getY();
+                //修改当前状态为点击按下
+                state = STATE_PRESS;
 
                 //判断按钮状态是否为可录制状态
                 if ((buttonState == BUTTON_STATE_ONLY_RECORDER || buttonState == BUTTON_STATE_BOTH)) {
-                    postDelayed(longPressRunnable, 500);//同时延长500启动长按后处理的逻辑Runnable
+                    //同时延长500启动长按后处理的逻辑Runnable
+                    postDelayed(longPressRunnable, 500);
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -410,7 +413,8 @@ public class CaptureButton extends View {
     private class LongPressRunnable implements Runnable {
         @Override
         public void run() {
-            state = STATE_LONG_PRESS;   //如果按下后经过500毫秒则会修改当前状态为长按状态
+            //如果按下后经过500毫秒则会修改当前状态为长按状态
+            state = STATE_LONG_PRESS;
             //没有录制权限
             if (CheckPermission.getRecordState() != CheckPermission.STATE_SUCCESS) {
                 state = STATE_IDLE;
@@ -436,7 +440,8 @@ public class CaptureButton extends View {
     //设置最长录制时间
     public void setDuration(int duration) {
         this.duration = duration;
-        timer = new RecordCountDownTimer(duration, duration / 360);    //录制定时器
+        //录制定时器
+        timer = new RecordCountDownTimer(duration, duration / 360);
     }
 
     //设置最短录制时间

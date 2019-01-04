@@ -344,12 +344,7 @@ public class EditImage {
 
                 // cFrame要是一个暂时clipFrame
                 if (mClipWin.isHoming()) {
-//
-//                    m.mapRect(cFrame, mClipFrame);
-
-//                    mClipWin
                     //  偏移中心
-
                     m.setRotate(getTargetRotate() - getRotate(), mClipFrame.centerX(), mClipFrame.centerY());
                     m.mapRect(cFrame, mClipWin.getOffsetFrame(scrollX, scrollY));
 
@@ -717,7 +712,6 @@ public class EditImage {
 
         // 修正clip 窗口
         if (!mFrame.contains(mClipFrame)) {
-//            mClipFrame.intersect(mFrame);
         }
 
         for (Sticker sticker : mBackStickers) {

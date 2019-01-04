@@ -78,7 +78,6 @@ public class WYACardView extends LinearLayout {
 
             //设置标题左边背景图
             imgTitleLeftDrawable = a.getResourceId(R.styleable.WYACardView_imgTitleLeft, 0);
-//            imgTitleLeftDrawable = (GradientDrawable) a.getDrawable(R.styleable.WYACardView_imgTitleLeft);
             setTitleLeftBackgroundDrawable(imgTitleLeftDrawable);
 
 

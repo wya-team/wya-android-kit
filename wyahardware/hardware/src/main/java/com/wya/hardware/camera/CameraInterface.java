@@ -331,7 +331,8 @@ public class CameraInterface implements Camera.PreviewCallback {
 
     private void setFlashModel() {
         mParams = mCamera.getParameters();
-        mParams.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH); //设置camera参数为Torch模式
+        //设置camera参数为Torch模式
+        mParams.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
         mCamera.setParameters(mParams);
     }
 
@@ -364,7 +365,6 @@ public class CameraInterface implements Camera.PreviewCallback {
         }
         doDestroyCamera();
         openCamera(selectedCamera);
-//        mCamera = Camera.open();
         if (Build.VERSION.SDK_INT > JELLY_BEAN_MR1 && this.mCamera != null) {
             try {
                 this.mCamera.enableShutterSound(false);
@@ -414,10 +414,14 @@ public class CameraInterface implements Camera.PreviewCallback {
                 }
                 mCamera.setParameters(mParams);
                 mParams = mCamera.getParameters();
-                mCamera.setPreviewDisplay(holder);  //SurfaceView
-                mCamera.setDisplayOrientation(cameraAngle);//浏览角度
-                mCamera.setPreviewCallback(this); //每一帧回调
-                mCamera.startPreview();//启动浏览
+                //SurfaceView
+                mCamera.setPreviewDisplay(holder);
+                //浏览角度
+                mCamera.setDisplayOrientation(cameraAngle);
+                //每一帧回调
+                mCamera.setPreviewCallback(this);
+                //启动浏览
+                mCamera.startPreview();
                 isPreviewing = true;
                 Log.i(TAG, "=== Start Preview ===");
             } catch (IOException e) {
@@ -586,12 +590,6 @@ public class CameraInterface implements Camera.PreviewCallback {
         } else {
             mediaRecorder.setVideoSize(videoSize.width, videoSize.height);
         }
-//        if (selectedCamera == cameraFrontPosition) {
-//            mediaRecorder.setOrientationHint(270);
-//        } else {
-//            mediaRecorder.setOrientationHint(nowAngle);
-////            mediaRecorder.setOrientationHint(90);
-//        }
 
         if (selectedCamera == cameraFrontPosition) {
             //手机预览倒立的处理

@@ -31,7 +31,8 @@ public class SwipeBackListenerAdapter implements SwipeBackLayout.SwipeListenerEx
             case ViewDragHelper.STATE_IDLE:
                 // 侧滑未退出页面，切换至透明
                 if (null != mActivity.get()) {
-                    if (toChangeWindowTranslucent) {//判断侧滑未退出页面是否改变主题透明
+                    if (toChangeWindowTranslucent) {
+                        //判断侧滑未退出页面是否改变主题透明
                         Utils.convertActivityFromTranslucent(mActivity.get());
                     }
                 }

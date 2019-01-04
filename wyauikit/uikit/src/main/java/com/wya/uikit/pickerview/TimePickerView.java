@@ -6,8 +6,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.LinearLayout;
 
-import com.wya.uikit.pickerview.WheelView.listener.OnItemSelectedListener;
-import com.wya.uikit.pickerview.WheelView.view.WheelView;
+import com.wya.uikit.pickerview.wheelview.listener.OnItemSelectedListener;
+import com.wya.uikit.pickerview.wheelview.view.WheelView;
 
 import java.util.Calendar;
 

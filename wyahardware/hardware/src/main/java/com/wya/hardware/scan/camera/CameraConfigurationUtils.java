@@ -41,8 +41,8 @@ public final class CameraConfigurationUtils {
     private static final String TAG = "CameraConfiguration";
 
     private static final Pattern SEMICOLON = Pattern.compile(";");
-
-    private static final int MIN_PREVIEW_PIXELS = 480 * 320; // normal screen
+    // normal screen
+    private static final int MIN_PREVIEW_PIXELS = 480 * 320;
     private static final float MAX_EXPOSURE_COMPENSATION = 1.5f;
     private static final float MIN_EXPOSURE_COMPENSATION = 0.0f;
     private static final double MAX_ASPECT_DISTORTION = 0.10;

@@ -38,6 +38,8 @@ public class WYASearchBar extends FrameLayout {
     private TableRow tabUp;
     private OnTextChangeListener mOnTextChangeListener;
     private OnTvClickListener onTvClickListener;
+    private static final String CANCEL = "取消";
+    private static final String SEARCH = "搜索";
 
     /**
      * 设置搜索的图片
@@ -142,14 +144,14 @@ public class WYASearchBar extends FrameLayout {
         mIvClear.setOnClickListener(v -> mEtSearch.setText(""));
         mTvClose.setOnClickListener(v -> {
             if (onTvClickListener != null) {
-                if ("取消".equals(mTvClose.getText())) {
+                if (CANCEL.equals(mTvClose.getText())) {
                     cancel();
                     onTvClickListener.onClickCancel();
                 } else {//搜索
                     onTvClickListener.onClickSearch();
                 }
             } else {
-                if ("取消".equals(mTvClose.getText())) {
+                if (CANCEL.equals(mTvClose.getText())) {
                     cancel();
                     onTvClickListener.onClickCancel();
                 }
@@ -170,10 +172,10 @@ public class WYASearchBar extends FrameLayout {
             public void afterTextChanged(Editable s) {
                 if (!TextUtils.isEmpty(s)) {
                     mIvClear.setVisibility(View.VISIBLE);
-                    mTvClose.setText("搜索");
+                    mTvClose.setText(SEARCH);
                 } else {
                     mIvClear.setVisibility(View.GONE);
-                    mTvClose.setText("取消");
+                    mTvClose.setText(CANCEL);
                 }
                 doTextChange(s);
 
@@ -183,9 +185,9 @@ public class WYASearchBar extends FrameLayout {
             if (MotionEvent.ACTION_DOWN == event.getAction()) {
                 mEtSearch.setCursorVisible(true);
                 if (mEtSearch.getText().toString().length() > 0) {
-                    mTvClose.setText("搜索");
+                    mTvClose.setText(SEARCH);
                 } else {
-                    mTvClose.setText("取消");
+                    mTvClose.setText(CANCEL);
                 }
                 mTvClose.setVisibility(View.VISIBLE);
             }
@@ -204,8 +206,10 @@ public class WYASearchBar extends FrameLayout {
     public void slideView(final float p1, final float p2) {
         TranslateAnimation animation = new TranslateAnimation(p1, p2, 0, 0);
         animation.setDuration(300);
-        animation.setFillEnabled(true);//使其可以填充效果从而不回到原地
-        animation.setFillAfter(true);//不回到起始位置
+        //使其可以填充效果从而不回到原地
+        animation.setFillEnabled(true);
+        //不回到起始位置
+        animation.setFillAfter(true);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -237,7 +241,7 @@ public class WYASearchBar extends FrameLayout {
         upEvent.recycle();
 
         mEtSearch.setCursorVisible(true);
-        mTvClose.setText("取消");
+        mTvClose.setText(CANCEL);
         mTvClose.setVisibility(View.VISIBLE);
     }
 
@@ -249,7 +253,8 @@ public class WYASearchBar extends FrameLayout {
 
     public void cancel() {
         mEtSearch.setText("");
-        mEtSearch.setCursorVisible(false);// 内容清空后将编辑框1的光标隐藏，提升用户的体验度
+        // 内容清空后将编辑框1的光标隐藏，提升用户的体验度
+        mEtSearch.setCursorVisible(false);
         mTvClose.setVisibility(View.GONE);
         tabUp.setVisibility(View.VISIBLE);
     }

@@ -363,28 +363,6 @@ public class WYAButton extends Button {
         super.setLayoutParams(params);
     }
 
-    /**
-     * 设置按钮大小
-     *
-     * @param type   1正常， 2小， 3自定义
-     * @param height 自定义高 dp单位
-     * @param width  自定义宽 dp单位
-     */
-    public void setSize(Context context, int type, int height, int width) {
-        ViewGroup.LayoutParams wyaButtonParams = this.getLayoutParams();
-        if (type == 1) {
-            wyaButtonParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            wyaButtonParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        } else if (type == 2) {
-            wyaButtonParams.height = dip2px(context, 36);
-            wyaButtonParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-        } else if (type == 3) {
-            wyaButtonParams.height = dip2px(context, height);
-            wyaButtonParams.width = dip2px(context, width);
-        }
-        this.setLayoutParams(wyaButtonParams);
-    }
-
 
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)

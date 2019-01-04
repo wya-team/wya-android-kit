@@ -103,7 +103,7 @@ public class StringUtil {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(signStr.getBytes());
-            byte b[] = md.digest();
+            byte[] b = md.digest();
 
             int i;
 
@@ -183,8 +183,10 @@ public class StringUtil {
 
     public static String subZeroAndDot(String s) {
         if (s.indexOf(".") > 0) {
-            s = s.replaceAll("0+?$", "");//去掉多余的0
-            s = s.replaceAll("[.]$", "");//如最后一位是.则去掉
+            //去掉多余的0
+            s = s.replaceAll("0+?$", "");
+            //如最后一位是.则去掉
+            s = s.replaceAll("[.]$", "");
         }
         return s;
     }
@@ -342,7 +344,8 @@ public class StringUtil {
      * @return
      */
     public static boolean checkPass(String pass) {
-        boolean match = !TextUtils.isEmpty(pass) && pass.length() > 6; //检查位数
+        //检查位数
+        boolean match = !TextUtils.isEmpty(pass) && pass.length() > 6;
         if (match) {
             String[] patterns = new String[]{"[0-9]+", "[a-zA-Z]+"};
             for (String patternStr : patterns) {
@@ -415,10 +418,12 @@ public class StringUtil {
         DecimalFormat df = new DecimalFormat("#.#");
         StringBuilder numFormat = new StringBuilder();
         double numDouble;
-        if (num > 1000 && num < 10000) {//1千以上
+        if (num > 1000 && num < 10000) {
+            //1千以上
             numDouble = num / 1000d;
             numFormat.append(df.format(numDouble)).append("k");
-        } else if (num > 10000) { // 万以上
+        } else if (num > 10000) {
+            // 万以上
             numDouble = num / 10000d;
             numFormat.append(df.format(numDouble)).append("w");
         } else {
@@ -451,10 +456,12 @@ public class StringUtil {
         DecimalFormat df = new DecimalFormat("#.#");
         StringBuilder numFormat = new StringBuilder();
         double numDouble;
-        if (num <= 1000000 && num > 10000) { // 万以上
+        if (num <= 1000000 && num > 10000) {
+            // 万以上
             numDouble = num / 10000d;
             numFormat.append(df.format(numDouble)).append("万");
-        } else if (num > 1000000) { // 百万以上
+        } else if (num > 1000000) {
+            // 百万以上
             numDouble = num / 1000000d;
             numFormat.append(df.format(numDouble)).append("百万");
         } else {
@@ -868,7 +875,8 @@ public class StringUtil {
      */
     public static String trimString(String text) {
         if (!TextUtils.isEmpty(text)) {
-            text = text.replaceAll("[ |　]", " ").trim(); //替换全角空格为半角，然后过滤
+            //替换全角空格为半角，然后过滤
+            text = text.replaceAll("[ |　]", " ").trim();
         }
         return text;
     }

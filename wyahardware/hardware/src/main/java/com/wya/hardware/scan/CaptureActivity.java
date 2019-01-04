@@ -81,18 +81,11 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
     private CaptureActivityHandler handler;
     private Result savedResultToShow;
     private ViewfinderView viewfinderView;
-//    private TextView statusView;
-//    private View resultView;
     private Result lastResult;
     private boolean hasSurface;
-//    private boolean copyToClipboard;
-//    private IntentSource source;
-//    private String sourceUrl;
-//    private ScanFromWebPageManager scanFromWebPageManager;
     private Collection<BarcodeFormat> decodeFormats;
     private Map<DecodeHintType,?> decodeHints;
     private String characterSet;
-//    private HistoryManager historyManager;
     private InactivityTimer inactivityTimer;
     private BeepManager beepManager;
     private AmbientLightManager ambientLightManager;
@@ -159,15 +152,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
     protected void onResume() {
         super.onResume();
 
-        // historyManager must be initialized here to update the history preference
-//        historyManager = new HistoryManager(this);
-//        historyManager.trimHistory();
-
-        // CameraManager must be initialized here, not in onCreate(). This is necessary because we don't
-        // want to open the camera driver and measure the screen size if we're going to show the help on
-        // first launch. That led to bugs where the scanning rectangle was the wrong size and partially
-        // off screen.
-
         cameraManager = new CameraManager(getApplication());
         viewfinderView = findViewById(getViewFinderViewId());
         viewfinderView.setCameraManager(cameraManager);
@@ -194,12 +178,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
 
         Intent intent = getIntent();
 
-//        copyToClipboard = prefs.getBoolean(Preferences.KEY_COPY_TO_CLIPBOARD, true)
-//                && (intent == null || intent.getBooleanExtra(Intents.Scan.SAVE_HISTORY, true));
-//
-//        source = IntentSource.NONE;
-//        sourceUrl = null;
-//        scanFromWebPageManager = null;
         decodeFormats = null;
         characterSet = null;
 
@@ -239,9 +217,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
                     dataString.contains("http://www.google") &&
                     dataString.contains("/m/products/scan")) {
 
-                // Scan only products and send the result to mobile Product Search.
-//                source = IntentSource.PRODUCT_SEARCH_LINK;
-//                sourceUrl = dataString;
                 decodeFormats = DecodeFormatManager.PRODUCT_FORMATS;
 
             } else if (isZXingURL(dataString)) {
@@ -273,27 +248,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
             surfaceHolder.addCallback(this);
         }
     }
-
-//    private int getCurrentOrientation() {
-//        int rotation = getWindowManager().getDefaultDisplay().getRotation();
-//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            switch (rotation) {
-//                case Surface.ROTATION_0:
-//                case Surface.ROTATION_90:
-//                    return ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
-//                default:
-//                    return ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE;
-//            }
-//        } else {
-//            switch (rotation) {
-//                case Surface.ROTATION_0:
-//                case Surface.ROTATION_270:
-//                    return ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
-//                default:
-//                    return ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT;
-//            }
-//        }
-//    }
 
     private static boolean isZXingURL(String dataString) {
         if (dataString == null) {
@@ -363,50 +317,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
         return super.onKeyDown(keyCode, event);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater menuInflater = getMenuInflater();
-//        menuInflater.inflate(R.menu.capture, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        Intent intent = new Intent(Intent.ACTION_VIEW);
-//        intent.addFlags(Intents.FLAG_NEW_DOC);
-//        switch (item.getItemId()) {
-//            case R.id.menu_share:
-//                intent.setClassName(this, ShareActivity.class.getName());
-//                startActivity(intent);
-//                break;
-//            case R.id.menu_history:
-//                intent.setClassName(this, HistoryActivity.class.getName());
-//                startActivityForResult(intent, HISTORY_REQUEST_CODE);
-//                break;
-//            case R.id.menu_settings:
-//                intent.setClassName(this, PreferencesActivity.class.getName());
-//                startActivity(intent);
-//                break;
-//            case R.id.menu_help:
-//                intent.setClassName(this, HelpActivity.class.getName());
-//                startActivity(intent);
-//                break;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//        return true;
-//    }
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-//        if (resultCode == RESULT_OK && requestCode == HISTORY_REQUEST_CODE && historyManager != null) {
-//            int itemNumber = intent.getIntExtra(Intents.History.ITEM_NUMBER, -1);
-//            if (itemNumber >= 0) {
-//                HistoryItem historyItem = historyManager.buildHistoryItem(itemNumber);
-//                decodeOrStoreSavedBitmap(null, historyItem.getResult());
-//            }
-//        }
-//    }
 
     private void decodeOrStoreSavedBitmap(Bitmap bitmap, Result result) {
         // Bitmap isn't used yet -- will be used soon
@@ -762,15 +672,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
         }
     }
 
-//    private void displayFrameworkBugMessageAndExit() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle(getString(R.string.app_name));
-//        builder.setMessage(getString(R.string.msg_camera_framework_bug));
-//        builder.setPositiveButton(R.string.button_ok, new FinishListener(this));
-//        builder.setOnCancelListener(new FinishListener(this));
-//        builder.show();
-//    }
-
     public void restartPreviewAfterDelay(long delayMS) {
         if (handler != null) {
             handler.sendEmptyMessageDelayed(R.id.restart_preview, delayMS);
@@ -779,9 +680,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
     }
 
     private void resetStatusView() {
-//        resultView.setVisibility(View.GONE);
-//        statusView.setText(R.string.msg_default_status);
-//        statusView.setVisibility(View.VISIBLE);
         viewfinderView.setVisibility(View.VISIBLE);
         lastResult = null;
     }
@@ -938,6 +836,4 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
         }
         return x;
     }
-
-
 }

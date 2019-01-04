@@ -83,10 +83,12 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     public static final int MEDIA_QUALITY_DESPAIR = 2 * 100000;
     public static final int MEDIA_QUALITY_SORRY = 1 * 80000;
 
-
-    public static final int BUTTON_STATE_ONLY_CAPTURE = 0x101;      //只能拍照
-    public static final int BUTTON_STATE_ONLY_RECORDER = 0x102;     //只能录像
-    public static final int BUTTON_STATE_BOTH = 0x103;              //两者都可以
+    //只能拍照
+    public static final int BUTTON_STATE_ONLY_CAPTURE = 0x101;
+    //只能录像
+    public static final int BUTTON_STATE_ONLY_RECORDER = 0x102;
+    //两者都可以
+    public static final int BUTTON_STATE_BOTH = 0x103;
 
 
     //回调监听
@@ -108,19 +110,28 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
 
     private int layoutWidth;
     private float screenProp = 0f;
-
-    private Bitmap captureBitmap;   //捕获的图片
-    private Bitmap firstFrame;      //第一帧图片
-    private String videoUrl;        //视频URL
+    //捕获的图片
+    private Bitmap captureBitmap;
+    //第一帧图片
+    private Bitmap firstFrame;
+    //视频URL
+    private String videoUrl;
 
 
     //切换摄像头按钮的参数
-    private int iconSize = 0;       //图标大小
-    private int iconMargin = 0;     //右上边距
-    private int iconSrc = 0;        //图标资源
-    private int iconLeft = 0;       //左图标
-    private int iconRight = 0;      //右图标
-    private int duration = 0;       //录制时间
+
+    //图标大小
+    private int iconSize = 0;
+    //右上边距
+    private int iconMargin = 0;
+    //图标资源
+    private int iconSrc = 0;
+    //左图标
+    private int iconLeft = 0;
+    //右图标
+    private int iconRight = 0;
+    //录制时间
+    private int duration = 0;
 
     //缩放梯度
     private int zoomGradient = 0;
@@ -148,7 +159,8 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         iconSrc = a.getResourceId(R.styleable.WYACameraView_iconSrc, R.drawable.icon_camera_switch);
         iconLeft = a.getResourceId(R.styleable.WYACameraView_iconLeft, R.drawable.icon_bottom);
         iconRight = a.getResourceId(R.styleable.WYACameraView_iconRight, 0);
-        duration = a.getInteger(R.styleable.WYACameraView_duration_max, 10 * 1000);       //没设置默认为10s
+        //没设置默认为10s
+        duration = a.getInteger(R.styleable.WYACameraView_duration_max, 10 * 1000);
         a.recycle();
         initData();
         initView();
@@ -295,15 +307,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
                 machine.confirm();
             }
         });
-        //退出
-//        mCaptureLayout.setReturnListener(new ReturnListener() {
-//            @Override
-//            public void onReturn() {
-//                if (wyaCameraListener != null) {
-//                    wyaCameraListener.quit();
-//                }
-//            }
-//        });
         mCaptureLayout.setLeftClickListener(new ClickListener() {
             @Override
             public void onClick() {
@@ -358,7 +361,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         machine.start(mVideoView.getHolder(), screenProp);
     }
 
-    //生命周期onPause
     public void onPause() {
         stopVideo();
         resetState(TYPE_PICTURE);
@@ -366,7 +368,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         CameraInterface.getInstance().unregisterSensorManager(mContext);
     }
 
-    //SurfaceView生命周期
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         new Thread() {
@@ -422,7 +423,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
                         firstTouch = true;
                         machine.zoom(result - firstTouchLength, CameraInterface.TYPE_CAPTURE);
                     }
-//                    Log.i("MCJ", "result = " + (result - firstTouchLength));
                 }
                 break;
             case MotionEvent.ACTION_UP:
@@ -699,13 +699,12 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         PackageManager packageManager = getContext().getPackageManager();
         FeatureInfo[] features = packageManager.getSystemAvailableFeatures();
         for (FeatureInfo featureInfo : features) {
-            if (PackageManager.FEATURE_CAMERA_FLASH.equals(featureInfo.name)) { // 判断设备是否支持闪光灯
+            if (PackageManager.FEATURE_CAMERA_FLASH.equals(featureInfo.name)) {
+                // 判断设备是否支持闪光灯
                 if (typeFlashLight) {
                     machine.flash(Camera.Parameters.FLASH_MODE_TORCH);
-//                    CameraInterface.getInstance().setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
                 } else {
                     machine.flash(Camera.Parameters.FLASH_MODE_OFF);
-//                    CameraInterface.getInstance().setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
                 }
             }
         }

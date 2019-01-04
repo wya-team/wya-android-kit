@@ -32,7 +32,8 @@ import java.io.File;
 public class CameraExampleActivity extends AppCompatActivity {
     private WYACameraView wyaCameraView;
     private String dirName = "WYACamera";
-    private int duration;//录制时间
+    //录制时间
+    private int duration;
     private int state;
 
     @Override
@@ -71,7 +72,6 @@ public class CameraExampleActivity extends AppCompatActivity {
             @Override
             public void captureSuccess(Bitmap bitmap) {
                 //获取图片bitmap
-//                Log.i("JCameraView", "bitmap = " + bitmap.getWidth());
                 String path = FileUtil.saveBitmap(dirName, bitmap);
                 Intent intent = new Intent();
                 intent.putExtra("path", path);

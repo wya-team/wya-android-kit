@@ -1,7 +1,7 @@
-package com.wya.uikit.pickerview.WheelView.timer;
+package com.wya.uikit.pickerview.wheelview.timer;
 
 
-import com.wya.uikit.pickerview.WheelView.view.WheelView;
+import com.wya.uikit.pickerview.wheelview.view.WheelView;
 
 import java.util.TimerTask;
 

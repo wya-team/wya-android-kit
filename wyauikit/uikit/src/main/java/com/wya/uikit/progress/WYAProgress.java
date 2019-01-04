@@ -150,8 +150,8 @@ public class WYAProgress extends View {
 
         //设置圆弧宽度
         paint.setStrokeWidth(circleThickness + 1);
-
-        RectF oval2 = new RectF(center - outerFirstCircleRadius, center - outerFirstCircleRadius, center + outerFirstCircleRadius, center + outerFirstCircleRadius);  //用于定义的圆弧的形状和大小的界限
+        //用于定义的圆弧的形状和大小的界限
+        RectF oval2 = new RectF(center - outerFirstCircleRadius, center - outerFirstCircleRadius, center + outerFirstCircleRadius, center + outerFirstCircleRadius);
 
         double progress;
 
@@ -175,8 +175,9 @@ public class WYAProgress extends View {
     private void drawArcByColor(Canvas canvas, RectF oval2, double progress) {
         for (int i = 0; i < progress / maxProgress * 360; i++) {
             //颜色渐变
-            if (progressArgbColor) {        //如果颜色渐变， 则改变色值
-                progressCircleColor = (Integer) mArgbEvaluator.evaluate(i / 360f, progressStartColor, progressEndColor);//颜色插值器（level 11以上才可以用）
+            if (progressArgbColor) {
+                //如果颜色渐变， 则改变色值
+                progressCircleColor = (Integer) mArgbEvaluator.evaluate(i / 360f, progressStartColor, progressEndColor);
             }
 
             paint.setColor(progressCircleColor);

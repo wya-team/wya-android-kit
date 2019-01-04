@@ -93,7 +93,7 @@ public class PreviewPagerAdapter extends PagerAdapter {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 File file = new File(imageUrl);
                 Uri uri;
-                if (Build.VERSION.SDK_INT >= 24) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     uri = FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".fileprovider", file);
                 } else {

@@ -42,6 +42,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import butterknife.BindView;
+import io.realm.internal.IOException;
 
 /**
  * @date: 2018/11/23 16:23

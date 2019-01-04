@@ -37,6 +37,9 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 	private int max;
 	private static final String TAG="ImageGridAdapter";
 
+	private String VIDEO = "video";
+	private String IMAGE = "image";
+
 	public ImageGridAdapter(Context context, OnImageSelectedChangedListener listener, int max) {
 		mContext = context;
 		this.max = max;
@@ -120,10 +123,10 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 			imageViewHolder.mCheckBox.setChecked(mSelectedImages.contains(localMedia));
 
 			//check is video type
-			if (localMedia.getType().contains("video")) {
+			if (localMedia.getType().contains(VIDEO)) {
                 imageViewHolder.mVideoLayout.setVisibility(View.VISIBLE);
                 imageViewHolder.mDuration.setText(dateFormate(localMedia.getVideoDuration()));
-			} else if (localMedia.getType().contains("image")) {
+			} else if (localMedia.getType().contains(IMAGE)) {
                 imageViewHolder.mVideoLayout.setVisibility(View.GONE);
 			}
 			String cropPath = localMedia.getCropPath();

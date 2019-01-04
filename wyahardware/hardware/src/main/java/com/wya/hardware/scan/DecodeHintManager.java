@@ -73,16 +73,19 @@ public final class DecodeHintManager {
                 if (equ < 0) {
                     // No equal sign
                     name = query.substring(pos);
-                    name = name.replace('+', ' '); // Preemptively decode +
+                    // Preemptively decode +
+                    name = name.replace('+', ' ');
                     name = Uri.decode(name);
                     text = "";
                 } else {
                     // Split name and text.
                     name = query.substring(pos, equ);
-                    name = name.replace('+', ' '); // Preemptively decode +
+                    // Preemptively decode +
+                    name = name.replace('+', ' ');
                     name = Uri.decode(name);
                     text = query.substring(equ + 1);
-                    text = text.replace('+', ' '); // Preemptively decode +
+                    // Preemptively decode +
+                    text = text.replace('+', ' ');
                     text = Uri.decode(text);
                 }
                 if (!map.containsKey(name)) {
@@ -93,7 +96,8 @@ public final class DecodeHintManager {
             if (equ < 0 || equ > amp) {
                 // No equal sign until the &: this is a simple parameter with no value.
                 String name = query.substring(pos, amp);
-                name = name.replace('+', ' '); // Preemptively decode +
+                // Preemptively decode +
+                name = name.replace('+', ' ');
                 name = Uri.decode(name);
                 if (!map.containsKey(name)) {
                     map.put(name, "");
@@ -102,10 +106,12 @@ public final class DecodeHintManager {
                 continue;
             }
             String name = query.substring(pos, equ);
-            name = name.replace('+', ' '); // Preemptively decode +
+            // Preemptively decode +
+            name = name.replace('+', ' ');
             name = Uri.decode(name);
             String text = query.substring(equ + 1, amp);
-            text = text.replace('+', ' '); // Preemptively decode +
+            // Preemptively decode +
+            text = text.replace('+', ' ');
             text = Uri.decode(text);
             if (!map.containsKey(name)) {
                 map.put(name, text);

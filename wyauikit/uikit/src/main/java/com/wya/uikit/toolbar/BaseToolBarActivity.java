@@ -33,14 +33,20 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
 
     protected abstract int getLayoutID();
 
-
-    private onLeftImgOnclickListener onLeftImgOnclickListener;//设置左边点击事件
-    private onLeftTvOnclickListener onLeftTvOnclickListener;//设置左边点击事件
-    private onRightTvOnclickListener onRightTvOnclickListener;//设置右边点击事件
-    private onRightTvAntherOnclickListener onRightTvAntherOnclickListener;//设置右边点击事件
-    private onRightImageAntherOnLongClickListener onRightImageAntherOnLongClickListener;//设置右边长按点击事件
-    private onRightImageOnclickListener onRightImageOnclickListener;//设置右边点击事件
-    private onRightImageAntherOnclickListener onRightImageAntherOnclickListener;//设置右边点击事件
+    //设置左边点击事件
+    private onLeftImgOnclickListener onLeftImgOnclickListener;
+    //设置左边点击事件
+    private onLeftTvOnclickListener onLeftTvOnclickListener;
+    //设置右边点击事件
+    private onRightTvOnclickListener onRightTvOnclickListener;
+    //设置右边点击事件
+    private onRightTvAntherOnclickListener onRightTvAntherOnclickListener;
+    //设置右边长按点击事件
+    private onRightImageAntherOnLongClickListener onRightImageAntherOnLongClickListener;
+    //设置右边点击事件
+    private onRightImageOnclickListener onRightImageOnclickListener;
+    //设置右边点击事件
+    private onRightImageAntherOnclickListener onRightImageAntherOnclickListener;
 
     /**
      * 设置左边点击事件

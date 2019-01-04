@@ -1,4 +1,4 @@
-package com.wya.uikit.pickerview.WheelView.adapter;
+package com.wya.uikit.pickerview.wheelview.adapter;
 
 
 public interface WheelAdapter<T> {

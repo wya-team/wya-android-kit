@@ -59,19 +59,23 @@ public class KeyboardExampleActivity extends BaseActivity {
     }
 
     private void setKeyBoard() {
-        keyboard = new WYACustomNumberKeyboard(KeyboardExampleActivity.this);//获取到keyboard对象
+        //获取到keyboard对象
+        keyboard = new WYACustomNumberKeyboard(KeyboardExampleActivity.this);
         etNumberRandom.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_UP) {
-                keyboard.attachTo(etNumberRandom, true);//eiditext绑定keyboard，true表示随机数字
+                //eiditext绑定keyboard，true表示随机数字
+                keyboard.attachTo(etNumberRandom, true);
             }
             etNumberRandom.setSelection(etNumberRandom.getText().toString().length());
-            etNumberRandom.requestFocus();//获取焦点 光标出现
+            //获取焦点 光标出现
+            etNumberRandom.requestFocus();
             return true;
         });
 
         etNumber.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_UP) {
-                keyboard.attachTo(etNumber, false);//eiditext绑定keyboard，false表示普通数字键盘
+                //eiditext绑定keyboard，false表示普通数字键盘
+                keyboard.attachTo(etNumber, false);
                 etNumber.setSelection(etNumber.getText().toString().length());
                 etNumber.requestFocus();//获取焦点 光标出现
             }

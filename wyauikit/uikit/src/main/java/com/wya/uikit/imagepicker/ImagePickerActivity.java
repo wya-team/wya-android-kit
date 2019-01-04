@@ -66,6 +66,8 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     private int maxNum;
     private String imagePath;
     private LocalMediaFolder mCurrentFolder;
+    private static final int PERMISSION_STORAGE = 1000;
+    private static final int PERMISSION_CAMERA = 1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +79,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
 
         if (selfPermission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest
-                    .permission.READ_EXTERNAL_STORAGE}, 1000);
+                    .permission.READ_EXTERNAL_STORAGE}, PERMISSION_STORAGE);
         } else {
             readLocalImage();
         }
@@ -142,7 +144,6 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             }
         };
         mBaseOptionMenu.setShadow(false);
-//        mBaseOptionMenu.setOutsideTouchable(true);
         mBaseOptionMenu.setFocusable(false);
         mBaseOptionMenu.setOnFirstAdapterItemClickListener(
                 new BaseOptionMenu.OnFirstAdapterItemClickListener() {
@@ -208,7 +209,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                 if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest
                         .permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(ImagePickerActivity.this, new
-                            String[]{Manifest.permission.CAMERA}, 1001);
+                            String[]{Manifest.permission.CAMERA}, PERMISSION_CAMERA);
                 } else {
                     takePhoto();
                 }
@@ -229,7 +230,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             file.getParentFile().mkdirs();
         }
         imagePath = file.getAbsolutePath();
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             uri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", file);
         } else {
             uri = Uri.fromFile(file);
@@ -273,14 +274,14 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        if (requestCode == 1000) {
+        if (requestCode == PERMISSION_STORAGE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 readLocalImage();
             } else {
                 Toast.makeText(this, "读取内存卡权限被拒绝", Toast.LENGTH_SHORT).show();
             }
         }
-        if (requestCode == 1001) {
+        if (requestCode == PERMISSION_CAMERA) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 takePhoto();
             } else {

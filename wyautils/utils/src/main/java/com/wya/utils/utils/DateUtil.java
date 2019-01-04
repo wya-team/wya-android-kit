@@ -233,7 +233,8 @@ public class DateUtil {
     public static Integer getDay(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        int day = cal.get(Calendar.DATE);//获取日
+        //获取日
+        int day = cal.get(Calendar.DATE);
         return day;
     }
 
@@ -568,7 +569,8 @@ public class DateUtil {
         Calendar c = new GregorianCalendar();
         c.setFirstDayOfWeek(Calendar.MONDAY);
         c.setTime(date);
-        c.set(Calendar.DAY_OF_WEEK, c.getFirstDayOfWeek()); // Monday
+        // Monday
+        c.set(Calendar.DAY_OF_WEEK, c.getFirstDayOfWeek());
         return c.getTime();
     }
 
@@ -583,7 +585,8 @@ public class DateUtil {
         Calendar c = new GregorianCalendar();
         c.setFirstDayOfWeek(Calendar.MONDAY);
         c.setTime(date);
-        c.set(Calendar.DAY_OF_WEEK, c.getFirstDayOfWeek() + 6); // Sunday
+        // Sunday
+        c.set(Calendar.DAY_OF_WEEK, c.getFirstDayOfWeek() + 6);
         return c.getTime();
     }
 
@@ -780,13 +783,20 @@ public class DateUtil {
     public static Date addDate(Date date, int year, int month, int day, int hour, int minute, int second, int millisecond) {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
-        c.add(Calendar.YEAR, year);//加减年数
-        c.add(Calendar.MONTH, month);//加减月数
-        c.add(Calendar.DATE, day);//加减天数
-        c.add(Calendar.HOUR, hour);//加减小时数
-        c.add(Calendar.MINUTE, minute);//加减分钟数
-        c.add(Calendar.SECOND, second);//加减秒
-        c.add(Calendar.MILLISECOND, millisecond);//加减毫秒数
+        //加减年数
+        c.add(Calendar.YEAR, year);
+        //加减月数
+        c.add(Calendar.MONTH, month);
+        //加减天数
+        c.add(Calendar.DATE, day);
+        //加减小时数
+        c.add(Calendar.HOUR, hour);
+        //加减分钟数
+        c.add(Calendar.MINUTE, minute);
+        //加减秒
+        c.add(Calendar.SECOND, second);
+        //加减毫秒数
+        c.add(Calendar.MILLISECOND, millisecond);
 
         return c.getTime();
     }

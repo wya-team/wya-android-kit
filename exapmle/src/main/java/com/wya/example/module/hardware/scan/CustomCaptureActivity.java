@@ -117,7 +117,8 @@ public class CustomCaptureActivity extends CaptureActivity {
             int size = 0;
             if (grantResults.length >= 1) {
                 int writeResult = grantResults[0];
-                boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;//读写内存权限
+                //读写内存权限
+                boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;
                 if (!writeGranted) {
                     size++;
                 }

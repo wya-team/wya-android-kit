@@ -164,17 +164,20 @@ public class DataCleanUtil {
 		if (!TextUtils.isEmpty(filePath)) {
 			try {
 				File file = new File(filePath);
-				if (file.isDirectory()) {// 如果下面还有文件
-					File files[] = file.listFiles();
+				if (file.isDirectory()) {
+					// 如果下面还有文件
+					File[] files = file.listFiles();
 					for (int i = 0; i < files.length; i++) {
 						deleteFolderFile(files[i].getAbsolutePath(), true);
 					}
 				}
 				if (deleteThisPath) {
-					if (!file.isDirectory()) {// 如果是文件，删除
+					if (!file.isDirectory()) {
+						// 如果是文件，删除
 						file.delete();
 					} else {// 目录
-						if (file.listFiles().length == 0) {// 目录下没有文件或者目录，删除
+						if (file.listFiles().length == 0) {
+							// 目录下没有文件或者目录，删除
 							file.delete();
 						}
 					}

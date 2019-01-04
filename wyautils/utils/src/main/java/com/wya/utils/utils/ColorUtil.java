@@ -68,9 +68,12 @@ public class ColorUtil {
                 rgbItem = 255;
             }
             String[] code = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
-            int lCode = rgbItem / 16;//先获取商，例如，255 / 16 == 15
-            int rCode = rgbItem % 16;//再获取余数，例如，255 % 16 == 15
-            hexCode += code[lCode] + code[rCode];//FF
+            //先获取商，例如，255 / 16 == 15
+            int lCode = rgbItem / 16;
+            //再获取余数，例如，255 % 16 == 15
+            int rCode = rgbItem % 16;
+            //FF
+            hexCode += code[lCode] + code[rCode];
         }
         return hexCode;
     }

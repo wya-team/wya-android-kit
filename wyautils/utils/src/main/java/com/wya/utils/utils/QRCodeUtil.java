@@ -49,7 +49,7 @@ public class QRCodeUtil {
 			//容错级别
 			hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
 			//设置空白边距的宽度
-			hints.put(EncodeHintType.MARGIN, 0); //default is 4
+			hints.put(EncodeHintType.MARGIN, 0);
 
 			// 图像数据转换，使用了矩阵转换
 			BitMatrix bitMatrix = new QRCodeWriter().encode(content, BarcodeFormat.QR_CODE, widthPix, heightPix,
@@ -161,9 +161,11 @@ public class QRCodeUtil {
 			for (int y = 0; y < heightPix; y++) {
 				for (int x = 0; x < widthPix; x++) {
 					if (bitMatrix.get(x, y)) {
-						pixels[y * widthPix + x] = 0xff000000; // 黑色
+						// 黑色
+						pixels[y * widthPix + x] = 0xff000000;
 					} else {
-						pixels[y * widthPix + x] = 0xffffffff;// 白色
+						// 白色
+						pixels[y * widthPix + x] = 0xffffffff;
 					}
 				}
 			}

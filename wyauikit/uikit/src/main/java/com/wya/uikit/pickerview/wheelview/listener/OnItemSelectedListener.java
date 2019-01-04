@@ -1,4 +1,4 @@
-package com.wya.uikit.pickerview.WheelView.listener;
+package com.wya.uikit.pickerview.wheelview.listener;
 
 
 public interface OnItemSelectedListener {

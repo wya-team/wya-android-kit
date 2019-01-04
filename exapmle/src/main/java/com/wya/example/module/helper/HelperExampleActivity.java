@@ -28,11 +28,11 @@ public class HelperExampleActivity extends BaseActivity {
     protected void initView() {
         setToolBarTitle("基本信息");
         try {
-            String appPermissions = "";
+            StringBuffer stringBuffer = new StringBuffer();
             for (int i = 0; i < PhoneUtil.getInstance().getAppPermissions(getApplicationContext()).length; i++) {
-                appPermissions = appPermissions + "     " + PhoneUtil.getInstance().getAppPermissions(getApplicationContext())[i] + "\n";
+                stringBuffer.append("     " + PhoneUtil.getInstance().getAppPermissions(getApplicationContext())[i] + "\n");
             }
-
+            String appPermissions = stringBuffer.toString();
             tvPhoneInfo.setText("手机系统版本号：" + PhoneUtil.getInstance().getSDKVersionNumber() + "\n"
                             + "手机型号：" + PhoneUtil.getInstance().getPhoneModel() + "\n"
                             + "手机宽度：" + PhoneUtil.getInstance().getPhoneWidth(getApplicationContext()) + "\n"

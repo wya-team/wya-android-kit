@@ -45,6 +45,8 @@ public class LocalMediaLoader {
 
     private OnLoadImageListener mListener;
 
+    private static final  String VIDEO = "video";
+
     // 全部模式下条件
     private static String getSelectionArgsForAllMediaCondition(String timeCondition) {
         String condition = "(" + MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
@@ -93,17 +95,13 @@ public class LocalMediaLoader {
                                             (cursor.getColumnIndexOrThrow(PROJECTION[1]));
                                     String pictureType = cursor.getString
                                             (cursor.getColumnIndexOrThrow(PROJECTION[2]));
-//                                    int width = cursor.getInt
-//                                            (cursor.getColumnIndexOrThrow(PROJECTION[3]));
-//                                    int height = cursor.getInt
-//                                            (cursor.getColumnIndexOrThrow(PROJECTION[4]));
                                     String duration=cursor.getString
                                             (cursor.getColumnIndexOrThrow(PROJECTION[3]));
 
                                     LocalMedia localMedia = new LocalMedia(path, pictureType);
                                     //check video is damaged
                                     boolean isDamage = false;
-                                    if (pictureType.contains("video")) {
+                                    if (pictureType.contains(VIDEO)) {
                                         try {
                                             localMedia.setVideoDuration(duration);
                                         } catch (IllegalArgumentException e) {

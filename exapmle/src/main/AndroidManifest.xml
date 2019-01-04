@@ -41,7 +41,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.uikit.UiKitExampleActivity" />
         <activity android:name=".module.hardware.HardwareExampleActivity" />
         <activity android:name=".module.helper.HelperExampleActivity" />
         <activity android:name=".module.uikit.toolbar.ToolBarExampleActivity" />
@@ -59,7 +58,6 @@
         <activity android:name=".module.uikit.optionmenu.OptionMenuExampleActivity" />
         <activity android:name=".module.uikit.button.ButtonExampleActivity" />
         <activity android:name=".module.uikit.gallery.GalleryExampleActivity" />
-        <activity android:name=".module.uikit.customitems.CustomItemsExampleActivity" />
         <activity android:name=".module.uikit.customitems.cardview.CardViewExampleActivity" />
         <activity android:name=".module.uikit.customitems.grid.GridExampleActivity" />
         <activity

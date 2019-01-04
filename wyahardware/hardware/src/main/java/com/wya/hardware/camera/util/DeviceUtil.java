@@ -12,13 +12,20 @@ import android.os.Build;
 public class DeviceUtil {
 
     private static String[] huaweiRongyao = {
-            "hwH60",    //荣耀6
-            "hwPE",     //荣耀6 plus
-            "hwH30",    //3c
-            "hwHol",    //3c畅玩版
-            "hwG750",   //3x
-            "hw7D",      //x1
-            "hwChe2",      //x1
+            //荣耀6
+            "hwH60",
+            //荣耀6 plus
+            "hwPE",
+            //3c
+            "hwH30",
+            //3c畅玩版
+            "hwHol",
+            //3x
+            "hwG750",
+            //x1
+            "hw7D",
+            //x1
+            "hwChe2",
     };
 
     public static String getDeviceInfo() {

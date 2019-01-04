@@ -120,7 +120,7 @@ public class SwitcherView extends ViewSwitcher {
                 animationOut.setInterpolator(new AccelerateDecelerateInterpolator());
                 break;
             
-            case SwitcherViewAnimDirection.DOWN_2_UP: // def
+            case SwitcherViewAnimDirection.DOWN_2_UP:
                 animationIn = new TranslateAnimation(0, 0.0F, 0, 0.0F, Animation.RELATIVE_TO_SELF, 1.0F, Animation.RELATIVE_TO_SELF, 0.0f);
                 animationOut = new TranslateAnimation(0, 0.0F, 0, 0.0F, Animation.RELATIVE_TO_SELF, 0.0F, Animation.RELATIVE_TO_SELF, -1.0f);
                 animationIn.setInterpolator(new AccelerateDecelerateInterpolator());

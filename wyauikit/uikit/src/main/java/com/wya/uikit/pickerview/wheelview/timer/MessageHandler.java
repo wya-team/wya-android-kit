@@ -1,9 +1,9 @@
-package com.wya.uikit.pickerview.WheelView.timer;
+package com.wya.uikit.pickerview.wheelview.timer;
 
 import android.os.Handler;
 import android.os.Message;
 
-import com.wya.uikit.pickerview.WheelView.view.WheelView;
+import com.wya.uikit.pickerview.wheelview.view.WheelView;
 
 
 /**

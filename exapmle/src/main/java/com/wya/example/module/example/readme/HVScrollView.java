@@ -987,10 +987,13 @@ public class HVScrollView extends FrameLayout {
             // (also, need to temporarily force FOCUS_BEFORE_DESCENDANTS so we are
             // sure to
             // get it)
-            final int descendantFocusability = getDescendantFocusability();  // save
+
+            // save
+            final int descendantFocusability = getDescendantFocusability();
             setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
             requestFocus();
-            setDescendantFocusability(descendantFocusability);  // restore
+            // restore
+            setDescendantFocusability(descendantFocusability);
         }
         return true;
     }

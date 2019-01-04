@@ -21,11 +21,12 @@ public class CameraMachine implements State {
     private Context context;
     private State state;
     private CameraView view;
-//    private CameraInterface.CameraOpenOverCallback cameraOpenOverCallback;
-
-    private State previewState;       //浏览状态(空闲)
-    private State borrowPictureState; //浏览图片
-    private State borrowVideoState;   //浏览视频
+    /**浏览状态(空闲)*/
+    private State previewState;
+    //浏览图片
+    private State borrowPictureState;
+    //浏览视频
+    private State borrowVideoState;
 
     public CameraMachine(Context context, CameraView view, CameraInterface.CameraOpenOverCallback
             cameraOpenOverCallback) {

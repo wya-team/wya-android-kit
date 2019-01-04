@@ -100,12 +100,15 @@ public class ViewDragHelper {
      * Indicates that a check should occur along all axes
      */
     public static final int DIRECTION_ALL = DIRECTION_HORIZONTAL | DIRECTION_VERTICAL;
-    
-    public static final int EDGE_SIZE = 20; // dp
-    
-    private static final int BASE_SETTLE_DURATION = 256; // ms
-    
-    private static final int MAX_SETTLE_DURATION = 600; // ms
+
+    // dp
+    public static final int EDGE_SIZE = 20;
+
+    // ms
+    private static final int BASE_SETTLE_DURATION = 256;
+
+    // ms
+    private static final int MAX_SETTLE_DURATION = 600;
     
     // Current drag state; idle, dragging or settling
     private int mDragState;
@@ -778,7 +781,8 @@ public class ViewDragHelper {
     }
     
     private float distanceInfluenceForSnapDuration(float f) {
-        f -= 0.5f; // center the values about 0.
+        // center the values about 0.
+        f -= 0.5f;
         f *= 0.3f * Math.PI / 2.0f;
         return (float) Math.sin(f);
     }

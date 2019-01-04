@@ -1,4 +1,4 @@
-package com.wya.uikit.pickerview.WheelView.interfaces;
+package com.wya.uikit.pickerview.wheelview.interfaces;
 
 /**
  */

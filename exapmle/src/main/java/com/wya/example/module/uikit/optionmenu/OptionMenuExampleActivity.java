@@ -124,10 +124,6 @@ public class OptionMenuExampleActivity extends BaseActivity {
         showOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Log.i(TAG, "onClick: " + location1[0] + " " + location1[1]);
-//                Animation animation = AnimationUtils.loadAnimation(OptionMenuExampleActivity
-//                        .this, R.anim.choice_menu_in);
-//
                 baseOptionMenu1.setAnimationStyle(R.style.choiceMenuStyle);
                 baseOptionMenu1.showAsDropDown(showOne);
             }

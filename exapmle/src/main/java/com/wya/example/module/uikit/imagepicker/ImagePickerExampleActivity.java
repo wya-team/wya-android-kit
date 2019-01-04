@@ -54,6 +54,10 @@ public class ImagePickerExampleActivity extends BaseActivity {
     public static final int CROP_PHOTO = 1001;
     public static final int CROP = 1002;
     public static final int PHOTO = 100;
+    public static final int TAKE_PHOTO = 101;
+    public static final int VIDEO = 102;
+    public static final int NO_PERMISSIONS_CAMEAR = 103;
+    public static final int CAMERA = 10001;
     private static final String TAG = "ImagePickerExampleActivity";
 
     @Override
@@ -95,10 +99,13 @@ public class ImagePickerExampleActivity extends BaseActivity {
     }
 
     /**
-     * 相机
+     * 默认可以拍照和录制视频
      */
-    private int state = WYACameraView.BUTTON_STATE_BOTH;//默认可以拍照和录制视频
-    private final int GET_PERMISSION_REQUEST = 100; //权限申请自定义码
+    private int state = WYACameraView.BUTTON_STATE_BOTH;
+    /**
+     * 权限申请自定义码
+     */
+    private final int GET_PERMISSION_REQUEST = 100;
 
     private void openCamera() {
         getPermissions();
@@ -119,7 +126,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                 Intent intent = new Intent(ImagePickerExampleActivity.this, CameraExampleActivity.class);
                 intent.putExtra("state", state);
                 intent.putExtra("duration", 10 * 1000);
-                startActivityForResult(intent, 10001);
+                startActivityForResult(intent, CAMERA);
             } else {
                 //不具有获取权限，需要进行权限申请
                 ActivityCompat.requestPermissions(ImagePickerExampleActivity.this, new String[]{
@@ -131,7 +138,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
             Intent intent = new Intent(ImagePickerExampleActivity.this, CameraExampleActivity.class);
             intent.putExtra("state", state);
             intent.putExtra("duration", 10 * 1000);
-            startActivityForResult(intent, 10001);
+            startActivityForResult(intent, CAMERA);
         }
     }
 
@@ -144,7 +151,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
             if (grantResults.length >= 1) {
                 int writeResult = grantResults[0];
                 //读写内存权限
-                boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;//读写内存权限
+                boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;
                 if (!writeGranted) {
                     size++;
                 }
@@ -164,7 +171,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                     Intent intent = new Intent(ImagePickerExampleActivity.this, CameraExampleActivity.class);
                     intent.putExtra("state", state);
                     intent.putExtra("duration", 10 * 1000);
-                    startActivityForResult(intent, 10001);
+                    startActivityForResult(intent, CAMERA);
                 } else {
                     Toast.makeText(this, "请到设置-权限管理中开启", Toast.LENGTH_SHORT).show();
                 }
@@ -237,7 +244,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                 cropSelect.setImageBitmap(bitmap);
                 File file = new File(path);
                 Uri uri;
-                if (Build.VERSION.SDK_INT >= 24) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     uri = FileProvider.getUriForFile(this, "com.wya.example.fileprovider", file);
                 } else {
                     uri = Uri.fromFile(file);
@@ -259,8 +266,8 @@ public class ImagePickerExampleActivity extends BaseActivity {
         if (requestCode == CROP && resultCode == RESULT_CANCELED) {
             Toast.makeText(this, "裁剪被取消了", Toast.LENGTH_SHORT).show();
         }
-        if (requestCode == 10001) {
-            if (resultCode == 101) {
+        if (requestCode == CAMERA) {
+            if (resultCode == TAKE_PHOTO) {
                 Log.i("MCJ", "take photo");
                 String path = data.getStringExtra("path");
                 mAllList.add(path);
@@ -269,7 +276,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                 }
                 mPickerAdapter.notifyDataSetChanged();
             }
-            if (resultCode == 102) {
+            if (resultCode == VIDEO) {
                 Log.i("MCJ", "video");
                 String path = data.getStringExtra("path");
                 String url = data.getStringExtra("url");
@@ -279,7 +286,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                 }
                 mPickerAdapter.notifyDataSetChanged();
             }
-            if (resultCode == 103) {
+            if (resultCode == NO_PERMISSIONS_CAMEAR) {
                 mAllList.add("");
                 mPickerAdapter.notifyDataSetChanged();
                 Toast.makeText(this, "请检查相机权限~", Toast.LENGTH_SHORT).show();

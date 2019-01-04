@@ -1,8 +1,8 @@
-package com.wya.uikit.pickerview.WheelView.listener;
+package com.wya.uikit.pickerview.wheelview.listener;
 
 import android.view.MotionEvent;
 
-import com.wya.uikit.pickerview.WheelView.view.WheelView;
+import com.wya.uikit.pickerview.wheelview.view.WheelView;
 
 
 /**
