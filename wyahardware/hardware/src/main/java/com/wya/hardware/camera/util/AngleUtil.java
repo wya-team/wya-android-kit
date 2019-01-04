@@ -8,17 +8,21 @@ package com.wya.hardware.camera.util;
   */
 
 public class AngleUtil {
+    private static int x_left = 4;
+    private static int x_right = -4;
+    private static int y_left = 7;
+    private static int y_right = -7;
     public static int getSensorAngle(float x, float y) {
         if (Math.abs(x) > Math.abs(y)) {
             /**
              * 横屏倾斜角度比较大
              */
-            if (x > 4) {
+            if (x > x_left) {
                 /**
                  * 左边倾斜
                  */
                 return 270;
-            } else if (x < -4) {
+            } else if (x < x_right) {
                 /**
                  * 右边倾斜
                  */
@@ -30,12 +34,12 @@ public class AngleUtil {
                 return 0;
             }
         } else {
-            if (y > 7) {
+            if (y > y_left) {
                 /**
                  * 左边倾斜
                  */
                 return 0;
-            } else if (y < -7) {
+            } else if (y < y_right) {
                 /**
                  * 右边倾斜
                  */

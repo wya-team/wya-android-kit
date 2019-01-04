@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.graphics.Bitmap.createBitmap;
+import static android.os.Build.VERSION_CODES.JELLY_BEAN_MR1;
 
 /**
  * @date: 2018/12/5 14:09
@@ -94,6 +95,11 @@ public class CameraInterface implements Camera.PreviewCallback {
     public static final int TYPE_CAPTURE = 0x091;
     private int nowScaleRate = 0;
     private int recordScleRate = 0;
+
+    private int angle90 = 90;
+    private int angle270 = 90;
+    private int handlerTime10 = 10;
+
     /**
      * 视频质量
      */
@@ -340,7 +346,7 @@ public class CameraInterface implements Camera.PreviewCallback {
             }
         }
 
-        if (Build.VERSION.SDK_INT > 17 && this.mCamera != null) {
+        if (Build.VERSION.SDK_INT > JELLY_BEAN_MR1 && this.mCamera != null) {
             try {
                 this.mCamera.enableShutterSound(false);
             } catch (Exception e) {
@@ -359,7 +365,7 @@ public class CameraInterface implements Camera.PreviewCallback {
         doDestroyCamera();
         openCamera(selectedCamera);
 //        mCamera = Camera.open();
-        if (Build.VERSION.SDK_INT > 17 && this.mCamera != null) {
+        if (Build.VERSION.SDK_INT > JELLY_BEAN_MR1 && this.mCamera != null) {
             try {
                 this.mCamera.enableShutterSound(false);
             } catch (Exception e) {
@@ -501,7 +507,7 @@ public class CameraInterface implements Camera.PreviewCallback {
                 bitmap = createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(),
                         matrix, true);
                 if (callback != null) {
-                    if (nowAngle == 90 || nowAngle == 270) {
+                    if (nowAngle == angle90 || nowAngle == angle270) {
                         callback.captureResult(bitmap, true);
                     } else {
                         callback.captureResult(bitmap, false);
@@ -589,19 +595,19 @@ public class CameraInterface implements Camera.PreviewCallback {
 
         if (selectedCamera == cameraFrontPosition) {
             //手机预览倒立的处理
-            if (cameraAngle == 270) {
+            if (cameraAngle == angle270) {
                 //横屏
                 if (nowAngle == 0) {
                     mediaRecorder.setOrientationHint(180);
-                } else if (nowAngle == 270) {
+                } else if (nowAngle == angle270) {
                     mediaRecorder.setOrientationHint(270);
                 } else {
                     mediaRecorder.setOrientationHint(90);
                 }
             } else {
-                if (nowAngle == 90) {
+                if (nowAngle == angle90) {
                     mediaRecorder.setOrientationHint(270);
-                } else if (nowAngle == 270) {
+                } else if (nowAngle == angle270) {
                     mediaRecorder.setOrientationHint(90);
                 } else {
                     mediaRecorder.setOrientationHint(nowAngle);
@@ -739,7 +745,7 @@ public class CameraInterface implements Camera.PreviewCallback {
             mCamera.autoFocus(new Camera.AutoFocusCallback() {
                 @Override
                 public void onAutoFocus(boolean success, Camera camera) {
-                    if (success || handlerTime > 10) {
+                    if (success || handlerTime > handlerTime10) {
                         Camera.Parameters params = camera.getParameters();
                         params.setFocusMode(currentFocusMode);
                         camera.setParameters(params);

@@ -113,7 +113,7 @@ public class CameraExampleActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //全屏显示
-        if (Build.VERSION.SDK_INT >= 19) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             View decorView = getWindow().getDecorView();
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE

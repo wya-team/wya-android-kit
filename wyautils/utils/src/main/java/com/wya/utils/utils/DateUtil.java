@@ -637,10 +637,7 @@ public class DateUtil {
         Calendar c = Calendar.getInstance();
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
-
-        int day = c.getActualMinimum(Calendar.DAY_OF_MONTH);
-
-        c.set(Calendar.DAY_OF_MONTH, day);
+        c.set(Calendar.DAY_OF_MONTH, c.getActualMinimum(Calendar.DAY_OF_MONTH));
         c.set(Calendar.HOUR_OF_DAY, 0);
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
@@ -660,8 +657,7 @@ public class DateUtil {
         Calendar c = Calendar.getInstance();
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
-        int day = c.getActualMaximum(Calendar.DAY_OF_MONTH);
-        c.set(Calendar.DAY_OF_MONTH, day);
+        c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
         c.set(Calendar.HOUR_OF_DAY, 23);
         c.set(Calendar.MINUTE, 59);
         c.set(Calendar.SECOND, 59);

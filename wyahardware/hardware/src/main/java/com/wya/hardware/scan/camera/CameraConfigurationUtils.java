@@ -50,6 +50,8 @@ public final class CameraConfigurationUtils {
     private static final int MAX_FPS = 20;
     private static final int AREA_PER_1000 = 400;
 
+    private static float float_min = 0.0f;
+
     private CameraConfigurationUtils() {
     }
 
@@ -115,7 +117,7 @@ public final class CameraConfigurationUtils {
         int minExposure = parameters.getMinExposureCompensation();
         int maxExposure = parameters.getMaxExposureCompensation();
         float step = parameters.getExposureCompensationStep();
-        if ((minExposure != 0 || maxExposure != 0) && step > 0.0f) {
+        if ((minExposure != 0 || maxExposure != 0) && step > float_min) {
             // Set low when light is on
             float targetCompensation = lightOn ? MIN_EXPOSURE_COMPENSATION : MAX_EXPOSURE_COMPENSATION;
             int compensationSteps = Math.round(targetCompensation / step);
