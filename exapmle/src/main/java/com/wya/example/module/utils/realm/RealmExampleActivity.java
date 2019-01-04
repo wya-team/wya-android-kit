@@ -43,7 +43,7 @@ public class RealmExampleActivity extends BaseActivity {
 
     private RealmListAdapter realmListAdapter;
     private List<String> data = new ArrayList<>();
-    private int choose_position;
+    private int choosePosition;
 
     @Override
     protected int getLayoutID() {
@@ -68,7 +68,7 @@ public class RealmExampleActivity extends BaseActivity {
         realmListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                choose_position = position;
+                choosePosition = position;
                 tvName.setText(userList.get(position).getName());
                 tvId.setText(userList.get(position).getId() + "");
                 tvAge.setText(userList.get(position).getAge() + "");
@@ -89,17 +89,17 @@ public class RealmExampleActivity extends BaseActivity {
             case R.id.wya_button_add:
                 boolean isAdd = true;
                 User user = new User();
-                if (!tvId.getText().toString().equals("")) {
+                if (!"".equals(tvId.getText().toString())) {
                     user.setId(Integer.valueOf(tvId.getText().toString()).intValue());
                 } else {
                     isAdd = false;
                 }
-                if (!tvAge.getText().toString().equals("")) {
+                if (!"".equals(tvAge.getText().toString())) {
                     user.setAge(Integer.valueOf(tvAge.getText().toString()).intValue());
                 } else {
                     isAdd = false;
                 }
-                if (!tvName.getText().toString().equals("")) {
+                if (!"".equals(tvName.getText().toString())) {
                     user.setName(tvName.getText().toString());
                 } else {
                     isAdd = false;
@@ -116,17 +116,17 @@ public class RealmExampleActivity extends BaseActivity {
             case R.id.wya_button_update:
                 boolean isAdd2 = true;
                 User user2 = new User();
-                if (!tvId.getText().toString().equals("")) {
+                if (!"".equals(tvId.getText().toString())) {
                     user2.setId(Integer.valueOf(tvId.getText().toString()).intValue());
                 } else {
                     isAdd2 = false;
                 }
-                if (!tvAge.getText().toString().equals("")) {
+                if (!"".equals(tvAge.getText().toString())) {
                     user2.setAge(Integer.valueOf(tvAge.getText().toString()).intValue());
                 } else {
                     isAdd2 = false;
                 }
-                if (!tvName.getText().toString().equals("")) {
+                if (!"".equals(tvName.getText().toString())) {
                     user2.setName(tvName.getText().toString());
                 } else {
                     isAdd2 = false;
@@ -139,6 +139,8 @@ public class RealmExampleActivity extends BaseActivity {
                 break;
             case R.id.wya_button_query:
                 query();
+                break;
+            default:
                 break;
         }
     }
@@ -161,7 +163,7 @@ public class RealmExampleActivity extends BaseActivity {
             realm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
-                    userList.get(choose_position).deleteFromRealm();
+                    userList.get(choosePosition).deleteFromRealm();
                     query();
                 }
             });

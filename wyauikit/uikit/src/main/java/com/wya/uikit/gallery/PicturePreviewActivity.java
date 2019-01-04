@@ -33,18 +33,18 @@ import java.util.List;
 
 public class PicturePreviewActivity extends Activity implements View.OnClickListener {
 
-    private ImageView picture_left_back;
-    private TextView picture_title;
-    private LinearLayout ll_check;
+    private ImageView pictureLeftBack;
+    private TextView pictureTitle;
+    private LinearLayout llCheck;
     private CheckBox check;
-    private PreviewViewPager preview_pager;
-    private RelativeLayout select_bar_layout;
-    private TextView tv_img_num;
-    private TextView tv_ok;
-    private TextView crop_edit;
-    private LinearLayout id_ll_ok;
-    private RecyclerView select_recycler;
-    private LinearLayout select_list_layout;
+    private PreviewViewPager previewPager;
+    private RelativeLayout selectBarLayout;
+    private TextView tvImgNum;
+    private TextView tvOk;
+    private TextView cropEdit;
+    private LinearLayout idLlOk;
+    private RecyclerView selectRecycler;
+    private LinearLayout selectListLayout;
     private SelectedRecyclerAdapter mSelectedRecyclerAdapter;
 
     private int type;
@@ -57,7 +57,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
     private List<String> mCropUrlList = new ArrayList<>();
     private int requestForCode;
     private int max;
-    private String TAG = "PicturePreviewActivity";
+    private static final String TAG = "PicturePreviewActivity";
     public static final int CROP_IMAGE = 1002;
     private LocalMedia editLocalMedia;
 
@@ -72,18 +72,18 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
 
         switch (type) {
             case GalleryConfig.GALLERY:
-                ll_check.setVisibility(View.GONE);
-                select_bar_layout.setVisibility(View.GONE);
-                select_list_layout.setVisibility(View.GONE);
+                llCheck.setVisibility(View.GONE);
+                selectBarLayout.setVisibility(View.GONE);
+                selectListLayout.setVisibility(View.GONE);
                 break;
             case GalleryConfig.IMAGE_PICKER:
-                ll_check.setVisibility(View.VISIBLE);
-                select_bar_layout.setVisibility(View.VISIBLE);
+                llCheck.setVisibility(View.VISIBLE);
+                selectBarLayout.setVisibility(View.VISIBLE);
                 check.setChecked(mImageSelected.contains(images.get(position)));
                 if (mImageSelected.size() > 0) {
-                    select_list_layout.setVisibility(View.VISIBLE);
+                    selectListLayout.setVisibility(View.VISIBLE);
                 } else {
-                    select_list_layout.setVisibility(View.INVISIBLE);
+                    selectListLayout.setVisibility(View.INVISIBLE);
                 }
                 break;
             default:
@@ -140,33 +140,33 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
     }
 
     private void initView() {
-        picture_left_back = findViewById(R.id.picture_left_back);
-        picture_title = findViewById(R.id.picture_title);
-        ll_check = findViewById(R.id.ll_check);
+        pictureLeftBack = findViewById(R.id.picture_left_back);
+        pictureTitle = findViewById(R.id.picture_title);
+        llCheck = findViewById(R.id.ll_check);
         check = findViewById(R.id.check);
-        preview_pager = findViewById(R.id.preview_pager);
-        select_bar_layout = findViewById(R.id.select_bar_layout);
-        tv_img_num = findViewById(R.id.tv_img_num);
-        tv_ok = findViewById(R.id.tv_ok);
-        id_ll_ok = findViewById(R.id.id_ll_ok);
-        crop_edit = findViewById(R.id.crop_edit);
-        select_recycler = findViewById(R.id.select_recycler);
-        select_list_layout = findViewById(R.id.select_list_layout);
+        previewPager = findViewById(R.id.preview_pager);
+        selectBarLayout = findViewById(R.id.select_bar_layout);
+        tvImgNum = findViewById(R.id.tv_img_num);
+        tvOk = findViewById(R.id.tv_ok);
+        idLlOk = findViewById(R.id.id_ll_ok);
+        cropEdit = findViewById(R.id.crop_edit);
+        selectRecycler = findViewById(R.id.select_recycler);
+        selectListLayout = findViewById(R.id.select_list_layout);
 
         initCommitBtn();
         initRecyclerView();
 
         mAdapter = new PreviewPagerAdapter(mList, this);
-        preview_pager.setAdapter(mAdapter);
-        picture_title.setText(position + 1 + "/" + mList.size());
-        preview_pager.setCurrentItem(position);
+        previewPager.setAdapter(mAdapter);
+        pictureTitle.setText(position + 1 + "/" + mList.size());
+        previewPager.setCurrentItem(position);
 
         check.setOnClickListener(this);
-        picture_left_back.setOnClickListener(this);
-        id_ll_ok.setOnClickListener(this);
-        crop_edit.setOnClickListener(this);
+        pictureLeftBack.setOnClickListener(this);
+        idLlOk.setOnClickListener(this);
+        cropEdit.setOnClickListener(this);
 
-        preview_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        previewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int
                     positionOffsetPixels) {
@@ -176,12 +176,12 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             @Override
             public void onPageSelected(int positions) {
                 position = positions;
-                picture_title.setText(positions + 1 + "/" + mList.size());
+                pictureTitle.setText(positions + 1 + "/" + mList.size());
                 LocalMedia localMedia = images.get(positions);
                 String[] split = localMedia.getPath().split("[.]");
                 String mediaType = split[split.length - 1];
                 Log.i(TAG, "onPageSelected: " + isVideo(mediaType));
-                crop_edit.setVisibility(isVideo(mediaType) ? View.GONE : View.VISIBLE);
+                cropEdit.setVisibility(isVideo(mediaType) ? View.GONE : View.VISIBLE);
                 //update imageSelected
                 if (mImageSelected.size() > 0) {
                     check.setChecked(mImageSelected.contains(images.get(positions)));
@@ -199,15 +199,15 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
 
     private void initRecyclerView() {
         mSelectedRecyclerAdapter = new SelectedRecyclerAdapter(mImageSelected, this);
-        select_recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager
+        selectRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager
                 .HORIZONTAL, false));
-        select_recycler.setAdapter(mSelectedRecyclerAdapter);
+        selectRecycler.setAdapter(mSelectedRecyclerAdapter);
         mSelectedRecyclerAdapter.updateSelected(position, selectedPosition);
         mSelectedRecyclerAdapter.setOnItemClickListener(new SelectedRecyclerAdapter
                 .OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                preview_pager.setCurrentItem(selectedPosition.get(position));
+                previewPager.setCurrentItem(selectedPosition.get(position));
             }
         });
     }
@@ -216,14 +216,14 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
         if (mImageSelected != null) {
 
             if (mImageSelected.size() > 0) {
-                tv_img_num.setText("(" + mImageSelected.size() + ")");
-                tv_img_num.setVisibility(View.VISIBLE);
-                tv_ok.setTextColor(getResources().getColor(R.color.color_orange));
-                id_ll_ok.setEnabled(true);
+                tvImgNum.setText("(" + mImageSelected.size() + ")");
+                tvImgNum.setVisibility(View.VISIBLE);
+                tvOk.setTextColor(getResources().getColor(R.color.color_orange));
+                idLlOk.setEnabled(true);
             } else {
-                tv_img_num.setVisibility(View.GONE);
-                tv_ok.setTextColor(getResources().getColor(R.color.color_666));
-                id_ll_ok.setEnabled(false);
+                tvImgNum.setVisibility(View.GONE);
+                tvOk.setTextColor(getResources().getColor(R.color.color_666));
+                idLlOk.setEnabled(false);
             }
         }
     }
@@ -250,10 +250,10 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             }
             if (mImageSelected.size() > 0) {
                 mSelectedRecyclerAdapter.updateSelected(position, selectedPosition);
-                select_recycler.smoothScrollToPosition(selectedPosition.size() - 1);
-                select_list_layout.setVisibility(View.VISIBLE);
+                selectRecycler.smoothScrollToPosition(selectedPosition.size() - 1);
+                selectListLayout.setVisibility(View.VISIBLE);
             } else {
-                select_list_layout.setVisibility(View.INVISIBLE);
+                selectListLayout.setVisibility(View.INVISIBLE);
             }
             initCommitBtn();
         }
@@ -284,7 +284,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                 }
             }
 
-            int currentItem = preview_pager.getCurrentItem();
+            int currentItem = previewPager.getCurrentItem();
             editLocalMedia = images.get(currentItem);
             File file;
             String cropPath = editLocalMedia.getCropPath();
@@ -304,7 +304,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             }
             Crop.create(this)
                     .setImagePath(uri)
-                    .CropQuality(80)
+                    .cropQuality(80)
                     .saveCropImagePath(filePath)
                     .forResult(CROP_IMAGE);
         }
@@ -336,7 +336,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                     mImageSelected.add(editLocalMedia);
                     selectedPosition.add(position);
                     //selected image 0->1
-                    select_list_layout.setVisibility(View.VISIBLE);
+                    selectListLayout.setVisibility(View.VISIBLE);
                 }
 
                 mList.set(position, path);
@@ -398,11 +398,11 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
         }
     }
 
-    private static final String media =
+    private static final String MEDIA =
             "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
 
     private boolean isVideo(String mediaType) {
-        return media.contains(mediaType.toUpperCase());
+        return MEDIA.contains(mediaType.toUpperCase());
     }
 
 }

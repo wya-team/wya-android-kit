@@ -123,7 +123,7 @@ public class WheelView extends View {
     private int drawCenterContentStart = 0;//中间选中文字开始绘制位置
     private int drawOutContentStart = 0;//非中间文字开始绘制位置
     private static final float SCALE_CONTENT = 0.8F;//非中间文字则用此控制高度，压扁形成3d错觉
-    private float CENTER_CONTENT_OFFSET;//偏移量
+    private float centerContentOffset;//偏移量
 
     private final float DEFAULT_TEXT_TARGET_SKEWX = 0.5f;
 
@@ -140,15 +140,15 @@ public class WheelView extends View {
         float density = dm.density; // 屏幕密度比（0.75/1.0/1.5/2.0/3.0）
 
         if (density < 1) {//根据密度不同进行适配
-            CENTER_CONTENT_OFFSET = 2.4F;
+            centerContentOffset = 2.4F;
         } else if (1 <= density && density < 2) {
-            CENTER_CONTENT_OFFSET = 3.6F;
+            centerContentOffset = 3.6F;
         } else if (1 <= density && density < 2) {
-            CENTER_CONTENT_OFFSET = 4.5F;
+            centerContentOffset = 4.5F;
         } else if (2 <= density && density < 3) {
-            CENTER_CONTENT_OFFSET = 6.0F;
+            centerContentOffset = 6.0F;
         } else if (density >= 3) {
-            CENTER_CONTENT_OFFSET = density * 2.5F;
+            centerContentOffset = density * 2.5F;
         }
 
         if (attrs != null) {
@@ -236,7 +236,7 @@ public class WheelView extends View {
         //计算两条横线 和 选中项画笔的基线Y位置
         firstLineY = (measuredHeight - itemHeight) / 2.0F;
         secondLineY = (measuredHeight + itemHeight) / 2.0F;
-        centerY = secondLineY - (itemHeight - maxTextHeight) / 2.0f - CENTER_CONTENT_OFFSET;
+        centerY = secondLineY - (itemHeight - maxTextHeight) / 2.0f - centerContentOffset;
 
         //初始化显示的item的position
         if (initPosition == -1) {
@@ -328,8 +328,8 @@ public class WheelView extends View {
         invalidate();
     }
 
-    public final void setOnItemSelectedListener(OnItemSelectedListener OnItemSelectedListener) {
-        this.onItemSelectedListener = OnItemSelectedListener;
+    public final void setOnItemSelectedListener(OnItemSelectedListener onItemSelectedListener) {
+        this.onItemSelectedListener = onItemSelectedListener;
     }
 
     public final void setAdapter(WheelAdapter adapter) {
@@ -450,7 +450,7 @@ public class WheelView extends View {
         if (!TextUtils.isEmpty(label) && isCenterLabel) {
             //绘制文字，靠右并留出空隙
             int drawRightContentStart = measuredWidth - getTextWidth(paintCenterText, label);
-            canvas.drawText(label, drawRightContentStart - CENTER_CONTENT_OFFSET, centerY, paintCenterText);
+            canvas.drawText(label, drawRightContentStart - centerContentOffset, centerY, paintCenterText);
         }
 
         counter = 0;
@@ -497,14 +497,14 @@ public class WheelView extends View {
                     canvas.save();
                     canvas.clipRect(0, firstLineY - translateY, measuredWidth, (int) (itemHeight));
                     canvas.scale(1.0F, (float) Math.sin(radian) * 1.0F);
-                    canvas.drawText(contentText, drawCenterContentStart, maxTextHeight - CENTER_CONTENT_OFFSET, paintCenterText);
+                    canvas.drawText(contentText, drawCenterContentStart, maxTextHeight - centerContentOffset, paintCenterText);
                     canvas.restore();
                 } else if (translateY <= secondLineY && maxTextHeight + translateY >= secondLineY) {
                     // 条目经过第二条线
                     canvas.save();
                     canvas.clipRect(0, 0, measuredWidth, secondLineY - translateY);
                     canvas.scale(1.0F, (float) Math.sin(radian) * 1.0F);
-                    canvas.drawText(contentText, drawCenterContentStart, maxTextHeight - CENTER_CONTENT_OFFSET, paintCenterText);
+                    canvas.drawText(contentText, drawCenterContentStart, maxTextHeight - centerContentOffset, paintCenterText);
                     canvas.restore();
                     canvas.save();
                     canvas.clipRect(0, secondLineY - translateY, measuredWidth, (int) (itemHeight));
@@ -515,8 +515,8 @@ public class WheelView extends View {
                     // 中间条目
                     // canvas.clipRect(0, 0, measuredWidth, maxTextHeight);
                     //让文字居中
-                    float Y = maxTextHeight - CENTER_CONTENT_OFFSET;//因为圆弧角换算的向下取值，导致角度稍微有点偏差，加上画笔的基线会偏上，因此需要偏移量修正一下
-                    canvas.drawText(contentText, drawCenterContentStart, Y, paintCenterText);
+                    float y = maxTextHeight - centerContentOffset;//因为圆弧角换算的向下取值，导致角度稍微有点偏差，加上画笔的基线会偏上，因此需要偏移量修正一下
+                    canvas.drawText(contentText, drawCenterContentStart, y, paintCenterText);
 
                     //设置选中项
                     selectedItem = preCurrentIndex - (itemsVisible / 2 - counter);
@@ -598,7 +598,7 @@ public class WheelView extends View {
         paintCenterText.getTextBounds(content, 0, content.length(), rect);
         switch (mGravity) {
             case Gravity.CENTER://显示内容居中
-                if (isOptions || label == null || label.equals("") || !isCenterLabel) {
+                if (isOptions || label == null || "".equals(label) || !isCenterLabel) {
                     drawCenterContentStart = (int) ((measuredWidth - rect.width()) * 0.5);
                 } else {//只显示中间label时，时间选择器内容偏左一点，留出空间绘制单位标签
                     drawCenterContentStart = (int) ((measuredWidth - rect.width()) * 0.25);
@@ -608,7 +608,9 @@ public class WheelView extends View {
                 drawCenterContentStart = 0;
                 break;
             case Gravity.RIGHT://添加偏移量
-                drawCenterContentStart = measuredWidth - rect.width() - (int) CENTER_CONTENT_OFFSET;
+                drawCenterContentStart = measuredWidth - rect.width() - (int) centerContentOffset;
+                break;
+            default:
                 break;
         }
     }
@@ -618,7 +620,7 @@ public class WheelView extends View {
         paintOuterText.getTextBounds(content, 0, content.length(), rect);
         switch (mGravity) {
             case Gravity.CENTER:
-                if (isOptions || label == null || label.equals("") || !isCenterLabel) {
+                if (isOptions || label == null || "".equals(label) || !isCenterLabel) {
                     drawOutContentStart = (int) ((measuredWidth - rect.width()) * 0.5);
                 } else {//只显示中间label时，时间选择器内容偏左一点，留出空间绘制单位标签
                     drawOutContentStart = (int) ((measuredWidth - rect.width()) * 0.25);
@@ -628,7 +630,9 @@ public class WheelView extends View {
                 drawOutContentStart = 0;
                 break;
             case Gravity.RIGHT:
-                drawOutContentStart = measuredWidth - rect.width() - (int) CENTER_CONTENT_OFFSET;
+                drawOutContentStart = measuredWidth - rect.width() - (int) centerContentOffset;
+                break;
+            default:
                 break;
         }
     }
@@ -681,19 +685,19 @@ public class WheelView extends View {
                     /**
                      *@describe <关于弧长的计算>
                      *
-                     * 弧长公式： L = α*R
+                     * 弧长公式： l = α*R
                      * 反余弦公式：arccos(cosα) = α
                      * 由于之前是有顺时针偏移90度，
                      * 所以实际弧度范围α2的值 ：α2 = π/2-α    （α=[0,π] α2 = [-π/2,π/2]）
                      * 根据正弦余弦转换公式 cosα = sin(π/2-α)
                      * 代入，得： cosα = sin(π/2-α) = sinα2 = (R - y) / R
-                     * 所以弧长 L = arccos(cosα)*R = arccos((R - y) / R)*R
+                     * 所以弧长 l = arccos(cosα)*R = arccos((R - y) / R)*R
                      */
 
                     float y = event.getY();
-                    double L = Math.acos((radius - y) / radius) * radius;
+                    double l = Math.acos((radius - y) / radius) * radius;
                     //item0 有一半是在不可见区域，所以需要加上 itemHeight / 2
-                    int circlePosition = (int) ((L + itemHeight / 2) / itemHeight);
+                    int circlePosition = (int) ((l + itemHeight / 2) / itemHeight);
                     float extraOffset = (totalScrollY % itemHeight + itemHeight) % itemHeight;
                     //已滑动的弧长值
                     mOffset = (int) ((circlePosition - itemsVisible / 2) * itemHeight - extraOffset);

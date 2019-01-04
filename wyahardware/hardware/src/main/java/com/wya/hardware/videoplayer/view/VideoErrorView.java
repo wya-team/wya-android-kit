@@ -34,8 +34,8 @@ public class VideoErrorView extends FrameLayout {
         return curStatus;
     }
 
-    private TextView video_error_info;
-    private Button video_error_retry;
+    private TextView videoErrorInfo;
+    private Button videoErrorRetry;
 
     public VideoErrorView(Context context) {
         super(context);
@@ -55,10 +55,10 @@ public class VideoErrorView extends FrameLayout {
     private void init() {
         LayoutInflater.from(getContext()).inflate(R.layout.video_controller_error, this);
 
-        video_error_info = (TextView) findViewById(R.id.video_error_info);
-        video_error_retry = (Button) findViewById(R.id.video_error_retry);
+        videoErrorInfo = (TextView) findViewById(R.id.video_error_info);
+        videoErrorRetry = (Button) findViewById(R.id.video_error_retry);
 
-        video_error_retry.setOnClickListener(new OnClickListener() {
+        videoErrorRetry.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onVideoControlListener != null) {
@@ -82,23 +82,25 @@ public class VideoErrorView extends FrameLayout {
         switch (status) {
             case STATUS_VIDEO_DETAIL_ERROR:
                 Log.i("DDD", "showVideoDetailError");
-                video_error_info.setText("视频加载失败");
-                video_error_retry.setText("点此重试");
+                videoErrorInfo.setText("视频加载失败");
+                videoErrorRetry.setText("点此重试");
                 break;
             case STATUS_VIDEO_SRC_ERROR:
                 Log.i("DDD", "showVideoSrcError");
-                video_error_info.setText("视频加载失败");
-                video_error_retry.setText("点此重试");
+                videoErrorInfo.setText("视频加载失败");
+                videoErrorRetry.setText("点此重试");
                 break;
             case STATUS_NO_NETWORK_ERROR:
                 Log.i("DDD", "showNoNetWorkError");
-                video_error_info.setText("网络连接异常，请检查网络设置后重试");
-                video_error_retry.setText("重试");
+                videoErrorInfo.setText("网络连接异常，请检查网络设置后重试");
+                videoErrorRetry.setText("重试");
                 break;
             case STATUS_UN_WIFI_ERROR:
                 Log.i("DDD", "showUnWifiError");
-                video_error_info.setText("温馨提示：您正在使用非WiFi网络，播放将产生流量费用");
-                video_error_retry.setText("继续播放");
+                videoErrorInfo.setText("温馨提示：您正在使用非WiFi网络，播放将产生流量费用");
+                videoErrorRetry.setText("继续播放");
+                break;
+            default:
                 break;
         }
     }

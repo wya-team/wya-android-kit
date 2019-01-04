@@ -63,9 +63,9 @@ public class CameraInterface implements Camera.PreviewCallback {
     private Camera.Parameters mParams;
     private boolean isPreviewing = false;
 
-    private int SELECTED_CAMERA = -1;
-    private int CAMERA_POST_POSITION = -1;
-    private int CAMERA_FRONT_POSITION = -1;
+    private int selectedCamera = -1;
+    private int cameraPostPosition = -1;
+    private int cameraFrontPosition = -1;
 
     private SurfaceHolder mHolder = null;
     private float screenProp = -1.0f;
@@ -82,13 +82,13 @@ public class CameraInterface implements Camera.PreviewCallback {
     private ImageView mSwitchView;
     private ImageView mFlashLamp;
 
-    private int preview_width;
-    private int preview_height;
+    private int previewWidth;
+    private int previewHeight;
 
     private int angle = 0;
     private int cameraAngle = 90;
     private int rotation = 0;
-    private byte[] firstFrame_data;
+    private byte[] firstframeData;
 
     public static final int TYPE_RECORDER = 0x090;
     public static final int TYPE_CAPTURE = 0x091;
@@ -118,8 +118,9 @@ public class CameraInterface implements Camera.PreviewCallback {
         this.mSwitchView = mSwitchView;
         this.mFlashLamp = mFlashLamp;
         if (mSwitchView != null) {
-            cameraAngle = CameraParamUtil.getInstance().getCameraDisplayOrientation(mSwitchView.getContext(),
-                    SELECTED_CAMERA);
+            cameraAngle = CameraParamUtil.getInstance().getCameraDisplayOrientation(mSwitchView
+                            .getContext(),
+                    selectedCamera);
         }
     }
 
@@ -143,56 +144,68 @@ public class CameraInterface implements Camera.PreviewCallback {
             return;
         }
         if (rotation != angle) {
-            int start_rotaion = 0;
-            int end_rotation = 0;
+            int startRotaion = 0;
+            int endRotation = 0;
             switch (rotation) {
                 case 0:
-                    start_rotaion = 0;
+                    startRotaion = 0;
                     switch (angle) {
                         case 90:
-                            end_rotation = -90;
+                            endRotation = -90;
                             break;
                         case 270:
-                            end_rotation = 90;
+                            endRotation = 90;
+                            break;
+                        default:
                             break;
                     }
                     break;
                 case 90:
-                    start_rotaion = -90;
+                    startRotaion = -90;
                     switch (angle) {
                         case 0:
-                            end_rotation = 0;
+                            endRotation = 0;
                             break;
                         case 180:
-                            end_rotation = -180;
+                            endRotation = -180;
+                            break;
+                        default:
                             break;
                     }
                     break;
                 case 180:
-                    start_rotaion = 180;
+                    startRotaion = 180;
                     switch (angle) {
                         case 90:
-                            end_rotation = 270;
+                            endRotation = 270;
                             break;
                         case 270:
-                            end_rotation = 90;
+                            endRotation = 90;
+                            break;
+                        default:
                             break;
                     }
                     break;
                 case 270:
-                    start_rotaion = 90;
+                    startRotaion = 90;
                     switch (angle) {
                         case 0:
-                            end_rotation = 0;
+                            endRotation = 0;
                             break;
                         case 180:
-                            end_rotation = 180;
+                            endRotation = 180;
+                            break;
+                        default:
                             break;
                     }
                     break;
+                default:
+                    break;
             }
-            ObjectAnimator animC = ObjectAnimator.ofFloat(mSwitchView, "rotation", start_rotaion, end_rotation);
-            ObjectAnimator animF = ObjectAnimator.ofFloat(mFlashLamp, "rotation", start_rotaion, end_rotation);
+            ObjectAnimator animC = ObjectAnimator.ofFloat(mSwitchView, "rotation", startRotaion,
+                    endRotation);
+            ObjectAnimator animF = ObjectAnimator.ofFloat(mFlashLamp, "rotation", startRotaion,
+                    endRotation);
             AnimatorSet set = new AnimatorSet();
             set.playTogether(animC, animF);
             set.setDuration(500);
@@ -230,7 +243,8 @@ public class CameraInterface implements Camera.PreviewCallback {
                 if (zoom >= 0) {
                     //每移动50个像素缩放一个级别
                     int scaleRate = (int) (zoom / 40);
-                    if (scaleRate <= mParams.getMaxZoom() && scaleRate >= nowScaleRate && recordScleRate != scaleRate) {
+                    if (scaleRate <= mParams.getMaxZoom() && scaleRate >= nowScaleRate &&
+                            recordScleRate != scaleRate) {
                         mParams.setZoom(scaleRate);
                         mCamera.setParameters(mParams);
                         recordScleRate = scaleRate;
@@ -254,6 +268,8 @@ public class CameraInterface implements Camera.PreviewCallback {
                     mCamera.setParameters(mParams);
                 }
                 break;
+            default:
+                break;
         }
 
     }
@@ -265,7 +281,7 @@ public class CameraInterface implements Camera.PreviewCallback {
 
     @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
-        firstFrame_data = data;
+        firstframeData = data;
     }
 
     public void setFlashMode(String flashMode) {
@@ -284,7 +300,7 @@ public class CameraInterface implements Camera.PreviewCallback {
 
     private CameraInterface() {
         findAvailableCameras();
-        SELECTED_CAMERA = CAMERA_POST_POSITION;
+        selectedCamera = cameraPostPosition;
         saveVideoPath = "";
     }
 
@@ -294,13 +310,13 @@ public class CameraInterface implements Camera.PreviewCallback {
      */
     void doOpenCamera(CameraOpenOverCallback callback) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            if (!CheckPermission.isCameraUseable(SELECTED_CAMERA) && this.errorListener != null) {
+            if (!CheckPermission.isCameraUseable(selectedCamera) && this.errorListener != null) {
                 this.errorListener.onError();
                 return;
             }
         }
         if (mCamera == null) {
-            openCamera(SELECTED_CAMERA);
+            openCamera(selectedCamera);
         }
         callback.cameraHasOpened();
     }
@@ -333,13 +349,13 @@ public class CameraInterface implements Camera.PreviewCallback {
     }
 
     public synchronized void switchCamera(SurfaceHolder holder, float screenProp) {
-        if (SELECTED_CAMERA == CAMERA_POST_POSITION) {
-            SELECTED_CAMERA = CAMERA_FRONT_POSITION;
+        if (selectedCamera == cameraPostPosition) {
+            selectedCamera = cameraFrontPosition;
         } else {
-            SELECTED_CAMERA = CAMERA_POST_POSITION;
+            selectedCamera = cameraPostPosition;
         }
         doDestroyCamera();
-        openCamera(SELECTED_CAMERA);
+        openCamera(selectedCamera);
 //        mCamera = Camera.open();
         if (Build.VERSION.SDK_INT > 17 && this.mCamera != null) {
             try {
@@ -372,8 +388,8 @@ public class CameraInterface implements Camera.PreviewCallback {
 
                 mParams.setPreviewSize(previewSize.width, previewSize.height);
 
-                preview_width = previewSize.width;
-                preview_height = previewSize.height;
+                previewWidth = previewSize.width;
+                previewHeight = previewSize.height;
 
                 mParams.setPictureSize(pictureSize.width, pictureSize.height);
 
@@ -382,7 +398,8 @@ public class CameraInterface implements Camera.PreviewCallback {
                         Camera.Parameters.FOCUS_MODE_AUTO)) {
                     mParams.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
                 }
-                if (CameraParamUtil.getInstance().isSupportedPictureFormats(mParams.getSupportedPictureFormats(),
+                if (CameraParamUtil.getInstance().isSupportedPictureFormats(mParams
+                                .getSupportedPictureFormats(),
                         ImageFormat.JPEG)) {
                     mParams.setPictureFormat(ImageFormat.JPEG);
                     mParams.setJpegQuality(100);
@@ -462,6 +479,8 @@ public class CameraInterface implements Camera.PreviewCallback {
             case 270:
                 nowAngle = Math.abs(cameraAngle - angle);
                 break;
+            default:
+                break;
         }
 //
         Log.i(TAG, angle + " = " + cameraAngle + " = " + nowAngle);
@@ -470,14 +489,15 @@ public class CameraInterface implements Camera.PreviewCallback {
             public void onPictureTaken(byte[] data, Camera camera) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                 Matrix matrix = new Matrix();
-                if (SELECTED_CAMERA == CAMERA_POST_POSITION) {
+                if (selectedCamera == cameraPostPosition) {
                     matrix.setRotate(nowAngle);
-                } else if (SELECTED_CAMERA == CAMERA_FRONT_POSITION) {
+                } else if (selectedCamera == cameraFrontPosition) {
                     matrix.setRotate(360 - nowAngle);
                     matrix.postScale(-1, 1);
                 }
 
-                bitmap = createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+                bitmap = createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(),
+                        matrix, true);
                 if (callback != null) {
                     if (nowAngle == 90 || nowAngle == 270) {
                         callback.captureResult(bitmap, true);
@@ -497,25 +517,27 @@ public class CameraInterface implements Camera.PreviewCallback {
         Camera.Parameters parameters = mCamera.getParameters();
         int width = parameters.getPreviewSize().width;
         int height = parameters.getPreviewSize().height;
-        YuvImage yuv = new YuvImage(firstFrame_data, parameters.getPreviewFormat(), width, height, null);
+        YuvImage yuv = new YuvImage(firstframeData, parameters.getPreviewFormat(), width,
+                height, null);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         yuv.compressToJpeg(new Rect(0, 0, width, height), 50, out);
         byte[] bytes = out.toByteArray();
         videoFirstFrame = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         Matrix matrix = new Matrix();
-        if (SELECTED_CAMERA == CAMERA_POST_POSITION) {
+        if (selectedCamera == cameraPostPosition) {
             matrix.setRotate(nowAngle);
-        } else if (SELECTED_CAMERA == CAMERA_FRONT_POSITION) {
+        } else if (selectedCamera == cameraFrontPosition) {
             matrix.setRotate(270);
         }
-        videoFirstFrame = createBitmap(videoFirstFrame, 0, 0, videoFirstFrame.getWidth(), videoFirstFrame
+        videoFirstFrame = createBitmap(videoFirstFrame, 0, 0, videoFirstFrame.getWidth(),
+                videoFirstFrame
                 .getHeight(), matrix, true);
 
         if (isRecorder) {
             return;
         }
         if (mCamera == null) {
-            openCamera(SELECTED_CAMERA);
+            openCamera(selectedCamera);
         }
         if (mediaRecorder == null) {
             mediaRecorder = new MediaRecorder();
@@ -542,26 +564,28 @@ public class CameraInterface implements Camera.PreviewCallback {
 
         Camera.Size videoSize;
         if (mParams.getSupportedVideoSizes() == null) {
-            videoSize = CameraParamUtil.getInstance().getPreviewSize(mParams.getSupportedPreviewSizes(), 600,
+            videoSize = CameraParamUtil.getInstance().getPreviewSize(mParams
+                            .getSupportedPreviewSizes(), 600,
                     screenProp);
         } else {
-            videoSize = CameraParamUtil.getInstance().getPreviewSize(mParams.getSupportedVideoSizes(), 600,
+            videoSize = CameraParamUtil.getInstance().getPreviewSize(mParams
+                            .getSupportedVideoSizes(), 600,
                     screenProp);
         }
         Log.i(TAG, "setVideoSize    width = " + videoSize.width + "height = " + videoSize.height);
         if (videoSize.width == videoSize.height) {
-            mediaRecorder.setVideoSize(preview_width, preview_height);
+            mediaRecorder.setVideoSize(previewWidth, previewHeight);
         } else {
             mediaRecorder.setVideoSize(videoSize.width, videoSize.height);
         }
-//        if (SELECTED_CAMERA == CAMERA_FRONT_POSITION) {
+//        if (selectedCamera == cameraFrontPosition) {
 //            mediaRecorder.setOrientationHint(270);
 //        } else {
 //            mediaRecorder.setOrientationHint(nowAngle);
 ////            mediaRecorder.setOrientationHint(90);
 //        }
 
-        if (SELECTED_CAMERA == CAMERA_FRONT_POSITION) {
+        if (selectedCamera == cameraFrontPosition) {
             //手机预览倒立的处理
             if (cameraAngle == 270) {
                 //横屏
@@ -594,7 +618,7 @@ public class CameraInterface implements Camera.PreviewCallback {
         mediaRecorder.setPreviewDisplay(surface);
 
         videoFileName = "video_" + System.currentTimeMillis() + ".mp4";
-        if (saveVideoPath.equals("")) {
+        if ("".equals(saveVideoPath)) {
             saveVideoPath = Environment.getExternalStorageDirectory().getPath();
         }
         videoFileAbsPath = saveVideoPath + File.separator + videoFileName;
@@ -676,10 +700,12 @@ public class CameraInterface implements Camera.PreviewCallback {
             Camera.getCameraInfo(i, info);
             switch (info.facing) {
                 case Camera.CameraInfo.CAMERA_FACING_FRONT:
-                    CAMERA_FRONT_POSITION = info.facing;
+                    cameraFrontPosition = info.facing;
                     break;
                 case Camera.CameraInfo.CAMERA_FACING_BACK:
-                    CAMERA_POST_POSITION = info.facing;
+                    cameraPostPosition = info.facing;
+                    break;
+                default:
                     break;
             }
         }
@@ -687,7 +713,8 @@ public class CameraInterface implements Camera.PreviewCallback {
 
     int handlerTime = 0;
 
-    public void handleFocus(final Context context, final float x, final float y, final FocusCallback callback) {
+    public void handleFocus(final Context context, final float x, final float y, final
+    FocusCallback callback) {
         if (mCamera == null) {
             return;
         }
@@ -736,7 +763,8 @@ public class CameraInterface implements Camera.PreviewCallback {
         int left = clamp(centerX - areaSize / 2, -1000, 1000);
         int top = clamp(centerY - areaSize / 2, -1000, 1000);
         RectF rectF = new RectF(left, top, left + areaSize, top + areaSize);
-        return new Rect(Math.round(rectF.left), Math.round(rectF.top), Math.round(rectF.right), Math.round(rectF
+        return new Rect(Math.round(rectF.left), Math.round(rectF.top), Math.round(rectF.right),
+                Math.round(rectF
                 .bottom));
     }
 
@@ -804,7 +832,8 @@ public class CameraInterface implements Camera.PreviewCallback {
         if (sm == null) {
             sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         }
-        sm.registerListener(sensorEventListener, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager
+        sm.registerListener(sensorEventListener, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager
                 .SENSOR_DELAY_NORMAL);
     }
 

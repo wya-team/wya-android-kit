@@ -166,10 +166,12 @@ public class StartCameraExampleActivity extends BaseActivity {
                 state = WYACameraView.BUTTON_STATE_BOTH;
                 break;
             case R.id.btn:
-                if (etDuration.getText().toString().equals("")) {
+                if ("".equals(etDuration.getText().toString())) {
                     etDuration.setText("10");
                 }
                 getPermissions();
+                break;
+            default:
                 break;
         }
     }

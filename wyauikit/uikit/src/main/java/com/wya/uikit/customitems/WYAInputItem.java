@@ -30,26 +30,26 @@ public class WYAInputItem extends LinearLayout {
      * 背景色
      */
     private int backColor = 0;
-    private LinearLayout input_item_bg;
+    private LinearLayout inputItemBg;
 
     /**
      * 左边图片
      */
     private Drawable leftDrawable = null;
-    private ImageView img_input_item_left;
+    private ImageView imgInputItemLeft;
 
     /**
      * 右边图片
      */
     private Drawable rightDrawable = null;
-    private ImageView img_input_item_right;
+    private ImageView imgInputItemRight;
 
     /**
      * 左边标题颜色/内容
      */
     private ColorStateList leftTextColor = null;
     private String leftText = null;
-    private TextView tv_input_item_left;
+    private TextView tvInputItemLeft;
 
     /**
      * 编辑框内容
@@ -57,7 +57,7 @@ public class WYAInputItem extends LinearLayout {
     private String contentText = null;
     private String contentHint = null;
     private ColorStateList contentTextColor = null;
-    private EditText et_input_item_content;
+    private EditText etInputItemContent;
     private boolean canEdit = false;
     private int contentInputType = 0;
 
@@ -67,13 +67,13 @@ public class WYAInputItem extends LinearLayout {
     private String rightText = null;
     private String rightHint = null;
     private ColorStateList rightTextColor = null;
-    private EditText et_input_item_right;
+    private EditText etInputItemRight;
     private boolean rightCanEdit = false;
 
     /**
      * 底部线条分隔先颜色
      */
-    private View line_view;
+    private View lineView;
     private String lineViewColor = null;
 
     public WYAInputItem(Context context) {
@@ -187,10 +187,10 @@ public class WYAInputItem extends LinearLayout {
     private void setLeftBackgroundDrawable(Drawable leftDrawable) {
         this.leftDrawable = leftDrawable;
         if (leftDrawable != null) {
-            img_input_item_left.setVisibility(View.VISIBLE);
-            img_input_item_left.setBackgroundDrawable(leftDrawable);
+            imgInputItemLeft.setVisibility(View.VISIBLE);
+            imgInputItemLeft.setBackgroundDrawable(leftDrawable);
         } else {
-            img_input_item_left.setVisibility(View.GONE);
+            imgInputItemLeft.setVisibility(View.GONE);
         }
     }
 
@@ -202,10 +202,10 @@ public class WYAInputItem extends LinearLayout {
     private void setRightBackgroundDrawable(Drawable rightDrawable) {
         this.rightDrawable = rightDrawable;
         if (rightDrawable != null) {
-            img_input_item_right.setVisibility(View.VISIBLE);
-            img_input_item_right.setBackgroundDrawable(rightDrawable);
+            imgInputItemRight.setVisibility(View.VISIBLE);
+            imgInputItemRight.setBackgroundDrawable(rightDrawable);
         } else {
-            img_input_item_right.setVisibility(View.GONE);
+            imgInputItemRight.setVisibility(View.GONE);
         }
     }
 
@@ -216,11 +216,11 @@ public class WYAInputItem extends LinearLayout {
      */
     private void setLeftText(String leftText) {
         this.leftText = leftText;
-        if (leftText != null && !leftText.equals("")) {
-            tv_input_item_left.setText(leftText);
-            tv_input_item_left.setVisibility(VISIBLE);
+        if (leftText != null && !"".equals(leftText)) {
+            tvInputItemLeft.setText(leftText);
+            tvInputItemLeft.setVisibility(VISIBLE);
         } else {
-            tv_input_item_left.setVisibility(GONE);
+            tvInputItemLeft.setVisibility(GONE);
         }
     }
 
@@ -231,7 +231,7 @@ public class WYAInputItem extends LinearLayout {
      */
     private void setLeftTextColor(ColorStateList leftTextColor) {
         this.leftTextColor = leftTextColor;
-        tv_input_item_left.setTextColor(leftTextColor);
+        tvInputItemLeft.setTextColor(leftTextColor);
     }
 
 
@@ -243,10 +243,10 @@ public class WYAInputItem extends LinearLayout {
     private void setContentText(String contentText) {
         this.contentText = contentText;
         if (contentText != null) {
-            et_input_item_content.setText(contentText);
-            et_input_item_content.setVisibility(VISIBLE);
+            etInputItemContent.setText(contentText);
+            etInputItemContent.setVisibility(VISIBLE);
         } else {
-            et_input_item_content.setVisibility(GONE);
+            etInputItemContent.setVisibility(GONE);
         }
     }
 
@@ -258,10 +258,10 @@ public class WYAInputItem extends LinearLayout {
     private void setContentHint(String contentHint) {
         this.contentHint = contentHint;
         if (contentHint != null) {
-            et_input_item_content.setHint(contentHint);
-            et_input_item_content.setVisibility(VISIBLE);
+            etInputItemContent.setHint(contentHint);
+            etInputItemContent.setVisibility(VISIBLE);
         } else {
-            et_input_item_content.setVisibility(GONE);
+            etInputItemContent.setVisibility(GONE);
         }
     }
 
@@ -273,9 +273,9 @@ public class WYAInputItem extends LinearLayout {
      */
     private void setContentEdit(boolean canEdit) {
         this.canEdit = canEdit;
-        et_input_item_content.setFocusable(canEdit);
-        et_input_item_content.setEnabled(canEdit);
-        et_input_item_content.setFocusableInTouchMode(canEdit);
+        etInputItemContent.setFocusable(canEdit);
+        etInputItemContent.setEnabled(canEdit);
+        etInputItemContent.setFocusableInTouchMode(canEdit);
     }
 
 
@@ -286,7 +286,7 @@ public class WYAInputItem extends LinearLayout {
      */
     private void setContentTextColor(ColorStateList contentTextColor) {
         this.contentTextColor = contentTextColor;
-        et_input_item_content.setTextColor(contentTextColor);
+        etInputItemContent.setTextColor(contentTextColor);
     }
 
     /**
@@ -298,14 +298,14 @@ public class WYAInputItem extends LinearLayout {
         this.contentInputType = contentInputType;
         if (contentInputType != 0) {
             if (contentInputType == 1) {//电话
-                et_input_item_content.setInputType(InputType.TYPE_CLASS_NUMBER);
-                et_input_item_content.setFilters(new InputFilter[]{new InputFilter.LengthFilter(11)});
+                etInputItemContent.setInputType(InputType.TYPE_CLASS_NUMBER);
+                etInputItemContent.setFilters(new InputFilter[]{new InputFilter.LengthFilter(11)});
             } else if (contentInputType == 2) {//卡
-                et_input_item_content.setInputType(InputType.TYPE_CLASS_NUMBER);
+                etInputItemContent.setInputType(InputType.TYPE_CLASS_NUMBER);
             } else if (contentInputType == 3) {//密码
-                et_input_item_content.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                etInputItemContent.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             } else if (contentInputType == 4) {//钱
-                et_input_item_content.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                etInputItemContent.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             }
         }
     }
@@ -319,10 +319,10 @@ public class WYAInputItem extends LinearLayout {
     private void setRightText(String rightText) {
         this.rightText = rightText;
         if (rightText != null) {
-            et_input_item_right.setText(rightText);
-            et_input_item_right.setVisibility(VISIBLE);
+            etInputItemRight.setText(rightText);
+            etInputItemRight.setVisibility(VISIBLE);
         } else {
-            et_input_item_right.setVisibility(GONE);
+            etInputItemRight.setVisibility(GONE);
         }
     }
 
@@ -334,10 +334,10 @@ public class WYAInputItem extends LinearLayout {
     private void setRightHint(String rightHint) {
         this.rightHint = rightHint;
         if (rightHint != null) {
-            et_input_item_right.setHint(rightHint);
-            et_input_item_right.setVisibility(VISIBLE);
+            etInputItemRight.setHint(rightHint);
+            etInputItemRight.setVisibility(VISIBLE);
         } else {
-            et_input_item_right.setVisibility(GONE);
+            etInputItemRight.setVisibility(GONE);
         }
     }
 
@@ -349,9 +349,9 @@ public class WYAInputItem extends LinearLayout {
      */
     private void setRightEdit(boolean rightCanEdit) {
         this.rightCanEdit = rightCanEdit;
-        et_input_item_right.setFocusable(rightCanEdit);
-        et_input_item_right.setEnabled(rightCanEdit);
-        et_input_item_right.setFocusableInTouchMode(rightCanEdit);
+        etInputItemRight.setFocusable(rightCanEdit);
+        etInputItemRight.setEnabled(rightCanEdit);
+        etInputItemRight.setFocusableInTouchMode(rightCanEdit);
     }
 
 
@@ -362,7 +362,7 @@ public class WYAInputItem extends LinearLayout {
      */
     private void setRightTextColor(ColorStateList rightTextColor) {
         this.rightTextColor = rightTextColor;
-        et_input_item_right.setTextColor(rightTextColor);
+        etInputItemRight.setTextColor(rightTextColor);
     }
 
 
@@ -373,7 +373,7 @@ public class WYAInputItem extends LinearLayout {
      */
     private void setLineViewColor(String lineViewColor) {
         this.lineViewColor = lineViewColor;
-        line_view.setBackgroundColor(Color.parseColor(lineViewColor));
+        lineView.setBackgroundColor(Color.parseColor(lineViewColor));
     }
 
     /**
@@ -404,13 +404,13 @@ public class WYAInputItem extends LinearLayout {
     }
 
     private void initView() {
-        input_item_bg = findViewById(R.id.input_item_bg);
-        tv_input_item_left = findViewById(R.id.tv_input_item_left);
-        img_input_item_left = findViewById(R.id.img_input_item_left);
-        img_input_item_right = findViewById(R.id.img_input_item_right);
-        et_input_item_content = findViewById(R.id.et_input_item_content);
-        et_input_item_right = findViewById(R.id.et_input_item_right);
-        line_view = findViewById(R.id.line_view);
+        inputItemBg = findViewById(R.id.input_item_bg);
+        tvInputItemLeft = findViewById(R.id.tv_input_item_left);
+        imgInputItemLeft = findViewById(R.id.img_input_item_left);
+        imgInputItemRight = findViewById(R.id.img_input_item_right);
+        etInputItemContent = findViewById(R.id.et_input_item_content);
+        etInputItemRight = findViewById(R.id.et_input_item_right);
+        lineView = findViewById(R.id.line_view);
     }
 
 }

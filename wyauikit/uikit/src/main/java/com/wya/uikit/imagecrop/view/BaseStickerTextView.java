@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.wya.uikit.imagecrop.core.EditText;
 
-public class StickerTextView extends StickerView implements TextEditDialog.Callback {
+public class BaseStickerTextView extends BaseStickerView implements TextEditDialog.Callback {
 
     private static final String TAG = "StickerTextView";
 
@@ -25,15 +25,15 @@ public class StickerTextView extends StickerView implements TextEditDialog.Callb
 
     private static final float TEXT_SIZE_SP = 24f;
 
-    public StickerTextView(Context context) {
+    public BaseStickerTextView(Context context) {
         this(context, null, 0);
     }
 
-    public StickerTextView(Context context, AttributeSet attrs) {
+    public BaseStickerTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public StickerTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BaseStickerTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

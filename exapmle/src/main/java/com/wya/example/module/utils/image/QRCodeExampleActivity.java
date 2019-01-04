@@ -120,6 +120,8 @@ public class QRCodeExampleActivity extends BaseActivity {
                     mImageview.setImageBitmap(bitmap);
                 }
                 break;
+            default:
+                break;
         }
     }
 }

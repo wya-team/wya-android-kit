@@ -27,9 +27,9 @@ import com.wya.uikit.R;
 public class WYAStepper extends LinearLayout {
 
     private int value;//目前的值
-    private int max_num;//最大值
-    private int min_num;//最小值
-    private EditText stepper_et_num;
+    private int maxNum;//最大值
+    private int minNum;//最小值
+    private EditText stepperEtNum;
 
     /**
      * 减号
@@ -37,7 +37,7 @@ public class WYAStepper extends LinearLayout {
     private Drawable reduceDrawable = null;
     private Drawable reduceDrawablePress = null;
     private Drawable reduceDisableDrawablePress = null;
-    private ImageView stepper_img_reduce;
+    private ImageView stepperImgReduce;
 
     /**
      * 加号
@@ -45,12 +45,12 @@ public class WYAStepper extends LinearLayout {
     private Drawable addDrawable = null;
     private Drawable addDrawablePress = null;
     private Drawable addDisableDrawablePress = null;
-    private ImageView stepper_img_add;
+    private ImageView stepperImgAdd;
 
     /**
      * 对输入值进行监听
      */
-    private String input_before;
+    private String inputBefore;
 
     public WYAStepper(Context context) {
         this(context, null);
@@ -83,17 +83,17 @@ public class WYAStepper extends LinearLayout {
             addDisableDrawablePress = a.getDrawable(R.styleable.WYAStepper_addDisableDrawablePress);
 
             value = a.getInt(R.styleable.WYAStepper_value, 0);
-            max_num = a.getInt(R.styleable.WYAStepper_max_num, 0);
-            min_num = a.getInt(R.styleable.WYAStepper_min_num, 0);
+            maxNum = a.getInt(R.styleable.WYAStepper_maxNum, 0);
+            minNum = a.getInt(R.styleable.WYAStepper_minNum, 0);
 
-            setWidth(max_num);
+            setWidth(maxNum);
 
             setValue(value);
-            stepper_et_num.setCursorVisible(false);
+            stepperEtNum.setCursorVisible(false);
             a.recycle();
         }
 
-        stepper_img_reduce.setOnTouchListener(new OnTouchListener() {
+        stepperImgReduce.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View arg0, MotionEvent event) {
                 //根据touch事件设置按下抬起的样式
@@ -101,14 +101,14 @@ public class WYAStepper extends LinearLayout {
             }
         });
 
-        stepper_img_reduce.setOnClickListener(new OnClickListener() {
+        stepperImgReduce.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 reduce();
             }
         });
 
-        stepper_img_add.setOnTouchListener(new OnTouchListener() {
+        stepperImgAdd.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View arg0, MotionEvent event) {
                 //根据touch事件设置按下抬起的样式
@@ -116,25 +116,25 @@ public class WYAStepper extends LinearLayout {
             }
         });
 
-        stepper_img_add.setOnClickListener(new OnClickListener() {
+        stepperImgAdd.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 add();
             }
         });
 
-        stepper_et_num.setOnClickListener(new OnClickListener() {
+        stepperEtNum.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                stepper_et_num.setCursorVisible(true);
+                stepperEtNum.setCursorVisible(true);
             }
         });
 
         setValueListener();
     }
 
-    private void setWidth(int max_num) {
-        stepper_et_num.setWidth((max_num + "").length() * dip2px(getContext(), 10));
+    private void setWidth(int maxNum) {
+        stepperEtNum.setWidth((maxNum + "").length() * dip2px(getContext(), 10));
     }
 
     /**
@@ -152,33 +152,33 @@ public class WYAStepper extends LinearLayout {
      * 设置输入监听
      */
     private void setValueListener() {
-        stepper_et_num.addTextChangedListener(new TextWatcher() {
+        stepperEtNum.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.toString().equals("")) {
-                    input_before = min_num + "";
+                if ("".equals(s.toString())) {
+                    inputBefore = minNum + "";
                 } else {
-                    input_before = s.toString();
+                    inputBefore = s.toString();
                 }
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().equals("")) {
-                    int now_num = Integer.valueOf(s.toString()).intValue();
-                    if (now_num > max_num) {
+                if (!"".equals(s.toString())) {
+                    int nowNum = Integer.valueOf(s.toString()).intValue();
+                    if (nowNum > maxNum) {
                         Toast.makeText(getContext(), "输入的值太大", Toast.LENGTH_SHORT);
-                        setValue(Integer.valueOf(input_before).intValue());
-                        stepper_et_num.setCursorVisible(false);
-                    } else if (now_num < min_num) {
+                        setValue(Integer.valueOf(inputBefore).intValue());
+                        stepperEtNum.setCursorVisible(false);
+                    } else if (nowNum < minNum) {
                         Toast.makeText(getContext(), "输入的值太小", Toast.LENGTH_SHORT);
-                        setValue(Integer.valueOf(input_before).intValue());
-                        stepper_et_num.setCursorVisible(false);
+                        setValue(Integer.valueOf(inputBefore).intValue());
+                        stepperEtNum.setCursorVisible(false);
                     } else {
-                        value = now_num;
+                        value = nowNum;
                     }
                 } else {
-                    value = min_num;
+                    value = minNum;
                 }
             }
 
@@ -194,38 +194,38 @@ public class WYAStepper extends LinearLayout {
      * @param value
      */
     private void setValue(int value) {
-        stepper_et_num.setText(value + "");
-        stepper_et_num.setHint(min_num + "");
-        if (value >= max_num) {
+        stepperEtNum.setText(value + "");
+        stepperEtNum.setHint(minNum + "");
+        if (value >= maxNum) {
             if (addDisableDrawablePress == null) {
-                stepper_img_add.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus_disable));
+                stepperImgAdd.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus_disable));
             } else {
-                stepper_img_add.setBackgroundDrawable(addDisableDrawablePress);
+                stepperImgAdd.setBackgroundDrawable(addDisableDrawablePress);
             }
-            stepper_img_add.setEnabled(false);
+            stepperImgAdd.setEnabled(false);
         } else {
             if (addDrawable == null) {
-                stepper_img_add.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus));
+                stepperImgAdd.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus));
             } else {
-                stepper_img_add.setBackgroundDrawable(addDrawable);
+                stepperImgAdd.setBackgroundDrawable(addDrawable);
             }
-            stepper_img_add.setBackgroundDrawable(addDrawable);
-            stepper_img_add.setEnabled(true);
+            stepperImgAdd.setBackgroundDrawable(addDrawable);
+            stepperImgAdd.setEnabled(true);
         }
-        if (value <= min_num) {
+        if (value <= minNum) {
             if (reduceDisableDrawablePress == null) {
-                stepper_img_reduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus_disable));
+                stepperImgReduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus_disable));
             } else {
-                stepper_img_reduce.setBackgroundDrawable(reduceDisableDrawablePress);
+                stepperImgReduce.setBackgroundDrawable(reduceDisableDrawablePress);
             }
-            stepper_img_reduce.setEnabled(false);
+            stepperImgReduce.setEnabled(false);
         } else {
             if (reduceDrawable == null) {
-                stepper_img_reduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus));
+                stepperImgReduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus));
             } else {
-                stepper_img_reduce.setBackgroundDrawable(reduceDrawable);
+                stepperImgReduce.setBackgroundDrawable(reduceDrawable);
             }
-            stepper_img_reduce.setEnabled(true);
+            stepperImgReduce.setEnabled(true);
         }
     }
 
@@ -276,9 +276,9 @@ public class WYAStepper extends LinearLayout {
     private void setReduceBackgroundDrawable(Drawable reduceDrawable) {
         this.reduceDrawable = reduceDrawable;
         if (reduceDrawable != null) {
-            stepper_img_reduce.setBackgroundDrawable(reduceDrawable);
+            stepperImgReduce.setBackgroundDrawable(reduceDrawable);
         } else {
-            stepper_img_reduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus));
+            stepperImgReduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus));
         }
     }
 
@@ -290,9 +290,9 @@ public class WYAStepper extends LinearLayout {
     private void setReduceBackgroundDrawablePress(Drawable reduceDrawablePress) {
         this.reduceDrawablePress = reduceDrawablePress;
         if (reduceDrawablePress != null) {
-            stepper_img_reduce.setBackgroundDrawable(reduceDrawablePress);
+            stepperImgReduce.setBackgroundDrawable(reduceDrawablePress);
         } else {
-            stepper_img_reduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus_selected));
+            stepperImgReduce.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_minus_selected));
         }
     }
 
@@ -304,9 +304,9 @@ public class WYAStepper extends LinearLayout {
     private void setAddBackgroundDrawable(Drawable addDrawable) {
         this.addDrawable = addDrawable;
         if (reduceDrawable != null) {
-            stepper_img_add.setBackgroundDrawable(addDrawable);
+            stepperImgAdd.setBackgroundDrawable(addDrawable);
         } else {
-            stepper_img_add.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus));
+            stepperImgAdd.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus));
         }
     }
 
@@ -318,9 +318,9 @@ public class WYAStepper extends LinearLayout {
     private void setAddBackgroundDrawablePress(Drawable reduceDrawablePress) {
         this.addDrawablePress = reduceDrawablePress;
         if (reduceDrawablePress != null) {
-            stepper_img_add.setBackgroundDrawable(reduceDrawablePress);
+            stepperImgAdd.setBackgroundDrawable(reduceDrawablePress);
         } else {
-            stepper_img_add.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus_selected));
+            stepperImgAdd.setImageDrawable(getResources().getDrawable(R.drawable.icon_stepper_plus_selected));
         }
     }
 
@@ -329,22 +329,22 @@ public class WYAStepper extends LinearLayout {
      * 加一
      */
     private void add() {
-        if (value < max_num) {
+        if (value < maxNum) {
             value++;
         }
         setValue(value);
-        stepper_et_num.setCursorVisible(false);
+        stepperEtNum.setCursorVisible(false);
     }
 
     /**
      * 减一
      */
     private void reduce() {
-        if (value > min_num) {
+        if (value > minNum) {
             value--;
         }
         setValue(value);
-        stepper_et_num.setCursorVisible(false);
+        stepperEtNum.setCursorVisible(false);
     }
 
 
@@ -362,17 +362,17 @@ public class WYAStepper extends LinearLayout {
      *
      * @return
      */
-    public int getMax_num() {
-        return max_num;
+    public int getMaxNum() {
+        return maxNum;
     }
 
     /**
      * 设置最大值
      *
-     * @param max_num
+     * @param maxNum
      */
-    public void setMax_num(int max_num) {
-        this.max_num = max_num;
+    public void setMaxNum(int maxNum) {
+        this.maxNum = maxNum;
     }
 
     /**
@@ -380,24 +380,24 @@ public class WYAStepper extends LinearLayout {
      *
      * @return
      */
-    public int getMin_num() {
-        return min_num;
+    public int getMinNum() {
+        return minNum;
     }
 
     /**
      * 设置最小值
      *
-     * @param min_num
+     * @param minNum
      */
-    public void setMin_num(int min_num) {
-        this.min_num = min_num;
+    public void setMinNum(int minNum) {
+        this.minNum = minNum;
     }
 
 
     private void initView() {
-        stepper_img_reduce = findViewById(R.id.stepper_img_reduce);
-        stepper_img_add = findViewById(R.id.stepper_img_add);
-        stepper_et_num = findViewById(R.id.stepper_et_num);
+        stepperImgReduce = findViewById(R.id.stepper_img_reduce);
+        stepperImgAdd = findViewById(R.id.stepper_img_add);
+        stepperEtNum = findViewById(R.id.stepper_et_num);
     }
 
 

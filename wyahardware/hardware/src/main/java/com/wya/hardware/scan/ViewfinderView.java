@@ -92,6 +92,7 @@ public final class ViewfinderView extends View {
     private List<ResultPoint> lastPossibleResultPoints;
 
     public enum TextLocation {
+        //
         TOP(0),BOTTOM(1);
 
         private int mValue;

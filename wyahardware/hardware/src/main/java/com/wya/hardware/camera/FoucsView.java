@@ -19,8 +19,8 @@ import android.view.WindowManager;
 
 public class FoucsView extends View {
     private int size;
-    private int center_x;
-    private int center_y;
+    private int centerX;
+    private int centerY;
     private int length;
     private Paint mPaint;
 
@@ -59,8 +59,8 @@ public class FoucsView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        center_x = (int) (size / 2.0);
-        center_y = (int) (size / 2.0);
+        centerX = (int) (size / 2.0);
+        centerY = (int) (size / 2.0);
         length = (int) (size / 2.0) - 2;
         setMeasuredDimension(size, size);
     }
@@ -68,7 +68,7 @@ public class FoucsView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawRect(center_x - length, center_y - length, center_x + length, center_y + length, mPaint);
+        canvas.drawRect(centerX - length, centerY - length, centerX + length, centerY + length, mPaint);
         canvas.drawLine(2, getHeight() / 2, size / 10, getHeight() / 2, mPaint);
         canvas.drawLine(getWidth() - 2, getHeight() / 2, getWidth() - size / 10, getHeight() / 2, mPaint);
         canvas.drawLine(getWidth() / 2, 2, getWidth() / 2, size / 10, mPaint);

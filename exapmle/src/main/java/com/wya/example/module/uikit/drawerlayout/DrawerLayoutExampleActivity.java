@@ -6,7 +6,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
@@ -34,9 +33,10 @@ public class DrawerLayoutExampleActivity extends BaseActivity {
     protected void initView() {
         setToolBarTitle("抽屉(drawerlayout)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
+        initImgRightAnther(R.drawable.icon_help, true);
         setRightImageAntherOnclickListener(view -> {
-            startActivity(new Intent(DrawerLayoutExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+            startActivity(new Intent(DrawerLayoutExampleActivity.this, ReadmeActivity.class)
+                    .putExtra("url", url));
         });
         setRightImageAntherOnLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
@@ -75,6 +75,8 @@ public class DrawerLayoutExampleActivity extends BaseActivity {
                 break;
             case R.id.btn_right:
                 mainDrawerLayout.openDrawer(Gravity.RIGHT);
+                break;
+            default:
                 break;
         }
     }

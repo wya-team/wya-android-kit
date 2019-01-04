@@ -502,7 +502,7 @@ public class StringUtil {
      * @since 1.0
      */
     public static boolean check(String str, String test) {
-        if (str == null || str.equals(""))
+        if (str == null || "".equals(str))
             return true;
         boolean flag = false;
         for (int i = 0; i < test.length(); i++) {
@@ -522,7 +522,7 @@ public class StringUtil {
      * @return 成功则返回转换后的Integer型值；失败则返回ret
      * @since 1.0
      */
-    public static Integer String2Integer(String str, Integer defaultValue) {
+    public static Integer string2Integer(String str, Integer defaultValue) {
         if (TextUtils.isEmpty(str)) {
             return defaultValue;
         }
@@ -539,8 +539,8 @@ public class StringUtil {
      * @param str input string to convert to integer value
      * @return str's int value,if empty return default value
      */
-    public static Integer String2Integer(String str) {
-        return String2Integer(str, DEFAULT_INT);
+    public static Integer string2Integer(String str) {
+        return string2Integer(str, DEFAULT_INT);
     }
 
     public static long getLongValue(Object o, long defaultValue) {
@@ -561,7 +561,7 @@ public class StringUtil {
      * @return 成功则返回转换后的字符串；失败则返回ret
      * @since 1.0
      */
-    public static String Integer2String(Integer it, String ret) {
+    public static String integer2String(Integer it, String ret) {
         try {
             return Integer.toString(it);
         } catch (NumberFormatException e) {
@@ -751,7 +751,7 @@ public class StringUtil {
      * @param sign 分隔符号
      * @return
      */
-    public static String List2String(List<String> list, String sign) {
+    public static String list2String(List<String> list, String sign) {
         if (list == null || list.size() == 0)
             return null;
         StringBuffer sb = new StringBuffer();
@@ -768,7 +768,7 @@ public class StringUtil {
      * @param sign   分隔符号
      * @return
      */
-    public static List<String> String2List(String target, String sign) {
+    public static List<String> string2List(String target, String sign) {
         List<String> usersList = new ArrayList<String>();
         if (!StringUtil.isEmpty(target)) {
             String[] vs = target.split(sign);
@@ -1068,7 +1068,7 @@ public class StringUtil {
 
     final static int BUFFER_SIZE = 4096;
 
-    public static byte[] InputStreamTOByte(InputStream in) {
+    public static byte[] inputStreamTOByte(InputStream in) {
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         try {
             byte[] data = new byte[BUFFER_SIZE];
@@ -1107,14 +1107,14 @@ public class StringUtil {
     /**
      * 复制文本
      * @param context
-     * @param copy_str
+     * @param copyStr
      * @return
      */
-    public static void copyString(Context context, String copy_str) {
+    public static void copyString(Context context, String copyStr) {
         // 获取系统剪贴板
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         // 创建一个剪贴数据集，包含一个普通文本数据条目（需要复制的数据）
-        ClipData clipData = ClipData.newPlainText(null, copy_str);
+        ClipData clipData = ClipData.newPlainText(null, copyStr);
         // 把数据集设置（复制）到剪贴板
         clipboard.setPrimaryClip(clipData);
     }

@@ -25,10 +25,10 @@ import java.util.List;
 public class CustomPickerView<T> extends Dialog implements View.OnClickListener {
 	private Context mContext;
 	private final String TAG = getClass().getName();
-	private OptionsPickerView option_picker_view;
+	private OptionsPickerView optionPickerView;
 	private TextView pickerTitle, cancel, sure;
 	private OnChooseItemListener mOnChooseItemListener;
-	private LinearLayout picker_title_content;
+	private LinearLayout pickerTitleContent;
 
 	public CustomPickerView(@NonNull Context context, OnChooseItemListener onChooseItemListener) {
 		this(context, R.style.WYACustomDialog, onChooseItemListener);
@@ -56,11 +56,11 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
 		setCancelable(true);
 		setCanceledOnTouchOutside(true);
 
-		option_picker_view = view.findViewById(R.id.option_picker_view);
+		optionPickerView = view.findViewById(R.id.option_picker_view);
 		cancel = findViewById(R.id.picker_cancel);
 		pickerTitle = findViewById(R.id.picker_title);
 		sure = findViewById(R.id.picker_sure);
-		picker_title_content = findViewById(R.id.picker_title_content);
+		pickerTitleContent = findViewById(R.id.picker_title_content);
 
 		cancel.setOnClickListener(this);
 		sure.setOnClickListener(this);
@@ -69,31 +69,31 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
 
 	public void setData(List<T> option1Items, List<List<T>> option2Items,
 						List<List<List<T>>> option3Items) {
-		option_picker_view.setData(option1Items, option2Items, option3Items);
+		optionPickerView.setData(option1Items, option2Items, option3Items);
 	}
 
 	public void setData(List<T> option1Items, List<List<T>> option2Items) {
-		option_picker_view.setData(option1Items, option2Items, null);
+		optionPickerView.setData(option1Items, option2Items, null);
 	}
 
 	public void setData(List<T> option1Items) {
-		option_picker_view.setData(option1Items, null, null);
+		optionPickerView.setData(option1Items, null, null);
 	}
 
 	public void setNPData(List<T> option1Items, List<T> option2Items, List<T> option3Items) {
-		option_picker_view.setNPData(option1Items, option2Items, option3Items);
+		optionPickerView.setNPData(option1Items, option2Items, option3Items);
 	}
 
 	public void setNPData(List<T> option1Items, List<T> option2Items) {
-		option_picker_view.setNPData(option1Items, option2Items, null);
+		optionPickerView.setNPData(option1Items, option2Items, null);
 	}
 
 	public void setNPData(List<T> option1Items) {
-		option_picker_view.setNPData(option1Items, null, null);
+		optionPickerView.setNPData(option1Items, null, null);
 	}
 
 	public CustomPickerView setCycle(boolean isCycle) {
-		option_picker_view.setCycle(isCycle);
+		optionPickerView.setCycle(isCycle);
 		return this;
 	}
 
@@ -118,29 +118,29 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
 	}
 
 	public CustomPickerView setTitleContentColor(int color) {
-		picker_title_content.setBackgroundColor(color);
+		pickerTitleContent.setBackgroundColor(color);
 		return this;
 	}
 
 	public CustomPickerView setDividerColor(int color) {
-		option_picker_view.setDividerColor(color);
+		optionPickerView.setDividerColor(color);
 		return this;
 	}
 
 
 
 	public CustomPickerView setTextSize(float textSize) {
-		option_picker_view.setTextSize(textSize);
+		optionPickerView.setTextSize(textSize);
 		return this;
 	}
 
 	public CustomPickerView setOutTextColor(int color) {
-		option_picker_view.setOuterTextColor(color);
+		optionPickerView.setOuterTextColor(color);
 		return this;
 	}
 
 	public CustomPickerView setCenterTextColor(int color) {
-		option_picker_view.setCenterTextColor(color);
+		optionPickerView.setCenterTextColor(color);
 		return this;
 	}
 
@@ -151,8 +151,8 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
 		}
 		if (v.getId() == R.id.picker_sure) {
 			if (mOnChooseItemListener != null) {
-				mOnChooseItemListener.itemSelected(option_picker_view.getIndex1(),
-						option_picker_view.getIndex2(), option_picker_view.getIndex3());
+				mOnChooseItemListener.itemSelected(optionPickerView.getIndex1(),
+						optionPickerView.getIndex2(), optionPickerView.getIndex3());
 				dismiss();
 			}
 		}

@@ -26,11 +26,11 @@ import java.util.Date;
  */
 public class CustomTimePicker extends Dialog implements View.OnClickListener {
     private Context mContext;
-    private LinearLayout time_picker_title_content;
-    private TextView time_picker_cancel, time_picker_title, time_picker_sure;
-    private TimePickerView time_picker_view;
+    private LinearLayout timePickerTitleContent;
+    private TextView timePickerCancel, timePickerTitle, timePickerSure;
+    private TimePickerView timePickerView;
     private OnTimePickerSelectedListener mListener;
-    private String TAG = "CustomTimePicker";
+    private static final String TAG = "CustomTimePicker";
 
     public CustomTimePicker(@NonNull Context context, OnTimePickerSelectedListener
             onTimePickerSelectedListener) {
@@ -58,104 +58,104 @@ public class CustomTimePicker extends Dialog implements View.OnClickListener {
         setCancelable(true);
         setCanceledOnTouchOutside(true);
 
-        time_picker_view = view.findViewById(R.id.time_picker_view);
-        time_picker_cancel = findViewById(R.id.time_picker_cancel);
-        time_picker_title = findViewById(R.id.time_picker_title);
-        time_picker_sure = findViewById(R.id.time_picker_sure);
-        time_picker_title_content = findViewById(R.id.time_picker_title_content);
+        timePickerView = view.findViewById(R.id.time_picker_view);
+        timePickerCancel = findViewById(R.id.time_picker_cancel);
+        timePickerTitle = findViewById(R.id.time_picker_title);
+        timePickerSure = findViewById(R.id.time_picker_sure);
+        timePickerTitleContent = findViewById(R.id.time_picker_title_content);
 
-        time_picker_cancel.setOnClickListener(this);
-        time_picker_sure.setOnClickListener(this);
+        timePickerCancel.setOnClickListener(this);
+        timePickerSure.setOnClickListener(this);
     }
 
     public CustomTimePicker setTitle(@NonNull String title) {
-        time_picker_title.setText(title);
+        timePickerTitle.setText(title);
         return this;
     }
 
     public CustomTimePicker setCancelTextColor(int color) {
-        time_picker_cancel.setTextColor(color);
+        timePickerCancel.setTextColor(color);
         return this;
     }
 
     public CustomTimePicker setSureTextColor(int color) {
-        time_picker_sure.setTextColor(color);
+        timePickerSure.setTextColor(color);
         return this;
     }
 
     public CustomTimePicker setTitleTextColor(int color) {
-        time_picker_title.setTextColor(color);
+        timePickerTitle.setTextColor(color);
         return this;
     }
 
     public CustomTimePicker setTitleContentColor(int color) {
-        time_picker_title_content.setBackgroundColor(color);
+        timePickerTitleContent.setBackgroundColor(color);
         return this;
     }
 
     public CustomTimePicker setDividerColor(int color) {
-        time_picker_view.setDividerColor(color);
+        timePickerView.setDividerColor(color);
         return this;
     }
 
 
     public CustomTimePicker setTextSize(float textSize) {
-        time_picker_view.setTextSize(textSize);
+        timePickerView.setTextSize(textSize);
         return this;
     }
 
     public CustomTimePicker setOutTextColor(int color) {
-        time_picker_view.setOuterTextColor(color);
+        timePickerView.setOuterTextColor(color);
         return this;
     }
 
     public CustomTimePicker setCenterTextColor(int color) {
-        time_picker_view.setCenterTextColor(color);
+        timePickerView.setCenterTextColor(color);
         return this;
     }
 
 
     public CustomTimePicker setHourSpace(int space) {
-        time_picker_view.setHourSpace(space);
+        timePickerView.setHourSpace(space);
         return this;
     }
 
     public CustomTimePicker setMinuteSpace(int space) {
-        time_picker_view.setMinuteSpace(space);
+        timePickerView.setMinuteSpace(space);
         return this;
     }
 
     public CustomTimePicker setSecondSpace(int space) {
-        time_picker_view.setSecondSpace(space);
+        timePickerView.setSecondSpace(space);
         return this;
     }
 
     public CustomTimePicker setType(boolean[] type) {
-        time_picker_view.setType(type);
+        timePickerView.setType(type);
         return this;
     }
 
     public CustomTimePicker setShowType(boolean type) {
-        time_picker_view.setShowType(type);
+        timePickerView.setShowType(type);
         return this;
     }
 
     public void setRangeTime(Calendar start, Calendar end) {
-        time_picker_view.setRangeTime(start, end);
+        timePickerView.setRangeTime(start, end);
     }
 
     public void setSelectDate(Calendar selectDate) {
-        time_picker_view.setSelectDate(selectDate);
+        timePickerView.setSelectDate(selectDate);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.time_picker_sure) {
             Calendar calendar = Calendar.getInstance();
-            Log.i(TAG, "onClick: " + time_picker_view.getMinute() + " " + time_picker_view.getSecond());
-            calendar.set(time_picker_view.getYear(), time_picker_view.getMonth() - 1, time_picker_view
-                            .getDay(), time_picker_view.getHour(), time_picker_view.getMinute(),
-                    time_picker_view.getSecond());
+            Log.i(TAG, "onClick: " + timePickerView.getMinute() + " " + timePickerView.getSecond());
+            calendar.set(timePickerView.getYear(), timePickerView.getMonth() - 1, timePickerView
+                            .getDay(), timePickerView.getHour(), timePickerView.getMinute(),
+                    timePickerView.getSecond());
 
             mListener.selected(calendar.getTime());
             dismiss();

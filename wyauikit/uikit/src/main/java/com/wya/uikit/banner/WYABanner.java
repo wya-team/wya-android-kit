@@ -41,7 +41,7 @@ public class WYABanner<T> extends RelativeLayout {
     private UpdateRun mUpdateRun;
     private boolean auto = true;
     private int itemId = R.layout.banner_default_item;
-    private BannerAdapter<T> mBannerAdapter;
+    private BaseBannerAdapter<T> mBaseBannerAdapter;
     private static String TAG = "WYABanner";
 
     public WYABanner(Context context) {
@@ -139,6 +139,8 @@ public class WYABanner<T> extends RelativeLayout {
                 case MotionEvent.ACTION_CANCEL:
                     startAutoPlay();
                     break;
+                default:
+                    break;
             }
         }
         return super.dispatchTouchEvent(ev);
@@ -185,7 +187,7 @@ public class WYABanner<T> extends RelativeLayout {
             ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams
                     .MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             container.addView(view, layoutParams);
-            mBannerAdapter.convert(view, position, mData.get(position));
+            mBaseBannerAdapter.convert(view, position, mData.get(position));
             return view;
         }
 
@@ -318,10 +320,10 @@ public class WYABanner<T> extends RelativeLayout {
     }
 
 
-    public void setAdapter(BannerAdapter<T> bannerAdapter) {
-        mBannerAdapter = bannerAdapter;
-        mData = mBannerAdapter.getData();
-        itemId = mBannerAdapter.getLayoutId();
+    public void setAdapter(BaseBannerAdapter<T> baseBannerAdapter) {
+        mBaseBannerAdapter = baseBannerAdapter;
+        mData = mBaseBannerAdapter.getData();
+        itemId = mBaseBannerAdapter.getLayoutId();
         num = mData.size();
         mDot.setPointNumber(num);
 

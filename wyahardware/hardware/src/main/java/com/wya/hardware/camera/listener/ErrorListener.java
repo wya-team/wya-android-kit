@@ -9,5 +9,5 @@ package com.wya.hardware.camera.listener;
 
 public interface ErrorListener {
     void onError();
-    void AudioPermissionError();
+    void audiopermissionerror();
 }

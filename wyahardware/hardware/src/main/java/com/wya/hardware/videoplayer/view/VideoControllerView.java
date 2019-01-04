@@ -405,6 +405,8 @@ public class VideoControllerView extends FrameLayout {
                     Toast.makeText(getContext(), "网络未连接", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            default:
+                break;
         }
     }
 

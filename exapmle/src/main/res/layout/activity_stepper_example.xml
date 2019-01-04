@@ -29,8 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/dp_10"
-            app:max_num="120"
-            app:min_num="0"
+            app:maxNum="120"
+            app:minNum="0"
             app:value="0" />
     </TableRow>
 
@@ -54,8 +54,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/dp_10"
-            app:max_num="0"
-            app:min_num="0"
+            app:maxNum="0"
+            app:minNum="0"
             app:value="0" />
     </TableRow>
 

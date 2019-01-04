@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
-import com.wya.uikit.banner.BannerAdapter;
+import com.wya.uikit.banner.BaseBannerAdapter;
 import com.wya.uikit.banner.WYABanner;
 import com.wya.utils.utils.StringUtil;
 
@@ -19,7 +19,7 @@ public class BannerExampleActivity extends BaseActivity {
 
     private WYABanner<Integer> mWYABanner;
     private WYABanner<Integer> mWYABanner2;
-    private WYABanner<Integer> scale_banner;
+    private WYABanner<Integer> mScaleBanner;
     private List<Integer> data = new ArrayList<>();
 
     @Override
@@ -44,14 +44,14 @@ public class BannerExampleActivity extends BaseActivity {
 
         mWYABanner = (WYABanner<Integer>) findViewById(R.id.banner);
         mWYABanner2 = (WYABanner<Integer>) findViewById(R.id.banner2);
-        scale_banner = (WYABanner<Integer>) findViewById(R.id.scale_banner);
+        mScaleBanner = (WYABanner<Integer>) findViewById(R.id.scale_banner);
 
 
         mWYABanner.setUpdateTime(2000)
                 .setDotVisible(true)
 //				.setDotDark()
                 .autoPlay(true);
-        mWYABanner.setAdapter(new BannerAdapter<Integer>(data, R.layout.banner_example_item) {
+        mWYABanner.setAdapter(new BaseBannerAdapter<Integer>(data, R.layout.banner_example_item) {
             @Override
             public void convert(View view, int position, Integer item) {
                 ImageView imageView = view.findViewById(R.id.image);
@@ -60,12 +60,12 @@ public class BannerExampleActivity extends BaseActivity {
         });
 
 
-        scale_banner.setUpdateTime(2000)
+        mScaleBanner.setUpdateTime(2000)
                 .setDotVisible(true)
 //				.setDotDark()
                 .setScale(20, 60, 60)
                 .autoPlay(true);
-        scale_banner.setAdapter(new BannerAdapter<Integer>(data, R.layout.banner_example_item) {
+        mScaleBanner.setAdapter(new BaseBannerAdapter<Integer>(data, R.layout.banner_example_item) {
             @Override
             public void convert(View view, int position, Integer item) {
                 ImageView imageView = view.findViewById(R.id.image);
@@ -78,7 +78,7 @@ public class BannerExampleActivity extends BaseActivity {
                 .setDotVisible(true)
                 .setDotDark()
                 .autoPlay(true);
-        mWYABanner2.setAdapter(new BannerAdapter<Integer>(data, R.layout.banner_default_item) {
+        mWYABanner2.setAdapter(new BaseBannerAdapter<Integer>(data, R.layout.banner_default_item) {
             @Override
             public void convert(View view, int position, Integer item) {
             }

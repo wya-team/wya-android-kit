@@ -18,8 +18,8 @@ public class ReturnButton extends View {
 
     private int size;
 
-    private int center_X;
-    private int center_Y;
+    private int centerX;
+    private int centerY;
     private float strokeWidth;
 
     private Paint paint;
@@ -28,8 +28,8 @@ public class ReturnButton extends View {
     public ReturnButton(Context context, int size) {
         this(context);
         this.size = size;
-        center_X = size / 2;
-        center_Y = size / 2;
+        centerX = size / 2;
+        centerY = size / 2;
 
         strokeWidth = size / 15f;
 
@@ -55,7 +55,7 @@ public class ReturnButton extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         path.moveTo(strokeWidth, strokeWidth/2);
-        path.lineTo(center_X, center_Y - strokeWidth/2);
+        path.lineTo(centerX, centerY - strokeWidth/2);
         path.lineTo(size - strokeWidth, strokeWidth/2);
         canvas.drawPath(path, paint);
     }

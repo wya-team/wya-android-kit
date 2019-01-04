@@ -31,9 +31,9 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private EditView cropView;
-    private LinearLayout clip_top_layout;
-    private FrameLayout clip_bottom_layout;
-    private ImageButton ib_clip_rotate;
+    private LinearLayout clipTopLayout;
+    private FrameLayout clipBottomLayout;
+    private ImageButton ibClipRotate;
 
     private static final int MAX_HEIGHT = 1024;
     private static final int MAX_WIDTH = 1024;
@@ -100,18 +100,18 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initView() {
         cropView = findViewById(R.id.crop_view);
-        clip_top_layout = findViewById(R.id.clip_top_layout);
-        clip_bottom_layout = findViewById(R.id.clip_bottom_layout);
-        ib_clip_rotate = findViewById(R.id.ib_clip_rotate);
+        clipTopLayout = findViewById(R.id.clip_top_layout);
+        clipBottomLayout = findViewById(R.id.clip_bottom_layout);
+        ibClipRotate = findViewById(R.id.ib_clip_rotate);
         findViewById(R.id.clip_reset).setOnClickListener(this);
         findViewById(R.id.clip_sure).setOnClickListener(this);
         findViewById(R.id.ib_clip_rotate).setOnClickListener(this);
         findViewById(R.id.ib_clip_cancel).setOnClickListener(this);
         findViewById(R.id.tv_clip_reset).setOnClickListener(this);
         findViewById(R.id.ib_clip_done).setOnClickListener(this);
-        clip_top_layout.setVisibility(View.GONE);
-        clip_bottom_layout.setVisibility(View.VISIBLE);
-        ib_clip_rotate.setVisibility(View.VISIBLE);
+        clipTopLayout.setVisibility(View.GONE);
+        clipBottomLayout.setVisibility(View.VISIBLE);
+        ibClipRotate.setVisibility(View.VISIBLE);
     }
 
 
@@ -197,9 +197,9 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
 
         if (v.getId() == R.id.clip_reset) {
             cropView.setMode(EditMode.CLIP);
-            clip_top_layout.setVisibility(View.GONE);
-            clip_bottom_layout.setVisibility(View.VISIBLE);
-            ib_clip_rotate.setVisibility(View.VISIBLE);
+            clipTopLayout.setVisibility(View.GONE);
+            clipBottomLayout.setVisibility(View.VISIBLE);
+            ibClipRotate.setVisibility(View.VISIBLE);
         }
         if (v.getId() == R.id.ib_clip_rotate) {
             cropView.doRotate();
@@ -213,9 +213,9 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (v.getId() == R.id.ib_clip_done) {
             cropView.doClip();
-            clip_top_layout.setVisibility(View.VISIBLE);
-            clip_bottom_layout.setVisibility(View.GONE);
-            ib_clip_rotate.setVisibility(View.GONE);
+            clipTopLayout.setVisibility(View.VISIBLE);
+            clipBottomLayout.setVisibility(View.GONE);
+            ibClipRotate.setVisibility(View.GONE);
         }
     }
 }

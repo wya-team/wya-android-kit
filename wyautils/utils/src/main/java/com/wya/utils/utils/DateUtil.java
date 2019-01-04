@@ -97,7 +97,7 @@ public class DateUtil {
     /**
      * 日期格式，年月日时分，例如：200506301210，200808081210
      */
-    public static final String DATE_FORMAT_YYYYMMDDHHmm = "yyyyMMddHHmm";
+    public static final String DATE_FORMAT_YYYYMMDDHHMM = "yyyyMMddHHmm";
 
     /**
      * 日期格式，年月日时分，例如：20001230 12:00，20080808 20:08
@@ -306,7 +306,7 @@ public class DateUtil {
      * @return 格式化后的Date日期
      */
     public static Date parseStrToDate(String time, String timeFromat) {
-        if (time == null || time.equals("")) {
+        if (time == null || "".equals(time)) {
             return null;
         }
 

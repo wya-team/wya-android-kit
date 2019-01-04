@@ -36,16 +36,16 @@ public class WYAVideoPlayer {
     private String path;
     private SurfaceHolder surfaceHolder;
 
-    public void setCallback(PlayerCallback PlayerCallback) {
-        this.callback = PlayerCallback;
+    public void setCallback(PlayerCallback playerCallback) {
+        this.callback = playerCallback;
     }
 
     private MediaPlayer.OnErrorListener mErrorListener = new MediaPlayer.OnErrorListener() {
-        public boolean onError(MediaPlayer mp, int framework_err, int impl_err) {
-            Log.d(TAG, "Error: " + framework_err + "," + impl_err);
+        public boolean onError(MediaPlayer mp, int frameworkErr, int implErr) {
+            Log.d(TAG, "Error: " + frameworkErr + "," + implErr);
             setCurrentState(STATE_ERROR);
             if (callback != null) {
-                callback.onError(player, framework_err, impl_err);
+                callback.onError(player, frameworkErr, implErr);
             }
             return true;
         }
@@ -183,6 +183,8 @@ public class WYAVideoPlayer {
                     break;
                 case STATE_PREPARING:
                     callback.onLoadingChanged(true);
+                    break;
+                default:
                     break;
             }
         }

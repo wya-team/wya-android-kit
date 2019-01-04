@@ -142,6 +142,8 @@ public class CameraParamUtil {
             case Surface.ROTATION_270:
                 degrees = 270;
                 break;
+            default:
+                break;
         }
         int result;
         if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {

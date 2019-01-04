@@ -25,9 +25,9 @@ import com.wya.uikit.toolbar.swipeback.SwipeBackActivity;
 public abstract class BaseToolBarActivity extends SwipeBackActivity {
 
     private WYAToolBarHelper wyaToolBarHelper;
-    private TextView title, tv_left, tv_right, tv_right_anther;
-    private ImageView img_right, img_left, img_right_anther;
-    private RelativeLayout title_bar_bg;
+    private TextView title, mTvLeft, mTvRight, mTvRightAnther;
+    private ImageView imgRight, mImgLeft, mImgRightAnther;
+    private RelativeLayout titleBarBg;
 
     private LinearLayout parentLinearLayout;
 
@@ -170,7 +170,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                                         boolean isShowImgRightAnther, int imgRightRes, int imgRightResAnther,
                                         boolean isShowTvRightAnther, String tvRightAntherStr, int tvRightAntherTextSize, String tvRightAntherTextColorValue, boolean isLight) {
         wyaToolBarHelper.setShowTitle(showToolBar);
-        wyaToolBarHelper.setToolbar_bg_color(toolbarBgColorValue);
+        wyaToolBarHelper.setToolbarBgColor(toolbarBgColorValue);
         wyaToolBarHelper.setShowTitle(isShowTitle);
         wyaToolBarHelper.setTitleStr(titleStr);
         wyaToolBarHelper.setTitleTextSize(titleTextSize);
@@ -200,7 +200,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         wyaToolBarHelper.setLight(isLight);
 
         initShowToolBar(wyaToolBarHelper.isShowTitle());
-        initToolBarBgColor(wyaToolBarHelper.getToolbar_bg_color(), wyaToolBarHelper.isLight());
+        initToolBarBgColor(wyaToolBarHelper.getToolbarBgColor(), wyaToolBarHelper.isLight());
         initToolBarTitle(wyaToolBarHelper.getTitleStr(), wyaToolBarHelper.getTitleTextSize(), wyaToolBarHelper.getTitleTextColor(), wyaToolBarHelper.isShowTitle());
         initTvLeft(wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
         initImgLeft(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.isShowImgLeft());
@@ -217,16 +217,16 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void initWYAActionBar() {
         wyaToolBarHelper = new WYAToolBarHelper();
         title = (TextView) findViewById(R.id.title);
-        tv_left = (TextView) findViewById(R.id.tv_left);
-        tv_right = (TextView) findViewById(R.id.tv_right);
-        tv_right_anther = (TextView) findViewById(R.id.tv_right_anther);
-        img_right = (ImageView) findViewById(R.id.img_right);
-        img_right_anther = (ImageView) findViewById(R.id.img_right_anther);
-        img_left = (ImageView) findViewById(R.id.img_left);
-        title_bar_bg = (RelativeLayout) findViewById(R.id.title_bar_bg);
+        mTvLeft = (TextView) findViewById(R.id.tv_left);
+        mTvRight = (TextView) findViewById(R.id.tv_right);
+        mTvRightAnther = (TextView) findViewById(R.id.tv_right_anther);
+        imgRight = (ImageView) findViewById(R.id.img_right);
+        mImgRightAnther = (ImageView) findViewById(R.id.img_right_anther);
+        mImgLeft = (ImageView) findViewById(R.id.img_left);
+        titleBarBg = (RelativeLayout) findViewById(R.id.title_bar_bg);
 
         initShowToolBar(wyaToolBarHelper.isShowTitle());
-        initToolBarBgColor(wyaToolBarHelper.getToolbar_bg_color(), wyaToolBarHelper.isLight());
+        initToolBarBgColor(wyaToolBarHelper.getToolbarBgColor(), wyaToolBarHelper.isLight());
         initToolBarTitle(wyaToolBarHelper.getTitleStr(), wyaToolBarHelper.getTitleTextSize(), wyaToolBarHelper.getTitleTextColor(), wyaToolBarHelper.isShowTitle());
         initTvLeft(wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
         initImgLeft(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.isShowImgLeft());
@@ -244,9 +244,9 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      */
     public void initShowToolBar(boolean showTitle) {
         if (showTitle) {
-            title_bar_bg.setVisibility(View.VISIBLE);
+            titleBarBg.setVisibility(View.VISIBLE);
         } else {
-            title_bar_bg.setVisibility(View.GONE);
+            titleBarBg.setVisibility(View.GONE);
         }
     }
 
@@ -254,7 +254,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      * 左右两边点击事件监听设置
      */
     private void initClick() {
-        img_left.setOnClickListener(new View.OnClickListener() {
+        mImgLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onLeftImgOnclickListener != null) {
@@ -265,7 +265,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             }
         });
 
-        tv_left.setOnClickListener(new View.OnClickListener() {
+        mTvLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onLeftTvOnclickListener != null) {
@@ -276,7 +276,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             }
         });
 
-        img_right_anther.setOnClickListener(new View.OnClickListener() {
+        mImgRightAnther.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onRightImageAntherOnclickListener != null) {
@@ -286,7 +286,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 }
             }
         });
-        img_right_anther.setOnLongClickListener(new View.OnLongClickListener() {
+        mImgRightAnther.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 if (onRightImageAntherOnLongClickListener != null) {
@@ -297,7 +297,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 return true;
             }
         });
-        img_right.setOnClickListener(new View.OnClickListener() {
+        imgRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onRightImageOnclickListener != null) {
@@ -307,7 +307,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 }
             }
         });
-        tv_right_anther.setOnClickListener(new View.OnClickListener() {
+        mTvRightAnther.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onRightTvAntherOnclickListener != null) {
@@ -318,7 +318,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             }
         });
 
-        tv_right.setOnClickListener(new View.OnClickListener() {
+        mTvRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onRightTvOnclickListener != null) {
@@ -340,13 +340,13 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void initImgRight(int imgRightRes, boolean showImgRight) {
         if (showImgRight) {
             if (imgRightRes != 0) {
-                img_right.setVisibility(View.VISIBLE);
-                img_right.setImageDrawable(getResources().getDrawable(imgRightRes));
+                imgRight.setVisibility(View.VISIBLE);
+                imgRight.setImageDrawable(getResources().getDrawable(imgRightRes));
             } else {
-                img_right.setVisibility(View.GONE);
+                imgRight.setVisibility(View.GONE);
             }
         } else {
-            img_right.setVisibility(View.GONE);
+            imgRight.setVisibility(View.GONE);
         }
 
     }
@@ -361,13 +361,13 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void initImgRightAnther(int imgRightAntherRes, boolean showImgAnther) {
         if (showImgAnther) {
             if (imgRightAntherRes != 0) {
-                img_right_anther.setVisibility(View.VISIBLE);
-                img_right_anther.setImageDrawable(getResources().getDrawable(imgRightAntherRes));
+                mImgRightAnther.setVisibility(View.VISIBLE);
+                mImgRightAnther.setImageDrawable(getResources().getDrawable(imgRightAntherRes));
             } else {
-                img_right_anther.setVisibility(View.GONE);
+                mImgRightAnther.setVisibility(View.GONE);
             }
         } else {
-            img_right_anther.setVisibility(View.GONE);
+            mImgRightAnther.setVisibility(View.GONE);
         }
 
     }
@@ -385,15 +385,15 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void initTvRight(String tvRightStr, int tvRightTextColor, int tvRightTextSize, boolean showTvRight) {
         if (showTvRight) {
             if (tvRightStr != null) {
-                tv_right.setTextColor(this.getResources().getColor(tvRightTextColor));
-                tv_right.setText(tvRightStr);
-                tv_right.setTextSize(tvRightTextSize);
-                tv_right.setVisibility(View.VISIBLE);
+                mTvRight.setTextColor(this.getResources().getColor(tvRightTextColor));
+                mTvRight.setText(tvRightStr);
+                mTvRight.setTextSize(tvRightTextSize);
+                mTvRight.setVisibility(View.VISIBLE);
             } else {
-                tv_right.setVisibility(View.GONE);
+                mTvRight.setVisibility(View.GONE);
             }
         } else {
-            tv_right.setVisibility(View.GONE);
+            mTvRight.setVisibility(View.GONE);
         }
     }
 
@@ -409,15 +409,15 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void initTvRightAnther(String tvRightAntherStr, int tvRightAntherTextColor, int tvRightAntherTextSize, boolean showTvRightAnther) {
         if (showTvRightAnther) {
             if (tvRightAntherStr != null) {
-                tv_right_anther.setTextColor(this.getResources().getColor(tvRightAntherTextColor));
-                tv_right_anther.setText(tvRightAntherStr);
-                tv_right_anther.setTextSize(tvRightAntherTextSize);
-                tv_right_anther.setVisibility(View.VISIBLE);
+                mTvRightAnther.setTextColor(this.getResources().getColor(tvRightAntherTextColor));
+                mTvRightAnther.setText(tvRightAntherStr);
+                mTvRightAnther.setTextSize(tvRightAntherTextSize);
+                mTvRightAnther.setVisibility(View.VISIBLE);
             } else {
-                tv_right_anther.setVisibility(View.GONE);
+                mTvRightAnther.setVisibility(View.GONE);
             }
         } else {
-            tv_right_anther.setVisibility(View.GONE);
+            mTvRightAnther.setVisibility(View.GONE);
         }
     }
 
@@ -434,15 +434,15 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void initTvLeft(String tvLeftStr, int tvLeftTextColor, int tvLeftTextSize, boolean showTvLeft) {
         if (showTvLeft) {
             if (tvLeftStr != null) {
-                tv_left.setTextColor(this.getResources().getColor(tvLeftTextColor));
-                tv_left.setText(tvLeftStr);
-                tv_left.setTextSize(tvLeftTextSize);
-                tv_left.setVisibility(View.VISIBLE);
+                mTvLeft.setTextColor(this.getResources().getColor(tvLeftTextColor));
+                mTvLeft.setText(tvLeftStr);
+                mTvLeft.setTextSize(tvLeftTextSize);
+                mTvLeft.setVisibility(View.VISIBLE);
             } else {
-                tv_left.setVisibility(View.GONE);
+                mTvLeft.setVisibility(View.GONE);
             }
         } else {
-            tv_left.setVisibility(View.GONE);
+            mTvLeft.setVisibility(View.GONE);
         }
     }
 
@@ -456,13 +456,13 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void initImgLeft(int imgLeftRes, boolean showImgLeft) {
         if (showImgLeft) {
             if (imgLeftRes != 0) {
-                img_left.setVisibility(View.VISIBLE);
-                img_left.setImageDrawable(getResources().getDrawable(imgLeftRes));
+                mImgLeft.setVisibility(View.VISIBLE);
+                mImgLeft.setImageDrawable(getResources().getDrawable(imgLeftRes));
             } else {
-                img_left.setVisibility(View.GONE);
+                mImgLeft.setVisibility(View.GONE);
             }
         } else {
-            img_left.setVisibility(View.GONE);
+            mImgLeft.setVisibility(View.GONE);
         }
     }
 
@@ -502,7 +502,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      * @param isLight             修改状态栏文字图标颜色
      */
     public void initToolBarBgColor(int toolbarBgColorValue, boolean isLight) {
-        title_bar_bg.setBackgroundColor(toolbarBgColorValue);
+        titleBarBg.setBackgroundColor(toolbarBgColorValue);
         StatusBarUtil.setColorForSwipeBack(this, toolbarBgColorValue, 0);
         if (isLight) {
             StatusBarUtil.setLightMode(this);

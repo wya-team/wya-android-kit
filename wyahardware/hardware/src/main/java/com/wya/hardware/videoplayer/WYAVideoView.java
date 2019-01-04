@@ -120,6 +120,8 @@ public class WYAVideoView extends VideoBehaviorView {
                     case WYAVideoPlayer.STATE_PREPARING:
                         am.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
                         break;
+                    default:
+                        break;
                 }
             }
 
@@ -241,6 +243,8 @@ public class WYAVideoView extends VideoBehaviorView {
                 Log.i("DDD", "endGesture: bottom");
                 mMediaPlayer.seekTo(videoProgressOverlay.getTargetProgress());
                 videoProgressOverlay.hide();
+                break;
+            default:
                 break;
         }
     }

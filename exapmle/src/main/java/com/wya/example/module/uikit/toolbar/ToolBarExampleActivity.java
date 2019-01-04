@@ -92,6 +92,8 @@ public class ToolBarExampleActivity extends BaseActivity {
             case R.id.radio_tv_right_anther_unshow:
                 initTvRightAnther("右边", R.color.white, 14, false);
                 break;
+            default:
+                break;
         }
     }
 

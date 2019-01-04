@@ -21,7 +21,7 @@ import com.wya.uikit.imagecrop.core.sticker.StickerHelper;
 import com.wya.uikit.imagecrop.core.sticker.StickerMoveHelper;
 
 
-public abstract class StickerView extends ViewGroup implements Sticker, View.OnClickListener {
+public abstract class BaseStickerView extends ViewGroup implements Sticker, View.OnClickListener {
 
     private static final String TAG = "StickerView";
 
@@ -34,13 +34,13 @@ public abstract class StickerView extends ViewGroup implements Sticker, View.OnC
 
     private StickerMoveHelper mMoveHelper;
 
-    private StickerHelper<StickerView> mStickerHelper;
+    private StickerHelper<BaseStickerView> mStickerHelper;
 
     private ImageView mRemoveView, mAdjustView;
 
     private float mMaxScaleValue = MAX_SCALE_VALUE;
 
-    private Paint PAINT;
+    private Paint paint;
 
     private Matrix mMatrix = new Matrix();
 
@@ -57,21 +57,21 @@ public abstract class StickerView extends ViewGroup implements Sticker, View.OnC
     private static final float STROKE_WIDTH = 3f;
 
     {
-        PAINT = new Paint(Paint.ANTI_ALIAS_FLAG);
-        PAINT.setColor(Color.WHITE);
-        PAINT.setStyle(Paint.Style.STROKE);
-        PAINT.setStrokeWidth(STROKE_WIDTH);
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.WHITE);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(STROKE_WIDTH);
     }
 
-    public StickerView(Context context) {
+    public BaseStickerView(Context context) {
         this(context, null, 0);
     }
 
-    public StickerView(Context context, AttributeSet attrs) {
+    public BaseStickerView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public StickerView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BaseStickerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         onInitialize(context);
     }
@@ -148,7 +148,7 @@ public abstract class StickerView extends ViewGroup implements Sticker, View.OnC
         if (isShowing()) {
             canvas.drawRect(ANCHOR_SIZE_HALF, ANCHOR_SIZE_HALF,
                     getWidth() - ANCHOR_SIZE_HALF,
-                    getHeight() - ANCHOR_SIZE_HALF, PAINT);
+                    getHeight() - ANCHOR_SIZE_HALF, paint);
         }
         super.draw(canvas);
     }
@@ -233,6 +233,8 @@ public abstract class StickerView extends ViewGroup implements Sticker, View.OnC
                     onContentTap();
                     return true;
                 }
+                break;
+            default:
                 break;
         }
 

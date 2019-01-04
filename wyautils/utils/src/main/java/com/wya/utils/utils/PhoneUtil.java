@@ -214,7 +214,7 @@ public class PhoneUtil {
      * @param phoneNum
      */
     public void call(Context context, String phoneNum) throws Exception {
-        if (phoneNum != null && !phoneNum.equals("")) {
+        if (phoneNum != null && !"".equals(phoneNum)) {
             Uri uri = Uri.parse("tel:" + phoneNum);
             Intent intent = new Intent(Intent.ACTION_DIAL, uri);
             context.startActivity(intent);

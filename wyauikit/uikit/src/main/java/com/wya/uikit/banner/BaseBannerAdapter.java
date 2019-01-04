@@ -5,12 +5,12 @@ import android.view.View;
 
 import java.util.List;
 
-public abstract class BannerAdapter<T> {
+public abstract class BaseBannerAdapter<T> {
     private List<T>data;
     private int layoutId;
 
 
-    public BannerAdapter(List<T> data, @LayoutRes int layoutId) {
+    public BaseBannerAdapter(List<T> data, @LayoutRes int layoutId) {
         this.data = data;
         this.layoutId = layoutId;
     }

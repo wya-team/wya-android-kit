@@ -16,12 +16,12 @@ import java.util.List;
  * desc   :
  * version: 1.0
  */
-public abstract class OptionMenuAdapter<T> extends RecyclerView.Adapter<OptionMenuViewHolder> {
+public abstract class BaseOptionMenuAdapter<T> extends RecyclerView.Adapter<OptionMenuViewHolder> {
 	private List<T> mData;
 	private int layoutId;
-	private String TAG = "OptionMenuAdapter";
+	private static final String TAG = "BaseOptionMenuAdapter";
 
-	public OptionMenuAdapter(List<T> data, @LayoutRes int layoutId) {
+	public BaseOptionMenuAdapter(List<T> data, @LayoutRes int layoutId) {
 		mData = data;
 		this.layoutId = layoutId;
 	}

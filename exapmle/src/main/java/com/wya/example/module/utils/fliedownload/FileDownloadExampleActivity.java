@@ -32,13 +32,13 @@ import static com.wya.utils.utils.FileManagerUtil.TASK_STOP;
 
 public class FileDownloadExampleActivity extends BaseActivity implements View.OnClickListener {
     private TextView percent;
-    private TextView all_file;
-    private TextView down_file;
+    private TextView allFile;
+    private TextView downFile;
     private Button start, pause, delete;
     private ProgressBar progress;
     private TextView percent2;
-    private TextView all_file2;
-    private TextView down_file2;
+    private TextView allFile2;
+    private TextView downFile2;
     private Button start2, pause2, delete2;
     private ProgressBar progress2;
     private FileManagerUtil mFileManagerUtil;
@@ -83,8 +83,8 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
         pause = (Button) findViewById(R.id.pause);
         delete = (Button) findViewById(R.id.delete);
         progress = (ProgressBar) findViewById(R.id.progress);
-        all_file = (TextView) findViewById(R.id.all_file);
-        down_file = (TextView) findViewById(R.id.down_file);
+        allFile = (TextView) findViewById(R.id.all_file);
+        downFile = (TextView) findViewById(R.id.down_file);
 
         start.setOnClickListener(this);
         pause.setOnClickListener(this);
@@ -95,8 +95,8 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
         pause2 = (Button) findViewById(R.id.pause2);
         delete2 = (Button) findViewById(R.id.delete2);
         progress2 = (ProgressBar) findViewById(R.id.progress2);
-        all_file2 = (TextView) findViewById(R.id.all_file2);
-        down_file2 = (TextView) findViewById(R.id.down_file2);
+        allFile2 = (TextView) findViewById(R.id.all_file2);
+        downFile2 = (TextView) findViewById(R.id.down_file2);
 
         start2.setOnClickListener(this);
         pause2.setOnClickListener(this);
@@ -116,10 +116,10 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                 switch (state) {
                     case TASK_START:
                         if (url.equals(key)) {
-                            all_file.setText(task.getConvertFileSize());
+                            allFile.setText(task.getConvertFileSize());
                         }
                         if (url2.equals(key)) {
-                            all_file2.setText(task.getConvertFileSize());
+                            allFile2.setText(task.getConvertFileSize());
                         }
 
                         break;
@@ -131,7 +131,7 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                             } else {
                                 progress.setProgress(task.getPercent());
                                 percent.setText(task.getPercent() + "%");
-                                down_file.setText(task.getConvertCurrentProgress());
+                                downFile.setText(task.getConvertCurrentProgress());
                             }
                         }
                         if (url2.equals(key)) {
@@ -141,7 +141,7 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                             } else {
                                 progress2.setProgress(task.getPercent());
                                 percent2.setText(task.getPercent() + "%");
-                                down_file2.setText(task.getConvertCurrentProgress());
+                                downFile2.setText(task.getConvertCurrentProgress());
                             }
                         }
                         break;
@@ -149,14 +149,14 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                         if (url.equals(key)) {
                             progress.setProgress(100);
                             percent.setText("100%");
-                            down_file.setText(task.getConvertFileSize());
+                            downFile.setText(task.getConvertFileSize());
                             Toast.makeText(FileDownloadExampleActivity.this, "文件1：下载完成", Toast
                                     .LENGTH_SHORT).show();
                         }
                         if (url2.equals(key)) {
                             progress2.setProgress(100);
                             percent2.setText("100%");
-                            down_file2.setText(task.getConvertFileSize());
+                            downFile2.setText(task.getConvertFileSize());
                             Toast.makeText(FileDownloadExampleActivity.this, "文件2：下载完成", Toast
                                     .LENGTH_SHORT).show();
                         }
@@ -178,7 +178,7 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                             setBtnState(false);
                             percent.setText(0 + "%");
                             progress.setProgress(0);
-                            down_file.setText("0");
+                            downFile.setText("0");
                             Toast.makeText(FileDownloadExampleActivity.this, "文件1：取消下载,并删除了",
                                     Toast.LENGTH_SHORT)
                                     .show();
@@ -187,7 +187,7 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                             setBtnState2(false);
                             percent2.setText(0 + "%");
                             progress2.setProgress(0);
-                            down_file2.setText("0");
+                            downFile2.setText("0");
                             Toast.makeText(FileDownloadExampleActivity.this, "文件2：取消下载,并删除了",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -197,7 +197,7 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                             setBtnState(false);
                             percent.setText(0 + "%");
                             progress.setProgress(0);
-                            down_file.setText("0");
+                            downFile.setText("0");
                             Toast.makeText(FileDownloadExampleActivity.this, "文件1：下载失败！请确认文件地址是否可用!",
                                     Toast.LENGTH_SHORT)
                                     .show();
@@ -206,10 +206,12 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                             setBtnState2(false);
                             percent2.setText(0 + "%");
                             progress2.setProgress(0);
-                            down_file2.setText("0");
+                            downFile2.setText("0");
                             Toast.makeText(FileDownloadExampleActivity.this, "文件2：下载失败！请确认文件地址是否可用!",
                                     Toast.LENGTH_SHORT).show();
                         }
+                        break;
+                    default:
                         break;
                 }
             }
@@ -219,13 +221,13 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
     private void initHasDown() {
         DownloadTarget load = mFileManagerUtil.getDownloadReceiver().load(url);
         progress.setProgress(load.getPercent());
-        down_file.setText(CommonUtil.formatFileSize(load.getCurrentProgress()));
-        all_file.setText(load.getConvertFileSize());
+        downFile.setText(CommonUtil.formatFileSize(load.getCurrentProgress()));
+        allFile.setText(load.getConvertFileSize());
 
         DownloadTarget load2 = mFileManagerUtil.getDownloadReceiver().load(url2);
         progress2.setProgress(load2.getPercent());
-        down_file2.setText(CommonUtil.formatFileSize(load2.getCurrentProgress()));
-        all_file2.setText(load2.getConvertFileSize());
+        downFile2.setText(CommonUtil.formatFileSize(load2.getCurrentProgress()));
+        allFile2.setText(load2.getConvertFileSize());
 
 
         percent.setText(load.getPercent() + "%");
@@ -287,6 +289,8 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
                 break;
             case R.id.delete2:
                 mFileManagerUtil.getDownloadReceiver().load(url2).cancel(true);
+                break;
+            default:
                 break;
         }
     }

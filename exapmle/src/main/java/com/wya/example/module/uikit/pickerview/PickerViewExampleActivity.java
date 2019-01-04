@@ -10,7 +10,6 @@ import com.google.gson.Gson;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
-import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity;
 import com.wya.uikit.pickerview.CustomPickerView;
 import com.wya.uikit.pickerview.CustomTimePicker;
 import com.wya.utils.utils.StringUtil;
@@ -193,6 +192,8 @@ public class PickerViewExampleActivity extends BaseActivity {
                 customPickerView
                         .setCycle(false)
                         .show();
+                break;
+            default:
                 break;
         }
 

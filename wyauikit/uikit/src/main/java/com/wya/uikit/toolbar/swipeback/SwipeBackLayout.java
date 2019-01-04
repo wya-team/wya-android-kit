@@ -141,7 +141,7 @@ public class SwipeBackLayout extends FrameLayout {
 
     public SwipeBackLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs);
-        mDragHelper = ViewDragHelper.create(this, new ViewDragCallback());
+        mDragHelper = ViewDragHelper.create(this, new ViewDragBaseCallback());
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SwipeBackLayout, defStyle,
                 R.style.SwipeBackLayout);
@@ -195,9 +195,9 @@ public class SwipeBackLayout extends FrameLayout {
     /**
      * Enable edge tracking for the selected edges of the parent view. The
      * callback's
-     * {@link ViewDragHelper.Callback#onEdgeTouched(int, int)}
+     * {@link ViewDragHelper.BaseCallback#onEdgeTouched(int, int)}
      * and
-     * {@link ViewDragHelper.Callback#onEdgeDragStarted(int, int)}
+     * {@link ViewDragHelper.BaseCallback#onEdgeDragStarted(int, int)}
      * methods will only be invoked for edges for which edge tracking has been
      * enabled.
      *
@@ -492,7 +492,7 @@ public class SwipeBackLayout extends FrameLayout {
         }
     }
 
-    private class ViewDragCallback extends ViewDragHelper.Callback {
+    private class ViewDragBaseCallback extends ViewDragHelper.BaseCallback {
         private boolean mIsScrollOverValid;
 
         @Override

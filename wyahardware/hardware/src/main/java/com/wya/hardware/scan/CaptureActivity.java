@@ -357,6 +357,8 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
             case KeyEvent.KEYCODE_VOLUME_UP:
                 cameraManager.setTorch(true);
                 return true;
+            default:
+                break;
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -811,6 +813,8 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
                             handleZoom(false, camera);
                         }
                         oldDistance = newDistance;
+                        break;
+                    default:
                         break;
                 }
             }

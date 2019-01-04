@@ -45,7 +45,7 @@ public class ClipWindow implements Clip {
 
     private boolean isHoming = false;
 
-    private Matrix M = new Matrix();
+    private Matrix m = new Matrix();
 
     private Path mShadePath = new Path();
 
@@ -88,8 +88,8 @@ public class ClipWindow implements Clip {
 
     public void reset(RectF clipImage, float rotate) {
         RectF imgRect = new RectF();
-        M.setRotate(rotate, clipImage.centerX(), clipImage.centerY());
-        M.mapRect(imgRect, clipImage);
+        m.setRotate(rotate, clipImage.centerX(), clipImage.centerY());
+        m.mapRect(imgRect, clipImage);
         reset(imgRect.width(), imgRect.height());
     }
 

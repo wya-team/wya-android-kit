@@ -56,7 +56,7 @@ public class SearchBarExampleActivity extends BaseActivity {
             }
         });
         wyaSearchBar.setOnTextChangeListener(s -> {
-            if (!s.toString().trim().equals("")) {
+            if (!"".equals(s.toString().trim())) {
             }
         });
         parent.setOnClickListener(v -> {

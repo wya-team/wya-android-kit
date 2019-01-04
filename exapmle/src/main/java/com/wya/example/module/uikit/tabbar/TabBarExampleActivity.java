@@ -93,6 +93,9 @@ public class TabBarExampleActivity extends BaseActivity {
                         badgeMy.update(false);
                     }
                     break;
+
+                default:
+                    break;
             }
             return true;
         });

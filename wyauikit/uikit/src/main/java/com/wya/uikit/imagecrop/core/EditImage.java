@@ -112,7 +112,7 @@ public class EditImage {
 
     private Paint mPaint, mMosaicPaint, mShadePaint;
 
-    private Matrix M = new Matrix();
+    private Matrix m = new Matrix();
 
     private static final boolean DEBUG = false;
 
@@ -189,9 +189,9 @@ public class EditImage {
             mBackupClipFrame.set(mClipFrame);
 
             float scale = 1 / getScale();
-            M.setTranslate(-mFrame.left, -mFrame.top);
-            M.postScale(scale, scale);
-            M.mapRect(mBackupClipFrame);
+            m.setTranslate(-mFrame.left, -mFrame.top);
+            m.postScale(scale, scale);
+            m.mapRect(mBackupClipFrame);
 
             // 重置裁剪区域
             mClipWin.reset(mClipFrame, getTargetRotate());
@@ -205,11 +205,10 @@ public class EditImage {
         }
     }
 
-    // TODO
     private void rotateStickers(float rotate) {
-        M.setRotate(rotate, mClipFrame.centerX(), mClipFrame.centerY());
+        m.setRotate(rotate, mClipFrame.centerX(), mClipFrame.centerY());
         for (Sticker sticker : mBackStickers) {
-            M.mapRect(sticker.getFrame());
+            m.mapRect(sticker.getFrame());
             sticker.setRotation(sticker.getRotation() + rotate);
             sticker.setX(sticker.getFrame().centerX() - sticker.getPivotX());
             sticker.setY(sticker.getFrame().centerY() - sticker.getPivotY());
@@ -255,8 +254,8 @@ public class EditImage {
     public CropHoming clip(float scrollX, float scrollY) {
         RectF frame = mClipWin.getOffsetFrame(scrollX, scrollY);
 
-        M.setRotate(-getRotate(), mClipFrame.centerX(), mClipFrame.centerY());
-        M.mapRect(mClipFrame, frame);
+        m.setRotate(-getRotate(), mClipFrame.centerX(), mClipFrame.centerY());
+        m.mapRect(mClipFrame, frame);
 
         return new CropHoming(
                 scrollX + (mClipFrame.centerX() - frame.centerX()),
@@ -266,15 +265,15 @@ public class EditImage {
     }
 
     public void toBackupClip() {
-        M.setScale(getScale(), getScale());
-        M.postTranslate(mFrame.left, mFrame.top);
-        M.mapRect(mClipFrame, mBackupClipFrame);
+        m.setScale(getScale(), getScale());
+        m.postTranslate(mFrame.left, mFrame.top);
+        m.mapRect(mClipFrame, mBackupClipFrame);
         setTargetRotate(mBackupClipRotate);
         isRequestToBaseFitting = true;
     }
 
     public void resetClip() {
-        // TODO 就近旋转
+        //  就近旋转
         setTargetRotate(getRotate() - getRotate() % 360);
         mClipFrame.set(mFrame);
         mClipWin.reset(mClipFrame, getTargetRotate());
@@ -334,8 +333,8 @@ public class EditImage {
             if (mClipWin.isResetting()) {
 
                 RectF clipFrame = new RectF();
-                M.setRotate(getTargetRotate(), mClipFrame.centerX(), mClipFrame.centerY());
-                M.mapRect(clipFrame, mClipFrame);
+                m.setRotate(getTargetRotate(), mClipFrame.centerX(), mClipFrame.centerY());
+                m.mapRect(clipFrame, mClipFrame);
 
                 homing.rConcat(Utils.fill(frame, clipFrame));
             } else {
@@ -344,28 +343,28 @@ public class EditImage {
                 // cFrame要是一个暂时clipFrame
                 if (mClipWin.isHoming()) {
 //
-//                    M.mapRect(cFrame, mClipFrame);
+//                    m.mapRect(cFrame, mClipFrame);
 
 //                    mClipWin
-                    // TODO 偏移中心
+                    //  偏移中心
 
-                    M.setRotate(getTargetRotate() - getRotate(), mClipFrame.centerX(), mClipFrame.centerY());
-                    M.mapRect(cFrame, mClipWin.getOffsetFrame(scrollX, scrollY));
+                    m.setRotate(getTargetRotate() - getRotate(), mClipFrame.centerX(), mClipFrame.centerY());
+                    m.mapRect(cFrame, mClipWin.getOffsetFrame(scrollX, scrollY));
 
                     homing.rConcat(Utils.fitHoming(frame, cFrame, mClipFrame.centerX(), mClipFrame.centerY()));
 
 
                 } else {
-                    M.setRotate(getTargetRotate(), mClipFrame.centerX(), mClipFrame.centerY());
-                    M.mapRect(cFrame, mFrame);
+                    m.setRotate(getTargetRotate(), mClipFrame.centerX(), mClipFrame.centerY());
+                    m.mapRect(cFrame, mFrame);
                     homing.rConcat(Utils.fillHoming(frame, cFrame, mClipFrame.centerX(), mClipFrame.centerY()));
                 }
 
             }
         } else {
             RectF clipFrame = new RectF();
-            M.setRotate(getTargetRotate(), mClipFrame.centerX(), mClipFrame.centerY());
-            M.mapRect(clipFrame, mClipFrame);
+            m.setRotate(getTargetRotate(), mClipFrame.centerX(), mClipFrame.centerY());
+            m.mapRect(clipFrame, mClipFrame);
 
             RectF win = new RectF(mWindow);
             win.offset(scrollX, scrollY);
@@ -387,11 +386,11 @@ public class EditImage {
 
         float scale = 1f / getScale();
 
-        M.setTranslate(sx, sy);
-        M.postRotate(-getRotate(), mClipFrame.centerX(), mClipFrame.centerY());
-        M.postTranslate(-mFrame.left, -mFrame.top);
-        M.postScale(scale, scale);
-        path.transform(M);
+        m.setTranslate(sx, sy);
+        m.postRotate(-getRotate(), mClipFrame.centerX(), mClipFrame.centerY());
+        m.postTranslate(-mFrame.left, -mFrame.top);
+        m.postScale(scale, scale);
+        path.transform(m);
 
         switch (path.getMode()) {
             case DOODLE:
@@ -400,6 +399,8 @@ public class EditImage {
             case MOSAIC:
                 path.setWidth(path.getWidth() * scale);
                 mMosaics.add(path);
+                break;
+            default:
                 break;
         }
     }
@@ -465,9 +466,9 @@ public class EditImage {
         } else {
 
             // Pivot to fit window.
-            M.setTranslate(mWindow.centerX() - mClipFrame.centerX(), mWindow.centerY() - mClipFrame.centerY());
-            M.mapRect(mFrame);
-            M.mapRect(mClipFrame);
+            m.setTranslate(mWindow.centerX() - mClipFrame.centerX(), mWindow.centerY() - mClipFrame.centerY());
+            m.mapRect(mFrame);
+            m.mapRect(mClipFrame);
         }
 
         mClipWin.setClipWinSize(width, height);
@@ -500,10 +501,10 @@ public class EditImage {
         );
 
         // Scale to fit window.
-        M.setScale(scale, scale, mClipFrame.centerX(), mClipFrame.centerY());
-        M.postTranslate(mWindow.centerX() - mClipFrame.centerX(), mWindow.centerY() - mClipFrame.centerY());
-        M.mapRect(mFrame);
-        M.mapRect(mClipFrame);
+        m.setScale(scale, scale, mClipFrame.centerX(), mClipFrame.centerY());
+        m.postTranslate(mWindow.centerX() - mClipFrame.centerX(), mWindow.centerY() - mClipFrame.centerY());
+        m.mapRect(mFrame);
+        m.mapRect(mClipFrame);
     }
 
     private void onInitialHomingDone() {
@@ -565,8 +566,8 @@ public class EditImage {
     }
 
     public void onDrawStickerClip(Canvas canvas) {
-        M.setRotate(getRotate(), mClipFrame.centerX(), mClipFrame.centerY());
-        M.mapRect(mTempClipFrame, mClipWin.isClipping() ? mFrame : mClipFrame);
+        m.setRotate(getRotate(), mClipFrame.centerX(), mClipFrame.centerY());
+        m.mapRect(mTempClipFrame, mClipWin.isClipping() ? mFrame : mClipFrame);
         canvas.clipRect(mTempClipFrame);
     }
 
@@ -579,11 +580,11 @@ public class EditImage {
                 float tPivotY = sticker.getY() + sticker.getPivotY();
 
                 canvas.save();
-                M.setTranslate(sticker.getX(), sticker.getY());
-                M.postScale(sticker.getScale(), sticker.getScale(), tPivotX, tPivotY);
-                M.postRotate(sticker.getRotation(), tPivotX, tPivotY);
+                m.setTranslate(sticker.getX(), sticker.getY());
+                m.postScale(sticker.getScale(), sticker.getScale(), tPivotX, tPivotY);
+                m.postRotate(sticker.getRotation(), tPivotX, tPivotY);
 
-                canvas.concat(M);
+                canvas.concat(m);
                 sticker.onSticker(canvas);
                 canvas.restore();
             }
@@ -637,8 +638,8 @@ public class EditImage {
                 mClipWin.onScroll(mAnchor, dx, dy);
 
                 RectF clipFrame = new RectF();
-                M.setRotate(getRotate(), mClipFrame.centerX(), mClipFrame.centerY());
-                M.mapRect(clipFrame, mFrame);
+                m.setRotate(getRotate(), mClipFrame.centerX(), mClipFrame.centerY());
+                m.mapRect(clipFrame, mFrame);
 
                 RectF frame = mClipWin.getOffsetFrame(scrollX, scrollY);
                 CropHoming homing = new CropHoming(scrollX, scrollY, getScale(), getTargetRotate());
@@ -694,18 +695,17 @@ public class EditImage {
             factor += (1 - factor) / 2;
         }
 
-        M.setScale(factor, factor, focusX, focusY);
-        M.mapRect(mFrame);
-        M.mapRect(mClipFrame);
+        m.setScale(factor, factor, focusX, focusY);
+        m.mapRect(mFrame);
+        m.mapRect(mClipFrame);
 
         // 修正clip 窗口
         if (!mFrame.contains(mClipFrame)) {
-            // TODO
 //            mClipFrame.intersect(mFrame);
         }
 
         for (Sticker sticker : mBackStickers) {
-            M.mapRect(sticker.getFrame());
+            m.mapRect(sticker.getFrame());
             float tPivotX = sticker.getX() + sticker.getPivotX();
             float tPivotY = sticker.getY() + sticker.getPivotY();
             sticker.addScale(factor);

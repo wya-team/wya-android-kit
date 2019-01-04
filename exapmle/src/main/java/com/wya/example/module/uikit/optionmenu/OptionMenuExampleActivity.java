@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
-import com.wya.uikit.optionmenu.OptionMenu;
+import com.wya.uikit.optionmenu.BaseOptionMenu;
 import com.wya.uikit.optionmenu.OptionMenuViewHolder;
 import com.wya.utils.utils.StringUtil;
 
@@ -53,7 +53,7 @@ public class OptionMenuExampleActivity extends BaseActivity {
         showOne = (RelativeLayout) findViewById(R.id.show_one);
         showTwo = (RelativeLayout) findViewById(R.id.show_two);
         initData();
-        OptionMenu<String> optionMenu2 = new OptionMenu<String>(this, data, data2, R.layout
+        BaseOptionMenu<String> baseOptionMenu2 = new BaseOptionMenu<String>(this, data, data2, R.layout
                 .choice_menu_item, R.layout.choice_menu_item2) {
             @Override
             public void setValueFirst(OptionMenuViewHolder helper, String item) {
@@ -94,10 +94,10 @@ public class OptionMenuExampleActivity extends BaseActivity {
 
             }
         };
-        optionMenu2.setOnFirstAdapterItemClickListener((position, v, menu) -> selectPositionTwo1
+        baseOptionMenu2.setOnFirstAdapterItemClickListener((position, v, menu) -> selectPositionTwo1
                 = position);
 
-        OptionMenu<String> optionMenu1 = new OptionMenu<String>(this, data, R.layout
+        BaseOptionMenu<String> baseOptionMenu1 = new BaseOptionMenu<String>(this, data, R.layout
                 .one_choice_menu_item) {
             @Override
             public void setValueFirst(OptionMenuViewHolder helper, String item) {
@@ -113,13 +113,13 @@ public class OptionMenuExampleActivity extends BaseActivity {
             }
         };
 
-        optionMenu1.setOnFirstAdapterItemClickListener((position, v, menu) -> {
+        baseOptionMenu1.setOnFirstAdapterItemClickListener((position, v, menu) -> {
             selectPositionOne = position;
-            optionMenu1.notifyAdapterData();
+            baseOptionMenu1.notifyAdapterData();
         });
 
         //设置高度
-        optionMenu2.setHeight(getResources().getDisplayMetrics().heightPixels / 2);
+        baseOptionMenu2.setHeight(getResources().getDisplayMetrics().heightPixels / 2);
 
         showOne.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,11 +128,11 @@ public class OptionMenuExampleActivity extends BaseActivity {
 //                Animation animation = AnimationUtils.loadAnimation(OptionMenuExampleActivity
 //                        .this, R.anim.choice_menu_in);
 //
-                optionMenu1.setAnimationStyle(R.style.choiceMenuStyle);
-                optionMenu1.showAsDropDown(showOne);
+                baseOptionMenu1.setAnimationStyle(R.style.choiceMenuStyle);
+                baseOptionMenu1.showAsDropDown(showOne);
             }
         });
-        showTwo.setOnClickListener(v -> optionMenu2.showAsDropDown(showTwo));
+        showTwo.setOnClickListener(v -> baseOptionMenu2.showAsDropDown(showTwo));
 
 
     }

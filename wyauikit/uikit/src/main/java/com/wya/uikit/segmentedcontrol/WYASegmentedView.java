@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class WYASegmentedView extends LinearLayout implements View.OnClickListener {
     private Context mContext;
-    private String TAG = "SegmentedView";
+    private static final String TAG = "SegmentedView";
     private Paint mPaint;
     private int lineColor;
     private int titleNormalColor;

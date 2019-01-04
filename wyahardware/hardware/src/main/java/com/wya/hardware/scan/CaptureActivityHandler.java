@@ -55,6 +55,7 @@ public final class CaptureActivityHandler extends Handler {
     private final CameraManager cameraManager;
 
     private enum State {
+        //
         PREVIEW,
         SUCCESS,
         DONE
@@ -129,6 +130,8 @@ public final class CaptureActivityHandler extends Handler {
                         intent.setPackage(browserPackageName);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra(Browser.EXTRA_APPLICATION_ID, browserPackageName);
+                        break;
+                    default:
                         break;
                 }
             }

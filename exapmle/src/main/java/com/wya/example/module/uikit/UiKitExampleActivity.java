@@ -125,6 +125,8 @@ public class UiKitExampleActivity extends BaseActivity {
 			case R.id.tv_slide_view:
 				SlideViewExampleActivity.start(UiKitExampleActivity.this);
 				break;
+			default:
+				break;
 		}
 	}
 }

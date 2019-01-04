@@ -37,6 +37,8 @@ public class UtilsExampleActivity extends BaseActivity {
             case R.id.wya_button_download:
                 startActivity(new Intent(this, FileDownloadExampleActivity.class));
                 break;
+            default:
+                break;
         }
     }
 }

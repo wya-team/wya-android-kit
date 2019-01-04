@@ -12,7 +12,7 @@ import android.graphics.Color;
 
 public class WYAToolBarHelper {
     private boolean showToolBar = true;//显示标题栏
-    private int toolbar_bg_color = Color.parseColor("#000000"); //标题栏颜色
+    private int toolbarBgColor = Color.parseColor("#000000"); //标题栏颜色
 
     //标题参数
     private boolean isShowTitle = true;//默认显示标题
@@ -207,16 +207,16 @@ public class WYAToolBarHelper {
         this.titleTextColor = Color.parseColor(titleTextColorValue);
     }
 
-    public int getToolbar_bg_color() {
-        return toolbar_bg_color;
+    public int getToolbarBgColor() {
+        return toolbarBgColor;
     }
 
-    public void setToolbar_bg_color(String toolbar_bg_color_value) {
-        this.toolbar_bg_color = Color.parseColor(toolbar_bg_color_value);
+    public void setToolbarBgColor(String toolbarBgColorValue) {
+        this.toolbarBgColor = Color.parseColor(toolbarBgColorValue);
     }
 
-    public void setToolbar_bg_color(int toolbar_bg_color) {
-        this.toolbar_bg_color = toolbar_bg_color;
+    public void setToolbarBgColor(int toolbarBgColor) {
+        this.toolbarBgColor = toolbarBgColor;
     }
 
     public void setTitleTextColor(int titleTextColor) {

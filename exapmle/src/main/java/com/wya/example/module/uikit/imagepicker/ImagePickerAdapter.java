@@ -30,7 +30,7 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private static final int ADD = 1;
     private static final int IMG = 2;
     private OnItemClickListener mOnItemClickListener;
-    private static final String type = "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
+    private static final String TYPE = "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
 
     public ImagePickerAdapter(List<String> images, Context context) {
         this.images = images;
@@ -65,17 +65,17 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             String url = images.get(position);
             String[] split = url.split("[.]");
-            //check is video type
+            //check is video TYPE
             if (isVideo(split[split.length - 1])) {
                 MediaMetadataRetriever metadataRetriever = new MediaMetadataRetriever();
                 metadataRetriever.setDataSource(url);
                 String duration = metadataRetriever.extractMetadata(android.media.MediaMetadataRetriever
                         .METADATA_KEY_DURATION);
-                ((ImageViewHolder) viewHolder).video_msg.setVisibility(View.VISIBLE);
-                ((ImageViewHolder) viewHolder).video_duration.setText(dateFormate(duration));
+                ((ImageViewHolder) viewHolder).videoMsg.setVisibility(View.VISIBLE);
+                ((ImageViewHolder) viewHolder).videoDuration.setText(dateFormate(duration));
                 metadataRetriever.release();
             } else {
-                ((ImageViewHolder) viewHolder).video_msg.setVisibility(View.GONE);
+                ((ImageViewHolder) viewHolder).videoMsg.setVisibility(View.GONE);
             }
 
 
@@ -125,15 +125,15 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     class ImageViewHolder extends RecyclerView.ViewHolder {
         ImageView mImageView;
         LinearLayout delete;
-        LinearLayout video_msg;
-        TextView video_duration;
+        LinearLayout videoMsg;
+        TextView videoDuration;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.image_test);
             delete = itemView.findViewById(R.id.delete);
-            video_msg = itemView.findViewById(R.id.video_msg);
-            video_duration = itemView.findViewById(R.id.video_duration);
+            videoMsg = itemView.findViewById(R.id.video_msg);
+            videoDuration = itemView.findViewById(R.id.video_duration);
         }
     }
 
@@ -157,6 +157,6 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     private boolean isVideo(String mediaType) {
-        return type.contains(mediaType.toUpperCase());
+        return TYPE.contains(mediaType.toUpperCase());
     }
 }

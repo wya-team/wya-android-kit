@@ -83,7 +83,7 @@ public class WYACustomEditText extends RelativeLayout {
             }
 
             hintTextStr = a.getString(R.styleable.WYACustomEditText_wyaHintTextStr);
-            if (hintTextStr != null && !hintTextStr.equals("")) {
+            if (hintTextStr != null && !"".equals(hintTextStr)) {
                 setHintTextStr(hintTextStr);
             }
 
@@ -107,8 +107,8 @@ public class WYACustomEditText extends RelativeLayout {
      * 设置输入数字统计
      */
     private void setTextNumCount() {
-        tv_count_wya_custom_edit_text.setText(et_wya_custom_edit_text.getText().toString().length() + "/" + maxNum);
-        et_wya_custom_edit_text.addTextChangedListener(new TextWatcher() {
+        tvCountWyaCustomEditText.setText(etWyaCustomEditText.getText().toString().length() + "/" + maxNum);
+        etWyaCustomEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -120,15 +120,15 @@ public class WYACustomEditText extends RelativeLayout {
 
             @Override
             public void afterTextChanged(Editable s) {
-                Editable editable = et_wya_custom_edit_text.getText();
+                Editable editable = etWyaCustomEditText.getText();
                 int len = editable.length();
                 if (len > maxNum) {
                     int selEndIndex = Selection.getSelectionEnd(editable);
                     String str = editable.toString();
                     //截取新字符串
                     String newStr = str.substring(0, maxNum);
-                    et_wya_custom_edit_text.setText(newStr);
-                    editable = et_wya_custom_edit_text.getText();
+                    etWyaCustomEditText.setText(newStr);
+                    editable = etWyaCustomEditText.getText();
                     //新字符串的长度
                     int newLen = editable.length();
                     //旧光标位置超过字符串长度
@@ -139,7 +139,7 @@ public class WYACustomEditText extends RelativeLayout {
                     Selection.setSelection(editable, selEndIndex);
                 }
                 editTextStr = editable.toString();
-                tv_count_wya_custom_edit_text.setText(et_wya_custom_edit_text.getText().toString().length() + "/" + maxNum);
+                tvCountWyaCustomEditText.setText(etWyaCustomEditText.getText().toString().length() + "/" + maxNum);
             }
         });
     }
@@ -151,7 +151,7 @@ public class WYACustomEditText extends RelativeLayout {
      */
     private void setMyBackgroundDrawable(GradientDrawable gradientDrawable) {
         this.gradientDrawable = gradientDrawable;
-        wya_custom_edit_text_parent.setBackgroundDrawable(gradientDrawable);
+        wyaCustomEditTextParent.setBackgroundDrawable(gradientDrawable);
     }
 
     /**
@@ -161,7 +161,7 @@ public class WYACustomEditText extends RelativeLayout {
      */
     private void setHintEditStr(String hintEditStr) {
         this.hintEditStr = hintEditStr;
-        et_wya_custom_edit_text.setHint(hintEditStr);
+        etWyaCustomEditText.setHint(hintEditStr);
     }
 
     /**
@@ -171,7 +171,7 @@ public class WYACustomEditText extends RelativeLayout {
      */
     private void setEditTextStr(String editTextStr) {
         this.editTextStr = editTextStr;
-        et_wya_custom_edit_text.setText(editTextStr);
+        etWyaCustomEditText.setText(editTextStr);
     }
 
     /**
@@ -181,8 +181,8 @@ public class WYACustomEditText extends RelativeLayout {
      */
     private void setHintTextStr(String hintTextStr) {
         this.hintTextStr = hintTextStr;
-        tv_hint_wya_custom_edit_text.setVisibility(View.VISIBLE);
-        tv_hint_wya_custom_edit_text.setText(hintTextStr);
+        tvHintWyaCustomEditText.setVisibility(View.VISIBLE);
+        tvHintWyaCustomEditText.setText(hintTextStr);
     }
 
     /**
@@ -192,7 +192,7 @@ public class WYACustomEditText extends RelativeLayout {
      */
     private void setEditTextColor(ColorStateList editTextColor) {
         this.editTextColor = editTextColor;
-        et_wya_custom_edit_text.setTextColor(editTextColor);
+        etWyaCustomEditText.setTextColor(editTextColor);
     }
 
     /**
@@ -202,7 +202,7 @@ public class WYACustomEditText extends RelativeLayout {
      */
     private void setHintTextColor(ColorStateList hintTextColor) {
         this.hintTextColor = hintTextColor;
-        tv_hint_wya_custom_edit_text.setTextColor(hintTextColor);
+        tvHintWyaCustomEditText.setTextColor(hintTextColor);
     }
 
     /**
@@ -212,7 +212,7 @@ public class WYACustomEditText extends RelativeLayout {
      */
     private void setHintEditColor(ColorStateList hintEditColor) {
         this.hintEditColor = hintEditColor;
-        et_wya_custom_edit_text.setHintTextColor(hintEditColor);
+        etWyaCustomEditText.setHintTextColor(hintEditColor);
     }
 
     /**
@@ -222,7 +222,7 @@ public class WYACustomEditText extends RelativeLayout {
      */
     private void setCountTextColor(ColorStateList countTextColor) {
         this.countTextColor = countTextColor;
-        tv_count_wya_custom_edit_text.setTextColor(countTextColor);
+        tvCountWyaCustomEditText.setTextColor(countTextColor);
     }
 
     /**
@@ -235,15 +235,15 @@ public class WYACustomEditText extends RelativeLayout {
     }
 
 
-    private LinearLayout wya_custom_edit_text_parent;
-    private TextView tv_hint_wya_custom_edit_text;
-    private EditText et_wya_custom_edit_text;
-    private TextView tv_count_wya_custom_edit_text;
+    private LinearLayout wyaCustomEditTextParent;
+    private TextView tvHintWyaCustomEditText;
+    private EditText etWyaCustomEditText;
+    private TextView tvCountWyaCustomEditText;
 
     private void initView() {
-        wya_custom_edit_text_parent = findViewById(R.id.wya_custom_edit_text_parent);
-        tv_hint_wya_custom_edit_text = findViewById(R.id.tv_hint_wya_custom_edit_text);
-        et_wya_custom_edit_text = findViewById(R.id.et_wya_custom_edit_text);
-        tv_count_wya_custom_edit_text = findViewById(R.id.tv_count_wya_custom_edit_text);
+        wyaCustomEditTextParent = findViewById(R.id.wya_custom_edit_text_parent);
+        tvHintWyaCustomEditText = findViewById(R.id.tv_hint_wya_custom_edit_text);
+        etWyaCustomEditText = findViewById(R.id.et_wya_custom_edit_text);
+        tvCountWyaCustomEditText = findViewById(R.id.tv_count_wya_custom_edit_text);
     }
 }

@@ -60,13 +60,13 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
 
 
     //手电筒状态
-    private boolean type_flash_light = false;
+    private boolean typeFlashLight = false;
 
     //闪关灯状态
     private static final int TYPE_FLASH_AUTO = 0x021;
     private static final int TYPE_FLASH_ON = 0x022;
     private static final int TYPE_FLASH_OFF = 0x023;
-    private int type_flash = TYPE_FLASH_OFF;
+    private int typeFlash = TYPE_FLASH_OFF;
 
     //拍照浏览时候的类型
     public static final int TYPE_PICTURE = 0x001;
@@ -106,7 +106,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     private FoucsView mFoucsView;
     private MediaPlayer mMediaPlayer;
 
-    private int layout_width;
+    private int layoutWidth;
     private float screenProp = 0f;
 
     private Bitmap captureBitmap;   //捕获的图片
@@ -155,9 +155,9 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     }
 
     private void initData() {
-        layout_width = getScreenWidth(mContext);
+        layoutWidth = getScreenWidth(mContext);
         //缩放梯度
-        zoomGradient = (int) (layout_width / 16f);
+        zoomGradient = (int) (layoutWidth / 16f);
         machine = new CameraMachine(getContext(), this, this);
     }
 
@@ -206,9 +206,9 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         mFlashLamp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                type_flash++;
-                if (type_flash > 0x023)
-                    type_flash = TYPE_FLASH_AUTO;
+                typeFlash++;
+                if (typeFlash > 0x023)
+                    typeFlash = TYPE_FLASH_AUTO;
                 setFlashRes();
             }
         });
@@ -279,7 +279,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
             @Override
             public void recordError() {
                 if (errorListener != null) {
-                    errorListener.AudioPermissionError();
+                    errorListener.audiopermissionerror();
                 }
             }
         });
@@ -405,14 +405,14 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
                 }
                 if (event.getPointerCount() == 2) {
                     //第一个点
-                    float point_1_X = event.getX(0);
-                    float point_1_Y = event.getY(0);
+                    float point1X = event.getX(0);
+                    float point1Y = event.getY(0);
                     //第二个点
-                    float point_2_X = event.getX(1);
-                    float point_2_Y = event.getY(1);
+                    float point2X = event.getX(1);
+                    float point2Y = event.getY(1);
 
-                    float result = (float) Math.sqrt(Math.pow(point_1_X - point_2_X, 2) + Math.pow(point_1_Y -
-                            point_2_Y, 2));
+                    float result = (float) Math.sqrt(Math.pow(point1X - point2X, 2) + Math.pow(point1Y -
+                            point2Y, 2));
 
                     if (firstTouch) {
                         firstTouchLength = result;
@@ -427,6 +427,8 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
                 break;
             case MotionEvent.ACTION_UP:
                 firstTouch = true;
+                break;
+            default:
                 break;
         }
         return true;
@@ -508,6 +510,8 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
             case TYPE_DEFAULT:
                 mVideoView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                 break;
+            default:
+                break;
         }
         mSwitchCamera.setVisibility(VISIBLE);
         mFlashLamp.setVisibility(VISIBLE);
@@ -550,6 +554,8 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
             case TYPE_SHORT:
                 break;
             case TYPE_DEFAULT:
+                break;
+            default:
                 break;
         }
         mCaptureLayout.resetCaptureLayout();
@@ -640,8 +646,8 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         if (x < mFoucsView.getWidth() / 2) {
             x = mFoucsView.getWidth() / 2;
         }
-        if (x > layout_width - mFoucsView.getWidth() / 2) {
-            x = layout_width - mFoucsView.getWidth() / 2;
+        if (x > layoutWidth - mFoucsView.getWidth() / 2) {
+            x = layoutWidth - mFoucsView.getWidth() / 2;
         }
         if (y < mFoucsView.getWidth() / 2) {
             y = mFoucsView.getWidth() / 2;
@@ -670,7 +676,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     }
 
     private void setFlashRes() {
-        switch (type_flash) {
+        switch (typeFlash) {
             case TYPE_FLASH_AUTO:
                 mFlashLamp.setImageResource(R.drawable.icon_camera_flash_yelow);
                 machine.flash(Camera.Parameters.FLASH_MODE_AUTO);
@@ -683,16 +689,18 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
                 mFlashLamp.setImageResource(R.drawable.icon_camera_flash_close);
                 machine.flash(Camera.Parameters.FLASH_MODE_OFF);
                 break;
+            default:
+                break;
         }
     }
 
     private void setFlashLight() {
-        type_flash_light = !type_flash_light;
+        typeFlashLight = !typeFlashLight;
         PackageManager packageManager = getContext().getPackageManager();
         FeatureInfo[] features = packageManager.getSystemAvailableFeatures();
         for (FeatureInfo featureInfo : features) {
             if (PackageManager.FEATURE_CAMERA_FLASH.equals(featureInfo.name)) { // 判断设备是否支持闪光灯
-                if (type_flash_light) {
+                if (typeFlashLight) {
                     machine.flash(Camera.Parameters.FLASH_MODE_TORCH);
 //                    CameraInterface.getInstance().setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
                 } else {

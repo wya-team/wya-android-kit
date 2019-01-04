@@ -47,14 +47,14 @@ public class ImagePickerExampleActivity extends BaseActivity {
     private List<String> mVideoList = new ArrayList<>();
     private EditText input;
     private ImagePickerAdapter mPickerAdapter;
-    private ImageView crop_crop, crop_select;
+    private ImageView cropCrop, cropSelect;
     private int num;
     private WYACustomDialog mWyaCustomDialog;
 
     public static final int CROP_PHOTO = 1001;
     public static final int CROP = 1002;
     public static final int PHOTO = 100;
-    private String TAG = "ImagePickerExampleActivity";
+    private static final String TAG = "ImagePickerExampleActivity";
 
     @Override
     protected int getLayoutID() {
@@ -77,8 +77,8 @@ public class ImagePickerExampleActivity extends BaseActivity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         input = (EditText) findViewById(R.id.num_input);
-        crop_crop = (ImageView) findViewById(R.id.crop_crop);
-        crop_select = (ImageView) findViewById(R.id.crop_select);
+        cropCrop = (ImageView) findViewById(R.id.crop_crop);
+        cropSelect = (ImageView) findViewById(R.id.crop_select);
 
 
         findViewById(R.id.crop).setOnClickListener(new View.OnClickListener() {
@@ -234,7 +234,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                 List<String> list = extras.getStringArrayList(PickerConfig.IMAGE_SELECTED);
                 String path = list.get(0);
                 Bitmap bitmap = BitmapFactory.decodeFile(path);
-                crop_select.setImageBitmap(bitmap);
+                cropSelect.setImageBitmap(bitmap);
                 File file = new File(path);
                 Uri uri;
                 if (Build.VERSION.SDK_INT >= 24) {
@@ -246,7 +246,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                 Crop.create(ImagePickerExampleActivity.this)
                         .setImagePath(uri)
                         .saveCropImagePath(file.getParentFile().getPath() + "/test.jpg")
-                        .CropQuality(80)
+                        .cropQuality(80)
                         .forResult(1002);
             }
         }
@@ -254,7 +254,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
             String path = data.getStringExtra("path");
             File file = new File(path);
             Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
-            crop_crop.setImageBitmap(bitmap);
+            cropCrop.setImageBitmap(bitmap);
         }
         if (requestCode == CROP && resultCode == RESULT_CANCELED) {
             Toast.makeText(this, "裁剪被取消了", Toast.LENGTH_SHORT).show();
@@ -301,10 +301,10 @@ public class ImagePickerExampleActivity extends BaseActivity {
                 .setLayoutRes(R.layout.image_picker_choose, new CustomListener() {
                     @Override
                     public void customLayout(View v) {
-                        TextView dialog_camera = v.findViewById(R.id.dialog_camera);
-                        TextView dialog_photo = v.findViewById(R.id.dialog_photo);
-                        TextView dialog_cancel = v.findViewById(R.id.dialog_cancel);
-                        dialog_camera.setOnClickListener(new View.OnClickListener() {
+                        TextView dialogCamera = v.findViewById(R.id.dialog_camera);
+                        TextView dialogPhoto = v.findViewById(R.id.dialog_photo);
+                        TextView dialogCancel = v.findViewById(R.id.dialog_cancel);
+                        dialogCamera.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 mWyaCustomDialog.dismiss();
@@ -314,7 +314,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                                 openCamera();
                             }
                         });
-                        dialog_photo.setOnClickListener(new View.OnClickListener() {
+                        dialogPhoto.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 mWyaCustomDialog.dismiss();
@@ -326,7 +326,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                                         .forResult(PHOTO);
                             }
                         });
-                        dialog_cancel.setOnClickListener(new View.OnClickListener() {
+                        dialogCancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 mWyaCustomDialog.dismiss();

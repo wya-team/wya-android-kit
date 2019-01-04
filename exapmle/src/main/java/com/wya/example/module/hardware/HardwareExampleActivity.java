@@ -32,6 +32,8 @@ public class HardwareExampleActivity extends BaseActivity {
             case R.id.wya_button_video_player:
                 HardwareExampleActivity.this.startActivity(new Intent(HardwareExampleActivity.this, VideoPlayerExampleActivity.class));
                 break;
+            default:
+                break;
         }
     }
 }

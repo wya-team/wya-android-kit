@@ -61,7 +61,7 @@ public class Crop {
 		return this;
 	}
 
-	public Crop CropQuality(int quality) {
+	public Crop cropQuality(int quality) {
 		this.quality = quality;
 		return this;
 	}

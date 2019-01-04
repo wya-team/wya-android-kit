@@ -42,20 +42,20 @@ public class SwitcherView extends ViewSwitcher {
     }
     
     private void parseAttrs(Context context, AttributeSet attrs) {
-        int DEF_ANIMATOR_DURATION = 400;
-        int DEF_SWITCH_DURATION = 3_000;
+        int defAnimatorDuration = 400;
+        int defSwitchDuration = 3_000;
         mAnimDirection = DEF_ANIMATOR_DIRENCTION;
-        mAnimDuration = DEF_ANIMATOR_DURATION;
-        mSwitchDuration = DEF_SWITCH_DURATION;
+        mAnimDuration = defAnimatorDuration;
+        mSwitchDuration = defSwitchDuration;
         
         if (attrs != null) {
             TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SwitcherView, 0, 0);
             if (null != typedArray) {
                 mAnimDirection = typedArray.getInteger(R.styleable.SwitcherView_anim_direction, DEF_ANIMATOR_DIRENCTION);
-                mAnimDuration = typedArray.getInteger(R.styleable.SwitcherView_anim_duration, DEF_ANIMATOR_DURATION);
+                mAnimDuration = typedArray.getInteger(R.styleable.SwitcherView_anim_duration, defAnimatorDuration);
                 mClosable = typedArray.getBoolean(R.styleable.SwitcherView_switch_closable, false);
                 mSkipable = typedArray.getBoolean(R.styleable.SwitcherView_switch_skipable, false);
-                mSwitchDuration = typedArray.getInteger(R.styleable.SwitcherView_switch_duration, DEF_SWITCH_DURATION);
+                mSwitchDuration = typedArray.getInteger(R.styleable.SwitcherView_switch_duration, defSwitchDuration);
                 typedArray.recycle();
             }
         }

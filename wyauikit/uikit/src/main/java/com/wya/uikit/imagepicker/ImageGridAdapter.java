@@ -35,7 +35,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 	private OnImageClickListener mImageClickListener;
 	private OnTakePhotoClickListener mPhotoClickListener;
 	private int max;
-	private String TAG="ImageGridAdapter";
+	private static final String TAG="ImageGridAdapter";
 
 	public ImageGridAdapter(Context context, OnImageSelectedChangedListener listener, int max) {
 		mContext = context;
@@ -129,10 +129,10 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 			String cropPath = localMedia.getCropPath();
 			if (TextUtils.isEmpty(cropPath)) {
 				Glide.with(mContext).load(localMedia.getPath()).into(imageViewHolder.mImageView);
-				imageViewHolder.crop_tag.setVisibility(View.INVISIBLE);
+				imageViewHolder.cropTag.setVisibility(View.INVISIBLE);
 			} else {
 				Glide.with(mContext).load(cropPath).into(imageViewHolder.mImageView);
-				imageViewHolder.crop_tag.setVisibility(View.VISIBLE);
+				imageViewHolder.cropTag.setVisibility(View.VISIBLE);
 			}
 
 
@@ -173,7 +173,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 	class ImageViewHolder extends RecyclerView.ViewHolder {
 		ImageView mImageView;
-		ImageView crop_tag;
+		ImageView cropTag;
 		CheckBox mCheckBox;
         LinearLayout mVideoLayout;
         TextView mDuration;
@@ -184,7 +184,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 			mCheckBox = itemView.findViewById(R.id.check_box);
             mVideoLayout = itemView.findViewById(R.id.video_msg);
             mDuration = itemView.findViewById(R.id.video_duration);
-			crop_tag = itemView.findViewById(R.id.crop_tag);
+			cropTag = itemView.findViewById(R.id.crop_tag);
 		}
 	}
 

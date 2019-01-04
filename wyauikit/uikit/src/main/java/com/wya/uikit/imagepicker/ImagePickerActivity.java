@@ -32,7 +32,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.wya.uikit.R;
-import com.wya.uikit.optionmenu.OptionMenu;
+import com.wya.uikit.optionmenu.BaseOptionMenu;
 import com.wya.uikit.optionmenu.OptionMenuViewHolder;
 import com.wya.uikit.gallery.DataHelper;
 import com.wya.uikit.gallery.GalleryConfig;
@@ -46,21 +46,21 @@ import java.util.List;
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class ImagePickerActivity extends AppCompatActivity implements View.OnClickListener,
         ImageGridAdapter.OnImageSelectedChangedListener {
-    private ImageView picture_left_back;
-    private TextView picture_title;
-    private RecyclerView picture_recycler;
-    private LinearLayout picture_bottom_layout;
-    private TextView tv_preview;
-    private TextView tv_commit;
-    private RelativeLayout picker_title_layout;
+    private ImageView pictureLeftBack;
+    private TextView pictureTitle;
+    private RecyclerView pictureRecycler;
+    private LinearLayout pictureBottomLayout;
+    private TextView tvPreview;
+    private TextView tvCommit;
+    private RelativeLayout pickerTitleLayout;
     private ImageGridAdapter mGridAdapter;
-    private OptionMenu<LocalMediaFolder> mOptionMenu;
+    private BaseOptionMenu<LocalMediaFolder> mBaseOptionMenu;
     private List<LocalMediaFolder> mFolders = new ArrayList<>();
     private List<String> mCropList = new ArrayList<>();
     private Drawable mDrawableUp;
     private Drawable mDrawableDown;
     private boolean isDown;
-    private String TAG = "ImagePickerActivity";
+    private static final String TAG = "ImagePickerActivity";
     private List<LocalMedia> mSelected = new ArrayList<>();
     private List<LocalMedia> mLocalMedia = new ArrayList<>();
     private int maxNum;
@@ -124,7 +124,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
      * init folder menu
      */
     private void initChoiceMenu() {
-        mOptionMenu = new OptionMenu<LocalMediaFolder>(this, mFolders, R.layout
+        mBaseOptionMenu = new BaseOptionMenu<LocalMediaFolder>(this, mFolders, R.layout
                 .folder_choice_item) {
             @Override
             public void setValueFirst(final OptionMenuViewHolder helper, final LocalMediaFolder
@@ -141,17 +141,17 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
 
             }
         };
-        mOptionMenu.setShadow(false);
-//        mOptionMenu.setOutsideTouchable(true);
-        mOptionMenu.setFocusable(false);
-        mOptionMenu.setOnFirstAdapterItemClickListener(
-                new OptionMenu.OnFirstAdapterItemClickListener() {
+        mBaseOptionMenu.setShadow(false);
+//        mBaseOptionMenu.setOutsideTouchable(true);
+        mBaseOptionMenu.setFocusable(false);
+        mBaseOptionMenu.setOnFirstAdapterItemClickListener(
+                new BaseOptionMenu.OnFirstAdapterItemClickListener() {
                     @Override
-                    public void onClick(int position, View v, OptionMenu menu) {
+                    public void onClick(int position, View v, BaseOptionMenu menu) {
                         changeTitleImageAndStatus();
                         mCurrentFolder = mFolders.get(position);
                         mLocalMedia = mCurrentFolder.getImages();
-                        picture_title.setText(mCurrentFolder.getName());
+                        pictureTitle.setText(mCurrentFolder.getName());
                         mGridAdapter.bindData(position == 0, mLocalMedia);
                     }
                 });
@@ -161,18 +161,18 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
      * init view
      */
     private void initView() {
-        picture_left_back = findViewById(R.id.picture_left_back);
-        picture_title = findViewById(R.id.picture_title);
-        picture_recycler = findViewById(R.id.picture_recycler);
-        picture_bottom_layout = findViewById(R.id.picture_bottom_layout);
-        tv_preview = findViewById(R.id.tv_preview);
-        tv_commit = findViewById(R.id.tv_commit);
-        picker_title_layout = findViewById(R.id.picker_title_layout);
+        pictureLeftBack = findViewById(R.id.picture_left_back);
+        pictureTitle = findViewById(R.id.picture_title);
+        pictureRecycler = findViewById(R.id.picture_recycler);
+        pictureBottomLayout = findViewById(R.id.picture_bottom_layout);
+        tvPreview = findViewById(R.id.tv_preview);
+        tvCommit = findViewById(R.id.tv_commit);
+        pickerTitleLayout = findViewById(R.id.picker_title_layout);
 
-        picture_title.setOnClickListener(this);
-        picture_left_back.setOnClickListener(this);
-        tv_preview.setOnClickListener(this);
-        tv_commit.setOnClickListener(this);
+        pictureTitle.setOnClickListener(this);
+        pictureLeftBack.setOnClickListener(this);
+        tvPreview.setOnClickListener(this);
+        tvCommit.setOnClickListener(this);
 
         initAdapter();
 
@@ -189,9 +189,9 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
      */
     private void initAdapter() {
         mGridAdapter = new ImageGridAdapter(this, this, maxNum);
-        picture_recycler.setLayoutManager(new GridLayoutManager(this, 4));
-        picture_recycler.addItemDecoration(new SpaceDecoration(4, (int) dp2px(3), false));
-        picture_recycler.setAdapter(mGridAdapter);
+        pictureRecycler.setLayoutManager(new GridLayoutManager(this, 4));
+        pictureRecycler.addItemDecoration(new SpaceDecoration(4, (int) dp2px(3), false));
+        pictureRecycler.setAdapter(mGridAdapter);
         mGridAdapter.setImageClickListener(new ImageGridAdapter.OnImageClickListener() {
             @Override
             public void onClick(int position, List<LocalMedia> mImages, List<LocalMedia>
@@ -246,7 +246,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
      * load images
      */
     private void readLocalImage() {
-        LocalMediaLoader.create(this).LoadImage(new LocalMediaLoader.OnLoadImageListener() {
+        LocalMediaLoader.create(this).loadImage(new LocalMediaLoader.OnLoadImageListener() {
             @Override
             public void completed(List<LocalMediaFolder> localMediaFolders) {
                 if (localMediaFolders.size() > 0) {
@@ -255,16 +255,16 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                     if (mLocalMedia.size() != localMediaFolder.getImages().size()) {
                         mLocalMedia.clear();
                         mLocalMedia.addAll(localMediaFolder.getImages());
-                        picture_title.setText(localMediaFolder.getName());
+                        pictureTitle.setText(localMediaFolder.getName());
                         mGridAdapter.bindData(true, mLocalMedia);
                         mFolders.clear();
                         mFolders.addAll(localMediaFolders);
-                        mOptionMenu.notifyAdapterData();
+                        mBaseOptionMenu.notifyAdapterData();
                         mCurrentFolder = mFolders.get(0);
                     }
 
                 } else {
-                    picture_title.setText("相册");
+                    pictureTitle.setText("相册");
                 }
             }
         });
@@ -352,11 +352,11 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
      */
     private void changeTitleImageAndStatus() {
         if (!isDown) {
-            mOptionMenu.showAsDropDown(picker_title_layout);
-            picture_title.setCompoundDrawables(null, null, mDrawableUp, null);
+            mBaseOptionMenu.showAsDropDown(pickerTitleLayout);
+            pictureTitle.setCompoundDrawables(null, null, mDrawableUp, null);
         } else {
-            picture_title.setCompoundDrawables(null, null, mDrawableDown, null);
-            mOptionMenu.dismiss();
+            pictureTitle.setCompoundDrawables(null, null, mDrawableDown, null);
+            mBaseOptionMenu.dismiss();
         }
         isDown = !isDown;
     }
@@ -369,17 +369,17 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void change(List<LocalMedia> mSelectedImages) {
         if (mSelectedImages.size() > 0) {
-            tv_commit.setText("(" + mSelectedImages.size() + ")" + "确定");
-            tv_commit.setEnabled(true);
-            tv_preview.setEnabled(true);
-            tv_commit.setTextColor(getResources().getColor(R.color.color_orange));
-            tv_preview.setTextColor(getResources().getColor(R.color.color_orange));
+            tvCommit.setText("(" + mSelectedImages.size() + ")" + "确定");
+            tvCommit.setEnabled(true);
+            tvPreview.setEnabled(true);
+            tvCommit.setTextColor(getResources().getColor(R.color.color_orange));
+            tvPreview.setTextColor(getResources().getColor(R.color.color_orange));
         } else {
-            tv_commit.setText("确定");
-            tv_commit.setEnabled(false);
-            tv_preview.setEnabled(false);
-            tv_commit.setTextColor(getResources().getColor(R.color.color_666));
-            tv_preview.setTextColor(getResources().getColor(R.color.color_666));
+            tvCommit.setText("确定");
+            tvCommit.setEnabled(false);
+            tvPreview.setEnabled(false);
+            tvCommit.setTextColor(getResources().getColor(R.color.color_666));
+            tvPreview.setTextColor(getResources().getColor(R.color.color_666));
         }
         mSelected = mSelectedImages;
     }
@@ -462,7 +462,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
 
             //update
             mGridAdapter.bindData(true, mLocalMedia);
-            mOptionMenu.notifyAdapterData();
+            mBaseOptionMenu.notifyAdapterData();
 
         }
 

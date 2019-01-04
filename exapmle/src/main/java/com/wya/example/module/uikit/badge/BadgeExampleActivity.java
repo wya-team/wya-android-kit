@@ -114,6 +114,8 @@ public class BadgeExampleActivity extends BaseActivity {
                     mStringDot.update(false);
                 }
                 break;
+            default:
+                break;
         }
     }
     

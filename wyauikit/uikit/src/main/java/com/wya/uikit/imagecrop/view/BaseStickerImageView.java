@@ -8,19 +8,19 @@ import android.widget.ImageView;
 import com.wya.uikit.R;
 
 
-public class StickerImageView extends StickerView {
+public class BaseStickerImageView extends BaseStickerView {
 
     private ImageView mImageView;
 
-    public StickerImageView(Context context) {
+    public BaseStickerImageView(Context context) {
         super(context);
     }
 
-    public StickerImageView(Context context, AttributeSet attrs) {
+    public BaseStickerImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public StickerImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BaseStickerImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

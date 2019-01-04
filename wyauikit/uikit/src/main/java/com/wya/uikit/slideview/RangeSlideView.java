@@ -329,6 +329,8 @@ public class RangeSlideView extends View implements IRangeSlideView {
                 int minInt = Double.valueOf(String.valueOf(minFloat)).intValue();
                 min = String.valueOf(minInt);
                 break;
+            default:
+                break;
         }
         
         float x = getProgressLeft() - mRegionPadding - mLeftSlider.getSliderSize() / 2 - mRegionPaint.measureText(min);
@@ -365,6 +367,8 @@ public class RangeSlideView extends View implements IRangeSlideView {
             case REGION_MODE_INTEGER:
                 int minInt = Double.valueOf(String.valueOf(maxFloat)).intValue();
                 max = String.valueOf(minInt);
+                break;
+            default:
                 break;
         }
         
@@ -589,6 +593,8 @@ public class RangeSlideView extends View implements IRangeSlideView {
                 if (callback != null) {
                     callback.onStopTrackingTouch(this, mCurSlider == mLeftSlider);
                 }
+                break;
+            default:
                 break;
         }
         return super.onTouchEvent(event);

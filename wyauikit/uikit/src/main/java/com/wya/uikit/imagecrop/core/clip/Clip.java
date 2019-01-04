@@ -60,6 +60,7 @@ public interface Clip {
     };
 
     enum Anchor {
+        //
         LEFT(1),
         RIGHT(2),
         TOP(4),
@@ -67,7 +68,7 @@ public interface Clip {
         LEFT_TOP(5),
         RIGHT_TOP(6),
         LEFT_BOTTOM(9),
-        RIGHT_BOTTOM(10);
+        RIGHT_BOTTOM(10),;
 
         int v;
 

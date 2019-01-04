@@ -46,11 +46,11 @@ public class LocalMediaLoader {
     private OnLoadImageListener mListener;
 
     // 全部模式下条件
-    private static String getSelectionArgsForAllMediaCondition(String time_condition) {
+    private static String getSelectionArgsForAllMediaCondition(String timeCondition) {
         String condition = "(" + MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
                 + " AND " + MediaStore.MediaColumns.SIZE + ">0"
                 + " OR "
-                + (MediaStore.Files.FileColumns.MEDIA_TYPE + "=? AND " + time_condition) + ")"
+                + (MediaStore.Files.FileColumns.MEDIA_TYPE + "=? AND " + timeCondition) + ")"
                 + " AND " + MediaStore.MediaColumns.SIZE + ">0";
         return condition;
     }
@@ -63,7 +63,7 @@ public class LocalMediaLoader {
         return new LocalMediaLoader(activity);
     }
 
-    public void LoadImage(final OnLoadImageListener imageListener) {
+    public void loadImage(final OnLoadImageListener imageListener) {
         mActivity.getSupportLoaderManager().initLoader(PickerConfig.LOADER_IMAGE, null,
                 new LoaderManager.LoaderCallbacks<Cursor>() {
 

@@ -37,7 +37,7 @@ import java.util.ArrayList;
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class GalleryExampleActivity extends AppCompatActivity {
 
-	private RecyclerView image_recycler;
+	private RecyclerView imageRecycler;
 	private TextView title;
 	private BaseQuickAdapter<String, BaseViewHolder> mAdapter;
 	private ArrayList<String> images = new ArrayList<>();
@@ -62,7 +62,7 @@ public class GalleryExampleActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gallery_example);
 
-		image_recycler = findViewById(R.id.image_recycler);
+		imageRecycler = findViewById(R.id.image_recycler);
 		title = findViewById(R.id.title);
 		title.setText("Galley");
 
@@ -76,9 +76,9 @@ public class GalleryExampleActivity extends AppCompatActivity {
 		};
 
 
-		image_recycler.setLayoutManager(new GridLayoutManager(this, 4));
-		image_recycler.setAdapter(mAdapter);
-		image_recycler.addItemDecoration(new SpaceDecoration(4,3,false));
+		imageRecycler.setLayoutManager(new GridLayoutManager(this, 4));
+		imageRecycler.setAdapter(mAdapter);
+		imageRecycler.addItemDecoration(new SpaceDecoration(4,3,false));
 
 		mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
 			@Override

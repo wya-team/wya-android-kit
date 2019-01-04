@@ -19,3 +19,15 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#下载Aria
+-dontwarn com.arialyy.aria.**
+-keep class com.arialyy.aria.**{*;}
+-keep class **$$DownloadListenerProxy{ *; }
+-keep class **$$UploadListenerProxy{ *; }
+-keep class **$$DownloadGroupListenerProxy{ *; }
+-keepclasseswithmembernames class * {
+    @Download.* <methods>;
+    @Upload.* <methods>;
+    @DownloadGroup.* <methods>;
+}

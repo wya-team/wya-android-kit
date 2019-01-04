@@ -22,26 +22,26 @@ import java.util.List;
  * author : XuDonglin
  * e-mail : 465715784@qq.com
  * time   : 2018/11/24
- * desc   : OptionMenu
+ * desc   : BaseOptionMenu
  * version: 1.0
  */
-public abstract class OptionMenu<T> extends PopupWindow {
+public abstract class BaseOptionMenu<T> extends PopupWindow {
 	private Context mContext;
 	private RecyclerView mRecyclerFirst, mRecyclerSecond;
 	private List<T> data1;
 	private List<List<T>> data2;
 	private List<T> data2Show = new ArrayList<>();
 	private int firstId, secondId;
-	private OptionMenuAdapter<T> mAdapter;
-	private OptionMenuAdapter<T> mAdapterSecond;
-	private String TAG = "OptionMenu";
+	private BaseOptionMenuAdapter<T> mAdapter;
+	private BaseOptionMenuAdapter<T> mAdapterSecond;
+	private static final String TAG = "BaseOptionMenu";
 	private int selectPosition;
 	private boolean isShadow = true;
 	private OnFirstAdapterItemClickListener mOnFirstAdapterItemClickListener;
 	
 	
-	public OptionMenu(Context context, List<T> list1, List<List<T>> list2, @LayoutRes int firstId,
-					  @LayoutRes int secondId) {
+	public BaseOptionMenu(Context context, List<T> list1, List<List<T>> list2, @LayoutRes int firstId,
+						  @LayoutRes int secondId) {
 		super(context);
 		mContext = context;
 		this.data1 = list1;
@@ -51,7 +51,7 @@ public abstract class OptionMenu<T> extends PopupWindow {
 		init();
 	}
 	
-	public OptionMenu(Context context, List<T> list1, @LayoutRes int firstId) {
+	public BaseOptionMenu(Context context, List<T> list1, @LayoutRes int firstId) {
 		super(context);
 		mContext = context;
 		this.data1 = list1;
@@ -60,7 +60,7 @@ public abstract class OptionMenu<T> extends PopupWindow {
 	}
 	
 	/**
-	 * init OptionMenu
+	 * init BaseOptionMenu
 	 */
 	private void init() {
 		setWidth(mContext.getResources().getDisplayMetrics().widthPixels);
@@ -98,7 +98,7 @@ public abstract class OptionMenu<T> extends PopupWindow {
 				.VERTICAL, false));
 		mRecyclerSecond.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager
 				.VERTICAL, false));
-		mAdapter = new OptionMenuAdapter<T>(data1, firstId) {
+		mAdapter = new BaseOptionMenuAdapter<T>(data1, firstId) {
 			@Override
 			protected void convert(final OptionMenuViewHolder viewHolder, T item) {
 				setValueFirst(viewHolder, item);
@@ -110,7 +110,7 @@ public abstract class OptionMenu<T> extends PopupWindow {
 						mAdapter.notifyDataSetChanged();
 						if (mOnFirstAdapterItemClickListener != null) {
 							mOnFirstAdapterItemClickListener.onClick(viewHolder.getLayoutPosition
-									(), v, OptionMenu.this);
+									(), v, BaseOptionMenu.this);
 						}
 						if (data2 != null) {
 							data2Show.clear();
@@ -124,7 +124,7 @@ public abstract class OptionMenu<T> extends PopupWindow {
 		mRecyclerFirst.setAdapter(mAdapter);
 		if (data2 != null && secondId != 0) {
 			data2Show.addAll(data2.get(0));
-			mAdapterSecond = new OptionMenuAdapter<T>(data2Show, secondId) {
+			mAdapterSecond = new BaseOptionMenuAdapter<T>(data2Show, secondId) {
 				@Override
 				protected void convert(OptionMenuViewHolder viewHolder, T item) {
 					setValueSecond(viewHolder, item);
@@ -193,7 +193,7 @@ public abstract class OptionMenu<T> extends PopupWindow {
 	}
 	
 	public interface OnFirstAdapterItemClickListener{
-		void onClick(int position, View v, OptionMenu menu);
+		void onClick(int position, View v, BaseOptionMenu menu);
 	}
 	
 	private void setBackground(float alpha) {

@@ -175,6 +175,8 @@ public class WYABadgeView extends View implements IBadgeView {
             case Builder.BadgeGravity.GRAVITY_END_BOTTOM:
                 top = top + (mHeight - bitmap.getHeight());
                 break;
+            default:
+                break;
         }
         return top;
     }

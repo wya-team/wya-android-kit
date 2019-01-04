@@ -120,6 +120,8 @@ public class MarqueeTextView extends AppCompatTextView {
                     resumeMarquee();
                 }
                 break;
+            default:
+                break;
         }
     }
     

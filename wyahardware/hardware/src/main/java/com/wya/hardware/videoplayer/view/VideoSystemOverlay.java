@@ -20,6 +20,7 @@ import com.wya.hardware.R;
 public class VideoSystemOverlay extends FrameLayout {
 
     public enum SystemType {
+        //
         VOLUME, BRIGHTNESS
     }
 

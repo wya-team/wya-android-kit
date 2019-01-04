@@ -36,7 +36,7 @@ public class WYACustomDialog extends Dialog {
     private CustomListener customListener;
     
     private String title;
-    private int text_color;
+    private int textColor;
     
     private String message;
     
@@ -54,14 +54,14 @@ public class WYACustomDialog extends Dialog {
     
     private TextView titleView;
     private TextView messageView;
-    private EditText edit_text;
+    private EditText editText;
     private TextView cancel;
     private TextView confirm;
     
-    private LinearLayout ll_button;
+    private LinearLayout llButton;
     
-    private View line_view;
-    private View line_horizontal;
+    private View lineView;
+    private View lineHorizontal;
     
     private int gravity;
     
@@ -78,7 +78,7 @@ public class WYACustomDialog extends Dialog {
         this.height = builder.height;
         this.width = builder.width;
         this.title = builder.title;
-        this.text_color = builder.text_color;
+        this.textColor = builder.textColor;
         this.message = builder.message;
         this.hintEditTextStr = builder.hintEditTextStr;
         this.editTextStr = builder.editTextStr;
@@ -104,7 +104,7 @@ public class WYACustomDialog extends Dialog {
             //标题
             titleView = view.findViewById(R.id.title);
             setTitle(title);
-            setTitleTextColor(text_color);
+            setTitleTextColor(textColor);
             
             //提示内容
             messageView = view.findViewById(R.id.message);
@@ -113,18 +113,18 @@ public class WYACustomDialog extends Dialog {
             }
             
             //编辑框
-            edit_text = view.findViewById(R.id.edit_text);
-            if (edit_text != null) {
+            editText = view.findViewById(R.id.edit_text);
+            if (editText != null) {
                 setEditHintText(hintEditTextStr);
                 setEditText(editTextStr);
                 setCanEdit(canEdit);
             }
             
-            line_view = view.findViewById(R.id.line_view);
-            line_horizontal = view.findViewById(R.id.line_horizontal);
+            lineView = view.findViewById(R.id.line_view);
+            lineHorizontal = view.findViewById(R.id.line_horizontal);
             confirm = view.findViewById(R.id.confirm);
             cancel = view.findViewById(R.id.cancel);
-            ll_button = view.findViewById(R.id.ll_button);
+            llButton = view.findViewById(R.id.ll_button);
             if (confirm != null) {
                 setConfirmColor(confirmColor);
                 setConfirmText(confirmTextStr);
@@ -161,7 +161,7 @@ public class WYACustomDialog extends Dialog {
      * @param title
      */
     public void setTitle(String title) {
-        if (title != null && !title.equals("")) {
+        if (title != null && !"".equals(title)) {
             titleView.setText(title);
             titleView.setVisibility(View.VISIBLE);
         } else {
@@ -172,10 +172,10 @@ public class WYACustomDialog extends Dialog {
     /**
      * 设置标题字体颜色
      *
-     * @param text_color
+     * @param textColor
      */
-    public void setTitleTextColor(int text_color) {
-        titleView.setTextColor(context.getResources().getColor(text_color));
+    public void setTitleTextColor(int textColor) {
+        titleView.setTextColor(context.getResources().getColor(textColor));
     }
     
     
@@ -185,7 +185,7 @@ public class WYACustomDialog extends Dialog {
      * @param message
      */
     public void setMessage(String message) {
-        if (message != null && !message.equals("")) {
+        if (message != null && !"".equals(message)) {
             messageView.setVisibility(View.VISIBLE);
             messageView.setText(Html.fromHtml(message));
         } else {
@@ -210,9 +210,9 @@ public class WYACustomDialog extends Dialog {
      */
     public void setCanEdit(boolean canEdit) {
         if (canEdit) {
-            edit_text.setVisibility(View.VISIBLE);
+            editText.setVisibility(View.VISIBLE);
         } else {
-            edit_text.setVisibility(View.GONE);
+            editText.setVisibility(View.GONE);
         }
     }
     
@@ -222,7 +222,7 @@ public class WYACustomDialog extends Dialog {
      * @param hintEditTextStr
      */
     public void setEditHintText(String hintEditTextStr) {
-        edit_text.setHint(hintEditTextStr);
+        editText.setHint(hintEditTextStr);
     }
     
     /**
@@ -231,7 +231,7 @@ public class WYACustomDialog extends Dialog {
      * @param editTextStr
      */
     public void setEditText(String editTextStr) {
-        edit_text.setText(editTextStr);
+        editText.setText(editTextStr);
     }
     
     /**
@@ -240,7 +240,7 @@ public class WYACustomDialog extends Dialog {
      * @return
      */
     public String getEditText() {
-        return edit_text.getText().toString();
+        return editText.getText().toString();
     }
     
     
@@ -253,18 +253,18 @@ public class WYACustomDialog extends Dialog {
         if (confirmShow && cancelShow) {//都显示
             cancel.setVisibility(View.VISIBLE);
             confirm.setVisibility(View.VISIBLE);
-            line_horizontal.setVisibility(View.VISIBLE);
+            lineHorizontal.setVisibility(View.VISIBLE);
         } else if (cancelShow) {//显示取消按钮
             cancel.setVisibility(View.VISIBLE);
             confirm.setVisibility(View.GONE);
-            line_horizontal.setVisibility(View.GONE);
+            lineHorizontal.setVisibility(View.GONE);
         } else if (confirmShow) {//显示确定按钮
             cancel.setVisibility(View.GONE);
             confirm.setVisibility(View.VISIBLE);
-            line_horizontal.setVisibility(View.GONE);
+            lineHorizontal.setVisibility(View.GONE);
         } else {//都不显示
-            line_view.setVisibility(View.GONE);
-            ll_button.setVisibility(View.GONE);
+            lineView.setVisibility(View.GONE);
+            llButton.setVisibility(View.GONE);
         }
     }
     
@@ -375,7 +375,7 @@ public class WYACustomDialog extends Dialog {
         private boolean cancelable = false;
         
         private String title = "";//默认标题
-        private int text_color = R.color.black;//默认标题文字颜色
+        private int textColor = R.color.black;//默认标题文字颜色
         
         private String message = "我是提示内容";//默认提示内容
         
@@ -426,8 +426,8 @@ public class WYACustomDialog extends Dialog {
             return this;
         }
         
-        public Builder titleTextColor(int text_color) {
-            this.text_color = text_color;
+        public Builder titleTextColor(int textColor) {
+            this.textColor = textColor;
             return this;
         }
         

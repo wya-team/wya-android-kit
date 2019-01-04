@@ -55,14 +55,14 @@ public class SelectedRecyclerAdapter extends RecyclerView.Adapter<SelectedRecycl
         String mediaPath = mSelectedList.get(position).getPath();
         String cropPath = mSelectedList.get(position).getCropPath();
         if (!TextUtils.isEmpty(cropPath)) {
-            Glide.with(mContext).load(cropPath).into(selectViewHolder.select_pic);
+            Glide.with(mContext).load(cropPath).into(selectViewHolder.selectPic);
         } else {
-            Glide.with(mContext).load(mediaPath).into(selectViewHolder.select_pic);
+            Glide.with(mContext).load(mediaPath).into(selectViewHolder.selectPic);
         }
         String[] split = mediaPath.split("[.]");
         String mediaType = split[split.length - 1];
-        selectViewHolder.select_is_video.setVisibility(isVideo(mediaType) ? View.VISIBLE : View.INVISIBLE);
-        selectViewHolder.select_view.setVisibility(mIndexList.get(position) == mSelectedIndex ? View.VISIBLE : View.INVISIBLE);
+        selectViewHolder.selectIsVideo.setVisibility(isVideo(mediaType) ? View.VISIBLE : View.INVISIBLE);
+        selectViewHolder.selectView.setVisibility(mIndexList.get(position) == mSelectedIndex ? View.VISIBLE : View.INVISIBLE);
         selectViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,22 +87,22 @@ public class SelectedRecyclerAdapter extends RecyclerView.Adapter<SelectedRecycl
 
 
     class SelectViewHolder extends RecyclerView.ViewHolder {
-        ImageView select_pic;
-        ImageView select_is_video;
-        View select_view;
+        ImageView selectPic;
+        ImageView selectIsVideo;
+        View selectView;
 
         public SelectViewHolder(@NonNull View itemView) {
             super(itemView);
-            select_pic = itemView.findViewById(R.id.select_pic);
-            select_is_video = itemView.findViewById(R.id.select_is_video);
-            select_view = itemView.findViewById(R.id.select_view);
+            selectPic = itemView.findViewById(R.id.select_pic);
+            selectIsVideo = itemView.findViewById(R.id.select_is_video);
+            selectView = itemView.findViewById(R.id.select_view);
         }
     }
 
-    private static final String type = "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
+    private static final String TYPE = "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
 
     private boolean isVideo(String mediaType) {
-        return type.contains(mediaType.toUpperCase());
+        return TYPE.contains(mediaType.toUpperCase());
     }
 
     public interface OnItemClickListener{

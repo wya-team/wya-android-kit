@@ -31,7 +31,7 @@ import java.io.File;
 
 public class CameraExampleActivity extends AppCompatActivity {
     private WYACameraView wyaCameraView;
-    private String dir_name = "WYACamera";
+    private String dirName = "WYACamera";
     private int duration;//录制时间
     private int state;
 
@@ -46,7 +46,7 @@ public class CameraExampleActivity extends AppCompatActivity {
         duration = getIntent().getIntExtra("duration", 10000);
         state = getIntent().getIntExtra("state", WYACameraView.BUTTON_STATE_BOTH);
         //设置视频保存路径
-        wyaCameraView.setSaveVideoPath(Environment.getExternalStorageDirectory().getPath() + File.separator + dir_name);
+        wyaCameraView.setSaveVideoPath(Environment.getExternalStorageDirectory().getPath() + File.separator + dirName);
         wyaCameraView.setFeatures(state);
         wyaCameraView.setTip("WYACameraView");
         wyaCameraView.setMediaQuality(WYACameraView.MEDIA_QUALITY_HIGH);
@@ -62,7 +62,7 @@ public class CameraExampleActivity extends AppCompatActivity {
             }
 
             @Override
-            public void AudioPermissionError() {
+            public void audiopermissionerror() {
                 Toast.makeText(CameraExampleActivity.this, "请在设置允许录音", Toast.LENGTH_SHORT).show();
             }
         });
@@ -72,7 +72,7 @@ public class CameraExampleActivity extends AppCompatActivity {
             public void captureSuccess(Bitmap bitmap) {
                 //获取图片bitmap
 //                Log.i("JCameraView", "bitmap = " + bitmap.getWidth());
-                String path = FileUtil.saveBitmap(dir_name, bitmap);
+                String path = FileUtil.saveBitmap(dirName, bitmap);
                 Intent intent = new Intent();
                 intent.putExtra("path", path);
                 setResult(101, intent);
@@ -82,7 +82,7 @@ public class CameraExampleActivity extends AppCompatActivity {
             @Override
             public void recordSuccess(String url, Bitmap firstFrame) {
                 //获取视频路径
-                String path = FileUtil.saveBitmap(dir_name, firstFrame);
+                String path = FileUtil.saveBitmap(dirName, firstFrame);
                 Log.i("MCJ", "url = " + url + ", Bitmap = " + path);
                 Intent intent = new Intent();
                 intent.putExtra("path", path);

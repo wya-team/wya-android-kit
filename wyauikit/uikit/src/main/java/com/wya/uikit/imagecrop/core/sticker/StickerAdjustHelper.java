@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.wya.uikit.imagecrop.view.StickerView;
+import com.wya.uikit.imagecrop.view.BaseStickerView;
 
 
 public class StickerAdjustHelper implements View.OnTouchListener {
@@ -14,15 +14,15 @@ public class StickerAdjustHelper implements View.OnTouchListener {
 
     private View mView;
 
-    private StickerView mContainer;
+    private BaseStickerView mContainer;
 
     private float mCenterX, mCenterY;
 
     private double mRadius, mDegrees;
 
-    private Matrix M = new Matrix();
+    private Matrix m = new Matrix();
 
-    public StickerAdjustHelper(StickerView container, View view) {
+    public StickerAdjustHelper(BaseStickerView container, View view) {
         mView = view;
         mContainer = container;
         mView.setOnTouchListener(this);
@@ -49,11 +49,11 @@ public class StickerAdjustHelper implements View.OnTouchListener {
 
                 mDegrees = toDegrees(pointY, pointX);
 
-                M.setTranslate(pointX - x, pointY - y);
+                m.setTranslate(pointX - x, pointY - y);
 
                 Log.d(TAG, String.format("degrees=%f", toDegrees(pointY, pointX)));
 
-                M.postRotate((float) -toDegrees(pointY, pointX), mCenterX, mCenterY);
+                m.postRotate((float) -toDegrees(pointY, pointX), mCenterX, mCenterY);
 
                 return true;
 
@@ -83,6 +83,8 @@ public class StickerAdjustHelper implements View.OnTouchListener {
                 mRadius = radius;
 
                 return true;
+            default:
+                break;
         }
         return false;
     }

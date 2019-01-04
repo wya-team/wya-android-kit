@@ -21,7 +21,6 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.example.module.example.view.CustomerExpandableListView;
-import com.wya.example.module.uikit.customitems.inputitem.InputItemExampleActivity;
 import com.wya.example.module.uikit.dialog.adapter.DialogExpandableListAdapter;
 import com.wya.example.module.uikit.dialog.adapter.DialogListAdapter;
 import com.wya.example.module.uikit.dialog.adapter.ShareDialogListAdapter;
@@ -35,14 +34,11 @@ import com.wya.utils.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import io.realm.internal.IOException;
 
 /**
  * @date: 2018/11/23 16:23
@@ -417,7 +413,8 @@ public class DialogExampleActivity extends BaseActivity {
                 wyaCustomDialog.show();
                 starTimer(0);
                 break;
-
+            default:
+                break;
         }
     }
 

@@ -24,7 +24,7 @@ public class WYALoadingDialog extends Dialog {
    private View view;
    private final AnimationDrawable animationDrawable;
    private ColorDrawable colorDrawable;
-   private ImageView img_load;
+   private ImageView imgLoad;
    private  TextView hintText;
    @SuppressLint("ResourceType")
    public WYALoadingDialog(Context activity, boolean canceledOnTouch, boolean cancelable) {
@@ -34,9 +34,9 @@ public class WYALoadingDialog extends Dialog {
        setContentView(view);
        colorDrawable = new ColorDrawable(0x00000000);
        getWindow().setBackgroundDrawable(colorDrawable);
-       img_load = view.findViewById(R.id.img_load);
+       imgLoad = view.findViewById(R.id.img_load);
        hintText = view.findViewById(R.id.hintTv);
-       animationDrawable = (AnimationDrawable) img_load.getBackground();
+       animationDrawable = (AnimationDrawable) imgLoad.getBackground();
        getWindow().setDimAmount(0);
        //取消dialog空白处点击消失事件
        this.setCanceledOnTouchOutside(canceledOnTouch);
@@ -50,7 +50,7 @@ public class WYALoadingDialog extends Dialog {
    }
 
    public void setText(String text){
-       if(text != null && !text.equals("")){
+       if(text != null && !"".equals(text)){
            hintText.setText(text);
            hintText.setVisibility(View.VISIBLE);
        } else {

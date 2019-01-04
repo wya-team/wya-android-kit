@@ -234,7 +234,6 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
             canvas.restore();
         }
 
-        // TODO
         if (mImage.isFreezing()) {
             // 文字贴片
             mImage.onDrawStickers(canvas);
@@ -244,7 +243,6 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
 
         canvas.restore();
 
-        // TODO
         if (!mImage.isFreezing()) {
             // 文字贴片
             mImage.onDrawStickerClip(canvas);
@@ -309,7 +307,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
     }
 
     public void addStickerText(EditText text) {
-        StickerTextView textView = new StickerTextView(getContext());
+        BaseStickerTextView textView = new BaseStickerTextView(getContext());
 
         textView.setText(text);
 
@@ -355,6 +353,8 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
             case MotionEvent.ACTION_CANCEL:
                 postDelayed(this, 500);
                 break;
+            default:
+                break;
         }
         return onTouch(event);
     }
@@ -390,6 +390,8 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
                 mImage.onTouchUp(getScrollX(), getScrollY());
                 onHoming();
                 break;
+            default:
+                break;
         }
 
         return handled;
@@ -409,6 +411,8 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 return mPen.isIdentity(event.getPointerId(0)) && onPathDone();
+            default:
+                break;
         }
         return false;
     }
@@ -593,7 +597,6 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            // TODO
             return super.onFling(e1, e2, velocityX, velocityY);
         }
     }

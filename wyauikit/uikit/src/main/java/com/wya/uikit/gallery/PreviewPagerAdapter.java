@@ -31,7 +31,7 @@ public class PreviewPagerAdapter extends PagerAdapter {
     private List<String> mList;
     private Context mContext;
     private int changePosition = -1;
-    private static final String type = "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
+    private static final String TYPE = "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
 
     public PreviewPagerAdapter(List<String> list, Context context) {
         mList = list;
@@ -115,6 +115,6 @@ public class PreviewPagerAdapter extends PagerAdapter {
 
 
     private boolean isVideo(String mediaType) {
-        return type.contains(mediaType.toUpperCase());
+        return TYPE.contains(mediaType.toUpperCase());
     }
 }

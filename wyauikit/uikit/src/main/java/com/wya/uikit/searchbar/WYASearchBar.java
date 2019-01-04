@@ -34,19 +34,19 @@ public class WYASearchBar extends FrameLayout {
     private EditText mEtSearch;
     private ImageView mIvClear;
     private TextView mTvClose;
-    private TextView tv_search_up;
-    private TableRow tab_up;
+    private TextView tvSearchUp;
+    private TableRow tabUp;
     private OnTextChangeListener mOnTextChangeListener;
     private OnTvClickListener onTvClickListener;
 
     /**
      * 设置搜索的图片
      *
-     * @param left_res
+     * @param leftRes
      */
-    public void setEtSearchLeftImg(int left_res) {
-        if (left_res > 0) {
-            Drawable drawable = getResources().getDrawable(left_res);
+    public void setEtSearchLeftImg(int leftRes) {
+        if (leftRes > 0) {
+            Drawable drawable = getResources().getDrawable(leftRes);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             this.mEtSearch.setCompoundDrawables(drawable, null, null, null);
         } else {
@@ -57,19 +57,19 @@ public class WYASearchBar extends FrameLayout {
     /**
      * 设置编辑框的提示语
      *
-     * @param hint_text
+     * @param hintText
      */
-    public void setEditHint(String hint_text) {
-        mEtSearch.setHint(hint_text);
+    public void setEditHint(String hintText) {
+        mEtSearch.setHint(hintText);
     }
 
     /**
      * 设置编辑框的提示语
      *
-     * @param hint_text
+     * @param hintText
      */
-    public void setTvHint(String hint_text) {
-        tv_search_up.setHint(hint_text);
+    public void setTvHint(String hintText) {
+        tvSearchUp.setHint(hintText);
     }
 
     public String getEtSearch() {
@@ -81,7 +81,7 @@ public class WYASearchBar extends FrameLayout {
     }
 
     public void setTvSearch(String tvSearch) {
-        tv_search_up.setText(tvSearch);
+        tvSearchUp.setText(tvSearch);
     }
 
     public ImageView getIvClear() {
@@ -132,8 +132,8 @@ public class WYASearchBar extends FrameLayout {
     private void init(Context context) {
         View rootView = LayoutInflater.from(context).inflate(R.layout.wya_search_bar_layout, null);
         mEtSearch = rootView.findViewById(R.id.et_search);
-        tab_up = rootView.findViewById(R.id.tab_up);
-        tv_search_up = rootView.findViewById(R.id.tv_search_up);
+        tabUp = rootView.findViewById(R.id.tab_up);
+        tvSearchUp = rootView.findViewById(R.id.tv_search_up);
         mIvClear = rootView.findViewById(R.id.iv_clear);
         mTvClose = rootView.findViewById(R.id.tv_close);
         addView(rootView, new LinearLayout.LayoutParams(
@@ -142,14 +142,14 @@ public class WYASearchBar extends FrameLayout {
         mIvClear.setOnClickListener(v -> mEtSearch.setText(""));
         mTvClose.setOnClickListener(v -> {
             if (onTvClickListener != null) {
-                if (mTvClose.getText().equals("取消")) {
+                if ("取消".equals(mTvClose.getText())) {
                     cancel();
                     onTvClickListener.onClickCancel();
                 } else {//搜索
                     onTvClickListener.onClickSearch();
                 }
             } else {
-                if (mTvClose.getText().equals("取消")) {
+                if ("取消".equals(mTvClose.getText())) {
                     cancel();
                     onTvClickListener.onClickCancel();
                 }
@@ -191,10 +191,10 @@ public class WYASearchBar extends FrameLayout {
             }
             return false;
         });
-        tab_up.setOnClickListener(new OnClickListener() {
+        tabUp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                slideView(0, -((tab_up.getWidth() / 2 - tv_search_up.getWidth() / 2)));
+                slideView(0, -((tabUp.getWidth() / 2 - tvSearchUp.getWidth() / 2)));
                 setOnTouch();
             }
         });
@@ -218,11 +218,11 @@ public class WYASearchBar extends FrameLayout {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                tv_search_up.clearAnimation();
-                tab_up.setVisibility(View.GONE);
+                tvSearchUp.clearAnimation();
+                tabUp.setVisibility(View.GONE);
             }
         });
-        tv_search_up.startAnimation(animation);
+        tvSearchUp.startAnimation(animation);
     }
 
     private void setOnTouch() {
@@ -251,7 +251,7 @@ public class WYASearchBar extends FrameLayout {
         mEtSearch.setText("");
         mEtSearch.setCursorVisible(false);// 内容清空后将编辑框1的光标隐藏，提升用户的体验度
         mTvClose.setVisibility(View.GONE);
-        tab_up.setVisibility(View.VISIBLE);
+        tabUp.setVisibility(View.VISIBLE);
     }
 
     public interface OnTextChangeListener {

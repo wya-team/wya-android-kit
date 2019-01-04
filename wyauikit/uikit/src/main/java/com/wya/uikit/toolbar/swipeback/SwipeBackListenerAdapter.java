@@ -36,6 +36,8 @@ public class SwipeBackListenerAdapter implements SwipeBackLayout.SwipeListenerEx
                     }
                 }
                 break;
+            default:
+                break;
         }
     }
 

@@ -16,7 +16,9 @@ package com.wya.hardware.scan.camera.open;
  */
 public enum CameraFacing {
 
-    BACK,  // must be value 0!
-    FRONT, // must be value 1!
+    // must be value 0!
+    BACK,
+    // must be value 1!
+    FRONT,
 
 }

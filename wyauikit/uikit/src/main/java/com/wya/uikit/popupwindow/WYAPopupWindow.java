@@ -32,7 +32,7 @@ public class WYAPopupWindow extends PopupWindow {
     private int layoutRes;
     private View contentView;
     private int backgroundImg = R.drawable.popup_window_icon_other_9;
-    private LinearLayout ll_popup_window;
+    private LinearLayout llPopupWindow;
 
     private List<String> list = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -82,8 +82,8 @@ public class WYAPopupWindow extends PopupWindow {
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             popupWindListAdapter = new PopupWindListAdapter(context, R.layout.popwindow_menu_item, list);
             recyclerView.setAdapter(popupWindListAdapter);
-            ll_popup_window = contentView.findViewById(R.id.ll_popup_window);
-            ll_popup_window.setBackground(context.getResources().getDrawable(backgroundImg));
+            llPopupWindow = contentView.findViewById(R.id.ll_popup_window);
+            llPopupWindow.setBackground(context.getResources().getDrawable(backgroundImg));
             //RecyclerView条目点击事件
             popupWindListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                 @Override

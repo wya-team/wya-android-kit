@@ -7,7 +7,7 @@ package com.wya.uikit.gallery.photoview;
 public interface OnScaleChangedListener {
 
     /**
-     * Callback for when the scale changes
+     * BaseCallback for when the scale changes
      *
      * @param scaleFactor the scale factor (less than 1 for zoom out, greater than 1 for zoom in)
      * @param focusX      focal point X position

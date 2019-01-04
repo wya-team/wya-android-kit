@@ -362,18 +362,18 @@ public class WYAButton extends Button {
      * @param width  自定义宽 dp单位
      */
     public void setSize(Context context, int type, int height, int width) {
-        ViewGroup.LayoutParams wya_button_params = this.getLayoutParams();
+        ViewGroup.LayoutParams wyaButtonParams = this.getLayoutParams();
         if (type == 1) {
-            wya_button_params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            wya_button_params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            wyaButtonParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            wyaButtonParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         } else if (type == 2) {
-            wya_button_params.height = dip2px(context, 36);
-            wya_button_params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            wyaButtonParams.height = dip2px(context, 36);
+            wyaButtonParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
         } else if (type == 3) {
-            wya_button_params.height = dip2px(context, height);
-            wya_button_params.width = dip2px(context, width);
+            wyaButtonParams.height = dip2px(context, height);
+            wyaButtonParams.width = dip2px(context, width);
         }
-        this.setLayoutParams(wya_button_params);
+        this.setLayoutParams(wyaButtonParams);
     }
 
 

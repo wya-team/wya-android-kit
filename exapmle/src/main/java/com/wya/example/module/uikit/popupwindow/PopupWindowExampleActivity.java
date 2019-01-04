@@ -45,10 +45,10 @@ public class PopupWindowExampleActivity extends BaseActivity {
     private void setPopupWindow() {
         setRightImageAntherOnclickListener(view -> wyaPopupWindow.show(view, -100, 0));
         wyaPopupWindow = new WYAPopupWindow.Builder(PopupWindowExampleActivity.this).setLayoutRes(R.layout.popopwindow_custom_list, v -> {
-            TableRow tab_scan = v.findViewById(R.id.tab_scan);
-            TableRow tab_help = v.findViewById(R.id.tab_help);
-            tab_scan.setOnClickListener(v1 -> checkPermission());
-            tab_help.setOnLongClickListener(new View.OnLongClickListener() {
+            TableRow tabScan = v.findViewById(R.id.tab_scan);
+            TableRow tabHelp = v.findViewById(R.id.tab_help);
+            tabScan.setOnClickListener(v1 -> checkPermission());
+            tabHelp.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
                     getWyaToast().showShort("链接地址复制成功");
@@ -56,7 +56,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
                     return true;
                 }
             });
-            tab_help.setOnClickListener(v12 -> startActivity(new Intent(PopupWindowExampleActivity.this, ReadmeActivity.class).putExtra("url", url)));
+            tabHelp.setOnClickListener(v12 -> startActivity(new Intent(PopupWindowExampleActivity.this, ReadmeActivity.class).putExtra("url", url)));
         }).build();
     }
 
@@ -151,6 +151,8 @@ public class PopupWindowExampleActivity extends BaseActivity {
                 case REQUEST_CODE_SCAN:
                     String result = data.getStringExtra(Intents.Scan.RESULT);
                     tvResult.setText("解析结果：" + result);
+                    break;
+                default:
                     break;
             }
 

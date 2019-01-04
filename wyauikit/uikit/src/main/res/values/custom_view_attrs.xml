@@ -112,8 +112,8 @@
         <attr name="addDisableDrawablePress" format="reference" />
 
         <attr name="value" format="integer" />
-        <attr name="max_num" format="integer" />
-        <attr name="min_num" format="integer" />
+        <attr name="maxNum" format="integer" />
+        <attr name="minNum" format="integer" />
     </declare-styleable>
 
     <!-- progress -->

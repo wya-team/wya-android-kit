@@ -90,6 +90,8 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
             case MotionEvent.ACTION_CANCEL:
                 endGesture(mFingerBehavior);
                 break;
+            default:
+                break;
         }
         return true;
     }
@@ -177,7 +179,10 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
                     e.printStackTrace();
                 }
                 break;
+
             }
+            default:
+                break;
         }
 
         return false;

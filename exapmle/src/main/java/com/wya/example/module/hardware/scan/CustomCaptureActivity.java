@@ -135,7 +135,7 @@ public class CustomCaptureActivity extends CaptureActivity {
         }
     }
 
-    public void OnClick(View v) {
+    public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ivFlash:
                 clickFlash(v);
@@ -146,6 +146,8 @@ public class CustomCaptureActivity extends CaptureActivity {
                 break;
             case R.id.ll_right:
                 checkExternalStoragePermissions();
+                break;
+            default:
                 break;
         }
     }
@@ -165,6 +167,8 @@ public class CustomCaptureActivity extends CaptureActivity {
             switch (requestCode) {
                 case REQUEST_CODE_PHOTO:
                     parsePhoto(data);
+                    break;
+                default:
                     break;
             }
 

@@ -84,6 +84,8 @@ public class ToastExampleActivity extends BaseActivity {
                 radioBottom.setChecked(true);
                 radioCenter.setChecked(false);
                 break;
+            default:
+                break;
         }
     }
     

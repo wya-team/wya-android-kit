@@ -17,7 +17,7 @@ import java.io.IOException;
   */
 
 public class FileUtil {
-    private static final File parentPath = Environment.getExternalStorageDirectory();
+    private static final File PARENT_PATH = Environment.getExternalStorageDirectory();
     private static String storagePath = "";
     private static String DST_FOLDER_NAME = "wya";
 
@@ -27,8 +27,8 @@ public class FileUtil {
       */
     private static String initPath(String dir) {
         DST_FOLDER_NAME = dir;
-        if (storagePath.equals("")) {
-            storagePath = parentPath.getAbsolutePath() + File.separator + DST_FOLDER_NAME;
+        if ("".equals(storagePath)) {
+            storagePath = PARENT_PATH.getAbsolutePath() + File.separator + DST_FOLDER_NAME;
             File f = new File(storagePath);
             if (!f.exists()) {
                 f.mkdir();
