@@ -148,8 +148,9 @@ public class CodeUtils {
         } else if (w < h && h > height) {// 如果高度高的话根据宽度固定大小缩放
             be = (int) (newOpts.outHeight / height);
         }
-        if (be <= 0)
+        if (be <= 0) {
             be = 1;
+        }
         newOpts.inSampleSize = be;// 设置缩放比例
         // 重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了
         newOpts.inJustDecodeBounds = false;

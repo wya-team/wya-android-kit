@@ -37,9 +37,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import io.realm.internal.IOException;
@@ -427,23 +424,24 @@ public class DialogExampleActivity extends BaseActivity {
      * @param type loading类型
      */
     private void starTimer(int type) {
-
-        ScheduledExecutorService service = Executors.newScheduledThreadPool(10);
-        long initialDelay = 0;
-        long period = 3;
-        // 从现在开始1秒钟之后，每隔1秒钟执行一次job1
-        service.scheduleAtFixedRate(new Runnable() {
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                if (type == 0) {
-                    wyaCustomDialog.dismiss();
-                } else {
-                    wyaLoadingDialog.dismiss();
+                try {
+                    if (type == 0) {
+                        wyaCustomDialog.dismiss();
+                    } else {
+                        wyaLoadingDialog.dismiss();
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-        }, initialDelay, period, TimeUnit.SECONDS);
+        };
+        timer.schedule(task, 3000);
     }
-
 
     private void initItems() {
         mDatas = new ArrayList<>();

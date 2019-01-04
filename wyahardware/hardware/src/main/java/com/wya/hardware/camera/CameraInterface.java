@@ -124,6 +124,7 @@ public class CameraInterface implements Camera.PreviewCallback {
     }
 
     private SensorEventListener sensorEventListener = new SensorEventListener() {
+        @Override
         public void onSensorChanged(SensorEvent event) {
             if (Sensor.TYPE_ACCELEROMETER != event.sensor.getType()) {
                 return;
@@ -133,6 +134,7 @@ public class CameraInterface implements Camera.PreviewCallback {
             rotationAnimation();
         }
 
+        @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
         }
     };

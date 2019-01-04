@@ -113,8 +113,9 @@ public class PhoneUtil {
     public String getPhoneImei(Context context) {
         TelephonyManager tm = (TelephonyManager) context
                 .getSystemService(Context.TELEPHONY_SERVICE);
-        if (tm == null)
+        if (tm == null) {
             return null;
+        }
         return tm.getDeviceId();
     }
     
@@ -127,8 +128,9 @@ public class PhoneUtil {
     public String getPhoneSim(Context context) {
         TelephonyManager tm = (TelephonyManager) context
                 .getSystemService(Context.TELEPHONY_SERVICE);
-        if (tm == null)
+        if (tm == null) {
             return null;
+        }
         return tm.getSubscriberId();
     }
     
@@ -141,8 +143,9 @@ public class PhoneUtil {
     public String getPhoneNum(Context context) {
         TelephonyManager tm = (TelephonyManager) context
                 .getSystemService(Context.TELEPHONY_SERVICE);
-        if (tm == null)
+        if (tm == null) {
             return null;
+        }
         return tm.getLine1Number();
     }
     
@@ -265,7 +268,7 @@ public class PhoneUtil {
         List<PackageInfo> infos = getInstalledApp(context);
         List<PackageInfo> apps = new ArrayList<PackageInfo>();
         for (PackageInfo info : infos) {
-            if ((info.applicationInfo.flags & info.applicationInfo.FLAG_SYSTEM) <= 0) {
+            if ((info.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) <= 0) {
                 apps.add(info);
             }
         }
@@ -311,10 +314,9 @@ public class PhoneUtil {
     /**
      * 手机号判断
      */
+    private static  Pattern PHONE_PATTERN = Pattern.compile("^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\\\d{8}$");
     public static boolean isMobileNO(String mobile) {
-        Pattern p = Pattern
-                .compile("^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\\\d{8}$");
-        Matcher m = p.matcher(mobile);
+        Matcher m = PHONE_PATTERN.matcher(mobile);
         return m.matches();
     }
     

@@ -116,7 +116,9 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
         final int width = getWidth();
         final int height = getHeight();
-        if (width <= 0 || height <= 0) return false;
+        if (width <= 0 || height <= 0) {
+            return false;
+        }
 
         /**
          * 根据手势起始2个点断言 后续行为. 规则如下:
@@ -127,10 +129,13 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
         if (mFingerBehavior < 0) {
             float moveX = e2.getX() - e1.getX();
             float moveY = e2.getY() - e1.getY();
-            if (Math.abs(moveX) >= Math.abs(moveY))
+            if (Math.abs(moveX) >= Math.abs(moveY)) {
                 mFingerBehavior = FINGER_BEHAVIOR_PROGRESS;
-            else if (e1.getX() <= width / 2) mFingerBehavior = FINGER_BEHAVIOR_BRIGHTNESS;
-            else mFingerBehavior = FINGER_BEHAVIOR_VOLUME;
+            } else if (e1.getX() <= width / 2) {
+                mFingerBehavior = FINGER_BEHAVIOR_BRIGHTNESS;
+            } else {
+                mFingerBehavior = FINGER_BEHAVIOR_VOLUME;
+            }
         }
 
         switch (mFingerBehavior) {
@@ -144,8 +149,12 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
             case FINGER_BEHAVIOR_VOLUME: { // 音量变化
                 float progress = mMaxVolume * (distanceY / height) + mCurrentVolume;
 
-                if (progress <= 0) progress = 0;
-                if (progress >= mMaxVolume) progress = mMaxVolume;
+                if (progress <= 0) {
+                    progress = 0;
+                }
+                if (progress >= mMaxVolume) {
+                    progress = mMaxVolume;
+                }
 
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, Math.round(progress), 0);
                 updateVolumeUI(mMaxVolume, Math.round(progress));
@@ -162,8 +171,12 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
 
                     int progress = (int) (mMaxBrightness * (distanceY / height) + mCurrentBrightness);
 
-                    if (progress <= 0) progress = 0;
-                    if (progress >= mMaxBrightness) progress = mMaxBrightness;
+                    if (progress <= 0) {
+                        progress = 0;
+                    }
+                    if (progress >= mMaxBrightness) {
+                        progress = mMaxBrightness;
+                    }
 
                     Window window = activity.getWindow();
                     WindowManager.LayoutParams params = window.getAttributes();

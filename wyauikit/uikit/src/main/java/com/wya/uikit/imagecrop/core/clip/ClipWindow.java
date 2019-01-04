@@ -217,7 +217,9 @@ public class ClipWindow implements Clip {
     }
 
     public void onDrawShade(Canvas canvas) {
-        if (!isShowShade) return;
+        if (!isShowShade) {
+            return;
+        }
 
         // 计算遮罩图形
         mShadePath.reset();

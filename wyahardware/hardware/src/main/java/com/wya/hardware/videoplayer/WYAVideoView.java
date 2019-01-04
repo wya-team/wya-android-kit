@@ -135,8 +135,11 @@ public class WYAVideoView extends VideoBehaviorView {
 
             @Override
             public void onLoadingChanged(boolean isShow) {
-                if (isShow) showLoading();
-                else hideLoading();
+                if (isShow) {
+                    showLoading();
+                } else {
+                    hideLoading();
+                }
             }
 
             @Override

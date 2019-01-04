@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 /**
  * @date: 2018/12/7 10:41
  * @author: Chunjiang Mao
- * @classname:  WYAConstants
+ * @classname: WYAConstants
  * @describe: 全局常量
  */
 
@@ -30,10 +30,10 @@ public class WYAConstants {
      * @param dbName
      */
     protected WYAConstants(@Nullable String dbName, int themeColor, boolean isShowLog, boolean isDebug) {
-        this.DB_NAME = dbName;
-        this.THEME_COLOR = themeColor;
-        this.IS_SHOW_LOG = isShowLog;
-        this.IS_DEBUG = isDebug;
+        DB_NAME = dbName;
+        THEME_COLOR = themeColor;
+        IS_SHOW_LOG = isShowLog;
+        IS_DEBUG = isDebug;
     }
 
     public static class Builder {
