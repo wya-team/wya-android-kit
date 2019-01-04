@@ -19,10 +19,10 @@ import android.widget.TextView;
 import com.wya.uikit.R;
 
 /**
- * 创建日期：2018/11/30 17:12
- * 作者： Mao Chunjiang
- * 文件名称：WYAInputItem
- * 类说明：常见item
+ * @date: 2018/11/30 17:12
+ * @author: Chunjiang Mao
+ * @classname: WYAInputItem
+ * @describe: 常见item
  */
 
 public class WYAInputItem extends LinearLayout {

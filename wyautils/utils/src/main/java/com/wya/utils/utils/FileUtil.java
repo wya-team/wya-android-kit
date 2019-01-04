@@ -10,10 +10,10 @@ import java.io.IOException;
 
 
  /**
-  * 创建日期：2018/12/5 14:04
-  * 作者： Mao Chunjiang
-  * 文件名称：FileUtil
-  * 类说明：文件工具类
+  * @date: 2018/12/5 14:04
+  * @author: Chunjiang Mao
+  * @classname: FileUtil
+  * @describe: 文件工具类
   */
 
 public class FileUtil {

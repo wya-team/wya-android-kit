@@ -1,10 +1,10 @@
 package com.wya.example.module.uikit.dialog.bean;
 
 /**
- * 创建日期：2018/12/20 9:57
- * 作者： Mao Chunjiang
- * 文件名称： ShareItem
- * 类说明：
+ * @date: 2018/12/20 9:57
+ * @author: Chunjiang Mao
+ * @classname:  ShareItem
+ * @describe:
  */
 
 public class ShareItem {

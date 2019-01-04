@@ -8,10 +8,10 @@ import com.wya.hardware.camera.WYACameraView;
 
 
  /**
-  * 创建日期：2018/12/5 13:39
-  * 作者： Mao Chunjiang
-  * 文件名称：BorrowPictureState
-  * 类说明：
+  * @date: 2018/12/5 13:39
+  * @author: Chunjiang Mao
+  * @classname: BorrowPictureState
+  * @describe:
   */
 
 public class BorrowPictureState implements State {

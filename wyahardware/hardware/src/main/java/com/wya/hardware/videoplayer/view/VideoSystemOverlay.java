@@ -11,10 +11,10 @@ import android.widget.TextView;
 import com.wya.hardware.R;
 
  /**
-  * 创建日期：2018/12/6 14:20
-  * 作者： Mao Chunjiang
-  * 文件名称：VideoSystemOverlay
-  * 类说明：滑动变化音量|亮度框
+  * @date: 2018/12/6 14:20
+  * @author: Chunjiang Mao
+  * @classname: VideoSystemOverlay
+  * @describe: 滑动变化音量|亮度框
   */
 
 public class VideoSystemOverlay extends FrameLayout {

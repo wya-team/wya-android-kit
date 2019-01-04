@@ -11,10 +11,10 @@ import android.view.WindowManager;
 
 
 /**
-  * 创建日期：2018/12/5 14:18
-  * 作者： Mao Chunjiang
-  * 文件名称：FoucsView
-  * 类说明：对焦框
+  * @date: 2018/12/5 14:18
+  * @author: Chunjiang Mao
+  * @classname: FoucsView
+  * @describe: 对焦框
   */
 
 public class FoucsView extends View {

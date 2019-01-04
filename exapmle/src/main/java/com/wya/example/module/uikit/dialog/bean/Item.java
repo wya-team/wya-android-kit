@@ -3,10 +3,10 @@ package com.wya.example.module.uikit.dialog.bean;
 import java.util.List;
 
 /**
- * 创建日期：2018/12/17 10:47
- * 作者： Mao Chunjiang
- * 文件名称： Item
- * 类说明：
+ * @date: 2018/12/17 10:47
+ * @author: Chunjiang Mao
+ * @classname:  Item
+ * @describe:
  */
 
 public class Item {

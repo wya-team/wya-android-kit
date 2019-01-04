@@ -5,10 +5,10 @@ import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.RealmClass;
 
 /**
- * 创建日期：2018/12/7 9:38
- * 作者： Mao Chunjiang
- * 文件名称： User
- * 类说明：用户对象，数据存储测试
+ * @date: 2018/12/7 9:38
+ * @author: Chunjiang Mao
+ * @classname:  User
+ * @describe: 用户对象，数据存储测试
  */
 @RealmClass
 public class User extends RealmObject {

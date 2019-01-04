@@ -9,10 +9,10 @@ import android.graphics.RectF;
 import android.view.View;
 
  /**
-  * 创建日期：2018/12/5 14:25
-  * 作者： Mao Chunjiang
-  * 文件名称：TypeButton
-  * 类说明：拍照或录制完成后弹出的确认和返回按钮
+  * @date: 2018/12/5 14:25
+  * @author: Chunjiang Mao
+  * @classname: TypeButton
+  * @describe: 拍照或录制完成后弹出的确认和返回按钮
   */
 
 public class TypeButton extends View {

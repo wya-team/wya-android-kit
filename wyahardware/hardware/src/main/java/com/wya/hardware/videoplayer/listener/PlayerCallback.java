@@ -5,10 +5,10 @@ import android.media.MediaPlayer;
 import com.wya.hardware.videoplayer.WYAVideoPlayer;
 
 /**
-  * 创建日期：2018/12/6 14:18
-  * 作者： Mao Chunjiang
-  * 文件名称：PlayerCallback
-  * 类说明：视频操作回调，是将系统MediaPlayer的常见回调封装了起来
+  * @date: 2018/12/6 14:18
+  * @author: Chunjiang Mao
+  * @classname: PlayerCallback
+  * @describe: 视频操作回调，是将系统MediaPlayer的常见回调封装了起来
   */
 
 public interface PlayerCallback {

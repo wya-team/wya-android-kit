@@ -12,10 +12,10 @@ import com.wya.uikit.button.WYAButton;
 import java.util.List;
 
  /**
-  * 创建日期：2018/11/30 9:31
-  * 作者： Mao Chunjiang
-  * 文件名称：CustomItemsAdapter
-  * 类说明：CustomItemsAdapter
+  * @date: 2018/11/30 9:31
+  * @author: Chunjiang Mao
+  * @classname: CustomItemsAdapter
+  * @describe: CustomItemsAdapter
   */
 
 public class CustomItemsAdapter extends BaseQuickAdapter<String, BaseViewHolder> {

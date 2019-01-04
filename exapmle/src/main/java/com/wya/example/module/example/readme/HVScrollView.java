@@ -16,10 +16,13 @@ import android.widget.FrameLayout;
 import android.widget.Scroller;
 
 import java.util.List;
+ /**
+  * @date: 2019/1/4 11:49
+  * @author: Chunjiang Mao
+  * @classname: HVScrollView
+  * @describe: HVScrollView
+  */
 
-/**
- * Reference to ScrollView and HorizontalScrollView
- */
 public class HVScrollView extends FrameLayout {
     static final int ANIMATED_SCROLL_GAP = 250;
 
@@ -376,6 +379,8 @@ public class HVScrollView extends FrameLayout {
                         }
                     }
                     break;
+                default:
+                    break;
             }
         }
         return handled;
@@ -479,6 +484,8 @@ public class HVScrollView extends FrameLayout {
             case MotionEvent.ACTION_POINTER_UP:
                 onSecondaryPointerUp(ev);
                 break;
+            default:
+                break;
         }
 
         /*
@@ -548,8 +555,6 @@ public class HVScrollView extends FrameLayout {
                         velocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
                         int initialVelocitx = (int) velocityTracker.getXVelocity();
                         int initialVelocity = (int) velocityTracker.getYVelocity();
-//                  int initialVelocitx = (int) velocityTracker.getXVelocity(mActivePointerId);
-//                  int initialVelocity = (int) velocityTracker.getYVelocity(mActivePointerId);
 
                         if (getChildCount() > 0) {
                             if (Math.abs(initialVelocitx) > initialVelocitx || Math.abs(initialVelocity) > mMinimumVelocity) {
@@ -581,13 +586,14 @@ public class HVScrollView extends FrameLayout {
             case MotionEvent.ACTION_POINTER_UP:
                 onSecondaryPointerUp(ev);
                 break;
+            default:
+                break;
         }
         return true;
     }
 
     private void onSecondaryPointerUp(MotionEvent ev) {
-        final int pointerIndex = (ev.getAction() & MotionEvent.ACTION_POINTER_ID_MASK) >>
-                MotionEvent.ACTION_POINTER_ID_SHIFT;
+        final int pointerIndex = (ev.getAction() & MotionEvent.ACTION_POINTER_ID_MASK) >> MotionEvent.ACTION_POINTER_ID_SHIFT;
         final int pointerId = ev.getPointerId(pointerIndex);
         if (pointerId == mActivePointerId) {
             // This was our active pointer going up. Choose a new
@@ -881,7 +887,9 @@ public class HVScrollView extends FrameLayout {
     public boolean arrowScrollV(int direction) {
 
         View currentFocused = findFocus();
-        if (currentFocused == this) currentFocused = null;
+        if (currentFocused == this) {
+            currentFocused = null;
+        }
 
         View nextFocused = FocusFinder.getInstance().findNextFocus(this, currentFocused, direction);
 
@@ -923,10 +931,12 @@ public class HVScrollView extends FrameLayout {
             // (also, need to temporarily force FOCUS_BEFORE_DESCENDANTS so we are
             // sure to
             // get it)
-            final int descendantFocusability = getDescendantFocusability();  // save
+            // save
+            final int descendantFocusability = getDescendantFocusability();
             setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
             requestFocus();
-            setDescendantFocusability(descendantFocusability);  // restore
+            // restore
+            setDescendantFocusability(descendantFocusability);
         }
         return true;
     }
@@ -934,7 +944,9 @@ public class HVScrollView extends FrameLayout {
     public boolean arrowScrollH(int direction) {
 
         View currentFocused = findFocus();
-        if (currentFocused == this) currentFocused = null;
+        if (currentFocused == this) {
+            currentFocused = null;
+        }
 
         View nextFocused = FocusFinder.getInstance().findNextFocus(this, currentFocused, direction);
 
@@ -1232,7 +1244,9 @@ public class HVScrollView extends FrameLayout {
      * @return The scroll delta.
      */
     protected int computeScrollDeltaToGetChildRectOnScreenV(Rect rect) {
-        if (getChildCount() == 0) return 0;
+        if (getChildCount() == 0) {
+            return 0;
+        }
 
         int height = getHeight();
         int screenTop = getScrollY();
@@ -1290,7 +1304,9 @@ public class HVScrollView extends FrameLayout {
     }
 
     protected int computeScrollDeltaToGetChildRectOnScreenH(Rect rect) {
-        if (getChildCount() == 0) return 0;
+        if (getChildCount() == 0) {
+            return 0;
+        }
 
         int width = getWidth();
         int screenLeft = getScrollX();
@@ -1432,8 +1448,9 @@ public class HVScrollView extends FrameLayout {
         super.onSizeChanged(w, h, oldw, oldh);
 
         View currentFocused = findFocus();
-        if (null == currentFocused || this == currentFocused)
+        if (null == currentFocused || this == currentFocused) {
             return;
+        }
 
         // If the currently-focused view was visible on the screen when the
         // screen was at the old height, then scroll the screen to make that
@@ -1484,21 +1501,6 @@ public class HVScrollView extends FrameLayout {
             mScroller.fling(getScrollX(), getScrollY(), velocityX, velocityY,
                     0, Math.max(0, right - width),
                     0, Math.max(0, bottom - height));
-
-            //            final boolean movingDown = velocityX > 0 || velocityY > 0;
-            //
-            //            View newFocused =
-            //                    findFocusableViewInMyBoundsV(movingDown, mScroller.getFinalY(), findFocus());
-            //            if (newFocused == null) {
-            //                newFocused = this;
-            //            }
-            //
-            //            if (newFocused != findFocus()
-            //                    && newFocused.requestFocus(movingDown ? View.FOCUS_DOWN : View.FOCUS_UP)) {
-            //                mScrollViewMovedFocus = true;
-            //                mScrollViewMovedFocus = false;
-            //            }
-
             invalidate();
         }
     }

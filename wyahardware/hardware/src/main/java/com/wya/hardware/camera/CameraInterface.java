@@ -38,12 +38,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.graphics.Bitmap.createBitmap;
- /**
-  * 创建日期：2018/12/5 14:09
-  * 作者： Mao Chunjiang
-  * 文件名称：CameraInterface
-  * 类说明：camera操作单例
-  */
+
+/**
+ * @date: 2018/12/5 14:09
+ * @author: Chunjiang Mao
+ * @classname: CameraInterface
+ * @describe: camera操作单例
+ */
 
 @SuppressWarnings("deprecation")
 public class CameraInterface implements Camera.PreviewCallback {
@@ -85,7 +86,7 @@ public class CameraInterface implements Camera.PreviewCallback {
     private int preview_height;
 
     private int angle = 0;
-    private int cameraAngle = 90;//摄像头角度   默认为90度
+    private int cameraAngle = 90;
     private int rotation = 0;
     private byte[] firstFrame_data;
 
@@ -93,18 +94,23 @@ public class CameraInterface implements Camera.PreviewCallback {
     public static final int TYPE_CAPTURE = 0x091;
     private int nowScaleRate = 0;
     private int recordScleRate = 0;
-
-    //视频质量
+    /**
+     * 视频质量
+     */
     private int mediaQuality = WYACameraView.MEDIA_QUALITY_MIDDLE;
     private SensorManager sm = null;
 
-    //获取CameraInterface单例
+    /**
+     * 获取CameraInterface单例
+     */
     public static synchronized CameraInterface getInstance() {
-        if (mCameraInterface == null)
+        if (mCameraInterface == null) {
             synchronized (CameraInterface.class) {
-                if (mCameraInterface == null)
+                if (mCameraInterface == null) {
                     mCameraInterface = new CameraInterface();
+                }
             }
+        }
         return mCameraInterface;
     }
 
@@ -263,15 +269,16 @@ public class CameraInterface implements Camera.PreviewCallback {
     }
 
     public void setFlashMode(String flashMode) {
-        if (mCamera == null)
+        if (mCamera == null) {
             return;
+        }
         Camera.Parameters params = mCamera.getParameters();
         params.setFlashMode(flashMode);
         mCamera.setParameters(params);
     }
 
 
-     public interface CameraOpenOverCallback {
+    public interface CameraOpenOverCallback {
         void cameraHasOpened();
     }
 
@@ -647,19 +654,20 @@ public class CameraInterface implements Camera.PreviewCallback {
         }
     }
 
-     /**
-      * 删除文件
-      * @param url
-      * @return
-      */
-     private static boolean deleteFile(String url) {
-         boolean result = false;
-         File file = new File(url);
-         if (file.exists()) {
-             result = file.delete();
-         }
-         return result;
-     }
+    /**
+     * 删除文件
+     *
+     * @param url
+     * @return
+     */
+    private static boolean deleteFile(String url) {
+        boolean result = false;
+        File file = new File(url);
+        if (file.exists()) {
+            result = file.delete();
+        }
+        return result;
+    }
 
     private void findAvailableCameras() {
         Camera.CameraInfo info = new Camera.CameraInfo();
@@ -732,32 +740,34 @@ public class CameraInterface implements Camera.PreviewCallback {
                 .bottom));
     }
 
-     /**
-      * 获取屏幕高
-      * @param context
-      * @return
-      */
-     private static int getScreenHeight(Context context) {
-         DisplayMetrics metric = new DisplayMetrics();
-         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-         wm.getDefaultDisplay().getMetrics(metric);
-         return metric.heightPixels;
-     }
+    /**
+     * 获取屏幕高
+     *
+     * @param context
+     * @return
+     */
+    private static int getScreenHeight(Context context) {
+        DisplayMetrics metric = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metric);
+        return metric.heightPixels;
+    }
 
-     /**
-      * 获取屏幕宽
-      * @param context
-      * @return
-      */
-     private static int getScreenWidth(Context context) {
-         DisplayMetrics metric = new DisplayMetrics();
-         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-         wm.getDefaultDisplay().getMetrics(metric);
-         return metric.widthPixels;
-     }
+    /**
+     * 获取屏幕宽
+     *
+     * @param context
+     * @return
+     */
+    private static int getScreenWidth(Context context) {
+        DisplayMetrics metric = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metric);
+        return metric.widthPixels;
+    }
 
 
-     private static int clamp(int x, int min, int max) {
+    private static int clamp(int x, int min, int max) {
         if (x > max) {
             return max;
         }

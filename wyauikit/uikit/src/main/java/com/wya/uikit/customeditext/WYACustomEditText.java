@@ -18,10 +18,10 @@ import android.widget.TextView;
 import com.wya.uikit.R;
 
 /**
- * 创建日期：2018/12/14 10:26
- * 作者： Mao Chunjiang
- * 文件名称： WYACustomEdittxet
- * 类说明：自定义文输入框
+ * @date: 2018/12/14 10:26
+ * @author: Chunjiang Mao
+ * @classname:  WYACustomEdittxet
+ * @describe: 自定义文输入框
  */
 
 public class WYACustomEditText extends RelativeLayout {

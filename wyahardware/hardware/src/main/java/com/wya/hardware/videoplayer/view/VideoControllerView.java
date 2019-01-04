@@ -25,10 +25,10 @@ import java.util.Locale;
 
 
 /**
- * 创建日期：2018/12/6 14:19
- * 作者： Mao Chunjiang
- * 文件名称：VideoControllerView
- * 类说明：视频控制器，可替换或自定义样式
+ * @date: 2018/12/6 14:19
+ * @author: Chunjiang Mao
+ * @classname: VideoControllerView
+ * @describe: 视频控制器，可替换或自定义样式
  */
 
 public class VideoControllerView extends FrameLayout {

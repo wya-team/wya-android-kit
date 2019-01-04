@@ -14,10 +14,10 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 创建日期：2018/11/22 14:26
- * 作者： Mao Chunjiang
- * 文件名称：ToastExampleActivity
- * 类说明：自定义Toast
+ * @date: 2018/11/22 14:26
+ * @author: Chunjiang Mao
+ * @classname: ToastExampleActivity
+ * @describe: 自定义Toast
  */
 
 public class ToastExampleActivity extends BaseActivity {

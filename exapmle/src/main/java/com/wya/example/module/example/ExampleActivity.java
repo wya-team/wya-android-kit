@@ -12,6 +12,12 @@ import com.wya.uikit.tabbar.WYATabBar;
 import com.wya.utils.utils.ColorUtil;
 
 import butterknife.BindView;
+ /**
+  * @date: 2019/1/4 11:49
+  * @author: Chunjiang Mao
+  * @classname: ExampleActivity
+  * @describe: ExampleActivity
+  */
 
 public class ExampleActivity extends BaseActivity {
 
@@ -56,6 +62,8 @@ public class ExampleActivity extends BaseActivity {
                     break;
                 case R.id.navigation_about_us:
                     fragmentTransaction.show(aboutUsFragment).hide(exampleFragment).commit();
+                    break;
+                default:
                     break;
             }
             return true;

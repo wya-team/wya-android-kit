@@ -6,10 +6,10 @@ import android.graphics.Color;
 import android.support.annotation.Nullable;
 
 /**
- * 创建日期：2018/12/7 10:41
- * 作者： Mao Chunjiang
- * 文件名称： WYAConstants
- * 类说明：全局常量
+ * @date: 2018/12/7 10:41
+ * @author: Chunjiang Mao
+ * @classname:  WYAConstants
+ * @describe: 全局常量
  */
 
 public class WYAConstants {

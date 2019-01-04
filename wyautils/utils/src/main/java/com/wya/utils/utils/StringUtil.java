@@ -28,10 +28,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 创建日期：2018/12/6 11:25
- * 作者： Mao Chunjiang
- * 文件名称：StringUtil
- * 类说明：字符串工具类
+ * @date: 2018/12/6 11:25
+ * @author: Chunjiang Mao
+ * @classname: StringUtil
+ * @describe: 字符串工具类
  * 包含以下功能个
  * 字符拆分成数组
  * MD5 加密

@@ -7,10 +7,10 @@ import com.wya.hardware.camera.CameraInterface;
 import com.wya.hardware.camera.WYACameraView;
 
  /**
-  * 创建日期：2018/12/5 13:58
-  * 作者： Mao Chunjiang
-  * 文件名称：BorrowVideoState
-  * 类说明：
+  * @date: 2018/12/5 13:58
+  * @author: Chunjiang Mao
+  * @classname: BorrowVideoState
+  * @describe:
   */
  
 public class BorrowVideoState implements State {

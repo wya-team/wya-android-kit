@@ -12,10 +12,10 @@ import com.wya.utils.utils.ColorUtil;
 import java.util.List;
 
 /**
-  * 创建日期：2018/11/30 9:24
-  * 作者： Mao Chunjiang
-  * 文件名称：GridAdapter
-  * 类说明：GridAdapter
+  * @date: 2018/11/30 9:24
+  * @author: Chunjiang Mao
+  * @classname: GridAdapter
+  * @describe: GridAdapter
   */
 
 public class GridAdapter extends BaseQuickAdapter<String, BaseViewHolder> {

@@ -6,10 +6,10 @@ import android.view.SurfaceHolder;
 import com.wya.hardware.camera.CameraInterface;
 
  /**
-  * 创建日期：2018/12/5 13:52
-  * 作者： Mao Chunjiang
-  * 文件名称：State
-  * 类说明：
+  * @date: 2018/12/5 13:52
+  * @author: Chunjiang Mao
+  * @classname: State
+  * @describe:
   */
 
 public interface State {

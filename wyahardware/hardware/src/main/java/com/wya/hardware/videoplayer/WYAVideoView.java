@@ -33,10 +33,10 @@ import static android.graphics.Color.TRANSPARENT;
 
 
 /**
- * 创建日期：2018/12/6 14:22
- * 作者： Mao Chunjiang
- * 文件名称：WYAVideoView
- * 类说明：视频播放器View
+ * @date: 2018/12/6 14:22
+ * @author: Chunjiang Mao
+ * @classname: WYAVideoView
+ * @describe: 视频播放器View
  */
 
 public class WYAVideoView extends VideoBehaviorView {

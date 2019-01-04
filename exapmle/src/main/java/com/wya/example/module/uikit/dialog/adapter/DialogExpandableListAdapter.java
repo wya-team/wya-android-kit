@@ -16,10 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 创建日期：2018/12/17 10:39
- * 作者： Mao Chunjiang
- * 文件名称： DialogExpandableListAdapter
- * 类说明：
+ * @date: 2018/12/17 10:39
+ * @author: Chunjiang Mao
+ * @classname:  DialogExpandableListAdapter
+ * @describe:
  */
 
 public class DialogExpandableListAdapter extends BaseExpandableListAdapter {

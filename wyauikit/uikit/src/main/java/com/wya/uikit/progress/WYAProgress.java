@@ -17,10 +17,10 @@ import java.math.BigDecimal;
 import static android.graphics.Paint.Style.STROKE;
 
 /**
- * 创建日期：2018/12/4 14:10
- * 作者： Mao Chunjiang
- * 文件名称： WYAProgress
- * 类说明：圆形progress
+ * @date: 2018/12/4 14:10
+ * @author: Chunjiang Mao
+ * @classname:  WYAProgress
+ * @describe: 圆形progress
  */
 
 public class WYAProgress extends View {

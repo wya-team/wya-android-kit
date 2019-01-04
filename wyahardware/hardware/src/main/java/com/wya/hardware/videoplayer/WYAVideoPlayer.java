@@ -10,10 +10,10 @@ import com.wya.hardware.videoplayer.listener.PlayerCallback;
 
 import java.io.IOException;
  /**
-  * 创建日期：2018/12/6 14:22
-  * 作者： Mao Chunjiang
-  * 文件名称：WYAVideoPlayer
-  * 类说明：只包含最基础的播放器功能，MediaPlayer可以替换成其他框架的播放器
+  * @date: 2018/12/6 14:22
+  * @author: Chunjiang Mao
+  * @classname: WYAVideoPlayer
+  * @describe: 只包含最基础的播放器功能，MediaPlayer可以替换成其他框架的播放器
   */
 
 public class WYAVideoPlayer {

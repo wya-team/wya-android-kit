@@ -14,10 +14,10 @@ import com.wya.hardware.videoplayer.listener.OnVideoControlListener;
 
 
  /**
-  * 创建日期：2018/12/6 14:20
-  * 作者： Mao Chunjiang
-  * 文件名称：VideoErrorView
-  * 类说明：视频错误View
+  * @date: 2018/12/6 14:20
+  * @author: Chunjiang Mao
+  * @classname: VideoErrorView
+  * @describe: 视频错误View
   */
 
 public class VideoErrorView extends FrameLayout {

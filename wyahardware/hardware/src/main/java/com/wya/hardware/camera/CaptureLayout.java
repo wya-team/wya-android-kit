@@ -24,10 +24,10 @@ import com.wya.hardware.camera.listener.TypeListener;
 
 
  /**
-  * 创建日期：2018/12/5 14:17
-  * 作者： Mao Chunjiang
-  * 文件名称：CaptureLayout
-  * 类说明：集成各个控件的布局
+  * @date: 2018/12/5 14:17
+  * @author: Chunjiang Mao
+  * @classname: CaptureLayout
+  * @describe: 集成各个控件的布局
   */
 
 

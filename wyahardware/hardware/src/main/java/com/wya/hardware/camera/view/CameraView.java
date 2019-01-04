@@ -3,10 +3,10 @@ package com.wya.hardware.camera.view;
 import android.graphics.Bitmap;
 
  /**
-  * 创建日期：2018/12/5 14:09
-  * 作者： Mao Chunjiang
-  * 文件名称：CameraView
-  * 类说明：
+  * @date: 2018/12/5 14:09
+  * @author: Chunjiang Mao
+  * @classname: CameraView
+  * @describe:
   */
 
 public interface CameraView {

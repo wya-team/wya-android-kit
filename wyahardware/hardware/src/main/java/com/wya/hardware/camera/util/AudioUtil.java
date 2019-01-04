@@ -3,10 +3,10 @@ package com.wya.hardware.camera.util;
 import android.content.Context;
 import android.media.AudioManager;
  /**
-  * 创建日期：2018/12/5 13:55
-  * 作者： Mao Chunjiang
-  * 文件名称：AudioUtil
-  * 类说明：
+  * @date: 2018/12/5 13:55
+  * @author: Chunjiang Mao
+  * @classname: AudioUtil
+  * @describe:
   */
 
 public class AudioUtil {

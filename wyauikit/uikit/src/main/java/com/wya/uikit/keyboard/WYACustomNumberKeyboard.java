@@ -20,10 +20,10 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * 创建日期：2018/12/26 16:29
- * 作者： Mao Chunjiang
- * 文件名称：WYACustomNumberKeyboard
- * 类说明：
+ * @date: 2018/12/26 16:29
+ * @author: Chunjiang Mao
+ * @classname: WYACustomNumberKeyboard
+ * @describe:
  */
 
 public class WYACustomNumberKeyboard {

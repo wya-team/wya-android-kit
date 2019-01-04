@@ -3,10 +3,10 @@ package com.wya.uikit.dialog;
 import android.view.View;
 
 /**
- * 创建日期：2018/12/13 11:25
- * 作者： Mao Chunjiang
- * 文件名称： CustomListener
- * 类说明：
+ * @date: 2018/12/13 11:25
+ * @author: Chunjiang Mao
+ * @classname:  CustomListener
+ * @describe:
  */
 
 public interface CustomListener {

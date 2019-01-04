@@ -69,7 +69,9 @@ public class NoticeExampleActivity extends BaseActivity {
         vsDown2Up.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
-                if (null == nextView) return;
+                if (null == nextView){
+                    return;
+                }
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -87,7 +89,9 @@ public class NoticeExampleActivity extends BaseActivity {
         vsUp2Down.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
-                if (null == nextView) return;
+                if (null == nextView){
+                    return;
+                }
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 llClosableSwitcher.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -108,7 +112,9 @@ public class NoticeExampleActivity extends BaseActivity {
         vsLeft2Right.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
-                if (null == nextView) return;
+                if (null == nextView){
+                    return;
+                }
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
                 nextView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -126,7 +132,9 @@ public class NoticeExampleActivity extends BaseActivity {
         vsRight2Left.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
-                if (null == nextView) return;
+                if (null == nextView){
+                    return;
+                }
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
             }
         });

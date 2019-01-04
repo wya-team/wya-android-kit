@@ -18,10 +18,10 @@ import android.widget.TextView;
 import com.wya.uikit.R;
 
 /**
- * 创建日期：2018/11/29 11:56
- * 作者： Mao Chunjiang
- * 文件名称： WYACardView
- * 类说明：自定义CardView
+ * @date: 2018/11/29 11:56
+ * @author: Chunjiang Mao
+ * @classname:  WYACardView
+ * @describe: 自定义CardView
  */
 
 @SuppressLint("AppCompatCustomView")

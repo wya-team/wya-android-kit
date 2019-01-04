@@ -6,10 +6,10 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
 /**
- * 创建日期：2018/12/19 14:33
- * 作者： Mao Chunjiang
- * 文件名称： AndroidBugWorkaround
- * 类说明：
+ * @date: 2018/12/19 14:33
+ * @author: Chunjiang Mao
+ * @classname:  AndroidBugWorkaround
+ * @describe:
  */
 
 public class AndroidBugWorkaround {

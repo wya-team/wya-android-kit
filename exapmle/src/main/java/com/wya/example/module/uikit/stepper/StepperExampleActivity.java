@@ -11,10 +11,10 @@ import com.wya.utils.utils.StringUtil;
 import butterknife.BindView;
 
 /**
- * 创建日期：2018/12/3 18:00
- * 作者： Mao Chunjiang
- * 文件名称：StepperExampleActivity
- * 类说明：Stepper案例
+ * @date: 2018/12/3 18:00
+ * @author: Chunjiang Mao
+ * @classname: StepperExampleActivity
+ * @describe: Stepper案例
  */
 
 public class StepperExampleActivity extends BaseActivity {

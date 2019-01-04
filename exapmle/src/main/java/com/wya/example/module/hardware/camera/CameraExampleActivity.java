@@ -23,10 +23,10 @@ import com.wya.utils.utils.FileUtil;
 import java.io.File;
 
 /**
- * 创建日期：2018/12/5 16:34
- * 作者： Mao Chunjiang
- * 文件名称：CameraExampleActivity
- * 类说明：相机实例
+ * @date: 2018/12/5 16:34
+ * @author: Chunjiang Mao
+ * @classname: CameraExampleActivity
+ * @describe: 相机实例
  */
 
 public class CameraExampleActivity extends AppCompatActivity {

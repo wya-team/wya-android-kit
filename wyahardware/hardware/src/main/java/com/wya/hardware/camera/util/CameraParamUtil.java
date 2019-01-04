@@ -10,10 +10,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
  /**
-  * 创建日期：2018/12/5 13:55
-  * 作者： Mao Chunjiang
-  * 文件名称：CameraParamUtil
-  * 类说明：
+  * @date: 2018/12/5 13:55
+  * @author: Chunjiang Mao
+  * @classname: CameraParamUtil
+  * @describe:
   */
 
 public class CameraParamUtil {

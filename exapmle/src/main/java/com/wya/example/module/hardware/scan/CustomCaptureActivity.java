@@ -41,10 +41,10 @@ import com.wya.uikit.toolbar.StatusBarUtil;
 
 import static com.wya.hardware.scan.Intents.Scan.RESULT;
  /**
-  * 创建日期：2018/12/24 11:24
-  * 作者： Mao Chunjiang
-  * 文件名称：CustomCaptureActivity
-  * 类说明：自定义布局扫码+图片二维码解析
+  * @date: 2018/12/24 11:24
+  * @author: Chunjiang Mao
+  * @classname: CustomCaptureActivity
+  * @describe: 自定义布局扫码+图片二维码解析
   */
 
 public class CustomCaptureActivity extends CaptureActivity {

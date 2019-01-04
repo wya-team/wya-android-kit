@@ -8,10 +8,10 @@ import com.wya.hardware.camera.CameraInterface;
 import com.wya.hardware.camera.WYACameraView;
 
  /**
-  * 创建日期：2018/12/5 13:52
-  * 作者： Mao Chunjiang
-  * 文件名称：PreviewState
-  * 类说明：
+  * @date: 2018/12/5 13:52
+  * @author: Chunjiang Mao
+  * @classname: PreviewState
+  * @describe:
   */
 
 class PreviewState implements State {

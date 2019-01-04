@@ -24,10 +24,10 @@ import java.util.regex.Pattern;
 
 
 /**
- * 创建日期：2018/12/10 9:50
- * 作者： Mao Chunjiang
- * 文件名称： PhoneUtil
- * 类说明：手机信息工具类
+ * @date: 2018/12/10 9:50
+ * @author: Chunjiang Mao
+ * @classname:  PhoneUtil
+ * @describe: 手机信息工具类
  */
 
 public class PhoneUtil {

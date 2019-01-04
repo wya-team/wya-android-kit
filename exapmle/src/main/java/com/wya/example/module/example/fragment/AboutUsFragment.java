@@ -16,16 +16,24 @@ import com.wya.uikit.customitems.WYAInputItem;
 import com.wya.utils.utils.AppUtil;
 import com.wya.utils.utils.PhoneUtil;
 
+/**
+ * @date: 2019/1/4 11:41
+ * @author: Chunjiang Mao
+ * @classname: AboutUsFragment
+ * @describe: AboutUsFragment
+ */
 
 public class AboutUsFragment extends Fragment {
-    
+
     private View view;
-    private TextView tv_version, tv_system_version, tv_device;
-    private WYAInputItem git_hub_address;
-    private WYAInputItem git_hub_contributor;
-    private WYAInputItem git_hub_version;
-    
-    
+    private TextView tvVersion;
+    private TextView tvSystemVersion;
+    private TextView tvDevice;
+    private WYAInputItem gitHubAddress;
+    private WYAInputItem gitHubContributor;
+    private WYAInputItem gitHubVersion;
+
+
     @SuppressLint("NewApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,26 +41,26 @@ public class AboutUsFragment extends Fragment {
         initView();
         return view;
     }
-    
+
     private void initView() {
-        tv_version = view.findViewById(R.id.tv_version);
-        git_hub_address = view.findViewById(R.id.git_hub_address);
-        git_hub_contributor = view.findViewById(R.id.git_hub_contributor);
-        git_hub_version = view.findViewById(R.id.git_hub_version);
-        tv_device = view.findViewById(R.id.tv_device);
-        tv_system_version = view.findViewById(R.id.tv_system_version);
-        tv_version.setText(AppUtil.getVersionName(getActivity()));
-        tv_device.setText("Device : " + PhoneUtil.getInstance().getMobileBrand() + " " + PhoneUtil.getInstance().getPhoneModel());
-        tv_system_version.setText("System : " + PhoneUtil.getInstance().getSDKVersion());
-        git_hub_address.setOnClickListener(v -> {
+        tvVersion = view.findViewById(R.id.tv_version);
+        gitHubAddress = view.findViewById(R.id.git_hub_address);
+        gitHubContributor = view.findViewById(R.id.git_hub_contributor);
+        gitHubVersion = view.findViewById(R.id.git_hub_version);
+        tvDevice = view.findViewById(R.id.tv_device);
+        tvSystemVersion = view.findViewById(R.id.tv_system_version);
+        tvVersion.setText(AppUtil.getVersionName(getActivity()));
+        tvDevice.setText("Device : " + PhoneUtil.getInstance().getMobileBrand() + " " + PhoneUtil.getInstance().getPhoneModel());
+        tvSystemVersion.setText("System : " + PhoneUtil.getInstance().getSDKVersion());
+        gitHubAddress.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url", "https://github.com/wya-team/wya-android-kit/blob/develop/README.md").putExtra("skip", true));
         });
-        git_hub_contributor.setOnClickListener(v -> {
+        gitHubContributor.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url", "https://github.com/wya-team/wya-android-kit/blob/develop/CONTRIBUTING.md").putExtra("skip", true));
         });
-        git_hub_version.setOnClickListener(v -> {
+        gitHubVersion.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url", "https://github.com/wya-team/wya-android-kit/blob/develop/CHANGELOG.md"));
         });
-        
+
     }
 }

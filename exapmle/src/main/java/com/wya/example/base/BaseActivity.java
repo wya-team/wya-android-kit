@@ -17,17 +17,17 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * 创建日期：2018/11/16 17:48
- * 作者： Mao Chunjiang
- * 文件名称： BaseActivity
- * 类说明：
+ * @date: 2019/1/4 9:49
+ * @author: Chunjiang Mao
+ * @classname: BaseActivity
+ * @describe:
  */
 
 public abstract class BaseActivity extends BaseToolBarActivity {
     private Unbinder unbinder;
     private GestureDetector mGestureDetector;
     private boolean mIsSwipeBack = false;
-    
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,23 +40,26 @@ public abstract class BaseActivity extends BaseToolBarActivity {
         initView();
         initGesture();
     }
-    
+
     private void startActivityStyle() {
         overridePendingTransition(R.anim.activity_start_right, R.anim.activity_start_left);
     }
-    
+
     public WYAToast getWyaToast() {
         return new WYAToast(this);
     }
-    
+
+    /**
+     * 初始化view
+     */
     protected abstract void initView();
-    
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         overridePendingTransition(R.anim.activity_start_left, R.anim.activity_start_left_exit);
     }
-    
+
     @SuppressWarnings("deprecation")
     private void initGesture() {
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -70,7 +73,7 @@ public abstract class BaseActivity extends BaseToolBarActivity {
             }
         }, outMetrics.widthPixels);
     }
-    
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         return mGestureDetector != null ? (mGestureDetector.onTouchEvent(ev) || super.dispatchTouchEvent(ev)) : super.dispatchTouchEvent(ev);

@@ -18,10 +18,10 @@ import android.widget.Button;
 import com.wya.uikit.R;
 
 /**
- * 创建日期：2018/11/28 13:53
- * 作者： Mao Chunjiang
- * 文件名称： WYAButton
- * 类说明：自定义button
+ * @date: 2018/11/28 13:53
+ * @author: Chunjiang Mao
+ * @classname:  WYAButton
+ * @describe: 自定义button
  */
 
 @SuppressLint("AppCompatCustomView")

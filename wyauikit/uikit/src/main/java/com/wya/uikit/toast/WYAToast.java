@@ -12,15 +12,15 @@ import android.widget.Toast;
 import com.wya.uikit.R;
 
 /**
- * 创建日期：2018/11/22 11:58
- * 作者： Mao Chunjiang
- * 文件名称： WYAToast
- * 类说明：自定义Toast
+ * @date: 2018/11/22 11:58
+ * @author: Chunjiang Mao
+ * @classname:  WYAToast
+ * @describe: 自定义Toast
  */
 
 public class WYAToast {
     private static Toast toast;
-    private static Toast toast2;
+    private static Toast toast_custom;
     private Context context;
 
     public WYAToast(Context context) {
@@ -82,8 +82,8 @@ public class WYAToast {
      * 显示有image的toast 这是个view
      */
     public Toast showToastWithImg(final String tvStr, final int imageResource, int gravity) {
-        if (toast2 == null) {
-            toast2 = new Toast(context);
+        if (toast_custom == null) {
+            toast_custom = new Toast(context);
         }
         View view = LayoutInflater.from(context).inflate(R.layout.wya_custom_toast_layout, null);
         TextView tv = view.findViewById(R.id.tv_toast_custom);
@@ -95,14 +95,14 @@ public class WYAToast {
         } else {
             iv.setVisibility(View.GONE);
         }
-        toast2.setView(view);
+        toast_custom.setView(view);
         if (gravity == Gravity.CENTER) {
-            toast2.setGravity(gravity, 0, 0);
+            toast_custom.setGravity(gravity, 0, 0);
         } else if (gravity == Gravity.BOTTOM) {
-            toast2.setGravity(gravity, 0, 0);
+            toast_custom.setGravity(gravity, 0, 0);
         }
-        toast2.show();
-        return toast2;
+        toast_custom.show();
+        return toast_custom;
 
     }
 }

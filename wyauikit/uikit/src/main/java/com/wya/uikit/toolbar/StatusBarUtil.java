@@ -1,10 +1,10 @@
 package com.wya.uikit.toolbar;
 
 /**
- * 创建日期：2018/12/14 10:08
- * 作者： Mao Chunjiang
- * 文件名称： StatusBarUtil
- * 类说明：
+ * @date: 2018/12/14 10:08
+ * @author: Chunjiang Mao
+ * @classname:  StatusBarUtil
+ * @describe:
  */
 import android.annotation.TargetApi;
 import android.app.Activity;

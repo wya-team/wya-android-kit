@@ -5,10 +5,10 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
  /**
-  * 创建日期：2018/12/6 11:24
-  * 作者： Mao Chunjiang
-  * 文件名称：NetworkUtil
-  * 类说明：网络判断工具类
+  * @date: 2018/12/6 11:24
+  * @author: Chunjiang Mao
+  * @classname: NetworkUtil
+  * @describe: 网络判断工具类
   */
 
 public class NetworkUtil {

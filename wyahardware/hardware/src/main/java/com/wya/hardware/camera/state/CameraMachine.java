@@ -9,10 +9,10 @@ import com.wya.hardware.camera.CameraInterface;
 import com.wya.hardware.camera.view.CameraView;
 
 /**
-  * 创建日期：2018/12/5 13:52
-  * 作者： Mao Chunjiang
-  * 文件名称：CameraMachine
-  * 类说明：
+  * @date: 2018/12/5 13:52
+  * @author: Chunjiang Mao
+  * @classname: CameraMachine
+  * @describe:
   */
 
 public class CameraMachine implements State {

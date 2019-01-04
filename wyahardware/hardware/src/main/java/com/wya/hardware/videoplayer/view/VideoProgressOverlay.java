@@ -14,10 +14,10 @@ import com.wya.hardware.R;
 import java.util.Locale;
 
 /**
-  * 创建日期：2018/12/6 14:20
-  * 作者： Mao Chunjiang
-  * 文件名称：VideoProgressOverlay
-  * 类说明：滑动快进快退进度框
+  * @date: 2018/12/6 14:20
+  * @author: Chunjiang Mao
+  * @classname: VideoProgressOverlay
+  * @describe: 滑动快进快退进度框
   */
 
 public class VideoProgressOverlay extends FrameLayout {

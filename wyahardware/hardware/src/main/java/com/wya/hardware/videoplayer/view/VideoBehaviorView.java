@@ -15,10 +15,10 @@ import android.widget.FrameLayout;
  *
  */
  /**
-  * 创建日期：2018/12/6 14:18
-  * 作者： Mao Chunjiang
-  * 文件名称：VideoBehaviorView
-  * 类说明：视频手势View，注意添加 player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+  * @date: 2018/12/6 14:18
+  * @author: Chunjiang Mao
+  * @classname: VideoBehaviorView
+  * @describe: 视频手势View，注意添加 player.setAudioStreamType(AudioManager.STREAM_MUSIC);
   */
 
 public class VideoBehaviorView extends FrameLayout implements GestureDetector.OnGestureListener {

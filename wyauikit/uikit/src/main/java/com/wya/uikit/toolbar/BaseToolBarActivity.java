@@ -16,10 +16,10 @@ import com.wya.uikit.R;
 import com.wya.uikit.toolbar.swipeback.SwipeBackActivity;
 
 /**
- * 创建日期：2018/11/16 17:48
- * 作者： Mao Chunjiang
- * 文件名称： BaseToolBarActivity
- * 类说明：标题栏
+ * @date: 2018/11/16 17:48
+ * @author: Chunjiang Mao
+ * @classname:  BaseToolBarActivity
+ * @describe: 标题栏
  */
 
 public abstract class BaseToolBarActivity extends SwipeBackActivity {

@@ -14,10 +14,10 @@ import android.widget.TextView;
 import com.wya.uikit.R;
 
 /**
- * 创建日期：2018/11/23 16:13
- * 作者： Mao Chunjiang
- * 文件名称：WYALoadingDialog
- * 类说明：加载动画
+ * @date: 2018/11/23 16:13
+ * @author: Chunjiang Mao
+ * @classname: WYALoadingDialog
+ * @describe: 加载动画
  */
 
 public class WYALoadingDialog extends Dialog {

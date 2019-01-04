@@ -6,10 +6,10 @@ import android.view.View;
 import android.widget.ExpandableListView;
 
 /**
- * 创建日期：2018/12/18 11:22
- * 作者： Mao Chunjiang
- * 文件名称： CustomerExpandableListView
- * 类说明：
+ * @date: 2018/12/18 11:22
+ * @author: Chunjiang Mao
+ * @classname:  CustomerExpandableListView
+ * @describe:
  */
 
 public class CustomerExpandableListView extends ExpandableListView {

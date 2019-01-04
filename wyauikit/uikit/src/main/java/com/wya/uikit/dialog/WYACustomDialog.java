@@ -16,10 +16,10 @@ import android.widget.TextView;
 import com.wya.uikit.R;
 
 /**
- * 创建日期：2018/11/20 16:36
- * 作者： Mao Chunjiang
- * 文件名称：WYACustomDialog
- * 类说明：自定义的弹出框
+ * @date: 2018/11/20 16:36
+ * @author: Chunjiang Mao
+ * @classname: WYACustomDialog
+ * @describe: 自定义的弹出框
  */
 
 public class WYACustomDialog extends Dialog {

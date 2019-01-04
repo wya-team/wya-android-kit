@@ -19,10 +19,10 @@ import com.wya.utils.utils.StringUtil;
 import butterknife.BindView;
 
 /**
- * 创建日期：2018/11/22 17:35
- * 作者： Mao Chunjiang
- * 文件名称：KeyboardExampleActivity
- * 类说明：软件盘example
+ * @date: 2018/11/22 17:35
+ * @author: Chunjiang Mao
+ * @classname: KeyboardExampleActivity
+ * @describe: 软件盘example
  */
 
 public class KeyboardExampleActivity extends BaseActivity {

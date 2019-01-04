@@ -4,10 +4,10 @@ package com.wya.uikit.toolbar;
 import android.graphics.Color;
 
 /**
- * 创建日期：2018/11/19 13:33
- * 作者： Mao Chunjiang
- * 文件名称： WYAColor
- * 类说明：自定义的标题栏颜色
+ * @date: 2018/11/19 13:33
+ * @author: Chunjiang Mao
+ * @classname:  WYAColor
+ * @describe: 自定义的标题栏颜色
  */
 
 public class WYAToolBarHelper {

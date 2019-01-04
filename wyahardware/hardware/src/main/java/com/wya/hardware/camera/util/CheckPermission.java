@@ -7,10 +7,10 @@ import android.media.MediaRecorder;
 import android.util.Log;
 
  /**
-  * 创建日期：2018/12/5 13:57
-  * 作者： Mao Chunjiang
-  * 文件名称：CheckPermission
-  * 类说明：权限检测
+  * @date: 2018/12/5 13:57
+  * @author: Chunjiang Mao
+  * @classname: CheckPermission
+  * @describe: 权限检测
   */
 
 public class CheckPermission {

@@ -16,10 +16,10 @@ import com.wya.uikit.R;
 import java.lang.reflect.Field;
 import java.util.List;
  /**
-  * 创建日期：2018/12/26 14:53
-  * 作者： Mao Chunjiang
-  * 文件名称：WYACustomNumberKeyboardView
-  * 类说明：数字键盘
+  * @date: 2018/12/26 14:53
+  * @author: Chunjiang Mao
+  * @classname: WYACustomNumberKeyboardView
+  * @describe: 数字键盘
   */
 
 public class WYACustomNumberKeyboardView extends KeyboardView {

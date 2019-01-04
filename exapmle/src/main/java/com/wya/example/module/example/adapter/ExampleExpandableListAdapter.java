@@ -2,6 +2,7 @@ package com.wya.example.module.example.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,73 +17,93 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 创建日期：2018/12/17 10:39
- * 作者： Mao Chunjiang
- * 文件名称： DialogExpandableListAdapter
- * 类说明：
+ * @date: 2018/12/17 10:39
+ * @author: Chunjiang Mao
+ * @classname: DialogExpandableListAdapter
+ * @describe:
  */
 
 public class ExampleExpandableListAdapter extends BaseExpandableListAdapter {
     private List<ExampleItem> mDatas = new ArrayList<>();
     private Context context;
 
-    public ExampleExpandableListAdapter( Context context, List<ExampleItem> mDatas) {
+    public ExampleExpandableListAdapter(Context context, List<ExampleItem> mDatas) {
         this.mDatas = mDatas;
         this.context = context;
     }
 
 
+    /**
+     * 获取分组的个数
+     */
     @Override
-    // 获取分组的个数
     public int getGroupCount() {
         return mDatas.size();
     }
 
-    //获取指定分组中的子选项的个数
+    /**
+     * @param groupPosition
+     * @return 获取指定分组中的子选项的个数
+     */
     @Override
     public int getChildrenCount(int groupPosition) {
         return mDatas.get(groupPosition).getChild().size();
     }
 
-    //        获取指定的分组数据
+    /**
+     * @param groupPosition
+     * @return 获取指定的分组数据
+     */
     @Override
     public Object getGroup(int groupPosition) {
         return mDatas.get(groupPosition);
     }
 
-    //获取指定分组中的指定子选项数据
+    /**
+     * @param groupPosition
+     * @param childPosition
+     * @return 获取指定分组中的指定子选项数据
+     */
     @Override
     public Object getChild(int groupPosition, int childPosition) {
         return mDatas.get(groupPosition).getChild().get(childPosition);
     }
 
-    //获取指定分组的ID, 这个ID必须是唯一的
+    /**
+     * @param groupPosition
+     * @return 获取指定分组的ID, 这个ID必须是唯一的
+     */
     @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
 
-    //获取子选项的ID, 这个ID必须是唯一的
+    /**
+     * @param groupPosition
+     * @param childPosition
+     * @return 获取子选项的ID, 这个ID必须是唯一的
+     */
     @Override
     public long getChildId(int groupPosition, int childPosition) {
         return childPosition;
     }
 
-    //分组和子选项是否持有稳定的ID, 就是说底层数据的改变会不会影响到它们
+    /**
+     * @return 分组和子选项是否持有稳定的ID, 就是说底层数据的改变会不会影响到它们
+     */
     @Override
     public boolean hasStableIds() {
         return true;
     }
 
     /**
-     * 获取显示指定组的视图对象
+     * 获取显示指定分组的视图
      *
      * @param groupPosition 组位置
      * @param isExpanded    该组是展开状态还是伸缩状态
      * @param convertView   重用已有的视图对象
      * @param parent        返回的视图对象始终依附于的视图组
      */
-// 获取显示指定分组的视图
     @SuppressLint("NewApi")
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
@@ -98,15 +119,15 @@ public class ExampleExpandableListAdapter extends BaseExpandableListAdapter {
         }
         groupViewHolder.tvTitle.setText(mDatas.get(groupPosition).getTitle());
         if (mDatas.get(groupPosition).isOpen()) {
-            groupViewHolder.imgDownUp.setBackground(context.getResources().getDrawable(R.drawable.icon_up));
+            groupViewHolder.imgDownUp.setBackground(ContextCompat.getDrawable(context, R.drawable.icon_up));
         } else {
-            groupViewHolder.imgDownUp.setBackground(context.getResources().getDrawable(R.drawable.icon_down));
+            groupViewHolder.imgDownUp.setBackground(ContextCompat.getDrawable(context, R.drawable.icon_down));
         }
         return convertView;
     }
 
     /**
-     * 获取一个视图对象，显示指定组中的指定子元素数据。
+     * 取得显示给定分组给定子位置的数据用的视图
      *
      * @param groupPosition 组位置
      * @param childPosition 子元素位置
@@ -114,11 +135,9 @@ public class ExampleExpandableListAdapter extends BaseExpandableListAdapter {
      * @param convertView   重用已有的视图(View)对象
      * @param parent        返回的视图(View)对象始终依附于的视图组
      * @return
-     * @see android.widget.ExpandableListAdapter#getChildView(int, int, boolean, View,
-     * ViewGroup)
+     * @see android.widget.ExpandableListAdapter#getChildView(int, int, boolean, View, ViewGroup)
      */
 
-    //取得显示给定分组给定子位置的数据用的视图
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ChildViewHolder childViewHolder;
@@ -134,7 +153,11 @@ public class ExampleExpandableListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    //指定位置上的子元素是否可选中
+    /**
+     * @param groupPosition
+     * @param childPosition
+     * @return 指定位置上的子元素是否可选中
+     */
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;

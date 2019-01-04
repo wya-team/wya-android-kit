@@ -9,10 +9,10 @@ import com.wya.uikit.toolbar.AndroidBugWorkaround;
 import com.wya.utils.utils.StringUtil;
 
 /**
- * 创建日期：2018/11/30 18:03
- * 作者： Mao Chunjiang
- * 文件名称：InputItemExampleActivity
- * 类说明：自定义的常见布局
+ * @date: 2018/11/30 18:03
+ * @author: Chunjiang Mao
+ * @classname: InputItemExampleActivity
+ * @describe: 自定义的常见布局
  */
 
 public class InputItemExampleActivity extends BaseActivity {

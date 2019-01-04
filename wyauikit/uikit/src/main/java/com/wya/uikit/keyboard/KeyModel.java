@@ -1,10 +1,10 @@
 package com.wya.uikit.keyboard;
 
  /**
-  * 创建日期：2018/12/26 16:31
-  * 作者： Mao Chunjiang
-  * 文件名称：KeyModel
-  * 类说明：
+  * @date: 2018/12/26 16:31
+  * @author: Chunjiang Mao
+  * @classname: KeyModel
+  * @describe:
   */
 
 public class KeyModel {

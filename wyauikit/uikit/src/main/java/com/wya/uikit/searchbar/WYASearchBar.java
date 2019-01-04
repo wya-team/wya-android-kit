@@ -23,10 +23,10 @@ import android.widget.TextView;
 import com.wya.uikit.R;
 
 /**
- * 创建日期：2018/11/22 15:11
- * 作者： Mao Chunjiang
- * 文件名称： WYASearchBar
- * 类说明：自定义搜索框
+ * @date: 2018/11/22 15:11
+ * @author: Chunjiang Mao
+ * @classname:  WYASearchBar
+ * @describe: 自定义搜索框
  */
 
 public class WYASearchBar extends FrameLayout {

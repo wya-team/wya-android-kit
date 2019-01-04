@@ -52,6 +52,12 @@ import com.wya.utils.utils.ScreenUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+ /**
+  * @date: 2019/1/4 11:49
+  * @author: Chunjiang Mao
+  * @classname: ExampleFragment
+  * @describe: ExampleFragment
+  */
 
 public class ExampleFragment extends Fragment {
 
@@ -293,6 +299,8 @@ public class ExampleFragment extends Fragment {
                 break;
             case "数据库基本使用(realm)":
                 startActivity(new Intent(getActivity(), RealmExampleActivity.class));
+                break;
+            default:
                 break;
 
         }

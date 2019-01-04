@@ -3,10 +3,10 @@ package com.wya.hardware.camera.listener;
 import android.graphics.Bitmap;
 
  /**
-  * 创建日期：2018/12/5 13:37
-  * 作者： Mao Chunjiang
-  * 文件名称：WYACameraListener
-  * 类说明：
+  * @date: 2018/12/5 13:37
+  * @author: Chunjiang Mao
+  * @classname: WYACameraListener
+  * @describe:
   */
 
 public interface WYACameraListener {

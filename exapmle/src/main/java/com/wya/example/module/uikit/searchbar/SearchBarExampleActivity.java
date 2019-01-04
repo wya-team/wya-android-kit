@@ -14,10 +14,10 @@ import com.wya.utils.utils.StringUtil;
 import butterknife.BindView;
 
 /**
- * 创建日期：2018/11/22 16:13
- * 作者： Mao Chunjiang
- * 文件名称：SearchBarExampleActivity
- * 类说明：SearchBar例子
+ * @date: 2018/11/22 16:13
+ * @author: Chunjiang Mao
+ * @classname: SearchBarExampleActivity
+ * @describe: SearchBar例子
  */
 
 public class SearchBarExampleActivity extends BaseActivity {

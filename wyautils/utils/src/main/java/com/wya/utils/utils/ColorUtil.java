@@ -5,10 +5,10 @@ import android.graphics.Color;
 import java.util.Random;
 
 /**
- * 创建日期：2018/12/8 16:41
- * 作者： Mao Chunjiang
- * 文件名称： ColorUtil
- * 类说明：工具类（color整型、rgb数组、16进制互相转换）
+ * @date: 2018/12/8 16:41
+ * @author: Chunjiang Mao
+ * @classname:  ColorUtil
+ * @describe: 工具类（color整型、rgb数组、16进制互相转换）
  */
 public class ColorUtil {
 

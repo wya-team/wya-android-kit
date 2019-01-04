@@ -3,10 +3,10 @@ package com.wya.hardware.camera.util;
 import android.os.Build;
 
  /**
-  * 创建日期：2018/12/5 14:12
-  * 作者： Mao Chunjiang
-  * 文件名称：DeviceUtil
-  * 类说明：
+  * @date: 2018/12/5 14:12
+  * @author: Chunjiang Mao
+  * @classname: DeviceUtil
+  * @describe:
   */
  
 public class DeviceUtil {

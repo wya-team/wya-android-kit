@@ -8,10 +8,10 @@ import android.graphics.Path;
 import android.view.View;
 
  /**
-  * 创建日期：2018/12/5 14:25
-  * 作者： Mao Chunjiang
-  * 文件名称：ReturnButton
-  * 类说明：向下箭头的退出按钮
+  * @date: 2018/12/5 14:25
+  * @author: Chunjiang Mao
+  * @classname: ReturnButton
+  * @describe: 向下箭头的退出按钮
   */
 
 public class ReturnButton extends View {

@@ -45,10 +45,10 @@ import java.io.IOException;
 import static android.graphics.Color.TRANSPARENT;
 
 /**
- * 创建日期：2018/12/5 14:25
- * 作者： Mao Chunjiang
- * 文件名称：WYACameraView
- * 类说明：
+ * @date: 2018/12/5 14:25
+ * @author: Chunjiang Mao
+ * @classname: WYACameraView
+ * @describe:
  */
 
 public class WYACameraView extends FrameLayout implements CameraInterface.CameraOpenOverCallback, SurfaceHolder

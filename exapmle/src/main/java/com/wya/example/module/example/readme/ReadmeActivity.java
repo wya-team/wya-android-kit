@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Build;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -14,21 +15,29 @@ import com.wya.example.base.BaseActivity;
 
 import butterknife.BindView;
 
+/**
+ * @date: 2019/1/4 11:46
+ * @author: Chunjiang Mao
+ * @classname: ReadmeActivity
+ * @describe:
+ */
+
 public class ReadmeActivity extends BaseActivity {
-    
+
     @BindView(R.id.web_view)
     WebView webView;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    
+
     private String url = "";
     private boolean skip;
-    
+    private int progressMax = 100;
+
     @Override
     protected int getLayoutID() {
         return R.layout.activity_readme;
     }
-    
+
     @Override
     protected void initView() {
         url = getIntent().getStringExtra("url");
@@ -36,7 +45,7 @@ public class ReadmeActivity extends BaseActivity {
         setToolBarTitle(url.split("/")[url.split("/").length - 1].replace(".md", ""));
         initWebView(url);
     }
-    
+
     @SuppressLint("NewApi")
     private void initWebView(String content) {
         WebSettings settings = webView.getSettings();
@@ -45,14 +54,15 @@ public class ReadmeActivity extends BaseActivity {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
-        settings.setBlockNetworkImage(false);//解决图片不显示
+        //解决图片不显示
+        settings.setBlockNetworkImage(false);
         webView.setDrawingCacheEnabled(true);
         webView.setWebViewClient(new HelloWebViewClient());
         webView.loadUrl(content);
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                if (newProgress != 100) {
+                if (newProgress != progressMax) {
                     progressBar.setProgress(newProgress);
                     progressBar.setVisibility(View.VISIBLE);
                 } else {
@@ -66,18 +76,21 @@ public class ReadmeActivity extends BaseActivity {
         //不显示webview缩放按钮
         settings.setDisplayZoomControls(false);
     }
-    
-    
-    //Web视图
+
+
+    /**
+     * Web视图
+     */
     class HelloWebViewClient extends WebViewClient {
+
         @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             if (skip) {
                 view.loadUrl(url);
             }
             return true;
         }
-        
+
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);

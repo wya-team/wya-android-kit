@@ -18,10 +18,10 @@ import android.widget.Toast;
 import com.wya.uikit.R;
 
 /**
- * 创建日期：2018/12/3 9:32
- * 作者： Mao Chunjiang
- * 文件名称： WYAStepper
- * 类说明：数字选择
+ * @date: 2018/12/3 9:32
+ * @author: Chunjiang Mao
+ * @classname:  WYAStepper
+ * @describe: 数字选择
  */
 
 public class WYAStepper extends LinearLayout {

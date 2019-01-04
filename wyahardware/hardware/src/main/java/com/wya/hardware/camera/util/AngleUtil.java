@@ -1,10 +1,10 @@
 package com.wya.hardware.camera.util;
 
  /**
-  * 创建日期：2018/12/5 13:54
-  * 作者： Mao Chunjiang
-  * 文件名称：AngleUtil
-  * 类说明：角度工具类
+  * @date: 2018/12/5 13:54
+  * @author: Chunjiang Mao
+  * @classname: AngleUtil
+  * @describe: 角度工具类
   */
 
 public class AngleUtil {

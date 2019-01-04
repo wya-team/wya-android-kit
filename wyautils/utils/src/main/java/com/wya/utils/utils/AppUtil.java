@@ -9,10 +9,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
 /**
- * 创建日期：2018/12/7 14:00
- * 作者： Mao Chunjiang
- * 文件名称： AppUtil
- * 类说明：获取App相关的辅助类
+ * @date: 2018/12/7 14:00
+ * @author: Chunjiang Mao
+ * @classname:  AppUtil
+ * @describe: 获取App相关的辅助类
  */
 
 public class AppUtil {

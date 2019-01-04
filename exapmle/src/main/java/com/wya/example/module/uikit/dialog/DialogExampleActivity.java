@@ -37,15 +37,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import io.realm.internal.IOException;
 
 /**
- * 创建日期：2018/11/23 16:23
- * 作者： Mao Chunjiang
- * 文件名称：DialogExampleActivity
- * 类说明：dialog例子
+ * @date: 2018/11/23 16:23
+ * @author: Chunjiang Mao
+ * @classname: DialogExampleActivity
+ * @describe: dialog例子
  */
 
 public class DialogExampleActivity extends BaseActivity {
@@ -424,23 +427,21 @@ public class DialogExampleActivity extends BaseActivity {
      * @param type loading类型
      */
     private void starTimer(int type) {
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
+
+        ScheduledExecutorService service = Executors.newScheduledThreadPool(10);
+        long initialDelay = 0;
+        long period = 1;
+        // 从现在开始1秒钟之后，每隔1秒钟执行一次job1
+        service.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                try {
-                    if (type == 0) {
-                        wyaCustomDialog.dismiss();
-                    } else {
-                        wyaLoadingDialog.dismiss();
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (type == 0) {
+                    wyaCustomDialog.dismiss();
+                } else {
+                    wyaLoadingDialog.dismiss();
                 }
             }
-        };
-        timer.schedule(task, 3000);
+        }, initialDelay, period, TimeUnit.SECONDS);
     }
 
 

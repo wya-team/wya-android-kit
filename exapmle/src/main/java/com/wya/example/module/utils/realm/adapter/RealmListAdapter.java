@@ -11,10 +11,10 @@ import com.wya.example.R;
 import java.util.List;
 
 /**
- * 创建日期：2018/11/21 11:58
- * 作者： Mao Chunjiang
- * 文件名称：DialogListAdapter
- * 类说明：Popupwind列表选择按钮
+ * @date: 2018/11/21 11:58
+ * @author: Chunjiang Mao
+ * @classname: DialogListAdapter
+ * @describe: Popupwind列表选择按钮
  */
 
 public class RealmListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {

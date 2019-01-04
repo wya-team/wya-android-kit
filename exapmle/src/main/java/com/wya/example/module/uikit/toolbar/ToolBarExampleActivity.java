@@ -11,10 +11,10 @@ import com.wya.utils.utils.StringUtil;
 import butterknife.OnClick;
 
 /**
- * 创建日期：2018/11/20 15:00
- * 作者： Mao Chunjiang
- * 文件名称：ToolBarExampleActivity
- * 类说明：ToolBar的使用案例
+ * @date: 2018/11/20 15:00
+ * @author: Chunjiang Mao
+ * @classname: ToolBarExampleActivity
+ * @describe: ToolBar的使用案例
  */
 
 public class ToolBarExampleActivity extends BaseActivity {

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
+import android.view.View;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -43,14 +44,18 @@ public class PopupWindowExampleActivity extends BaseActivity {
 
     private void setPopupWindow() {
         setRightImageAntherOnclickListener(view -> wyaPopupWindow.show(view, -100, 0));
-        setRightImageAntherOnLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
-            StringUtil.copyString(PopupWindowExampleActivity.this, url);
-        });
         wyaPopupWindow = new WYAPopupWindow.Builder(PopupWindowExampleActivity.this).setLayoutRes(R.layout.popopwindow_custom_list, v -> {
             TableRow tab_scan = v.findViewById(R.id.tab_scan);
             TableRow tab_help = v.findViewById(R.id.tab_help);
             tab_scan.setOnClickListener(v1 -> checkPermission());
+            tab_help.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    getWyaToast().showShort("链接地址复制成功");
+                    StringUtil.copyString(PopupWindowExampleActivity.this, url);
+                    return true;
+                }
+            });
             tab_help.setOnClickListener(v12 -> startActivity(new Intent(PopupWindowExampleActivity.this, ReadmeActivity.class).putExtra("url", url)));
         }).build();
     }

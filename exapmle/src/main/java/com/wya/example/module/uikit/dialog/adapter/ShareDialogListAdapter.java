@@ -12,10 +12,10 @@ import com.wya.example.module.uikit.dialog.bean.ShareItem;
 import java.util.List;
 
 /**
- * 创建日期：2018/11/21 11:58
- * 作者： Mao Chunjiang
- * 文件名称：DialogListAdapter
- * 类说明：分享提示框适配器
+ * @date: 2018/11/21 11:58
+ * @author: Chunjiang Mao
+ * @classname: DialogListAdapter
+ * @describe: 分享提示框适配器
  */
 
 public class ShareDialogListAdapter extends BaseQuickAdapter<ShareItem, BaseViewHolder> {

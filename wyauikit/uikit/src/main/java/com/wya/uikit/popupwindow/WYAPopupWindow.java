@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 创建日期：2018/11/21 16:22
- * 作者： Mao Chunjiang
- * 文件名称： WYAPopupWindow
- * 类说明：自定义popupwindow
+ * @date: 2018/11/21 16:22
+ * @author: Chunjiang Mao
+ * @classname:  WYAPopupWindow
+ * @describe: 自定义popupwindow
  */
 
 public class WYAPopupWindow extends PopupWindow {

@@ -4,10 +4,10 @@ import android.text.TextUtils;
 import android.util.Log;
 
  /**
-  * 创建日期：2018/12/5 14:03
-  * 作者： Mao Chunjiang
-  * 文件名称：LogUtil
-  * 类说明：输出日志
+  * @date: 2018/12/5 14:03
+  * @author: Chunjiang Mao
+  * @classname: LogUtil
+  * @describe: 输出日志
   */
 
 public class LogUtil {

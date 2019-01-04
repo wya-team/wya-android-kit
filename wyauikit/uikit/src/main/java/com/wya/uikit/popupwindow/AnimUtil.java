@@ -5,12 +5,12 @@ import android.animation.ValueAnimator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
  /**
-  * 创建日期：2018/11/21 15:52
-  * 作者： Mao Chunjiang
-  * 文件名称：AnimUtil
+  * @date: 2018/11/21 15:52
+  * @author: Chunjiang Mao
+  * @classname: AnimUtil
   * UpdateListener： 动画过程中通过添加此监听来回调数据
   * EndListener： 动画结束的时候通过此监听器来做一些处理
-  * 类说明：动画工具类
+  * @describe: 动画工具类
   */
 
 public class AnimUtil {

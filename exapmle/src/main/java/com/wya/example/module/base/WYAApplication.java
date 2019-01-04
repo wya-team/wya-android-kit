@@ -2,6 +2,12 @@ package com.wya.example.module.base;
 
 import android.app.Application;
 import android.content.Context;
+ /**
+  * @date: 2019/1/4 11:16
+  * @author: Chunjiang Mao
+  * @classname: WYAApplication
+  * @describe: WYAApplication
+  */
 
 public class WYAApplication extends Application {
     
