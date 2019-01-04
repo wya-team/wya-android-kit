@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/f4f4f4"
     android:orientation="vertical"
-    tools:context=".module.uikit.choicemenu.OptionMenuExampleActivity"
+    tools:context=".module.uikit.optionmenu.OptionMenuExampleActivity"
     tools:layout_editor_absoluteY="25dp">
 
     <TextView
