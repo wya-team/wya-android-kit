@@ -22,6 +22,8 @@ public class SwitcherView extends ViewSwitcher {
     private int mAnimDuration;
     private int mAnimDirection;
     private int mSwitchDuration;
+    private final static int DEF_ANIMATOR_DURATION = 400;
+    private final static int DEF_SWITCH_DURATION = 3_000;
     @LayoutRes
     private int mResLayout;
     private AutoSwitcherTask mAutoPlayTask;
@@ -224,6 +226,12 @@ public class SwitcherView extends ViewSwitcher {
     
     public interface SwitcherViewListener {
         
+        /**
+         * 切换item
+         *
+         * @param view  :
+         * @param index :
+         */
         void onSwitch(View view, int index);
         
     }

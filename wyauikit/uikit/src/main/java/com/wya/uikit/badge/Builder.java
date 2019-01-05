@@ -45,13 +45,13 @@ public class Builder {
     public static class Gravity {
         
         private int gravity = BadgeGravity.GRAVITY_END_TOP;
-        float xOffset = 0;
-        float yOffset = 0;
+        float offsetX = 0;
+        float offsetY = 0;
         
-        public Gravity(@BadgeGravity int gravity, int xOffset, int yOffset) {
+        public Gravity(@BadgeGravity int gravity, int offsetX, int offsetY) {
             this.gravity = gravity;
-            this.xOffset = xOffset;
-            this.yOffset = yOffset;
+            this.offsetX = offsetX;
+            this.offsetY = offsetY;
         }
         
         public int getGravity() {
@@ -62,20 +62,20 @@ public class Builder {
             this.gravity = gravity;
         }
         
-        public void setxOffset(float xOffset) {
-            this.xOffset = xOffset;
+        public void setOffsetX(float offsetX) {
+            this.offsetX = offsetX;
         }
         
-        public void setyOffset(float yOffset) {
-            this.yOffset = yOffset;
+        public void setOffsetY(float offsetY) {
+            this.offsetY = offsetY;
         }
         
-        public float getXOffset() {
-            return xOffset;
+        public float getOffsetX() {
+            return offsetX;
         }
         
-        public float getYOffset() {
-            return yOffset;
+        public float getOffsetY() {
+            return offsetY;
         }
     }
     
@@ -120,9 +120,9 @@ public class Builder {
         return this;
     }
     
-    public Builder setOffset(int xOffset, int yOffset) {
-        gravity.xOffset = xOffset;
-        gravity.yOffset = yOffset;
+    public Builder setOffset(int offsetX, int offsetY) {
+        gravity.offsetX = offsetX;
+        gravity.offsetY = offsetY;
         return this;
     }
     

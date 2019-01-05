@@ -1,12 +1,18 @@
 <resources>
 
     <!-- API > 21 set theme , windowIsTranslucent false-->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+    <style name="AppTheme" parent="KitTheme">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowIsTranslucent">false</item>
+
+        <!-- TODO ZCQ TEST -->
+        <!--<item name="wya_slide_margin_top">30dp</item>-->
+        <!-- TODO ZCQ TEST -->
+
     </style>
 
 </resources>

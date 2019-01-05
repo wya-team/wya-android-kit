@@ -273,39 +273,39 @@ public class WYABadgeView extends View implements IBadgeView {
         float rectWidth = mTextRect.height() > mTextRect.width() ? mTextRect.height() : mTextRect.width();
         switch (mGravity.getGravity()) {
             case Builder.BadgeGravity.GRAVITY_START_TOP:
-                mCenter.x = mGravity.xOffset + mPadding + rectWidth / 2f;
-                mCenter.y = mGravity.yOffset + mPadding + mTextRect.height() / 2f;
+                mCenter.x = mGravity.offsetX + mPadding + rectWidth / 2f;
+                mCenter.y = mGravity.offsetY + mPadding + mTextRect.height() / 2f;
                 break;
             case Builder.BadgeGravity.GRAVITY_START_BOTTOM:
-                mCenter.x = mGravity.xOffset + mPadding + rectWidth / 2f;
-                mCenter.y = mHeight - (mGravity.yOffset + mPadding + mTextRect.height() / 2f);
+                mCenter.x = mGravity.offsetX + mPadding + rectWidth / 2f;
+                mCenter.y = mHeight - (mGravity.offsetY + mPadding + mTextRect.height() / 2f);
                 break;
             case Builder.BadgeGravity.GRAVITY_END_TOP:
-                mCenter.x = mWidth - (mGravity.xOffset + mPadding + rectWidth / 2f);
-                mCenter.y = mGravity.yOffset + mPadding + mTextRect.height() / 2f;
+                mCenter.x = mWidth - (mGravity.offsetX + mPadding + rectWidth / 2f);
+                mCenter.y = mGravity.offsetY + mPadding + mTextRect.height() / 2f;
                 break;
             case Builder.BadgeGravity.GRAVITY_END_BOTTOM:
-                mCenter.x = mWidth - (mGravity.xOffset + mPadding + rectWidth / 2f);
-                mCenter.y = mHeight - (mGravity.yOffset + mPadding + mTextRect.height() / 2f);
+                mCenter.x = mWidth - (mGravity.offsetX + mPadding + rectWidth / 2f);
+                mCenter.y = mHeight - (mGravity.offsetY + mPadding + mTextRect.height() / 2f);
                 break;
             case Builder.BadgeGravity.GRAVITY_CENTER:
                 mCenter.x = mWidth / 2f;
                 mCenter.y = mHeight / 2f;
                 break;
             case Builder.BadgeGravity.GRAVITY_CENTER_TOP:
-                mCenter.x = mWidth / 2f + mGravity.xOffset;
-                mCenter.y = mGravity.yOffset + mPadding + mTextRect.height() / 2f;
+                mCenter.x = mWidth / 2f + mGravity.offsetX;
+                mCenter.y = mGravity.offsetY + mPadding + mTextRect.height() / 2f;
                 break;
             case Builder.BadgeGravity.GRAVITY_CENTER_BOTTOM:
                 mCenter.x = mWidth / 2f;
-                mCenter.y = mHeight - (mGravity.yOffset + mPadding + mTextRect.height() / 2f);
+                mCenter.y = mHeight - (mGravity.offsetY + mPadding + mTextRect.height() / 2f);
                 break;
             case Builder.BadgeGravity.GRAVITY_CENTER_START:
-                mCenter.x = mGravity.xOffset + mPadding + rectWidth / 2f;
+                mCenter.x = mGravity.offsetX + mPadding + rectWidth / 2f;
                 mCenter.y = mHeight / 2f;
                 break;
             case Builder.BadgeGravity.GRAVITY_CENTER_END:
-                mCenter.x = mWidth - (mGravity.xOffset + mPadding + rectWidth / 2f);
+                mCenter.x = mWidth - (mGravity.offsetX + mPadding + rectWidth / 2f);
                 mCenter.y = mHeight / 2f;
                 break;
             default:
@@ -387,7 +387,8 @@ public class WYABadgeView extends View implements IBadgeView {
             mBadgeText = null;
         } else if (mBadgeNum <= mOmitNum) {
             mBadgeText = String.valueOf(mBadgeNum);
-        } else { // > mOmitNum 根据是否省略显示
+            // > mOmitNum 根据是否省略显示
+        } else {
             mBadgeText = isOmitMode ? mOmitText : String.valueOf(mBadgeNum);
         }
         measureText();
@@ -478,13 +479,13 @@ public class WYABadgeView extends View implements IBadgeView {
     public void setGravity(Builder.Gravity gravity) {
         mGravity = gravity;
         invalidate();
-        setOffset(gravity.xOffset, gravity.yOffset);
+        setOffset(gravity.offsetX, gravity.offsetY);
     }
     
     @Override
     public void setOffset(float offsetX, float offsetY) {
-        mGravity.setxOffset(offsetX);
-        mGravity.setyOffset(offsetY);
+        mGravity.setOffsetX(offsetX);
+        mGravity.setOffsetY(offsetY);
         invalidate();
     }
     

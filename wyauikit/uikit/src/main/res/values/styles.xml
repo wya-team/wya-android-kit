@@ -21,9 +21,10 @@
         <item name="android:windowExitAnimation">@anim/popup_window_add_hide</item>
     </style>
 
-    <style name="GalleryCheckBox" parent="Base.Widget.AppCompat.CompoundButton.CheckBox" >
+    <style name="GalleryCheckBox" parent="Base.Widget.AppCompat.CompoundButton.CheckBox">
         <item name="android:button">@drawable/picture_checkbox_selector</item>
     </style>
+
     <style name="choiceMenuStyle">
         <item name="android:windowEnterAnimation">@anim/choice_menu_in</item>
         <item name="android:windowExitAnimation">@anim/choice_menu_out</item>
@@ -62,6 +63,7 @@
         <item name="android:windowAnimationStyle">@style/ImageDialogAnimation</item>
 
     </style>
+
     <style name="ImageDialogAnimation" parent="android:Animation.Dialog">
 
         <item name="android:windowEnterAnimation">@anim/image_dialog_enter</item>

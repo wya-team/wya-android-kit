@@ -13,22 +13,22 @@ import android.widget.ExpandableListView;
  */
 
 public class CustomerExpandableListView extends ExpandableListView {
-
+    
     public CustomerExpandableListView(Context context) {
         super(context);
         // TODO Auto-generated constructor stub
     }
-
+    
     public CustomerExpandableListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-
+    
     public CustomerExpandableListView(Context context, AttributeSet attrs,
                                       int defStyle) {
         super(context, attrs, defStyle);
-
+        
     }
-
+    
     /**
      * 只需要重写这个方法即可
      */

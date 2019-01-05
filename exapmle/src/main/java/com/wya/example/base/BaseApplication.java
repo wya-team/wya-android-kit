@@ -33,6 +33,7 @@ public class BaseApplication extends Application {
 
     private void initBase() {
         initConstants();
+        InitializeService.start(this);
         initRealm();
         Aria.init(this);
     }

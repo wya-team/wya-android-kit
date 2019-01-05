@@ -9,7 +9,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -63,14 +66,21 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     public RangeSlideView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        this(context, attrs, R.style.StyleSlide);
     }
     
     public RangeSlideView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        parseAttrs(context, attrs);
+        parseAttrs(context, attrs, defStyleAttr, R.style.StyleSlide);
         init();
+    }
+    
+    // TODO: 2019/1/5 ZCQ TEST
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public RangeSlideView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        // 只有在defStyleAttr 没有匹配到或置为0时，defStyleRes才起作用  <item name="android:toolbarStyle">@null</item> 亦是指定
+        super(context, attrs, defStyleAttr, defStyleRes);
     }
     
     private void init() {
@@ -88,11 +98,24 @@ public class RangeSlideView extends View implements IRangeSlideView {
         mRegionPaint.setTextSize(mRegionTextSize);
     }
     
-    private void parseAttrs(Context context, AttributeSet attrs) {
+    private void parseAttrs(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         if (null == context || attrs == null) {
             return;
         }
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RangeSlideView);
+        
+        // obtainStyledAttributes(AttributeSet set,int[] attrs);
+        // TODO: 2019/1/5 ZCQ TEST 从layout设置的属性集中获取attrs的属性
+        // obtainStyledAttributes(int[] attrs);
+        // TODO: 2019/1/5 ZCQ TEST 从系统主题中获取attrs的属性
+        // obtainStyledAttributes(int resid,int[] attrs);
+        // TODO: 2019/1/5 ZCQ TEST 从资源文件定义的style中读取属性
+        // obtainStyledAttributes(AttributeSet set,int[] attrs,int defStyleAttr,int defStyleRes);
+        // defStyleAttr 定义Theme可配置样式  resid = defStyleRes 直接从资源文件中定义的某个样式中读取
+        
+        // set > defStyleAttr (主题可配置样式) > defStyleRes (默认样式) > NULL (主题中直接指定)
+        // TODO: 2019/1/5 ZCQ TEST
+        Log.e("ZCQ", "parseAttrs ");
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RangeSlideView, defStyleAttr, defStyleRes);
         if (null != typedArray) {
             // progress
             mSlidderMode = typedArray.getInteger(R.styleable.RangeSlideView_rsd_slider_mode, SLIDDER_MODE_SINGLE);
@@ -111,7 +134,8 @@ public class RangeSlideView extends View implements IRangeSlideView {
             }
             
             mPorgressBackgroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_background_color, getResources().getColor(R.color.slide_bg_default_color));
-            mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_foreground_color, getResources().getColor(R.color.slide_fg_default_color));
+            //            mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_foreground_color, getResources().getColor(R.color.slide_fg_default_color));
+            mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_foreground_color, getResources().getColor(R.color.black));
             
             // region
             mRegionMode = typedArray.getInteger(R.styleable.RangeSlideView_rsd_region_mode, REGION_MODE_INTEGER);
@@ -515,6 +539,30 @@ public class RangeSlideView extends View implements IRangeSlideView {
         return seekBar;
     }
     
+    private boolean onActionDown(MotionEvent event) {
+        mCurDownX = getEventX(event);
+        boolean result = false;
+        switch (mSlidderMode) {
+            case SLIDDER_MODE_RANGDE: {
+                mCurSlider = getCurrTouchSB(event);
+                result = true;
+                break;
+            }
+            case SLIDDER_MODE_SINGLE:
+            default: {
+                if (isTouching(mLeftSlider, event)) {
+                    mCurSlider = mLeftSlider;
+                    result = true;
+                }
+                break;
+            }
+        }
+        if (callback != null) {
+            callback.onStartTrackingTouch(this, mCurSlider == mLeftSlider);
+        }
+        return result;
+    }
+    
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -522,27 +570,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
         
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
-                mCurDownX = getEventX(event);
-                boolean result = false;
-                switch (mSlidderMode) {
-                    case SLIDDER_MODE_RANGDE: {
-                        mCurSlider = getCurrTouchSB(event);
-                        result = true;
-                        break;
-                    }
-                    case SLIDDER_MODE_SINGLE:
-                    default: {
-                        if (isTouching(mLeftSlider, event)) {
-                            mCurSlider = mLeftSlider;
-                            result = true;
-                        }
-                        break;
-                    }
-                }
-                if (callback != null) {
-                    callback.onStartTrackingTouch(this, mCurSlider == mLeftSlider);
-                }
-                return result;
+                return onActionDown(event);
             }
             case MotionEvent.ACTION_MOVE:
                 float percent;
@@ -594,6 +622,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
                     callback.onStopTrackingTouch(this, mCurSlider == mLeftSlider);
                 }
                 break;
+            
             default:
                 break;
         }

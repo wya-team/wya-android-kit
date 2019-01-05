@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="KitTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowIsTranslucent">false</item>
+
+        <!-- slide view -->
+        <!-- TODO ZCQ -->
+        <!--<item name="wya_slide_margin_top">0dp</item>-->
+        <!--<item name="wya_slide_mode">single</item>-->
+    </style>
+
+</resources>

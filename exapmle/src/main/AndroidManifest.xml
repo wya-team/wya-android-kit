@@ -31,7 +31,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:theme">
         <activity
             android:name=".module.example.ExampleActivity"
             android:theme="@style/ExampleTheme">
@@ -82,13 +83,17 @@
             android:name=".module.utils.image.QRCodeExampleActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".module.uikit.customedittext.CustomEditTextExampleActivity" />
-        <activity android:name=".module.uikit.slidder.SlideViewExampleActivity" />
+        <activity
+            android:name=".module.uikit.slidder.SlideViewExampleActivity"
+            android:theme="@style/KitTheme" />
         <activity android:name=".module.utils.fliedownload.FileDownloadExampleActivity" />
         <activity android:name=".module.uikit.tablayout.TabLayoutExampleActivity" />
         <activity android:name=".module.uikit.drawerlayout.DrawerLayoutExampleActivity" />
         <activity android:name=".module.example.readme.ReadmeActivity" />
         <activity android:name=".module.uikit.customitems.list.ListExampleActivity" />
         <activity android:name=".module.hardware.scan.CustomCaptureActivity" />
+
+        <service android:name=".base.InitializeService" />
     </application>
 
 </manifest>
