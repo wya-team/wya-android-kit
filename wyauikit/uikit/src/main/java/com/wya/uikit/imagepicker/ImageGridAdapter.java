@@ -37,8 +37,8 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 	private int max;
 	private static final String TAG="ImageGridAdapter";
 
-	private String VIDEO = "video";
-	private String IMAGE = "image";
+	private static final String VIDEO = "video";
+	private static final String IMAGE = "image";
 
 	public ImageGridAdapter(Context context, OnImageSelectedChangedListener listener, int max) {
 		mContext = context;

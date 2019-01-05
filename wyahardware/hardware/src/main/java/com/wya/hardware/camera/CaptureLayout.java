@@ -136,11 +136,11 @@ public class CaptureLayout extends FrameLayout {
         btnConfirm.setVisibility(VISIBLE);
         btnCancel.setClickable(false);
         btnConfirm.setClickable(false);
-        ObjectAnimator animator_cancel = ObjectAnimator.ofFloat(btnCancel, "translationX", layoutWidth / 4, 0);
-        ObjectAnimator animator_confirm = ObjectAnimator.ofFloat(btnConfirm, "translationX", -layoutWidth / 4, 0);
+        ObjectAnimator animatorCancel = ObjectAnimator.ofFloat(btnCancel, "translationX", layoutWidth / 4, 0);
+        ObjectAnimator animatorConfirm = ObjectAnimator.ofFloat(btnConfirm, "translationX", -layoutWidth / 4, 0);
 
         AnimatorSet set = new AnimatorSet();
-        set.playTogether(animator_cancel, animator_confirm);
+        set.playTogether(animatorCancel, animatorConfirm);
         set.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -158,9 +158,9 @@ public class CaptureLayout extends FrameLayout {
         setWillNotDraw(false);
         //拍照按钮
         btnCapture = new CaptureButton(getContext(), buttonSize);
-        LayoutParams btnCapture_param = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        btnCapture_param.gravity = Gravity.CENTER;
-        btnCapture.setLayoutParams(btnCapture_param);
+        LayoutParams btncaptureParam = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        btncaptureParam.gravity = Gravity.CENTER;
+        btnCapture.setLayoutParams(btncaptureParam);
         btnCapture.setCaptureListener(new CaptureListener() {
             @Override
             public void takePictures() {
@@ -213,10 +213,10 @@ public class CaptureLayout extends FrameLayout {
         btnCancel = new Button(getContext());
         btnCancel.setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.icon_camera_back));
 //                TypeButton(getContext(), TypeButton.TYPE_CANCEL, buttonSize);
-        final LayoutParams btn_cancel_param = new LayoutParams(buttonSize, buttonSize);
-        btn_cancel_param.gravity = Gravity.CENTER_VERTICAL;
-        btn_cancel_param.setMargins((layoutWidth / 4) - buttonSize / 2, 0, 0, 0);
-        btnCancel.setLayoutParams(btn_cancel_param);
+        final LayoutParams btnCancelParam = new LayoutParams(buttonSize, buttonSize);
+        btnCancelParam.gravity = Gravity.CENTER_VERTICAL;
+        btnCancelParam.setMargins((layoutWidth / 4) - buttonSize / 2, 0, 0, 0);
+        btnCancel.setLayoutParams(btnCancelParam);
         btnCancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -232,10 +232,10 @@ public class CaptureLayout extends FrameLayout {
         btnConfirm = new Button(getContext());
         btnConfirm .setBackgroundResource(R.drawable.icon_camera_save);
 //                = new TypeButton(getContext(), TypeButton.TYPE_CONFIRM, buttonSize);
-        LayoutParams btn_confirm_param = new LayoutParams(buttonSize, buttonSize);
-        btn_confirm_param.gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
-        btn_confirm_param.setMargins(0, 0, (layoutWidth / 4) - buttonSize / 2, 0);
-        btnConfirm.setLayoutParams(btn_confirm_param);
+        LayoutParams btnConfirmParam = new LayoutParams(buttonSize, buttonSize);
+        btnConfirmParam.gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
+        btnConfirmParam.setMargins(0, 0, (layoutWidth / 4) - buttonSize / 2, 0);
+        btnConfirm.setLayoutParams(btnConfirmParam);
         btnConfirm.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -249,10 +249,10 @@ public class CaptureLayout extends FrameLayout {
 
         //返回按钮
         btnReturn = new ReturnButton(getContext(), (int) (buttonSize / 2.5f));
-        LayoutParams btn_return_param = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        btn_return_param.gravity = Gravity.CENTER_VERTICAL;
-        btn_return_param.setMargins(layoutWidth / 6, 0, 0, 0);
-        btnReturn.setLayoutParams(btn_return_param);
+        LayoutParams btnReturnParam = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        btnReturnParam.gravity = Gravity.CENTER_VERTICAL;
+        btnReturnParam.setMargins(layoutWidth / 6, 0, 0, 0);
+        btnReturn.setLayoutParams(btnReturnParam);
         btnReturn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -263,10 +263,10 @@ public class CaptureLayout extends FrameLayout {
         });
         //左边自定义按钮
         ivCustomLeft = new ImageView(getContext());
-        LayoutParams iv_custom_param_left = new LayoutParams((int) (buttonSize / 2.5f), (int) (buttonSize / 2.5f));
-        iv_custom_param_left.gravity = Gravity.CENTER_VERTICAL;
-        iv_custom_param_left.setMargins(layoutWidth / 6, 0, 0, 0);
-        ivCustomLeft.setLayoutParams(iv_custom_param_left);
+        LayoutParams ivCustomParamLeft = new LayoutParams((int) (buttonSize / 2.5f), (int) (buttonSize / 2.5f));
+        ivCustomParamLeft.gravity = Gravity.CENTER_VERTICAL;
+        ivCustomParamLeft.setMargins(layoutWidth / 6, 0, 0, 0);
+        ivCustomLeft.setLayoutParams(ivCustomParamLeft);
         ivCustomLeft.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -278,10 +278,10 @@ public class CaptureLayout extends FrameLayout {
 
         //右边自定义按钮
         ivCustomRight = new ImageView(getContext());
-        LayoutParams iv_custom_param_right = new LayoutParams((int) (buttonSize / 2.5f), (int) (buttonSize / 2.5f));
-        iv_custom_param_right.gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
-        iv_custom_param_right.setMargins(0, 0, layoutWidth / 6, 0);
-        ivCustomRight.setLayoutParams(iv_custom_param_right);
+        LayoutParams ivCustomParamRight = new LayoutParams((int) (buttonSize / 2.5f), (int) (buttonSize / 2.5f));
+        ivCustomParamRight.gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
+        ivCustomParamRight.setMargins(0, 0, layoutWidth / 6, 0);
+        ivCustomRight.setLayoutParams(ivCustomParamRight);
         ivCustomRight.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -292,13 +292,13 @@ public class CaptureLayout extends FrameLayout {
         });
 
         txtTip = new TextView(getContext());
-        LayoutParams txt_param = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        txt_param.gravity = Gravity.CENTER_HORIZONTAL;
-        txt_param.setMargins(0, 0, 0, 0);
+        LayoutParams txtParam = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        txtParam.gravity = Gravity.CENTER_HORIZONTAL;
+        txtParam.setMargins(0, 0, 0, 0);
         txtTip.setText("轻触拍照，长按摄像");
         txtTip.setTextColor(0xFFFFFFFF);
         txtTip.setGravity(Gravity.CENTER);
-        txtTip.setLayoutParams(txt_param);
+        txtTip.setLayoutParams(txtParam);
 
         this.addView(btnCapture);
         this.addView(btnCancel);
