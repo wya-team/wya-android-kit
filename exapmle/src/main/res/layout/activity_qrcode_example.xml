@@ -38,7 +38,7 @@
             app:backColorPress="#0183d7"
             app:fillet="true"
             app:textColor="@color/white"
-            app:wya_button_radius="10" />
+            app:radius="10dp" />
     </LinearLayout>
 
 
@@ -73,7 +73,7 @@
             app:backColorPress="#0183d7"
             app:fillet="true"
             app:textColor="@color/white"
-            app:wya_button_radius="10" />
+            app:radius="10dp" />
     </LinearLayout>
 
 

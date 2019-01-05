@@ -65,6 +65,11 @@ public class WYAButton extends Button {
      */
     private boolean isCost = true;
 
+    /**
+     * button角度
+     */
+    private float radius;
+
 
     public WYAButton(Context context) {
         this(context, null);
@@ -127,7 +132,7 @@ public class WYAButton extends Button {
                 setButtonEnabled(enabled);
             }
             //设置圆角矩形的角度，fillet为true时才生效
-            float radius = a.getFloat(R.styleable.WYAButton_wya_button_radius, 0);
+            radius = a.getDimension(R.styleable.WYAButton_radius, 0);
             if (fillet && radius != 0) {
                 setRadius(radius);
             }

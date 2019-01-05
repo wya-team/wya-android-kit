@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <attr name="radius" format="dimension" />
+
     <!--segment attrs-->
     <declare-styleable name="WYASegmentedView">
         <attr name="lineColor" format="color" />
@@ -12,7 +14,7 @@
         <attr name="titleSize" format="dimension" />
         <attr name="strokeWidth" format="dimension" />
         <attr name="strokeColor" format="color" />
-        <attr name="radius" format="dimension" />
+        <attr name="radius" />
     </declare-styleable>
 
     <!--pagination bottom view attrs-->
@@ -51,7 +53,7 @@
         <attr name="textColorPress" />
         <attr name="fillet" format="boolean" />
         <attr name="enabled" format="boolean" />
-        <attr name="wya_button_radius" format="float" />
+        <attr name="radius" />
         <attr name="shape">
             <enum name="rectangle" value="0" />
             <enum name="oval" value="1" />

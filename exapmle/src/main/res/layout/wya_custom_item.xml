@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:text="正常button"
-        app:wya_button_radius="20"
+        app:radius="20dp"
         android:textAlignment="center"
         android:drawableLeft="@null"
         android:textAllCaps="false"
