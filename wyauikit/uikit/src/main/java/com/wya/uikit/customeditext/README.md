@@ -10,9 +10,9 @@ countTextColor|统计文字颜色|ColorStateList|#000000
 hintTextColor|提示文字颜色|ColorStateList|#000000
 hintEditColor|编辑框提示文字颜色|ColorStateList|-
 countTextColor|编辑框文字颜色|ColorStateList|#999999
-hintTextStr|提示文字内容|String|-
-editTextStr|编辑框文字内容|String|-
-hintEditStr|编辑框文本提示内容|String|-
+hintText|提示文字内容|String|-
+editText|编辑框文字内容|String|-
+hintEditText|编辑框文本提示内容|String|-
 maxNum|最大输入文字|int|100
 
 
@@ -23,9 +23,9 @@ maxNum|最大输入文字|int|100
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:layout_margin="@dimen/dp_10"
-             app:editTextStr="输入内容"
-             app:hintTextStr=""
-             app:hintEditStr="我是"
+             app:editText="输入内容"
+             app:hintText=""
+             app:hintEditText="我是"
              app:maxNum="20">
          </com.wya.uikit.customeditext.WYACustomEditText>
 ```
@@ -34,11 +34,12 @@ maxNum|最大输入文字|int|100
 
 方法|说明
 ---|---
-setMyBackgroundDrawable(GradientDrawable gradientDrawable)|设置编辑框背景图片
-setHintEditStr(String hintEditStr)|设置编辑框文本提示内容
-setEditTextStr(String editTextStr)|设置编辑框文本
-setHintTextStr(String hintTextStr)|设置提示文本
-setEditTextColor(ColorStateList editTextColor)|设置编辑文本字体颜色
-setHintEditColor(ColorStateList hintEditColor)|设置编辑文本提示字体颜色
-setCountTextColor(ColorStateList countTextColor)|设置统计字体颜色
-getEditTextStr()|获取输入文本
+setBackgroundDrawable|设置编辑框背景图片
+setHintEditText|设置编辑框文本提示内容
+setEditText|设置编辑框文本
+setHintText|设置提示文本
+setEditTextColor|设置编辑框文本字体颜色
+setHintTextColor|设置提示字体颜色
+setHintEditColor|设置编辑文本提示字体颜色
+setCountTextColor|设置统计字体颜色
+getEditText|获取输入文本内容

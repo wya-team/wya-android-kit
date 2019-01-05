@@ -22,18 +22,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_10"
-                app:wyaHintEditStr="请输入内容"
-                app:wyaHintTextStr=""
-                app:wyaMaxNum="20"></com.wya.uikit.customeditext.WYACustomEditText>
+                app:hintEditText="请输入内容"
+                app:hintText=""
+                app:maxNum="20"></com.wya.uikit.customeditext.WYACustomEditText>
 
 
             <com.wya.uikit.customeditext.WYACustomEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_10"
-                app:wyaHintEditStr="请输入内容"
-                app:wyaHintTextStr="提示"
-                app:wyaMaxNum="50"></com.wya.uikit.customeditext.WYACustomEditText>
+                app:hintEditText="请输入内容"
+                app:hintText="提示"
+                app:maxNum="50"></com.wya.uikit.customeditext.WYACustomEditText>
 
         </LinearLayout>
 

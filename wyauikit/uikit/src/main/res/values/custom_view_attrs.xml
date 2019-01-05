@@ -2,6 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <attr name="radius" format="dimension" />
+    <attr name="maxNum" format="integer" />
 
     <!--segment attrs-->
     <declare-styleable name="WYASegmentedView">
@@ -114,7 +115,7 @@
         <attr name="addDisableDrawablePress" format="reference" />
 
         <attr name="value" format="integer" />
-        <attr name="maxNum" format="integer" />
+        <attr name="maxNum" />
         <attr name="minNum" format="integer" />
     </declare-styleable>
 
@@ -178,15 +179,15 @@
 
     <!-- WYACustomEditText -->
     <declare-styleable name="WYACustomEditText">
-        <attr name="wyaBackGroundImage" format="reference" />
-        <attr name="wyaHintTextColor" format="color" />
-        <attr name="wyaEditTextColor" format="color" />
-        <attr name="wyaHintEditColor" format="color" />
-        <attr name="wyaHintTextStr" />
-        <attr name="wyaEditTextStr" />
-        <attr name="wyaHintEditStr" />
-        <attr name="wyaMaxNum" format="integer" />
-        <attr name="wyaCountTextColor" format="color" />
+        <attr name="backGroundImage" format="reference" />
+        <attr name="hintTextColor" format="color" />
+        <attr name="editTextColor" format="color" />
+        <attr name="hintEditColor" format="color" />
+        <attr name="hintText" />
+        <attr name="editText" />
+        <attr name="hintEditText" />
+        <attr name="maxNum" />
+        <attr name="countTextColor" format="color" />
     </declare-styleable>
 
     <!-- slide attrs -->
