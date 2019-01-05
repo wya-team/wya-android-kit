@@ -28,7 +28,7 @@ keyboard = new WYACustomNumberKeyboard(KeyboardExampleActivity.this);//获取到
 
 方法|说明
 ---|---
-attachTo(editext, true)|eiditext绑定keyboard并且显示，true表示随机数字
+attachTo|绑定keyboard并且显示，并设置是否是随机键盘
 setOnOkClick()|确定按钮的监听
 setOnCancelClick()|隐藏软件盘的按钮的监听
 hideKeyBoard()|隐藏软件盘
