@@ -1,8 +1,7 @@
 # SegmentControl
 
 ## 功能说明
-分页控制器
-* WYATabLayoutControl：用于设置design包下TabLayout设置下划线与文字同宽度
+分段控制器
 * WYASegmentedView ： 用于分段式选择，只能点击不能滑动
 
 ## 属性说明
@@ -43,9 +42,3 @@ radius|WYASegmentedView的圆角
         app:lineSize="2dp" />
 ````
 
-2. WYATabLayoutControl
-
-方法|说明
----|---
-lineWidth(TabLayout layout)|设置TabLayout中下划线与文字同宽
-clear(TabLayout layout)|清除设置下滑线与文字的同宽
