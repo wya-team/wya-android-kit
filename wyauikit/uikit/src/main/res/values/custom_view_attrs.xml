@@ -114,7 +114,6 @@
         <attr name="addDrawable" format="reference" />
         <attr name="addDrawablePress" format="reference" />
         <attr name="addDisableDrawablePress" format="reference" />
-
         <attr name="value" format="integer" />
         <attr name="maxNum" />
         <attr name="minNum" format="integer" />
