@@ -80,7 +80,7 @@
                 app:fillet="true"
                 app:textColor="#ffffff"
                 app:textColorPress="#50ffffff"
-                app:radius="10dp" />
+                app:radius="5dp" />
 
             <com.wya.uikit.button.WYAButton
                 android:id="@+id/wya_button_reduce"
@@ -94,7 +94,7 @@
                 app:fillet="true"
                 app:textColor="#ffffff"
                 app:textColorPress="#50ffffff"
-                app:radius="10dp" />
+                app:radius="5dp" />
 
             <com.wya.uikit.button.WYAButton
                 android:id="@+id/wya_button_update"
@@ -108,7 +108,7 @@
                 app:fillet="true"
                 app:textColor="#ffffff"
                 app:textColorPress="#50ffffff"
-                app:radius="10dp" />
+                app:radius="5dp" />
 
             <com.wya.uikit.button.WYAButton
                 android:id="@+id/wya_button_query"
@@ -122,7 +122,7 @@
                 app:fillet="true"
                 app:textColor="#ffffff"
                 app:textColorPress="#50ffffff"
-                app:radius="10dp" />
+                app:radius="5dp" />
 
         </TableRow>
 

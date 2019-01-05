@@ -19,7 +19,7 @@
         app:fillet="true"
         app:textColor="#ffffff"
         app:textColorPress="#50ffffff"
-        app:radius="10dp" />
+        app:radius="5dp" />
 
     <com.wya.uikit.button.WYAButton
         android:id="@+id/wya_button_image"
@@ -32,7 +32,7 @@
         app:fillet="true"
         app:textColor="#ffffff"
         app:textColorPress="#50ffffff"
-        app:radius="10dp" />
+        app:radius="5dp" />
 
     <com.wya.uikit.button.WYAButton
         android:id="@+id/wya_button_download"
@@ -45,5 +45,5 @@
         app:fillet="true"
         app:textColor="#ffffff"
         app:textColorPress="#50ffffff"
-        app:radius="10dp" />
+        app:radius="5dp" />
 </LinearLayout>

@@ -28,7 +28,7 @@
                 app:backColorPress="#0183d7"
                 app:fillet="true"
                 app:textColor="@color/white"
-                app:radius="10dp" />
+                app:radius="5dp" />
 
             <View
                 android:layout_width="0dp"
@@ -47,7 +47,7 @@
                 app:backColorPress="#0183d7"
                 app:fillet="true"
                 app:textColor="@color/white"
-                app:radius="10dp" />
+                app:radius="5dp" />
         </TableRow>
 
 
