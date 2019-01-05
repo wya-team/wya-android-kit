@@ -37,7 +37,7 @@ public class WYASearchBar extends FrameLayout {
     private TextView tvSearchUp;
     private TableRow tabUp;
     private OnTextChangeListener mOnTextChangeListener;
-    private OnTvClickListener onTvClickListener;
+    private OnTextClickListener onTvClickListener;
     private static final String CANCEL = "取消";
     private static final String SEARCH = "搜索";
 
@@ -63,6 +63,7 @@ public class WYASearchBar extends FrameLayout {
      */
     public void setEditHint(String hintText) {
         mEtSearch.setHint(hintText);
+
     }
 
     /**
@@ -70,7 +71,7 @@ public class WYASearchBar extends FrameLayout {
      *
      * @param hintText
      */
-    public void setTvHint(String hintText) {
+    public void setTextHint(String hintText) {
         tvSearchUp.setHint(hintText);
     }
 
@@ -78,34 +79,14 @@ public class WYASearchBar extends FrameLayout {
         return mEtSearch.getText().toString();
     }
 
-    public void setEtSearch(String etSearch) {
+    public void setEditSearch(String etSearch) {
         mEtSearch.setText(etSearch);
     }
 
-    public void setTvSearch(String tvSearch) {
+    public void setTextSearch(String tvSearch) {
         tvSearchUp.setText(tvSearch);
     }
 
-    public ImageView getIvClear() {
-        return mIvClear;
-    }
-
-    /**
-     * 设置清除文本图片
-     *
-     * @param ivClear
-     */
-    public void setIvClear(ImageView ivClear) {
-        this.mIvClear = ivClear;
-    }
-
-    public TextView getTvClose() {
-        return mTvClose;
-    }
-
-    public void setTvClose(TextView tvClose) {
-        this.mTvClose = tvClose;
-    }
 
     /**
      * 设置搜索框的监听
@@ -121,7 +102,7 @@ public class WYASearchBar extends FrameLayout {
      *
      * @param onTvClickListener
      */
-    public void setOnClickCancelListener(OnTvClickListener onTvClickListener) {
+    public void setOnClickCancelListener(OnTextClickListener onTvClickListener) {
         this.onTvClickListener = onTvClickListener;
     }
 
@@ -138,8 +119,7 @@ public class WYASearchBar extends FrameLayout {
         tvSearchUp = rootView.findViewById(R.id.tv_search_up);
         mIvClear = rootView.findViewById(R.id.iv_clear);
         mTvClose = rootView.findViewById(R.id.tv_close);
-        addView(rootView, new LinearLayout.LayoutParams(
-                LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        addView(rootView, new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
         mIvClear.setOnClickListener(v -> mEtSearch.setText(""));
         mTvClose.setOnClickListener(v -> {
@@ -263,7 +243,7 @@ public class WYASearchBar extends FrameLayout {
         void onTextChange(Editable s);
     }
 
-    public interface OnTvClickListener {
+    public interface OnTextClickListener {
         void onClickCancel();
 
         void onClickSearch();

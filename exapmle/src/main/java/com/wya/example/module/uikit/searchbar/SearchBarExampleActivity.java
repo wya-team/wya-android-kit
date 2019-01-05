@@ -44,7 +44,7 @@ public class SearchBarExampleActivity extends BaseActivity {
     }
 
     private void setWYASearchBar() {
-        wyaSearchBar.setOnClickCancelListener(new WYASearchBar.OnTvClickListener() {
+        wyaSearchBar.setOnClickCancelListener(new WYASearchBar.OnTextClickListener() {
             @Override
             public void onClickCancel() {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

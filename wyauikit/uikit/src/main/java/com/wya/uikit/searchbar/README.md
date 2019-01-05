@@ -18,10 +18,9 @@
 
 方法|说明
 ---|---
-setOnTextChangeListener(OnTextChangeListener onTextChangeListener)|设置搜索框的监听
-setEditHint(String hint_text)|设置搜索框的提示文本内容
-setEtSearchLeftImg(int left_res)|设置编辑框左边的图片
-setOnClickCancelListener(OnClickCancelListener onClickCancelListener)|设置右侧文字的监听
+setOnTextChangeListener|设置搜索框的监听
+setEditHint|设置搜索框的提示文本内容
+setOnClickCancelListener|设置右侧文字的监听
 
 
 
