@@ -36,14 +36,15 @@ public class PopupWindowExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         StatusBarUtil.setLightMode(this);
-        setToolBarTitle("PopupWindow");
+        setTitle("PopupWindow");
         url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_notice, true);
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
         setPopupWindow();
     }
 
     private void setPopupWindow() {
-        setRightImageAntherOnclickListener(view -> wyaPopupWindow.show(view, -100, 0));
+        setRightSecondIconClickListener(view -> wyaPopupWindow.show(view, -100, 0));
         wyaPopupWindow = new WYAPopupWindow.Builder(PopupWindowExampleActivity.this).setLayoutRes(R.layout.popopwindow_custom_list, v -> {
             TableRow tabScan = v.findViewById(R.id.tab_scan);
             TableRow tabHelp = v.findViewById(R.id.tab_help);
@@ -160,7 +161,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
     }
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_popup_window_example;
     }
 

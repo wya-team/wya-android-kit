@@ -6,12 +6,12 @@ import com.wya.example.base.BaseActivity;
 public class ListExampleActivity extends BaseActivity {
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_list_example;
     }
 
     @Override
     protected void initView() {
-        setToolBarTitle("列表(list)");
+        setTitle("列表(list)");
     }
 }

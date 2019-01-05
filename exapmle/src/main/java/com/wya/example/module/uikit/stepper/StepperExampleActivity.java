@@ -23,19 +23,20 @@ public class StepperExampleActivity extends BaseActivity {
     WYAStepper stepper;
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_stepper_example;
     }
 
     @Override
     protected void initView() {
-        setToolBarTitle("步进器(stepper)");
+        setTitle("步进器(stepper)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(StepperExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(StepperExampleActivity.this, url);
         });

@@ -11,20 +11,21 @@ public class ButtonExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setToolBarTitle("按钮(button)");
+        setTitle("按钮(button)");
         String url= getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(ButtonExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(ButtonExampleActivity.this, url);
         });
     }
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_button_example;
     }
 

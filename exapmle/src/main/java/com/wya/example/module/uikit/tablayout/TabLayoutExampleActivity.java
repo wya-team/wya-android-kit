@@ -24,7 +24,7 @@ public class TabLayoutExampleActivity extends BaseActivity {
     TabLayout mScrollTabText;
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_tablayou_example;
     }
 
@@ -33,14 +33,15 @@ public class TabLayoutExampleActivity extends BaseActivity {
     protected void initView() {
         ButterKnife.bind(this);
 
-        setToolBarTitle("分页控制器(tablayout)");
+        setTitle("分页控制器(tablayout)");
 
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(TabLayoutExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(TabLayoutExampleActivity.this, url);
         });

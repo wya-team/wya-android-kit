@@ -21,7 +21,7 @@ public class DataCleanExampleActivity extends BaseActivity {
     TextView mCacheData;
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_data_clean;
     }
 
@@ -29,7 +29,7 @@ public class DataCleanExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-        setToolBarTitle("清理缓存");
+        setTitle("清理缓存");
         initCache();
     }
 

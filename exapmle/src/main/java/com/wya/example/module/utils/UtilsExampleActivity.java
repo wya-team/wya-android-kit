@@ -14,13 +14,13 @@ import butterknife.OnClick;
 public class UtilsExampleActivity extends BaseActivity {
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_utils_example;
     }
 
     @Override
     protected void initView() {
-        setToolBarTitle("工具库");
+        setTitle("工具库");
     }
 
     @OnClick({R.id.wya_button_realm, R.id.wya_button_image, R.id.wya_button_download})

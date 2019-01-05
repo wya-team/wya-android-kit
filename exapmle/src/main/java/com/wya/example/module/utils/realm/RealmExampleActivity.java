@@ -46,13 +46,13 @@ public class RealmExampleActivity extends BaseActivity {
     private int choosePosition;
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_realm_example;
     }
 
     @Override
     protected void initView() {
-        setToolBarTitle("Realm（增删改查）");
+        setTitle("Realm（增删改查）");
 
         initRealm();
 

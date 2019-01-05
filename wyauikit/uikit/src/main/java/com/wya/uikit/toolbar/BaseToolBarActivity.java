@@ -1,6 +1,5 @@
 package com.wya.uikit.toolbar;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
@@ -18,202 +17,160 @@ import com.wya.uikit.toolbar.swipeback.SwipeBackActivity;
 /**
  * @date: 2018/11/16 17:48
  * @author: Chunjiang Mao
- * @classname:  BaseToolBarActivity
+ * @classname: BaseToolBarActivity
  * @describe: 标题栏
  */
 
 public abstract class BaseToolBarActivity extends SwipeBackActivity {
 
     private WYAToolBarHelper wyaToolBarHelper;
-    private TextView title, mTvLeft, mTvRight, mTvRightAnther;
-    private ImageView imgRight, mImgLeft, mImgRightAnther;
-    private RelativeLayout titleBarBg;
+    private TextView tvTitle, mTvLeft, mTvRightFirst, mTvRightSecond;
+    private ImageView mImgRightFirst, mImgLeft, mImgRightSecond;
+    private RelativeLayout toolBar;
 
     private LinearLayout parentLinearLayout;
 
-    protected abstract int getLayoutID();
+    /**
+     * 获取布局文件id
+     *
+     * @return
+     */
+    protected abstract int getLayoutId();
 
     //设置左边点击事件
-    private onLeftImgOnclickListener onLeftImgOnclickListener;
+    private LeftIconClickListener leftIconClickListener;
     //设置左边点击事件
-    private onLeftTvOnclickListener onLeftTvOnclickListener;
-    //设置右边点击事件
-    private onRightTvOnclickListener onRightTvOnclickListener;
-    //设置右边点击事件
-    private onRightTvAntherOnclickListener onRightTvAntherOnclickListener;
+    private LeftTextClickListener leftTextClickListener;
+    //设置右边第一个文字点击事件
+    private RightFirstTextClickListener rightFirstTextClickListener;
+    //设置右边第二个文字点击事件
+    private RightSecondTextClickListener rightSecondTextClickListener;
+    //设置右边第一个图片点击事件
+    private RightFirstIconClickListener rightFirstIconClickListener;
+    //设置右边第二个图片点击事件
+    private RightSecondIconClickListener rightSecondIconClickListener;
     //设置右边长按点击事件
-    private onRightImageAntherOnLongClickListener onRightImageAntherOnLongClickListener;
-    //设置右边点击事件
-    private onRightImageOnclickListener onRightImageOnclickListener;
-    //设置右边点击事件
-    private onRightImageAntherOnclickListener onRightImageAntherOnclickListener;
+    private RightSecondIconLongClickListener rightSecondIconLongClickListener;
 
     /**
      * 设置左边点击事件
      */
-    public interface onLeftImgOnclickListener {
-        void onLeftImgClick(View view);
+    public interface LeftIconClickListener {
+        void leftIconClick(View view);
     }
 
     /**
      * 设置左边点击事件
      */
-    public interface onLeftTvOnclickListener {
-        void onLeftTvClick(View view);
+    public interface LeftTextClickListener {
+        void leftTextClick(View view);
     }
 
     /**
      * 设置右边文字点击事件
      */
-    public interface onRightTvOnclickListener {
-        void onRightTvOnclickListener(View view);
+    public interface RightFirstTextClickListener {
+        void rightFirstTextClick(View view);
     }
 
     /**
      * 设置右边第二个文字点击事件
      */
-    public interface onRightTvAntherOnclickListener {
-        void onRightTvAntherOnclickListener(View view);
+    public interface RightSecondTextClickListener {
+        void rightSecondTextClick(View view);
     }
 
     /**
      * 设置图片点击事件
      */
-    public interface onRightImageOnclickListener {
-        void onRightImageOnclickListener(View view);
+    public interface RightFirstIconClickListener {
+        void rightFirstIconClick(View view);
     }
 
     /**
-     * 设置第二张点击事件
+     * 设置第二张图片点击事件
      */
-    public interface onRightImageAntherOnclickListener {
-        void onRightImageAntherOnclickListener(View view);
+    public interface RightSecondIconClickListener {
+        void rightSecondIconClick(View view);
     }
 
     /**
      * 设置第二张长按点击事件
      */
-    public interface onRightImageAntherOnLongClickListener {
-        void onRightImageAntherOnLongClickListener(View view);
+    public interface RightSecondIconLongClickListener {
+        void rightSecondIconLongClick(View view);
     }
 
+
+    /**
+     * 设置左边图标点击事件监听
+     *
+     * @param leftIconClickListener
+     */
+    public void setLeftIconClickListener(LeftIconClickListener leftIconClickListener) {
+        this.leftIconClickListener = leftIconClickListener;
+    }
 
     /**
      * 设置左边点击事件内容和监听
      *
-     * @param onLeftImgOnclickListener
+     * @param leftTextClickListener
      */
-    public void setLeftImgOnclickListener(onLeftImgOnclickListener onLeftImgOnclickListener) {
-        this.onLeftImgOnclickListener = onLeftImgOnclickListener;
+    public void setLeftTextClickListener(LeftTextClickListener leftTextClickListener) {
+        this.leftTextClickListener = leftTextClickListener;
     }
 
     /**
-     * 设置左边点击事件内容和监听
+     * 设置右边第一个文字点击事件
      *
-     * @param onLeftTvOnclickListener
+     * @param rightFirstTextClickListener
      */
-    public void setLeftTvOnclickListener(onLeftTvOnclickListener onLeftTvOnclickListener) {
-        this.onLeftTvOnclickListener = onLeftTvOnclickListener;
-    }
-
-    /**
-     * 设置右边文字点击事件
-     *
-     * @param onRightTvOnclickListener
-     */
-    public void setRightTvOnclickListener(onRightTvOnclickListener onRightTvOnclickListener) {
-        this.onRightTvOnclickListener = onRightTvOnclickListener;
+    public void setRightFirstTextClickListener(RightFirstTextClickListener rightFirstTextClickListener) {
+        this.rightFirstTextClickListener = rightFirstTextClickListener;
     }
 
     /**
      * 设置右边第二个文字点击事件监听
      *
-     * @param onRightTvAntherOnclickListener
+     * @param rightSecondTextClickListener
      */
-    public void setRightTvAntherOnclickListener(onRightTvAntherOnclickListener onRightTvAntherOnclickListener) {
-        this.onRightTvAntherOnclickListener = onRightTvAntherOnclickListener;
+    public void setRightSecondTextClickListener(RightSecondTextClickListener rightSecondTextClickListener) {
+        this.rightSecondTextClickListener = rightSecondTextClickListener;
     }
 
     /**
      * 设置右边图片点击事件监听
      *
-     * @param onRightImageOnclickListener
+     * @param rightFirstIconClickListener
      */
-    public void setRightImageOnclickListener(onRightImageOnclickListener onRightImageOnclickListener) {
-        this.onRightImageOnclickListener = onRightImageOnclickListener;
+    public void setRightFirstIconClickListener(RightFirstIconClickListener rightFirstIconClickListener) {
+        this.rightFirstIconClickListener = rightFirstIconClickListener;
     }
 
     /**
      * 设置右边第二个图片点击事件监听
      *
-     * @param onRightImageAntherOnclickListener
+     * @param rightSecondIconClickListener
      */
-    public void setRightImageAntherOnclickListener(onRightImageAntherOnclickListener onRightImageAntherOnclickListener) {
-        this.onRightImageAntherOnclickListener = onRightImageAntherOnclickListener;
+    public void setRightSecondIconClickListener(RightSecondIconClickListener rightSecondIconClickListener) {
+        this.rightSecondIconClickListener = rightSecondIconClickListener;
     }
 
     /**
      * 设置右边第二个图片长按点击事件监听
      *
-     * @param onRightImageAntherOnLongClickListener
+     * @param rightSecondIconLongClickListener
      */
-    public void setRightImageAntherOnLongClickListener(onRightImageAntherOnLongClickListener onRightImageAntherOnLongClickListener) {
-        this.onRightImageAntherOnLongClickListener = onRightImageAntherOnLongClickListener;
+    public void setRightSecondIconLongClickListener(RightSecondIconLongClickListener rightSecondIconLongClickListener) {
+        this.rightSecondIconLongClickListener = rightSecondIconLongClickListener;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initContentView(R.layout.base_toolbar_layout);
-        setContentView(getLayoutID());
+        setContentView(getLayoutId());
         initWYAActionBar();
-    }
-
-
-    public void initWYAActionBarDefault(boolean showToolBar, String toolbarBgColorValue, boolean isShowTitle, String titleStr, int titleTextSize, String titleTextColorValue,
-                                        boolean isShowTvLeft, String tvLeftStr, int tvLeftTextSize, String tvLeftTextColorValue, boolean isShowImgLeft, int imgLeftRes,
-                                        boolean isShowTvRight, String tvRightStr, int tvRightTextSize, String tvRightTextColorValue, boolean isShowImgRight,
-                                        boolean isShowImgRightAnther, int imgRightRes, int imgRightResAnther,
-                                        boolean isShowTvRightAnther, String tvRightAntherStr, int tvRightAntherTextSize, String tvRightAntherTextColorValue, boolean isLight) {
-        wyaToolBarHelper.setShowTitle(showToolBar);
-        wyaToolBarHelper.setToolbarBgColor(toolbarBgColorValue);
-        wyaToolBarHelper.setShowTitle(isShowTitle);
-        wyaToolBarHelper.setTitleStr(titleStr);
-        wyaToolBarHelper.setTitleTextSize(titleTextSize);
-        wyaToolBarHelper.setTitleTextColor(titleTextColorValue);
-        wyaToolBarHelper.setShowTvLeft(isShowTvLeft);
-        wyaToolBarHelper.setTvLeftStr(tvLeftStr);
-        wyaToolBarHelper.setTvLeftTextSize(tvLeftTextSize);
-        wyaToolBarHelper.setTvLeftTextColor(tvLeftTextColorValue);
-        wyaToolBarHelper.setShowImgLeft(isShowImgLeft);
-        wyaToolBarHelper.setImgLeftRes(imgLeftRes);
-
-        wyaToolBarHelper.setShowTvRight(isShowTvRight);
-        wyaToolBarHelper.setTvRightStr(tvRightStr);
-        wyaToolBarHelper.setTvRightTextSize(tvRightTextSize);
-        wyaToolBarHelper.setTvRightTextColor(tvRightTextColorValue);
-        wyaToolBarHelper.setShowTvRightAnther(isShowTvRightAnther);
-        wyaToolBarHelper.setTvRightAntherStr(tvRightAntherStr);
-        wyaToolBarHelper.setTvRightAntherTextSize(tvRightAntherTextSize);
-        wyaToolBarHelper.setTvRightAntherTextColor(tvRightAntherTextColorValue);
-
-
-        wyaToolBarHelper.setShowImgRight(isShowImgRight);
-        wyaToolBarHelper.setImgRightRes(imgRightRes);
-        wyaToolBarHelper.setImgRightResAnther(imgRightResAnther);
-        wyaToolBarHelper.setShowImgRightAnther(isShowImgRightAnther);
-
-        wyaToolBarHelper.setLight(isLight);
-
-        initShowToolBar(wyaToolBarHelper.isShowTitle());
-        initToolBarBgColor(wyaToolBarHelper.getToolbarBgColor(), wyaToolBarHelper.isLight());
-        initToolBarTitle(wyaToolBarHelper.getTitleStr(), wyaToolBarHelper.getTitleTextSize(), wyaToolBarHelper.getTitleTextColor(), wyaToolBarHelper.isShowTitle());
-        initTvLeft(wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
-        initImgLeft(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.isShowImgLeft());
-        initTvRight(wyaToolBarHelper.getTvRightStr(), wyaToolBarHelper.getTvRightTextColor(), wyaToolBarHelper.getTvRightTextSize(), wyaToolBarHelper.isShowTvRight());
-        initTvRightAnther(wyaToolBarHelper.getTvRightAntherStr(), wyaToolBarHelper.getTvRightAntherTextColor(), wyaToolBarHelper.getTvRightAntherTextSize(), wyaToolBarHelper.isShowTvRightAnther());
-        initImgRight(wyaToolBarHelper.getImgRightRes(), wyaToolBarHelper.isShowImgRight());
-        initImgRightAnther(wyaToolBarHelper.getImgRightResAnther(), wyaToolBarHelper.isShowImgRightAnther());
     }
 
     /**
@@ -222,39 +179,315 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      */
     public void initWYAActionBar() {
         wyaToolBarHelper = new WYAToolBarHelper();
-        title = (TextView) findViewById(R.id.title);
+        tvTitle = (TextView) findViewById(R.id.title);
         mTvLeft = (TextView) findViewById(R.id.tv_left);
-        mTvRight = (TextView) findViewById(R.id.tv_right);
-        mTvRightAnther = (TextView) findViewById(R.id.tv_right_anther);
-        imgRight = (ImageView) findViewById(R.id.img_right);
-        mImgRightAnther = (ImageView) findViewById(R.id.img_right_anther);
+        mTvRightFirst = (TextView) findViewById(R.id.tv_right_first);
+        mTvRightSecond = (TextView) findViewById(R.id.tv_right_second);
+        mImgRightFirst = (ImageView) findViewById(R.id.img_right_first);
+        mImgRightSecond = (ImageView) findViewById(R.id.img_right_second);
         mImgLeft = (ImageView) findViewById(R.id.img_left);
-        titleBarBg = (RelativeLayout) findViewById(R.id.title_bar_bg);
+        toolBar = (RelativeLayout) findViewById(R.id.tool_bar);
 
-        initShowToolBar(wyaToolBarHelper.isShowTitle());
-        initToolBarBgColor(wyaToolBarHelper.getToolbarBgColor(), wyaToolBarHelper.isLight());
-        initToolBarTitle(wyaToolBarHelper.getTitleStr(), wyaToolBarHelper.getTitleTextSize(), wyaToolBarHelper.getTitleTextColor(), wyaToolBarHelper.isShowTitle());
-        initTvLeft(wyaToolBarHelper.getTvLeftStr(), wyaToolBarHelper.getTvLeftTextColor(), wyaToolBarHelper.getTvLeftTextSize(), wyaToolBarHelper.isShowTvLeft());
-        initImgLeft(wyaToolBarHelper.getImgLeftRes(), wyaToolBarHelper.isShowImgLeft());
-        initTvRight(wyaToolBarHelper.getTvRightStr(), wyaToolBarHelper.getTvRightTextColor(), wyaToolBarHelper.getTvRightTextSize(), wyaToolBarHelper.isShowTvRight());
-        initImgRight(wyaToolBarHelper.getImgRightRes(), wyaToolBarHelper.isShowImgRight());
-        initImgRightAnther(wyaToolBarHelper.getImgRightResAnther(), wyaToolBarHelper.isShowImgRightAnther());
+        showToolBar(wyaToolBarHelper.isShow());
+        setBackgroundColor(wyaToolBarHelper.getBackgroundColor(), wyaToolBarHelper.isLight());
+        setTitle(wyaToolBarHelper.getTitle());
+        setTitleColor(wyaToolBarHelper.getTitleColor());
+        setTitleSize(wyaToolBarHelper.getTitleSize());
+
+        setLeftText(wyaToolBarHelper.getLeftText());
+        setLeftTextSize(wyaToolBarHelper.getLeftTextSize());
+        setLeftTextColor(wyaToolBarHelper.getLeftTextColor());
+        showLeftText(wyaToolBarHelper.isShowLeftText());
+
+        setLeftIcon(wyaToolBarHelper.getLeftIcon());
+        showLeftIcon(wyaToolBarHelper.isShowLeftIcon());
+
+        showFirstRightText(wyaToolBarHelper.isShowFirstRightText());
+        setFirstRightText(wyaToolBarHelper.getFirstRightText());
+        setFirstRightTextColor(wyaToolBarHelper.getFirstRightTextColor());
+        setFirstRightTextSize(wyaToolBarHelper.getFirstRightTextSize());
+
+        showSecondRightText(wyaToolBarHelper.isShowSecondRightText());
+        setSecondRightText(wyaToolBarHelper.getSecondRightText());
+        setSecondRightTextColor(wyaToolBarHelper.getSecondRightTextColor());
+        setSecondRightTextSize(wyaToolBarHelper.getSecondRightTextSize());
+
+        setFirstRightIcon(wyaToolBarHelper.getFirstRightIcon());
+        showFirstRightIcon(wyaToolBarHelper.isShowFirstRightIcon());
+
+        setSecondRightIcon(wyaToolBarHelper.getSecondRightIcon());
+        showSecondRightIcon(wyaToolBarHelper.isShowSecondRightIcon());
+
         initClick();
     }
 
 
     /**
-     * 是否显示标题
+     * 设置标题栏显示
      *
-     * @param showTitle
+     * @param show
      */
-    public void initShowToolBar(boolean showTitle) {
-        if (showTitle) {
-            titleBarBg.setVisibility(View.VISIBLE);
+    public void showToolBar(boolean show) {
+        if (show) {
+            toolBar.setVisibility(View.VISIBLE);
         } else {
-            titleBarBg.setVisibility(View.GONE);
+            toolBar.setVisibility(View.GONE);
         }
     }
+
+
+    /**
+     * 设置标题栏颜色和状态栏颜色
+     *
+     * @param backgroundColor 标题栏背景颜色
+     * @param isLight         修改状态栏文字图标颜色
+     */
+    public void setBackgroundColor(int backgroundColor, boolean isLight) {
+        toolBar.setBackgroundColor(backgroundColor);
+        StatusBarUtil.setColorForSwipeBack(this, backgroundColor, 0);
+        if (isLight) {
+            StatusBarUtil.setLightMode(this);
+        } else {
+            StatusBarUtil.setDarkMode(this);
+        }
+    }
+
+    /**
+     * 设置标题内容
+     *
+     * @param title
+     */
+    public void setTitle(String title) {
+        tvTitle.setText(title);
+    }
+
+    /**
+     * 设置标题颜色
+     *
+     * @param titleColor
+     */
+    @Override
+    public void setTitleColor(int titleColor) {
+        tvTitle.setTextColor(titleColor);
+    }
+
+    /**
+     * 设置标题字体大小
+     *
+     * @param titleSize
+     */
+    public void setTitleSize(int titleSize) {
+        tvTitle.setTextSize(titleSize);
+    }
+
+    /**
+     * 设置标题左边文字内容
+     *
+     * @param leftText
+     */
+    public void setLeftText(String leftText) {
+        mTvLeft.setText(leftText);
+    }
+
+    /**
+     * 设置标题左边文字大小
+     *
+     * @param leftTextSize
+     */
+    public void setLeftTextSize(int leftTextSize) {
+        mTvLeft.setTextSize(leftTextSize);
+    }
+
+    /**
+     * 设置标题左边文字颜色
+     *
+     * @param leftTextColor
+     */
+    public void setLeftTextColor(int leftTextColor) {
+        mTvLeft.setTextColor(leftTextColor);
+    }
+
+    /**
+     * 设置是否显示左边文字
+     *
+     * @param showLeftText
+     */
+    public void showLeftText(boolean showLeftText) {
+        if (showLeftText) {
+            mTvLeft.setVisibility(View.VISIBLE);
+        } else {
+            mTvLeft.setVisibility(View.GONE);
+        }
+    }
+
+
+    /**
+     * 设置标题左边图标
+     *
+     * @param leftIcon
+     */
+    public void setLeftIcon(int leftIcon) {
+        if (leftIcon != 0) {
+            mImgLeft.setImageDrawable(getResources().getDrawable(leftIcon));
+        } else {
+            mImgLeft.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 设置标题左边图标显示
+     *
+     * @param showLeftIcon
+     */
+    public void showLeftIcon(boolean showLeftIcon) {
+        if (showLeftIcon) {
+            mImgLeft.setVisibility(View.VISIBLE);
+        } else {
+            mImgLeft.setVisibility(View.GONE);
+        }
+    }
+
+
+    /**
+     * 设置右边第一文字显示
+     *
+     * @param showFirstRightText
+     */
+    public void showFirstRightText(boolean showFirstRightText) {
+        if (showFirstRightText) {
+            mTvRightFirst.setVisibility(View.VISIBLE);
+        } else {
+            mTvRightFirst.setVisibility(View.GONE);
+        }
+    }
+
+
+    /**
+     * 设置右边第一文字内容
+     *
+     * @param firstRightText
+     */
+    public void setFirstRightText(String firstRightText) {
+        mTvRightFirst.setText(firstRightText);
+    }
+
+
+    /**
+     * 设置右边第一文字颜色
+     *
+     * @param firstRightTextColor
+     */
+    public void setFirstRightTextColor(int firstRightTextColor) {
+        mTvRightFirst.setTextColor(firstRightTextColor);
+    }
+
+
+    /**
+     * 设置右边第一文字大小
+     *
+     * @param firstRightTextSize
+     */
+    public void setFirstRightTextSize(int firstRightTextSize) {
+        mTvRightFirst.setTextSize(firstRightTextSize);
+    }
+
+
+    /**
+     * 设置右边第二文字显示
+     *
+     * @param showSecondRightText
+     */
+    public void showSecondRightText(boolean showSecondRightText) {
+        if (showSecondRightText) {
+            mTvRightSecond.setVisibility(View.VISIBLE);
+        } else {
+            mTvRightSecond.setVisibility(View.GONE);
+        }
+    }
+
+
+    /**
+     * 设置右边第二文字内容
+     *
+     * @param secondRightText
+     */
+    public void setSecondRightText(String secondRightText) {
+        mTvRightSecond.setText(secondRightText);
+    }
+
+
+    /**
+     * 设置右边第二文字颜色
+     *
+     * @param secondRightTextColor
+     */
+    public void setSecondRightTextColor(int secondRightTextColor) {
+        mTvRightSecond.setTextColor(secondRightTextColor);
+    }
+
+
+    /**
+     * 设置右边第二文字大小
+     *
+     * @param secondRightTextSize
+     */
+    public void setSecondRightTextSize(int secondRightTextSize) {
+        mTvRightSecond.setTextSize(secondRightTextSize);
+    }
+
+
+    /**
+     * 设置标题右边第一个图标
+     *
+     * @param firstRightIcon
+     */
+    public void setFirstRightIcon(int firstRightIcon) {
+        if (firstRightIcon != 0) {
+            mImgRightFirst.setImageDrawable(getResources().getDrawable(firstRightIcon));
+        } else {
+            mImgRightFirst.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 设置标题右边第一个图标显示
+     *
+     * @param showFirstRightIcon
+     */
+    public void showFirstRightIcon(boolean showFirstRightIcon) {
+        if (showFirstRightIcon) {
+            mImgRightFirst.setVisibility(View.VISIBLE);
+        } else {
+            mImgRightFirst.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 设置标题右边第二个图标
+     *
+     * @param secondRightIcon
+     */
+    public void setSecondRightIcon(int secondRightIcon) {
+        if (secondRightIcon != 0) {
+            mImgRightSecond.setImageDrawable(getResources().getDrawable(secondRightIcon));
+        } else {
+            mImgRightSecond.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 设置标题右边第二个图标显示
+     *
+     * @param showSecondRightIcon
+     */
+    public void showSecondRightIcon(boolean showSecondRightIcon) {
+        if (showSecondRightIcon) {
+            mImgRightSecond.setVisibility(View.VISIBLE);
+        } else {
+            mImgRightSecond.setVisibility(View.GONE);
+        }
+    }
+
 
     /**
      * 左右两边点击事件监听设置
@@ -263,8 +496,8 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         mImgLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onLeftImgOnclickListener != null) {
-                    onLeftImgOnclickListener.onLeftImgClick(view);
+                if (leftIconClickListener != null) {
+                    leftIconClickListener.leftIconClick(view);
                 } else {
                     BaseToolBarActivity.this.finish();
                 }
@@ -274,247 +507,66 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         mTvLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onLeftTvOnclickListener != null) {
-                    onLeftTvOnclickListener.onLeftTvClick(view);
+                if (leftTextClickListener != null) {
+                    leftTextClickListener.leftTextClick(view);
                 } else {
                     BaseToolBarActivity.this.finish();
                 }
             }
         });
 
-        mImgRightAnther.setOnClickListener(new View.OnClickListener() {
+        mImgRightSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onRightImageAntherOnclickListener != null) {
-                    onRightImageAntherOnclickListener.onRightImageAntherOnclickListener(view);
+                if (rightSecondIconClickListener != null) {
+                    rightSecondIconClickListener.rightSecondIconClick(view);
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "图片2", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        mImgRightAnther.setOnLongClickListener(new View.OnLongClickListener() {
+        mImgRightSecond.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if (onRightImageAntherOnLongClickListener != null) {
-                    onRightImageAntherOnLongClickListener.onRightImageAntherOnLongClickListener(view);
+                if (rightSecondIconLongClickListener != null) {
+                    rightSecondIconLongClickListener.rightSecondIconLongClick(view);
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "图片2长按", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
         });
-        imgRight.setOnClickListener(new View.OnClickListener() {
+        mImgRightFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onRightImageOnclickListener != null) {
-                    onRightImageOnclickListener.onRightImageOnclickListener(view);
+                if (rightFirstIconClickListener != null) {
+                    rightFirstIconClickListener.rightFirstIconClick(view);
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "图片1", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        mTvRightAnther.setOnClickListener(new View.OnClickListener() {
+        mTvRightSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onRightTvAntherOnclickListener != null) {
-                    onRightTvAntherOnclickListener.onRightTvAntherOnclickListener(view);
+                if (rightSecondTextClickListener != null) {
+                    rightSecondTextClickListener.rightSecondTextClick(view);
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "文字2", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        mTvRight.setOnClickListener(new View.OnClickListener() {
+        mTvRightFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onRightTvOnclickListener != null) {
-                    onRightTvOnclickListener.onRightTvOnclickListener(view);
+                if (rightFirstTextClickListener != null) {
+                    rightFirstTextClickListener.rightFirstTextClick(view);
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "文字1", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
-
-    /**
-     * 设置标题右边的图片
-     *
-     * @param imgRightRes  资源图片 R.mimap.xx
-     * @param showImgRight 是否显示右边图片
-     */
-    @SuppressLint("NewApi")
-    public void initImgRight(int imgRightRes, boolean showImgRight) {
-        if (showImgRight) {
-            if (imgRightRes != 0) {
-                imgRight.setVisibility(View.VISIBLE);
-                imgRight.setImageDrawable(getResources().getDrawable(imgRightRes));
-            } else {
-                imgRight.setVisibility(View.GONE);
-            }
-        } else {
-            imgRight.setVisibility(View.GONE);
-        }
-
-    }
-
-    /**
-     * 设置标题右边另外的图片
-     *
-     * @param imgRightAntherRes 资源图片 R.mimap.xx
-     * @param showImgAnther     是否显示右边图片
-     */
-    @SuppressLint("NewApi")
-    public void initImgRightAnther(int imgRightAntherRes, boolean showImgAnther) {
-        if (showImgAnther) {
-            if (imgRightAntherRes != 0) {
-                mImgRightAnther.setVisibility(View.VISIBLE);
-                mImgRightAnther.setImageDrawable(getResources().getDrawable(imgRightAntherRes));
-            } else {
-                mImgRightAnther.setVisibility(View.GONE);
-            }
-        } else {
-            mImgRightAnther.setVisibility(View.GONE);
-        }
-
-    }
-
-
-    /**
-     * 设置标题右边的文字
-     *
-     * @param tvRightStr       文本内容
-     * @param tvRightTextColor 文本颜色
-     * @param tvRightTextSize  文字大小
-     * @param showTvRight      实现显示右边文字
-     */
-    @SuppressLint("NewApi")
-    public void initTvRight(String tvRightStr, int tvRightTextColor, int tvRightTextSize, boolean showTvRight) {
-        if (showTvRight) {
-            if (tvRightStr != null) {
-                mTvRight.setTextColor(this.getResources().getColor(tvRightTextColor));
-                mTvRight.setText(tvRightStr);
-                mTvRight.setTextSize(tvRightTextSize);
-                mTvRight.setVisibility(View.VISIBLE);
-            } else {
-                mTvRight.setVisibility(View.GONE);
-            }
-        } else {
-            mTvRight.setVisibility(View.GONE);
-        }
-    }
-
-    /**
-     * 设置标题右边的文字
-     *
-     * @param tvRightAntherStr       文本内容
-     * @param tvRightAntherTextColor 文本颜色
-     * @param tvRightAntherTextSize  文字大小
-     * @param showTvRightAnther      实现显示右边文字
-     */
-    @SuppressLint("NewApi")
-    public void initTvRightAnther(String tvRightAntherStr, int tvRightAntherTextColor, int tvRightAntherTextSize, boolean showTvRightAnther) {
-        if (showTvRightAnther) {
-            if (tvRightAntherStr != null) {
-                mTvRightAnther.setTextColor(this.getResources().getColor(tvRightAntherTextColor));
-                mTvRightAnther.setText(tvRightAntherStr);
-                mTvRightAnther.setTextSize(tvRightAntherTextSize);
-                mTvRightAnther.setVisibility(View.VISIBLE);
-            } else {
-                mTvRightAnther.setVisibility(View.GONE);
-            }
-        } else {
-            mTvRightAnther.setVisibility(View.GONE);
-        }
-    }
-
-
-    /**
-     * 设置标题左边文字
-     *
-     * @param tvLeftStr       文本内容
-     * @param tvLeftTextColor 文本颜色
-     * @param tvLeftTextSize  文字大小
-     * @param showTvLeft      实现显示左边文字
-     */
-    @SuppressLint("NewApi")
-    public void initTvLeft(String tvLeftStr, int tvLeftTextColor, int tvLeftTextSize, boolean showTvLeft) {
-        if (showTvLeft) {
-            if (tvLeftStr != null) {
-                mTvLeft.setTextColor(this.getResources().getColor(tvLeftTextColor));
-                mTvLeft.setText(tvLeftStr);
-                mTvLeft.setTextSize(tvLeftTextSize);
-                mTvLeft.setVisibility(View.VISIBLE);
-            } else {
-                mTvLeft.setVisibility(View.GONE);
-            }
-        } else {
-            mTvLeft.setVisibility(View.GONE);
-        }
-    }
-
-    /**
-     * 设置标题左边图片
-     *
-     * @param imgLeftRes  资源图片 R.mimap.xx
-     * @param showImgLeft 是否显示左边图片
-     */
-    @SuppressLint("NewApi")
-    public void initImgLeft(int imgLeftRes, boolean showImgLeft) {
-        if (showImgLeft) {
-            if (imgLeftRes != 0) {
-                mImgLeft.setVisibility(View.VISIBLE);
-                mImgLeft.setImageDrawable(getResources().getDrawable(imgLeftRes));
-            } else {
-                mImgLeft.setVisibility(View.GONE);
-            }
-        } else {
-            mImgLeft.setVisibility(View.GONE);
-        }
-    }
-
-    /**
-     * 设置标题的名字
-     *
-     * @param titleStr
-     * @param titleTextSize
-     * @param titleTextColor
-     * @param showTitle
-     */
-    public void initToolBarTitle(String titleStr, int titleTextSize, int titleTextColor, boolean showTitle) {
-        title.setText(titleStr);
-        title.setTextSize(titleTextSize);
-        title.setTextColor(titleTextColor);
-        if (showTitle) {
-            title.setVisibility(View.VISIBLE);
-        } else {
-            title.setVisibility(View.GONE);
-        }
-    }
-
-    /**
-     * 只设置标题的名字内容
-     *
-     * @param titleStr
-     */
-    public void setToolBarTitle(String titleStr) {
-        title.setText(titleStr);
-    }
-
-
-    /**
-     * 设置标题栏颜色和状态栏颜色
-     *
-     * @param toolbarBgColorValue 标题栏背景颜色
-     * @param isLight             修改状态栏文字图标颜色
-     */
-    public void initToolBarBgColor(int toolbarBgColorValue, boolean isLight) {
-        titleBarBg.setBackgroundColor(toolbarBgColorValue);
-        StatusBarUtil.setColorForSwipeBack(this, toolbarBgColorValue, 0);
-        if (isLight) {
-            StatusBarUtil.setLightMode(this);
-        } else {
-            StatusBarUtil.setDarkMode(this);
-        }
     }
 
 

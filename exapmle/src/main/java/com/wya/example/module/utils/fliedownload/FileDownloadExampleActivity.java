@@ -56,7 +56,7 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
 
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_file_download_example;
     }
 
@@ -64,14 +64,15 @@ public class FileDownloadExampleActivity extends BaseActivity implements View.On
     @SuppressLint("CheckResult")
     @Override
     protected void initView() {
-        setToolBarTitle("Downloader");
+        setTitle("Downloader");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(FileDownloadExampleActivity.this, ReadmeActivity.class)
                     .putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(FileDownloadExampleActivity.this, url);
         });

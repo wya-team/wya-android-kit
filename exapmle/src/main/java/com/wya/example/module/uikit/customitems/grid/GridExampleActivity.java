@@ -30,7 +30,7 @@ public class GridExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setToolBarTitle("宫格(grid)");
+        setTitle("宫格(grid)");
         setGrid();
     }
 
@@ -64,7 +64,7 @@ public class GridExampleActivity extends BaseActivity {
     }
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_grid_example;
     }
 

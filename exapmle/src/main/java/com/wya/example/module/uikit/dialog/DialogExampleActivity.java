@@ -21,7 +21,6 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.example.module.example.view.CustomerExpandableListView;
-import com.wya.example.module.uikit.customitems.inputitem.InputItemExampleActivity;
 import com.wya.example.module.uikit.dialog.adapter.DialogExpandableListAdapter;
 import com.wya.example.module.uikit.dialog.adapter.DialogListAdapter;
 import com.wya.example.module.uikit.dialog.adapter.ShareDialogListAdapter;
@@ -35,9 +34,6 @@ import com.wya.utils.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -80,7 +76,7 @@ public class DialogExampleActivity extends BaseActivity {
     }
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_dialog_example;
     }
 
@@ -89,17 +85,18 @@ public class DialogExampleActivity extends BaseActivity {
     protected void initView() {
         type = getIntent().getIntExtra("type", 1);
         if (type == 1) {
-            setToolBarTitle("弹框(dialog)");
+            setTitle("弹框(dialog)");
         } else {
-            setToolBarTitle("活动指示器(dialog)");
+            setTitle("活动指示器(dialog)");
             tabLoading.setVisibility(View.VISIBLE);
         }
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(DialogExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(DialogExampleActivity.this, url);
         });

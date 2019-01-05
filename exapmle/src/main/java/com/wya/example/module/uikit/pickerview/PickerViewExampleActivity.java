@@ -46,7 +46,7 @@ public class PickerViewExampleActivity extends BaseActivity {
     private CustomTimePicker mCustomTimePicker;
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_picker_view_example;
     }
 
@@ -58,14 +58,15 @@ public class PickerViewExampleActivity extends BaseActivity {
         config.setToDefaults();
         res.updateConfiguration(config, res.getDisplayMetrics());
         ButterKnife.bind(this);
-        setToolBarTitle("日期选择(pickerview)");
+        setTitle("日期选择(pickerview)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(PickerViewExampleActivity.this, ReadmeActivity.class)
                     .putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(PickerViewExampleActivity.this, url);
         });

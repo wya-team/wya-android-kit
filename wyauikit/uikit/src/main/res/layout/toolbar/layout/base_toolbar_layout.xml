@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/title_bar_bg"
+    android:id="@+id/tool_bar"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:gravity="center_vertical">
@@ -59,7 +59,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_right_anther"
+            android:id="@+id/tv_right_second"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -70,21 +70,21 @@
             android:visibility="gone" />
 
         <ImageView
-            android:id="@+id/img_right"
+            android:id="@+id/img_right_first"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:paddingRight="12dp"
             android:visibility="gone" />
 
         <ImageView
-            android:id="@+id/img_right_anther"
+            android:id="@+id/img_right_second"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:paddingRight="12dp"
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/tv_right"
+            android:id="@+id/tv_right_first"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
