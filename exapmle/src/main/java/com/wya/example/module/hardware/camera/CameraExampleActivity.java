@@ -68,7 +68,7 @@ public class CameraExampleActivity extends AppCompatActivity {
             }
         });
         //wyaCameraView监听
-        wyaCameraView.setWyaCameraListener(new WYACameraListener() {
+        wyaCameraView.setCameraListener(new WYACameraListener() {
             @Override
             public void captureSuccess(Bitmap bitmap) {
                 //获取图片bitmap

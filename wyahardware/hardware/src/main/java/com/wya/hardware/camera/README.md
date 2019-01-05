@@ -28,10 +28,10 @@ iconSrc|右上角图片资源|int|-
 
 方法|说明
 ---|---
-setSaveVideoPath(String path)|设置视频保存路径
-setFeatures(int state)|设置只有拍照、只有录像、拍照和录像
-setTip(String tip)|设置拍照按钮上面的文字
-setMediaQuality(int quality)|设置录制质量
-setDuration(int duration)|设置最长录制时间
-setErrorListener(ErrorListener errorListener)|启动Camera错误回调
-setWyaCameraListener(WYACameraListener wyaCameraListener)|拍照和录制的回调监听
+setSaveVideoPath|设置视频保存路径
+setFeatures|设置只有拍照、只有录像、拍照和录像
+setTip|设置拍照按钮上面的文字
+setMediaQuality|设置录制质量
+setDuration|设置最长录制时间
+setErrorListener|启动Camera错误回调
+setCameraListener|拍照和录制的回调监听

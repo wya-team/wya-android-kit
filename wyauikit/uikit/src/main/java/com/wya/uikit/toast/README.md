@@ -11,9 +11,9 @@
 
 方法|说明
 ---|---
-showShort(Context context, CharSequence message)|短时间toast
-showLong(Context context, CharSequence message)|长时间toast
-showToastWithImg(Context context, final String tvStr, final int imageResource, int gravity)|显示图片文字的toast
+showShort|短时间toast
+showLong|长时间toast
+showToastWithImage|显示图片文字的toast
 
 
 
