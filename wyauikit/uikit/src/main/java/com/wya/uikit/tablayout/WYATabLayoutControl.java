@@ -1,4 +1,4 @@
-package com.wya.uikit.segmentedcontrol;
+package com.wya.uikit.tablayout;
 
 import android.support.design.widget.TabLayout;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 import java.lang.reflect.Field;
 
 /**
- * author : XuDonglin
+ * @author : XuDonglin
  * e-mail : 465715784@qq.com
  * time   : 2018/11/21
  * desc   : TabLayout控制器

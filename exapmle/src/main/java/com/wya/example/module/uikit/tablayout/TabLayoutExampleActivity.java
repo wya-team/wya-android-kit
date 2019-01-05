@@ -6,7 +6,7 @@ import android.support.design.widget.TabLayout;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
-import com.wya.uikit.segmentedcontrol.WYATabLayoutControl;
+import com.wya.uikit.tablayout.WYATabLayoutControl;
 import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;

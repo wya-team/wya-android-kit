@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/f4f4f4"
+    tools:context=".module.utils.dataclean.DataCleanExampleActivity"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clean_title"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/cache_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            tools:text="201.1MB"
+            android:padding="10dp"
+            android:textColor="@color/black"/>
+
+        <com.wya.uikit.button.WYAButton
+            android:id="@+id/clean_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:text="清除缓存"
+            android:textSize="16sp"
+            app:backColor="#108de7"
+            app:backColorPress="#0183d7"
+            app:fillet="true"
+            app:textColor="@color/white"
+            app:wya_button_radius="10" />
+
+    </LinearLayout>
+
+</LinearLayout>

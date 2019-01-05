@@ -94,6 +94,7 @@
         <activity android:name=".module.hardware.scan.CustomCaptureActivity" />
 
         <service android:name=".base.InitializeService" />
+        <activity android:name=".module.utils.dataclean.DataCleanExampleActivity" />
     </application>
 
 </manifest>

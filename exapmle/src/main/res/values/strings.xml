@@ -12,6 +12,7 @@
     <string name="title_dashboard">朋友</string>
     <string name="title_notifications">消息</string>
     <string name="title_my">我的</string>
+    <string name="clean_title">wya-android-kit已用空间</string>
 
 
     <string name="tips_scan_code">将二维码/条形码放入框内，即可自动扫码</string>
