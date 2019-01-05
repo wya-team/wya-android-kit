@@ -2,6 +2,7 @@ package com.wya.uikit.toolbar;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,52 +53,59 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     //设置右边长按点击事件
     private RightSecondIconLongClickListener rightSecondIconLongClickListener;
 
-    /**
-     * 设置左边点击事件
-     */
     public interface LeftIconClickListener {
+        /**
+         * 设置左边点击事件
+         * @param view
+         */
         void leftIconClick(View view);
     }
 
-    /**
-     * 设置左边点击事件
-     */
     public interface LeftTextClickListener {
+        /**
+         * 设置左边点击事件
+         * @param view
+         */
         void leftTextClick(View view);
     }
 
-    /**
-     * 设置右边文字点击事件
-     */
     public interface RightFirstTextClickListener {
+        /**
+         * 设置右边文字点击事件
+         * @param view
+         */
         void rightFirstTextClick(View view);
     }
 
-    /**
-     * 设置右边第二个文字点击事件
-     */
     public interface RightSecondTextClickListener {
+        /**
+         * 设置右边第二个文字点击事件
+         * @param view
+         */
         void rightSecondTextClick(View view);
     }
 
-    /**
-     * 设置图片点击事件
-     */
     public interface RightFirstIconClickListener {
+        /**
+         * 设置图片点击事件
+         * @param view
+         */
         void rightFirstIconClick(View view);
     }
 
-    /**
-     * 设置第二张图片点击事件
-     */
     public interface RightSecondIconClickListener {
+        /**
+         * 设置第二张图片点击事件
+         * @param view
+         */
         void rightSecondIconClick(View view);
     }
 
-    /**
-     * 设置第二张长按点击事件
-     */
     public interface RightSecondIconLongClickListener {
+        /**
+         * 设置第二张长按点击事件
+         * @param view
+         */
         void rightSecondIconLongClick(View view);
     }
 
@@ -328,7 +336,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      */
     public void setLeftIcon(int leftIcon) {
         if (leftIcon != 0) {
-            mImgLeft.setImageDrawable(getResources().getDrawable(leftIcon));
+            mImgLeft.setImageDrawable(ContextCompat.getDrawable(this, leftIcon));
         } else {
             mImgLeft.setVisibility(View.GONE);
         }
@@ -443,7 +451,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      */
     public void setFirstRightIcon(int firstRightIcon) {
         if (firstRightIcon != 0) {
-            mImgRightFirst.setImageDrawable(getResources().getDrawable(firstRightIcon));
+            mImgRightFirst.setImageDrawable(ContextCompat.getDrawable(this, firstRightIcon));
         } else {
             mImgRightFirst.setVisibility(View.GONE);
         }
@@ -469,7 +477,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      */
     public void setSecondRightIcon(int secondRightIcon) {
         if (secondRightIcon != 0) {
-            mImgRightSecond.setImageDrawable(getResources().getDrawable(secondRightIcon));
+            mImgRightSecond.setImageDrawable(ContextCompat.getDrawable(this, secondRightIcon));
         } else {
             mImgRightSecond.setVisibility(View.GONE);
         }

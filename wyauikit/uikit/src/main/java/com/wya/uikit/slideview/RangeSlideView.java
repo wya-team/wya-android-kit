@@ -134,7 +134,6 @@ public class RangeSlideView extends View implements IRangeSlideView {
             }
             
             mPorgressBackgroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_background_color, getResources().getColor(R.color.slide_bg_default_color));
-            //            mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_foreground_color, getResources().getColor(R.color.slide_fg_default_color));
             mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_foreground_color, getResources().getColor(R.color.black));
             
             // region
