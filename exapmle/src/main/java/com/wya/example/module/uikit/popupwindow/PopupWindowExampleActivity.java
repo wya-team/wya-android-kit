@@ -101,10 +101,10 @@ public class PopupWindowExampleActivity extends BaseActivity {
                     .cancelShow(false)
                     .width(ScreenUtil.getScreenWidth(this) * 3 / 4)
                     .build();
-            wyaCustomDialog.setNoOnclickListener(() -> {
+            wyaCustomDialog.setNoClickListener(() -> {
                 wyaCustomDialog.dismiss();
             });
-            wyaCustomDialog.setYesOnclickListener(() -> wyaCustomDialog.dismiss());
+            wyaCustomDialog.setYesClickListener(() -> wyaCustomDialog.dismiss());
             wyaCustomDialog.show();
         } else {
             // 第一次申请，就直接申请
@@ -134,10 +134,10 @@ public class PopupWindowExampleActivity extends BaseActivity {
                             .cancelShow(false)
                             .width(ScreenUtil.getScreenWidth(this) * 3 / 4)
                             .build();
-                    wyaCustomDialog.setNoOnclickListener(() -> {
+                    wyaCustomDialog.setNoClickListener(() -> {
                         wyaCustomDialog.dismiss();
                     });
-                    wyaCustomDialog.setYesOnclickListener(() -> wyaCustomDialog.dismiss());
+                    wyaCustomDialog.setYesClickListener(() -> wyaCustomDialog.dismiss());
                     wyaCustomDialog.show();
                 }
             }

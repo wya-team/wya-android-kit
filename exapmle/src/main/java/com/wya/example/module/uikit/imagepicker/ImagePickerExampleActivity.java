@@ -306,7 +306,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
     private void initDialog() {
         //RecyclerView条目点击事件
         mWyaCustomDialog = new WYACustomDialog.Builder(this)
-                .setLayoutRes(R.layout.image_picker_choose, new CustomListener() {
+                .setLayoutId(R.layout.image_picker_choose, new CustomListener() {
                     @Override
                     public void customLayout(View v) {
                         TextView dialogCamera = v.findViewById(R.id.dialog_camera);
