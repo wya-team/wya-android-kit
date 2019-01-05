@@ -15,7 +15,7 @@ titleColor | 标题颜色 |  int | Color.parseColor("#000000")
 showLeftText | 左边文字是否显示 | boolean | false
 leftText | 左边文字 | String | ""
 leftTextSize | 左边文字大小 |int| 14
-leftTextColor | 左边文字颜色 |  Color.parseColor("#000000")
+leftTextColor | 左边文字颜色 |int|  Color.parseColor("#000000")
 showLeftIcon | 是否显示左图标 | boolean | true
 leftIcon | 左边图片资源 | int | -
 showFirstRightText | 显示右边第一个文字| boolean | false
