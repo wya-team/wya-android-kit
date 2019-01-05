@@ -8,7 +8,7 @@ import java.io.File;
 import java.math.BigDecimal;
 
 /**
- * author : XuDonglin
+ * @author : XuDonglin
  * e-mail : 465715784@qq.com
  * time   : 2018/12/11
  * desc   : 清除缓存

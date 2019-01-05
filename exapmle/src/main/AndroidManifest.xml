@@ -89,6 +89,7 @@
         <activity android:name=".module.example.readme.ReadmeActivity" />
         <activity android:name=".module.uikit.customitems.list.ListExampleActivity" />
         <activity android:name=".module.hardware.scan.CustomCaptureActivity" />
+        <activity android:name=".module.utils.dataclean.DataCleanExampleActivity"></activity>
     </application>
 
 </manifest>

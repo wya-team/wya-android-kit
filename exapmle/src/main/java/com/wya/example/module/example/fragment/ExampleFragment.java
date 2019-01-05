@@ -19,7 +19,6 @@ import com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
 import com.wya.example.module.uikit.banner.BannerExampleActivity;
 import com.wya.example.module.uikit.button.ButtonExampleActivity;
-import com.wya.example.module.uikit.optionmenu.OptionMenuExampleActivity;
 import com.wya.example.module.uikit.customedittext.CustomEditTextExampleActivity;
 import com.wya.example.module.uikit.customitems.cardview.CardViewExampleActivity;
 import com.wya.example.module.uikit.customitems.grid.GridExampleActivity;
@@ -30,6 +29,7 @@ import com.wya.example.module.uikit.drawerlayout.DrawerLayoutExampleActivity;
 import com.wya.example.module.uikit.imagepicker.ImagePickerExampleActivity;
 import com.wya.example.module.uikit.keyboard.KeyboardExampleActivity;
 import com.wya.example.module.uikit.notice.NoticeExampleActivity;
+import com.wya.example.module.uikit.optionmenu.OptionMenuExampleActivity;
 import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity;
 import com.wya.example.module.uikit.pickerview.PickerViewExampleActivity;
 import com.wya.example.module.uikit.popupwindow.PopupWindowExampleActivity;
@@ -42,12 +42,11 @@ import com.wya.example.module.uikit.tabbar.TabBarExampleActivity;
 import com.wya.example.module.uikit.tablayout.TabLayoutExampleActivity;
 import com.wya.example.module.uikit.toast.ToastExampleActivity;
 import com.wya.example.module.uikit.toolbar.ToolBarExampleActivity;
+import com.wya.example.module.utils.dataclean.DataCleanExampleActivity;
 import com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity;
 import com.wya.example.module.utils.image.QRCodeExampleActivity;
 import com.wya.example.module.utils.realm.RealmExampleActivity;
 import com.wya.uikit.dialog.WYACustomDialog;
-import com.wya.utils.utils.DataCleanUtil;
-import com.wya.utils.utils.ScreenUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -277,25 +276,7 @@ public class ExampleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), VideoPlayerExampleActivity.class).putExtra("url", HARDWARE_URL+"videoplayer"+"/README.md"));
                 break;
             case "清理缓存(utils(DataCleanUtil))":
-                try {
-                    wyaCustomDialog = new WYACustomDialog.Builder(getActivity())
-                            .title("清理缓存")
-                            .message(String.format("%s%s%s","当前缓存",DataCleanUtil
-                                    .getTotalCacheSize(getActivity()),",是否清理"))
-                            .cancelable(true)
-                            .width(ScreenUtil.getScreenWidth(getActivity()) * 3/4)
-                            .build();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                wyaCustomDialog.setNoOnclickListener(() -> {
-                    wyaCustomDialog.dismiss();
-                });
-                wyaCustomDialog.setYesOnclickListener(() -> {
-                    DataCleanUtil.cleanTotalCache(getActivity());
-                    wyaCustomDialog.dismiss();
-                });
-                wyaCustomDialog.show();
+                startActivity(new Intent(getActivity(), DataCleanExampleActivity.class).putExtra("url", UTILS_URL));
                 break;
             case "数据库基本使用(realm)":
                 startActivity(new Intent(getActivity(), RealmExampleActivity.class));
