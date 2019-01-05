@@ -36,12 +36,12 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_card_icon"
-                app:leftTvColor="@color/black"
-                app:leftTvText="标题文字"
-                app:lineViewColor="#999999"
+                app:leftTextColor="@color/black"
+                app:leftText="标题文字"
+                app:lineColor="#999999"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_list_selected"
-                app:rightTextStr=""
+                app:rightText=""
                 app:rightTextColor="#868686" />
 
             <com.wya.uikit.customitems.WYAInputItem
@@ -53,12 +53,12 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_card_icon"
-                app:leftTvColor="@color/black"
-                app:leftTvText="标题文字"
-                app:lineViewColor="#999999"
+                app:leftTextColor="@color/black"
+                app:leftText="标题文字"
+                app:lineColor="#999999"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
-                app:rightTextStr=""
+                app:rightText=""
                 app:rightTextColor="#868686" />
 
             <com.wya.uikit.customitems.WYAInputItem
@@ -70,12 +70,12 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_card_icon"
-                app:leftTvColor="@color/black"
-                app:leftTvText="标题文字"
-                app:lineViewColor="#f4f4f4"
+                app:leftTextColor="@color/black"
+                app:leftText="标题文字"
+                app:lineColor="#f4f4f4"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
-                app:rightTextStr="详细信息"
+                app:rightText="详细信息"
                 app:rightTextColor="#868686" />
 
             <TextView
@@ -110,7 +110,6 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -140,7 +139,6 @@
                     android:layout_marginRight="@dimen/dp_10"
                     android:background="@mipmap/icon_right_arrow"/>
 
-
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
@@ -148,7 +146,6 @@
                 android:gravity="center"
                 android:background="@color/white"
                 android:layout_marginBottom="1px">
-
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -167,7 +164,6 @@
                     android:layout_marginTop="@dimen/dp_10"
                     android:layout_weight="1"
                     android:orientation="vertical">
-
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -217,12 +213,12 @@
                 app:contentHint=""
                 app:contentText=""
                 app:contentTextColor="@color/black"
-                app:leftTvColor="@color/black"
-                app:leftTvText="标题文字"
-                app:lineViewColor="#999999"
+                app:leftTextColor="@color/black"
+                app:leftText="标题文字"
+                app:lineColor="#999999"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
-                app:rightTextStr="详细信息"
+                app:rightText="详细信息"
                 app:rightTextColor="#868686" />
 
             <TextView
@@ -239,13 +235,14 @@
                 app:contentHint=""
                 app:contentText=""
                 app:contentTextColor="@color/black"
-                app:leftTvColor="@color/black"
-                app:leftTvText="单项列表"
-                app:lineViewColor="#999999"
+                app:leftTextColor="@color/black"
+                app:leftText="单项列表"
+                app:lineColor="#999999"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_list_selected"
-                app:rightTextStr=""
+                app:rightText=""
                 app:rightTextColor="#868686" />
+
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -254,14 +251,13 @@
                 app:contentHint=""
                 app:contentText=""
                 app:contentTextColor="@color/black"
-                app:leftTvColor="@color/black"
-                app:leftTvText="单项列表"
-                app:lineViewColor="#f4f4f4"
+                app:leftTextColor="@color/black"
+                app:leftText="单项列表"
+                app:lineColor="#f4f4f4"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_list_selected"
-                app:rightTextStr=""
+                app:rightText=""
                 app:rightTextColor="#868686" />
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -278,12 +274,13 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_radio_selected"
-                app:leftTvColor="@color/black"
-                app:leftTvText="多项选择"
-                app:lineViewColor="#999999"
+                app:leftTextColor="@color/black"
+                app:leftText="多项选择"
+                app:lineColor="#999999"
                 app:rightCanEdit="false"
                 app:rightText=""
                 app:rightTextColor="#868686" />
+
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -293,11 +290,11 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_radio_selected"
-                app:leftTvColor="@color/black"
-                app:leftTvText="多项选择"
-                app:lineViewColor="#f4f4f4"
+                app:leftTextColor="@color/black"
+                app:leftText="多项选择"
+                app:lineColor="#f4f4f4"
                 app:rightCanEdit="false"
-                app:rightTextStr=""
+                app:rightText=""
                 app:rightTextColor="#868686" />
 
             <TextView
@@ -315,12 +312,13 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_subtract_enable"
-                app:leftTvColor="@color/black"
-                app:leftTvText="多项选择"
-                app:lineViewColor="#999999"
+                app:leftTextColor="@color/black"
+                app:leftText="多项选择"
+                app:lineColor="#999999"
                 app:rightCanEdit="false"
-                app:rightTextStr=""
+                app:rightText=""
                 app:rightTextColor="#868686" />
+            
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -330,11 +328,11 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_subtract_enable"
-                app:leftTvColor="@color/black"
-                app:leftTvText="多项选择"
-                app:lineViewColor="#f4f4f4"
+                app:leftTextColor="@color/black"
+                app:leftText="多项选择"
+                app:lineColor="#f4f4f4"
                 app:rightCanEdit="false"
-                app:rightTextStr=""
+                app:rightText=""
                 app:rightTextColor="#868686" />
 
         </LinearLayout>
