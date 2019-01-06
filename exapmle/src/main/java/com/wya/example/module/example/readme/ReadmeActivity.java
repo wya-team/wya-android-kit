@@ -34,7 +34,7 @@ public class ReadmeActivity extends BaseActivity {
     private int progressMax = 100;
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_readme;
     }
 
@@ -42,7 +42,7 @@ public class ReadmeActivity extends BaseActivity {
     protected void initView() {
         url = getIntent().getStringExtra("url");
         skip = getIntent().getBooleanExtra("skip", false);
-        setToolBarTitle(url.split("/")[url.split("/").length - 1].replace(".md", ""));
+        setTitle(url.split("/")[url.split("/").length - 1].replace(".md", ""));
         initWebView(url);
     }
 

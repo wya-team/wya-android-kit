@@ -19,20 +19,21 @@ public class PaginationViewExampleActivity extends BaseActivity {
     private WYAPaginationDot mDot;
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_pagination_view_example;
     }
 
 
     @Override
     protected void initView() {
-        setToolBarTitle("分页器(paginationview)");
+        setTitle("分页器(paginationview)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(PaginationViewExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(PaginationViewExampleActivity.this, url);
         });

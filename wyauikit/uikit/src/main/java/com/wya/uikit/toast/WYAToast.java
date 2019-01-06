@@ -81,7 +81,7 @@ public class WYAToast {
     /**
      * 显示有image的toast 这是个view
      */
-    public Toast showToastWithImg(final String tvStr, final int imageResource, int gravity) {
+    public Toast showToastWithImage(final String tvStr, final int imageResource, int gravity) {
         if (toast_custom == null) {
             toast_custom = new Toast(context);
         }

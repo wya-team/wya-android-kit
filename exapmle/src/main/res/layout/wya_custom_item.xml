@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp">
 
+
     <com.wya.uikit.button.WYAButton
         android:id="@+id/wya_button"
         app:backColor="#108de9"
@@ -12,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:text="正常button"
-        app:wya_button_radius="20"
+        app:radius="5dp"
         android:textAlignment="center"
         android:drawableLeft="@null"
         android:textAllCaps="false"

@@ -19,20 +19,21 @@ public class SlideViewExampleActivity extends BaseActivity {
     }
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.layout_activity_slide_view;
     }
 
     @Override
     protected void initView() {
         getSwipeBackLayout().setEnableGesture(false);
-        setToolBarTitle("滑动输入条(slideview)");
+        setTitle("滑动输入条(slideview)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(SlideViewExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(SlideViewExampleActivity.this, url);
         });

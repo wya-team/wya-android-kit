@@ -20,7 +20,7 @@
         app:fillet="true"
         app:textColor="#ffffff"
         app:textColorPress="#50ffffff"
-        app:wya_button_radius="10" />
+        app:radius="5dp" />
 
     <com.wya.uikit.button.WYAButton
         android:id="@+id/wya_button_video_player"
@@ -33,6 +33,6 @@
         app:fillet="true"
         app:textColor="#ffffff"
         app:textColorPress="#50ffffff"
-        app:wya_button_radius="10" />
+        app:radius="5dp" />
 
 </LinearLayout>

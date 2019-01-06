@@ -25,7 +25,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
     private VideoDetailInfo info;
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_video_player_example;
     }
 
@@ -34,14 +34,15 @@ public class VideoPlayerExampleActivity extends BaseActivity {
     protected void initView() {
         getSwipeBackLayout().setToChangeWindowTranslucent(false);
         contentView = ((ViewGroup) findViewById(android.R.id.content));
-        setToolBarTitle("视频播放(videoplayer)");
-        initImgLeft(0, false);
+        setTitle("视频播放(videoplayer)");
+        showLeftIcon(false);
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(VideoPlayerExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(VideoPlayerExampleActivity.this, url);
         });
@@ -62,7 +63,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
 
             @Override
             public void onFullScreen() {
-                initShowToolBar(false);
+                showToolBar(false);
                 contentView.setPadding(0, 0, 0, 0);
                 ScreenUtil.toggleScreenOrientation(VideoPlayerExampleActivity.this);
             }
@@ -104,7 +105,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
         if (!ScreenUtil.isPortrait(this)) {
             if (!videoPlayer.isLock()) {
                 contentView.setPadding(0, StatusBarUtil.getStatusBarHeight(this), 0, 0);
-                initShowToolBar(true);
+                showToolBar(true);
                 ScreenUtil.toggleScreenOrientation(this);
             }
         } else {

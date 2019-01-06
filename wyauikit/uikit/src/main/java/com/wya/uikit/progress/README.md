@@ -30,13 +30,13 @@ smallCircleEnable|是否头部圆角|boolean|false
 
 方法|说明
 ---|---
-setMaxProgress(double maxProgress)|设置进度的最大值
-setCurrentProgress(double currentProgress)|设置进度值
-setAnimation(double start, double end)|为进度设置动画（起始位置到结束位置的动画）
-setProgressArgbColor(boolean progressArgbColor)|颜色是否argb变化
-setProgressCircleColor(int progressCircleColor)|进度条的颜色
-setProgressStartColor(int progressCircleColor)|进度条起始颜色
-setProgressEndColor(int progressCircleColor)|进度条结束颜色
-setAnimationDuration(long animationDuration)|设置动画时长
-setCircleThickness(float circleThickness)|圆环厚度
-setSmallCircleEnable(boolean smallCircleEnable)|设置是否圆头
+setMaxProgress|设置进度的最大值
+setCurrentProgress|设置进度值
+setAnimation|为进度设置动画（起始位置到结束位置的动画）
+setProgressArgbColor|颜色是否argb变化
+setProgressCircleColor|进度条的颜色
+setProgressStartColor|进度条起始颜色
+setProgressEndColor|进度条结束颜色
+setAnimationDuration|设置动画时长
+setCircleThickness|圆环厚度
+setSmallCircleEnable|设置是否圆头

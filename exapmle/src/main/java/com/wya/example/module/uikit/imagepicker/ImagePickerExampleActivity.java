@@ -61,20 +61,21 @@ public class ImagePickerExampleActivity extends BaseActivity {
     private static final String TAG = "ImagePickerExampleActivity";
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_image_picker_example;
     }
 
     @Override
     protected void initView() {
 
-        setToolBarTitle("图片选择器(imagepicker)");
+        setTitle("图片选择器(imagepicker)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(ImagePickerExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(ImagePickerExampleActivity.this, url);
         });
@@ -305,7 +306,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
     private void initDialog() {
         //RecyclerView条目点击事件
         mWyaCustomDialog = new WYACustomDialog.Builder(this)
-                .setLayoutRes(R.layout.image_picker_choose, new CustomListener() {
+                .setLayoutId(R.layout.image_picker_choose, new CustomListener() {
                     @Override
                     public void customLayout(View v) {
                         TextView dialogCamera = v.findViewById(R.id.dialog_camera);

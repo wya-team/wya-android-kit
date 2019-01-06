@@ -21,13 +21,14 @@ public class TabBarExampleActivity extends BaseActivity {
     
     @Override
     protected void initView() {
-        setToolBarTitle("底部导航(tabbar)");
+        setTitle("底部导航(tabbar)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(TabBarExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(TabBarExampleActivity.this, url);
         });
@@ -102,7 +103,7 @@ public class TabBarExampleActivity extends BaseActivity {
     }
     
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_tab_bar_example;
     }
 }

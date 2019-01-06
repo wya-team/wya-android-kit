@@ -21,7 +21,6 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.example.module.example.view.CustomerExpandableListView;
-import com.wya.example.module.uikit.customitems.inputitem.InputItemExampleActivity;
 import com.wya.example.module.uikit.dialog.adapter.DialogExpandableListAdapter;
 import com.wya.example.module.uikit.dialog.adapter.DialogListAdapter;
 import com.wya.example.module.uikit.dialog.adapter.ShareDialogListAdapter;
@@ -35,9 +34,6 @@ import com.wya.utils.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -80,7 +76,7 @@ public class DialogExampleActivity extends BaseActivity {
     }
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_dialog_example;
     }
 
@@ -89,17 +85,18 @@ public class DialogExampleActivity extends BaseActivity {
     protected void initView() {
         type = getIntent().getIntExtra("type", 1);
         if (type == 1) {
-            setToolBarTitle("弹框(dialog)");
+            setTitle("弹框(dialog)");
         } else {
-            setToolBarTitle("活动指示器(dialog)");
+            setTitle("活动指示器(dialog)");
             tabLoading.setVisibility(View.VISIBLE);
         }
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(DialogExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(DialogExampleActivity.this, url);
         });
@@ -150,10 +147,10 @@ public class DialogExampleActivity extends BaseActivity {
                         .cancelShow(false)
                         .width(ScreenUtil.getScreenWidth(this) * 3 / 4)
                         .build();
-                wyaCustomDialog.setNoOnclickListener(() -> {
+                wyaCustomDialog.setNoClickListener(() -> {
                     wyaCustomDialog.dismiss();
                 });
-                wyaCustomDialog.setYesOnclickListener(() -> wyaCustomDialog.dismiss());
+                wyaCustomDialog.setYesClickListener(() -> wyaCustomDialog.dismiss());
                 wyaCustomDialog.show();
                 break;
             case "两个按钮":
@@ -164,10 +161,10 @@ public class DialogExampleActivity extends BaseActivity {
                         .message("内容")
                         .width(ScreenUtil.getScreenWidth(this) * 3 / 4)
                         .build();
-                wyaCustomDialog.setNoOnclickListener(() -> {
+                wyaCustomDialog.setNoClickListener(() -> {
                     wyaCustomDialog.dismiss();
                 });
-                wyaCustomDialog.setYesOnclickListener(() -> wyaCustomDialog.dismiss());
+                wyaCustomDialog.setYesClickListener(() -> wyaCustomDialog.dismiss());
                 wyaCustomDialog.show();
                 break;
             case "有文本编辑":
@@ -176,19 +173,19 @@ public class DialogExampleActivity extends BaseActivity {
                         .cancelTouchout(true)
                         .title("标题")
                         .canEdit(true)
-                        .editTextStr("编辑的内容")
-                        .hintEditTextStr("提示内容")
+                        .editText("编辑的内容")
+                        .hintEditText("提示内容")
                         .width(ScreenUtil.getScreenWidth(this) * 3 / 4)
                         .build();
-                wyaCustomDialog.setNoOnclickListener(() -> {
+                wyaCustomDialog.setNoClickListener(() -> {
                     wyaCustomDialog.dismiss();
                 });
-                wyaCustomDialog.setYesOnclickListener(() -> wyaCustomDialog.dismiss());
+                wyaCustomDialog.setYesClickListener(() -> wyaCustomDialog.dismiss());
                 wyaCustomDialog.show();
                 break;
             case "无标题列表":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
-                        .setLayoutRes(R.layout.way_dialog_custom_list_layout, new CustomListener() {
+                        .setLayoutId(R.layout.way_dialog_custom_list_layout, new CustomListener() {
                             @Override
                             public void customLayout(View v) {
                                 RecyclerView recyclerView = v.findViewById(R.id.recycle_view);
@@ -217,15 +214,15 @@ public class DialogExampleActivity extends BaseActivity {
                         .gravity(Gravity.CENTER)
                         .cancelTouchout(true)
                         .build();
-                wyaCustomDialog.setNoOnclickListener(() -> {
+                wyaCustomDialog.setNoClickListener(() -> {
                     wyaCustomDialog.dismiss();
                 });
-                wyaCustomDialog.setYesOnclickListener(() -> wyaCustomDialog.dismiss());
+                wyaCustomDialog.setYesClickListener(() -> wyaCustomDialog.dismiss());
                 wyaCustomDialog.show();
                 break;
             case "有标题列表":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
-                        .setLayoutRes(R.layout.way_dialog_custom_list_layout, new CustomListener() {
+                        .setLayoutId(R.layout.way_dialog_custom_list_layout, new CustomListener() {
                             @Override
                             public void customLayout(View v) {
                                 RecyclerView recyclerView = v.findViewById(R.id.recycle_view);
@@ -257,15 +254,15 @@ public class DialogExampleActivity extends BaseActivity {
                         .gravity(Gravity.CENTER)
                         .cancelTouchout(true)
                         .build();
-                wyaCustomDialog.setNoOnclickListener(() -> {
+                wyaCustomDialog.setNoClickListener(() -> {
                     wyaCustomDialog.dismiss();
                 });
-                wyaCustomDialog.setYesOnclickListener(() -> wyaCustomDialog.dismiss());
+                wyaCustomDialog.setYesClickListener(() -> wyaCustomDialog.dismiss());
                 wyaCustomDialog.show();
                 break;
             case "自定义":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
-                        .setLayoutRes(R.layout.way_dialog_custom_list_layout, new CustomListener() {
+                        .setLayoutId(R.layout.way_dialog_custom_list_layout, new CustomListener() {
                             @Override
                             public void customLayout(View v) {
                                 TextView title = v.findViewById(R.id.title);
@@ -279,15 +276,15 @@ public class DialogExampleActivity extends BaseActivity {
                         .gravity(Gravity.CENTER)
                         .cancelTouchout(true)
                         .build();
-                wyaCustomDialog.setNoOnclickListener(() -> {
+                wyaCustomDialog.setNoClickListener(() -> {
                     wyaCustomDialog.dismiss();
                 });
-                wyaCustomDialog.setYesOnclickListener(() -> wyaCustomDialog.dismiss());
+                wyaCustomDialog.setYesClickListener(() -> wyaCustomDialog.dismiss());
                 wyaCustomDialog.show();
                 break;
             case "底部弹出列表":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
-                        .setLayoutRes(R.layout.way_dialog_custom_list_layout, new CustomListener() {
+                        .setLayoutId(R.layout.way_dialog_custom_list_layout, new CustomListener() {
                             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                             @Override
                             public void customLayout(View v) {
@@ -325,15 +322,15 @@ public class DialogExampleActivity extends BaseActivity {
                         .gravity(Gravity.BOTTOM)
                         .cancelTouchout(true)
                         .build();
-                wyaCustomDialog.setNoOnclickListener(() -> {
+                wyaCustomDialog.setNoClickListener(() -> {
                     wyaCustomDialog.dismiss();
                 });
-                wyaCustomDialog.setYesOnclickListener(() -> wyaCustomDialog.dismiss());
+                wyaCustomDialog.setYesClickListener(() -> wyaCustomDialog.dismiss());
                 wyaCustomDialog.show();
                 break;
             case "底部弹出分享":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
-                        .setLayoutRes(R.layout.way_dialog_custom_share_layout, new CustomListener() {
+                        .setLayoutId(R.layout.way_dialog_custom_share_layout, new CustomListener() {
                             @Override
                             public void customLayout(View v) {
                                 RecyclerView recyclerView = v.findViewById(R.id.recycle_view);
@@ -371,10 +368,10 @@ public class DialogExampleActivity extends BaseActivity {
                         .gravity(Gravity.BOTTOM)
                         .cancelTouchout(true)
                         .build();
-                wyaCustomDialog.setNoOnclickListener(() -> {
+                wyaCustomDialog.setNoClickListener(() -> {
                     wyaCustomDialog.dismiss();
                 });
-                wyaCustomDialog.setYesOnclickListener(() -> wyaCustomDialog.dismiss());
+                wyaCustomDialog.setYesClickListener(() -> wyaCustomDialog.dismiss());
                 wyaCustomDialog.show();
                 break;
 
@@ -386,7 +383,7 @@ public class DialogExampleActivity extends BaseActivity {
 
             case "系统加载":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
-                        .setLayoutRes(R.layout.wya_dialog_system_loading, new CustomListener() {
+                        .setLayoutId(R.layout.wya_dialog_system_loading, new CustomListener() {
                             @Override
                             public void customLayout(View v) {
 
@@ -401,7 +398,7 @@ public class DialogExampleActivity extends BaseActivity {
                 break;
             case "自定义加载":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
-                        .setLayoutRes(R.layout.wya_dialog_custom_loading, new CustomListener() {
+                        .setLayoutId(R.layout.wya_dialog_custom_loading, new CustomListener() {
                             @Override
                             public void customLayout(View v) {
                                 ImageView imageView = v.findViewById(R.id.round_image);

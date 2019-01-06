@@ -38,7 +38,7 @@ public class WYAPopupWindow extends PopupWindow {
     private RecyclerView recyclerView;
     private PopupWindListAdapter popupWindListAdapter;
     //列表点击监听
-    private PopupWindowListOnclickListener popupWindowListOnclickListener;
+    private ListItemClickListener listItemClickListener;
 
     private static final long DURATION = 500;
     private static final float START_ALPHA = 0.7f;
@@ -47,21 +47,20 @@ public class WYAPopupWindow extends PopupWindow {
     private boolean bright = false;
     private AnimUtil animUtil;
 
-
     /**
      * 设置确定按钮被点击的接口
      */
-    public interface PopupWindowListOnclickListener {
-        void onPopupWindowListClick(int position);
+    public interface ListItemClickListener {
+        void onListItemClick(int position);
     }
 
     /**
      * 设置列表点击事件
      *
-     * @param popupWindowListOnclickListener
+     * @param listItemClickListener
      */
-    public void setPopupWindowListOnclickListener(PopupWindowListOnclickListener popupWindowListOnclickListener) {
-        this.popupWindowListOnclickListener = popupWindowListOnclickListener;
+    public void setListItemClickListener(ListItemClickListener listItemClickListener) {
+        this.listItemClickListener = listItemClickListener;
     }
 
 
@@ -89,7 +88,7 @@ public class WYAPopupWindow extends PopupWindow {
             popupWindListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                    popupWindowListOnclickListener.onPopupWindowListClick(position);
+                    listItemClickListener.onListItemClick(position);
                 }
             });
         } else {
@@ -157,12 +156,12 @@ public class WYAPopupWindow extends PopupWindow {
      * 显示popupwindow
      *
      * @param view
-     * @param xoff
-     * @param yoff
+     * @param offsetX
+     * @param offsetY
      */
-    public void show(View view, int xoff, int yoff) {
+    public void show(View view, int offsetX, int offsetY) {
         toggleBright(true);
-        this.showAsDropDown(view, xoff, yoff);
+        this.showAsDropDown(view, offsetX, offsetY);
     }
 
     /**

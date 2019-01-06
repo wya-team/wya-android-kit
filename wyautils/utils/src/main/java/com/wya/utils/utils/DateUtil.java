@@ -360,7 +360,6 @@ public class DateUtil {
         list.add(DATE_TIME_FORMAT_YYYYMMDD_HH_MI);
         list.add(DATE_TIME_FORMAT_YYYYMMDDHHMISS);
         list.add(DATE_FORMAT_YYYY_MM_DD);
-        //list.add(DATE_FORMAT_YY_MM_DD);
         list.add(DATE_FORMAT_YYYYMMDD);
         list.add(DATE_FORMAT_YYYY_MM);
         list.add(DATE_FORMAT_YYYYMM);
@@ -721,11 +720,7 @@ public class DateUtil {
         list.add(DATE_TIME_FORMAT_YYYYMMDD_HH_MI);
         list.add(DATE_TIME_FORMAT_YYYYMMDDHHMISS);
         list.add(DATE_FORMAT_YYYY_MM_DD);
-        //list.add(DATE_FORMAT_YY_MM_DD);
         list.add(DATE_FORMAT_YYYYMMDD);
-        //list.add(DATE_FORMAT_YYYY_MM);
-        //list.add(DATE_FORMAT_YYYYMM);
-        //list.add(DATE_FORMAT_YYYY);
 
         for (Iterator iter = list.iterator(); iter.hasNext(); ) {
             String format = (String) iter.next();

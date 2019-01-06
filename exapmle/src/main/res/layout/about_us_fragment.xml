@@ -82,12 +82,12 @@
             app:contentHint=""
             app:contentText=""
             app:contentTextColor="@color/black"
-            app:leftTvColor="@color/black"
-            app:leftTvText="WYAKit GitHub地址"
-            app:lineViewColor="#999999"
+            app:leftTextColor="@color/black"
+            app:leftText="WYAKit GitHub地址"
+            app:lineColor="#999999"
             app:rightCanEdit="false"
             app:rightImage="@drawable/icon_right_arrow"
-            app:rightTextStr=""
+            app:rightText=""
             app:rightTextColor="#868686" />
 
         <com.wya.uikit.customitems.WYAInputItem
@@ -99,12 +99,12 @@
             app:contentHint=""
             app:contentText=""
             app:contentTextColor="@color/black"
-            app:leftTvColor="@color/black"
-            app:leftTvText="参与贡献"
-            app:lineViewColor="#999999"
+            app:leftTextColor="@color/black"
+            app:leftText="参与贡献"
+            app:lineColor="#999999"
             app:rightCanEdit="false"
             app:rightImage="@drawable/icon_right_arrow"
-            app:rightTextStr=""
+            app:rightText=""
             app:rightTextColor="#868686" />
 
         <com.wya.uikit.customitems.WYAInputItem
@@ -116,12 +116,12 @@
             app:contentHint=""
             app:contentText=""
             app:contentTextColor="@color/black"
-            app:leftTvColor="@color/black"
-            app:leftTvText="版本更新"
-            app:lineViewColor="#f4f4f4"
+            app:leftTextColor="@color/black"
+            app:leftText="版本更新"
+            app:lineColor="#f4f4f4"
             app:rightCanEdit="false"
             app:rightImage="@drawable/icon_right_arrow"
-            app:rightTextStr=""
+            app:rightText=""
             app:rightTextColor="#868686" />
 
 

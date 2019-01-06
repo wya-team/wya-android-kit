@@ -32,20 +32,21 @@ public class OptionMenuExampleActivity extends BaseActivity {
     public static final String TAG = "OptionMenuExampleActivity";
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_choice_menu_example;
     }
     
     @Override
     protected void initView() {
-        setToolBarTitle("菜单(optionmenu)");
+        setTitle("菜单(optionmenu)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(OptionMenuExampleActivity.this, ReadmeActivity.class)
                     .putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(OptionMenuExampleActivity.this, url);
         });

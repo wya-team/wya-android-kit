@@ -43,20 +43,21 @@ public class NoticeExampleActivity extends BaseActivity {
     }
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.layout_activity_notice_view;
     }
 
     @Override
     protected void initView() {
-        setToolBarTitle("通告栏(notice)");
+        setTitle("通告栏(notice)");
         String url = getIntent().getStringExtra("url");
         noticeText = getResources().getString(R.string.string_uikit_notice_text);
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(NoticeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(NoticeExampleActivity.this, url);
         });

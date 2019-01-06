@@ -26,7 +26,7 @@ public class SegmentedControlExampleActivity extends BaseActivity {
     WYASegmentedView mSegmentEnable;
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_segmented_control_example;
     }
 
@@ -37,13 +37,14 @@ public class SegmentedControlExampleActivity extends BaseActivity {
 
         initTextStyle();
 
-        setToolBarTitle("分段控制器(segmentedcontrol)");
+        setTitle("分段控制器(segmentedcontrol)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help,true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(SegmentedControlExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(SegmentedControlExampleActivity.this, url);
         });

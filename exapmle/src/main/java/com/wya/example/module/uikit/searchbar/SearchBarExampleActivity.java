@@ -29,13 +29,14 @@ public class SearchBarExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setToolBarTitle("搜索栏(searchBar)");
+        setTitle("搜索栏(searchBar)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(SearchBarExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(SearchBarExampleActivity.this, url);
         });
@@ -43,7 +44,7 @@ public class SearchBarExampleActivity extends BaseActivity {
     }
 
     private void setWYASearchBar() {
-        wyaSearchBar.setOnClickCancelListener(new WYASearchBar.OnTvClickListener() {
+        wyaSearchBar.setOnClickCancelListener(new WYASearchBar.OnTextClickListener() {
             @Override
             public void onClickCancel() {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -67,7 +68,7 @@ public class SearchBarExampleActivity extends BaseActivity {
     }
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_search_bar_example;
     }
 

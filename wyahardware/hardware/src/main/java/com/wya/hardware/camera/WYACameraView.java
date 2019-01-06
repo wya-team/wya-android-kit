@@ -463,7 +463,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     }
 
 
-    public void setWyaCameraListener(WYACameraListener wyaCameraListener) {
+    public void setCameraListener(WYACameraListener wyaCameraListener) {
         this.wyaCameraListener = wyaCameraListener;
     }
 

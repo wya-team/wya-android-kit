@@ -21,20 +21,21 @@ public class ToolBarExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setToolBarTitle("导航栏(toolbar)");
+        setTitle("导航栏(toolbar)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(ToolBarExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(ToolBarExampleActivity.this, url);
         });
     }
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_tool_bar_example;
     }
 
@@ -42,55 +43,65 @@ public class ToolBarExampleActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.radio_toolbar_show:
-                initShowToolBar(true);
+                showToolBar(true);
                 break;
             case R.id.radio_toolbar_unshow:
-                initShowToolBar(false);
+                showToolBar(false);
                 break;
             case R.id.radio_red:
-                initToolBarBgColor(this.getResources().getColor(R.color.red), false);
+                setBackgroundColor(this.getResources().getColor(R.color.red), false);
                 break;
             case R.id.radio_blue:
-                initToolBarBgColor(this.getResources().getColor(R.color.blue), false);
+                setBackgroundColor(this.getResources().getColor(R.color.blue), false);
                 break;
             case R.id.radio_greeen:
-                initToolBarBgColor(this.getResources().getColor(R.color.green), true);
+                setBackgroundColor(this.getResources().getColor(R.color.green), true);
                 break;
             case R.id.radio_left_show:
-                initImgLeft(R.drawable.icon_backblue, true);
+                showLeftIcon(true);
                 break;
             case R.id.radio_left_unshow:
-                initImgLeft(R.drawable.icon_backblue, false);
+                showLeftIcon(false);
                 break;
             case R.id.radio_tv_left_show:
-                initTvLeft("返回", R.color.white, 14, true);
+                showLeftText(true);
+                setLeftText("返回");
                 break;
             case R.id.radio_tv_left_unshow:
-                initTvLeft("返回", R.color.white, 14, false);
+                showLeftText(false);
+                setLeftText("返回");
                 break;
             case R.id.radio_right_show:
-                initImgRight(R.drawable.icon_search, true);
+                showSecondRightIcon(true);
+                setSecondRightIcon(R.drawable.icon_search);
                 break;
             case R.id.radio_right_unshow:
-                initImgRight(R.drawable.icon_search, false);
+                showSecondRightIcon(false);
+                setSecondRightIcon(R.drawable.icon_search);
                 break;
             case R.id.radio_right_anther_show:
-                initImgRightAnther(R.drawable.iocn_saoyisao, true);
+                showFirstRightIcon(true);
+                setFirstRightIcon(R.drawable.iocn_saoyisao);
                 break;
             case R.id.radio_right_anther_unshow:
-                initImgRightAnther(R.drawable.iocn_saoyisao, false);
+                showFirstRightIcon(false);
+                setFirstRightIcon(R.drawable.iocn_saoyisao);
                 break;
             case R.id.radio_tv_right_show:
-                initTvRight("右边", R.color.white, 14, true);
+                showFirstRightText(true);
+                setFirstRightText("右1");
                 break;
             case R.id.radio_tv_right_unshow:
-                initTvRight("右边", R.color.white, 14, false);
+                showFirstRightText(false);
+                setFirstRightText("右1");
                 break;
             case R.id.radio_tv_right_anther_show:
-                initTvRightAnther("右边", R.color.white, 14, true);
+                showSecondRightText(true);
+                setSecondRightText("右2");
                 break;
             case R.id.radio_tv_right_anther_unshow:
-                initTvRightAnther("右边", R.color.white, 14, false);
+                showSecondRightText(false);
+                setSecondRightText("右2");
                 break;
             default:
                 break;

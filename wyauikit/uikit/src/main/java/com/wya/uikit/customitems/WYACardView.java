@@ -20,7 +20,7 @@ import com.wya.uikit.R;
 /**
  * @date: 2018/11/29 11:56
  * @author: Chunjiang Mao
- * @classname:  WYACardView
+ * @classname: WYACardView
  * @describe: 自定义CardView
  */
 
@@ -54,6 +54,8 @@ public class WYACardView extends LinearLayout {
     private ColorStateList rightTextColor = null;
     private ColorStateList contentTextColor = null;
     private ColorStateList assistTextColor = null;
+
+    private float radius;
 
 
     public WYACardView(Context context) {
@@ -118,7 +120,7 @@ public class WYACardView extends LinearLayout {
                 setBackgroundDrawable(gradientDrawable);
             }
             //设置圆角矩形的角度
-            float radius = a.getFloat(R.styleable.WYACardView_wyaCardRadius, 0);
+            radius = a.getDimension(R.styleable.WYACardView_radius, 0);
             if (radius != 0) {
                 setRadius(radius);
             }

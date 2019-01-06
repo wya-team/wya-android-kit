@@ -37,19 +37,20 @@ public class QRCodeExampleActivity extends BaseActivity {
     public static final String TAG = "QRCodeExampleActivity";
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_qrcode_example;
     }
 
     @Override
     protected void initView() {
-        setToolBarTitle("生成二维码");
+        setTitle("生成二维码");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(QRCodeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(QRCodeExampleActivity.this, url);
         });

@@ -20,7 +20,7 @@ import com.wya.uikit.R;
 /**
  * @date: 2018/12/14 10:26
  * @author: Chunjiang Mao
- * @classname:  WYACustomEdittxet
+ * @classname: WYACustomEdittxet
  * @describe: 自定义文输入框
  */
 
@@ -37,11 +37,11 @@ public class WYACustomEditText extends RelativeLayout {
     //编辑框文字颜色
     private ColorStateList editTextColor = null;
     //提示文字内容
-    private String hintTextStr = null;
+    private String hintText = null;
     //编辑框文字内容
-    private String editTextStr = null;
+    private String editText = null;
     //编辑框文本提示内容
-    private String hintEditStr = null;
+    private String hintEditText = null;
 
     private int maxNum;
 
@@ -57,47 +57,47 @@ public class WYACustomEditText extends RelativeLayout {
         initView();
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WYACustomEditText);
         if (a != null) {
-            gradientDrawable = (GradientDrawable) a.getDrawable(R.styleable.WYACustomEditText_wyaBackGroundImage);
+            gradientDrawable = (GradientDrawable) a.getDrawable(R.styleable.WYACustomEditText_backGroundImage);
             if (gradientDrawable != null) {
-                setMyBackgroundDrawable(gradientDrawable);
+                setBackgroundDrawable(gradientDrawable);
             }
 
-            countTextColor = a.getColorStateList(R.styleable.WYACustomEditText_wyaCountTextColor);
+            countTextColor = a.getColorStateList(R.styleable.WYACustomEditText_countTextColor);
             if (countTextColor != null) {
                 setCountTextColor(countTextColor);
             }
 
-            hintEditColor = a.getColorStateList(R.styleable.WYACustomEditText_wyaHintEditColor);
+            hintEditColor = a.getColorStateList(R.styleable.WYACustomEditText_hintEditColor);
             if (hintEditColor != null) {
                 setHintEditColor(hintEditColor);
             }
 
-            hintTextColor = a.getColorStateList(R.styleable.WYACustomEditText_wyaHintTextColor);
+            hintTextColor = a.getColorStateList(R.styleable.WYACustomEditText_hintTextColor);
             if (hintTextColor != null) {
                 setHintTextColor(hintTextColor);
             }
 
-            editTextColor = a.getColorStateList(R.styleable.WYACustomEditText_wyaEditTextColor);
+            editTextColor = a.getColorStateList(R.styleable.WYACustomEditText_editTextColor);
             if (editTextColor != null) {
                 setEditTextColor(editTextColor);
             }
 
-            hintTextStr = a.getString(R.styleable.WYACustomEditText_wyaHintTextStr);
-            if (hintTextStr != null && !"".equals(hintTextStr)) {
-                setHintTextStr(hintTextStr);
+            hintText = a.getString(R.styleable.WYACustomEditText_hintText);
+            if (hintText != null && !"".equals(hintText)) {
+                setHintText(hintText);
             }
 
-            editTextStr = a.getString(R.styleable.WYACustomEditText_wyaEditTextStr);
-            if (editTextStr != null) {
-                setEditTextStr(editTextStr);
+            editText = a.getString(R.styleable.WYACustomEditText_editText);
+            if (editText != null) {
+                setEditText(editText);
             }
 
-            hintEditStr = a.getString(R.styleable.WYACustomEditText_wyaHintEditStr);
-            if (hintEditStr != null) {
-                setHintEditStr(hintEditStr);
+            hintEditText = a.getString(R.styleable.WYACustomEditText_hintEditText);
+            if (hintEditText != null) {
+                setHintEditText(hintEditText);
             }
 
-            maxNum = a.getInt(R.styleable.WYACustomEditText_wyaMaxNum, 100);
+            maxNum = a.getInt(R.styleable.WYACustomEditText_maxNum, 100);
             setTextNumCount();
             a.recycle();
         }
@@ -138,7 +138,7 @@ public class WYACustomEditText extends RelativeLayout {
                     //设置新光标所在的位置
                     Selection.setSelection(editable, selEndIndex);
                 }
-                editTextStr = editable.toString();
+                editText = editable.toString();
                 tvCountWyaCustomEditText.setText(etWyaCustomEditText.getText().toString().length() + "/" + maxNum);
             }
         });
@@ -149,7 +149,7 @@ public class WYACustomEditText extends RelativeLayout {
      *
      * @param gradientDrawable
      */
-    private void setMyBackgroundDrawable(GradientDrawable gradientDrawable) {
+    private void setBackgroundDrawable(GradientDrawable gradientDrawable) {
         this.gradientDrawable = gradientDrawable;
         wyaCustomEditTextParent.setBackgroundDrawable(gradientDrawable);
     }
@@ -157,32 +157,32 @@ public class WYACustomEditText extends RelativeLayout {
     /**
      * 设置编辑框文本提示内容
      *
-     * @param hintEditStr
+     * @param hintEditText
      */
-    private void setHintEditStr(String hintEditStr) {
-        this.hintEditStr = hintEditStr;
-        etWyaCustomEditText.setHint(hintEditStr);
+    private void setHintEditText(String hintEditText) {
+        this.hintEditText = hintEditText;
+        etWyaCustomEditText.setHint(hintEditText);
     }
 
     /**
      * 设置编辑框文本
      *
-     * @param editTextStr
+     * @param editText
      */
-    private void setEditTextStr(String editTextStr) {
-        this.editTextStr = editTextStr;
-        etWyaCustomEditText.setText(editTextStr);
+    private void setEditText(String editText) {
+        this.editText = editText;
+        etWyaCustomEditText.setText(editText);
     }
 
     /**
      * 设置提示文本
      *
-     * @param hintTextStr
+     * @param hintText
      */
-    private void setHintTextStr(String hintTextStr) {
-        this.hintTextStr = hintTextStr;
+    private void setHintText(String hintText) {
+        this.hintText = hintText;
         tvHintWyaCustomEditText.setVisibility(View.VISIBLE);
-        tvHintWyaCustomEditText.setText(hintTextStr);
+        tvHintWyaCustomEditText.setText(hintText);
     }
 
     /**
@@ -226,12 +226,12 @@ public class WYACustomEditText extends RelativeLayout {
     }
 
     /**
-     * 获取输入文本
+     * 获取输入文本内容
      *
      * @return
      */
-    private String getEditTextStr() {
-        return editTextStr;
+    private String getEditText() {
+        return editText;
     }
 
 

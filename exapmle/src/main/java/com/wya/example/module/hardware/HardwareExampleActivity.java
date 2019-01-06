@@ -14,7 +14,7 @@ import butterknife.OnClick;
 public class HardwareExampleActivity extends BaseActivity {
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_harware;
     }
 

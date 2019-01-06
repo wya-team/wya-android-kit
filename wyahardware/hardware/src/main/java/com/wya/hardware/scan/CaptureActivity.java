@@ -207,12 +207,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
                         cameraManager.setManualCameraId(cameraId);
                     }
                 }
-
-//                String customPromptMessage = intent.getStringExtra(Intents.Scan.PROMPT_MESSAGE);
-//                if (customPromptMessage != null) {
-//                    statusView.setText(customPromptMessage);
-//                }
-
             } else if (dataString != null &&
                     dataString.contains("http://www.google") &&
                     dataString.contains("/m/products/scan")) {

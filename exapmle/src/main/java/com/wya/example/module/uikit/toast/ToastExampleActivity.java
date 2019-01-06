@@ -30,20 +30,21 @@ public class ToastExampleActivity extends BaseActivity {
     
     @Override
     protected void initView() {
-        setToolBarTitle("轻提示(toast)");
+        setTitle("轻提示(toast)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(ToastExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(ToastExampleActivity.this, url);
         });
     }
     
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_toast_example;
     }
     
@@ -60,19 +61,19 @@ public class ToastExampleActivity extends BaseActivity {
                 getWyaToast().showLong("长时间提示");
                 break;
             case R.id.tv_custom_success:
-                getWyaToast().showToastWithImg("成功提示", R.drawable.icon_succesful, gravity);
+                getWyaToast().showToastWithImage("成功提示", R.drawable.icon_succesful, gravity);
                 break;
             case R.id.tv_custom_fail:
-                getWyaToast().showToastWithImg("失败提示", R.drawable.icon_fail, gravity);
+                getWyaToast().showToastWithImage("失败提示", R.drawable.icon_fail, gravity);
                 break;
             case R.id.tv_custom_warn:
-                getWyaToast().showToastWithImg("警告提示", R.drawable.icon_waring, gravity);
+                getWyaToast().showToastWithImage("警告提示", R.drawable.icon_waring, gravity);
                 break;
             case R.id.tv_normal_custom:
-                getWyaToast().showToastWithImg("自定义普通文字提示", 0, gravity);
+                getWyaToast().showToastWithImage("自定义普通文字提示", 0, gravity);
                 break;
             case R.id.tv_more_custom_text:
-                getWyaToast().showToastWithImg("我有很多字要提示,需要换行显示，哈哈哈哈哈哈哈。。。", 0, gravity);
+                getWyaToast().showToastWithImage("我有很多字要提示,需要换行显示，哈哈哈哈哈哈哈。。。", 0, gravity);
                 break;
             case R.id.radio_center:
                 gravity = Gravity.CENTER;

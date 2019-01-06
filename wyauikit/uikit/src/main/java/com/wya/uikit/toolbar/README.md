@@ -6,49 +6,66 @@
 
 属性 | 说明 | 类型 | 默认值
 --- | ---  |  ---  |  ---
-showToolBar | 是否显示标题栏 | boolean | true
-toolbarBgColorValue | 标题栏背景颜色 | int | Color.parseColor("#000000")
-isShowTitle | 是否展示标题  | boolean | true
-titleStr | 标题内容 | String | "标题"
-titleTextSize | 标题文字大小 | int | 16
-titleTextColorValue | 标题文字颜色 |  int | Color.parseColor("#ffffff")
-isShowTvLeft | 是否显示左边文字 | boolean | false
-tvLeftStr | 左边文字内容 | String| "左边"
-tvLeftTextSize | 左边文字大小 |int| 14
-tvLeftTextColorValue | 左边文字颜色 |  Color.parseColor("#ffffff")
-isShowImgLeft | 左边图片是否显示 | boolean | true
-imgLeftRes | 左边图片资源 | int | null
-isShowTvRight | 是否显示右边文字| boolean | false
-tvRightStr | 右边文字内容 | String| "右边"
-tvRightTextColorValue | 右边文字的颜色 |  Color.parseColor("#ffffff")
-isShowImgRight | 是否显示右边第一张图片| boolean | false
-isShowImgRightAnther | 是否显示右边第二张图片| boolean | false
-imgRightRes | 右边第一张图片| int | null
-imgRightResAnther | 右边第二章图片资源 | int | null
-isLight | 是否是明亮的标题栏 | boolean | false
+show | 是否显示标题栏 | boolean | true
+backgroundColor | 标题栏颜色 | int | Color.parseColor("#ffffff ")
+isLight | 是否是明亮的标题栏  | boolean | false
+title | 标题文字 | String | ""
+titleSize | 标题大小 | int | 16
+titleColor | 标题颜色 |  int | Color.parseColor("#000000")
+showLeftText | 左边文字是否显示 | boolean | false
+leftText | 左边文字 | String | ""
+leftTextSize | 左边文字大小 |int| 14
+leftTextColor | 左边文字颜色 |int|  Color.parseColor("#000000")
+showLeftIcon | 是否显示左图标 | boolean | true
+leftIcon | 左边图片资源 | int | -
+showFirstRightText | 显示右边第一个文字| boolean | false
+firstRightText | 右边第一个文字内容 | String| ""
+firstRightTextColor | 右边第一个文字顏色 |  int |  Color.parseColor("#000000")
+firstRightTextSize | 右边第一个文字大小 |  int |  14
+showSecondRightText | 是否显示右边第二个文字| boolean | false
+secondRightText | 右边第二个文字内容 | String| ""
+secondRightTextColor | 右边第二个文字顏色 |  int |  Color.parseColor("#000000")
+secondRightTextSize | 右边第二个文字大小 |  int |  14
+showFirstRightIcon | 是否显示右边第一张图片| boolean | false
+firstRightIcon | 右边第一张图片| int | -
+showSecondRightIcon | 是否显示右边第二张图片 | boolean | false
+secondRightIcon | 右边第二章图片资源 | int | -
 
 
 ## 用法说明
-- 项目中BaseActivity继承BaseToolBarActivity添加标题栏ToolBar,然后调用initWYAActionBarDefault方法初始化标题栏
+- 项目中BaseActivity继承BaseToolBarActivity添加标题栏ToolBar
 
 - 方法
 
 方法|说明
 ---|---
-initWYAActionBarDefault(boolean showToolBar, String toolbarBgColorValue, boolean isShowTitle, String titleStr, int titleTextSize, String titleTextColorValue, boolean isShowTvLeft, String tvLeftStr, int tvLeftTextSize, String tvLeftTextColorValue, boolean isShowImgLeft, int imgLeftRes, boolean isShowTvRight, String tvRightStr, int tvRightTextSize, String tvRightTextColorValue, boolean isShowImgRight, boolean isShowImgRightAnther, int imgRightRes, int imgRightResAnther)|初始化标题（默认标题， 在baseActivity中调用）
-initToolBarBgColor(String toolbar_bg_color_value)|修改标题栏背景颜色
-initToolBarTitle(String titleStr, int titleTextSize, int titleTextColor, boolean showTitle)|修改标题
-setToolBarTitle(String titleStr)|只修改标题内容
-initImgLeft(int imgLeftRes, boolean showImgLeft)|修改标题栏左边图标
-initToolBarBgColor(int toolbarBgColorValue, boolean isLight)|设置标题栏颜色和状态栏颜色
-initImgRight(int imgRightRes, boolean showImgRight)|设置标题右边的图片
-initImgRightAnther(int imgRightAntherRes, boolean showImgAnther)|设置标题右边另外的图片
-initTvRight(String tvRightStr, int tvRightTextColor, int tvRightTextSize, boolean showTvRight) |设置标题右边的文字
-initTvRightAnther(String tvRightAntherStr, int tvRightAntherTextColor, int tvRightAntherTextSize, boolean showTvRightAnther) |设置标题右边的文字
-initShowToolBar(boolean showTitle)|设置是否显示标题
-setLeftImgOnclickListener(onLeftImgOnclickListener onLeftImgOnclickListener)|设置左边图片点击事件内容和监听
-setLeftTvOnclickListener(onLeftTvOnclickListener onLeftTvOnclickListener)|设置左边文字点击事件内容和监听
-setRightTvOnclickListener(onRightTvOnclickListener onRightTvOnclickListener)|设置右边文字点击事件
-setRightTvAntherOnclickListener(onRightTvAntherOnclickListener onRightTvAntherOnclickListener)|设置右边第二个点击事件监听
-setRightImageOnclickListener(onRightImageOnclickListener onRightImageOnclickListener)|设置右边图片点击事件监听
-setRightImageAntherOnclickListener(onRightImageAntherOnclickListener onRightImageAntherOnclickListener)|设置右边第二个图片点击事件监听
+setTitle | 设置标题内容
+setTitleColor | 设置标题颜色
+setTitleSize | 设置标题字体大小
+setLeftText | 设置标题左边文字内容
+setLeftTextSize | 设置标题左边文字大小
+setLeftTextColor | 设置标题左边文字颜色
+showLeftText | 设置是否显示左边文字
+setLeftIcon | 设置标题左边图标
+showLeftIcon | 设置标题左边图标显示
+showFirstRightText | 设置右边第一文字显示
+setFirstRightText | 设置右边第一文字内容
+setFirstRightTextColor | 设置右边第一文字颜色
+setFirstRightTextSize | 设置右边第一文字大小
+showSecondRightText | 设置右边第二文字显示
+setSecondRightText | 设置右边第二文字内容
+setSecondRightTextColor | 设置右边第二文字颜色
+setSecondRightTextSize | 设置右边第二文字大小
+setFirstRightIcon | 设置标题右边第一个图标
+showFirstRightIcon | 设置标题右边第一个图标显示
+setSecondRightIcon | 设置标题右边第二个图标
+showSecondRightIcon | 设置标题右边第二个图标显示
+setLeftIconClickListener | 设置左边图标点击事件监听
+setLeftTextClickListener | 设置左边文字点击事件监听
+setRightFirstTextClickListener | 设置右边第一个文字点击事件监听
+setRightSecondTextClickListener | 设置右边第二个文字点击事件监听
+setRightFirstIconClickListener | 设置右边第一个图片点击事件监听
+setRightSecondIconClickListener | 设置右边第二个图片点击事件监听
+setRightSecondIconLongClickListener | 设置右边第二个图片长按点击事件监听
+
+

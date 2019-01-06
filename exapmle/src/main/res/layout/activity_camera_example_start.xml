@@ -78,7 +78,7 @@
         app:fillet="true"
         app:textColor="#ffffff"
         app:textColorPress="#50ffffff"
-        app:wya_button_radius="20" />
+        app:radius="5dp" />
     <TextView
         android:id="@+id/tv_path"
         android:layout_width="wrap_content"

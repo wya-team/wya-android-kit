@@ -30,7 +30,6 @@ public class WYAInputItem extends LinearLayout {
      * 背景色
      */
     private int backColor = 0;
-    private LinearLayout inputItemBg;
 
     /**
      * 左边图片
@@ -74,7 +73,7 @@ public class WYAInputItem extends LinearLayout {
      * 底部线条分隔先颜色
      */
     private View lineView;
-    private String lineViewColor = null;
+    private String lineColor = null;
 
     private static final int INPUT_TYPE_PHONE = 1;
     private static final int INPUT_TYPE_CARD = 2;
@@ -111,13 +110,13 @@ public class WYAInputItem extends LinearLayout {
 
 
             //设置左边文字的颜色
-            leftTextColor = a.getColorStateList(R.styleable.WYAInputItem_leftTvColor);
+            leftTextColor = a.getColorStateList(R.styleable.WYAInputItem_leftTextColor);
             if (leftTextColor != null) {
                 setLeftTextColor(leftTextColor);
             }
 
             //设置左边文字内容
-            leftText = a.getString(R.styleable.WYAInputItem_leftTvText);
+            leftText = a.getString(R.styleable.WYAInputItem_leftText);
             if (leftText != null) {
                 setLeftText(leftText);
             }
@@ -152,7 +151,7 @@ public class WYAInputItem extends LinearLayout {
 
 
             //设置右边文字内容
-            rightText = a.getString(R.styleable.WYAInputItem_rightTextStr);
+            rightText = a.getString(R.styleable.WYAInputItem_rightText);
             if (rightText != null) {
                 setRightText(rightText);
             }
@@ -174,9 +173,9 @@ public class WYAInputItem extends LinearLayout {
             }
 
             //设置分割线的颜色
-            lineViewColor = a.getString(R.styleable.WYAInputItem_lineViewColor);
-            if (lineViewColor != null) {
-                setLineViewColor(lineViewColor);
+            lineColor = a.getString(R.styleable.WYAInputItem_lineColor);
+            if (lineColor != null) {
+                setLineColor(lineColor);
             }
 
             a.recycle();
@@ -670,11 +669,11 @@ public class WYAInputItem extends LinearLayout {
     /**
      * 设置分隔线颜色
      *
-     * @param lineViewColor
+     * @param lineColor
      */
-    private void setLineViewColor(String lineViewColor) {
-        this.lineViewColor = lineViewColor;
-        lineView.setBackgroundColor(Color.parseColor(lineViewColor));
+    private void setLineColor(String lineColor) {
+        this.lineColor = lineColor;
+        lineView.setBackgroundColor(Color.parseColor(lineColor));
     }
 
     /**
@@ -705,7 +704,6 @@ public class WYAInputItem extends LinearLayout {
     }
 
     private void initView() {
-        inputItemBg = findViewById(R.id.input_item_bg);
         tvInputItemLeft = findViewById(R.id.tv_input_item_left);
         imgInputItemLeft = findViewById(R.id.img_input_item_left);
         imgInputItemRight = findViewById(R.id.img_input_item_right);

@@ -20,13 +20,13 @@ public class HelperExampleActivity extends BaseActivity {
     TextView tvAppInfo;
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_helper;
     }
 
     @Override
     protected void initView() {
-        setToolBarTitle("基本信息");
+        setTitle("基本信息");
         try {
             StringBuffer stringBuffer = new StringBuffer();
             for (int i = 0; i < PhoneUtil.getInstance().getAppPermissions(getApplicationContext()).length; i++) {

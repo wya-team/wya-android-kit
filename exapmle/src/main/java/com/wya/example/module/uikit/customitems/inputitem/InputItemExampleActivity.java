@@ -19,20 +19,21 @@ public class InputItemExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         AndroidBugWorkaround.assistActivity(findViewById(android.R.id.content));
-        setToolBarTitle("文本输入(customitems)");
+        setTitle("文本输入(customitems)");
         String url = getIntent().getStringExtra("url");
-        initImgRightAnther(R.drawable.icon_help, true);
-        setRightImageAntherOnclickListener(view -> {
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
             startActivity(new Intent(InputItemExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightImageAntherOnLongClickListener(view -> {
+        setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(InputItemExampleActivity.this, url);
         });
     }
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_input_item_example;
 
     }

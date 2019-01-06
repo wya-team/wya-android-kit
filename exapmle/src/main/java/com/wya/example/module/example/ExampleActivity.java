@@ -31,11 +31,11 @@ public class ExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        initShowToolBar(false);
+        showToolBar(false);
         initFragment();
         setTabBar();
         getSwipeBackLayout().setEnableGesture(false);
-        initToolBarBgColor(ColorUtil.hex2Int("#f4f4f4"), true);
+        setBackgroundColor(ColorUtil.hex2Int("#f4f4f4"), true);
     }
 
     private void initFragment() {
@@ -71,7 +71,7 @@ public class ExampleActivity extends BaseActivity {
     }
 
     @Override
-    protected int getLayoutID() {
+    protected int getLayoutId() {
         return R.layout.activity_main;
     }
 
