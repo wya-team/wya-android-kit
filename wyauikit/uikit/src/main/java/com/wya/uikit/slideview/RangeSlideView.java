@@ -66,13 +66,13 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     public RangeSlideView(Context context, AttributeSet attrs) {
-        this(context, attrs, R.style.StyleSlide);
+        this(context, attrs, R.style.style_slidder_global_option);
     }
     
     public RangeSlideView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        parseAttrs(context, attrs, defStyleAttr, R.style.StyleSlide);
+        parseAttrs(context, attrs, defStyleAttr, R.style.style_slidder_global_option);
         init();
     }
     

@@ -187,7 +187,7 @@
         <attr name="wyaCountTextColor" format="color" />
     </declare-styleable>
 
-    <!-- slide attrs -->
+    <!-- slidder attrs -->
     <declare-styleable name="RangeSlideView">
         <attr name="rsd_slider_mode" format="enum">
             <enum name="range" value="0" />
@@ -212,24 +212,29 @@
         <attr name="rsd_region_text_size" format="dimension" />
     </declare-styleable>
 
-
-    <!-- TODO ZCQ TEST -->
-    <style name="StyleSlide">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
-        <!--<item name="android:layout_marginTop">?attr/wya_slide_margin_top</item>-->
-        <!--<item name="android:layout_marginTop">30dp</item>-->
-        <item name="android:paddingRight">30dp</item>
-        <item name="android:paddingLeft">30dp</item>
-        <!--<item name="rsd_slider_mode">?attr/wya_slide_mode</item>-->
+    <style name="style_slidder_global_option">
         <item name="rsd_slider_mode">single</item>
-        <!--<item name="android:layout_marginBottom">30dp</item>-->
-        <item name="rsd_progress_foreground_color">@color/design_default_color_primary</item>
-        <!--<item name="android:paddingLeft">?attr/wya_slide_padding_left</item>-->
-        <!--<item name="android:paddingRight">?attr/wya_slide_padding_right</item>-->
+        <item name="rsd_progress_height">@dimen/dp_2</item>
+        <item name="rsd_progress_foreground_color">@color/slide_fg_default_color</item>
+        <item name="rsd_progress_background_color">@color/slide_bg_default_color</item>
+        <item name="rsd_drawable">@drawable/rsb_default_slide</item>
+        <item name="rsd_region_mode">mode_integer</item>
+        <item name="rsd_region_padding">@dimen/dp_10</item>
+        <item name="rsd_region_text_color">@color/black</item>
+        <item name="rsd_region_text_size">14sp</item>
     </style>
 
+    <style name="style_slidder">
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:layout_marginTop">@dimen/dp_10</item>
+        <item name="android:layout_marginBottom">@dimen/dp_10</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!---->
     <!-- swipe back attrs -->
     <declare-styleable name="SwipeBackLayout">
         <attr name="edge_size" format="dimension" />
