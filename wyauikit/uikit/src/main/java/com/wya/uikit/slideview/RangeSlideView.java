@@ -12,7 +12,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -66,7 +65,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     public RangeSlideView(Context context, AttributeSet attrs) {
-        this(context, attrs, R.style.style_slidder_global_option);
+        this(context, attrs, 0);
     }
     
     public RangeSlideView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -76,10 +75,8 @@ public class RangeSlideView extends View implements IRangeSlideView {
         init();
     }
     
-    // TODO: 2019/1/5 ZCQ TEST
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public RangeSlideView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        // 只有在defStyleAttr 没有匹配到或置为0时，defStyleRes才起作用  <item name="android:toolbarStyle">@null</item> 亦是指定
         super(context, attrs, defStyleAttr, defStyleRes);
     }
     
@@ -102,19 +99,6 @@ public class RangeSlideView extends View implements IRangeSlideView {
         if (null == context || attrs == null) {
             return;
         }
-        
-        // obtainStyledAttributes(AttributeSet set,int[] attrs);
-        // TODO: 2019/1/5 ZCQ TEST 从layout设置的属性集中获取attrs的属性
-        // obtainStyledAttributes(int[] attrs);
-        // TODO: 2019/1/5 ZCQ TEST 从系统主题中获取attrs的属性
-        // obtainStyledAttributes(int resid,int[] attrs);
-        // TODO: 2019/1/5 ZCQ TEST 从资源文件定义的style中读取属性
-        // obtainStyledAttributes(AttributeSet set,int[] attrs,int defStyleAttr,int defStyleRes);
-        // defStyleAttr 定义Theme可配置样式  resid = defStyleRes 直接从资源文件中定义的某个样式中读取
-        
-        // set > defStyleAttr (主题可配置样式) > defStyleRes (默认样式) > NULL (主题中直接指定)
-        // TODO: 2019/1/5 ZCQ TEST
-        Log.e("ZCQ", "parseAttrs ");
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RangeSlideView, defStyleAttr, defStyleRes);
         if (null != typedArray) {
             // progress
@@ -134,7 +118,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
             }
             
             mPorgressBackgroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_background_color, getResources().getColor(R.color.slide_bg_default_color));
-            mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_foreground_color, getResources().getColor(R.color.black));
+            mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_foreground_color, getResources().getColor(R.color.slide_fg_default_color));
             
             // region
             mRegionMode = typedArray.getInteger(R.styleable.RangeSlideView_rsd_region_mode, REGION_MODE_INTEGER);
