@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <attr name="radius" format="dimension" />
+    <attr name="maxNum" format="integer" />
+    <attr name="rightText" format="string" />
+    <attr name="lineColor" format="color" />
+
     <!--segment attrs-->
     <declare-styleable name="WYASegmentedView">
-        <attr name="lineColor" format="color" />
+        <attr name="lineColor" />
         <attr name="titleNormalColor" format="color" />
         <attr name="titleSelectColor" format="color" />
         <attr name="itemNormalBackground" format="color" />
@@ -12,7 +17,7 @@
         <attr name="titleSize" format="dimension" />
         <attr name="strokeWidth" format="dimension" />
         <attr name="strokeColor" format="color" />
-        <attr name="radius" format="dimension" />
+        <attr name="radius"/>
     </declare-styleable>
 
     <!--pagination bottom view attrs-->
@@ -22,7 +27,7 @@
         <attr name="buttonHeight" format="dimension" />
         <attr name="textColor" format="color" />
         <attr name="leftText" format="string" />
-        <attr name="rightText" format="string" />
+        <attr name="rightText" />
         <attr name="selectPageTextColor" format="color" />
     </declare-styleable>
 
@@ -51,7 +56,7 @@
         <attr name="textColorPress" />
         <attr name="fillet" format="boolean" />
         <attr name="enabled" format="boolean" />
-        <attr name="wya_button_radius" format="float" />
+        <attr name="radius" />
         <attr name="shape">
             <enum name="rectangle" value="0" />
             <enum name="oval" value="1" />
@@ -70,7 +75,7 @@
         <attr name="contentTextColor" />
         <attr name="assistTextColor" />
         <attr name="imgTitleLeft" format="reference" />
-        <attr name="wyaCardRadius" format="float" />
+        <attr name="radius" />
     </declare-styleable>
 
     <!-- custom_item input_item-->
@@ -78,8 +83,8 @@
         <attr name="backColor" />
         <attr name="leftImage" format="reference" />
         <attr name="rightImage" format="reference" />
-        <attr name="leftTvColor" format="color" />
-        <attr name="leftTvText" />
+        <attr name="leftTextColor" format="color" />
+        <attr name="leftText" />
 
         <attr name="contentText" format="string" />
         <attr name="contentHint" format="string" />
@@ -93,12 +98,12 @@
             <enum name="money" value="4" />
         </attr>
 
-        <attr name="rightTextStr" format="string" />
+        <attr name="rightText" />
         <attr name="rightHint" format="string" />
         <attr name="rightTextColor" format="color" />
         <attr name="rightCanEdit" format="boolean" />
 
-        <attr name="lineViewColor" format="color" />
+        <attr name="lineColor" />
     </declare-styleable>
 
 
@@ -112,7 +117,7 @@
         <attr name="addDisableDrawablePress" format="reference" />
 
         <attr name="value" format="integer" />
-        <attr name="maxNum" format="integer" />
+        <attr name="maxNum" />
         <attr name="minNum" format="integer" />
     </declare-styleable>
 
@@ -176,15 +181,15 @@
 
     <!-- WYACustomEditText -->
     <declare-styleable name="WYACustomEditText">
-        <attr name="wyaBackGroundImage" format="reference" />
-        <attr name="wyaHintTextColor" format="color" />
-        <attr name="wyaEditTextColor" format="color" />
-        <attr name="wyaHintEditColor" format="color" />
-        <attr name="wyaHintTextStr" />
-        <attr name="wyaEditTextStr" />
-        <attr name="wyaHintEditStr" />
-        <attr name="wyaMaxNum" format="integer" />
-        <attr name="wyaCountTextColor" format="color" />
+        <attr name="backGroundImage" format="reference" />
+        <attr name="hintTextColor" format="color" />
+        <attr name="editTextColor" format="color" />
+        <attr name="hintEditColor" format="color" />
+        <attr name="hintText" />
+        <attr name="editText" />
+        <attr name="hintEditText" />
+        <attr name="maxNum" />
+        <attr name="countTextColor" format="color" />
     </declare-styleable>
 
     <!-- slidder attrs -->
