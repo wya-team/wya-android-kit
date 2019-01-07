@@ -15,7 +15,7 @@
 |   customitems    |              Edit、Accordion、List、Card、Grid               |           未完成           |           2           |
 |   customeditext   | 计数文本 |           未完成           |           1            |
 |    searchbar     |                            搜索栏                            |           已完成           |           -            |
-|      slider      |             滑动调整进度 开区间、闭区间两种模式              |           未完成           |           1            |
+|      slidder      |             滑动调整进度 开区间、闭区间两种模式              |           未完成           |           1            |
 |     pickview     |        时间、地点选择器 支持是否联动、数据与视图解耦         |           未完成           | <font color=red>时间暂定 3天，需要研究</font> |
 |    noticebar     |        提示条循环滚动 支持纯文本、点击跳转、点击关闭         |           未完成           |          0.5           |
 |      banner      |             广告轮播图 普通、循环、自动循环模式              |           未完成           |           2            |
@@ -79,7 +79,7 @@
 |   imagepicker   | 许冬林 | 11.28 ~ 11.30 |  开发中    |
 |   customitems   |   毛春江       |  11.29-11.30        |      |
 |  customeditext   |   曾彩琪       |   11.30       |      |
-|     slider      | 曾彩琪 | 11.29 |      |
+|     slidder      | 曾彩琪 | 11.29 |      |
 |    pickview     |          |          | 待定     |
 |    noticebar    |  曾彩琪  | 11.28 |   开发中   |
 |     banner      | 许冬林 | 12.03 ~ 12.04 |      |

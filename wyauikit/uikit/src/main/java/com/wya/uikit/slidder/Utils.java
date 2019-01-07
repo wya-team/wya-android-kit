@@ -1,4 +1,4 @@
-package com.wya.uikit.slideview;
+package com.wya.uikit.slidder;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,10 +7,13 @@ import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+/**
+ * @author :
+ */
 public class Utils {
     
     public static Bitmap drawableToBitmap(int size, Drawable drawable) {
-        Bitmap bitmap = null;
+        Bitmap bitmap;
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             bitmap = bitmapDrawable.getBitmap();

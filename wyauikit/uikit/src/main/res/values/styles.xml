@@ -78,4 +78,27 @@
         <item name="shadow_bottom">@drawable/shadow_bottom</item>
     </style>
 
+    <!-- slidder styles -->
+    <style name="style_slidder_global_option">
+        <item name="slidderMode">single</item>
+        <item name="slidderProgressHeight">@dimen/dp_2</item>
+        <item name="slidderProgressForegroundColor">@color/slidder_foreground_default_color</item>
+        <item name="slidderProgressBackgroundColor">@color/slidder_background_default_color</item>
+        <item name="slidderDrawable">@drawable/slidder_default_drawable</item>
+        <item name="slidderRegionMode">mode_integer</item>
+        <item name="slidderRegionPadding">@dimen/dp_10</item>
+        <item name="slidderRegionTextColor">@color/black</item>
+        <item name="slidderRegionTextSize">14sp</item>
+    </style>
+
+    <style name="style_slidder">
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:layout_marginTop">@dimen/dp_10</item>
+        <item name="android:layout_marginBottom">@dimen/dp_10</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
 </resources>

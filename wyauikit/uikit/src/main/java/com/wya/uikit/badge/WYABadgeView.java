@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.RelativeLayout;
 
-import com.wya.uikit.slideview.Utils;
+import com.wya.uikit.slidder.Utils;
 
 public class WYABadgeView extends View implements IBadgeView {
     

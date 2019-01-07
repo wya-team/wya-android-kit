@@ -12,9 +12,9 @@
         android:layout_marginTop="@dimen/dp_10"
         android:background="@color/white">
 
-        <com.wya.uikit.slideview.RangeSlideView
+        <com.wya.uikit.slidder.RangeSlidderView
             style="@style/style_slidder"
-            app:rsd_progress_foreground_color="?attr/rsd_progress_foreground_color" />
+            app:slidderProgressForegroundColor="?attr/slidderProgressForegroundColor" />
 
     </LinearLayout>
 
@@ -24,15 +24,15 @@
         android:layout_marginTop="@dimen/dp_1"
         android:background="@color/white">
 
-        <com.wya.uikit.slideview.RangeSlideView
+        <com.wya.uikit.slidder.RangeSlidderView
             style="@style/style_slidder"
-            app:rsd_drawable="@drawable/rsb_red_slide"
-            app:rsd_progress_foreground_color="@color/slide_fg_red_color"
-            app:rsd_progress_max="1"
-            app:rsd_progress_min="0"
-            app:rsd_region_mode="mode_float"
-            app:rsd_region_padding="@dimen/dp_5"
-            app:rsd_slider_mode="single" />
+            app:slidderDrawable="@drawable/slidder_red_drawable"
+            app:slidderProgressForegroundColor="@color/slidder_foregraound_red_color"
+            app:slidderProgressMax="1"
+            app:slidderProgressMin="0"
+            app:slidderRegionMode="mode_float"
+            app:slidderRegionPadding="@dimen/dp_5"
+            app:slidderMode="single" />
 
     </LinearLayout>
 
@@ -42,15 +42,15 @@
         android:layout_marginTop="@dimen/dp_1"
         android:background="@color/white">
 
-        <com.wya.uikit.slideview.RangeSlideView
+        <com.wya.uikit.slidder.RangeSlidderView
             style="@style/style_slidder"
-            app:rsd_drawable="@drawable/rsb_red_slide"
-            app:rsd_progress_foreground_color="@color/slide_fg_red_color"
-            app:rsd_progress_max="100"
-            app:rsd_progress_min="0"
-            app:rsd_region_mode="mode_integer"
-            app:rsd_region_padding="@dimen/dp_10"
-            app:rsd_slider_mode="range" />
+            app:slidderDrawable="@drawable/slidder_red_drawable"
+            app:slidderProgressForegroundColor="@color/slidder_foregraound_red_color"
+            app:slidderProgressMax="100"
+            app:slidderProgressMin="0"
+            app:slidderRegionMode="mode_integer"
+            app:slidderRegionPadding="@dimen/dp_10"
+            app:slidderMode="range" />
 
     </LinearLayout>
 
@@ -60,11 +60,11 @@
         android:layout_marginTop="@dimen/dp_1"
         android:background="@color/white">
 
-        <com.wya.uikit.slideview.RangeSlideView
+        <com.wya.uikit.slidder.RangeSlidderView
             style="@style/style_slidder"
-            app:rsd_region_drawable_max="@drawable/icon_voiceopen"
-            app:rsd_region_drawable_min="@drawable/icon_voiceclose"
-            app:rsd_region_padding="@dimen/dp_25" />
+            app:slidderRegionDrawableMax="@drawable/icon_voiceopen"
+            app:slidderRegionDrawableMin="@drawable/icon_voiceclose"
+            app:slidderRegionPadding="@dimen/dp_25" />
 
     </LinearLayout>
 

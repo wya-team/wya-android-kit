@@ -1,4 +1,4 @@
-package com.wya.uikit.slideview;
+package com.wya.uikit.slidder;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,9 +18,15 @@ import android.view.View;
 import com.wya.uikit.R;
 
 import java.math.BigDecimal;
-public class RangeSlideView extends View implements IRangeSlideView {
+
+/**
+ * @author :
+ */
+public class RangeSlidderView extends View implements IRangeSlidderView {
     
-    // progress
+    /**
+     * progress
+     */
     private final int SLIDDER_MODE_RANGDE = 0;
     private final int SLIDDER_MODE_SINGLE = 1;
     private int mSlidderMode = SLIDDER_MODE_RANGDE;
@@ -32,7 +38,9 @@ public class RangeSlideView extends View implements IRangeSlideView {
     private int mPorgressBackgroundColor;
     private int mProgressForegroundColor;
     
-    // region
+    /**
+     * region
+     */
     private final int REGION_MODE_INTEGER = 0;
     private final int REGION_MODE_FLOAT = 1;
     private int mRegionMode = REGION_MODE_INTEGER;
@@ -44,13 +52,17 @@ public class RangeSlideView extends View implements IRangeSlideView {
     private int mRegionPadding;
     private Paint mRegionPaint;
     
-    // seekbar
-    private Slide mLeftSlider, mRightSlider;
-    private Slide mCurSlider;
+    /**
+     * slidder
+     */
+    private Slidder mLeftSlidder, mRightSlidder;
+    private Slidder mCurSlidder;
     
-    private Drawable mSlideDrawable;
+    private Drawable mSlidderDrawable;
     
-    // range
+    /**
+     * range
+     */
     private int mProgressMin, mProgressMax;
     private float reservePercent;
     private boolean mHasMin, mHasMax;
@@ -58,17 +70,17 @@ public class RangeSlideView extends View implements IRangeSlideView {
     private Context mContext;
     
     private float mCurDownX;
-    private OnSlideViewChangedListener callback;
+    private OnSlidderViewChangedListener mCallback;
     
-    public RangeSlideView(Context context) {
+    public RangeSlidderView(Context context) {
         this(context, null);
     }
     
-    public RangeSlideView(Context context, AttributeSet attrs) {
+    public RangeSlidderView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
     
-    public RangeSlideView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RangeSlidderView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         parseAttrs(context, attrs, defStyleAttr, R.style.style_slidder_global_option);
@@ -76,14 +88,14 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public RangeSlideView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public RangeSlidderView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
     
     private void init() {
         initProgressPaint();
         initRegionPaint();
-        initSlider();
+        initSlidder();
         initProgress();
         initRange(mProgressMin, mProgressMax);
         setProgress(mProgressMin, mProgressMax);
@@ -99,37 +111,37 @@ public class RangeSlideView extends View implements IRangeSlideView {
         if (null == context || attrs == null) {
             return;
         }
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RangeSlideView, defStyleAttr, defStyleRes);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RangeSlidderView, defStyleAttr, defStyleRes);
         if (null != typedArray) {
             // progress
-            mSlidderMode = typedArray.getInteger(R.styleable.RangeSlideView_rsd_slider_mode, SLIDDER_MODE_SINGLE);
-            mProgressHeight = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_progress_height, Utils.dp2px(context, 2))).intValue();
-            if (typedArray.hasValue(R.styleable.RangeSlideView_rsd_progress_min)) {
-                mProgressMin = typedArray.getInteger(R.styleable.RangeSlideView_rsd_progress_min, -1);
+            mSlidderMode = typedArray.getInteger(R.styleable.RangeSlidderView_slidderMode, SLIDDER_MODE_SINGLE);
+            mProgressHeight = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlidderView_slidderProgressHeight, Utils.dp2px(context, 2))).intValue();
+            if (typedArray.hasValue(R.styleable.RangeSlidderView_slidderProgressMin)) {
+                mProgressMin = typedArray.getInteger(R.styleable.RangeSlidderView_slidderProgressMin, -1);
                 mHasMin = true;
             }
-            if (typedArray.hasValue(R.styleable.RangeSlideView_rsd_progress_max)) {
-                mProgressMax = typedArray.getInteger(R.styleable.RangeSlideView_rsd_progress_max, -1);
+            if (typedArray.hasValue(R.styleable.RangeSlidderView_slidderProgressMax)) {
+                mProgressMax = typedArray.getInteger(R.styleable.RangeSlidderView_slidderProgressMax, -1);
                 mHasMax = true;
             }
             
-            if (typedArray.hasValue(R.styleable.RangeSlideView_rsd_drawable)) {
-                mSlideDrawable = typedArray.getDrawable(R.styleable.RangeSlideView_rsd_drawable);
+            if (typedArray.hasValue(R.styleable.RangeSlidderView_slidderDrawable)) {
+                mSlidderDrawable = typedArray.getDrawable(R.styleable.RangeSlidderView_slidderDrawable);
             }
             
-            mPorgressBackgroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_background_color, getResources().getColor(R.color.slide_bg_default_color));
-            mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_progress_foreground_color, getResources().getColor(R.color.slide_fg_default_color));
+            mPorgressBackgroundColor = typedArray.getColor(R.styleable.RangeSlidderView_slidderProgressBackgroundColor, getResources().getColor(R.color.slidder_background_default_color));
+            mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlidderView_slidderProgressForegroundColor, getResources().getColor(R.color.slidder_foreground_default_color));
             
             // region
-            mRegionMode = typedArray.getInteger(R.styleable.RangeSlideView_rsd_region_mode, REGION_MODE_INTEGER);
-            if (typedArray.hasValue(R.styleable.RangeSlideView_rsd_region_padding)) {
-                mRegionPadding = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_region_padding, Utils.dp2px(mContext, 10))).intValue();
+            mRegionMode = typedArray.getInteger(R.styleable.RangeSlidderView_slidderRegionMode, REGION_MODE_INTEGER);
+            if (typedArray.hasValue(R.styleable.RangeSlidderView_slidderRegionPadding)) {
+                mRegionPadding = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlidderView_slidderRegionPadding, Utils.dp2px(mContext, 10))).intValue();
             }
-            mDrawableRegionMin = typedArray.getDrawable(R.styleable.RangeSlideView_rsd_region_drawable_min);
-            mDrawableRegionMax = typedArray.getDrawable(R.styleable.RangeSlideView_rsd_region_drawable_max);
-            mRegionBitmapSize = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_region_bitmap_size, Utils.dp2px(mContext, 20))).intValue();
-            mRegionTextColor = typedArray.getColor(R.styleable.RangeSlideView_rsd_region_text_color, Color.BLACK);
-            mRegionTextSize = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlideView_rsd_region_text_size, Utils.sp2px(mContext, 14))).intValue();
+            mDrawableRegionMin = typedArray.getDrawable(R.styleable.RangeSlidderView_slidderRegionDrawableMin);
+            mDrawableRegionMax = typedArray.getDrawable(R.styleable.RangeSlidderView_slidderRegionDrawableMax);
+            mRegionBitmapSize = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlidderView_slidderRegionBitmapSize, Utils.dp2px(mContext, 20))).intValue();
+            mRegionTextColor = typedArray.getColor(R.styleable.RangeSlidderView_slidderRegionTextColor, Color.BLACK);
+            mRegionTextSize = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlidderView_slidderRegionTextSize, Utils.sp2px(mContext, 14))).intValue();
             
             typedArray.recycle();
         }
@@ -153,13 +165,13 @@ public class RangeSlideView extends View implements IRangeSlideView {
             return;
         }
         float range = mProgressMax - mProgressMin;
-        mLeftSlider.setCurPercent(Math.abs(leftValue - mProgressMin) / range);
-        if (mRightSlider != null) {
-            mRightSlider.setCurPercent(Math.abs(rightValue - mProgressMin) / range);
+        mLeftSlidder.setCurPercent(Math.abs(leftValue - mProgressMin) / range);
+        if (mRightSlidder != null) {
+            mRightSlidder.setCurPercent(Math.abs(rightValue - mProgressMin) / range);
         }
         
-        if (callback != null) {
-            callback.onSliderChanged(this, leftValue, rightValue, false);
+        if (mCallback != null) {
+            mCallback.onProgressChanged(this, leftValue, rightValue, false);
         }
         invalidate();
     }
@@ -177,48 +189,48 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     private void dealRangeModeRange() {
-        if (null == mRightSlider) {
+        if (null == mRightSlidder) {
             return;
         }
-        if (mLeftSlider.getCurPercent() + reservePercent <= 1 && mLeftSlider.getCurPercent() + reservePercent > mRightSlider.getCurPercent()) {
-            mRightSlider.setCurPercent(mLeftSlider.getCurPercent() + reservePercent);
-        } else if (mRightSlider.getCurPercent() - reservePercent >= 0 && mRightSlider.getCurPercent() - reservePercent < mLeftSlider.getCurPercent()) {
-            mLeftSlider.setCurPercent(mRightSlider.getCurPercent() - reservePercent);
+        if (mLeftSlidder.getCurPercent() + reservePercent <= 1 && mLeftSlidder.getCurPercent() + reservePercent > mRightSlidder.getCurPercent()) {
+            mRightSlidder.setCurPercent(mLeftSlidder.getCurPercent() + reservePercent);
+        } else if (mRightSlidder.getCurPercent() - reservePercent >= 0 && mRightSlidder.getCurPercent() - reservePercent < mLeftSlidder.getCurPercent()) {
+            mLeftSlidder.setCurPercent(mRightSlidder.getCurPercent() - reservePercent);
         }
     }
     
     private void dealSingleModeRange() {
-        if (mLeftSlider.getCurPercent() < 1 - reservePercent && 1 - reservePercent >= 0) {
-            mLeftSlider.setCurPercent(1 - reservePercent);
+        if (mLeftSlidder.getCurPercent() < 1 - reservePercent && 1 - reservePercent >= 0) {
+            mLeftSlidder.setCurPercent(1 - reservePercent);
         }
     }
     
-    private void initSlider() {
-        mLeftSlider = new Slide(mContext, this);
-        if (null != mSlideDrawable) {
-            mLeftSlider.setSliderDrawable(mSlideDrawable);
+    private void initSlidder() {
+        mLeftSlidder = new Slidder(mContext, this);
+        if (null != mSlidderDrawable) {
+            mLeftSlidder.setSlidderDrawable(mSlidderDrawable);
         }
         if (mSlidderMode == SLIDDER_MODE_RANGDE) {
-            mRightSlider = new Slide(mContext, this);
-            if (null != mSlideDrawable) {
-                mRightSlider.setSliderDrawable(mSlideDrawable);
+            mRightSlidder = new Slidder(mContext, this);
+            if (null != mSlidderDrawable) {
+                mRightSlidder.setSlidderDrawable(mSlidderDrawable);
             }
         }
     }
     
     private void initProgress() {
-        if (null == mLeftSlider) {
+        if (null == mLeftSlidder) {
             return;
         }
         // progress top
         float regionSize = null != mDrawableRegionMax ? mRegionBitmapSize : mRegionTextSize;
         int maxTop;
-        if (mRightSlider == null) {
-            maxTop = Double.valueOf(Math.max(mLeftSlider.getSliderSize() / 2, regionSize / 2)).intValue();
+        if (mRightSlidder == null) {
+            maxTop = Double.valueOf(Math.max(mLeftSlidder.getSlidderSize() / 2, regionSize / 2)).intValue();
             mProgressTop = Double.valueOf(maxTop - getProgressHeight() / 2).intValue();
         } else {
-            int maxSliderSize = Math.max(mLeftSlider.getSliderSize(), mRightSlider.getSliderSize());
-            maxTop = Double.valueOf(Math.max(maxSliderSize / 2, regionSize / 2)).intValue();
+            int maxSlidderSize = Math.max(mLeftSlidder.getSlidderSize(), mRightSlidder.getSlidderSize());
+            maxTop = Double.valueOf(Math.max(maxSlidderSize / 2, regionSize / 2)).intValue();
             mProgressTop = Double.valueOf(maxTop - getProgressHeight() / 2).intValue();
         }
         
@@ -233,7 +245,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
     
     private void initProgressPaint() {
         mProgressPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mProgressPaint.setColor(getResources().getColor(R.color.slide_fg_default_color));
+        mProgressPaint.setColor(getResources().getColor(R.color.slidder_foreground_default_color));
         mProgressPaint.setStyle(Paint.Style.FILL);
     }
     
@@ -243,9 +255,9 @@ public class RangeSlideView extends View implements IRangeSlideView {
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         
-        int sliderSize = mLeftSlider.getSliderSize();
+        int slidderSize = mLeftSlidder.getSlidderSize();
         int regionSize = null != mDrawableRegionMax ? mRegionBitmapSize : mRegionTextSize;
-        int heightNeeded = Math.max(sliderSize, regionSize);
+        int heightNeeded = Math.max(slidderSize, regionSize);
         
         switch (heightMode) {
             case MeasureSpec.EXACTLY:
@@ -268,14 +280,14 @@ public class RangeSlideView extends View implements IRangeSlideView {
         String minString = mRegionMode == REGION_MODE_INTEGER ? String.valueOf(mProgressMin) : String.valueOf(Float.valueOf(mProgressMin));
         int regionMinTextSize = mHasMin ? Double.valueOf(mRegionPaint.measureText(minString)).intValue() : 0;
         int regionMinSize = mHasMin ? Double.valueOf(null != mDrawableRegionMin ? mRegionBitmapSize : regionMinTextSize).intValue() : 0;
-        mProgressLeft = getPaddingLeft() + regionMinSize + mRegionPadding + mLeftSlider.getSliderSize() / 2;
+        mProgressLeft = getPaddingLeft() + regionMinSize + mRegionPadding + mLeftSlidder.getSlidderSize() / 2;
         
         // progress right
         String maxString = mRegionMode == REGION_MODE_INTEGER ? String.valueOf(mProgressMax) : String.valueOf(Float.valueOf(mProgressMax));
         int regionMaxTextSize = mHasMax ? Double.valueOf(mRegionPaint.measureText(maxString)).intValue() : 0;
         int regionMaxSize = mHasMax ? Double.valueOf(null != mDrawableRegionMax ? mRegionBitmapSize : regionMaxTextSize).intValue() : 0;
-        int rightSliderSize = mLeftSlider.getSliderSize();
-        mProgressRight = w - getPaddingRight() - regionMaxSize - mRegionPadding - rightSliderSize / 2;
+        int rightSlidderSize = mLeftSlidder.getSlidderSize();
+        mProgressRight = w - getPaddingRight() - regionMaxSize - mRegionPadding - rightSlidderSize / 2;
         
         // progress rectF
         mProgressBackgroundRectF.set(getProgressLeft(), getProgressTop(), getProgressRight(), getProgressBottom());
@@ -286,9 +298,9 @@ public class RangeSlideView extends View implements IRangeSlideView {
         // seekbar
         int cx = getProgressLeft();
         int cy = Double.valueOf(getProgressBottom() - getProgressHeight() / 2).intValue();
-        mLeftSlider.onSizeChanged(cx, cy, Double.valueOf(mProgressWidth).intValue());
-        if (null != mRightSlider) {
-            mRightSlider.onSizeChanged(cx, cy, Double.valueOf(mProgressWidth).intValue());
+        mLeftSlidder.onSizeChanged(cx, cy, Double.valueOf(mProgressWidth).intValue());
+        if (null != mRightSlidder) {
+            mRightSlidder.onSizeChanged(cx, cy, Double.valueOf(mProgressWidth).intValue());
         }
     }
     
@@ -324,7 +336,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     private void drawMinRegionText(Canvas canvas) {
-        String min = String.valueOf(mLeftSlider.getCurPercent() * (mProgressMax - mProgressMin));
+        String min = String.valueOf(mLeftSlidder.getCurPercent() * (mProgressMax - mProgressMin));
         BigDecimal bigDecimal = new BigDecimal((double) Float.parseFloat(min));
         bigDecimal = bigDecimal.setScale(1, 4);
         float minFloat = bigDecimal.floatValue();
@@ -340,7 +352,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
                 break;
         }
         
-        float x = getProgressLeft() - mRegionPadding - mLeftSlider.getSliderSize() / 2 - mRegionPaint.measureText(min);
+        float x = getProgressLeft() - mRegionPadding - mLeftSlidder.getSlidderSize() / 2 - mRegionPaint.measureText(min);
         Paint.FontMetricsInt fontMetricsInt = mRegionPaint.getFontMetricsInt();
         float y = getProgressTop() + (getProgressHeight()) / 2 - (fontMetricsInt.bottom + fontMetricsInt.top) / 2;
         canvas.drawText(min, x, y, mRegionPaint);
@@ -363,7 +375,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     private void drawMaxRegionText(Canvas canvas) {
-        String max = String.valueOf(null == mRightSlider ? mProgressMax : (mProgressMax - mProgressMin) * mRightSlider.getCurPercent());
+        String max = String.valueOf(null == mRightSlidder ? mProgressMax : (mProgressMax - mProgressMin) * mRightSlidder.getCurPercent());
         BigDecimal bigDecimal = new BigDecimal((double) Float.parseFloat(max));
         bigDecimal = bigDecimal.setScale(2, 4);
         float maxFloat = bigDecimal.floatValue();
@@ -446,44 +458,44 @@ public class RangeSlideView extends View implements IRangeSlideView {
     private RectF getSingleForegroundRectF() {
         RectF rectF = new RectF();
         float left = calProgressLeft();
-        float sliderSize = calSliderSize(mLeftSlider.getCurPercent());
+        float slidderSize = calSlidderSize(mLeftSlidder.getCurPercent());
         rectF.left = left;
         rectF.top = getProgressTop();
-        rectF.right = left + sliderSize;
+        rectF.right = left + slidderSize;
         rectF.bottom = getProgressBottom();
         return rectF;
     }
     
     private RectF getRangeForegroundRectF() {
-        if (null == mRightSlider) {
+        if (null == mRightSlidder) {
             return null;
         }
         RectF rectF = new RectF();
         float left = calProgressLeft();
-        float leftSliderSize = calSliderSize(mLeftSlider.getCurPercent());
-        float rightSliderSize = calSliderSize(mRightSlider.getCurPercent());
-        rectF.left = left + leftSliderSize;
+        float leftSlidderSize = calSlidderSize(mLeftSlidder.getCurPercent());
+        float rightSlidderSize = calSlidderSize(mRightSlidder.getCurPercent());
+        rectF.left = left + leftSlidderSize;
         rectF.top = getProgressTop();
-        rectF.right = left + rightSliderSize;
+        rectF.right = left + rightSlidderSize;
         rectF.bottom = getProgressBottom();
         return rectF;
     }
     
     private float calProgressLeft() {
-        return mLeftSlider.getSliderLeft() + mLeftSlider.getSliderSize() / 2;
+        return mLeftSlidder.getSlidderLeft() + mLeftSlidder.getSlidderSize() / 2;
     }
     
-    private float calSliderSize(float curPercent) {
+    private float calSlidderSize(float curPercent) {
         return mProgressWidth * curPercent;
     }
     
     private void drawLeftSB(Canvas canvas) {
-        mLeftSlider.draw(canvas);
+        mLeftSlidder.draw(canvas);
     }
     
     private void drawRightSB(Canvas canvas) {
-        if (mRightSlider != null) {
-            mRightSlider.draw(canvas);
+        if (mRightSlidder != null) {
+            mRightSlidder.draw(canvas);
         }
     }
     
@@ -495,31 +507,21 @@ public class RangeSlideView extends View implements IRangeSlideView {
         return event.getY();
     }
     
-    private Slide getCurrTouchSB(MotionEvent event) {
-        Slide currTouchSB = null;
-        if (isTouching(mLeftSlider, event)) {
-            currTouchSB = mLeftSlider;
-        } else if (isTouching(mRightSlider, event)) {
-            currTouchSB = mRightSlider;
+    private Slidder getCurrTouchSB(MotionEvent event) {
+        Slidder currTouchSB = null;
+        if (isTouching(mLeftSlidder, event)) {
+            currTouchSB = mLeftSlidder;
+        } else if (isTouching(mRightSlidder, event)) {
+            currTouchSB = mRightSlidder;
         }
         return currTouchSB;
     }
     
-    private boolean isTouching(Slide seekBar, MotionEvent event) {
+    private boolean isTouching(Slidder seekBar, MotionEvent event) {
         if (null == seekBar || null == event) {
             return false;
         }
         return seekBar.isSliding(getEventX(event), getEventY(event));
-    }
-    
-    private Slide exchangeCurTouch(float x, float touchDownX) {
-        Slide seekBar;
-        if (x - touchDownX > 0) {
-            seekBar = mRightSlider;
-        } else {
-            seekBar = mLeftSlider;
-        }
-        return seekBar;
     }
     
     private boolean onActionDown(MotionEvent event) {
@@ -527,21 +529,21 @@ public class RangeSlideView extends View implements IRangeSlideView {
         boolean result = false;
         switch (mSlidderMode) {
             case SLIDDER_MODE_RANGDE: {
-                mCurSlider = getCurrTouchSB(event);
+                mCurSlidder = getCurrTouchSB(event);
                 result = true;
                 break;
             }
             case SLIDDER_MODE_SINGLE:
             default: {
-                if (isTouching(mLeftSlider, event)) {
-                    mCurSlider = mLeftSlider;
+                if (isTouching(mLeftSlidder, event)) {
+                    mCurSlidder = mLeftSlidder;
                     result = true;
                 }
                 break;
             }
         }
-        if (callback != null) {
-            callback.onStartTrackingTouch(this, mCurSlider == mLeftSlider);
+        if (mCallback != null) {
+            mCallback.onStartTrackingTouch(this, mCurSlidder == mLeftSlidder);
         }
         return result;
     }
@@ -558,15 +560,15 @@ public class RangeSlideView extends View implements IRangeSlideView {
             case MotionEvent.ACTION_MOVE:
                 float percent;
                 float x = getEventX(event);
-                boolean touchable = null != getRangeForegroundRectF() && getRangeForegroundRectF().right - getRangeForegroundRectF().left <= mLeftSlider.getSliderSize();
+                boolean touchable = null != getRangeForegroundRectF() && getRangeForegroundRectF().right - getRangeForegroundRectF().left <= mLeftSlidder.getSlidderSize();
                 isReset = true;
                 float curLeftPercent;
                 float curRightPercent;
                 
-                float slidePercent = mLeftSlider.getSliderSize() * 1f / mProgressWidth;
+                float slidderPercent = mLeftSlidder.getSlidderSize() * 1f / mProgressWidth;
                 if (mSlidderMode == SLIDDER_MODE_RANGDE) {
                     // right
-                    if (null != mRightSlider && mCurSlider == mRightSlider) {
+                    if (null != mRightSlidder && mCurSlidder == mRightSlidder) {
                         if (mCurDownX < x) {
                             isReset = false;
                         }
@@ -575,14 +577,14 @@ public class RangeSlideView extends View implements IRangeSlideView {
                         }
                         percent = x > getProgressRight() ? 1 : (x - getProgressLeft()) * 1f / (mProgressWidth);
                         curRightPercent = percent;
-                        if (null != mRightSlider && curRightPercent - mLeftSlider.getCurPercent() <= slidePercent) {
-                            curRightPercent = Math.max(mLeftSlider.getCurPercent() + slidePercent, 0);
+                        if (null != mRightSlidder && curRightPercent - mLeftSlidder.getCurPercent() <= slidderPercent) {
+                            curRightPercent = Math.max(mLeftSlidder.getCurPercent() + slidderPercent, 0);
                         }
-                        mRightSlider.slide(curRightPercent);
+                        mRightSlidder.slide(curRightPercent);
                     }
                 }
                 // left
-                if (mCurSlider == mLeftSlider) {
+                if (mCurSlidder == mLeftSlidder) {
                     if (mCurDownX > x) {
                         isReset = false;
                     }
@@ -591,18 +593,18 @@ public class RangeSlideView extends View implements IRangeSlideView {
                     }
                     percent = x < getProgressLeft() ? 0 : (x - getProgressLeft()) * 1f / (mProgressWidth);
                     curLeftPercent = percent;
-                    if (null != mRightSlider && mRightSlider.getCurPercent() - curLeftPercent <= slidePercent) {
-                        curLeftPercent = Math.max(mRightSlider.getCurPercent() - slidePercent, 0);
+                    if (null != mRightSlidder && mRightSlidder.getCurPercent() - curLeftPercent <= slidderPercent) {
+                        curLeftPercent = Math.max(mRightSlidder.getCurPercent() - slidderPercent, 0);
                     }
-                    mLeftSlider.slide(curLeftPercent);
+                    mLeftSlidder.slide(curLeftPercent);
                 }
                 mCurDownX = x;
                 
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:
-                if (callback != null) {
-                    callback.onStopTrackingTouch(this, mCurSlider == mLeftSlider);
+                if (mCallback != null) {
+                    mCallback.onStopTrackingTouch(this, mCurSlidder == mLeftSlidder);
                 }
                 break;
             
@@ -658,7 +660,7 @@ public class RangeSlideView extends View implements IRangeSlideView {
     }
     
     @Override
-    public void setSliderMode(int mode) {
+    public void setSlidderMode(int mode) {
         this.mSlidderMode = mode;
     }
     

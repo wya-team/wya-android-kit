@@ -8,34 +8,37 @@ import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.utils.utils.StringUtil;
 
-public class SlideViewExampleActivity extends BaseActivity {
-
+/**
+ * @author :
+ */
+public class SlidderViewExampleActivity extends BaseActivity {
+    
     public static void start(Activity activity) {
         if (null == activity) {
             return;
         }
-        Intent intent = new Intent(activity, SlideViewExampleActivity.class);
+        Intent intent = new Intent(activity, SlidderViewExampleActivity.class);
         activity.startActivity(intent);
     }
-
+    
     @Override
     protected int getLayoutId() {
-        return R.layout.layout_activity_slide_view;
+        return R.layout.layout_activity_slidder_view;
     }
-
+    
     @Override
     protected void initView() {
         getSwipeBackLayout().setEnableGesture(false);
-        setTitle("滑动输入条(slideview)");
+        setTitle("滑动输入条(slidder)");
         String url = getIntent().getStringExtra("url");
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setRightSecondIconClickListener(view -> {
-            startActivity(new Intent(SlideViewExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(SlidderViewExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
         setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
-            StringUtil.copyString(SlideViewExampleActivity.this, url);
+            StringUtil.copyString(SlidderViewExampleActivity.this, url);
         });
     }
 }

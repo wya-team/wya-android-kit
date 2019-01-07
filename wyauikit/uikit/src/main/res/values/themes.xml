@@ -6,7 +6,7 @@
         <item name="android:windowIsTranslucent">false</item>
 
         <!-- slidder view -->
-        <item name="rsd_progress_foreground_color">@color/slide_fg_default_color</item>
+        <item name="slidderProgressForegroundColor">@color/slidder_foreground_default_color</item>
 
     </style>
 </resources>

@@ -17,7 +17,7 @@
         <attr name="titleSize" format="dimension" />
         <attr name="strokeWidth" format="dimension" />
         <attr name="strokeColor" format="color" />
-        <attr name="radius"/>
+        <attr name="radius" />
     </declare-styleable>
 
     <!--pagination bottom view attrs-->
@@ -193,51 +193,29 @@
     </declare-styleable>
 
     <!-- slidder attrs -->
-    <declare-styleable name="RangeSlideView">
-        <attr name="rsd_slider_mode" format="enum">
+    <declare-styleable name="RangeSlidderView">
+        <attr name="slidderMode" format="enum">
             <enum name="range" value="0" />
             <enum name="single" value="1" />
         </attr>
-        <attr name="rsd_progress_height" format="dimension" />
-        <attr name="rsd_progress_min" format="integer" />
-        <attr name="rsd_progress_max" format="integer" />
-        <attr name="rsd_progress_background_color" format="color" />
-        <attr name="rsd_progress_foreground_color" format="color" />
-        <attr name="rsd_drawable" format="reference" />
+        <attr name="slidderProgressHeight" format="dimension" />
+        <attr name="slidderProgressMin" format="integer" />
+        <attr name="slidderProgressMax" format="integer" />
+        <attr name="slidderProgressBackgroundColor" format="color" />
+        <attr name="slidderProgressForegroundColor" format="color" />
+        <attr name="slidderDrawable" format="reference" />
 
-        <attr name="rsd_region_mode" format="enum">
+        <attr name="slidderRegionMode" format="enum">
             <enum name="mode_integer" value="0" />
             <enum name="mode_float" value="1" />
         </attr>
-        <attr name="rsd_region_padding" format="dimension" />
-        <attr name="rsd_region_drawable_min" format="reference" />
-        <attr name="rsd_region_drawable_max" format="reference" />
-        <attr name="rsd_region_bitmap_size" format="dimension" />
-        <attr name="rsd_region_text_color" format="dimension" />
-        <attr name="rsd_region_text_size" format="dimension" />
+        <attr name="slidderRegionPadding" format="dimension" />
+        <attr name="slidderRegionDrawableMin" format="reference" />
+        <attr name="slidderRegionDrawableMax" format="reference" />
+        <attr name="slidderRegionBitmapSize" format="dimension" />
+        <attr name="slidderRegionTextColor" format="dimension" />
+        <attr name="slidderRegionTextSize" format="dimension" />
     </declare-styleable>
-
-    <style name="style_slidder_global_option">
-        <item name="rsd_slider_mode">single</item>
-        <item name="rsd_progress_height">@dimen/dp_2</item>
-        <item name="rsd_progress_foreground_color">@color/slide_fg_default_color</item>
-        <item name="rsd_progress_background_color">@color/slide_bg_default_color</item>
-        <item name="rsd_drawable">@drawable/rsb_default_slide</item>
-        <item name="rsd_region_mode">mode_integer</item>
-        <item name="rsd_region_padding">@dimen/dp_10</item>
-        <item name="rsd_region_text_color">@color/black</item>
-        <item name="rsd_region_text_size">14sp</item>
-    </style>
-
-    <style name="style_slidder">
-        <item name="android:paddingRight">15dp</item>
-        <item name="android:paddingLeft">15dp</item>
-        <item name="android:layout_marginTop">@dimen/dp_10</item>
-        <item name="android:layout_marginBottom">@dimen/dp_10</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-    </style>
 
     <!-- swipe back attrs -->
     <declare-styleable name="SwipeBackLayout">

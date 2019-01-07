@@ -36,7 +36,7 @@ import com.wya.example.module.uikit.popupwindow.PopupWindowExampleActivity;
 import com.wya.example.module.uikit.progress.ProgressExampleActivity;
 import com.wya.example.module.uikit.searchbar.SearchBarExampleActivity;
 import com.wya.example.module.uikit.segmentedcontrol.SegmentedControlExampleActivity;
-import com.wya.example.module.uikit.slidder.SlideViewExampleActivity;
+import com.wya.example.module.uikit.slidder.SlidderViewExampleActivity;
 import com.wya.example.module.uikit.stepper.StepperExampleActivity;
 import com.wya.example.module.uikit.tabbar.TabBarExampleActivity;
 import com.wya.example.module.uikit.tablayout.TabLayoutExampleActivity;
@@ -109,7 +109,7 @@ public class ExampleFragment extends Fragment {
         bean2.add("图片选择器(imagepicker)");
         bean2.add("多行输入(customeditext)");
         bean2.add("文本输入(customitems(WYAInputItem))");
-        bean2.add("滑动输入条(slideview)");
+        bean2.add("滑动输入条(slidderview)");
         bean2.add("步进器(stepper)");
         bean2.add("软键盘(keyboard)");
         bean2.add("拍照录制视频(camera)");
@@ -218,8 +218,8 @@ public class ExampleFragment extends Fragment {
             case "文本输入(customitems(WYAInputItem))":
                 startActivity(new Intent(getActivity(), InputItemExampleActivity.class).putExtra("url", UIKIT_URL+"customitems"+"/README.md"));
                 break;
-            case "滑动输入条(slideview)":
-                startActivity(new Intent(getActivity(), SlideViewExampleActivity.class).putExtra("url", UIKIT_URL+"slideview"+"/README.md"));
+            case "滑动输入条(slidderview)":
+                startActivity(new Intent(getActivity(), SlidderViewExampleActivity.class).putExtra("url", UIKIT_URL+"slidder"+"/README.md"));
                 break;
             case "步进器(stepper)":
                 startActivity(new Intent(getActivity(), StepperExampleActivity.class).putExtra("url", UIKIT_URL+"stepper"+"/README.md"));

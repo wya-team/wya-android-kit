@@ -9,7 +9,7 @@ import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.uikit.badge.Builder;
 import com.wya.uikit.badge.IBadgeView;
-import com.wya.uikit.slideview.Utils;
+import com.wya.uikit.slidder.Utils;
 import com.wya.uikit.tabbar.WYATabBar;
 import com.wya.utils.utils.StringUtil;
 

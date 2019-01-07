@@ -2,11 +2,11 @@
 
 ## 功能
 
-滑动条
+滑动条 支持单向与双向
 
-## 属性
+## 方法
 
-属性 | 说明 | 类型 | 默认值
+方法 | 说明 | 类型 | 默认值
 ---|---|---|---
 setSliderMode|模式（ - single 单向 - bange 双向）| int | single
 setProgressHeight|进度条高度|dimension|@dimen/dp_3
@@ -41,18 +41,18 @@ bange|双向
          android:layout_marginBottom="@dimen/dp_30"
          android:paddingLeft="@dimen/dp_10"
          android:paddingRight="@dimen/dp_10"
-         app:rsd_slider_mode="range"
-         app:rsd_progress_background_color="@color/light_gray"
-         app:rsd_progress_foreground_color="@color/colorPrimary"
-         app:rsd_progress_height="@dimen/dp_3"
-         app:rsd_progress_max="100"
-         app:rsd_progress_min="0"
-         app:rsd_region_bitmap_size="@dimen/dp_20"
-         app:rsd_region_drawable_min="@drawable/image_ic_adjust"
-         app:rsd_region_drawable_max="@drawable/image_ic_adjust"
-         app:rsd_region_padding="@dimen/dp_5"
-         app:rsd_region_text_color="@color/black"
-         app:rsd_region_mode="mode_integer"
-         app:rsd_region_text_size="@dimen/sp_15" />
+         app:slidderMode="range"
+         app:slidderProgressBackgroundColor="@color/light_gray"
+         app:slidderProgressForegroundColor="@color/colorPrimary"
+         app:slidderProgressHeight="@dimen/dp_3"
+         app:slidderProgressMax="100"
+         app:slidderProgressMin="0"
+         app:slidderRegionBitmapSize="@dimen/dp_20"
+         app:slidderRegionDrawableMin="@drawable/image_ic_adjust"
+         app:slidderRegionDrawableMax="@drawable/image_ic_adjust"
+         app:slidderRegionPadding="@dimen/dp_5"
+         app:slidderRegionTextColor="@color/black"
+         app:slidderRegionMode="mode_integer"
+         app:slidderRegionTextSize="@dimen/sp_15" />
 
 ```

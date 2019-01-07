@@ -4,5 +4,5 @@
     <solid android:color="#FFFFFF" />
     <stroke
         android:width="2dp"
-        android:color="@color/slide_fg_red_color" />
+        android:color="@color/slidder_foregraound_red_color" />
 </shape>
