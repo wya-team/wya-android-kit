@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.uikit.badge.BadgeGravity;
 import com.wya.uikit.badge.Builder;
 import com.wya.uikit.badge.DisplayUtil;
 import com.wya.uikit.badge.IBadgeView;
@@ -19,6 +20,9 @@ import com.wya.utils.utils.StringUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * @author :
+ */
 public class BadgeExampleActivity extends BaseActivity {
     
     @BindView(R.id.ll_dot)
@@ -101,18 +105,18 @@ public class BadgeExampleActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.ll_dot_container:
                 if (null != mDot) {
-                    mDot.update(false);
+                    mDot.updateIsShow(false);
                 }
                 break;
             case R.id.ll_num_dot:
                 if (null != mNumDot) {
-                    mNumDot.update(false);
+                    mNumDot.updateIsShow(false);
                 }
                 break;
             
             case R.id.ll_string_dot:
                 if (null != mStringDot) {
-                    mStringDot.update(false);
+                    mStringDot.updateIsShow(false);
                 }
                 break;
             default:
@@ -141,7 +145,7 @@ public class BadgeExampleActivity extends BaseActivity {
                 .setOmitNum(omit)
                 .setOmitMode(isOmitMode)
                 .setOmitText(num + "+")
-                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_END, 0, 0));
+                .setGravity(new Builder.Gravity(BadgeGravity.GRAVITY_CENTER_END, 0, 0));
         mNumDot = builder.create();
         mNumDot.bindToTarget(view);
     }
@@ -152,7 +156,7 @@ public class BadgeExampleActivity extends BaseActivity {
         }
         mStringDot = new Builder(this)
                 .setText(text)
-                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_START, 0, 0))
+                .setGravity(new Builder.Gravity(BadgeGravity.GRAVITY_CENTER_START, 0, 0))
                 .setTextSize(DisplayUtil.sp2px(this, 10))
                 .setAttach(isAttach)
                 .create();
@@ -172,7 +176,7 @@ public class BadgeExampleActivity extends BaseActivity {
         }
         IBadgeView badgeView = new Builder(this)
                 .setText(text)
-                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_START, 0, 0))
+                .setGravity(new Builder.Gravity(BadgeGravity.GRAVITY_CENTER_START, 0, 0))
                 .setTextSize(DisplayUtil.sp2px(this, 10))
                 .setAttach(isAttach)
                 .setBackgroundDrawable(badgeDrawable)
@@ -185,7 +189,7 @@ public class BadgeExampleActivity extends BaseActivity {
             return;
         }
         IBadgeView badgeView = new Builder(this)
-                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_END_TOP, 0, 0))
+                .setGravity(new Builder.Gravity(BadgeGravity.GRAVITY_END_TOP, 0, 0))
                 .setAttach(isAttach)
                 .setBadgeDrawableSize(Utils.dp2px(this, 20))
                 .setBadgeDrawable(badgeDrawable)
@@ -198,7 +202,7 @@ public class BadgeExampleActivity extends BaseActivity {
             return;
         }
         IBadgeView badgeView = new Builder(this)
-                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER, 0, 0))
+                .setGravity(new Builder.Gravity(BadgeGravity.GRAVITY_CENTER, 0, 0))
                 .setAttach(false)
                 .setBadgeDrawableSize(Utils.dp2px(this, 20))
                 .setBadgeDrawable(badgeDrawable)

@@ -3,50 +3,35 @@ package com.wya.uikit.badge;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.IntDef;
 import android.text.TextUtils;
+/**
+ * @author :
+ */
 public class Builder {
     
-    private int badgeNum;
-    private String text;
-    private float textSize;
-    private int textColor;
-    private int backgroundColor;
-    private boolean isOmitMode;
-    private int omitNum;
-    private String omitText;
-    private Drawable backgroundDrawable;
-    private float padding;
-    private Gravity gravity;
-    private boolean isShow;
-    private Context context;
+    private int mBadgeNum;
+    private String mText;
+    private float mTextSize;
+    private int mTextColor;
+    private int mBackgroundColor;
+    private boolean mIsOmitMode;
+    private int mOmitNum;
+    private String mOmitText;
+    private Drawable mBackgroundDrawable;
+    private float mPadding;
+    private Gravity mGravity;
+    private boolean mIsShow;
+    private Context mContext;
     
-    private boolean isAttach;
-    private Drawable badgeDrawable;
-    private int badgeDrawableSize;
-    
-    @IntDef
-    public @interface BadgeGravity {
-        
-        int GRAVITY_START_TOP = android.view.Gravity.START | android.view.Gravity.TOP;
-        int GRAVITY_END_TOP = android.view.Gravity.END | android.view.Gravity.TOP;
-        int GRAVITY_START_BOTTOM = android.view.Gravity.START | android.view.Gravity.BOTTOM;
-        int GRAVITY_END_BOTTOM = android.view.Gravity.END | android.view.Gravity.BOTTOM;
-        
-        int GRAVITY_CENTER = android.view.Gravity.CENTER;
-        
-        int GRAVITY_CENTER_TOP = android.view.Gravity.CENTER | android.view.Gravity.TOP;
-        int GRAVITY_CENTER_BOTTOM = android.view.Gravity.CENTER | android.view.Gravity.BOTTOM;
-        int GRAVITY_CENTER_START = android.view.Gravity.CENTER | android.view.Gravity.START;
-        int GRAVITY_CENTER_END = android.view.Gravity.CENTER | android.view.Gravity.END;
-        
-    }
+    private boolean mIsAttach;
+    private Drawable mBadgeDrawable;
+    private int mBadgeDrawableSize;
     
     public static class Gravity {
         
-        private int gravity = BadgeGravity.GRAVITY_END_TOP;
-        float offsetX = 0;
-        float offsetY = 0;
+        private int gravity;
+        float offsetX;
+        float offsetY;
         
         public Gravity(@BadgeGravity int gravity, int offsetX, int offsetY) {
             this.gravity = gravity;
@@ -69,129 +54,122 @@ public class Builder {
         public void setOffsetY(float offsetY) {
             this.offsetY = offsetY;
         }
-        
-        public float getOffsetX() {
-            return offsetX;
-        }
-        
-        public float getOffsetY() {
-            return offsetY;
-        }
     }
     
     public Builder(Context context) {
-        this.context = context;
-        this.gravity = new Gravity(Builder.BadgeGravity.GRAVITY_END_TOP, 0, 0);
-        this.padding = DisplayUtil.dp2px(context, 5);
-        this.textSize = DisplayUtil.sp2px(context, 11);
-        this.textColor = Color.WHITE;
-        this.backgroundColor = Color.RED;
-        this.isShow = true;
-        this.isAttach = true;
+        this.mContext = context;
+        this.mGravity = new Gravity(BadgeGravity.GRAVITY_END_TOP, 0, 0);
+        this.mPadding = DisplayUtil.dp2px(context, 5);
+        this.mTextSize = DisplayUtil.sp2px(context, 11);
+        this.mTextColor = Color.WHITE;
+        this.mBackgroundColor = Color.RED;
+        this.mIsShow = true;
+        this.mIsAttach = true;
     }
     
     public Builder setBackgroundDrawable(Drawable drawable) {
-        this.backgroundDrawable = drawable;
+        this.mBackgroundDrawable = drawable;
         return this;
     }
     
     public Builder setBadgeNum(int badgeNum) {
-        this.badgeNum = badgeNum;
+        this.mBadgeNum = badgeNum;
         return this;
     }
     
     public Builder setText(String text) {
-        this.text = text;
+        this.mText = text;
         return this;
     }
     
     public Builder setTextSize(float textSize) {
-        this.textSize = textSize;
+        this.mTextSize = textSize;
         return this;
     }
     
     public Builder setTextColor(int color) {
-        this.textColor = color;
+        this.mTextColor = color;
         return this;
     }
     
     public Builder setGravity(Gravity gravity) {
-        this.gravity = gravity;
+        this.mGravity = gravity;
         return this;
     }
     
     public Builder setOffset(int offsetX, int offsetY) {
-        gravity.offsetX = offsetX;
-        gravity.offsetY = offsetY;
+        mGravity.offsetX = offsetX;
+        mGravity.offsetY = offsetY;
         return this;
     }
     
     public Builder setOmitMode(boolean isOmitMode) {
-        this.isOmitMode = isOmitMode;
+        this.mIsOmitMode = isOmitMode;
         return this;
     }
     
     public Builder setOmitNum(int omitNum) {
-        this.omitNum = omitNum;
+        this.mOmitNum = omitNum;
         return this;
     }
     
     public Builder setOmitText(String omitText) {
-        this.omitText = omitText;
+        this.mOmitText = omitText;
         return this;
     }
     
     public Builder setPadding(int padding) {
-        this.padding = padding;
+        this.mPadding = padding;
         return this;
     }
     
     public Builder isShow(boolean isShow) {
-        this.isShow = isShow;
+        this.mIsShow = isShow;
         return this;
     }
     
     public Builder setAttach(boolean isAttach) {
-        this.isAttach = isAttach;
+        this.mIsAttach = isAttach;
         return this;
     }
     
     public Builder setBadgeDrawable(Drawable drawable) {
-        this.badgeDrawable = drawable;
+        this.mBadgeDrawable = drawable;
         return this;
     }
     
     public Builder setBadgeDrawableSize(int size) {
-        this.badgeDrawableSize = size;
+        this.mBadgeDrawableSize = size;
         return this;
     }
     
     public IBadgeView create() {
-        IBadgeView badgeView = new WYABadgeView(context);
-        if (null != badgeDrawable) {
-            badgeView.setBadgeDrawable(badgeDrawable);
-            badgeView.setBadgeDrawableSize(badgeDrawableSize);
+        IBadgeView badgeView = new WYABadgeView(mContext);
+        if (null != mBadgeDrawable) {
+            badgeView.setBadgeDrawable(mBadgeDrawable);
+            badgeView.setBadgeDrawableSize(mBadgeDrawableSize);
         } else {
-            badgeView.setBadgeNum(badgeNum);
-            if (!TextUtils.isEmpty(text)) {
-                badgeView.setBadgeText(text);
+            badgeView.setBadgeNum(mBadgeNum);
+            if (!TextUtils.isEmpty(mText)) {
+                badgeView.setBadgeText(mText);
             }
-            badgeView.setTextSize(textSize);
-            badgeView.setTextColor(textColor);
-            badgeView.setBackgroundColor(backgroundColor);
-            if (null != backgroundDrawable) {
-                badgeView.setBackgroundDrawable(backgroundDrawable);
+            badgeView.setTextSize(mTextSize);
+            badgeView.setTextColor(mTextColor);
+            badgeView.setBackgroundColor(mBackgroundColor);
+            if (null != mBackgroundDrawable) {
+                badgeView.setBackgroundDrawable(mBackgroundDrawable);
             }
-            badgeView.setOmitMode(isOmitMode);
-            badgeView.setOmitNum(omitNum);
-            badgeView.setOmitText(omitText);
+            badgeView.setOmitMode(mIsOmitMode);
+            badgeView.setOmitNum(mOmitNum);
+            badgeView.setOmitText(mOmitText);
         }
-        badgeView.setAttach(isAttach);
-        badgeView.setPadding(padding);
-        if (null != gravity) {
-            badgeView.setGravity(gravity);
+        badgeView.setAttach(mIsAttach);
+        badgeView.setPadding(mPadding);
+        if (null != mGravity) {
+            badgeView.setGravity(mGravity);
         }
-        badgeView.update(isShow);
+        badgeView.updateIsShow(mIsShow);
+        badgeView.invalidateBadge();
         return badgeView;
     }
     

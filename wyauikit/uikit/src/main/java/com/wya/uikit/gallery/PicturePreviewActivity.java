@@ -182,7 +182,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                 String mediaType = split[split.length - 1];
                 Log.i(TAG, "onPageSelected: " + isVideo(mediaType));
                 cropEdit.setVisibility(isVideo(mediaType) ? View.GONE : View.VISIBLE);
-                //update imageSelected
+                //updateIsShow imageSelected
                 if (mImageSelected.size() > 0) {
                     check.setChecked(mImageSelected.contains(images.get(positions)));
                     mSelectedRecyclerAdapter.updateSelected(position, selectedPosition);

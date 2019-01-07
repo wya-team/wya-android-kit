@@ -10,7 +10,7 @@ public interface OnSlidderViewChangedListener {
      * @param progressMax :
      * @param isFromUser  :
      */
-    void onProgressChanged(RangeSlidderView view, float progressMin, float progressMax, boolean isFromUser);
+    void onProgressChanged(WYASlidderView view, float progressMin, float progressMax, boolean isFromUser);
     
     /**
      * 开始滑动
@@ -18,7 +18,7 @@ public interface OnSlidderViewChangedListener {
      * @param view  :
      * @param isMin :
      */
-    void onStartTrackingTouch(RangeSlidderView view, boolean isMin);
+    void onStartTrackingTouch(WYASlidderView view, boolean isMin);
     
     /**
      * 停止滑动
@@ -26,5 +26,5 @@ public interface OnSlidderViewChangedListener {
      * @param view  :
      * @param isMin :
      */
-    void onStopTrackingTouch(RangeSlidderView view, boolean isMin);
+    void onStopTrackingTouch(WYASlidderView view, boolean isMin);
 }

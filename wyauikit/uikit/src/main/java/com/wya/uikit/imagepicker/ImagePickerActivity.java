@@ -461,7 +461,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             images.add(localMedia);
             imageFolder.setImageNum(imageFolder.getImageNum() + 1);
 
-            //update
+            //updateIsShow
             mGridAdapter.bindData(true, mLocalMedia);
             mBaseOptionMenu.notifyAdapterData();
 

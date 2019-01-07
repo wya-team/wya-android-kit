@@ -15,6 +15,9 @@ import com.wya.uikit.R;
 
 import java.lang.ref.WeakReference;
 
+/**
+ * @author :
+ */
 public class SwitcherView extends ViewSwitcher {
     
     public static final int DEF_ANIMATOR_DIRENCTION = SwitcherViewAnimDirection.DOWN_2_UP;

@@ -12,7 +12,7 @@
         android:layout_marginTop="@dimen/dp_10"
         android:background="@color/white">
 
-        <com.wya.uikit.slidder.RangeSlidderView
+        <com.wya.uikit.slidder.WYASlidderView
             style="@style/style_slidder"
             app:slidderProgressForegroundColor="?attr/slidderProgressForegroundColor" />
 
@@ -24,7 +24,7 @@
         android:layout_marginTop="@dimen/dp_1"
         android:background="@color/white">
 
-        <com.wya.uikit.slidder.RangeSlidderView
+        <com.wya.uikit.slidder.WYASlidderView
             style="@style/style_slidder"
             app:slidderDrawable="@drawable/slidder_red_drawable"
             app:slidderProgressForegroundColor="@color/slidder_foregraound_red_color"
@@ -42,7 +42,7 @@
         android:layout_marginTop="@dimen/dp_1"
         android:background="@color/white">
 
-        <com.wya.uikit.slidder.RangeSlidderView
+        <com.wya.uikit.slidder.WYASlidderView
             style="@style/style_slidder"
             app:slidderDrawable="@drawable/slidder_red_drawable"
             app:slidderProgressForegroundColor="@color/slidder_foregraound_red_color"
@@ -60,7 +60,7 @@
         android:layout_marginTop="@dimen/dp_1"
         android:background="@color/white">
 
-        <com.wya.uikit.slidder.RangeSlidderView
+        <com.wya.uikit.slidder.WYASlidderView
             style="@style/style_slidder"
             app:slidderRegionDrawableMax="@drawable/icon_voiceopen"
             app:slidderRegionDrawableMin="@drawable/icon_voiceclose"

@@ -193,7 +193,7 @@
     </declare-styleable>
 
     <!-- slidder attrs -->
-    <declare-styleable name="RangeSlidderView">
+    <declare-styleable name="WYASlidderView">
         <attr name="slidderMode" format="enum">
             <enum name="range" value="0" />
             <enum name="single" value="1" />

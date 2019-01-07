@@ -176,7 +176,7 @@ public abstract class BaseOptionMenu<T> extends PopupWindow {
 	}
 	
 	/**
-	 * update data
+	 * updateIsShow data
 	 */
 	public void notifyAdapterData() {
 		if (mAdapter != null) {

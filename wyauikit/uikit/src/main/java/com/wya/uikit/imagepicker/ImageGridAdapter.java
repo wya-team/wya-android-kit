@@ -48,7 +48,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 	}
 
 	/**
-	 * update data
+	 * updateIsShow data
 	 * @param hasPhoto take photo item  is Visible
 	 * @param images data list
 	 */
@@ -64,7 +64,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 	}
 
 	/**
-	 * update selected iamges
+	 * updateIsShow selected iamges
 	 * @param imageSelected
 	 */
 	public void notifySelectedData(List<LocalMedia> imageSelected) {

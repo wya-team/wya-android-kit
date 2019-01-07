@@ -22,9 +22,14 @@ import android.widget.RelativeLayout;
 
 import com.wya.uikit.slidder.Utils;
 
+/**
+ * @author :
+ */
 public class WYABadgeView extends View implements IBadgeView {
     
-    // text
+    /**
+     * text
+     */
     protected TextPaint mTextPaint;
     protected RectF mTextRect;
     protected int mTextColor;
@@ -36,17 +41,23 @@ public class WYABadgeView extends View implements IBadgeView {
     protected Paint.FontMetrics mTextFontMetrics;
     protected boolean isOmitMode;
     
-    // background
+    /**
+     * background
+     */
     protected Paint mBackgroundPaint;
     protected RectF mBackgroundRect;
     protected int mBackgroundColor;
     protected Drawable mBackgroundDrawable;
     
-    // bitmap
+    /**
+     * bitmap
+     */
     protected Drawable mBadgeDrawable;
     private int mBadgeDrawableSize;
     
-    // border
+    /**
+     * border
+     */
     protected Paint mBorderPaint;
     protected int mBgBorderColor;
     protected float mBorderWidth;
@@ -82,7 +93,7 @@ public class WYABadgeView extends View implements IBadgeView {
         initBadgeDrawable();
         
         mCenter = new PointF();
-        mGravity = new Builder.Gravity(Builder.BadgeGravity.GRAVITY_END_TOP, 0, 0);
+        mGravity = new Builder.Gravity(BadgeGravity.GRAVITY_END_TOP, 0, 0);
     }
     
     private void initBadgeDrawable() {
@@ -142,7 +153,7 @@ public class WYABadgeView extends View implements IBadgeView {
     @Override
     public void setBadgeDrawable(Drawable drawable) {
         this.mBadgeDrawable = drawable;
-        invalidate();
+        //        invalidate();
     }
     
     @Override
@@ -167,14 +178,14 @@ public class WYABadgeView extends View implements IBadgeView {
         }
         int top = 0;
         switch (mGravity.getGravity()) {
-            case Builder.BadgeGravity.GRAVITY_CENTER:
-            case Builder.BadgeGravity.GRAVITY_CENTER_START:
-            case Builder.BadgeGravity.GRAVITY_CENTER_END:
+            case BadgeGravity.GRAVITY_CENTER:
+            case BadgeGravity.GRAVITY_CENTER_START:
+            case BadgeGravity.GRAVITY_CENTER_END:
                 top = top + (mHeight - bitmap.getHeight()) / 2;
                 break;
-            case Builder.BadgeGravity.GRAVITY_CENTER_BOTTOM:
-            case Builder.BadgeGravity.GRAVITY_START_BOTTOM:
-            case Builder.BadgeGravity.GRAVITY_END_BOTTOM:
+            case BadgeGravity.GRAVITY_CENTER_BOTTOM:
+            case BadgeGravity.GRAVITY_START_BOTTOM:
+            case BadgeGravity.GRAVITY_END_BOTTOM:
                 top = top + (mHeight - bitmap.getHeight());
                 break;
             default:
@@ -272,39 +283,39 @@ public class WYABadgeView extends View implements IBadgeView {
     private PointF getCenter() {
         float rectWidth = mTextRect.height() > mTextRect.width() ? mTextRect.height() : mTextRect.width();
         switch (mGravity.getGravity()) {
-            case Builder.BadgeGravity.GRAVITY_START_TOP:
+            case BadgeGravity.GRAVITY_START_TOP:
                 mCenter.x = mGravity.offsetX + mPadding + rectWidth / 2f;
                 mCenter.y = mGravity.offsetY + mPadding + mTextRect.height() / 2f;
                 break;
-            case Builder.BadgeGravity.GRAVITY_START_BOTTOM:
+            case BadgeGravity.GRAVITY_START_BOTTOM:
                 mCenter.x = mGravity.offsetX + mPadding + rectWidth / 2f;
                 mCenter.y = mHeight - (mGravity.offsetY + mPadding + mTextRect.height() / 2f);
                 break;
-            case Builder.BadgeGravity.GRAVITY_END_TOP:
+            case BadgeGravity.GRAVITY_END_TOP:
                 mCenter.x = mWidth - (mGravity.offsetX + mPadding + rectWidth / 2f);
                 mCenter.y = mGravity.offsetY + mPadding + mTextRect.height() / 2f;
                 break;
-            case Builder.BadgeGravity.GRAVITY_END_BOTTOM:
+            case BadgeGravity.GRAVITY_END_BOTTOM:
                 mCenter.x = mWidth - (mGravity.offsetX + mPadding + rectWidth / 2f);
                 mCenter.y = mHeight - (mGravity.offsetY + mPadding + mTextRect.height() / 2f);
                 break;
-            case Builder.BadgeGravity.GRAVITY_CENTER:
+            case BadgeGravity.GRAVITY_CENTER:
                 mCenter.x = mWidth / 2f;
                 mCenter.y = mHeight / 2f;
                 break;
-            case Builder.BadgeGravity.GRAVITY_CENTER_TOP:
+            case BadgeGravity.GRAVITY_CENTER_TOP:
                 mCenter.x = mWidth / 2f + mGravity.offsetX;
                 mCenter.y = mGravity.offsetY + mPadding + mTextRect.height() / 2f;
                 break;
-            case Builder.BadgeGravity.GRAVITY_CENTER_BOTTOM:
+            case BadgeGravity.GRAVITY_CENTER_BOTTOM:
                 mCenter.x = mWidth / 2f;
                 mCenter.y = mHeight - (mGravity.offsetY + mPadding + mTextRect.height() / 2f);
                 break;
-            case Builder.BadgeGravity.GRAVITY_CENTER_START:
+            case BadgeGravity.GRAVITY_CENTER_START:
                 mCenter.x = mGravity.offsetX + mPadding + rectWidth / 2f;
                 mCenter.y = mHeight / 2f;
                 break;
-            case Builder.BadgeGravity.GRAVITY_CENTER_END:
+            case BadgeGravity.GRAVITY_CENTER_END:
                 mCenter.x = mWidth - (mGravity.offsetX + mPadding + rectWidth / 2f);
                 mCenter.y = mHeight / 2f;
                 break;
@@ -367,7 +378,7 @@ public class WYABadgeView extends View implements IBadgeView {
     }
     
     @Override
-    public void update(boolean isShow) {
+    public void updateIsShow(boolean isShow) {
         setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
     
@@ -392,7 +403,7 @@ public class WYABadgeView extends View implements IBadgeView {
             mBadgeText = isOmitMode ? mOmitText : String.valueOf(mBadgeNum);
         }
         measureText();
-        invalidate();
+        //        invalidate();
     }
     
     @Override
@@ -400,7 +411,7 @@ public class WYABadgeView extends View implements IBadgeView {
         mBadgeText = badgeText;
         mBadgeNum = 0;
         measureText();
-        invalidate();
+        //        invalidate();
     }
     
     private void measureText() {
@@ -445,40 +456,40 @@ public class WYABadgeView extends View implements IBadgeView {
         mBackgroundColor = color;
         // 文本在最上层
         mTextPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        invalidate();
+        //        invalidate();
     }
     
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         if (null != drawable) {
             mBackgroundDrawable = drawable;
-            invalidate();
+            //            invalidate();
         }
     }
     
     @Override
     public void setTextColor(int color) {
         mTextColor = color;
-        invalidate();
+        //        invalidate();
     }
     
     @Override
     public void setTextSize(float size) {
         mTextSize = size;
         measureText();
-        invalidate();
+        //        invalidate();
     }
     
     @Override
     public void setPadding(float padding) {
         mPadding = padding;
-        invalidate();
+        //        invalidate();
     }
     
     @Override
     public void setGravity(Builder.Gravity gravity) {
         mGravity = gravity;
-        invalidate();
+        //        invalidate();
         setOffset(gravity.offsetX, gravity.offsetY);
     }
     
@@ -486,7 +497,7 @@ public class WYABadgeView extends View implements IBadgeView {
     public void setOffset(float offsetX, float offsetY) {
         mGravity.setOffsetX(offsetX);
         mGravity.setOffsetY(offsetY);
-        invalidate();
+        //        invalidate();
     }
     
     @Override
@@ -550,6 +561,8 @@ public class WYABadgeView extends View implements IBadgeView {
                     case MeasureSpec.AT_MOST:
                         widthSize = MeasureSpec.makeMeasureSpec(widthNeeded, MeasureSpec.AT_MOST);
                         break;
+                    // TODO: 2019/1/7 ZCQ TEST
+                    case MeasureSpec.UNSPECIFIED:
                     default:
                         widthSize = MeasureSpec.makeMeasureSpec(widthNeeded, MeasureSpec.EXACTLY);
                         break;
@@ -562,6 +575,11 @@ public class WYABadgeView extends View implements IBadgeView {
                 setMeasuredDimension(targetView.getMeasuredWidth(), targetView.getMeasuredHeight());
             }
         }
+    }
+    
+    @Override
+    public void invalidateBadge() {
+        invalidate();
     }
     
 }

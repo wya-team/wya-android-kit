@@ -19,7 +19,7 @@ setGravity|设置位置 (BadgeGravity,xOffset,yOffset)
 setOffset|设置位置偏移
 bindToTarget|需要显示消息的View
 update|更新显示状态
-setAttach|是否依附于其他View
+setAttach|是否依附于其他View,图片模式时设为false
 setBadgeDrawable|设置图片
 setBadgeDrawableSize|设置图片大小
 

@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.wya.uikit.R;
 
+/**
+ * @author :
+ */
 public class MarqueeTextView extends AppCompatTextView {
     
     private static final int MARQUEE_DEFAULT_INTERVAL = 5000;

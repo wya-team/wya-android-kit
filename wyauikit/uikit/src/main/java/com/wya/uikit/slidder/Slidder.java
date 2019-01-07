@@ -22,10 +22,10 @@ public class Slidder {
     private Drawable mSlidderDrawable;
     private Bitmap mSlidderBitmap;
     
-    private RangeSlidderView mRangeSlidder;
+    private WYASlidderView mRangeSlidder;
     private int mProgressWidth;
     
-    public Slidder(Context context, RangeSlidderView rangeSlidder) {
+    public Slidder(Context context, WYASlidderView rangeSlidder) {
         mRangeSlidder = rangeSlidder;
         mSlidderSize = Utils.dp2px(context, 20);
         mSlidderDrawable = context.getResources().getDrawable(R.drawable.slidder_default_drawable);

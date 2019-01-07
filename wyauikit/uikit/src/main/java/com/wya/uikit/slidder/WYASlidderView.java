@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 /**
  * @author :
  */
-public class RangeSlidderView extends View implements IRangeSlidderView {
+public class WYASlidderView extends View implements IRangeSlidderView {
     
     /**
      * progress
@@ -72,15 +72,15 @@ public class RangeSlidderView extends View implements IRangeSlidderView {
     private float mCurDownX;
     private OnSlidderViewChangedListener mCallback;
     
-    public RangeSlidderView(Context context) {
+    public WYASlidderView(Context context) {
         this(context, null);
     }
     
-    public RangeSlidderView(Context context, AttributeSet attrs) {
+    public WYASlidderView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
     
-    public RangeSlidderView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public WYASlidderView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         parseAttrs(context, attrs, defStyleAttr, R.style.style_slidder_global_option);
@@ -88,7 +88,7 @@ public class RangeSlidderView extends View implements IRangeSlidderView {
     }
     
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public RangeSlidderView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public WYASlidderView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
     
@@ -111,37 +111,37 @@ public class RangeSlidderView extends View implements IRangeSlidderView {
         if (null == context || attrs == null) {
             return;
         }
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RangeSlidderView, defStyleAttr, defStyleRes);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WYASlidderView, defStyleAttr, defStyleRes);
         if (null != typedArray) {
             // progress
-            mSlidderMode = typedArray.getInteger(R.styleable.RangeSlidderView_slidderMode, SLIDDER_MODE_SINGLE);
-            mProgressHeight = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlidderView_slidderProgressHeight, Utils.dp2px(context, 2))).intValue();
-            if (typedArray.hasValue(R.styleable.RangeSlidderView_slidderProgressMin)) {
-                mProgressMin = typedArray.getInteger(R.styleable.RangeSlidderView_slidderProgressMin, -1);
+            mSlidderMode = typedArray.getInteger(R.styleable.WYASlidderView_slidderMode, SLIDDER_MODE_SINGLE);
+            mProgressHeight = Double.valueOf(typedArray.getDimension(R.styleable.WYASlidderView_slidderProgressHeight, Utils.dp2px(context, 2))).intValue();
+            if (typedArray.hasValue(R.styleable.WYASlidderView_slidderProgressMin)) {
+                mProgressMin = typedArray.getInteger(R.styleable.WYASlidderView_slidderProgressMin, -1);
                 mHasMin = true;
             }
-            if (typedArray.hasValue(R.styleable.RangeSlidderView_slidderProgressMax)) {
-                mProgressMax = typedArray.getInteger(R.styleable.RangeSlidderView_slidderProgressMax, -1);
+            if (typedArray.hasValue(R.styleable.WYASlidderView_slidderProgressMax)) {
+                mProgressMax = typedArray.getInteger(R.styleable.WYASlidderView_slidderProgressMax, -1);
                 mHasMax = true;
             }
             
-            if (typedArray.hasValue(R.styleable.RangeSlidderView_slidderDrawable)) {
-                mSlidderDrawable = typedArray.getDrawable(R.styleable.RangeSlidderView_slidderDrawable);
+            if (typedArray.hasValue(R.styleable.WYASlidderView_slidderDrawable)) {
+                mSlidderDrawable = typedArray.getDrawable(R.styleable.WYASlidderView_slidderDrawable);
             }
             
-            mPorgressBackgroundColor = typedArray.getColor(R.styleable.RangeSlidderView_slidderProgressBackgroundColor, getResources().getColor(R.color.slidder_background_default_color));
-            mProgressForegroundColor = typedArray.getColor(R.styleable.RangeSlidderView_slidderProgressForegroundColor, getResources().getColor(R.color.slidder_foreground_default_color));
+            mPorgressBackgroundColor = typedArray.getColor(R.styleable.WYASlidderView_slidderProgressBackgroundColor, getResources().getColor(R.color.slidder_background_default_color));
+            mProgressForegroundColor = typedArray.getColor(R.styleable.WYASlidderView_slidderProgressForegroundColor, getResources().getColor(R.color.slidder_foreground_default_color));
             
             // region
-            mRegionMode = typedArray.getInteger(R.styleable.RangeSlidderView_slidderRegionMode, REGION_MODE_INTEGER);
-            if (typedArray.hasValue(R.styleable.RangeSlidderView_slidderRegionPadding)) {
-                mRegionPadding = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlidderView_slidderRegionPadding, Utils.dp2px(mContext, 10))).intValue();
+            mRegionMode = typedArray.getInteger(R.styleable.WYASlidderView_slidderRegionMode, REGION_MODE_INTEGER);
+            if (typedArray.hasValue(R.styleable.WYASlidderView_slidderRegionPadding)) {
+                mRegionPadding = Double.valueOf(typedArray.getDimension(R.styleable.WYASlidderView_slidderRegionPadding, Utils.dp2px(mContext, 10))).intValue();
             }
-            mDrawableRegionMin = typedArray.getDrawable(R.styleable.RangeSlidderView_slidderRegionDrawableMin);
-            mDrawableRegionMax = typedArray.getDrawable(R.styleable.RangeSlidderView_slidderRegionDrawableMax);
-            mRegionBitmapSize = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlidderView_slidderRegionBitmapSize, Utils.dp2px(mContext, 20))).intValue();
-            mRegionTextColor = typedArray.getColor(R.styleable.RangeSlidderView_slidderRegionTextColor, Color.BLACK);
-            mRegionTextSize = Double.valueOf(typedArray.getDimension(R.styleable.RangeSlidderView_slidderRegionTextSize, Utils.sp2px(mContext, 14))).intValue();
+            mDrawableRegionMin = typedArray.getDrawable(R.styleable.WYASlidderView_slidderRegionDrawableMin);
+            mDrawableRegionMax = typedArray.getDrawable(R.styleable.WYASlidderView_slidderRegionDrawableMax);
+            mRegionBitmapSize = Double.valueOf(typedArray.getDimension(R.styleable.WYASlidderView_slidderRegionBitmapSize, Utils.dp2px(mContext, 20))).intValue();
+            mRegionTextColor = typedArray.getColor(R.styleable.WYASlidderView_slidderRegionTextColor, Color.BLACK);
+            mRegionTextSize = Double.valueOf(typedArray.getDimension(R.styleable.WYASlidderView_slidderRegionTextSize, Utils.sp2px(mContext, 14))).intValue();
             
             typedArray.recycle();
         }

@@ -18,7 +18,7 @@ public class BadgeHelper {
         }
         IBadgeView badgeView = new Builder(context)
                 .setText(text)
-                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_START, 0, 0))
+                .setGravity(new Builder.Gravity(BadgeGravity.GRAVITY_CENTER_START, 0, 0))
                 .setTextSize(DisplayUtil.sp2px(context, 10))
                 .setAttach(isAttach)
                 .setBackgroundDrawable(badgeDrawable)
@@ -31,7 +31,7 @@ public class BadgeHelper {
             return;
         }
         IBadgeView badgeView = new Builder(context)
-                .setGravity(new Builder.Gravity(Builder.BadgeGravity.GRAVITY_CENTER_START, 0, 0))
+                .setGravity(new Builder.Gravity(BadgeGravity.GRAVITY_CENTER_START, 0, 0))
                 .setAttach(isAttach)
                 .setBackgroundDrawable(badgeDrawable)
                 .create();

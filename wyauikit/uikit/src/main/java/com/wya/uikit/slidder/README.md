@@ -33,7 +33,7 @@ bange|双向
 * xml
 
 ```xml
-     <com.wya.uikit.slider.RangeSlider
+     <com.wya.uikit.slidder.RangeSlider
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:layout_gravity="center"
