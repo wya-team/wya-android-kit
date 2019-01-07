@@ -155,7 +155,7 @@
     </declare-styleable>
 
     <!-- switcher attrs -->
-    <declare-styleable name="SwitcherView">
+    <declare-styleable name="WYASwitcherView">
         <attr name="switchDuration" format="integer" />
         <attr name="switchClosable" format="boolean" />
         <attr name="switchSkipable" format="boolean" />
@@ -170,7 +170,7 @@
     </declare-styleable>
 
     <!-- marquee attrs -->
-    <declare-styleable name="MarqueeTextView">
+    <declare-styleable name="WYAMarqueeTextView">
         <attr name="marqueeInterval" format="integer" />
         <attr name="marqueeClosable" format="boolean" />
         <attr name="marqueeSkipable" format="boolean" />

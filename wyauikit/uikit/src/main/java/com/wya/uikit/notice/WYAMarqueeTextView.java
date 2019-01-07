@@ -14,7 +14,7 @@ import com.wya.uikit.R;
 /**
  * @author :
  */
-public class MarqueeTextView extends AppCompatTextView {
+public class WYAMarqueeTextView extends AppCompatTextView {
     
     private static final int MARQUEE_DEFAULT_INTERVAL = 5000;
     public static final int MARQUEE_MODE_REPEAT = 0;
@@ -31,15 +31,15 @@ public class MarqueeTextView extends AppCompatTextView {
     private boolean mIsPaused = true;
     private Context mContext;
     
-    public MarqueeTextView(Context context) {
+    public WYAMarqueeTextView(Context context) {
         this(context, null);
     }
     
-    public MarqueeTextView(Context context, AttributeSet attrs) {
+    public WYAMarqueeTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
     
-    public MarqueeTextView(Context context, AttributeSet attrs, int defStyle) {
+    public WYAMarqueeTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mContext = context;
         parseAttrs(context, attrs, R.style.style_marquee_global_option, R.style.style_marquee_global_option);
@@ -47,12 +47,12 @@ public class MarqueeTextView extends AppCompatTextView {
     }
     
     private void parseAttrs(Context context, AttributeSet attrs, int defStyleAtts, int defStyleRes) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MarqueeTextView, defStyleAtts, defStyleRes);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WYAMarqueeTextView, defStyleAtts, defStyleRes);
         if (null != typedArray) {
-            mMarqueeInterval = typedArray.getInt(R.styleable.MarqueeTextView_marqueeInterval, MARQUEE_DEFAULT_INTERVAL);
-            mMarqueeMode = typedArray.getInt(R.styleable.MarqueeTextView_marqueeMode, MARQUEE_MODE_REPEAT);
-            mClosable = typedArray.getBoolean(R.styleable.MarqueeTextView_marqueeClosable, false);
-            mSkipable = typedArray.getBoolean(R.styleable.MarqueeTextView_marqueeSkipable, false);
+            mMarqueeInterval = typedArray.getInt(R.styleable.WYAMarqueeTextView_marqueeInterval, MARQUEE_DEFAULT_INTERVAL);
+            mMarqueeMode = typedArray.getInt(R.styleable.WYAMarqueeTextView_marqueeMode, MARQUEE_MODE_REPEAT);
+            mClosable = typedArray.getBoolean(R.styleable.WYAMarqueeTextView_marqueeClosable, false);
+            mSkipable = typedArray.getBoolean(R.styleable.WYAMarqueeTextView_marqueeSkipable, false);
             typedArray.recycle();
         }
     }

@@ -18,7 +18,7 @@ import java.lang.ref.WeakReference;
 /**
  * @author :
  */
-public class SwitcherView extends ViewSwitcher {
+public class WYASwitcherView extends ViewSwitcher {
     
     public static final int DEF_ANIMATOR_DIRENCTION = SwitcherViewAnimDirection.DOWN_2_UP;
     
@@ -36,11 +36,11 @@ public class SwitcherView extends ViewSwitcher {
     private boolean mClosable;
     private boolean mSkipable;
     
-    public SwitcherView(Context context) {
+    public WYASwitcherView(Context context) {
         this(context, null);
     }
     
-    public SwitcherView(Context context, AttributeSet attrs) {
+    public WYASwitcherView(Context context, AttributeSet attrs) {
         super(context, attrs);
         parseAttrs(context, attrs, R.style.style_switch_global_option, R.style.style_switch_global_option);
         init();
@@ -54,13 +54,13 @@ public class SwitcherView extends ViewSwitcher {
         mSwitchDuration = defSwitchDuration;
         
         if (attrs != null) {
-            TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SwitcherView, defStyleAttr, defStyleRes);
+            TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.WYASwitcherView, defStyleAttr, defStyleRes);
             if (null != typedArray) {
-                mAnimDirection = typedArray.getInteger(R.styleable.SwitcherView_animDirection, DEF_ANIMATOR_DIRENCTION);
-                mAnimDuration = typedArray.getInteger(R.styleable.SwitcherView_animDuration, defAnimatorDuration);
-                mClosable = typedArray.getBoolean(R.styleable.SwitcherView_switchClosable, false);
-                mSkipable = typedArray.getBoolean(R.styleable.SwitcherView_switchSkipable, false);
-                mSwitchDuration = typedArray.getInteger(R.styleable.SwitcherView_switchDuration, defSwitchDuration);
+                mAnimDirection = typedArray.getInteger(R.styleable.WYASwitcherView_animDirection, DEF_ANIMATOR_DIRENCTION);
+                mAnimDuration = typedArray.getInteger(R.styleable.WYASwitcherView_animDuration, defAnimatorDuration);
+                mClosable = typedArray.getBoolean(R.styleable.WYASwitcherView_switchClosable, false);
+                mSkipable = typedArray.getBoolean(R.styleable.WYASwitcherView_switchSkipable, false);
+                mSwitchDuration = typedArray.getInteger(R.styleable.WYASwitcherView_switchDuration, defSwitchDuration);
                 typedArray.recycle();
             }
         }
@@ -71,7 +71,7 @@ public class SwitcherView extends ViewSwitcher {
         initAnimation();
     }
     
-    public SwitcherView inflate(@LayoutRes final int resLayout) {
+    public WYASwitcherView inflate(@LayoutRes final int resLayout) {
         if (mResLayout == 0) {
             mResLayout = resLayout;
             super.setFactory(() -> View.inflate(getContext(), mResLayout, null));
@@ -87,12 +87,12 @@ public class SwitcherView extends ViewSwitcher {
         setAnimation(mAnimDirection);
     }
     
-    public SwitcherView setAnimation(@SwitcherViewAnimDirection int animDir) {
+    public WYASwitcherView setAnimation(@SwitcherViewAnimDirection int animDir) {
         setAnimation(animDir, null, null);
         return this;
     }
     
-    public SwitcherView setAnimation(Animation animationIn, Animation animationOut) {
+    public WYASwitcherView setAnimation(Animation animationIn, Animation animationOut) {
         setAnimation(-1, animationIn, animationOut);
         return this;
     }
@@ -184,16 +184,16 @@ public class SwitcherView extends ViewSwitcher {
     }
     
     private class AutoSwitcherTask implements Runnable {
-        private final WeakReference<SwitcherView> mSwitcher;
+        private final WeakReference<WYASwitcherView> mSwitcher;
         
-        private AutoSwitcherTask(SwitcherView switcher) {
+        private AutoSwitcherTask(WYASwitcherView switcher) {
             mSwitcher = new WeakReference<>(switcher);
         }
         
         @Override
         public void run() {
             if (mIsTaskLive) {
-                SwitcherView switcher = mSwitcher.get();
+                WYASwitcherView switcher = mSwitcher.get();
                 if (switcher != null) {
                     switcher.switchToNextView();
                     switcher.startAutoSwitcher();

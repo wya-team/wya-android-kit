@@ -26,7 +26,7 @@
             android:layout_gravity="center_vertical"
             android:background="@drawable/icon_voiceorange" />
 
-        <com.wya.uikit.notice.switcher.SwitcherView
+        <com.wya.uikit.notice.switcher.WYASwitcherView
             android:id="@+id/vs_down2up"
             style="@style/style_switch"
             android:layout_width="0dp"
@@ -64,7 +64,7 @@
             android:layout_gravity="center_vertical"
             android:background="@drawable/icon_voiceorange" />
 
-        <com.wya.uikit.notice.switcher.SwitcherView
+        <com.wya.uikit.notice.switcher.WYASwitcherView
             android:id="@+id/vs_up2down"
             style="@style/style_switch"
             android:layout_width="0dp"
@@ -95,7 +95,7 @@
         android:paddingRight="@dimen/dp_15"
         android:paddingBottom="@dimen/dp_6">
 
-        <com.wya.uikit.notice.switcher.SwitcherView
+        <com.wya.uikit.notice.switcher.WYASwitcherView
             android:id="@+id/vs_left2right"
             style="@style/style_switch"
             android:layout_width="0dp"
@@ -124,7 +124,7 @@
         android:paddingRight="@dimen/dp_15"
         android:paddingBottom="@dimen/dp_6">
 
-        <com.wya.uikit.notice.switcher.SwitcherView
+        <com.wya.uikit.notice.switcher.WYASwitcherView
             android:id="@+id/vs_right2left"
             style="@style/style_switch"
             android:background="#ffffff"
@@ -133,23 +133,23 @@
 
     </LinearLayout>
 
-    <com.wya.uikit.notice.MarqueeTextView
+    <com.wya.uikit.notice.WYAMarqueeTextView
         style="@style/style_marquee"
         android:drawableLeft="@drawable/icon_voiceorange"
         android:drawableRight="@drawable/icon_back_notice"
         app:marqueeSkipable="true" />
 
-    <com.wya.uikit.notice.MarqueeTextView
+    <com.wya.uikit.notice.WYAMarqueeTextView
         style="@style/style_marquee"
         android:drawableLeft="@drawable/icon_voiceorange"
         android:drawableRight="@drawable/icon_cancel_notice"
         app:marqueeClosable="true" />
 
-    <com.wya.uikit.notice.MarqueeTextView
+    <com.wya.uikit.notice.WYAMarqueeTextView
         style="@style/style_marquee"
         android:drawableRight="@drawable/icon_back_notice"
         app:marqueeSkipable="true" />
 
-    <com.wya.uikit.notice.MarqueeTextView style="@style/style_marquee" />
+    <com.wya.uikit.notice.WYAMarqueeTextView style="@style/style_marquee" />
 
 </LinearLayout>
