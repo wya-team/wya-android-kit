@@ -156,11 +156,12 @@
 
     <!-- switcher attrs -->
     <declare-styleable name="SwitcherView">
-        <attr name="switch_duration" format="integer" />
-        <attr name="anim_duration" format="integer" />
-        <attr name="switch_closable" format="boolean" />
-        <attr name="switch_skipable" format="boolean" />
-        <attr name="anim_direction">
+        <attr name="switchDuration" format="integer" />
+        <attr name="switchClosable" format="boolean" />
+        <attr name="switchSkipable" format="boolean" />
+
+        <attr name="animDuration" format="integer" />
+        <attr name="animDirection">
             <enum name="down2up" value="0" />
             <enum name="up2down" value="1" />
             <enum name="left2right" value="2" />
@@ -170,10 +171,10 @@
 
     <!-- marquee attrs -->
     <declare-styleable name="MarqueeTextView">
-        <attr name="mtv_interval" format="integer" />
-        <attr name="mtv_closable" format="boolean" />
-        <attr name="mtv_skipable" format="boolean" />
-        <attr name="mtv_mode" format="enum">
+        <attr name="marqueeInterval" format="integer" />
+        <attr name="marqueeClosable" format="boolean" />
+        <attr name="marqueeSkipable" format="boolean" />
+        <attr name="marqueeMode" format="enum">
             <enum name="repeat" value="0" />
             <enum name="once" value="1" />
         </attr>

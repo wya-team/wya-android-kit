@@ -15,25 +15,28 @@ import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 
+/**
+ * @author :
+ */
 public class NoticeExampleActivity extends BaseActivity {
-
+    
     @BindView(R.id.vs_down2up)
     SwitcherView vsDown2Up;
-
+    
     @BindView(R.id.vs_up2down)
     SwitcherView vsUp2Down;
-
+    
     @BindView(R.id.ll_closable_switcher)
     LinearLayout llClosableSwitcher;
-
+    
     @BindView(R.id.vs_left2right)
     SwitcherView vsLeft2Right;
-
+    
     @BindView(R.id.vs_right2left)
     SwitcherView vsRight2Left;
-
+    
     private String noticeText;
-
+    
     public static void start(Activity activity) {
         if (null == activity) {
             return;
@@ -41,12 +44,12 @@ public class NoticeExampleActivity extends BaseActivity {
         Intent intent = new Intent(activity, NoticeExampleActivity.class);
         activity.startActivity(intent);
     }
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.layout_activity_notice_view;
     }
-
+    
     @Override
     protected void initView() {
         setTitle("通告栏(notice)");
@@ -63,14 +66,14 @@ public class NoticeExampleActivity extends BaseActivity {
         });
         showSwitcher();
     }
-
+    
     private void showSwitcher() {
-
+        
         // down2up
         vsDown2Up.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
-                if (null == nextView){
+                if (null == nextView) {
                     return;
                 }
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
@@ -85,12 +88,12 @@ public class NoticeExampleActivity extends BaseActivity {
             }
         });
         vsDown2Up.inflate(R.layout.item_switch_view).startSwitcher();
-
+        
         // up2down
         vsUp2Down.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
-                if (null == nextView){
+                if (null == nextView) {
                     return;
                 }
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
@@ -108,12 +111,12 @@ public class NoticeExampleActivity extends BaseActivity {
             }
         });
         vsUp2Down.inflate(R.layout.item_switch_view).startSwitcher();
-
+        
         // left2right
         vsLeft2Right.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
-                if (null == nextView){
+                if (null == nextView) {
                     return;
                 }
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
@@ -128,12 +131,12 @@ public class NoticeExampleActivity extends BaseActivity {
             }
         });
         vsLeft2Right.inflate(R.layout.item_switch_view).startSwitcher();
-
+        
         // right2left
         vsRight2Left.setSwitcheNextViewListener(new SwitcherView.SwitcherViewListener() {
             @Override
             public void onSwitch(View nextView, int index) {
-                if (null == nextView){
+                if (null == nextView) {
                     return;
                 }
                 ((TextView) nextView.findViewById(R.id.switch_title_text)).setText(noticeText);
@@ -141,6 +144,6 @@ public class NoticeExampleActivity extends BaseActivity {
         });
         vsRight2Left.inflate(R.layout.item_switch_view).startSwitcher();
     }
-
+    
 }
 

@@ -42,17 +42,17 @@ public class MarqueeTextView extends AppCompatTextView {
     public MarqueeTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mContext = context;
-        parseAttrs(context, attrs);
+        parseAttrs(context, attrs, R.style.style_marquee_global_option, R.style.style_marquee_global_option);
         init();
     }
     
-    private void parseAttrs(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MarqueeTextView);
+    private void parseAttrs(Context context, AttributeSet attrs, int defStyleAtts, int defStyleRes) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MarqueeTextView, defStyleAtts, defStyleRes);
         if (null != typedArray) {
-            mMarqueeInterval = typedArray.getInt(R.styleable.MarqueeTextView_mtv_interval, MARQUEE_DEFAULT_INTERVAL);
-            mMarqueeMode = typedArray.getInt(R.styleable.MarqueeTextView_mtv_mode, MARQUEE_MODE_REPEAT);
-            mClosable = typedArray.getBoolean(R.styleable.MarqueeTextView_mtv_closable, false);
-            mSkipable = typedArray.getBoolean(R.styleable.MarqueeTextView_mtv_skipable, false);
+            mMarqueeInterval = typedArray.getInt(R.styleable.MarqueeTextView_marqueeInterval, MARQUEE_DEFAULT_INTERVAL);
+            mMarqueeMode = typedArray.getInt(R.styleable.MarqueeTextView_marqueeMode, MARQUEE_MODE_REPEAT);
+            mClosable = typedArray.getBoolean(R.styleable.MarqueeTextView_marqueeClosable, false);
+            mSkipable = typedArray.getBoolean(R.styleable.MarqueeTextView_marqueeSkipable, false);
             typedArray.recycle();
         }
     }

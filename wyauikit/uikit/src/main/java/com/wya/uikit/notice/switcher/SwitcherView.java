@@ -42,11 +42,11 @@ public class SwitcherView extends ViewSwitcher {
     
     public SwitcherView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        parseAttrs(context, attrs);
+        parseAttrs(context, attrs, R.style.style_switch_global_option, R.style.style_switch_global_option);
         init();
     }
     
-    private void parseAttrs(Context context, AttributeSet attrs) {
+    private void parseAttrs(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         int defAnimatorDuration = 400;
         int defSwitchDuration = 3_000;
         mAnimDirection = DEF_ANIMATOR_DIRENCTION;
@@ -54,13 +54,13 @@ public class SwitcherView extends ViewSwitcher {
         mSwitchDuration = defSwitchDuration;
         
         if (attrs != null) {
-            TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SwitcherView, 0, 0);
+            TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SwitcherView, defStyleAttr, defStyleRes);
             if (null != typedArray) {
-                mAnimDirection = typedArray.getInteger(R.styleable.SwitcherView_anim_direction, DEF_ANIMATOR_DIRENCTION);
-                mAnimDuration = typedArray.getInteger(R.styleable.SwitcherView_anim_duration, defAnimatorDuration);
-                mClosable = typedArray.getBoolean(R.styleable.SwitcherView_switch_closable, false);
-                mSkipable = typedArray.getBoolean(R.styleable.SwitcherView_switch_skipable, false);
-                mSwitchDuration = typedArray.getInteger(R.styleable.SwitcherView_switch_duration, defSwitchDuration);
+                mAnimDirection = typedArray.getInteger(R.styleable.SwitcherView_animDirection, DEF_ANIMATOR_DIRENCTION);
+                mAnimDuration = typedArray.getInteger(R.styleable.SwitcherView_animDuration, defAnimatorDuration);
+                mClosable = typedArray.getBoolean(R.styleable.SwitcherView_switchClosable, false);
+                mSkipable = typedArray.getBoolean(R.styleable.SwitcherView_switchSkipable, false);
+                mSwitchDuration = typedArray.getInteger(R.styleable.SwitcherView_switchDuration, defSwitchDuration);
                 typedArray.recycle();
             }
         }
@@ -74,12 +74,7 @@ public class SwitcherView extends ViewSwitcher {
     public SwitcherView inflate(@LayoutRes final int resLayout) {
         if (mResLayout == 0) {
             mResLayout = resLayout;
-            super.setFactory(new ViewFactory() {
-                @Override
-                public View makeView() {
-                    return View.inflate(getContext(), mResLayout, null);
-                }
-            });
+            super.setFactory(() -> View.inflate(getContext(), mResLayout, null));
         }
         if (null != mListener && null != this.getCurrentView()) {
             mListener.onSwitch(getCurrentView(), mIndex = 0);
