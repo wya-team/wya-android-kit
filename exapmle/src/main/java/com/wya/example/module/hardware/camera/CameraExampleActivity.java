@@ -32,8 +32,13 @@ import java.io.File;
 public class CameraExampleActivity extends AppCompatActivity {
     private WYACameraView wyaCameraView;
     private String dirName = "WYACamera";
-    //录制时间
+    /**
+     * 录制时间
+     */
     private int duration;
+    /**
+     * 相机拍照类型
+     */
     private int state;
     
     @Override

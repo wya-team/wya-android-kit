@@ -32,17 +32,26 @@ import com.wya.hardware.camera.listener.TypeListener;
 
 
 public class CaptureLayout extends FrameLayout {
-
-
-    //拍照按钮监听
+    
+     /**
+      * 拍照按钮监听
+      */
     private CaptureListener captureListener;
-    //拍照或录制后接结果按钮监听
+     /**
+      * 拍照或录制后接结果按钮监听
+      */
      private TypeListener typeListener;
-    //退出按钮监听
+     /**
+      * 退出按钮监听
+      */
     private ReturnListener returnListener;
-    //左边按钮监听
+     /**
+      * 左边按钮监听
+      */
     private ClickListener leftClickListener;
-    //右边按钮监听
+     /**
+      * 右边按钮监听
+      */
     private ClickListener rightClickListener;
 
 
@@ -57,19 +66,34 @@ public class CaptureLayout extends FrameLayout {
     public void setReturnListener(ReturnListener returnListener) {
         this.returnListener = returnListener;
     }
-     //拍照按钮
+    
+     /**
+      * 拍照按钮
+      */
     private CaptureButton btnCapture;
-     //确认按钮
+     /**
+      * 确认按钮
+      */
     private Button btnConfirm;
-     //取消按钮
+     /**
+      * 取消按钮
+      */
     private Button btnCancel;
-     //返回按钮
+     /**
+      * 返回按钮
+      */
     private ReturnButton btnReturn;
-     //左边自定义按钮
+     /**
+      * 左边自定义按钮
+      */
     private ImageView ivCustomLeft;
-     //右边自定义按钮
+     /**
+      * 右边自定义按钮
+      */
     private ImageView ivCustomRight;
-     //提示文本
+     /**
+      * 提示文本
+      */
     private TextView txtTip;
 
     private int layoutWidth;

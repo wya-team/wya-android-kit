@@ -37,8 +37,12 @@ public class WYACustomNumberKeyboard {
         this.activity = activity;
         keyboardView = activity.findViewById(R.id.keyboard_view);
     }
-
-    //点击事件触发
+    
+    /**
+     * 点击事件触发
+     * @param editText
+     * @param isRandom
+     */
     public void attachTo(EditText editText, boolean isRandom) {
         /*
         切换键盘需要重新new Keyboard对象，否则键盘不会改变,keyboardView放到构造函数里面，避免每次点击重新new 对象，提高性能

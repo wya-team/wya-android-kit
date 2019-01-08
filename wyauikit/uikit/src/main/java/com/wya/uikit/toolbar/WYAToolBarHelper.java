@@ -11,61 +11,108 @@ import android.graphics.Color;
  */
 
 public class WYAToolBarHelper {
-
-    // 显示标题栏
+    
+    /**
+     * 显示标题栏
+     */
     private boolean show = true;
-    //标题栏颜色
+    /**
+     * 标题栏颜色
+     */
     private int backgroundColor = Color.parseColor("#ffffff");
-    //是否是明亮的标题栏
+    /**
+     * 是否是明亮的标题栏
+     */
     private boolean isLight;
-
-    //标题文字
+    /**
+     * 标题文字
+     */
     private String title = "";
-    //标题大小
+    /**
+     * 标题大小
+     */
     private int titleSize = 16;
-    //标题颜色
+    /**
+     * 标题颜色
+     */
     private int titleColor = Color.parseColor("#000000");
-
-    //左边文字
+    
+    /**
+     * 左边文字
+     */
     private String leftText = "";
-    //左边文字大小
+    /**
+     * 左边文字大小
+     */
     private int leftTextSize = 14;
-    //左边文字颜色
+    /**
+     * 左边文字颜色
+     */
     private int leftTextColor = Color.parseColor("#000000");
-    //默认不显示左边文字
+    /**
+     * 默认不显示左边文字
+     */
     private boolean showLeftText = false;
-
-    //是否显示左图标
+    
+    /**
+     * 是否显示左图标
+     */
     private boolean showLeftIcon = true;
-    //做图标资源
+    /**
+     * 做图标资源
+     */
     private int leftIcon;
-
-    //默认不显示右边第一个文字
+    
+    /**
+     * 默认不显示右边第一个文字
+     */
     private boolean showFirstRightText = false;
-    //右边第一个文字內容
+    /**
+     * 右边第一个文字內容
+     */
     private String firstRightText = "";
-    //右边第一个文字顏色
+    /**
+     * 右边第一个文字顏色
+     */
     private int firstRightTextColor = Color.parseColor("#000000");
-    //右边第一个文字大小
+    /**
+     * 右边第一个文字大小
+     */
     private int firstRightTextSize = 14;
-
-    //默认不显示右边第二个文字
+    
+    /**
+     * 默认不显示右边第二个文字
+     */
     private boolean showSecondRightText = false;
-    //右边第二个文字內容
+    /**
+     * 右边第二个文字內容
+     */
     private String secondRightText = "";
-    //右边第二个文字顏色
+    /**
+     * 右边第二个文字顏色
+     */
     private int secondRightTextColor = Color.parseColor("#000000");
-    //右边第二个文字大小
+    /**
+     * 右边第二个文字大小
+     */
     private int secondRightTextSize = 14;
-
-    //是否显示右边第一个图标
+    
+    /**
+     * 是否显示右边第一个图标
+     */
     private boolean showFirstRightIcon = false;
-    //右边第一个图标资源
+    /**
+     * 右边第一个图标资源
+     */
     private int firstRightIcon;
-
-    //是否显示第二个图标
+    
+    /**
+     * 是否显示第二个图标
+     */
     private boolean showSecondRightIcon = false;
-    //第二个图标资源
+    /**
+     * 第二个图标资源
+     */
     private int secondRightIcon;
 
     public boolean isShowSecondRightIcon() {

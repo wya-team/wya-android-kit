@@ -16,7 +16,6 @@ package com.wya.hardware.scan;
  * limitations under the License.
  */
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -51,120 +50,140 @@ import java.util.List;
  * @author dswitkin@google.com (Daniel Switkin)
  */
 public final class ViewfinderView extends View {
-
+    
     private static final int[] SCANNER_ALPHA = {0, 64, 128, 192, 255, 192, 128, 64};
     private static final long ANIMATION_DELAY = 20L;
     private static final int CURRENT_POINT_OPACITY = 0xA0;
     private static final int MAX_RESULT_POINTS = 20;
     private static final int POINT_SIZE = 6;
-    //扫描区边角的宽
-    private static final int    CORNER_RECT_WIDTH             =   8;
-    //扫描区边角的高
-    private static final int    CORNER_RECT_HEIGHT            =   40;
-    //扫描线移动距离
-    private static final int    SCANNER_LINE_MOVE_DISTANCE    =   6;
-    //扫描线宽度
-    private static final int    SCANNER_LINE_HEIGHT           =   10;
-
+    /**
+     * 扫描区边角的宽
+     */
+    private static final int CORNER_RECT_WIDTH = 8;
+    /**
+     * 扫描区边角的高
+     */
+    private static final int CORNER_RECT_HEIGHT = 40;
+    /**
+     * 扫描线移动距离
+     */
+    private static final int SCANNER_LINE_MOVE_DISTANCE = 6;
+    /**
+     * 扫描线宽度
+     */
+    private static final int SCANNER_LINE_HEIGHT = 10;
+    
     private CameraManager cameraManager;
     private final Paint paint;
     private final TextPaint textPaint;
     private Bitmap resultBitmap;
     private final int maskColor;
-//    private final int resultColor;
-    //扫描区域边框颜色
+    /**
+     * 扫描区域边框颜色
+     */
     private final int frameColor;
-    //扫描线颜色
+    /**
+     * 扫描线颜色
+     */
     private final int laserColor;
-    //四角颜色
+    /**
+     * 四角颜色
+     */
     private final int cornerColor;
     private final int resultPointColor;
     private int scannerAlpha;
     private final float labelTextPadding;
     private TextLocation labelTextLocation;
-    //扫描区域提示文本
+    /**
+     * 扫描区域提示文本
+     */
     private String labelText;
-    //扫描区域提示文本颜色
+    /**
+     * 扫描区域提示文本颜色
+     */
     private int labelTextColor;
     private float labelTextSize;
     public int scannerStart = 0;
     public int scannerEnd = 0;
     private boolean isShowResultPoint = true;
-
+    
     private List<ResultPoint> possibleResultPoints;
     private List<ResultPoint> lastPossibleResultPoints;
-
+    
     public enum TextLocation {
         //
-        TOP(0),BOTTOM(1);
-
+        TOP(0), BOTTOM(1);
+        
         private int mValue;
-
-        TextLocation(int value){
+        
+        TextLocation(int value) {
             mValue = value;
         }
-
-        private static TextLocation getFromInt(int value){
-
-            for(TextLocation location : TextLocation.values()){
-                if(location.mValue == value){
+        
+        private static TextLocation getFromInt(int value) {
+            
+            for (TextLocation location : TextLocation.values()) {
+                if (location.mValue == value) {
                     return location;
                 }
             }
-
+            
             return TextLocation.TOP;
         }
-
-
+        
     }
-
-    // This constructor is used when the class is built from an XML resource.
+    
+    /**
+     * This constructor is used when the class is built from an XML resource.
+     * @param context
+     * @param attrs
+     */
     public ViewfinderView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
+        
         //初始化自定义属性信息
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ViewfinderView);
-        maskColor = array.getColor(R.styleable.ViewfinderView_maskColor, ContextCompat.getColor(context,R.color.viewfinder_mask));
-        frameColor = array.getColor(R.styleable.ViewfinderView_frameColor, ContextCompat.getColor(context,R.color.viewfinder_frame));
-        cornerColor = array.getColor(R.styleable.ViewfinderView_cornerColor, ContextCompat.getColor(context,R.color.viewfinder_corner));
-        laserColor = array.getColor(R.styleable.ViewfinderView_laserColor, ContextCompat.getColor(context,R.color.viewfinder_laser));
-        resultPointColor = array.getColor(R.styleable.ViewfinderView_resultPointColor, ContextCompat.getColor(context,R.color.viewfinder_result_point_color));
-
+        maskColor = array.getColor(R.styleable.ViewfinderView_maskColor, ContextCompat.getColor(context, R.color.viewfinder_mask));
+        frameColor = array.getColor(R.styleable.ViewfinderView_frameColor, ContextCompat.getColor(context, R.color.viewfinder_frame));
+        cornerColor = array.getColor(R.styleable.ViewfinderView_cornerColor, ContextCompat.getColor(context, R.color.viewfinder_corner));
+        laserColor = array.getColor(R.styleable.ViewfinderView_laserColor, ContextCompat.getColor(context, R.color.viewfinder_laser));
+        resultPointColor = array.getColor(R.styleable.ViewfinderView_resultPointColor, ContextCompat.getColor(context, R.color.viewfinder_result_point_color));
+        
         labelText = array.getString(R.styleable.ViewfinderView_labelText);
-        labelTextColor = array.getColor(R.styleable.ViewfinderView_labelTextColor, ContextCompat.getColor(context,R.color.viewfinder_text_color));
-        labelTextSize = array.getDimension(R.styleable.ViewfinderView_labelTextSize, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,14f,getResources().getDisplayMetrics()));
-        labelTextPadding = array.getDimension(R.styleable.ViewfinderView_labelTextPadding, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,24,getResources().getDisplayMetrics()));
-        labelTextLocation = TextLocation.getFromInt(array.getInt(R.styleable.ViewfinderView_labelTextLocation,0));
-
+        labelTextColor = array.getColor(R.styleable.ViewfinderView_labelTextColor, ContextCompat.getColor(context, R.color.viewfinder_text_color));
+        labelTextSize = array.getDimension(R.styleable.ViewfinderView_labelTextSize, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14f, getResources().getDisplayMetrics()));
+        labelTextPadding = array.getDimension(R.styleable.ViewfinderView_labelTextPadding, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()));
+        labelTextLocation = TextLocation.getFromInt(array.getInt(R.styleable.ViewfinderView_labelTextLocation, 0));
+        
         array.recycle();
-
+        
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         scannerAlpha = 0;
         possibleResultPoints = new ArrayList<>(5);
         lastPossibleResultPoints = null;
     }
-
+    
     public void setCameraManager(CameraManager cameraManager) {
         this.cameraManager = cameraManager;
     }
-
+    
     public void setLabelText(String labelText) {
         this.labelText = labelText;
     }
-
+    
     public void setLabelTextColor(int color) {
         this.labelTextColor = color;
     }
-
-    public void setLabelTextColorResource(@ColorRes int id){
-        this.labelTextColor = ContextCompat.getColor(getContext(),id);
+    
+    public void setLabelTextColorResource(@ColorRes int id) {
+        this.labelTextColor = ContextCompat.getColor(getContext(), id);
     }
-
+    
     public void setLabelTextSize(float textSize) {
         this.labelTextSize = textSize;
     }
-
+    
     @SuppressLint("DrawAllocation")
     @Override
     public void onDraw(Canvas canvas) {
@@ -176,35 +195,35 @@ public final class ViewfinderView extends View {
         if (frame == null || previewFrame == null) {
             return;
         }
-
-        if(scannerStart == 0 || scannerEnd == 0) {
+        
+        if (scannerStart == 0 || scannerEnd == 0) {
             scannerStart = frame.top;
             scannerEnd = frame.bottom - SCANNER_LINE_HEIGHT;
         }
-
+        
         int width = canvas.getWidth();
         int height = canvas.getHeight();
-
+        
         // Draw the exterior (i.e. outside the framing rect) darkened
-        drawExterior(canvas,frame,width,height);
-
+        drawExterior(canvas, frame, width, height);
+        
         if (resultBitmap != null) {
             // Draw the opaque result bitmap over the scanning rectangle
             paint.setAlpha(CURRENT_POINT_OPACITY);
             canvas.drawBitmap(resultBitmap, null, frame, paint);
         } else {
-
+            
             drawFrame(canvas, frame);
             // 绘制边角
             drawCorner(canvas, frame);
             // Draw a red "laser scanner" line through the middle to show decoding is active
-            drawLaserScanner(canvas,frame);
+            drawLaserScanner(canvas, frame);
             //绘制提示信息
             drawTextInfo(canvas, frame);
-
+            
             float scaleX = frame.width() / (float) previewFrame.width();
             float scaleY = frame.height() / (float) previewFrame.height();
-
+            
             List<ResultPoint> currentPossible = possibleResultPoints;
             List<ResultPoint> currentLast = lastPossibleResultPoints;
             int frameLeft = frame.left;
@@ -218,9 +237,9 @@ public final class ViewfinderView extends View {
                 paint.setColor(resultPointColor);
                 synchronized (currentPossible) {
                     for (ResultPoint point : currentPossible) {
-                        if(point.getX()<frame.left || point.getX()>frame.right ||
-                                point.getY()<frame.top || point.getY()>frame.bottom){
-                                continue;
+                        if (point.getX() < frame.left || point.getX() > frame.right ||
+                                point.getY() < frame.top || point.getY() > frame.bottom) {
+                            continue;
                         }
                         canvas.drawCircle(frameLeft + (int) (point.getX() * scaleX),
                                 frameTop + (int) (point.getY() * scaleY),
@@ -240,7 +259,7 @@ public final class ViewfinderView extends View {
                     }
                 }
             }
-
+            
             // Request another update at the animation interval, but only repaint the laser line,
             // not the entire viewfinder mask.
             postInvalidateDelayed(ANIMATION_DELAY,
@@ -250,26 +269,34 @@ public final class ViewfinderView extends View {
                     frame.bottom + POINT_SIZE);
         }
     }
-
-    //绘制文本
+    
+    /**
+     * 绘制文本
+     * @param canvas
+     * @param frame
+     */
     private void drawTextInfo(Canvas canvas, Rect frame) {
-        if(!TextUtils.isEmpty(labelText)){
+        if (!TextUtils.isEmpty(labelText)) {
             textPaint.setColor(labelTextColor);
             textPaint.setTextSize(labelTextSize);
             textPaint.setTextAlign(Paint.Align.CENTER);
-            StaticLayout staticLayout = new StaticLayout(labelText,textPaint,canvas.getWidth(), Layout.Alignment.ALIGN_NORMAL,1.0f,0.0f,true);
-            if(labelTextLocation == TextLocation.BOTTOM){
-                canvas.translate(frame.left + frame.width() / 2,frame.bottom + labelTextPadding);
+            StaticLayout staticLayout = new StaticLayout(labelText, textPaint, canvas.getWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+            if (labelTextLocation == TextLocation.BOTTOM) {
+                canvas.translate(frame.left + frame.width() / 2, frame.bottom + labelTextPadding);
                 staticLayout.draw(canvas);
-            }else{
-                canvas.translate(frame.left + frame.width() / 2,frame.top - labelTextPadding - staticLayout.getHeight());
+            } else {
+                canvas.translate(frame.left + frame.width() / 2, frame.top - labelTextPadding - staticLayout.getHeight());
                 staticLayout.draw(canvas);
             }
         }
-
+        
     }
-
-    //绘制边角
+    
+    /**
+     * 绘制边角
+     * @param canvas
+     * @param frame
+     */
     private void drawCorner(Canvas canvas, Rect frame) {
         paint.setColor(cornerColor);
         //左上
@@ -285,8 +312,12 @@ public final class ViewfinderView extends View {
         canvas.drawRect(frame.right - CORNER_RECT_WIDTH, frame.bottom - CORNER_RECT_HEIGHT, frame.right, frame.bottom, paint);
         canvas.drawRect(frame.right - CORNER_RECT_HEIGHT, frame.bottom - CORNER_RECT_WIDTH, frame.right, frame.bottom, paint);
     }
-
-    //绘制扫描线
+    
+    /**
+     * 绘制扫描线
+     * @param canvas
+     * @param frame
+     */
     private void drawLaserScanner(Canvas canvas, Rect frame) {
         paint.setColor(laserColor);
         //线性渐变
@@ -296,9 +327,9 @@ public final class ViewfinderView extends View {
                 shadeColor(laserColor),
                 laserColor,
                 Shader.TileMode.MIRROR);
-
+        
         paint.setShader(linearGradient);
-        if(scannerStart <= scannerEnd) {
+        if (scannerStart <= scannerEnd) {
             //椭圆
             RectF rectF = new RectF(frame.left + 2 * SCANNER_LINE_HEIGHT, scannerStart, frame.right - 2 * SCANNER_LINE_HEIGHT, scannerStart + SCANNER_LINE_HEIGHT);
             canvas.drawOval(rectF, paint);
@@ -308,15 +339,24 @@ public final class ViewfinderView extends View {
         }
         paint.setShader(null);
     }
-
-    //处理颜色模糊
+    
+    /**
+     * 处理颜色模糊
+     * @param color
+     *
+     * @return
+     */
     public int shadeColor(int color) {
         String hax = Integer.toHexString(color);
-        String result = "20"+hax.substring(2);
+        String result = "20" + hax.substring(2);
         return Integer.valueOf(result, 16);
     }
-
-    // 绘制扫描区边框 Draw a two pixel solid black border inside the framing rect
+    
+    /**
+     * 绘制扫描区边框 Draw a two pixel solid black border inside the framing rect
+     * @param canvas
+     * @param frame
+     */
     private void drawFrame(Canvas canvas, Rect frame) {
         paint.setColor(frameColor);
         canvas.drawRect(frame.left, frame.top, frame.right + 1, frame.top + 2, paint);
@@ -324,8 +364,14 @@ public final class ViewfinderView extends View {
         canvas.drawRect(frame.right - 1, frame.top, frame.right + 1, frame.bottom - 1, paint);
         canvas.drawRect(frame.left, frame.bottom - 1, frame.right + 1, frame.bottom + 1, paint);
     }
-
-    // 绘制模糊区域 Draw the exterior (i.e. outside the framing rect) darkened
+    
+    /**
+     * 绘制模糊区域 Draw the exterior (i.e. outside the framing rect) darkened
+     * @param canvas
+     * @param frame
+     * @param width
+     * @param height
+     */
     private void drawExterior(Canvas canvas, Rect frame, int width, int height) {
         paint.setColor(maskColor);
         canvas.drawRect(0, 0, width, frame.top, paint);
@@ -333,7 +379,7 @@ public final class ViewfinderView extends View {
         canvas.drawRect(frame.right + 1, frame.top, width, frame.bottom + 1, paint);
         canvas.drawRect(0, frame.bottom + 1, width, height, paint);
     }
-
+    
     public void drawViewfinder() {
         Bitmap resultBitmap = this.resultBitmap;
         this.resultBitmap = null;
@@ -342,17 +388,17 @@ public final class ViewfinderView extends View {
         }
         invalidate();
     }
-
+    
     public boolean isShowResultPoint() {
         return isShowResultPoint;
     }
-
+    
     public void setShowResultPoint(boolean showResultPoint) {
         isShowResultPoint = showResultPoint;
     }
-
+    
     public void addPossibleResultPoint(ResultPoint point) {
-        if(isShowResultPoint){
+        if (isShowResultPoint) {
             List<ResultPoint> points = possibleResultPoints;
             synchronized (points) {
                 points.add(point);
@@ -363,7 +409,7 @@ public final class ViewfinderView extends View {
                 }
             }
         }
-
+        
     }
-
+    
 }

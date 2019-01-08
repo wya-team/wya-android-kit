@@ -61,19 +61,25 @@ public class PhotoViewAttacher implements View.OnTouchListener,
     private boolean mBlockParentIntercept = false;
 
     private ImageView mImageView;
-
-    // Gesture Detectors
+    
+    /**
+     * Gesture Detectors
+     */
     private GestureDetector mGestureDetector;
     private CustomGestureDetector mScaleDragDetector;
-
-    // These are set so we don't keep allocating them on the heap
+    
+    /**
+     * These are set so we don't keep allocating them on the heap
+     */
     private final Matrix mBaseMatrix = new Matrix();
     private final Matrix mDrawMatrix = new Matrix();
     private final Matrix mSuppMatrix = new Matrix();
     private final RectF mDisplayRect = new RectF();
     private final float[] mMatrixValues = new float[9];
-
-    // Listeners
+    
+    /**
+     * Listeners
+     */
     private OnMatrixChangedListener mMatrixChangeListener;
     private OnPhotoTapListener mPhotoTapListener;
     private OnOutsidePhotoTapListener mOutsidePhotoTapListener;

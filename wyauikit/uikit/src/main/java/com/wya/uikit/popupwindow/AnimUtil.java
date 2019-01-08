@@ -99,10 +99,18 @@ public class AnimUtil {
     }
 
     public interface EndListener {
+        /**
+         * 结束更新
+         * @param animator
+         */
         void endUpdate(Animator animator);
     }
 
     public interface UpdateListener {
+        /**
+         * 更新进度条
+         * @param progress
+         */
         void progress(float progress);
     }
 

@@ -44,7 +44,9 @@ public class GalleryExampleActivity extends AppCompatActivity {
     private static final Uri QUERY_URI = MediaStore.Files.getContentUri("external");
     private static final String ORDER_BY = MediaStore.Files.FileColumns.DATE_MODIFIED;
     
-    // 媒体文件数据库字段
+    /**
+     * 媒体文件数据库字段
+     */
     private static final String[] PROJECTION = {
             MediaStore.Files.FileColumns._ID,
             MediaStore.MediaColumns.DATA,
@@ -52,7 +54,9 @@ public class GalleryExampleActivity extends AppCompatActivity {
             MediaStore.MediaColumns.WIDTH,
             MediaStore.MediaColumns.HEIGHT};
     
-    // 图片
+    /**
+     *  图片
+     */
     private static final String SELECTION = MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
             + " AND " + MediaStore.MediaColumns.SIZE + ">0";
     

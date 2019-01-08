@@ -37,7 +37,9 @@ public class WYAPopupWindow extends PopupWindow {
     private List<String> list = new ArrayList<>();
     private RecyclerView recyclerView;
     private PopupWindListAdapter popupWindListAdapter;
-    //列表点击监听
+    /**
+     * 列表点击监听
+     */
     private ListItemClickListener listItemClickListener;
 
     private static final long DURATION = 500;

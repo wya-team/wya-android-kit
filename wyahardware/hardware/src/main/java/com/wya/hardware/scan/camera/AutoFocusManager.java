@@ -13,6 +13,7 @@ package com.wya.hardware.scan.camera;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * camera APIs
  */
 
 import android.content.Context;
@@ -29,25 +30,26 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.RejectedExecutionException;
 
-@SuppressWarnings("deprecation") // camera APIs
+@SuppressWarnings("deprecation")
 final class AutoFocusManager implements Camera.AutoFocusCallback {
-
+    
     private static final String TAG = AutoFocusManager.class.getSimpleName();
-
+    
     private static final long AUTO_FOCUS_INTERVAL_MS = 1000L;
     private static final Collection<String> FOCUS_MODES_CALLING_AF;
+    
     static {
         FOCUS_MODES_CALLING_AF = new ArrayList<>(2);
         FOCUS_MODES_CALLING_AF.add(Camera.Parameters.FOCUS_MODE_AUTO);
         FOCUS_MODES_CALLING_AF.add(Camera.Parameters.FOCUS_MODE_MACRO);
     }
-
+    
     private boolean stopped;
     private boolean focusing;
     private final boolean useAutoFocus;
     private final Camera camera;
-    private AsyncTask<?,?,?> outstandingTask;
-
+    private AsyncTask<?, ?, ?> outstandingTask;
+    
     AutoFocusManager(Context context, Camera camera) {
         this.camera = camera;
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -58,13 +60,13 @@ final class AutoFocusManager implements Camera.AutoFocusCallback {
         Log.i(TAG, "Current focus mode '" + currentFocusMode + "'; use auto focus? " + useAutoFocus);
         start();
     }
-
+    
     @Override
     public synchronized void onAutoFocus(boolean success, Camera theCamera) {
         focusing = false;
         autoFocusAgainLater();
     }
-
+    
     private synchronized void autoFocusAgainLater() {
         if (!stopped && outstandingTask == null) {
             AutoFocusTask newTask = new AutoFocusTask(this);
@@ -76,7 +78,7 @@ final class AutoFocusManager implements Camera.AutoFocusCallback {
             }
         }
     }
-
+    
     synchronized void start() {
         if (useAutoFocus) {
             outstandingTask = null;
@@ -93,7 +95,7 @@ final class AutoFocusManager implements Camera.AutoFocusCallback {
             }
         }
     }
-
+    
     private synchronized void cancelOutstandingTask() {
         if (outstandingTask != null) {
             if (outstandingTask.getStatus() != AsyncTask.Status.FINISHED) {
@@ -102,7 +104,7 @@ final class AutoFocusManager implements Camera.AutoFocusCallback {
             outstandingTask = null;
         }
     }
-
+    
     synchronized void stop() {
         stopped = true;
         if (useAutoFocus) {
@@ -116,15 +118,15 @@ final class AutoFocusManager implements Camera.AutoFocusCallback {
             }
         }
     }
-
-    private static class AutoFocusTask extends AsyncTask<Object,Object,Object> {
-
+    
+    private static class AutoFocusTask extends AsyncTask<Object, Object, Object> {
+        
         private WeakReference<AutoFocusManager> weakReference;
-
-        public AutoFocusTask(AutoFocusManager manager){
+        
+        public AutoFocusTask(AutoFocusManager manager) {
             weakReference = new WeakReference<>(manager);
         }
-
+        
         @Override
         protected Object doInBackground(Object... voids) {
             try {
@@ -133,11 +135,11 @@ final class AutoFocusManager implements Camera.AutoFocusCallback {
                 // continue
             }
             AutoFocusManager manager = weakReference.get();
-            if(manager!=null){
+            if (manager != null) {
                 manager.start();
             }
             return null;
         }
     }
-
+    
 }

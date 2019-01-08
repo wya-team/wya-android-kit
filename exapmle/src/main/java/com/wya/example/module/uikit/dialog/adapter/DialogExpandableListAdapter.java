@@ -31,43 +31,75 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
         this.context = context;
     }
     
+    /**
+     * 获取分组的个数
+     * @return
+     */
     @Override
-    // 获取分组的个数
     public int getGroupCount() {
         return mDatas.size();
     }
     
-    //获取指定分组中的子选项的个数
+    /**
+     * 获取指定分组中的子选项的个数
+     * @param groupPosition
+     * @return
+     */
     @Override
     public int getChildrenCount(int groupPosition) {
         return mDatas.get(groupPosition).getChild().size();
     }
     
-    //        获取指定的分组数据
+    /**
+     * 获取指定的分组数据
+     * @param groupPosition
+     *
+     * @return
+     */
     @Override
     public Object getGroup(int groupPosition) {
         return mDatas.get(groupPosition);
     }
     
-    //获取指定分组中的指定子选项数据
+    /**
+     * 获取指定分组中的指定子选项数据
+     * @param groupPosition
+     * @param childPosition
+     *
+     * @return
+     */
     @Override
     public Object getChild(int groupPosition, int childPosition) {
         return mDatas.get(groupPosition).getChild().get(childPosition);
     }
     
-    //获取指定分组的ID, 这个ID必须是唯一的
+    /**
+     * 获取指定分组的ID, 这个ID必须是唯一的
+     * @param groupPosition
+     *
+     * @return
+     */
     @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
     
-    //获取子选项的ID, 这个ID必须是唯一的
+    /**
+     * 获取子选项的ID, 这个ID必须是唯一的
+     * @param groupPosition
+     * @param childPosition
+     *
+     * @return
+     */
     @Override
     public long getChildId(int groupPosition, int childPosition) {
         return childPosition;
     }
     
-    //分组和子选项是否持有稳定的ID, 就是说底层数据的改变会不会影响到它们
+    /**
+     * 分组和子选项是否持有稳定的ID, 就是说底层数据的改变会不会影响到它们
+     * @return
+     */
     @Override
     public boolean hasStableIds() {
         return true;
@@ -81,7 +113,6 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
      * @param convertView 重用已有的视图对象
      * @param parent 返回的视图对象始终依附于的视图组
      */
-    // 获取显示指定分组的视图
     @SuppressLint("NewApi")
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
@@ -118,8 +149,6 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
      * @see android.widget.ExpandableListAdapter#getChildView(int, int, boolean, View,
      * ViewGroup)
      */
-    
-    //取得显示给定分组给定子位置的数据用的视图
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ChildViewHolder childViewHolder;
@@ -135,7 +164,13 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
     
-    //指定位置上的子元素是否可选中
+    /**
+     * 指定位置上的子元素是否可选中
+     * @param groupPosition
+     * @param childPosition
+     *
+     * @return
+     */
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;

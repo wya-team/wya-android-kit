@@ -26,29 +26,51 @@ import static android.graphics.Paint.Style.STROKE;
 public class WYAProgress extends View {
 
     private Paint paint;
-    //最外层圆环的颜色
+    /**
+     * 最外层圆环的颜色
+     */
     private int circleColor;
-    //圆环进度的颜色
+    /**
+     * 圆环进度的颜色
+     */
     private int progressCircleColor;
-
-    //圆环的厚度，即大小
+    
+    /**
+     * 圆环的厚度，即大小
+     */
     private float circleThickness;
-    //RoundProgress开始的颜色，决定RoundProgress的渐变区间
+    /**
+     * RoundProgress开始的颜色，决定RoundProgress的渐变区间
+     */
     private int progressStartColor;
-    //RoundProgress结束的颜色，决定RoundProgress的渐变区间
+    /**
+     * RoundProgress结束的颜色，决定RoundProgress的渐变区间
+     */
     private int progressEndColor;
-    //进度的最大值，默认是1000
+    /**
+     * 进度的最大值，默认是1000
+     */
     private double maxProgress = 100.0;
-    //当前的进度，默认0
+    /**
+     * 当前的进度，默认0
+     */
     private double currentProgress = 0.0;
-    //最外层圆的半径
+    /**
+     * 最外层圆的半径
+     */
     private int outerFirstCircleRadius;
-    //动画时长，默认时长为1000
+    /**
+     * 动画时长，默认时长为1000
+     */
     private long animationDuration;
-
-    //颜色是否argb变化
+    
+    /**
+     * 颜色是否argb变化
+     */
     private boolean progressArgbColor;
-    //是否圆角
+    /**
+     * 是否圆角
+     */
     private boolean smallCircleEnable;
     private int center;
     private ArgbEvaluator mArgbEvaluator;

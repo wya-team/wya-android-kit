@@ -21,8 +21,8 @@ import java.util.List;
 public class SwipeBackLayout extends FrameLayout {
     /**
      * Minimum velocity that will be detected as a fling
+     * dips per second
      */
-    // dips per second
     private static final int MIN_FLING_VELOCITY = 400;
 
     private static final int DEFAULT_SCRIM_COLOR = 0x99000000;
