@@ -6,15 +6,20 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.utils.utils.StringUtil;
-
+ /**
+  * @date: 2019/1/8 9:53
+  * @author: Chunjiang Mao
+  * @classname: CustomEditTextExampleActivity
+  * @describe: CustomEditTextExampleActivity
+  */
+ 
 public class CustomEditTextExampleActivity extends BaseActivity {
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_wyacustom_edit_text_example;
     }
-
-
+    
     @Override
     protected void initView() {
         setTitle("多行输入(customeditext)");

@@ -16,23 +16,22 @@ import butterknife.OnClick;
  * @desc : 清理缓存
  */
 public class DataCleanExampleActivity extends BaseActivity {
-
+    
     @BindView(R.id.cache_data)
     TextView mCacheData;
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_data_clean;
     }
-
-
+    
     @Override
     protected void initView() {
         ButterKnife.bind(this);
         setTitle("清理缓存");
         initCache();
     }
-
+    
     private void initCache() {
         try {
             String totalCacheSize = DataCleanUtil.getTotalCacheSize(this);
@@ -41,8 +40,7 @@ public class DataCleanExampleActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
-
-
+    
     @OnClick(R.id.clean_btn)
     public void onViewClicked() {
         DataCleanUtil.cleanTotalCache(this);

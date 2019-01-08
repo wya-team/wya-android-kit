@@ -18,20 +18,19 @@ import java.util.List;
  */
 
 public class RealmListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
-
-   private List<String> data;
-   private Context context;
-
-   public RealmListAdapter(Context context, int layoutResId, @Nullable List<String> data) {
-       super(layoutResId, data);
-       this.data = data;
-       this.context = context;
-   }
-
-
+    
+    private List<String> data;
+    private Context context;
+    
+    public RealmListAdapter(Context context, int layoutResId, @Nullable List<String> data) {
+        super(layoutResId, data);
+        this.data = data;
+        this.context = context;
+    }
+    
     @SuppressLint("NewApi")
     @Override
     protected void convert(BaseViewHolder helper, String item) {
-       helper.setText(R.id.tv_realm_name, item);
+        helper.setText(R.id.tv_realm_name, item);
     }
 }

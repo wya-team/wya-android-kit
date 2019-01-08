@@ -1,6 +1,5 @@
 package com.wya.example.module.example.fragment;
 
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +23,7 @@ import com.wya.utils.utils.PhoneUtil;
  */
 
 public class AboutUsFragment extends Fragment {
-
+    
     private View view;
     private TextView tvVersion;
     private TextView tvSystemVersion;
@@ -32,8 +31,7 @@ public class AboutUsFragment extends Fragment {
     private WYAInputItem gitHubAddress;
     private WYAInputItem gitHubContributor;
     private WYAInputItem gitHubVersion;
-
-
+    
     @SuppressLint("NewApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +39,7 @@ public class AboutUsFragment extends Fragment {
         initView();
         return view;
     }
-
+    
     private void initView() {
         tvVersion = view.findViewById(R.id.tv_version);
         gitHubAddress = view.findViewById(R.id.git_hub_address);
@@ -61,6 +59,6 @@ public class AboutUsFragment extends Fragment {
         gitHubVersion.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ReadmeActivity.class).putExtra("url", "https://github.com/wya-team/wya-android-kit/blob/develop/CHANGELOG.md"));
         });
-
+        
     }
 }

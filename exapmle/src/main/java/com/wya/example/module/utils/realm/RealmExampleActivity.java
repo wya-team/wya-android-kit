@@ -23,7 +23,7 @@ import io.realm.RealmObject;
 import io.realm.RealmResults;
 
 public class RealmExampleActivity extends BaseActivity {
-
+    
     @BindView(R.id.tv_db_name)
     TextView tvDbName;
     @BindView(R.id.tv_id)
@@ -36,30 +36,30 @@ public class RealmExampleActivity extends BaseActivity {
     RecyclerView recycleView;
     @BindView(R.id.tv_choose)
     TextView tvChoose;
-
+    
     private RealmResults<User> userList;
-
+    
     private Realm realm;
-
+    
     private RealmListAdapter realmListAdapter;
     private List<String> data = new ArrayList<>();
     private int choosePosition;
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_realm_example;
     }
-
+    
     @Override
     protected void initView() {
         setTitle("Realm（增删改查）");
-
+        
         initRealm();
-
+        
         initRecycleView();
         query();
     }
-
+    
     private void initRecycleView() {
         recycleView.setLayoutManager(new LinearLayoutManager(this));
         realmListAdapter = new RealmListAdapter(this, R.layout.wya_realm_item, data);
@@ -76,13 +76,12 @@ public class RealmExampleActivity extends BaseActivity {
             }
         });
     }
-
+    
     private void initRealm() {
         realm = Realm.getDefaultInstance();
         tvDbName.setText("数据库名称：" + realm.getConfiguration().getRealmFileName());
     }
-
-
+    
     @OnClick({R.id.wya_button_add, R.id.wya_button_reduce, R.id.wya_button_update, R.id.wya_button_query})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -107,7 +106,7 @@ public class RealmExampleActivity extends BaseActivity {
                 if (isAdd) {
                     add(user);
                 } else {
-                    getWyaToast().showShort( "请输入正确的值");
+                    getWyaToast().showShort("请输入正确的值");
                 }
                 break;
             case R.id.wya_button_reduce:
@@ -134,7 +133,7 @@ public class RealmExampleActivity extends BaseActivity {
                 if (isAdd2) {
                     add(user2);
                 } else {
-                    getWyaToast().showShort( "请输入正确的值");
+                    getWyaToast().showShort("请输入正确的值");
                 }
                 break;
             case R.id.wya_button_query:
@@ -144,22 +143,22 @@ public class RealmExampleActivity extends BaseActivity {
                 break;
         }
     }
-
+    
     private void query() {
         userList = realm.where(User.class).findAll();
         userList = userList.sort("id");
         data = new ArrayList<>();
         for (int i = 0; i < userList.size(); i++) {
             data.add(userList.get(i).getId() + "---" + userList.get(i).getName() + "---" + userList.get(i).getAge());
-            LogUtil.e( userList.get(i).getId() + "---" + userList.get(i).getName() + "---" + userList.get(i).getAge());
+            LogUtil.e(userList.get(i).getId() + "---" + userList.get(i).getName() + "---" + userList.get(i).getAge());
         }
         realmListAdapter.setNewData(data);
     }
-
+    
     private void delete() {
         //先查找到数据  
         final RealmResults<User> userList = realm.where(User.class).findAll();
-        if(userList.size() > 0){
+        if (userList.size() > 0) {
             realm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
@@ -169,7 +168,7 @@ public class RealmExampleActivity extends BaseActivity {
             });
         }
     }
-
+    
     private void add(RealmObject realmObject) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -179,7 +178,7 @@ public class RealmExampleActivity extends BaseActivity {
             }
         });
     }
-
+    
     @Override
     protected void onDestroy() {
         super.onDestroy();

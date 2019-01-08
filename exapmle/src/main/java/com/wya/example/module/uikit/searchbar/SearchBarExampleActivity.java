@@ -21,12 +21,12 @@ import butterknife.BindView;
  */
 
 public class SearchBarExampleActivity extends BaseActivity {
-
+    
     @BindView(R.id.wya_search_bar)
     WYASearchBar wyaSearchBar;
     @BindView(R.id.parent)
     LinearLayout parent;
-
+    
     @Override
     protected void initView() {
         setTitle("搜索栏(searchBar)");
@@ -42,7 +42,7 @@ public class SearchBarExampleActivity extends BaseActivity {
         });
         setWYASearchBar();
     }
-
+    
     private void setWYASearchBar() {
         wyaSearchBar.setOnClickCancelListener(new WYASearchBar.OnTextClickListener() {
             @Override
@@ -50,7 +50,7 @@ public class SearchBarExampleActivity extends BaseActivity {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
             }
-
+            
             @Override
             public void onClickSearch() {
                 getWyaToast().showShort(wyaSearchBar.getEtSearch());
@@ -64,12 +64,12 @@ public class SearchBarExampleActivity extends BaseActivity {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
         });
-
+        
     }
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_search_bar_example;
     }
-
+    
 }

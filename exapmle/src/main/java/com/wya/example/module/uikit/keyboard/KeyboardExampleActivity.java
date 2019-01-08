@@ -26,7 +26,7 @@ import butterknife.BindView;
  */
 
 public class KeyboardExampleActivity extends BaseActivity {
-
+    
     @BindView(R.id.keyboard_view)
     WYACustomNumberKeyboardView keyboardView;
     @BindView(R.id.et_number)
@@ -35,9 +35,9 @@ public class KeyboardExampleActivity extends BaseActivity {
     EditText etNumberRandom;
     @BindView(R.id.parent)
     RelativeLayout parent;
-
+    
     private WYACustomNumberKeyboard keyboard = null;
-
+    
     @Override
     protected void initView() {
         setTitle("软键盘(keyboard)");
@@ -53,12 +53,12 @@ public class KeyboardExampleActivity extends BaseActivity {
         });
         setKeyBoard();
     }
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_keyboard_example;
     }
-
+    
     private void setKeyBoard() {
         //获取到keyboard对象
         keyboard = new WYACustomNumberKeyboard(KeyboardExampleActivity.this);
@@ -72,7 +72,7 @@ public class KeyboardExampleActivity extends BaseActivity {
             etNumberRandom.requestFocus();
             return true;
         });
-
+        
         etNumber.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 //eiditext绑定keyboard，false表示普通数字键盘
@@ -82,18 +82,18 @@ public class KeyboardExampleActivity extends BaseActivity {
             }
             return true;
         });
-
+        
         etNumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+            
             }
-
+            
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+            
             }
-
+            
             @Override
             public void afterTextChanged(Editable s) {
                 if (count(s.toString(), ".") > 1) {
@@ -105,14 +105,14 @@ public class KeyboardExampleActivity extends BaseActivity {
         etNumberRandom.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+            
             }
-
+            
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+            
             }
-
+            
             @Override
             public void afterTextChanged(Editable s) {
                 if (count(s.toString(), ".") > 1) {
@@ -121,7 +121,7 @@ public class KeyboardExampleActivity extends BaseActivity {
                 }
             }
         });
-
+        
         parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,8 +135,7 @@ public class KeyboardExampleActivity extends BaseActivity {
         //隐藏键盘按钮
         keyboard.setOnCancelClick(() -> Toast.makeText(KeyboardExampleActivity.this, "隐藏键盘按钮", Toast.LENGTH_SHORT).show());
     }
-
-
+    
     public int count(String text, String sub) {
         int count = 0, start = 0;
         while ((start = text.indexOf(sub, start)) >= 0) {
@@ -145,5 +144,5 @@ public class KeyboardExampleActivity extends BaseActivity {
         }
         return count;
     }
-
+    
 }

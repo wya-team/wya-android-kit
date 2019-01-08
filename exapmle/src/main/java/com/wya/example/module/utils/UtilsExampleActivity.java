@@ -12,24 +12,24 @@ import com.wya.example.module.utils.realm.RealmExampleActivity;
 import butterknife.OnClick;
 
 public class UtilsExampleActivity extends BaseActivity {
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_utils_example;
     }
-
+    
     @Override
     protected void initView() {
         setTitle("工具库");
     }
-
+    
     @OnClick({R.id.wya_button_realm, R.id.wya_button_image, R.id.wya_button_download})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.wya_button_realm:
                 UtilsExampleActivity.this.startActivity(new Intent(UtilsExampleActivity.this,
-						RealmExampleActivity
-                        .class));
+                        RealmExampleActivity
+                                .class));
                 break;
             case R.id.wya_button_image:
                 startActivity(new Intent(this, QRCodeExampleActivity.class));

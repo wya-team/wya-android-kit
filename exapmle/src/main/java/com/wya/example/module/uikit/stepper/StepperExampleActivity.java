@@ -18,15 +18,15 @@ import butterknife.BindView;
  */
 
 public class StepperExampleActivity extends BaseActivity {
-
+    
     @BindView(R.id.stepper)
     WYAStepper stepper;
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_stepper_example;
     }
-
+    
     @Override
     protected void initView() {
         setTitle("步进器(stepper)");
@@ -34,7 +34,7 @@ public class StepperExampleActivity extends BaseActivity {
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setRightSecondIconClickListener(view -> {
-            startActivity(new Intent(StepperExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+            startActivity(new Intent(StepperExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
         setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
