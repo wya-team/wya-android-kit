@@ -3,6 +3,9 @@ package com.wya.uikit.badge;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
+/**
+ * @author :
+ */
 public interface IBadgeView {
     
     /**
