@@ -1,5 +1,6 @@
 package com.wya.example.module.utils.realm;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,9 +10,12 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
+import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.example.module.uikit.progress.ProgressExampleActivity;
 import com.wya.example.module.utils.realm.adapter.RealmListAdapter;
 import com.wya.example.module.utils.realm.bean.User;
 import com.wya.utils.utils.LogUtil;
+import com.wya.utils.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +57,18 @@ public class RealmExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         setTitle("Realm（增删改查）");
+    
+        String url = getIntent().getStringExtra("url");
+        showSecondRightIcon(true);
+        setSecondRightIcon(R.drawable.icon_help);
+        setRightSecondIconClickListener(view -> {
+            startActivity(new Intent(RealmExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+        });
+        setRightSecondIconLongClickListener(view -> {
+            getWyaToast().showShort("链接地址复制成功");
+            StringUtil.copyString(RealmExampleActivity.this, url);
+        });
+        
         
         initRealm();
         

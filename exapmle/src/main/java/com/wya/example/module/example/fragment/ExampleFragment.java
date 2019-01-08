@@ -279,7 +279,7 @@ public class ExampleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), DataCleanExampleActivity.class).putExtra("url", UTILS_URL));
                 break;
             case "数据库基本使用(realm)":
-                startActivity(new Intent(getActivity(), RealmExampleActivity.class));
+                startActivity(new Intent(getActivity(), RealmExampleActivity.class).putExtra("url", UIKIT_URL+"realm"+"/README.md"));
                 break;
             default:
                 break;
