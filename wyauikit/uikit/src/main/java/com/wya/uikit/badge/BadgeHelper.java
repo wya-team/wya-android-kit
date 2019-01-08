@@ -3,6 +3,9 @@ package com.wya.uikit.badge;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+/**
+ * @author :
+ */
 public class BadgeHelper {
     
     public static void showBadgeCenterStart(Context context, View view, String text) {
