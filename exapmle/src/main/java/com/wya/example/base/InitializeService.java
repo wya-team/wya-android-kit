@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 
+/**
+ * @author :
+ */
 public class InitializeService extends IntentService {
     
     private static final String ACTION_APP_CREATE = "com.weiyian.kit.base.action.INIT";
