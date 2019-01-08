@@ -16,13 +16,9 @@
 - 在项目的build.gradle中添加代码如下
 ```
           buildscript {
-                  repositories {
-                      ...
-                      maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
-                  }
                   dependencies {
                       ...
-                      classpath "io.realm:realm-gradle-plugin:4.3.1"
+                      classpath "io.realm:realm-gradle-plugin:5.8.0"
                       ...
                   }
               }
@@ -34,7 +30,7 @@
               }   
 ```
 
-#####  使用说明
+## 使用说明
 ```
         /**
          * 初始化数据库
@@ -51,7 +47,7 @@
             Realm.setDefaultConfiguration(configuration);
         }
  ```       
-#####  基本使用
+##  基本使用
 - 增|改（已经存在就改，没有就增加）
 ```
         realm.executeTransaction(new Realm.Transaction() {

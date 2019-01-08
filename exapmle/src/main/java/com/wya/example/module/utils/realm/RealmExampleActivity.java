@@ -25,7 +25,13 @@ import butterknife.OnClick;
 import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
-
+ /**
+  * @date: 2019/1/8 10:42
+  * @author: Chunjiang Mao
+  * @classname: RealmExampleActivity
+  * @describe: 
+  */
+ 
 public class RealmExampleActivity extends BaseActivity {
     
     @BindView(R.id.tv_db_name)
@@ -57,18 +63,17 @@ public class RealmExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         setTitle("Realm（增删改查）");
-    
+        
         String url = getIntent().getStringExtra("url");
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setRightSecondIconClickListener(view -> {
-            startActivity(new Intent(RealmExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+            startActivity(new Intent(RealmExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
         setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(RealmExampleActivity.this, url);
         });
-        
         
         initRealm();
         
