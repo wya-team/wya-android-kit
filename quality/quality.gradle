@@ -1,0 +1,62 @@
+/**
+ * Created by wuziwen
+ * Some attribute: https://github.com/checkstyle/checkstyle
+ * */
+
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+
+check.dependsOn 'checkstyle', 'findbugs'
+
+dependencies {
+    checkstyle 'com.puppycrawl.tools:checkstyle:7.1'
+}
+
+def qualityConfigDir = "$project.rootDir/buildconfig/quality";
+def reportsDir = "$project.buildDir/reports"
+
+task checkstyle(type: Checkstyle, group: 'Verification', description: 'Runs code style checks') {
+    configFile file("$qualityConfigDir/checkstyle/checkstyle.xml")
+    source 'src'
+    include '**/*.java'
+
+    reports {
+        xml.enabled = true
+        xml {
+            destination "$reportsDir/checkstyle/checkstyle.xml"
+        }
+    }
+
+    classpath = files()
+}
+
+task findbugs(type: FindBugs,
+        group: 'Verification',
+        description: 'Inspect java bytecode for bugs',
+        dependsOn: ['compileDebugSources', 'compileReleaseSources']) {
+
+    ignoreFailures = false
+    effort = "max"
+    reportLevel = "high"
+    excludeFilter = new File("$qualityConfigDir/findbugs/findbugs-filter.xml")
+    classes = files("$project.rootDir/taofen8_app/build/intermediates/classes")
+
+    source = fileTree("$project.rootDir/taofen8_app/src/main/java/")
+    include '**/*.java'
+    exclude '**/build/**'
+
+    reports {
+        xml.enabled = true
+        html.enabled = false
+        xml {
+            destination "$reportsDir/findbugs/findbugs.xml"
+        }
+        html {
+            destination "$reportsDir/findbugs/findbugs.html"
+        }
+    }
+
+    classpath = files()
+}
+
+
