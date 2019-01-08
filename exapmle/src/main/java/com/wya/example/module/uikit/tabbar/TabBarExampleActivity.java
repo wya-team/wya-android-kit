@@ -27,7 +27,7 @@ public class TabBarExampleActivity extends BaseActivity {
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setRightSecondIconClickListener(view -> {
-            startActivity(new Intent(TabBarExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+            startActivity(new Intent(TabBarExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
         setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
@@ -53,7 +53,7 @@ public class TabBarExampleActivity extends BaseActivity {
                 .setBadgeNum(1)
                 .create();
         badgeNotifications.bindToTarget(itemViewNotifications);
-    
+        
         BottomNavigationItemView itemViewMy = itemViews[3];
         badgeMy = new Builder(this)
                 .setGravity(new Builder.Gravity(BadgeGravity.GRAVITY_CENTER_TOP, Utils.dp2px(this, 11), Utils.dp2px(this, 4)))
@@ -95,7 +95,7 @@ public class TabBarExampleActivity extends BaseActivity {
                         badgeMy.updateIsShow(false);
                     }
                     break;
-
+                
                 default:
                     break;
             }

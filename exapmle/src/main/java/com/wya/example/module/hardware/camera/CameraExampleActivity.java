@@ -32,10 +32,15 @@ import java.io.File;
 public class CameraExampleActivity extends AppCompatActivity {
     private WYACameraView wyaCameraView;
     private String dirName = "WYACamera";
-    //录制时间
+    /**
+     * 录制时间
+     */
     private int duration;
+    /**
+     * 相机拍照类型
+     */
     private int state;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +66,7 @@ public class CameraExampleActivity extends AppCompatActivity {
                 setResult(103, intent);
                 finish();
             }
-
+            
             @Override
             public void audiopermissionerror() {
                 Toast.makeText(CameraExampleActivity.this, "请在设置允许录音", Toast.LENGTH_SHORT).show();
@@ -78,7 +83,7 @@ public class CameraExampleActivity extends AppCompatActivity {
                 setResult(101, intent);
                 finish();
             }
-
+            
             @Override
             public void recordSuccess(String url, Bitmap firstFrame) {
                 //获取视频路径
@@ -91,7 +96,7 @@ public class CameraExampleActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        
         wyaCameraView.setLeftClickListener(new ClickListener() {
             @Override
             public void onClick() {
@@ -105,10 +110,10 @@ public class CameraExampleActivity extends AppCompatActivity {
                 Toast.makeText(CameraExampleActivity.this, "Right", Toast.LENGTH_SHORT).show();
             }
         });
-
+        
         Log.i("MCJ", DeviceUtil.getDeviceModel());
     }
-
+    
     @Override
     protected void onStart() {
         super.onStart();
@@ -128,19 +133,19 @@ public class CameraExampleActivity extends AppCompatActivity {
             decorView.setSystemUiVisibility(option);
         }
     }
-
+    
     @Override
     protected void onResume() {
         super.onResume();
         wyaCameraView.onResume();
     }
-
+    
     @Override
     protected void onPause() {
         super.onPause();
         wyaCameraView.onPause();
     }
-
+    
     @Override
     protected void onDestroy() {
         super.onDestroy();

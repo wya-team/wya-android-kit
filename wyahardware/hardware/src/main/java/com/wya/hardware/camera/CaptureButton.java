@@ -311,8 +311,11 @@ public class CaptureButton extends View {
                 buttonRadius * 0.75f
         );
     }
-
-    //内圆动画
+    
+    /**
+     * 内圆动画
+     * @param insideStart
+     */
     private void startCaptureAnimation(float insideStart) {
         ValueAnimator insideAnim = ValueAnimator.ofFloat(insideStart, insideStart * 0.75f, insideStart);
         insideAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -382,16 +385,20 @@ public class CaptureButton extends View {
         set.setDuration(100);
         set.start();
     }
-
-
-    //更新进度条
+    
+    /**
+     * 更新进度条
+     * @param millisUntilFinished
+     */
     private void updateProgress(long millisUntilFinished) {
         recordedTime = (int) (duration - millisUntilFinished);
         progress = 360f - millisUntilFinished / (float) duration * 360f;
         invalidate();
     }
-
-    //录制视频计时器
+    
+    /**
+     * 录制视频计时器
+     */
     private class RecordCountDownTimer extends CountDownTimer {
         RecordCountDownTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
@@ -408,8 +415,10 @@ public class CaptureButton extends View {
             recordEnd();
         }
     }
-
-    //长按线程
+    
+    /**
+     * 长按线程
+     */
     private class LongPressRunnable implements Runnable {
         @Override
         public void run() {
@@ -436,35 +445,53 @@ public class CaptureButton extends View {
     /**************************************************
      * 对外提供的API                     *
      **************************************************/
-
-    //设置最长录制时间
+    
+    
+    /**
+     * 设置最长录制时间
+     * @param duration
+     */
     public void setDuration(int duration) {
         this.duration = duration;
         //录制定时器
         timer = new RecordCountDownTimer(duration, duration / 360);
     }
-
-    //设置最短录制时间
+    
+    /**
+     * 设置最短录制时间
+     * @param duration
+     */
     public void setMinDuration(int duration) {
         this.minDuration = duration;
     }
-
-    //设置回调接口
+    
+    /**
+     * 设置回调接口
+     * @param captureListener
+     */
     public void setCaptureListener(CaptureListener captureListener) {
         this.captureListener = captureListener;
     }
-
-    //设置按钮功能（拍照和录像）
+    
+    /**
+     * 设置按钮功能（拍照和录像）
+     * @param state
+     */
     public void setButtonFeatures(int state) {
         this.buttonState = state;
     }
-
-    //是否空闲状态
+    
+    /**
+     * 是否空闲状态
+     * @return
+     */
     public boolean isIdle() {
         return state == STATE_IDLE ? true : false;
     }
-
-    //设置状态
+    
+    /**
+     * 设置状态
+     */
     public void resetState() {
         state = STATE_IDLE;
     }

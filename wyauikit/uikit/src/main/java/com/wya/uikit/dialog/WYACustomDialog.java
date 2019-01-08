@@ -383,11 +383,17 @@ public class WYACustomDialog extends Dialog {
         private CustomListener customListener;
         private boolean canceledOnTouch = true;
         private boolean cancelable = false;
-        //默认标题
+        /**
+         * 默认标题
+         */
         private String title = "";
-        //默认标题文字颜色
+        /**
+         * 默认标题文字颜色
+         */
         private int textColor = R.color.black;
-        //默认提示内容
+        /**
+         * 默认提示内容
+         */
         private String message = "我是提示内容";
 
 
@@ -407,7 +413,9 @@ public class WYACustomDialog extends Dialog {
 
         private int height = WindowManager.LayoutParams.WRAP_CONTENT;
         private int width = WindowManager.LayoutParams.MATCH_PARENT;
-        //默认不设置,边框透明
+        /**
+         * 默认不设置,边框透明
+         */
         private float amount = -1;
 
 

@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TabLayoutExampleActivity extends BaseActivity {
-
+    
     @BindView(R.id.fixedTab)
     TabLayout mFixedTab;
     @BindView(R.id.scrollTab)
@@ -22,34 +22,33 @@ public class TabLayoutExampleActivity extends BaseActivity {
     TabLayout mFixedTabText;
     @BindView(R.id.scrollTabText)
     TabLayout mScrollTabText;
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_tablayou_example;
     }
-
-
+    
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-
+        
         setTitle("分页控制器(tablayout)");
-
+        
         String url = getIntent().getStringExtra("url");
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setRightSecondIconClickListener(view -> {
-            startActivity(new Intent(TabLayoutExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+            startActivity(new Intent(TabLayoutExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
         setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(TabLayoutExampleActivity.this, url);
         });
-
+        
         mFixedTab.addTab(mFixedTab.newTab().setText("标题1"));
         mFixedTab.addTab(mFixedTab.newTab().setText("标题2"));
         mFixedTab.addTab(mFixedTab.newTab().setText("标题3"));
-
+        
         mScrollTab.addTab(mScrollTab.newTab().setText("标题1"));
         mScrollTab.addTab(mScrollTab.newTab().setText("标题222"));
         mScrollTab.addTab(mScrollTab.newTab().setText("标题3"));
@@ -60,13 +59,12 @@ public class TabLayoutExampleActivity extends BaseActivity {
         mScrollTab.addTab(mScrollTab.newTab().setText("标题8888"));
         mScrollTab.addTab(mScrollTab.newTab().setText("标题9"));
         mScrollTab.addTab(mScrollTab.newTab().setText("标题10"));
-
+        
         mFixedTabText.addTab(mFixedTabText.newTab().setText("标题1"));
         mFixedTabText.addTab(mFixedTabText.newTab().setText("标题2"));
         mFixedTabText.addTab(mFixedTabText.newTab().setText("标题3"));
         WYATabLayoutControl.lineWidth(mFixedTabText);
-
-
+        
         mScrollTabText.addTab(mScrollTabText.newTab().setText("标题1111"));
         mScrollTabText.addTab(mScrollTabText.newTab().setText("标题2"));
         mScrollTabText.addTab(mScrollTabText.newTab().setText("标题3"));
@@ -78,6 +76,6 @@ public class TabLayoutExampleActivity extends BaseActivity {
         mScrollTabText.addTab(mScrollTabText.newTab().setText("标题9"));
         mScrollTabText.addTab(mScrollTabText.newTab().setText("标题10"));
         WYATabLayoutControl.lineWidth(mScrollTabText);
-
+        
     }
 }

@@ -18,7 +18,7 @@ import butterknife.OnClick;
  */
 
 public class ToolBarExampleActivity extends BaseActivity {
-
+    
     @Override
     protected void initView() {
         setTitle("导航栏(toolbar)");
@@ -33,12 +33,12 @@ public class ToolBarExampleActivity extends BaseActivity {
             StringUtil.copyString(ToolBarExampleActivity.this, url);
         });
     }
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_tool_bar_example;
     }
-
+    
     @OnClick({R.id.radio_toolbar_show, R.id.radio_toolbar_unshow, R.id.radio_right_anther_show, R.id.radio_right_anther_unshow, R.id.radio_red, R.id.radio_blue, R.id.radio_greeen, R.id.radio_left_show, R.id.radio_left_unshow, R.id.radio_tv_left_show, R.id.radio_tv_left_unshow, R.id.radio_right_show, R.id.radio_right_unshow, R.id.radio_tv_right_show, R.id.radio_tv_right_unshow, R.id.radio_tv_right_anther_show, R.id.radio_tv_right_anther_unshow})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -107,5 +107,5 @@ public class ToolBarExampleActivity extends BaseActivity {
                 break;
         }
     }
-
+    
 }

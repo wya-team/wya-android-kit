@@ -12,9 +12,13 @@ import java.util.TimerTask;
  * date:  2017-12-23 23:20:44
  */
 public final class InertiaTimerTask extends TimerTask {
-    //当前滑动速度
+    /**
+     * 当前滑动速度
+     */
     private float mCurrentVelocityY;
-    //手指离开屏幕时的初始速度
+    /**
+     * 手指离开屏幕时的初始速度
+     */
     private final float mFirstVelocityY;
     private final WheelView mWheelView;
 

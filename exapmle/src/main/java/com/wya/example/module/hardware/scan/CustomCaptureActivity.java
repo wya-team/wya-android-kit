@@ -40,24 +40,23 @@ import com.wya.hardware.scan.util.CodeUtils;
 import com.wya.uikit.toolbar.StatusBarUtil;
 
 import static com.wya.hardware.scan.Intents.Scan.RESULT;
- /**
-  * @date: 2018/12/24 11:24
-  * @author: Chunjiang Mao
-  * @classname: CustomCaptureActivity
-  * @describe: 自定义布局扫码+图片二维码解析
-  */
+/**
+ * @date: 2018/12/24 11:24
+ * @author: Chunjiang Mao
+ * @classname: CustomCaptureActivity
+ * @describe: 自定义布局扫码+图片二维码解析
+ */
 
 public class CustomCaptureActivity extends CaptureActivity {
-
+    
     private final int REQUEST_EXTERNAL_STORAGE = 110;
     public final int REQUEST_CODE_PHOTO = 0X02;
-
-
+    
     @Override
     public int getLayoutId() {
         return R.layout.custom_capture_activity;
     }
-
+    
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -67,22 +66,21 @@ public class CustomCaptureActivity extends CaptureActivity {
         getBeepManager().setPlayBeep(true);
         getBeepManager().setVibrate(true);
     }
-
+    
     private void offFlash() {
         Camera camera = getCameraManager().getOpenCamera().getCamera();
         Camera.Parameters parameters = camera.getParameters();
         parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
         camera.setParameters(parameters);
     }
-
+    
     public void openFlash() {
         Camera camera = getCameraManager().getOpenCamera().getCamera();
         Camera.Parameters parameters = camera.getParameters();
         parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
         camera.setParameters(parameters);
     }
-
-
+    
     private void clickFlash(View v) {
         if (v.isSelected()) {
             offFlash();
@@ -92,8 +90,7 @@ public class CustomCaptureActivity extends CaptureActivity {
             v.setSelected(true);
         }
     }
-
-
+    
     private void checkExternalStoragePermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE) && ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -108,7 +105,7 @@ public class CustomCaptureActivity extends CaptureActivity {
             startPhotoCode();
         }
     }
-
+    
     @TargetApi(23)
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -135,7 +132,7 @@ public class CustomCaptureActivity extends CaptureActivity {
             }
         }
     }
-
+    
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ivFlash:
@@ -152,15 +149,14 @@ public class CustomCaptureActivity extends CaptureActivity {
                 break;
         }
     }
-
+    
     private void startPhotoCode() {
         Intent pickIntent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         pickIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
         startActivityForResult(pickIntent, REQUEST_CODE_PHOTO);
     }
-
-
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -172,10 +168,10 @@ public class CustomCaptureActivity extends CaptureActivity {
                 default:
                     break;
             }
-
+            
         }
     }
-
+    
     /**
      * 解析二维码图片
      *
@@ -197,14 +193,13 @@ public class CustomCaptureActivity extends CaptureActivity {
                 finish();
             });
         });
-
+        
     }
-
+    
     private void asyncThread(Runnable runnable) {
         new Thread(runnable).start();
     }
-
-
+    
     /**
      * 获取图片
      */
@@ -227,18 +222,18 @@ public class CustomCaptureActivity extends CaptureActivity {
                     Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(docId));
                     imagePath = getImagePath(context, contentUri, null);
                 }
-
+                
             } else if ("content".equalsIgnoreCase(uri.getScheme())) {
                 imagePath = getImagePath(context, uri, null);
             }
         } else {
             imagePath = getImagePath(context, uri, null);
         }
-
+        
         return imagePath;
-
+        
     }
-
+    
     /**
      * 通过uri和selection来获取真实的图片路径,从相册获取图片时要用
      */
@@ -253,5 +248,5 @@ public class CustomCaptureActivity extends CaptureActivity {
         }
         return path;
     }
-
+    
 }

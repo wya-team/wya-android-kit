@@ -22,7 +22,13 @@ import com.wya.utils.utils.ScreenUtil;
 import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
-
+ /**
+  * @date: 2019/1/8 9:56
+  * @author: Chunjiang Mao
+  * @classname: PopupWindowExampleActivity
+  * @describe: PopupWindowExampleActivity
+  */
+ 
 public class PopupWindowExampleActivity extends BaseActivity {
 
     @BindView(R.id.tv_result)

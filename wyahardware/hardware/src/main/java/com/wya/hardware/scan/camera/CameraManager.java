@@ -39,16 +39,20 @@ import java.io.IOException;
  *
  * @author dswitkin@google.com (Daniel Switkin)
  */
-@SuppressWarnings("deprecation") // camera APIs
+@SuppressWarnings("deprecation")
 public final class CameraManager {
 
     private static final String TAG = CameraManager.class.getSimpleName();
 
     private static final int MIN_FRAME_WIDTH = 240;
     private static final int MIN_FRAME_HEIGHT = 240;
-    // = 5/8 * 1920
+    /**
+     * 1200 = 5/8 * 1920
+     */
     private static final int MAX_FRAME_WIDTH = 1200;
-    // = 5/8 * 1080
+    /**
+     * 675 = 5/8 * 1080
+     */
     private static final int MAX_FRAME_HEIGHT = 675;
 
     private final Context context;

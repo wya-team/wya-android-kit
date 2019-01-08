@@ -10,7 +10,13 @@ import com.wya.uikit.progress.WYAProgress;
 import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
-
+ /**
+  * @date: 2019/1/8 9:56
+  * @author: Chunjiang Mao
+  * @classname: ProgressExampleActivity
+  * @describe: ProgressExampleActivity
+  */
+ 
 public class ProgressExampleActivity extends BaseActivity {
 
     @BindView(R.id.progress_bar)

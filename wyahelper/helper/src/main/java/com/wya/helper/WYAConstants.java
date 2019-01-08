@@ -13,19 +13,26 @@ import android.support.annotation.Nullable;
  */
 
 public class WYAConstants {
-    //数据库名称
+    /**
+     * 数据库名称
+     */
     public static String DB_NAME;
-
-    //主题色
+    
+    /**
+     * 主题色
+     */
     public static int THEME_COLOR;
-
-    //是否打印log
+    
+    /**
+     * 是否打印log
+     */
     public static boolean IS_SHOW_LOG;
-
-    //是否debug
+    
+    /**
+     * 是否debug
+     */
     public static boolean IS_DEBUG;
-
-
+    
     /**
      * @param dbName
      */
@@ -35,13 +42,13 @@ public class WYAConstants {
         IS_SHOW_LOG = isShowLog;
         IS_DEBUG = isDebug;
     }
-
+    
     public static class Builder {
         private String dbName;
         private int themeColor;
         private boolean isShowLog;
         private boolean isDebug;
-
+        
         public Builder(Context context) {
             if (context == null) {
                 throw new IllegalStateException("Call `Realm.init(Context)` before creating a RealmConfiguration");
@@ -49,7 +56,7 @@ public class WYAConstants {
                 this.initializeBuilder(context);
             }
         }
-
+        
         /**
          * 初始化默认值
          *
@@ -65,11 +72,12 @@ public class WYAConstants {
             //默认打印log
             isDebug = false;
         }
-
+        
         /**
          * 设置数据库名称
          *
          * @param dbName
+         *
          * @return
          */
         @SuppressLint("NewApi")
@@ -81,11 +89,12 @@ public class WYAConstants {
                 throw new IllegalArgumentException("A non-empty filename must be provided");
             }
         }
-
+        
         /**
          * 设置设置主题色
          *
          * @param colorValue
+         *
          * @return
          */
         @SuppressLint("NewApi")
@@ -97,30 +106,31 @@ public class WYAConstants {
                 throw new IllegalArgumentException("A non-empty filename must be provided");
             }
         }
-
+        
         /**
          * 设置是否显示log
          *
          * @param isShowLog
+         *
          * @return
          */
         public WYAConstants.Builder isShowLog(boolean isShowLog) {
             this.isShowLog = isShowLog;
             return this;
         }
-
+        
         /**
          * 设置是否是debug
          *
          * @param isDebug
+         *
          * @return
          */
         public WYAConstants.Builder isDebug(boolean isDebug) {
             this.isDebug = isDebug;
             return this;
         }
-
-
+        
         public WYAConstants build() {
             return new WYAConstants(dbName, themeColor, isShowLog, isDebug);
         }

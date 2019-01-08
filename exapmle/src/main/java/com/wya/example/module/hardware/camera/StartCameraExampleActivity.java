@@ -26,9 +26,17 @@ import com.wya.utils.utils.StringUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-
+ /**
+  * @date: 2019/1/8 9:52
+  * @author: Chunjiang Mao
+  * @classname: StartCameraExampleActivity
+  * @describe: 相机启动页
+  */
+ 
 public class StartCameraExampleActivity extends BaseActivity {
-    //权限申请自定义码
+     /**
+      * 权限申请自定义码
+      */
     private final int GET_PERMISSION_REQUEST = 100;
     @BindView(R.id.image_photo)
     ImageView imagePhoto;

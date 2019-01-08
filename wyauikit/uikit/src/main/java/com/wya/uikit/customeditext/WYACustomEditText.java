@@ -25,22 +25,38 @@ import com.wya.uikit.R;
  */
 
 public class WYACustomEditText extends RelativeLayout {
-
-    //背景图片
+    
+    /**
+     * 背景图片
+     */
     private GradientDrawable gradientDrawable = null;
-    //统计文字颜色
+    /**
+     * 统计文字颜色
+     */
     private ColorStateList countTextColor = null;
-    //编辑框提示文字颜色
+    /**
+     * 编辑框提示文字颜色
+     */
     private ColorStateList hintTextColor = null;
-    //编辑框提示文字颜色
+    /**
+     * 编辑框提示文字颜色
+     */
     private ColorStateList hintEditColor = null;
-    //编辑框文字颜色
+    /**
+     * 编辑框文字颜色
+     */
     private ColorStateList editTextColor = null;
-    //提示文字内容
+    /**
+     * 提示文字内容
+     */
     private String hintText = null;
-    //编辑框文字内容
+    /**
+     * 编辑框文字内容
+     */
     private String editText = null;
-    //编辑框文本提示内容
+    /**
+     * 编辑框文本提示内容
+     */
     private String hintEditText = null;
 
     private int maxNum;

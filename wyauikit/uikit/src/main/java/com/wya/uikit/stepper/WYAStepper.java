@@ -25,11 +25,17 @@ import com.wya.uikit.R;
  */
 
 public class WYAStepper extends LinearLayout {
-    //目前的值
+    /**
+     * 目前的值
+     */
     private int value;
-    //最大值
+    /**
+     * 最大值
+     */
     private int maxNum;
-    //最小值
+    /**
+     * 最小值
+     */
     private int minNum;
     private EditText stepperEtNum;
 

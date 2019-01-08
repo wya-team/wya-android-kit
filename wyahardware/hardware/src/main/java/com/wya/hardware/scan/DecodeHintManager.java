@@ -35,8 +35,10 @@ import java.util.regex.Pattern;
 public final class DecodeHintManager {
 
     private static final String TAG = DecodeHintManager.class.getSimpleName();
-
-    // This pattern is used in decoding integer arrays.
+    
+    /**
+     * This pattern is used in decoding integer arrays.
+     */
     private static final Pattern COMMA = Pattern.compile(",");
 
     private DecodeHintManager() {}

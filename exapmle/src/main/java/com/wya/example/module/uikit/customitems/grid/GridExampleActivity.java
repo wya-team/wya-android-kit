@@ -10,7 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-
+ /**
+  * @date: 2019/1/8 9:54
+  * @author: Chunjiang Mao
+  * @classname: GridExampleActivity
+  * @describe: GridExampleActivity
+  */
+ 
 public class GridExampleActivity extends BaseActivity {
     @BindView(R.id.recycle_view)
     RecyclerView recycleView;
@@ -27,13 +33,13 @@ public class GridExampleActivity extends BaseActivity {
     private GridLayoutManager gridLayoutManager2;
     private GridLayoutManager gridLayoutManager3;
     private GridLayoutManager gridLayoutManager4;
-
+    
     @Override
     protected void initView() {
         setTitle("宫格(grid)");
         setGrid();
     }
-
+    
     private void setGrid() {
         for (int i = 0; i < 10; i++) {
             data.add("标题" + i);
@@ -52,7 +58,7 @@ public class GridExampleActivity extends BaseActivity {
         recycleView2.setAdapter(gridAdapter);
         recycleView3.setAdapter(gridAdapter);
         recycleView4.setAdapter(gridAdapter2);
-
+        
         recycleView.setHasFixedSize(true);
         recycleView.setNestedScrollingEnabled(false);
         recycleView2.setHasFixedSize(true);
@@ -62,10 +68,10 @@ public class GridExampleActivity extends BaseActivity {
         recycleView4.setHasFixedSize(true);
         recycleView4.setNestedScrollingEnabled(false);
     }
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_grid_example;
     }
-
+    
 }

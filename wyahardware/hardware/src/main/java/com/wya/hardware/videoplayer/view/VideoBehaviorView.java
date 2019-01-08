@@ -24,14 +24,22 @@ import android.widget.FrameLayout;
 public class VideoBehaviorView extends FrameLayout implements GestureDetector.OnGestureListener {
 
     private GestureDetector mGestureDetector;
-     //进度调节
+     /**
+      * 进度调节
+      */
     public static final int FINGER_BEHAVIOR_PROGRESS = 0x01;
-     //音量调节
+     /**
+      * 音量调节
+      */
     public static final int FINGER_BEHAVIOR_VOLUME = 0x02;
-     //亮度调节
+     /**
+      * 亮度调节
+      */
     public static final int FINGER_BEHAVIOR_BRIGHTNESS = 0x03;
     private int mFingerBehavior;
-     // 鉴于音量范围值比较小 使用float类型施舍五入处理.
+     /**
+      * 鉴于音量范围值比较小 使用float类型施舍五入处理.
+      */
     private float mCurrentVolume;
     private int mMaxVolume;
     private int mCurrentBrightness, mMaxBrightness;

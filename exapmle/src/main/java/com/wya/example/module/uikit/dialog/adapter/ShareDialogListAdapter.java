@@ -19,27 +19,25 @@ import java.util.List;
  */
 
 public class ShareDialogListAdapter extends BaseQuickAdapter<ShareItem, BaseViewHolder> {
-
-
-   private List<ShareItem> data;
-   private Context context;
-
-   public ShareDialogListAdapter(Context context, int layoutResId, @Nullable List<ShareItem> data) {
-       super(layoutResId, data);
-       this.data = data;
-       this.context = context;
-   }
-
-
-   @SuppressLint("NewApi")
-   @Override
-   public void onBindViewHolder(BaseViewHolder holder, int position) {
-       super.onBindViewHolder(holder, position);
-   }
-
-   @Override
-   protected void convert(BaseViewHolder helper, ShareItem item) {
-       helper.setText(R.id.tv_share_item, item.getName());
-       helper.setImageDrawable(R.id.img_share_item, context.getResources().getDrawable(item.getImage()));
-   }
+    
+    private List<ShareItem> data;
+    private Context context;
+    
+    public ShareDialogListAdapter(Context context, int layoutResId, @Nullable List<ShareItem> data) {
+        super(layoutResId, data);
+        this.data = data;
+        this.context = context;
+    }
+    
+    @SuppressLint("NewApi")
+    @Override
+    public void onBindViewHolder(BaseViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
+    }
+    
+    @Override
+    protected void convert(BaseViewHolder helper, ShareItem item) {
+        helper.setText(R.id.tv_share_item, item.getName());
+        helper.setImageDrawable(R.id.img_share_item, context.getResources().getDrawable(item.getImage()));
+    }
 }

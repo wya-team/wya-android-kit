@@ -13,17 +13,17 @@ import com.wya.utils.utils.PhoneUtil;
 import butterknife.BindView;
 
 public class HelperExampleActivity extends BaseActivity {
-
+    
     @BindView(R.id.tv_phone_info)
     TextView tvPhoneInfo;
     @BindView(R.id.tv_app_info)
     TextView tvAppInfo;
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_helper;
     }
-
+    
     @Override
     protected void initView() {
         setTitle("基本信息");
@@ -34,20 +34,20 @@ public class HelperExampleActivity extends BaseActivity {
             }
             String appPermissions = stringBuffer.toString();
             tvPhoneInfo.setText("手机系统版本号：" + PhoneUtil.getInstance().getSDKVersionNumber() + "\n"
-                            + "手机型号：" + PhoneUtil.getInstance().getPhoneModel() + "\n"
-                            + "手机宽度：" + PhoneUtil.getInstance().getPhoneWidth(getApplicationContext()) + "\n"
-                            + "手机高度：" + PhoneUtil.getInstance().getPhoneHeight(getApplicationContext()) + "\n"
-                            //需要动态获取READ_PHONE_STATE权限
-//                    + "手机imei串号 ,GSM手机的 IMEI 和 CDMA手机的 MEID.：" + PhoneUtil.getInstance().getPhoneImei(getApplicationContext()) + "\n"
-//                    + "手机sim卡号：" + PhoneUtil.getInstance().getPhoneSim(getApplicationContext()) + "\n"
-//                    + "手机号：" + PhoneUtil.getInstance().getPhoneNum(getApplicationContext()) + "\n"
-                            + "sd卡是否挂载：" + PhoneUtil.getInstance().isSDCardMount() + "\n"
-                            + "sd卡剩余空间的大小：" + PhoneUtil.getInstance().getSDFreeSize() + "\n"
-                            + "sd卡空间的总大小：" + PhoneUtil.getInstance().getSDAllSize() + "\n"
-                            + "一个apk是否安装：" + PhoneUtil.getInstance().isApkInstalled(getApplicationContext(), AppUtil.getPackageName(getApplicationContext())) + "\n"
-                            + "是否是平板：" + PhoneUtil.getInstance().isTablet(getApplicationContext()) + "\n"
-                            + "应用权限 名称列表：" + appPermissions
-                            + "是否是平板：" + PhoneUtil.getInstance().isTablet(getApplicationContext()) + "\n"
+                    + "手机型号：" + PhoneUtil.getInstance().getPhoneModel() + "\n"
+                    + "手机宽度：" + PhoneUtil.getInstance().getPhoneWidth(getApplicationContext()) + "\n"
+                    + "手机高度：" + PhoneUtil.getInstance().getPhoneHeight(getApplicationContext()) + "\n"
+                    //需要动态获取READ_PHONE_STATE权限
+                    //                    + "手机imei串号 ,GSM手机的 IMEI 和 CDMA手机的 MEID.：" + PhoneUtil.getInstance().getPhoneImei(getApplicationContext()) + "\n"
+                    //                    + "手机sim卡号：" + PhoneUtil.getInstance().getPhoneSim(getApplicationContext()) + "\n"
+                    //                    + "手机号：" + PhoneUtil.getInstance().getPhoneNum(getApplicationContext()) + "\n"
+                    + "sd卡是否挂载：" + PhoneUtil.getInstance().isSDCardMount() + "\n"
+                    + "sd卡剩余空间的大小：" + PhoneUtil.getInstance().getSDFreeSize() + "\n"
+                    + "sd卡空间的总大小：" + PhoneUtil.getInstance().getSDAllSize() + "\n"
+                    + "一个apk是否安装：" + PhoneUtil.getInstance().isApkInstalled(getApplicationContext(), AppUtil.getPackageName(getApplicationContext())) + "\n"
+                    + "是否是平板：" + PhoneUtil.getInstance().isTablet(getApplicationContext()) + "\n"
+                    + "应用权限 名称列表：" + appPermissions
+                    + "是否是平板：" + PhoneUtil.getInstance().isTablet(getApplicationContext()) + "\n"
             );
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -63,5 +63,5 @@ public class HelperExampleActivity extends BaseActivity {
                         + "当前应用的版本号：" + AppUtil.getVersionCode(getApplicationContext())
         );
     }
-
+    
 }

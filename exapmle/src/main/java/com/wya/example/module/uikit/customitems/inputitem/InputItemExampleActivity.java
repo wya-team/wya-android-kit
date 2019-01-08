@@ -31,10 +31,10 @@ public class InputItemExampleActivity extends BaseActivity {
             StringUtil.copyString(InputItemExampleActivity.this, url);
         });
     }
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_input_item_example;
-
+        
     }
 }

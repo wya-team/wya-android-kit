@@ -8,7 +8,7 @@ import android.widget.ExpandableListView;
 /**
  * @date: 2018/12/18 11:22
  * @author: Chunjiang Mao
- * @classname:  CustomerExpandableListView
+ * @classname: CustomerExpandableListView
  * @describe:
  */
 

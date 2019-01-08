@@ -18,26 +18,24 @@ import java.util.List;
  */
 
 public class DialogListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
-
-
-   private List<String> data;
-   private Context context;
-
-   public DialogListAdapter(Context context, int layoutResId, @Nullable List<String> data) {
-       super(layoutResId, data);
-       this.data = data;
-       this.context = context;
-   }
-
-
-   @SuppressLint("NewApi")
-   @Override
-   public void onBindViewHolder(BaseViewHolder holder, int position) {
-       super.onBindViewHolder(holder, position);
-   }
-
-   @Override
-   protected void convert(BaseViewHolder helper, String item) {
-       helper.setText(R.id.tv_grid_item, item);
-   }
+    
+    private List<String> data;
+    private Context context;
+    
+    public DialogListAdapter(Context context, int layoutResId, @Nullable List<String> data) {
+        super(layoutResId, data);
+        this.data = data;
+        this.context = context;
+    }
+    
+    @SuppressLint("NewApi")
+    @Override
+    public void onBindViewHolder(BaseViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
+    }
+    
+    @Override
+    protected void convert(BaseViewHolder helper, String item) {
+        helper.setText(R.id.tv_grid_item, item);
+    }
 }

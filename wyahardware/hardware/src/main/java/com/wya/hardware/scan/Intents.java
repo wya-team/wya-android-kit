@@ -295,9 +295,11 @@ public final class Intents {
         private Share() {
         }
     }
-
-    // Not the best place for this, but, better than a new class
-    // Should be FLAG_ACTIVITY_NEW_DOCUMENT in API 21+.
-    // Defined once here because the current value is deprecated, so generates just one warning
+    
+    /**
+     *  Not the best place for this, but, better than a new class
+     * Should be FLAG_ACTIVITY_NEW_DOCUMENT in API 21+.
+     * Defined once here because the current value is deprecated, so generates just one warning
+     */
     public static final int FLAG_NEW_DOC = Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET;
 }

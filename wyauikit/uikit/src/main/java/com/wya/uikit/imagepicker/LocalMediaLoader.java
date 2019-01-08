@@ -28,16 +28,22 @@ public class LocalMediaLoader {
 
     private static final Uri QUERY_URI = MediaStore.Files.getContentUri("external");
     private static final String ORDER_BY = MediaStore.Files.FileColumns.DATE_ADDED;
-    //时间长度
+    /**
+     * 时间长度
+     */
     private static final String DURATION = "duration";
-    // 媒体文件数据库字段
+    /**
+     * 媒体文件数据库字段
+     */
     private static final String[] PROJECTION = {
             MediaStore.Files.FileColumns._ID,
             MediaStore.MediaColumns.DATA,
             MediaStore.MediaColumns.MIME_TYPE,
             DURATION};
 
-    // 图片
+    /**
+     * 图片
+     */
     private static final String SELECTION = MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
             + " AND " + MediaStore.MediaColumns.SIZE + ">0";
     private long videoMaxS = 0;
@@ -47,7 +53,12 @@ public class LocalMediaLoader {
 
     private static final  String VIDEO = "video";
 
-    // 全部模式下条件
+    /**
+     * 全部模式下条件
+     * @param timeCondition
+     *
+     * @return
+     */
     private static String getSelectionArgsForAllMediaCondition(String timeCondition) {
         String condition = "(" + MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
                 + " AND " + MediaStore.MediaColumns.SIZE + ">0"
