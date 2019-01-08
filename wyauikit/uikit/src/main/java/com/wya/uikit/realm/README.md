@@ -5,10 +5,10 @@
 - RealmObject 注意事项
 ```
     1、添加 @RealmClass 修饰符来声明
-    2、boolean、byte、short、int、long、float、double、String、Date、byte[]、RealmObject、RealmList<? extends RealmObject>，还支持 Boolean、Byte、Short、Integer、Long、Float 和 Double
+    2、支持boolean、byte、short、int、long、float、double、String、Date、byte[]、RealmObject、RealmList<? extends RealmObject>，还支持 Boolean、Byte、Short、Integer、Long、Float 和 Double
     3、@primarykey：表示该字段是主键，一般使用过数据库的同学可能知道，primarykey 就是主键，使用 @primarykey 来标注字段类型必须是字符串（String）或整数（byte、short、int、long）以及它们的包装类型（Byte、Short、Integer、Long），还需要注意的是不可以使用多个主键
     4、@Required：表示该字段非空，在某些情况下，有些字段是不能为 null 的，使用 @Required 属性可以强行要求其属性不能为 null，只能用于 Boolean、Byte、Short、Integer、Long、Float、Double、String、byte[] 和 Date，在其他类型属性上使用 @Required 会导致编译失败
-    5、Ignore：表示忽略该字段，添加 @Ignore 标签后，存储数据时会忽略该字段
+    5、@Ignore：表示忽略该字段，添加 @Ignore 标签后，存储数据时会忽略该字段
     6、@Index：添加搜索索引，为字段添加 @Index 标签，插入速度变慢，查询速度变快，支持索引 String、byte、short、int、long、boolean 和 Date字段
 ```
 
