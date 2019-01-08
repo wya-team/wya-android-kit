@@ -83,3 +83,4 @@ dependencies {
     implementation project(':wyautils:utils')
 }
 apply plugin: 'realm-android'
+// apply from: '../buildconfig/quality/quality.gradle'
