@@ -57,6 +57,7 @@ public class FileDownFragment extends Fragment {
     private List<DownloadEntity> mData = new ArrayList<>();
     private FileManagerUtil mFileManagerUtil;
     private long lastClickTime;
+    private IRomUpdateCallback mCallback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,6 +71,7 @@ public class FileDownFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mCallback = (FileDownloadExampleActivity) getActivity();
         initDown();
         initView();
     }
@@ -83,6 +85,7 @@ public class FileDownFragment extends Fragment {
                     if (mData.get(i).getKey().equals(task.getKey())) {
                         switch (state) {
                             case TASK_START:
+                                mCallback.update();
                                 break;
                             case TASK_RUNNING:
                                 mData.set(i, task.getEntity());

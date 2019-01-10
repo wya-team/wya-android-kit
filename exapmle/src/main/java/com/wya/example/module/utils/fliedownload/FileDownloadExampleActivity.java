@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
  * @time : 2019-01-05
  * @Description : 文件下载
  */
-public class FileDownloadExampleActivity extends BaseActivity {
+public class FileDownloadExampleActivity extends BaseActivity implements IRomUpdateCallback {
 
     public static final String FILE_IMG_DIR = Environment.getExternalStorageDirectory().getPath()
             + "/WYADownLoad/IMG";
@@ -109,6 +109,11 @@ public class FileDownloadExampleActivity extends BaseActivity {
         long blockSize = stat.getBlockSize();
         long availableBlocks = stat.getAvailableBlocks();
         return Formatter.formatFileSize(this, blockSize * availableBlocks);
+    }
+
+    @Override
+    public void update() {
+        initSpace();
     }
 
     class DownPagerAdapter extends FragmentPagerAdapter {

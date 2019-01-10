@@ -46,6 +46,7 @@ public class DownFileCompleteFragment extends Fragment {
     private BaseQuickAdapter<DownloadEntity, BaseViewHolder> mAdapter;
     private List<DownloadEntity> mDownList = new ArrayList<>();
     private FileManagerUtil mFileManagerUtil = new FileManagerUtil();
+    private IRomUpdateCallback mCallback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
@@ -73,6 +74,7 @@ public class DownFileCompleteFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initView();
+        mCallback = (FileDownloadExampleActivity) getActivity();
     }
 
     private void initView() {
@@ -128,6 +130,7 @@ public class DownFileCompleteFragment extends Fragment {
                                 .getKey()).cancel(true);
                         mDownList.remove(position);
                         mAdapter.notifyDataSetChanged();
+                        mCallback.update();
                     }
                 });
                 return false;
