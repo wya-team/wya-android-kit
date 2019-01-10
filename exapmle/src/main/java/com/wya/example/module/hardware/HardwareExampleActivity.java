@@ -26,10 +26,10 @@ public class HardwareExampleActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.wya_button_camera:
-                HardwareExampleActivity.this.startActivity(new Intent(HardwareExampleActivity.this, StartCameraExampleActivity.class));
+                startActivity(new Intent(HardwareExampleActivity.this, StartCameraExampleActivity.class));
                 break;
             case R.id.wya_button_video_player:
-                HardwareExampleActivity.this.startActivity(new Intent(HardwareExampleActivity.this, VideoPlayerExampleActivity.class));
+                startActivity(new Intent(HardwareExampleActivity.this, VideoPlayerExampleActivity.class));
                 break;
             default:
                 break;
