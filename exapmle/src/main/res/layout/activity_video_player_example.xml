@@ -22,4 +22,10 @@
         android:textSize="12sp"
         android:textColor="@color/black"
         android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:id="@+id/download_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/download" />
 </LinearLayout>

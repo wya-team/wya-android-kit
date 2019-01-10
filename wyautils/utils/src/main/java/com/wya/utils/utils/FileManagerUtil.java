@@ -13,7 +13,7 @@ import com.arialyy.aria.core.download.DownloadTask;
  * version: 1.0
  */
 public class FileManagerUtil {
-    public final static  int WAIT = 0;
+    public final static int WAIT = 0;
     public static final int PREVIOUS = 1;
     public static final int TASK_START = 2;
     public static final int TASK_RUNNING = 3;
@@ -29,12 +29,11 @@ public class FileManagerUtil {
 
     public FileManagerUtil() {
         mDownload = Aria.download(this);
+        mDownload.register();
     }
 
 
-
     private OnDownLoaderListener mOnDownLoaderListener;
-
 
 
     public void register() {

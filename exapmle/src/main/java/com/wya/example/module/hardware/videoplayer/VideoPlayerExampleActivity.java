@@ -5,30 +5,42 @@ import android.content.res.Configuration;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import com.arialyy.aria.core.download.DownloadReceiver;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity;
+import com.wya.example.module.utils.fliedownload.MediaUtils;
 import com.wya.hardware.videoplayer.WYAVideoView;
 import com.wya.hardware.videoplayer.listener.SimpleOnVideoControlListener;
 import com.wya.uikit.toolbar.StatusBarUtil;
+import com.wya.utils.utils.FileManagerUtil;
 import com.wya.utils.utils.ScreenUtil;
 import com.wya.utils.utils.StringUtil;
 
+import java.io.File;
+
 import butterknife.BindView;
+import butterknife.OnClick;
+
+import static com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity.FILE_IMG_DIR;
+import static com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity.FILE_VIDEO_DIR;
 
 public class VideoPlayerExampleActivity extends BaseActivity {
 
     @BindView(R.id.video_player)
     WYAVideoView videoPlayer;
-
     private ViewGroup contentView;
     private VideoDetailInfo info;
+    private static final String MVIDEOPATH =
+            "http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh" +
+            ".yinyuetai.com/4599015ED06F94848EBF877EAAE13886.mp4";
+    private FileManagerUtil mFileManagerUtil;
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_video_player_example;
     }
-
 
     @Override
     protected void initView() {
@@ -40,15 +52,18 @@ public class VideoPlayerExampleActivity extends BaseActivity {
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setRightSecondIconClickListener(view -> {
-            startActivity(new Intent(VideoPlayerExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(VideoPlayerExampleActivity.this, ReadmeActivity.class)
+                    .putExtra("url", url));
         });
         setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(VideoPlayerExampleActivity.this, url);
         });
 
+        mFileManagerUtil = new FileManagerUtil();
         info = new VideoDetailInfo();
-        info.videoPath = "http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh.yinyuetai.com/4599015ED06F94848EBF877EAAE13886.mp4";
+
+        info.videoPath = MVIDEOPATH;
         videoPlayer.setOnVideoControlListener(new SimpleOnVideoControlListener() {
 
             @Override
@@ -111,5 +126,21 @@ public class VideoPlayerExampleActivity extends BaseActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @OnClick(R.id.download_file)
+    public void onViewClicked() {
+        DownloadReceiver downloadReceiver = mFileManagerUtil.getDownloadReceiver();
+        downloadReceiver.load(MVIDEOPATH)
+                .setFilePath(FILE_VIDEO_DIR + File.separator + "viedo_" + StringUtil.getSign
+                        (MVIDEOPATH)
+                        + ".mp4")
+                .start();
+
+        File file = new File(FILE_IMG_DIR + "/" + "IMG_" + StringUtil.getSign(MVIDEOPATH) + ".jpg");
+        if (!file.exists()) {
+            MediaUtils.getImageForVideo(MVIDEOPATH, null);
+        }
+        startActivity(new Intent(this, FileDownloadExampleActivity.class));
     }
 }

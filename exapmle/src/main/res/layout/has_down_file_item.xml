@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/white"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <ImageView
+        android:id="@+id/down_file_image"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:layout_centerVertical="true"
+        tools:src="@mipmap/img2" />
+
+    <TextView
+        android:id="@+id/file_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/down_file_image"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/down_file_image"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        tools:text="哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或" />
+
+    <TextView
+        android:id="@+id/file_capacity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/down_file_image"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/down_file_image"
+        android:text="15MB"
+        android:textSize="13sp" />
+</RelativeLayout>
