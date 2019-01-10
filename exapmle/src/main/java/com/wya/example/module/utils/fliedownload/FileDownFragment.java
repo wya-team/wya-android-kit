@@ -110,7 +110,7 @@ public class FileDownFragment extends Fragment {
                         }
                     }
                 }
-    
+                
             }
         });
     }
@@ -157,7 +157,7 @@ public class FileDownFragment extends Fragment {
                         .setProgress(R.id.progress, (int) (item.getCurrentProgress() * 100 / item
                                 .getFileSize()))
                         .setText(R.id.file_capacity, item.getConvertFileSize());
-    
+                
                 ImageView imageView = helper.getView(R.id.down_file_image);
                 RequestOptions requestOptions = new RequestOptions()
                         .placeholder(R.color.dddddd)

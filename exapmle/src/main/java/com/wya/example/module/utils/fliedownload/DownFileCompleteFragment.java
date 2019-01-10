@@ -94,7 +94,7 @@ public class DownFileCompleteFragment extends Fragment {
                         ()) +
                         ".jpg");
                 Glide.with(getActivity()).load(file).apply(requestOptions).into(imageView);
-    
+                
                 helper.setText(R.id.file_title, item.getFileName())
                         .setText(R.id.file_capacity, item.getConvertFileSize());
             }
@@ -112,14 +112,14 @@ public class DownFileCompleteFragment extends Fragment {
                         .cancelText("取消")
                         .confirmText("删除").build();
                 wyaCustomDialog.show();
-    
+                
                 wyaCustomDialog.setNoClickListener(new WYACustomDialog.NoClickListener() {
                     @Override
                     public void onNoClick() {
                         wyaCustomDialog.dismiss();
                     }
                 });
-    
+                
                 wyaCustomDialog.setYesClickListener(new WYACustomDialog.YesClickListener() {
                     @Override
                     public void onYesClick() {

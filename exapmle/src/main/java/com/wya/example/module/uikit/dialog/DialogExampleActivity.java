@@ -54,7 +54,7 @@ public class DialogExampleActivity extends BaseActivity {
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
-
+    
     @BindView(R.id.expend_list)
     CustomerExpandableListView expendList;
     @BindView(R.id.tab_loading)

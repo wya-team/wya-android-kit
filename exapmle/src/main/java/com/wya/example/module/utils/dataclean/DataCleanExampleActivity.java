@@ -31,7 +31,7 @@ public class DataCleanExampleActivity extends BaseActivity {
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-    
+        
         String url = getIntent().getStringExtra("url");
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);

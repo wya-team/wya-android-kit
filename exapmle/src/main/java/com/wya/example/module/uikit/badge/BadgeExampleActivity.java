@@ -61,7 +61,7 @@ public class BadgeExampleActivity extends BaseActivity {
     private IBadgeView mDot;
     private IBadgeView mNumDot;
     private IBadgeView mStringDot;
-
+    
     public static void start(Context context) {
         if (null != context) {
             context.startActivity(new Intent(context, BadgeExampleActivity.class));

@@ -76,7 +76,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
     protected int getLayoutId() {
         return R.layout.activity_image_picker_example;
     }
-
+    
     @Override
     protected void initView() {
         
