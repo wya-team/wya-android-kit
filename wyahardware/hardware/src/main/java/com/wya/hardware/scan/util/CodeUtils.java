@@ -17,28 +17,16 @@ package com.wya.hardware.scan.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
-import android.text.TextPaint;
-import android.text.TextUtils;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
-import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatReader;
-import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.Result;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
-import com.google.zxing.qrcode.QRCodeWriter;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.wya.hardware.scan.DecodeFormatManager;
 
 import java.util.HashMap;

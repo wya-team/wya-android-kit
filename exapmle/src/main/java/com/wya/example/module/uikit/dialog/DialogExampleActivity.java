@@ -3,6 +3,7 @@ package com.wya.example.module.uikit.dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,11 +35,12 @@ import com.wya.utils.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import io.realm.internal.IOException;
 
 /**
  * @date: 2018/11/23 16:23
@@ -70,6 +72,8 @@ public class DialogExampleActivity extends BaseActivity {
     private ImageView loading;
     private ImageView loading2;
     private ImageView loading3;
+    
+    private int listSize = 50;
     
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -189,7 +193,7 @@ public class DialogExampleActivity extends BaseActivity {
                             public void customLayout(View v) {
                                 RecyclerView recyclerView = v.findViewById(R.id.recycle_view);
                                 data = new ArrayList<>();
-                                for (int i = 0; i < 50; i++) {
+                                for (int i = 0; i < listSize; i++) {
                                     data.add("列表" + i);
                                 }
                                 if (data != null && data.size() > 0) {
@@ -229,7 +233,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 title.setText("标题");
                                 title.setVisibility(View.VISIBLE);
                                 data = new ArrayList<>();
-                                for (int i = 0; i < 50; i++) {
+                                for (int i = 0; i < listSize; i++) {
                                     data.add("列表" + i);
                                 }
                                 if (data != null && data.size() > 0) {
@@ -290,7 +294,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 LinearLayout parent = v.findViewById(R.id.parent);
                                 RecyclerView recyclerView = v.findViewById(R.id.recycle_view);
                                 parent.setBackground(null);
-                                parent.setBackgroundColor(getResources().getColor(R.color.white));
+                                parent.setBackgroundColor(ContextCompat.getColor(DialogExampleActivity.this, R.color.white));
                                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) parent.getLayoutParams();
                                 lp.setMargins(0, 0, 0, 0);
                                 parent.setLayoutParams(lp);
@@ -298,7 +302,7 @@ public class DialogExampleActivity extends BaseActivity {
                                 title.setText("标题");
                                 title.setVisibility(View.VISIBLE);
                                 data = new ArrayList<>();
-                                for (int i = 0; i < 50; i++) {
+                                for (int i = 0; i < listSize; i++) {
                                     data.add("列表" + i);
                                 }
                                 if (data != null && data.size() > 0) {
@@ -424,23 +428,17 @@ public class DialogExampleActivity extends BaseActivity {
      * @param type loading类型
      */
     private void starTimer(int type) {
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
+        ScheduledExecutorService pool = Executors.newScheduledThreadPool(1);
+        pool.schedule(new TimerTask() {
             @Override
             public void run() {
-                try {
-                    if (type == 0) {
-                        wyaCustomDialog.dismiss();
-                    } else {
-                        wyaLoadingDialog.dismiss();
-                    }
-                    
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (type == 0) {
+                    wyaCustomDialog.dismiss();
+                } else {
+                    wyaLoadingDialog.dismiss();
                 }
             }
-        };
-        timer.schedule(task, 3000);
+        }, 3000, TimeUnit.MILLISECONDS);
     }
     
     private void initItems() {

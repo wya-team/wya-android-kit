@@ -10,9 +10,18 @@ import android.graphics.Bitmap;
   */
 
 public interface WYACameraListener {
-
+    
+     /**
+      * captureSuccess
+      * @param bitmap
+      */
     void captureSuccess(Bitmap bitmap);
-
+    
+     /**
+      * recordSuccess
+      * @param url
+      * @param firstFrame
+      */
     void recordSuccess(String url, Bitmap firstFrame);
 
 }

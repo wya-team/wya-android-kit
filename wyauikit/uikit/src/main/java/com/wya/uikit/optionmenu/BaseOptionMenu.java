@@ -193,6 +193,12 @@ public abstract class BaseOptionMenu<T> extends PopupWindow {
 	}
 	
 	public interface OnFirstAdapterItemClickListener{
+		/**
+		 * onClick
+		 * @param position
+		 * @param v
+		 * @param menu
+		 */
 		void onClick(int position, View v, BaseOptionMenu menu);
 	}
 	

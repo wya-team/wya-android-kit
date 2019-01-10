@@ -496,12 +496,14 @@ public class StringUtil {
      * @since 1.0
      */
     public static String join(String[] strs, String token) {
-        if (strs == null)
+        if (strs == null) {
             return null;
+        }
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < strs.length; i++) {
-            if (i != 0)
+            if (i != 0) {
                 sb.append(token);
+            }
             sb.append(strs[i]);
         }
         return sb.toString();

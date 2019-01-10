@@ -136,7 +136,10 @@ public class Utils {
     }
     
     public interface TranslucentListener {
-        
+    
+        /**
+         * onTranslucent
+         */
         void onTranslucent();
         
     }

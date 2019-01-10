@@ -5,7 +5,6 @@ import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
-
 import com.wya.hardware.videoplayer.listener.PlayerCallback;
 
 import java.io.IOException;

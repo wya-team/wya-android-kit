@@ -302,6 +302,9 @@ public class CameraInterface implements Camera.PreviewCallback {
     }
     
     public interface CameraOpenOverCallback {
+        /**
+         * cameraHasOpened
+         */
         void cameraHasOpened();
     }
     
@@ -520,6 +523,7 @@ public class CameraInterface implements Camera.PreviewCallback {
     
     /**
      * 启动录像
+     *
      * @param surface
      * @param screenProp
      * @param callback
@@ -652,6 +656,7 @@ public class CameraInterface implements Camera.PreviewCallback {
     
     /**
      * 停止录像
+     *
      * @param isShort
      * @param callback
      */
@@ -821,20 +826,37 @@ public class CameraInterface implements Camera.PreviewCallback {
     }
     
     public interface StopRecordCallback {
+        /**
+         * recordResult
+         *
+         * @param url
+         * @param firstFrame
+         */
         void recordResult(String url, Bitmap firstFrame);
     }
     
     interface ErrorCallback {
+        /**
+         * onError
+         */
         void onError();
     }
     
     public interface TakePictureCallback {
+        /**
+         * captureResult
+         *
+         * @param bitmap
+         * @param isVertical
+         */
         void captureResult(Bitmap bitmap, boolean isVertical);
     }
     
     public interface FocusCallback {
+        /**
+         * focusSuccess
+         */
         void focusSuccess();
-        
     }
     
     void registerSensorManager(Context context) {

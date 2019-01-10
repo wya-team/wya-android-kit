@@ -52,6 +52,11 @@ public class CustomCaptureActivity extends CaptureActivity {
     private final int REQUEST_EXTERNAL_STORAGE = 110;
     public final int REQUEST_CODE_PHOTO = 0X02;
     
+    private final String PROVIDER_MEDIA = "com.android.providers.media.documents";
+    private final String PROVIDER_DOWNLOADS = "com.android.providers.downloads.documents";
+    private final String STRING_CONTENT = "content";
+    
+    
     @Override
     public int getLayoutId() {
         return R.layout.custom_capture_activity;
@@ -214,16 +219,16 @@ public class CustomCaptureActivity extends CaptureActivity {
                 String docId = DocumentsContract.getDocumentId(uri);
                 Log.d("getDocumentId(uri) :", "" + docId);
                 Log.d("uri.getAuthority() :", "" + uri.getAuthority());
-                if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
+                if (PROVIDER_MEDIA.equals(uri.getAuthority())) {
                     String id = docId.split(":")[1];
                     String selection = MediaStore.Images.Media._ID + "=" + id;
                     imagePath = getImagePath(context, MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection);
-                } else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
+                } else if (PROVIDER_DOWNLOADS.equals(uri.getAuthority())) {
                     Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(docId));
                     imagePath = getImagePath(context, contentUri, null);
                 }
                 
-            } else if ("content".equalsIgnoreCase(uri.getScheme())) {
+            } else if (STRING_CONTENT.equalsIgnoreCase(uri.getScheme())) {
                 imagePath = getImagePath(context, uri, null);
             }
         } else {

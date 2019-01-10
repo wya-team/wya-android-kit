@@ -78,6 +78,11 @@ public class GestureFlingRightHelper implements GestureDetector.OnGestureListene
     }
     
     public interface GestureRightCallBack {
+        /**
+         * handleFlingRightAction
+         *
+         * @return
+         */
         boolean handleFlingRightAction();
     }
 }

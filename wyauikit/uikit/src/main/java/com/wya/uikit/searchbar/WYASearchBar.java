@@ -240,12 +240,22 @@ public class WYASearchBar extends FrameLayout {
     }
 
     public interface OnTextChangeListener {
+        /**
+         * onTextChange
+         * @param s
+         */
         void onTextChange(Editable s);
     }
 
     public interface OnTextClickListener {
+        /**
+         * onClickCancel
+         */
         void onClickCancel();
-
+    
+        /**
+         * onClickSearch
+         */
         void onClickSearch();
     }
 

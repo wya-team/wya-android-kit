@@ -135,10 +135,23 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
     
     public interface OnItemClickListener {
+        /**
+         * onDelete
+         *
+         * @param position
+         */
         void onDelete(int position);
         
+        /**
+         * onItemClick
+         *
+         * @param position
+         */
         void onItemClick(int position);
         
+        /**
+         * onAddClick
+         */
         void onAddClick();
     }
     

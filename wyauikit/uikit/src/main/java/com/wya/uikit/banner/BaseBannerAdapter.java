@@ -14,7 +14,13 @@ public abstract class BaseBannerAdapter<T> {
         this.data = data;
         this.layoutId = layoutId;
     }
-
+    
+    /**
+     * convert
+     * @param view
+     * @param position
+     * @param item
+     */
     public abstract void convert(View view, int position, T item);
 
     protected List<T> getData() {

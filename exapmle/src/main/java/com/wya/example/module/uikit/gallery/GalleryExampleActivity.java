@@ -43,6 +43,7 @@ public class GalleryExampleActivity extends AppCompatActivity {
     private ArrayList<String> images = new ArrayList<>();
     private static final Uri QUERY_URI = MediaStore.Files.getContentUri("external");
     private static final String ORDER_BY = MediaStore.Files.FileColumns.DATE_MODIFIED;
+    private final int REQUEST_EXTERNAL_STORAGE = 1000;
     
     /**
      * 媒体文件数据库字段
@@ -94,7 +95,7 @@ public class GalleryExampleActivity extends AppCompatActivity {
         
         if (selfPermission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest
-                    .permission.READ_EXTERNAL_STORAGE}, 1000);
+                    .permission.READ_EXTERNAL_STORAGE}, REQUEST_EXTERNAL_STORAGE);
         } else {
             getData();
         }
@@ -151,7 +152,7 @@ public class GalleryExampleActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        if (requestCode == 1000) {
+        if (requestCode == REQUEST_EXTERNAL_STORAGE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 
                 getData();

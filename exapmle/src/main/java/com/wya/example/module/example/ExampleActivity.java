@@ -3,7 +3,7 @@ package com.wya.example.module.example;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-
+import butterknife.BindView;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.fragment.AboutUsFragment;
@@ -11,13 +11,12 @@ import com.wya.example.module.example.fragment.ExampleFragment;
 import com.wya.uikit.tabbar.WYATabBar;
 import com.wya.utils.utils.ColorUtil;
 
-import butterknife.BindView;
- /**
-  * @date: 2019/1/4 11:49
-  * @author: Chunjiang Mao
-  * @classname: ExampleActivity
-  * @describe: ExampleActivity
-  */
+/**
+ * @date: 2019/1/4 11:49
+ * @author: Chunjiang Mao
+ * @classname: ExampleActivity
+ * @describe: ExampleActivity
+ */
 
 public class ExampleActivity extends BaseActivity {
 

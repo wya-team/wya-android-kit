@@ -16,12 +16,33 @@
 package com.wya.uikit.gallery.photoview;
 
 interface OnGestureListener {
-
+    
+    /**
+     * onDrag
+     *
+     * @param dx
+     * @param dy
+     */
     void onDrag(float dx, float dy);
-
+    
+    /**
+     * onFling
+     *
+     * @param startX
+     * @param startY
+     * @param velocityX
+     * @param velocityY
+     */
     void onFling(float startX, float startY, float velocityX,
-				 float velocityY);
-
+                 float velocityY);
+    
+    /**
+     * onScale
+     *
+     * @param scaleFactor
+     * @param focusX
+     * @param focusY
+     */
     void onScale(float scaleFactor, float focusX, float focusY);
-
+    
 }

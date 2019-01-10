@@ -163,6 +163,12 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
 	}
 
 	public interface OnChooseItemListener {
+		/**
+		 * itemSelected
+		 * @param position1
+		 * @param position2
+		 * @param position3
+		 */
 		void itemSelected(int position1, int position2, int position3);
 	}
 }

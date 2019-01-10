@@ -35,6 +35,7 @@ public class QRCodeExampleActivity extends BaseActivity {
     private String path;
     
     public static final String TAG = "QRCodeExampleActivity";
+    private int maxLength = 80;
     
     @Override
     protected int getLayoutId() {
@@ -66,10 +67,10 @@ public class QRCodeExampleActivity extends BaseActivity {
             
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 80) {
-                    s = s.subSequence(0, 80);
+                if (s.length() > maxLength) {
+                    s = s.subSequence(0, maxLength);
                     mLineCodeEdit.setText(s);
-                    mLineCodeEdit.setSelection(80);
+                    mLineCodeEdit.setSelection(maxLength);
                 }
             }
             

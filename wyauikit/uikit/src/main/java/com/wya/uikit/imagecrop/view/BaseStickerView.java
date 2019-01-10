@@ -97,6 +97,11 @@ public abstract class BaseStickerView extends ViewGroup implements Sticker, View
         mMoveHelper = new StickerMoveHelper(this);
     }
     
+    /**
+     * onCreateContentView
+     * @param context
+     * @return
+     */
     public abstract View onCreateContentView(Context context);
     
     @Override

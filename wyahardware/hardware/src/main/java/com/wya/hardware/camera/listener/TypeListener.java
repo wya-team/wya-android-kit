@@ -8,7 +8,13 @@ package com.wya.hardware.camera.listener;
   */
 
 public interface TypeListener {
+     /**
+      * cancel
+      */
     void cancel();
-
+    
+     /**
+      * confirm
+      */
     void confirm();
 }

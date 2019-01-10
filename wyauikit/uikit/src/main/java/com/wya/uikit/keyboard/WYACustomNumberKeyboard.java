@@ -138,10 +138,16 @@ public class WYACustomNumberKeyboard {
     };
 
     public interface OnOkClick {
+        /**
+         * onOkClick
+         */
         void onOkClick();
     }
 
     public interface OnCancelClick {
+        /**
+         * onCancelClick
+         */
         void onCancelClick();
     }
 

@@ -12,11 +12,13 @@ public interface IVideoInfo extends Serializable {
 
     /**
      * 视频标题
+     * @return
      */
     String getVideoTitle();
 
     /**
      * 视频播放路径 url / file path
+     * @return
      */
     String getVideoPath();
 

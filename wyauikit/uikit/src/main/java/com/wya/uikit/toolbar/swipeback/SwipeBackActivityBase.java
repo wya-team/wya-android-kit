@@ -5,10 +5,15 @@ package com.wya.uikit.toolbar.swipeback;
  */
 public interface SwipeBackActivityBase {
     /**
-     * @return the SwipeBackLayout associated with this activity.
+     * the SwipeBackLayout associated with this activity.
+     * @return
      */
     public abstract SwipeBackLayout getSwipeBackLayout();
     
+    /**
+     * setSwipeBackEnable
+     * @param enable
+     */
     public abstract void setSwipeBackEnable(boolean enable);
     
     /**

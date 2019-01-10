@@ -8,6 +8,13 @@ package com.wya.hardware.camera.listener;
   */
 
 public interface ErrorListener {
+     /**
+      * onError
+      */
     void onError();
+    
+     /**
+      * audiopermissionerror
+      */
     void audiopermissionerror();
 }
