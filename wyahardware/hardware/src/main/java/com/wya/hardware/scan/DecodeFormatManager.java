@@ -28,6 +28,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+/**
+ * @date: 2019/1/10 14:06
+ * @author: Chunjiang Mao
+ * @classname: DecodeFormatManager
+ * @describe: DecodeFormatManager
+ */
+
 public final class DecodeFormatManager {
     
     public static final Set<BarcodeFormat> PRODUCT_FORMATS;

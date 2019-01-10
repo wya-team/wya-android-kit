@@ -9,6 +9,13 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+/**
+ * @date: 2019/1/10 14:22
+ * @author: Chunjiang Mao
+ * @classname: Utils
+ * @describe:
+ */
+
 public class Utils {
     private Utils() {
     }

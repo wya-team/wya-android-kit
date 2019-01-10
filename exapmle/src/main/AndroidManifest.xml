@@ -42,7 +42,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.hardware.HardwareExampleActivity" />
         <activity android:name=".module.helper.HelperExampleActivity" />
         <activity android:name=".module.uikit.toolbar.ToolBarExampleActivity" />
         <activity android:name=".module.uikit.dialog.DialogExampleActivity" />
@@ -78,7 +77,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity android:name=".module.uikit.pickerview.PickerViewExampleActivity" />
         <activity android:name=".module.utils.realm.RealmExampleActivity" />
-        <activity android:name=".module.utils.UtilsExampleActivity" />
         <activity
             android:name=".module.utils.image.QRCodeExampleActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />

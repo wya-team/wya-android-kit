@@ -5,6 +5,13 @@ import android.support.annotation.NonNull;
 
 import java.lang.ref.WeakReference;
 
+/**
+ * @date: 2019/1/10 14:22
+ * @author: Chunjiang Mao
+ * @classname: SwipeBackListenerAdapter
+ * @describe:
+ */
+
 public class SwipeBackListenerAdapter implements SwipeBackLayout.SwipeListenerEx {
     private final WeakReference<Activity> mActivity;
     private final SwipeBackLayout mLayout;
@@ -59,7 +66,7 @@ public class SwipeBackListenerAdapter implements SwipeBackLayout.SwipeListenerEx
     
     @Override
     public void onScrollOverThreshold() {
-    
+        
     }
     
 }

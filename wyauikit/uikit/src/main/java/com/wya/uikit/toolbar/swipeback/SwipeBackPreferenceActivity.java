@@ -4,6 +4,13 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.view.View;
 
+/**
+ * @date: 2019/1/10 14:22
+ * @author: Chunjiang Mao
+ * @classname: SwipeBackPreferenceActivity
+ * @describe:
+ */
+
 public class SwipeBackPreferenceActivity extends PreferenceActivity implements SwipeBackActivityBase {
     private SwipeBackActivityHelper mHelper;
     

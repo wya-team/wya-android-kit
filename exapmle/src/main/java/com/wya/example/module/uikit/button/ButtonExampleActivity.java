@@ -7,6 +7,13 @@ import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.utils.utils.StringUtil;
 
+/**
+ * @date: 2019/1/10 14:06
+ * @author: Chunjiang Mao
+ * @classname: ButtonExampleActivity
+ * @describe: ButtonExampleActivity
+ */
+
 public class ButtonExampleActivity extends BaseActivity {
     
     @Override

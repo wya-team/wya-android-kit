@@ -12,6 +12,13 @@ import com.wya.utils.utils.PhoneUtil;
 
 import butterknife.BindView;
 
+/**
+ * @date: 2019/1/10 14:14
+ * @author: Chunjiang Mao
+ * @classname: HelperExampleActivity
+ * @describe:
+ */
+
 public class HelperExampleActivity extends BaseActivity {
     
     @BindView(R.id.tv_phone_info)

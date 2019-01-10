@@ -18,6 +18,13 @@ import com.wya.uikit.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @date: 2019/1/10 14:22
+ * @author: Chunjiang Mao
+ * @classname: SwipeBackLayout
+ * @describe:
+ */
+
 public class SwipeBackLayout extends FrameLayout {
     /**
      * Edge flag indicating that the left edge should be affected.
@@ -312,7 +319,7 @@ public class SwipeBackLayout extends FrameLayout {
     public void scrollToFinishActivity() {
         final int childWidth = mContentView.getWidth();
         final int childHeight = mContentView.getHeight();
-    
+        
         int left = 0, top = 0;
         if ((mEdgeFlag & EDGE_LEFT) != 0) {
             left = childWidth + mShadowLeft.getIntrinsicWidth() + OVERSCROLL_DISTANCE;
@@ -324,7 +331,7 @@ public class SwipeBackLayout extends FrameLayout {
             top = -childHeight - mShadowBottom.getIntrinsicHeight() - OVERSCROLL_DISTANCE;
             mTrackingEdge = EDGE_BOTTOM;
         }
-    
+        
         mDragHelper.smoothSlideViewTo(mContentView, left, top);
         invalidate();
     }
@@ -500,7 +507,7 @@ public class SwipeBackLayout extends FrameLayout {
     
     private class ViewDragBaseCallback extends ViewDragHelper.BaseCallback {
         private boolean mIsScrollOverValid;
-    
+        
         @Override
         public boolean tryCaptureView(View view, int i) {
             boolean ret = mDragHelper.isEdgeTouched(mEdgeFlag, i);
@@ -530,17 +537,17 @@ public class SwipeBackLayout extends FrameLayout {
             }
             return ret & directionCheck;
         }
-    
+        
         @Override
         public int getViewHorizontalDragRange(View child) {
             return mEdgeFlag & (EDGE_LEFT | EDGE_RIGHT);
         }
-    
+        
         @Override
         public int getViewVerticalDragRange(View child) {
             return mEdgeFlag & EDGE_BOTTOM;
         }
-    
+        
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
             super.onViewPositionChanged(changedView, left, top, dx, dy);
@@ -560,13 +567,13 @@ public class SwipeBackLayout extends FrameLayout {
             if (mScrollPercent < mScrollThreshold && !mIsScrollOverValid) {
                 mIsScrollOverValid = true;
             }
-        
+            
             if (mListeners != null && !mListeners.isEmpty()) {
                 for (SwipeListener listener : mListeners) {
                     listener.onScrollStateChange(mDragHelper.getViewDragState(), mScrollPercent);
                 }
             }
-        
+            
             if (mListeners != null && !mListeners.isEmpty()
                     && mDragHelper.getViewDragState() == STATE_DRAGGING
                     && mScrollPercent >= mScrollThreshold && mIsScrollOverValid) {
@@ -575,7 +582,7 @@ public class SwipeBackLayout extends FrameLayout {
                     listener.onScrollOverThreshold();
                 }
             }
-        
+            
             if (mScrollPercent >= 1) {
                 if (null != mListeners && !mListeners.isEmpty()) {
                     for (SwipeListener listener : mListeners) {
@@ -586,12 +593,12 @@ public class SwipeBackLayout extends FrameLayout {
                 }
             }
         }
-    
+        
         @Override
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
             final int childWidth = releasedChild.getWidth();
             final int childHeight = releasedChild.getHeight();
-        
+            
             int left = 0, top = 0;
             if ((mTrackingEdge & EDGE_LEFT) != 0) {
                 left = xvel > 0 || xvel == 0 && mScrollPercent > mScrollThreshold ? childWidth + mShadowLeft.getIntrinsicWidth() + OVERSCROLL_DISTANCE : 0;
@@ -600,7 +607,7 @@ public class SwipeBackLayout extends FrameLayout {
             } else if ((mTrackingEdge & EDGE_BOTTOM) != 0) {
                 top = yvel < 0 || yvel == 0 && mScrollPercent > mScrollThreshold ? -(childHeight + mShadowBottom.getIntrinsicHeight() + OVERSCROLL_DISTANCE) : 0;
             }
-        
+            
             if (isPageTranslucent()) {
                 mDragHelper.settleCapturedViewAt(left, top);
                 invalidate();
@@ -611,7 +618,7 @@ public class SwipeBackLayout extends FrameLayout {
                 }
             }
         }
-    
+        
         @Override
         public int clampViewPositionHorizontal(View child, int left, int dx) {
             int ret = 0;
@@ -622,7 +629,7 @@ public class SwipeBackLayout extends FrameLayout {
             }
             return ret;
         }
-    
+        
         @Override
         public int clampViewPositionVertical(View child, int top, int dy) {
             int ret = 0;
@@ -631,7 +638,7 @@ public class SwipeBackLayout extends FrameLayout {
             }
             return ret;
         }
-    
+        
         @Override
         public void onViewDragStateChanged(int state) {
             super.onViewDragStateChanged(state);
@@ -641,12 +648,12 @@ public class SwipeBackLayout extends FrameLayout {
                 }
             }
         }
-    
+        
         @Override
         public void onEdgeDragStarted(int edgeFlags, int pointerId) {
             super.onEdgeDragStarted(edgeFlags, pointerId);
         }
-    
+        
         @Override
         boolean isPageTranslucent() {
             return SwipeBackLayout.this.isPageTranslucent();

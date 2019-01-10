@@ -26,6 +26,13 @@ import butterknife.OnClick;
 import static com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity.FILE_IMG_DIR;
 import static com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity.FILE_VIDEO_DIR;
 
+/**
+ * @date: 2019/1/10 14:22
+ * @author: Chunjiang Mao
+ * @classname: VideoPlayerExampleActivity
+ * @describe:
+ */
+
 public class VideoPlayerExampleActivity extends BaseActivity {
     
     private static final String MVIDEOPATH =

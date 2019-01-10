@@ -31,10 +31,14 @@ import android.view.animation.Interpolator;
 import java.util.Arrays;
 
 /**
- * ViewDragHelper is a utility class for writing custom ViewGroups. It offers a
+ * @date: 2019/1/10 14:20
+ * @author: Chunjiang Mao
+ * @classname: ViewDragHelper
+ * @describe: ViewDragHelper is a utility class for writing custom ViewGroups. It offers a
  * number of useful operations and state tracking for allowing a user to drag
  * and reposition views within their parent ViewGroup.
  */
+
 public class ViewDragHelper {
     /**
      * A null/invalid pointer ID.

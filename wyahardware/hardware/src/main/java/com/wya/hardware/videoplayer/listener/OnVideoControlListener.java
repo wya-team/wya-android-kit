@@ -1,5 +1,12 @@
 package com.wya.hardware.videoplayer.listener;
 
+/**
+ * @date: 2019/1/10 14:17
+ * @author: Chunjiang Mao
+ * @classname: OnVideoControlListener
+ * @describe:
+ */
+
 public interface OnVideoControlListener {
     
     /**

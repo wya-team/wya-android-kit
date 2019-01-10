@@ -27,13 +27,13 @@ import com.wya.uikit.R;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-
 /**
- * Created by Jaeger on 16/2/14.
- * <p>
- * Email: chjie.jaeger@gmail.com
- * GitHub: https://github.com/laobie
+ * @date: 2019/1/10 14:17
+ * @author: Chunjiang Mao
+ * @classname: StatusBarUtil
+ * @describe:
  */
+
 public class StatusBarUtil {
     
     public static final int DEFAULT_STATUS_BAR_ALPHA = 112;

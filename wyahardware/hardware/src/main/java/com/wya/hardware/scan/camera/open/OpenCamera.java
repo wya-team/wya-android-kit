@@ -19,8 +19,12 @@ package com.wya.hardware.scan.camera.open;
 import android.hardware.Camera;
 
 /**
- * Represents an open {@link Camera} and its metadata, like facing direction and orientation.
+ * @date: 2019/1/10 14:11
+ * @author: Chunjiang Mao
+ * @classname: OpenCamera
+ * @describe:
  */
+
 @SuppressWarnings("deprecation")
 public final class OpenCamera {
     

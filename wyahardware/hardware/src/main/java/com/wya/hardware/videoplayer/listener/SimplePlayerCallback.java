@@ -2,6 +2,13 @@ package com.wya.hardware.videoplayer.listener;
 
 import android.media.MediaPlayer;
 
+/**
+ * @date: 2019/1/10 14:17
+ * @author: Chunjiang Mao
+ * @classname: SimplePlayerCallback
+ * @describe:
+ */
+
 public class SimplePlayerCallback implements PlayerCallback {
     
     @Override

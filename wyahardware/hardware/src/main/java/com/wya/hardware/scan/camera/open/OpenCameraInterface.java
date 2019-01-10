@@ -20,8 +20,12 @@ import android.hardware.Camera;
 import android.util.Log;
 
 /**
- * Abstraction over the {@link Camera} API that helps open them and return their metadata.
+ * @date: 2019/1/10 14:11
+ * @author: Chunjiang Mao
+ * @classname: OpenCameraInterface
+ * @describe:
  */
+
 @SuppressWarnings("deprecation")
 public final class OpenCameraInterface {
     

@@ -31,10 +31,13 @@ import com.wya.hardware.R;
 
 import java.io.Closeable;
 import java.io.IOException;
-
 /**
- * Manages beeps and vibrations for {@link CaptureActivity}.
+ * @date: 2019/1/10 14:06
+ * @author: Chunjiang Mao
+ * @classname: BeepManager
+ * @describe:
  */
+
 public final class BeepManager implements MediaPlayer.OnErrorListener, Closeable {
     
     private static final String TAG = BeepManager.class.getSimpleName();

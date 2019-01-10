@@ -20,8 +20,12 @@ import android.content.SharedPreferences;
 import com.wya.hardware.scan.Preferences;
 
 /**
- * Enumerates settings of the preference controlling the front light.
+ * @date: 2019/1/10 14:07
+ * @author: Chunjiang Mao
+ * @classname: FrontLightMode
+ * @describe:
  */
+
 public enum FrontLightMode {
     
     /**
