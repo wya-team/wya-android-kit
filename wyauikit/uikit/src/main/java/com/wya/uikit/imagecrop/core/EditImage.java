@@ -21,7 +21,11 @@ import com.wya.uikit.imagecrop.core.util.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class EditImage {
 
     private static final String TAG = "EditImage";

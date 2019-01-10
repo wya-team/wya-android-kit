@@ -3,8 +3,9 @@ package com.wya.uikit.gallery.photoview;
 import android.widget.ImageView;
 
 /**
- * A callback to be invoked when the Photo is tapped with a single
- * tap.
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     :
  */
 public interface OnPhotoTapListener {
 

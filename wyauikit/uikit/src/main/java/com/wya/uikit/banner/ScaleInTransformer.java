@@ -4,6 +4,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class ScaleInTransformer implements ViewPager.PageTransformer {
     private float mMinScale = 0.7f;
     private static final float DEFAULT_CENTER = 0.5f;
@@ -38,7 +43,6 @@ public class ScaleInTransformer implements ViewPager.PageTransformer {
                 view.setScaleY(scaleFactor);
                 view.setPivotX(pageWidth * ((1 - position) * DEFAULT_CENTER));
             }
-
 
         } else { // (1,+Infinity]
             view.setPivotX(0);

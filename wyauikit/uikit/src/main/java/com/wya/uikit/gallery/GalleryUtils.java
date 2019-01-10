@@ -4,11 +4,9 @@ import java.io.File;
 import java.util.List;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/12/29
- * desc   :
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 图片浏览工具
  */
 public class GalleryUtils {
     /**

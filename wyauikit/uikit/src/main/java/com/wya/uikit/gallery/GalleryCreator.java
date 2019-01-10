@@ -12,11 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/29
- * desc   : GalleryCreator
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 图片浏览调用类
  */
 public class GalleryCreator {
 	private final WeakReference<Activity> mActivity;

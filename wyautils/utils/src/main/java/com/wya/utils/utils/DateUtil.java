@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
- * author : XuDonglin
+ * @author : XuDonglin
  * e-mail : 465715784@qq.com
  * time   : 2018/12/11
  * desc   :	时间格式化工具类

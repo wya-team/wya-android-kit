@@ -7,11 +7,9 @@ import android.support.v4.app.Fragment;
 import java.lang.ref.WeakReference;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/12/03
- * desc   : ImagePickerCreator
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 图片选择调用类
  */
 public class ImagePickerCreator {
 	private WeakReference<Activity>mActivity;

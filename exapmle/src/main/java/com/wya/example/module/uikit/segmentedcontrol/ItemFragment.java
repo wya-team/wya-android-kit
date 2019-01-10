@@ -10,7 +10,9 @@ import android.widget.TextView;
 import com.wya.example.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     :
  */
 public class ItemFragment extends Fragment {
     

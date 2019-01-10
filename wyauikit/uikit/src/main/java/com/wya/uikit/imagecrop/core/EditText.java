@@ -3,7 +3,11 @@ package com.wya.uikit.imagecrop.core;
 import android.graphics.Color;
 import android.text.TextUtils;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class EditText {
 
     private String text;

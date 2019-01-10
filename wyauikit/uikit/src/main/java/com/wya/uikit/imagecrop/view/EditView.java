@@ -31,7 +31,11 @@ import com.wya.uikit.imagecrop.core.homing.CropHoming;
 import com.wya.uikit.imagecrop.core.sticker.Sticker;
 import com.wya.uikit.imagecrop.core.sticker.StickerPortrait;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class EditView extends FrameLayout implements Runnable, ScaleGestureDetector.OnScaleGestureListener,
         ValueAnimator.AnimatorUpdateListener, StickerPortrait.Callback, Animator.AnimatorListener {
 

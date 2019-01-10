@@ -8,11 +8,9 @@ import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/22
- * desc   :
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     :
  */
 public class ScreenUtil {
 	/**

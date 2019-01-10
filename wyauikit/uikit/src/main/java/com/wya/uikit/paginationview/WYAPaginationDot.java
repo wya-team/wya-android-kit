@@ -14,11 +14,9 @@ import android.widget.LinearLayout;
 import com.wya.uikit.R;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/24
- * desc   : WYAPaginationDot
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10 
+ *  @description     : 
  */
 public class WYAPaginationDot extends LinearLayout {
 	private Context mContext;

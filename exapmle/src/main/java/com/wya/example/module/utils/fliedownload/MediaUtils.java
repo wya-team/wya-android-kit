@@ -14,8 +14,12 @@ import java.util.HashMap;
 
 import static com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity.FILE_IMG_DIR;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description : 下载缓存第一帧图片
+ */
 public class MediaUtils {
-
 
     public static File getOutputMediaFile(String videoPath) {
 
@@ -24,7 +28,6 @@ public class MediaUtils {
                 "IMG_" + StringUtil.getSign(videoPath) + ".jpg");
         return mediaFile;
     }
-
 
     /**
      * 获取视频的第一帧图片

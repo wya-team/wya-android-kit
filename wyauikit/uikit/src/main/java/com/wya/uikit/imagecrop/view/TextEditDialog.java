@@ -13,7 +13,11 @@ import android.widget.RadioGroup;
 import com.wya.uikit.R;
 import com.wya.uikit.imagecrop.core.EditText;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class TextEditDialog extends Dialog implements View.OnClickListener,
         RadioGroup.OnCheckedChangeListener {
 

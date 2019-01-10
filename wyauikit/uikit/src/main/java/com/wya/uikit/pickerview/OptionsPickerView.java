@@ -13,11 +13,9 @@ import com.wya.uikit.pickerview.wheelview.view.WheelView;
 import java.util.List;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/12/05
- * desc   : OptionsPickerView
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 三级联动布局
  */
 public class OptionsPickerView<T> extends LinearLayout {
 	private Context mContext;

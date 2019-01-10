@@ -14,12 +14,17 @@ import com.wya.uikit.slidder.Utils;
 import com.wya.uikit.tabbar.WYATabBar;
 import com.wya.utils.utils.StringUtil;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class TabBarExampleActivity extends BaseActivity {
-    
+
     private WYATabBar tab;
     private TextView msg;
     private IBadgeView badgeHome, badgeMy, badgeNotifications;
-    
+
     @Override
     protected void initView() {
         setTitle("底部导航(tabbar)");
@@ -36,24 +41,24 @@ public class TabBarExampleActivity extends BaseActivity {
         setToolBar();
         showBadge();
     }
-    
+
     public void showBadge() {
         BottomNavigationItemView[] itemViews = tab.getBottomNavigationItemViews();
-        
+
         BottomNavigationItemView itemViewHome = itemViews[0];
         badgeHome = new Builder(this)
                 .setGravity(new Builder.Gravity(BadgeGravity.GRAVITY_CENTER_TOP, Utils.dp2px(this, 20), Utils.dp2px(this, 1)))
                 .setText("new")
                 .create();
         badgeHome.bindToTarget(itemViewHome);
-        
+
         BottomNavigationItemView itemViewNotifications = itemViews[2];
         badgeNotifications = new Builder(this)
                 .setGravity(new Builder.Gravity(BadgeGravity.GRAVITY_CENTER_TOP, Utils.dp2px(this, 11), Utils.dp2px(this, 1)))
                 .setBadgeNum(1)
                 .create();
         badgeNotifications.bindToTarget(itemViewNotifications);
-        
+
         BottomNavigationItemView itemViewMy = itemViews[3];
         badgeMy = new Builder(this)
                 .setGravity(new Builder.Gravity(BadgeGravity.GRAVITY_CENTER_TOP, Utils.dp2px(this, 11), Utils.dp2px(this, 4)))
@@ -61,7 +66,7 @@ public class TabBarExampleActivity extends BaseActivity {
                 .create();
         badgeMy.bindToTarget(itemViewMy);
     }
-    
+
     private void setToolBar() {
         tab = (WYATabBar) findViewById(R.id.tab);
         msg = (TextView) findViewById(R.id.msg);
@@ -95,14 +100,14 @@ public class TabBarExampleActivity extends BaseActivity {
                         badgeMy.updateIsShow(false);
                     }
                     break;
-                
+
                 default:
                     break;
             }
             return true;
         });
     }
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_tab_bar_example;

@@ -3,7 +3,11 @@ package com.wya.uikit.imagecrop.core.elastic;
 import android.animation.TypeEvaluator;
 import android.graphics.RectF;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class ElasticRectFEvaluator implements TypeEvaluator<RectF> {
 
     private RectF mRect;

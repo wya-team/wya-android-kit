@@ -33,9 +33,9 @@ import android.widget.ImageView.ScaleType;
 import android.widget.OverScroller;
 
 /**
- * The component of {@link PhotoView} which does the work allowing for zooming, scaling, panning, etc.
- * It is made public in case you need to subclass something other than {@link ImageView} and still
- * gain the functionality that {@link PhotoView} offers
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     :
  */
 public class PhotoViewAttacher implements View.OnTouchListener,
         View.OnLayoutChangeListener {

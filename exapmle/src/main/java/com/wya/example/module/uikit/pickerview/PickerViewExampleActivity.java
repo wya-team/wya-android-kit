@@ -25,6 +25,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class PickerViewExampleActivity extends BaseActivity {
 
     private static final String TAG = "PickerViewExampleActivity";
@@ -49,7 +54,6 @@ public class PickerViewExampleActivity extends BaseActivity {
     protected int getLayoutId() {
         return R.layout.activity_picker_view_example;
     }
-
 
     @Override
     protected void initView() {
@@ -84,7 +88,6 @@ public class PickerViewExampleActivity extends BaseActivity {
             e.printStackTrace();
         }
 
-
         Bean bean = new Gson().fromJson(data, Bean.class);
         for (int i = 0; i < bean.getData().size(); i++) {
             data1.add(bean.getData().get(i).getName());
@@ -103,7 +106,6 @@ public class PickerViewExampleActivity extends BaseActivity {
         }
 
     }
-
 
     @OnClick({R.id.ymdhms_layout, R.id.ymdhms_layout_with, R.id.ymd_layout, R.id.hms_layout, R.id
             .hm_space_layout, R.id.address_layout})
@@ -197,7 +199,6 @@ public class PickerViewExampleActivity extends BaseActivity {
             default:
                 break;
         }
-
 
     }
 }

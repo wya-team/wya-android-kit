@@ -9,6 +9,11 @@ import android.widget.TextView;
 
 import com.wya.uikit.imagecrop.core.EditText;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class BaseStickerTextView extends BaseStickerView implements TextEditDialog.Callback {
 
     private static final String TAG = "StickerTextView";

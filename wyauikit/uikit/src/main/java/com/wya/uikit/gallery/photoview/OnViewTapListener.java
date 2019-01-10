@@ -2,6 +2,11 @@ package com.wya.uikit.gallery.photoview;
 
 import android.view.View;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public interface OnViewTapListener {
 
     /**

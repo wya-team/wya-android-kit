@@ -2,7 +2,11 @@ package com.wya.uikit.imagecrop.core.homing;
 
 import android.animation.TypeEvaluator;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class CropHomingEvaluator implements TypeEvaluator<CropHoming> {
 
     private CropHoming homing;

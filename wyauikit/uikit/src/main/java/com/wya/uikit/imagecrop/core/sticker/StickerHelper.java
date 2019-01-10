@@ -5,6 +5,11 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.view.View;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class StickerHelper<StickerView extends View & Sticker> implements
         StickerPortrait, StickerPortrait.Callback {
 

@@ -1,5 +1,10 @@
 package com.wya.uikit.imagecrop.core.homing;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class CropHoming {
 
     public float x, y;

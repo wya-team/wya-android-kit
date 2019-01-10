@@ -9,7 +9,11 @@ import android.graphics.RectF;
 
 import com.wya.uikit.imagecrop.core.util.Utils;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description : 裁剪窗口
+ */
 public class ClipWindow implements Clip {
 
     /**

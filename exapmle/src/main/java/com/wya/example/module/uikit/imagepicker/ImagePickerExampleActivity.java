@@ -41,6 +41,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description : 图片选择界面
+ */
 public class ImagePickerExampleActivity extends BaseActivity {
     private RecyclerView mRecyclerView;
     private List<String> mAllList = new ArrayList<>();
@@ -50,7 +55,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
     private ImageView cropCrop, cropSelect;
     private int num;
     private WYACustomDialog mWyaCustomDialog;
-    
+
     public static final int CROP_PHOTO = 1001;
     public static final int CROP = 1002;
     public static final int PHOTO = 100;
@@ -59,15 +64,15 @@ public class ImagePickerExampleActivity extends BaseActivity {
     public static final int NO_PERMISSIONS_CAMEAR = 103;
     public static final int CAMERA = 10001;
     private static final String TAG = "ImagePickerExampleActivity";
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_image_picker_example;
     }
-    
+
     @Override
     protected void initView() {
-        
+
         setTitle("图片选择器(imagepicker)");
         String url = getIntent().getStringExtra("url");
         showSecondRightIcon(true);
@@ -79,12 +84,12 @@ public class ImagePickerExampleActivity extends BaseActivity {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(ImagePickerExampleActivity.this, url);
         });
-        
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         input = (EditText) findViewById(R.id.num_input);
         cropCrop = (ImageView) findViewById(R.id.crop_crop);
         cropSelect = (ImageView) findViewById(R.id.crop_select);
-        
+
         findViewById(R.id.crop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,11 +98,11 @@ public class ImagePickerExampleActivity extends BaseActivity {
                         .forResult(CROP_PHOTO);
             }
         });
-        
+
         initRecycler();
-        
+
     }
-    
+
     /**
      * 默认可以拍照和录制视频
      */
@@ -106,11 +111,11 @@ public class ImagePickerExampleActivity extends BaseActivity {
      * 权限申请自定义码
      */
     private final int GET_PERMISSION_REQUEST = 100;
-    
+
     private void openCamera() {
         getPermissions();
     }
-    
+
     /**
      * 获取权限
      */
@@ -140,7 +145,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
             startActivityForResult(intent, CAMERA);
         }
     }
-    
+
     @TargetApi(23)
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -177,11 +182,11 @@ public class ImagePickerExampleActivity extends BaseActivity {
             }
         }
     }
-    
+
     private void initRecycler() {
         mAllList.add("");
         mPickerAdapter = new ImagePickerAdapter(mAllList, this);
-        
+
         mPickerAdapter.setOnItemClickListener(new ImagePickerAdapter.OnItemClickListener() {
             @Override
             public void onDelete(int position) {
@@ -191,7 +196,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                 mAllList.remove(position);
                 mPickerAdapter.notifyDataSetChanged();
             }
-            
+
             @Override
             public void onItemClick(int position) {
                 ArrayList<String> preview = new ArrayList<>();
@@ -202,17 +207,17 @@ public class ImagePickerExampleActivity extends BaseActivity {
                 GalleryCreator.create(ImagePickerExampleActivity.this).openPreviewGallery
                         (position, preview);
             }
-            
+
             @Override
             public void onAddClick() {
                 initDialog();
             }
         });
-        
+
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         mRecyclerView.setAdapter(mPickerAdapter);
     }
-    
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -245,7 +250,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                 } else {
                     uri = Uri.fromFile(file);
                 }
-                
+
                 Crop.create(ImagePickerExampleActivity.this)
                         .setImagePath(uri)
                         .saveCropImagePath(file.getParentFile().getPath() + "/test.jpg")
@@ -293,7 +298,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
             }
         }
     }
-    
+
     /**
      * 弹窗选择按钮
      */

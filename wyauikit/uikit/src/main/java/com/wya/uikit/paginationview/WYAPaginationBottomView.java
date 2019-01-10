@@ -27,11 +27,9 @@ import android.widget.Toast;
 import com.wya.uikit.R;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/23
- * desc   : pageView
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     :
  */
 public class WYAPaginationBottomView extends FrameLayout implements View.OnClickListener {
     private Context mContext;

@@ -3,7 +3,11 @@ package com.wya.uikit.imagecrop.core.elastic;
 import android.animation.TypeEvaluator;
 import android.graphics.PointF;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class ElasticPointFEvaluator implements TypeEvaluator<PointF> {
 
     private PointF mPoint;

@@ -6,7 +6,9 @@ import com.wya.uikit.pickerview.wheelview.view.WheelView;
 
 
 /**
- * 手势监听
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 手势监听
  */
 public final class LoopViewGestureListener extends android.view.GestureDetector.SimpleOnGestureListener {
 

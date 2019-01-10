@@ -75,12 +75,12 @@ import java.util.regex.Pattern;
 
 public class StringUtil {
     public static int DEFAULT_INT = -100;
-    
+
     /**
      * 字符拆分成数组
      */
     public static String getStrSplitByCondition(String str, String split, String condition) {
-        
+
         String[] cookieArr = str.split(split);
         String result = "";
         for (int i = 0; i < cookieArr.length; i++) {
@@ -90,23 +90,23 @@ public class StringUtil {
                 return cookieArr[i];
             }
         }
-        
+
         return result;
     }
-    
+
     /**
      * MD5 加密
      */
     public static String getSign(String signStr) {
-        
+
         StringBuffer buf = new StringBuffer("");
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(signStr.getBytes());
             byte[] b = md.digest();
-            
+
             int i;
-            
+
             for (byte aB : b) {
                 i = aB;
                 if (i < 0) {
@@ -121,12 +121,12 @@ public class StringUtil {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+
         String sign = buf.toString();
-        
+
         return sign;
     }
-    
+
     /**
      * @param obj
      *
@@ -139,7 +139,7 @@ public class StringUtil {
         }
         return mStringBuffer.toString();
     }
-    
+
     /**
      * 替换字符串
      *
@@ -158,7 +158,7 @@ public class StringUtil {
         }
         return ret;
     }
-    
+
     public static String getSplitString(String srcString, String split) {
         StringBuilder stringBuilder = new StringBuilder(srcString);
         for (int i = 4; i < stringBuilder.length(); i += 5) {
@@ -166,7 +166,7 @@ public class StringUtil {
         }
         return stringBuilder.toString();
     }
-    
+
     public static boolean isContain(String strSc, String str, String splitStr) {
         String split = ",";
         if (!isNull(splitStr)) {
@@ -182,7 +182,7 @@ public class StringUtil {
         }
         return false;
     }
-    
+
     public static String subZeroAndDot(String s) {
         if (s.indexOf(".") > 0) {
             //去掉多余的0
@@ -192,7 +192,7 @@ public class StringUtil {
         }
         return s;
     }
-    
+
     /**
      * 判断多个参数是否都为空
      *
@@ -212,7 +212,7 @@ public class StringUtil {
         }
         return result;
     }
-    
+
     /**
      * 判断多个参数是否为空
      *
@@ -223,7 +223,7 @@ public class StringUtil {
     public static boolean isEmpty(Object str) {
         return ("").equals(str) || str == null;
     }
-    
+
     /**
      * 替换字符串，修复java.lang.String类的replaceAll方法时第一参数是字符串常量正则时(如："address".
      * replaceAll("dd","$");)的抛出异常：java.lang.StringIndexOutOfBoundsException:
@@ -245,7 +245,7 @@ public class StringUtil {
         }
         return strSc;
     }
-    
+
     /**
      * 将字符串转换成HTML格式的字符串
      *
@@ -270,7 +270,7 @@ public class StringUtil {
             return html;
         }
     }
-    
+
     /**
      * 将HTML格式的字符串转换成常规显示的字符串
      *
@@ -297,7 +297,7 @@ public class StringUtil {
             return text;
         }
     }
-    
+
     /**
      * 获取加密的手机号
      *
@@ -314,7 +314,7 @@ public class StringUtil {
         stringBuilder.append(phoneNum.substring(7));
         return stringBuilder.toString();
     }
-    
+
     /**
      * 检查手机号
      *
@@ -322,12 +322,12 @@ public class StringUtil {
      * @return
      */
     private static Pattern PHONE_PATTERN = Pattern.compile("^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\\\d{8}$");
-    
+
     public static boolean checkMobile(String phoneNum) {
         Matcher m = PHONE_PATTERN.matcher(phoneNum);
         return m.matches();
     }
-    
+
     /**
      * 验证固定电话号码
      *
@@ -344,11 +344,11 @@ public class StringUtil {
         if (phone.length() != 11 || (!TextUtils.isEmpty(phone) && !phone.startsWith("1"))) {
             return false;
         }
-        
+
         String regex = "(\\+\\d+)?(\\d{3,4}\\-?)?\\d{7,8}$";
         return Pattern.matches(regex, phone);
     }
-    
+
     /**
      * 检查密码有效
      * 大于6位包含数字小写字母和大写字母
@@ -374,7 +374,7 @@ public class StringUtil {
         }
         return match;
     }
-    
+
     /**
      * 根据string.xml资源格式化字符串
      *
@@ -391,7 +391,7 @@ public class StringUtil {
         }
         return String.format(str, args);
     }
-    
+
     /**
      * 验证身份证号码
      *
@@ -406,7 +406,7 @@ public class StringUtil {
         String regex = "[1-9]\\d{13,16}[a-zA-Z0-9]{1}";
         return Pattern.matches(regex, idCard);
     }
-    
+
     /**
      * 将元单位数字转成int类型的元
      *
@@ -423,7 +423,7 @@ public class StringUtil {
         }
         return num;
     }
-    
+
     /**
      * 格式化数字
      *
@@ -446,7 +446,7 @@ public class StringUtil {
         }
         return numFormat.toString();
     }
-    
+
     /**
      * 数字转成以万、亿为单位，1.0-->1; 1.1-->1.1
      *
@@ -461,7 +461,7 @@ public class StringUtil {
             return numStr;
         }
     }
-    
+
     /**
      * 数字转成以万、亿为单位，1.0-->1; 1.1-->1.1
      *
@@ -484,7 +484,7 @@ public class StringUtil {
         }
         return numFormat.toString();
     }
-    
+
     /**
      * 将一字符串数组以某特定的字符串作为分隔来变成字符串
      *
@@ -496,17 +496,19 @@ public class StringUtil {
      * @since 1.0
      */
     public static String join(String[] strs, String token) {
-        if (strs == null)
+        if (strs == null) {
             return null;
+        }
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < strs.length; i++) {
-            if (i != 0)
+            if (i != 0) {
                 sb.append(token);
+            }
             sb.append(strs[i]);
         }
         return sb.toString();
     }
-    
+
     /**
      * 将一字符串以某特定的字符串作为分隔来变成字符串数组
      *
@@ -521,7 +523,7 @@ public class StringUtil {
         String temp = str.substring(1, str.length());
         return temp.split(token);
     }
-    
+
     /**
      * 验证字符串合法性
      *
@@ -545,7 +547,7 @@ public class StringUtil {
         }
         return flag;
     }
-    
+
     /**
      * 将数值型字符串转换成Integer型
      *
@@ -566,7 +568,7 @@ public class StringUtil {
             return defaultValue;
         }
     }
-    
+
     /**
      * has already set default int value in the method body.
      *
@@ -577,7 +579,7 @@ public class StringUtil {
     public static Integer string2Integer(String str) {
         return string2Integer(str, DEFAULT_INT);
     }
-    
+
     public static long getLongValue(Object o, long defaultValue) {
         if (!isNull(o)) {
             try {
@@ -587,7 +589,7 @@ public class StringUtil {
         }
         return defaultValue;
     }
-    
+
     /**
      * 将数值型转换成字符串
      *
@@ -605,7 +607,7 @@ public class StringUtil {
             return ret;
         }
     }
-    
+
     /**
      * 比较两字符串大小(ASCII码顺序)
      *
@@ -635,7 +637,7 @@ public class StringUtil {
         }
         return -1;
     }
-    
+
     /**
      * 将阿拉伯数字的钱数转换成中文方式
      *
@@ -659,7 +661,7 @@ public class StringUtil {
                     result += getWei(k);
                 }
                 System.out.println(result);
-                
+
             }
             for (int i = 0; i < result.length(); i++) {
                 result = result.replaceAll("零零", "零");
@@ -688,7 +690,7 @@ public class StringUtil {
         }
         return result;
     }
-    
+
     public static String getString(String str, int count) {
         if (!(str.charAt(count - 1) >= 'a' && str.charAt(count - 1) <= 'z' || str.charAt(count - 1) >= 'A' && str.charAt(count - 1) <= 'Z')) {
             return str.substring(0, count - 1);
@@ -696,7 +698,7 @@ public class StringUtil {
             return str.substring(0, count);
         }
     }
-    
+
     private static String getConvert(char num) {
         if (num == '0') {
             return "零";
@@ -722,7 +724,7 @@ public class StringUtil {
             return "";
         }
     }
-    
+
     private static String getFloat(int num) {
         if (num == 2) {
             return "角";
@@ -732,7 +734,7 @@ public class StringUtil {
             return "";
         }
     }
-    
+
     private static String getWei(int num) {
         if (num == 1) {
             return "";
@@ -764,7 +766,7 @@ public class StringUtil {
             return "";
         }
     }
-    
+
     /**
      * 将字符串的首字母改为大写
      *
@@ -777,7 +779,7 @@ public class StringUtil {
     public static String firstToUpper(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
-    
+
     /**
      * 判断list中是否包含某一个字符串
      *
@@ -788,7 +790,7 @@ public class StringUtil {
     public static boolean listContain(List list, String str1) {
         return !(list == null || list.size() == 0) && list.contains(str1);
     }
-    
+
     /**
      * list转String
      *
@@ -807,7 +809,7 @@ public class StringUtil {
         }
         return sb.substring(0, sb.length() - 1);
     }
-    
+
     /**
      * String转list 去除null 空串
      *
@@ -828,12 +830,12 @@ public class StringUtil {
         }
         return usersList;
     }
-    
+
     public static String escapeHtmlSign(String value) {
         if (value == null) {
             return null;
         }
-        
+
         if (value instanceof String) {
             String result = value;
             // "'<>&
@@ -845,12 +847,12 @@ public class StringUtil {
             return value;
         }
     }
-    
+
     public static String unEscapeHtmlSign(String value) {
         if (value == null) {
             return null;
         }
-        
+
         if (value instanceof String) {
             String result = value;
             // "'<>&
@@ -862,7 +864,7 @@ public class StringUtil {
             return value;
         }
     }
-    
+
     /**
      * 根据Resource ID获取字符串
      *
@@ -875,7 +877,7 @@ public class StringUtil {
     public static String getStringFromId(Application app, int resId) {
         return app.getString(resId);
     }
-    
+
     /**
      * 将浮点数进行四舍五入
      *
@@ -884,26 +886,26 @@ public class StringUtil {
     public static String doubleToString(double str) {
         return doubleToString(str, 2);
     }
-    
+
     public static String formatNum(float num) {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         return decimalFormat.format(num);
     }
-    
+
     public static String numToString(int str) {
         return doubleToString(str, 2);
     }
-    
+
     public static String doubleToString(double str, int offset) {
         return new BigDecimal(str + "").setScale(offset,
                 BigDecimal.ROUND_HALF_UP).toString();
     }
-    
+
     public static Date stringDateTodate(String date) {
         String time = date.substring(6, date.length() - 7);
         return new Date(Long.parseLong(time));
     }
-    
+
     /**
      * 去除字符串前后的空格
      *
@@ -918,7 +920,7 @@ public class StringUtil {
         }
         return text;
     }
-    
+
     /**
      * 去除转义
      *
@@ -939,7 +941,7 @@ public class StringUtil {
         }
         return text;
     }
-    
+
     /**
      * 添加url参数
      *
@@ -948,7 +950,7 @@ public class StringUtil {
      * @return
      */
     private static Pattern URL_PATTERN = Pattern.compile("\\?[\\w]*=");
-    
+
     public static String appendUrlParams(String url, String params) {
         if (TextUtils.isEmpty(url)) {
             return url;
@@ -963,10 +965,10 @@ public class StringUtil {
             return url + "?" + params;
         }
     }
-    
+
     public static void main(String[] args) {
     }
-    
+
     /**
      * 设置一段不同颜色的文字
      *
@@ -988,14 +990,14 @@ public class StringUtil {
                 colorIndex++;
                 spanString.setSpan(span, 0, s[i].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 stringBuilder.append(spanString);
-                
+
             } else {
                 stringBuilder.append(s[i]);
             }
         }
         return stringBuilder;
     }
-    
+
     /**
      * 字符拆分
      *
@@ -1005,13 +1007,13 @@ public class StringUtil {
      * @return
      */
     public static String getSubStrSplit(String str, String split) {
-        
+
         if (!TextUtils.isEmpty(split) && !TextUtils.isEmpty(str) && str.contains(split)) {
             str = str.substring(0, str.indexOf(split));
         }
         return str;
     }
-    
+
     /**
      * 截取指定size的String
      */
@@ -1025,7 +1027,7 @@ public class StringUtil {
         }
         return resizeContent.toString();
     }
-    
+
     /**
      * 转码中文字符串
      *
@@ -1046,7 +1048,7 @@ public class StringUtil {
         }
         return dstStr;
     }
-    
+
     /**
      * 用来比较手机号版本
      *
@@ -1070,7 +1072,7 @@ public class StringUtil {
             return false;
         }
     }
-    
+
     /**
      * 截取指定长度 从0开始，包左不包右
      */
@@ -1078,7 +1080,7 @@ public class StringUtil {
         CharSequence sequence = dateStr.subSequence(start, end);
         return sequence.toString();
     }
-    
+
     /**
      * 是否有中文字符
      *
@@ -1086,7 +1088,7 @@ public class StringUtil {
      * @return
      */
     private static Pattern CHINESE_CHAR_PATTERN = Pattern.compile("\\?[\\w]*=");
-    
+
     public static boolean hasChineseChar(String str) {
         boolean temp = false;
         Matcher m = CHINESE_CHAR_PATTERN.matcher(str);
@@ -1095,7 +1097,7 @@ public class StringUtil {
         }
         return temp;
     }
-    
+
     /**
      * 字符是否是中文字符
      * <p/>
@@ -1113,7 +1115,7 @@ public class StringUtil {
                 || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
                 || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A;
     }
-    
+
     /**
      * 判断字符串是否含有中文字符
      */
@@ -1126,9 +1128,9 @@ public class StringUtil {
         }
         return false;
     }
-    
+
     final static int BUFFER_SIZE = 4096;
-    
+
     public static byte[] inputStreamTOByte(InputStream in) {
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         try {
@@ -1137,14 +1139,14 @@ public class StringUtil {
             while ((count = in.read(data, 0, BUFFER_SIZE)) != -1) {
                 outStream.write(data, 0, count);
             }
-            
+
             data = null;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return outStream.toByteArray();
     }
-    
+
     /**
      * 将毫秒值转化为时分秒显示
      *
@@ -1154,18 +1156,18 @@ public class StringUtil {
      */
     public static String stringForTime(int timeMs) {
         int totalSeconds = timeMs / 1000;
-        
+
         int seconds = totalSeconds % 60;
         int minutes = (totalSeconds / 60) % 60;
         int hours = totalSeconds / 3600;
-        
+
         if (hours > 0) {
             return String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds);
         } else {
             return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         }
     }
-    
+
     /**
      * 复制文本
      *

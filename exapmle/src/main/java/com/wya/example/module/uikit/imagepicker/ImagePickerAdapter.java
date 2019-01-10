@@ -18,11 +18,9 @@ import com.wya.example.R;
 import java.util.List;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/12/19
- * desc   :
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 图片选择适配器器
  */
 public class ImagePickerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<String> images;

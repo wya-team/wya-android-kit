@@ -7,7 +7,11 @@ import android.widget.ImageView;
 
 import com.wya.uikit.R;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class BaseStickerImageView extends BaseStickerView {
 
     private ImageView mImageView;

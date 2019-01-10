@@ -1,11 +1,9 @@
 package com.wya.uikit.gallery;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/29
- * desc   :
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 图片浏览常量
  */
 public class GalleryConfig {
 	public static final String POSITION = "imagePosition";

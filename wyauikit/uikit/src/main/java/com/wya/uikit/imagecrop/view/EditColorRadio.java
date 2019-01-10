@@ -13,7 +13,11 @@ import android.widget.RadioButton;
 
 import com.wya.uikit.R;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 @SuppressLint("AppCompatCustomView")
 public class EditColorRadio extends RadioButton implements ValueAnimator.AnimatorUpdateListener {
 

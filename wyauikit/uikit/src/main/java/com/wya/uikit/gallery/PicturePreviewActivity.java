@@ -31,6 +31,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description : 图片预览
+ */
 public class PicturePreviewActivity extends Activity implements View.OnClickListener {
 
     private ImageView pictureLeftBack;
@@ -90,15 +95,12 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                 break;
         }
 
-
     }
-
 
     /**
      * init intent value
      */
     private void getIntentExtra() {
-
 
         position = getIntent().getIntExtra(GalleryConfig.POSITION, -1);
         type = getIntent().getIntExtra(GalleryConfig.TYPE, GalleryConfig.GALLERY);
@@ -344,7 +346,6 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                 mSelectedRecyclerAdapter.updateSelected(position, selectedPosition);
                 mAdapter.updateData(position);
                 initCommitBtn();
-
 
             }
         }

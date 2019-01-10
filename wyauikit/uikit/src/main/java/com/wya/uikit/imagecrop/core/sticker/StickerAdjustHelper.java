@@ -7,7 +7,11 @@ import android.view.View;
 
 import com.wya.uikit.imagecrop.view.BaseStickerView;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class StickerAdjustHelper implements View.OnTouchListener {
 
     private static final String TAG = "StickerAdjustHelper";

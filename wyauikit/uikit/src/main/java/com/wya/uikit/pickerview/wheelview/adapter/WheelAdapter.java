@@ -1,6 +1,10 @@
 package com.wya.uikit.pickerview.wheelview.adapter;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public interface WheelAdapter<T> {
 	/**
 	 * Gets items count

@@ -6,11 +6,9 @@ import com.arialyy.aria.core.download.DownloadReceiver;
 import com.arialyy.aria.core.download.DownloadTask;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/12/14
- * desc   : FileManagerUtil
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     :
  */
 public class FileManagerUtil {
     public final static int WAIT = 0;

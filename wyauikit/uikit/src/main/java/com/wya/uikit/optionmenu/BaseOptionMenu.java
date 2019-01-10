@@ -19,11 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/24
- * desc   : BaseOptionMenu
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : optionmenu
  */
 public abstract class BaseOptionMenu<T> extends PopupWindow {
 	private Context mContext;

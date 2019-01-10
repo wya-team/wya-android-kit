@@ -6,8 +6,9 @@ import com.wya.uikit.pickerview.wheelview.view.WheelView;
 import java.util.TimerTask;
 
 /**
- * 平滑滚动的实现
- *
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 平滑滚动实现
  */
 public final class SmoothScrollTimerTask extends TimerTask {
 

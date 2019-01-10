@@ -1,6 +1,10 @@
 package com.wya.uikit.imagecrop.core;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public interface EditViewPortrait {
 
     int getWidth();

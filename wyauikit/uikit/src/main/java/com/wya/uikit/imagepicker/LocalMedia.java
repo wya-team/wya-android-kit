@@ -4,11 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/29
- * desc   : local image info
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 本地媒体实体类
  */
 public class LocalMedia implements Parcelable {
 	private String path;

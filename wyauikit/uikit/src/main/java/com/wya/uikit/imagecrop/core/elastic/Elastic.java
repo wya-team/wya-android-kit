@@ -2,7 +2,11 @@ package com.wya.uikit.imagecrop.core.elastic;
 
 import android.graphics.PointF;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class Elastic {
 
     private float width, height;

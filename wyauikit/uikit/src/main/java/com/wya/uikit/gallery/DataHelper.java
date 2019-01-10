@@ -5,11 +5,9 @@ import com.wya.uikit.imagepicker.LocalMedia;
 import java.util.List;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/12/05
- * desc   : instance that to save data
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 图片选择数据存放类
  */
 public class DataHelper {
     private List<LocalMedia> mImages;

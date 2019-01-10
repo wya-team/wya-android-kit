@@ -3,8 +3,9 @@ package com.wya.uikit.gallery.photoview;
 import android.view.MotionEvent;
 
 /**
- * A callback to be invoked when the ImageView is flung with a single
- * touch
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     :
  */
 public interface OnSingleFlingListener {
 

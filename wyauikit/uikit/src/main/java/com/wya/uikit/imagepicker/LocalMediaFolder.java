@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/29
- * desc   :
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 本地媒体文件夹类
  */
 public class LocalMediaFolder implements Parcelable {
 	private String name;

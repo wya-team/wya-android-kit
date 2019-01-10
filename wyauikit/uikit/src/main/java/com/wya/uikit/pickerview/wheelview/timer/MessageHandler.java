@@ -7,7 +7,9 @@ import com.wya.uikit.pickerview.wheelview.view.WheelView;
 
 
 /**
- * Handler 消息类
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 消息类
  */
 public final class MessageHandler extends Handler {
     public static final int WHAT_INVALIDATE_LOOP_VIEW = 1000;

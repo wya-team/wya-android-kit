@@ -6,7 +6,11 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import com.wya.uikit.imagecrop.core.homing.CropHoming;
 import com.wya.uikit.imagecrop.core.homing.CropHomingEvaluator;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class CropHomingAnimator extends ValueAnimator {
 
     private boolean isRotate = false;

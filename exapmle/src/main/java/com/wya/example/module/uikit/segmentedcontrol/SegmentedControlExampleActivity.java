@@ -14,6 +14,11 @@ import com.wya.utils.utils.StringUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class SegmentedControlExampleActivity extends BaseActivity {
 
     @BindView(R.id.segment_normal)
@@ -29,7 +34,6 @@ public class SegmentedControlExampleActivity extends BaseActivity {
     protected int getLayoutId() {
         return R.layout.activity_segmented_control_example;
     }
-
 
     @Override
     protected void initView() {
@@ -57,7 +61,6 @@ public class SegmentedControlExampleActivity extends BaseActivity {
             }
 
         });
-
 
         mSegmentMore.addTabs(new String[]{"标题1", "标题2", "标题3"});
         mSegmentMore.setOnItemClickListener(new WYASegmentedView.OnItemClickListener() {

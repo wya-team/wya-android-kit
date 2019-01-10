@@ -2,7 +2,9 @@ package com.wya.uikit.gallery.photoview;
 
 
 /**
- * Interface definition for callback to be invoked when attached ImageView scale changes
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     :
  */
 public interface OnScaleChangedListener {
 

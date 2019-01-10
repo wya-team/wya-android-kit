@@ -19,11 +19,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/12/11
- * desc   :	二维码生成 需要用到Google zxing库
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     :
  */
 public class QRCodeUtil {
 

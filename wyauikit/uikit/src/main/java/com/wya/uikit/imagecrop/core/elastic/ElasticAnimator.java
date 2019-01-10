@@ -4,7 +4,11 @@ import android.animation.ValueAnimator;
 import android.graphics.PointF;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class ElasticAnimator extends ValueAnimator {
 
     private Elastic mElastic;

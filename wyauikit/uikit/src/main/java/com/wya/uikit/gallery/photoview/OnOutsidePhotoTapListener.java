@@ -3,7 +3,9 @@ package com.wya.uikit.gallery.photoview;
 import android.widget.ImageView;
 
 /**
- * BaseCallback when the user tapped outside of the photo
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     :
  */
 public interface OnOutsidePhotoTapListener {
 

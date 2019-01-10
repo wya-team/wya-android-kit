@@ -3,8 +3,9 @@ package com.wya.uikit.gallery.photoview;
 import android.graphics.RectF;
 
 /**
- * Interface definition for a callback to be invoked when the internal Matrix has changed for
- * this View.
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     :
  */
 public interface OnMatrixChangedListener {
 

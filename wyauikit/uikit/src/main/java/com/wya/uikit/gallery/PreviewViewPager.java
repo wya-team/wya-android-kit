@@ -6,11 +6,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/29
- * desc   :
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     :
  */
 public class PreviewViewPager extends ViewPager {
 	public PreviewViewPager(Context context) {

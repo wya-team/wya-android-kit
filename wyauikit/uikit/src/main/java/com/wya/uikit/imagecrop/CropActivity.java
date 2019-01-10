@@ -26,7 +26,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description : 裁剪界面
+ */
 public class CropActivity extends AppCompatActivity implements View.OnClickListener {
 
 

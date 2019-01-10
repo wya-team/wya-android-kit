@@ -5,6 +5,11 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.RadioGroup;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
+ */
 public class EditColorGroup extends RadioGroup {
 
     public EditColorGroup(Context context) {

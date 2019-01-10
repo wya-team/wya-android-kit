@@ -17,11 +17,9 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/29
- * desc   :	LocalMediaLoader
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 本地媒体数据加载类
  */
 public class LocalMediaLoader {
     private FragmentActivity mActivity;

@@ -20,11 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/30
- * desc   :	ImageGridAdapter
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : 图片选择适配器
  */
 public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 	private Context mContext;

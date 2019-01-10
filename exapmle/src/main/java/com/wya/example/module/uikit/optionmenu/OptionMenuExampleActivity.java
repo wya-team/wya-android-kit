@@ -18,6 +18,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description : OptionMenuExampleActivity
+ */
 public class OptionMenuExampleActivity extends BaseActivity {
 
     private RelativeLayout showOne, showTwo;
@@ -25,7 +30,7 @@ public class OptionMenuExampleActivity extends BaseActivity {
     private int selectPositionTwo = 0;
     private int selectPositionTwo1 = 0;
     private Map<String, Integer> selection = new HashMap<>();
-    
+
     List<String> data = new ArrayList<>();
     List<List<String>> data2 = new ArrayList<>();
     int[] location1 = new int[2];
@@ -35,7 +40,7 @@ public class OptionMenuExampleActivity extends BaseActivity {
     protected int getLayoutId() {
         return R.layout.activity_choice_menu_example;
     }
-    
+
     @Override
     protected void initView() {
         setTitle("菜单(optionmenu)");
@@ -131,9 +136,7 @@ public class OptionMenuExampleActivity extends BaseActivity {
         });
         showTwo.setOnClickListener(v -> baseOptionMenu2.showAsDropDown(showTwo));
 
-
     }
-
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

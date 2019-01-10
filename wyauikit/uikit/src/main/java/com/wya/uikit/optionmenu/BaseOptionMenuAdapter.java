@@ -10,11 +10,9 @@ import android.view.ViewGroup;
 import java.util.List;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/26
- * desc   :
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : optionMenu 适配器
  */
 public abstract class BaseOptionMenuAdapter<T> extends RecyclerView.Adapter<OptionMenuViewHolder> {
 	private List<T> mData;

@@ -9,11 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/11/27
- * desc   : divider
- * version: 1.0
+ *  @author : XuDonglin
+ *  @time   : 2019-01-10
+ *  @description     : recyclerview 分割线
  */
 public class ItemDecoration extends RecyclerView.ItemDecoration {
 	private Paint mPaint;

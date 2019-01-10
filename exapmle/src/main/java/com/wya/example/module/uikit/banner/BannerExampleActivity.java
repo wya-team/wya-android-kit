@@ -14,16 +14,21 @@ import com.wya.utils.utils.StringUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description : banner Demo
+ */
 public class BannerExampleActivity extends BaseActivity {
-    
+
     private WYABanner<Integer> mWYABanner;
     private WYABanner<Integer> mWYABanner2;
     private WYABanner<Integer> mScaleBanner;
     private List<Integer> data = new ArrayList<>();
-    
+
     @Override
     protected void initView() {
-        
+
         setTitle("轮播图(banner)");
         String url = getIntent().getStringExtra("url");
         showSecondRightIcon(true);
@@ -36,15 +41,15 @@ public class BannerExampleActivity extends BaseActivity {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(BannerExampleActivity.this, url);
         });
-        
+
         data.add(R.mipmap.img1);
         data.add(R.mipmap.img2);
         data.add(R.mipmap.img3);
-        
+
         mWYABanner = (WYABanner<Integer>) findViewById(R.id.banner);
         mWYABanner2 = (WYABanner<Integer>) findViewById(R.id.banner2);
         mScaleBanner = (WYABanner<Integer>) findViewById(R.id.scale_banner);
-        
+
         mWYABanner.setUpdateTime(2000)
                 .setDotVisible(true)
                 //				.setDotDark()
@@ -56,7 +61,7 @@ public class BannerExampleActivity extends BaseActivity {
                 imageView.setImageResource(item);
             }
         });
-        
+
         mScaleBanner.setUpdateTime(2000)
                 .setDotVisible(true)
                 //				.setDotDark()
@@ -69,7 +74,7 @@ public class BannerExampleActivity extends BaseActivity {
                 imageView.setImageResource(item);
             }
         });
-        
+
         mWYABanner2.setUpdateTime(2000)
                 .setDotVisible(true)
                 .setDotDark()
@@ -80,7 +85,7 @@ public class BannerExampleActivity extends BaseActivity {
             }
         });
     }
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_banner_example;
