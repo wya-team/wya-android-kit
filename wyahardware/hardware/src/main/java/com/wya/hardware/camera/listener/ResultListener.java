@@ -8,5 +8,8 @@ package com.wya.hardware.camera.listener;
   */
 
 public interface ResultListener {
+     /**
+      * callback
+      */
     void callback();
 }

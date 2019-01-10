@@ -101,7 +101,11 @@ public class TextEditDialog extends Dialog implements View.OnClickListener,
     }
 
     public interface Callback {
-
+    
+        /**
+         * onText
+         * @param text
+         */
         void onText(EditText text);
     }
 }

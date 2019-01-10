@@ -11,6 +11,7 @@ public interface OnOutsidePhotoTapListener {
 
     /**
      * The outside of the photo has been tapped
+     * @param imageView
      */
     void onOutsidePhotoTap(ImageView imageView);
 }

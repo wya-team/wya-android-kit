@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 
 import com.wya.example.R;
 import com.wya.example.module.utils.GestureFlingRightHelper;
-import com.wya.helper.WYAConstants;
 import com.wya.uikit.toast.WYAToast;
 import com.wya.uikit.toolbar.BaseToolBarActivity;
 import com.wya.utils.utils.ColorUtil;

@@ -11,7 +11,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
-import com.wya.example.module.uikit.progress.ProgressExampleActivity;
 import com.wya.example.module.utils.realm.adapter.RealmListAdapter;
 import com.wya.example.module.utils.realm.bean.User;
 import com.wya.utils.utils.LogUtil;

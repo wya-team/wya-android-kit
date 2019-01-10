@@ -6,5 +6,9 @@ package com.wya.uikit.pickerview.wheelview.listener;
  * @description :
  */
 public interface OnItemSelectedListener {
+    /**
+     * onItemSelected
+     * @param index
+     */
     void onItemSelected(int index);
 }

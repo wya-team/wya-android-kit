@@ -40,7 +40,11 @@ public abstract class BaseOptionMenuAdapter<T> extends RecyclerView.Adapter<Opti
 	public int getItemCount() {
 		return mData.size();
 	}
-
-
+	
+	/**
+	 * convert
+	 * @param viewHolder
+	 * @param item
+	 */
 	protected abstract void convert(OptionMenuViewHolder viewHolder, T item);
 }

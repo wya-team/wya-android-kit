@@ -34,6 +34,8 @@ public class GridExampleActivity extends BaseActivity {
     private GridLayoutManager gridLayoutManager3;
     private GridLayoutManager gridLayoutManager4;
     
+    private int gridSize = 10;
+    
     @Override
     protected void initView() {
         setTitle("宫格(grid)");
@@ -41,7 +43,7 @@ public class GridExampleActivity extends BaseActivity {
     }
     
     private void setGrid() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < gridSize; i++) {
             data.add("标题" + i);
         }
         gridLayoutManager = new GridLayoutManager(this, 4);
@@ -58,6 +60,7 @@ public class GridExampleActivity extends BaseActivity {
         recycleView2.setAdapter(gridAdapter);
         recycleView3.setAdapter(gridAdapter);
         recycleView4.setAdapter(gridAdapter2);
+        
         
         recycleView.setHasFixedSize(true);
         recycleView.setNestedScrollingEnabled(false);

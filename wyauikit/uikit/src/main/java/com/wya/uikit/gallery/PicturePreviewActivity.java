@@ -299,7 +299,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             }
             filePath = file.getParentFile().getPath() + "/" + System.currentTimeMillis() + ".jpg";
             Uri uri;
-            if (Build.VERSION.SDK_INT >= 24) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 uri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", file);
             } else {
                 uri = Uri.fromFile(file);

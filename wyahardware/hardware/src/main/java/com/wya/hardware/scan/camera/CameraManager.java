@@ -16,7 +16,6 @@ package com.wya.hardware.scan.camera;
  * limitations under the License.
  */
 
-
 import android.content.Context;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -24,7 +23,6 @@ import android.hardware.Camera;
 import android.os.Handler;
 import android.util.Log;
 import android.view.SurfaceHolder;
-
 
 import com.google.zxing.PlanarYUVLuminanceSource;
 import com.wya.hardware.scan.camera.open.OpenCamera;

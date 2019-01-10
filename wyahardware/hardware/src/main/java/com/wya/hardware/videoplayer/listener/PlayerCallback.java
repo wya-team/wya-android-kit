@@ -15,29 +15,36 @@ public interface PlayerCallback {
 
     /**
      * 准备完成
+     * @param mp
      */
     void onPrepared(MediaPlayer mp);
 
     /**
      * 视频size变化
+     * @param mp
+     * @param width
+     * @param height
      */
     void onVideoSizeChanged(MediaPlayer mp, int width, int height);
 
     /**
      * 缓存更新变化
      *
+     * @param mp
      * @param percent 缓冲百分比
      */
     void onBufferingUpdate(MediaPlayer mp, int percent);
 
     /**
      * 播放完成
+     * @param mp
      */
     void onCompletion(MediaPlayer mp);
 
     /**
      * 视频错误
      *
+     * @param mp
      * @param what  错误类型
      *              <ul>
      *              <li>{@link android.media.MediaPlayer#MEDIA_ERROR_UNKNOWN}

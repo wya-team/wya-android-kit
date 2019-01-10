@@ -7,15 +7,36 @@ package com.wya.hardware.camera.listener;
   */
 
 public interface CaptureListener {
+     /**
+      * takePictures
+      */
     void takePictures();
-
+    
+     /**
+      * recordShort
+      * @param time
+      */
     void recordShort(long time);
-
+    
+     /**
+      * recordStart
+      */
     void recordStart();
-
+    
+     /**
+      * recordEnd
+      * @param time
+      */
     void recordEnd(long time);
-
+    
+     /**
+      * recordZoom
+      * @param zoom
+      */
     void recordZoom(float zoom);
-
+    
+     /**
+      * recordError
+      */
     void recordError();
 }

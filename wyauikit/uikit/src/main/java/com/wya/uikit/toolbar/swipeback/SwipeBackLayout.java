@@ -300,6 +300,9 @@ public class SwipeBackLayout extends FrameLayout {
     }
 
     public interface SwipeListenerEx extends SwipeListener {
+        /**
+         * onContentViewSwipedBack
+         */
         void onContentViewSwipedBack();
     }
 

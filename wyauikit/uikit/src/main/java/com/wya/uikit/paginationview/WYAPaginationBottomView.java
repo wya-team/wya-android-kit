@@ -385,8 +385,9 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
 
     public interface onPageSearchListener {
         /**
+         * true success false failure
          * @param page searched page
-         * @return true success false failure
+         * @return
          */
         boolean onSearch(long page);
     }

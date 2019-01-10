@@ -241,6 +241,10 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
     }
 
     public interface OnItemClickListener {
+        /**
+         * itemClicked
+         * @param position
+         */
         void itemClicked(int position);
     }
 

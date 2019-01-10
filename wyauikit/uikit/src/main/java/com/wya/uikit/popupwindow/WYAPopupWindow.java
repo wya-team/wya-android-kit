@@ -49,10 +49,11 @@ public class WYAPopupWindow extends PopupWindow {
     private boolean bright = false;
     private AnimUtil animUtil;
 
-    /**
-     * 设置确定按钮被点击的接口
-     */
     public interface ListItemClickListener {
+        /**
+         * 设置确定按钮被点击的接口
+         * @param position
+         */
         void onListItemClick(int position);
     }
 

@@ -104,6 +104,10 @@ public class SelectedRecyclerAdapter extends RecyclerView.Adapter<SelectedRecycl
     }
 
     public interface OnItemClickListener{
+        /**
+         * onClick
+         * @param position
+         */
         void onClick(int position);
     }
 }

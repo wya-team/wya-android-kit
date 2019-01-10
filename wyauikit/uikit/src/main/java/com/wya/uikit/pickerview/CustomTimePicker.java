@@ -164,6 +164,10 @@ public class CustomTimePicker extends Dialog implements View.OnClickListener {
     }
 
     public interface OnTimePickerSelectedListener {
+        /**
+         * selected
+         * @param date
+         */
         void selected(Date date);
     }
 }

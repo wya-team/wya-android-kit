@@ -10,5 +10,9 @@ import android.view.View;
  */
 
 public interface CustomListener {
+    /**
+     * customLayout
+     * @param v
+     */
     void customLayout(View v);
 }

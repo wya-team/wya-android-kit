@@ -3,6 +3,7 @@ package com.wya.example.module.uikit.badge;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -95,9 +96,9 @@ public class BadgeExampleActivity extends BaseActivity {
         showBadgeCenterStart(vMarketDot3, "免");
         showBadgeCenterStart(vMarketDot4, "返");
         showBadgeCenterStart(vMarketDot5, "HOT");
-        showBadgeDrawableCenterEnd(llCornerDot, getResources().getDrawable(R.drawable.icon_sale_badge), true);
-        showBadgeDrawableCenterEnd(tvCornerDot, getResources().getDrawable(R.drawable.icon_sale_badge), true);
-        showBadgeDrawableCenter(vBitmapDot, getResources().getDrawable(R.drawable.icon_on_sale));
+        showBadgeDrawableCenterEnd(llCornerDot, ContextCompat.getDrawable(this, R.drawable.icon_sale_badge), true);
+        showBadgeDrawableCenterEnd(tvCornerDot, ContextCompat.getDrawable(this, R.drawable.icon_sale_badge), true);
+        showBadgeDrawableCenter(vBitmapDot, ContextCompat.getDrawable(this, R.drawable.icon_on_sale));
     }
     
     @OnClick({R.id.ll_dot_container, R.id.ll_num_dot, R.id.ll_string_dot})
