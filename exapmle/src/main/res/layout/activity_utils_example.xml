@@ -17,9 +17,9 @@
         android:textAllCaps="false"
         app:backColor="#118EE9"
         app:fillet="true"
+        app:radius="5dp"
         app:textColor="#ffffff"
-        app:textColorPress="#50ffffff"
-        app:radius="5dp" />
+        app:textColorPress="#50ffffff" />
 
     <com.wya.uikit.button.WYAButton
         android:id="@+id/wya_button_image"
@@ -30,9 +30,9 @@
         android:textAllCaps="false"
         app:backColor="#118EE9"
         app:fillet="true"
+        app:radius="5dp"
         app:textColor="#ffffff"
-        app:textColorPress="#50ffffff"
-        app:radius="5dp" />
+        app:textColorPress="#50ffffff" />
 
     <com.wya.uikit.button.WYAButton
         android:id="@+id/wya_button_download"
@@ -43,7 +43,7 @@
         android:textAllCaps="false"
         app:backColor="#118EE9"
         app:fillet="true"
+        app:radius="5dp"
         app:textColor="#ffffff"
-        app:textColorPress="#50ffffff"
-        app:radius="5dp" />
+        app:textColorPress="#50ffffff" />
 </LinearLayout>

@@ -25,48 +25,46 @@ import android.view.ViewConfiguration;
  * Does a whole lot of gesture detecting.
  */
 class CustomGestureDetector {
-
+    
     private static final int INVALID_POINTER_ID = -1;
-
+    private final ScaleGestureDetector mDetector;
+    private final float mTouchSlop;
+    private final float mMinimumVelocity;
     private int mActivePointerId = INVALID_POINTER_ID;
     private int mActivePointerIndex = 0;
-    private final ScaleGestureDetector mDetector;
-
     private VelocityTracker mVelocityTracker;
     private boolean mIsDragging;
     private float mLastTouchX;
     private float mLastTouchY;
-    private final float mTouchSlop;
-    private final float mMinimumVelocity;
     private OnGestureListener mListener;
-
+    
     CustomGestureDetector(Context context, OnGestureListener listener) {
         final ViewConfiguration configuration = ViewConfiguration
                 .get(context);
         mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
         mTouchSlop = configuration.getScaledTouchSlop();
-
+        
         mListener = listener;
         ScaleGestureDetector.OnScaleGestureListener mScaleListener = new ScaleGestureDetector.OnScaleGestureListener() {
-
+            
             @Override
             public boolean onScale(ScaleGestureDetector detector) {
                 float scaleFactor = detector.getScaleFactor();
-
+                
                 if (Float.isNaN(scaleFactor) || Float.isInfinite(scaleFactor)) {
                     return false;
                 }
-
+                
                 mListener.onScale(scaleFactor,
                         detector.getFocusX(), detector.getFocusY());
                 return true;
             }
-
+            
             @Override
             public boolean onScaleBegin(ScaleGestureDetector detector) {
                 return true;
             }
-
+            
             @Override
             public void onScaleEnd(ScaleGestureDetector detector) {
                 // NO-OP
@@ -74,7 +72,7 @@ class CustomGestureDetector {
         };
         mDetector = new ScaleGestureDetector(context, mScaleListener);
     }
-
+    
     private float getActiveX(MotionEvent ev) {
         try {
             return ev.getX(mActivePointerIndex);
@@ -82,7 +80,7 @@ class CustomGestureDetector {
             return ev.getX();
         }
     }
-
+    
     private float getActiveY(MotionEvent ev) {
         try {
             return ev.getY(mActivePointerIndex);
@@ -90,15 +88,15 @@ class CustomGestureDetector {
             return ev.getY();
         }
     }
-
+    
     public boolean isScaling() {
         return mDetector.isInProgress();
     }
-
+    
     public boolean isDragging() {
         return mIsDragging;
     }
-
+    
     public boolean onTouchEvent(MotionEvent ev) {
         try {
             mDetector.onTouchEvent(ev);
@@ -108,18 +106,18 @@ class CustomGestureDetector {
             return true;
         }
     }
-
+    
     private boolean processTouchEvent(MotionEvent ev) {
         final int action = ev.getAction();
         switch (action & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
                 mActivePointerId = ev.getPointerId(0);
-
+                
                 mVelocityTracker = VelocityTracker.obtain();
                 if (null != mVelocityTracker) {
                     mVelocityTracker.addMovement(ev);
                 }
-
+                
                 mLastTouchX = getActiveX(ev);
                 mLastTouchY = getActiveY(ev);
                 mIsDragging = false;
@@ -128,18 +126,18 @@ class CustomGestureDetector {
                 final float x = getActiveX(ev);
                 final float y = getActiveY(ev);
                 final float dx = x - mLastTouchX, dy = y - mLastTouchY;
-
+                
                 if (!mIsDragging) {
                     // Use Pythagoras to see if drag length is larger than
                     // touch slop
                     mIsDragging = Math.sqrt((dx * dx) + (dy * dy)) >= mTouchSlop;
                 }
-
+                
                 if (mIsDragging) {
                     mListener.onDrag(dx, dy);
                     mLastTouchX = x;
                     mLastTouchY = y;
-
+                    
                     if (null != mVelocityTracker) {
                         mVelocityTracker.addMovement(ev);
                     }
@@ -159,14 +157,14 @@ class CustomGestureDetector {
                     if (null != mVelocityTracker) {
                         mLastTouchX = getActiveX(ev);
                         mLastTouchY = getActiveY(ev);
-
+                        
                         // Compute velocity within the last 1000ms
                         mVelocityTracker.addMovement(ev);
                         mVelocityTracker.computeCurrentVelocity(1000);
-
+                        
                         final float vX = mVelocityTracker.getXVelocity(), vY = mVelocityTracker
                                 .getYVelocity();
-
+                        
                         // If the velocity is greater than minVelocity, call
                         // listener
                         if (Math.max(Math.abs(vX), Math.abs(vY)) >= mMinimumVelocity) {
@@ -175,7 +173,7 @@ class CustomGestureDetector {
                         }
                     }
                 }
-
+                
                 // Recycle Velocity Tracker
                 if (null != mVelocityTracker) {
                     mVelocityTracker.recycle();
@@ -197,7 +195,7 @@ class CustomGestureDetector {
             default:
                 break;
         }
-
+        
         mActivePointerIndex = ev
                 .findPointerIndex(mActivePointerId != INVALID_POINTER_ID ? mActivePointerId
                         : 0);

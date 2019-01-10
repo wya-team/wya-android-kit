@@ -4,14 +4,14 @@
     android:layout_height="match_parent">
 
 
-
     <ImageView
         android:id="@+id/image_test"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/icon_photo"
-        android:layout_margin="5dp"/>
+        android:src="@drawable/icon_photo" />
+
     <LinearLayout
         android:id="@+id/delete"
         android:layout_width="30dp"
@@ -30,9 +30,9 @@
         android:id="@+id/video_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
         android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:padding="8dp">
 
         <ImageView
@@ -44,9 +44,9 @@
             android:id="@+id/video_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:layout_marginLeft="5dp"
             android:text="10:00"
-            android:textSize="12sp"
-            android:layout_marginLeft="5dp"/>
+            android:textColor="@color/white"
+            android:textSize="12sp" />
     </LinearLayout>
 </com.wya.uikit.imagepicker.SquareRelativeLayout>

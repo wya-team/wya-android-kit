@@ -16,10 +16,9 @@ import com.wya.uikit.R;
  */
 public class WYAMarqueeTextView extends AppCompatTextView {
     
-    private static final int MARQUEE_DEFAULT_INTERVAL = 5000;
     public static final int MARQUEE_MODE_REPEAT = 0;
     public static final int MARQUEE_MODE_ONCE = 1;
-    
+    private static final int MARQUEE_DEFAULT_INTERVAL = 5000;
     private Scroller mScroller;
     
     private int mCurStartX = 0;
@@ -85,7 +84,7 @@ public class WYAMarqueeTextView extends AppCompatTextView {
         }
         mIsPaused = false;
         if (mScroller == null) {
-            mScroller = new Scroller(this.getContext(), new LinearInterpolator());
+            mScroller = new Scroller(getContext(), new LinearInterpolator());
             setScroller(mScroller);
         }
         int mesureText = measureText();
@@ -158,11 +157,11 @@ public class WYAMarqueeTextView extends AppCompatTextView {
     }
     
     public void setMarqueeInterval(int interval) {
-        this.mMarqueeInterval = interval;
+        mMarqueeInterval = interval;
     }
     
     public void setMarqueeMode(int mode) {
-        this.mMarqueeMode = mode;
+        mMarqueeMode = mode;
     }
     
     public boolean isPaused() {
@@ -174,7 +173,7 @@ public class WYAMarqueeTextView extends AppCompatTextView {
     }
     
     public void setClosable(boolean closable) {
-        this.mClosable = closable;
+        mClosable = closable;
     }
     
     public boolean isSkipable() {

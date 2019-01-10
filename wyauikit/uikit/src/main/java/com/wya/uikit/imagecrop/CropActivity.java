@@ -32,21 +32,18 @@ import java.io.IOException;
  * @description : 裁剪界面
  */
 public class CropActivity extends AppCompatActivity implements View.OnClickListener {
-
-
+    
+    public static final String EXTRA_IMAGE_URI = "IMAGE_URI";
+    public static final String EXTRA_IMAGE_SAVE_PATH = "IMAGE_SAVE_PATH";
+    public static final String EXTRA_IMAGE_SAVE_QUALITY = "EXTRA_IMAGE_SAVE_QUALITY";
+    private static final int MAX_HEIGHT = 1024;
+    private static final int MAX_WIDTH = 1024;
     private EditView cropView;
     private LinearLayout clipTopLayout;
     private FrameLayout clipBottomLayout;
     private ImageButton ibClipRotate;
-
-    private static final int MAX_HEIGHT = 1024;
-    private static final int MAX_WIDTH = 1024;
-
-    public static final String EXTRA_IMAGE_URI = "IMAGE_URI";
-    public static final String EXTRA_IMAGE_SAVE_PATH = "IMAGE_SAVE_PATH";
-    public static final String EXTRA_IMAGE_SAVE_QUALITY = "EXTRA_IMAGE_SAVE_QUALITY";
     private int quality = 100;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,20 +57,20 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, "请确认图片是否存在!", Toast.LENGTH_SHORT).show();
             finish();
         }
-
+        
         cropView.postDelayed(new Runnable() {
             @Override
             public void run() {
                 cropView.setMode(EditMode.CLIP);
             }
         }, 500);
-
+        
     }
-
+    
     /**
      * 设置状态栏颜色
      */
-
+    
     public void setColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -83,7 +80,7 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
             View fakeStatusBarView = decorView.findViewById(R.id
-					.statusbarutil_fake_status_bar_view);
+                    .statusbarutil_fake_status_bar_view);
             if (fakeStatusBarView != null) {
                 if (fakeStatusBarView.getVisibility() == View.GONE) {
                     fakeStatusBarView.setVisibility(View.VISIBLE);
@@ -100,8 +97,7 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-
-
+    
     private void initView() {
         cropView = findViewById(R.id.crop_view);
         clipTopLayout = findViewById(R.id.clip_top_layout);
@@ -117,38 +113,35 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         clipBottomLayout.setVisibility(View.VISIBLE);
         ibClipRotate.setVisibility(View.VISIBLE);
     }
-
-
+    
     private Bitmap getBitmap() {
         Intent intent = getIntent();
         if (intent == null) {
             return null;
         }
-
+        
         Uri uri = intent.getParcelableExtra(EXTRA_IMAGE_URI);
         if (uri == null) {
             return null;
         }
-
-
+        
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 1;
         options.inJustDecodeBounds = true;
         options.inPreferredConfig = Bitmap.Config.RGB_565;
-
-
+        
         if (options.outWidth > MAX_WIDTH) {
             options.inSampleSize = Utils.inSampleSize(Math.round(1f * options.outWidth /
                     MAX_WIDTH));
         }
-
+        
         if (options.outHeight > MAX_HEIGHT) {
             options.inSampleSize = Math.max(options.inSampleSize,
                     Utils.inSampleSize(Math.round(1f * options.outHeight / MAX_HEIGHT)));
         }
-
+        
         options.inJustDecodeBounds = false;
-
+        
         ContentResolver contentResolver = getContentResolver();
         Bitmap bitmap = null;
         try {
@@ -160,11 +153,10 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         if (bitmap == null) {
             return null;
         }
-
+        
         return bitmap;
     }
-
-
+    
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.clip_sure) {
@@ -198,7 +190,7 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
             setResult(RESULT_CANCELED);
             finish();
         }
-
+        
         if (v.getId() == R.id.clip_reset) {
             cropView.setMode(EditMode.CLIP);
             clipTopLayout.setVisibility(View.GONE);

@@ -8,23 +8,23 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-
- /**
-  * @date: 2018/12/5 14:04
-  * @author: Chunjiang Mao
-  * @classname: FileUtil
-  * @describe: 文件工具类
-  */
+/**
+ * @date: 2018/12/5 14:04
+ * @author: Chunjiang Mao
+ * @classname: FileUtil
+ * @describe: 文件工具类
+ */
 
 public class FileUtil {
     private static final File PARENT_PATH = Environment.getExternalStorageDirectory();
     private static String storagePath = "";
     private static String DST_FOLDER_NAME = "wya";
-
-     /**
-      * 初始化路径,创建文件
-      * @return
-      */
+    
+    /**
+     * 初始化路径,创建文件
+     *
+     * @return
+     */
     private static String initPath(String dir) {
         DST_FOLDER_NAME = dir;
         if ("".equals(storagePath)) {
@@ -36,13 +36,14 @@ public class FileUtil {
         }
         return storagePath;
     }
-
-     /**
-      * 保存图片
-      * @param dir
-      * @param b
-      * @return
-      */
+    
+    /**
+     * 保存图片
+     *
+     * @param dir
+     * @param b
+     * @return
+     */
     public static String saveBitmap(String dir, Bitmap b) {
         String path = initPath(dir);
         long dataTake = System.currentTimeMillis();
@@ -59,12 +60,13 @@ public class FileUtil {
             return "";
         }
     }
-
-     /**
-      * 删除文件
-      * @param url
-      * @return
-      */
+    
+    /**
+     * 删除文件
+     *
+     * @param url
+     * @return
+     */
     public static boolean deleteFile(String url) {
         boolean result = false;
         File file = new File(url);
@@ -73,11 +75,12 @@ public class FileUtil {
         }
         return result;
     }
-
-     /**
-      * 判断是否存在SD卡
-      * @return
-      */
+    
+    /**
+     * 判断是否存在SD卡
+     *
+     * @return
+     */
     public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {

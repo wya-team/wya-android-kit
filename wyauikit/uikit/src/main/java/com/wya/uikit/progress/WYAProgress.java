@@ -19,12 +19,12 @@ import static android.graphics.Paint.Style.STROKE;
 /**
  * @date: 2018/12/4 14:10
  * @author: Chunjiang Mao
- * @classname:  WYAProgress
+ * @classname: WYAProgress
  * @describe: 圆形progress
  */
 
 public class WYAProgress extends View {
-
+    
     private Paint paint;
     /**
      * 最外层圆环的颜色
@@ -74,45 +74,43 @@ public class WYAProgress extends View {
     private boolean smallCircleEnable;
     private int center;
     private ArgbEvaluator mArgbEvaluator;
-
+    
     public WYAProgress(Context context) {
         this(context, null);
     }
-
+    
     public WYAProgress(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
-
+    
     public WYAProgress(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         paint = new Paint();
-
+        
         mArgbEvaluator = new ArgbEvaluator();
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WYAProgress);
-
+        
         //获取自定义属性和默认值
         circleColor = typedArray.getColor(R.styleable.WYAProgress_circleColor, context.getResources().getColor(R.color.progress_gray));
-
+        
         progressCircleColor = typedArray.getColor(R.styleable.WYAProgress_progressCircleColor, context.getResources().getColor(R.color.progress_end));
-
+        
         progressStartColor = typedArray.getColor(R.styleable.WYAProgress_progressStartColor, getResources().getColor(R.color.progress_start));
         progressEndColor = typedArray.getColor(R.styleable.WYAProgress_progressEndColor, getResources().getColor(R.color.progress_end));
-
+        
         circleThickness = typedArray.getDimension(R.styleable.WYAProgress_circleThickness, dip2px(context, 10));
-
+        
         maxProgress = typedArray.getInt(R.styleable.WYAProgress_maxProgress, 100);
         animationDuration = typedArray.getInt(R.styleable.WYAProgress_animationDuration, 1000);
-
-
+        
         //控制颜色渐变的开关
         progressArgbColor = typedArray.getBoolean(R.styleable.WYAProgress_progressArgbColor, false);
-
+        
         smallCircleEnable = typedArray.getBoolean(R.styleable.WYAProgress_smallCircleEnable, true);
-
-
+        
         typedArray.recycle();
     }
-
+    
     /**
      * 将dip或dp值转换为px值，保证尺寸大小不变
      * <p>
@@ -122,18 +120,17 @@ public class WYAProgress extends View {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }
-
+    
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //第1步：画出最外层的圆环
         drawOuterFirstCircle(canvas);
-
+        
         //第2步，画出圆弧
         drawArc(canvas);
     }
-
-
+    
     /**
      * 绘制最外层的圆
      *
@@ -142,7 +139,7 @@ public class WYAProgress extends View {
     private void drawOuterFirstCircle(Canvas canvas) {
         //设置圆的颜色
         paint.setColor(circleColor);
-
+    
         //设置只绘制边框
         paint.setStyle(STROKE);
         //设置圆的宽度
@@ -152,15 +149,14 @@ public class WYAProgress extends View {
         //画出圆
         canvas.drawCircle(center, center, outerFirstCircleRadius, paint);
     }
-
-
+    
     /**
      * 画出圆弧
      *
      * @param canvas 画笔
      */
     private void drawArc(Canvas canvas) {
-
+    
         paint.setStrokeWidth(circleColor);
         paint.setStyle(Paint.Style.STROKE);
         if (smallCircleEnable) {
@@ -169,14 +165,14 @@ public class WYAProgress extends View {
             paint.setStrokeCap(Paint.Cap.BUTT);
         }
         paint.setAntiAlias(true);
-
+    
         //设置圆弧宽度
         paint.setStrokeWidth(circleThickness + 1);
         //用于定义的圆弧的形状和大小的界限
         RectF oval2 = new RectF(center - outerFirstCircleRadius, center - outerFirstCircleRadius, center + outerFirstCircleRadius, center + outerFirstCircleRadius);
-
+    
         double progress;
-
+    
         //这里画圆环的时候第二个参数为开始角度，0表示右边中线，90表示底部，-outerFirstCircleRadius
         if (currentProgress < maxProgress) {
             progress = currentProgress;
@@ -186,7 +182,7 @@ public class WYAProgress extends View {
             drawArcByColor(canvas, oval2, progress);
         }
     }
-
+    
     /**
      * 根据颜色来画圆弧
      *
@@ -201,16 +197,15 @@ public class WYAProgress extends View {
                 //如果颜色渐变， 则改变色值
                 progressCircleColor = (Integer) mArgbEvaluator.evaluate(i / 360f, progressStartColor, progressEndColor);
             }
-
+    
             paint.setColor(progressCircleColor);
-
+    
             if (i < maxProgress * 360) {
                 canvas.drawArc(oval2, (float) (-90 + i), 1.35f, false, paint);
             }
         }
     }
-
-
+    
     /**
      * 当控件的宽高发生变化的时候调用的方法
      * 在这里得到控件的宽高,避免在onDraw的时候多次初始化
@@ -220,30 +215,28 @@ public class WYAProgress extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         //获取圆心的坐标，对于自身控件而言是1/2
         center = getMeasuredWidth() / 2;
-
+    
         //原本是半径是等于中心点，但是由于设置画笔宽度的时候，这个宽度会根据当前的半径，往外部和内部各扩展1/2。
         //所以在设置半径是需要减去圆环宽度的一半。
         //这里减去整个圆环厚度是因为想让圆环距离本控件有左右间距，故意为之
         outerFirstCircleRadius = (int) (center - circleThickness);
     }
-
-
+    
     /**
      * 设置进度的最大值
      *
      * @param maxProgress 最大进度
      */
     public void setMaxProgress(double maxProgress) {
-
+    
         if (maxProgress < 0) {
             this.maxProgress = 0;
         }
         this.maxProgress = maxProgress;
-
+    
         setAnimation(0, currentProgress);
     }
-
-
+    
     /**
      * 设置进度，此为线程安全控件，由于考虑多线的问题，需要同步
      * 刷新界面调用postInvalidate()能在非UI线程刷新
@@ -259,9 +252,9 @@ public class WYAProgress extends View {
         } else if (currentProgress <= maxProgress) {
             this.currentProgress = currentProgress;
         }
-
+    
     }
-
+    
     /**
      * 为进度设置动画
      * ValueAnimator是整个属性动画机制当中最核心的一个类，属性动画的运行机制是通过不断地对值进行操作来实现的，
@@ -277,23 +270,23 @@ public class WYAProgress extends View {
         ValueAnimator progressAnimator = ValueAnimator.ofFloat((float) start, (float) end);
         progressAnimator.setDuration(animationDuration);
         progressAnimator.setTarget(start);
-
+    
         progressAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 //这里必须经过两次转换才可以
                 double temp = (float) animation.getAnimatedValue();
-
+    
                 BigDecimal bd = new BigDecimal(temp);
-
+    
                 currentProgress = bd.setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
-
+    
                 postInvalidate();
             }
         });
         progressAnimator.start();
     }
-
+    
     /**
      * 是否argb变化
      *
@@ -303,8 +296,7 @@ public class WYAProgress extends View {
         this.progressArgbColor = progressArgbColor;
         invalidate();
     }
-
-
+    
     /**
      * 进度条的颜色
      *
@@ -314,27 +306,27 @@ public class WYAProgress extends View {
         this.progressCircleColor = progressCircleColor;
         invalidate();
     }
-
+    
     /**
      * 控制RoundProgress颜色渐变
      *
      * @param progressCircleColor startColor
      */
     public void setProgressStartColor(int progressCircleColor) {
-        this.progressStartColor = progressCircleColor;
+        progressStartColor = progressCircleColor;
         invalidate();
     }
-
+    
     /**
      * 控制RoundProgress颜色渐变
      *
      * @param progressCircleColor endColor
      */
     public void setProgressEndColor(int progressCircleColor) {
-        this.progressEndColor = progressCircleColor;
+        progressEndColor = progressCircleColor;
         invalidate();
     }
-
+    
     /**
      * 设置动画时长
      *
@@ -342,22 +334,21 @@ public class WYAProgress extends View {
      */
     public void setAnimationDuration(long animationDuration) {
         this.animationDuration = animationDuration;
-
+    
         setAnimation(0, currentProgress);
     }
-
-
+    
     /**
      * 圆环厚度
      *
      * @param circleThickness 厚度
      */
     public void setCircleThickness(float circleThickness) {
-
+    
         this.circleThickness = circleThickness;
         invalidate();
     }
-
+    
     /**
      * 设置是否圆角
      *
@@ -367,6 +358,6 @@ public class WYAProgress extends View {
         this.smallCircleEnable = smallCircleEnable;
         setAnimation(0, currentProgress);
     }
-
+    
 }
 

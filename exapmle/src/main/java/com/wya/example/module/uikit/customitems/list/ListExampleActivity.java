@@ -2,13 +2,14 @@ package com.wya.example.module.uikit.customitems.list;
 
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
- /**
-  * @date: 2019/1/8 9:54
-  * @author: Chunjiang Mao
-  * @classname: ListExampleActivity
-  * @describe: ListExampleActivity
-  */
- 
+
+/**
+ * @date: 2019/1/8 9:54
+ * @author: Chunjiang Mao
+ * @classname: ListExampleActivity
+ * @describe: ListExampleActivity
+ */
+
 public class ListExampleActivity extends BaseActivity {
     
     @Override

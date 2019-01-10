@@ -38,29 +38,19 @@ import com.wya.uikit.imagecrop.core.sticker.StickerPortrait;
  */
 public class EditView extends FrameLayout implements Runnable, ScaleGestureDetector.OnScaleGestureListener,
         ValueAnimator.AnimatorUpdateListener, StickerPortrait.Callback, Animator.AnimatorListener {
-
+    
     private static final String TAG = "IMGView";
-
-    private EditMode mPreMode = EditMode.NONE;
-
-    private EditImage mImage = new EditImage();
-
-    private GestureDetector mGDetector;
-
-    private ScaleGestureDetector mSGDetector;
-
-    private CropHomingAnimator mHomingAnimator;
-
-    private Pen mPen = new Pen();
-
-    private int mPointerCount = 0;
-
-    private Paint mDoodlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-
-    private Paint mMosaicPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-
     private static final boolean DEBUG = true;
-
+    private EditMode mPreMode = EditMode.NONE;
+    private EditImage mImage = new EditImage();
+    private GestureDetector mGDetector;
+    private ScaleGestureDetector mSGDetector;
+    private CropHomingAnimator mHomingAnimator;
+    private Pen mPen = new Pen();
+    private int mPointerCount = 0;
+    private Paint mDoodlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint mMosaicPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    
     {
         // 涂鸦画刷
         mDoodlePaint.setStyle(Paint.Style.STROKE);
@@ -69,7 +59,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         mDoodlePaint.setPathEffect(new CornerPathEffect(EditPath.BASE_DOODLE_WIDTH));
         mDoodlePaint.setStrokeCap(Paint.Cap.ROUND);
         mDoodlePaint.setStrokeJoin(Paint.Join.ROUND);
-
+        
         // 马赛克画刷
         mMosaicPaint.setStyle(Paint.Style.STROKE);
         mMosaicPaint.setStrokeWidth(EditPath.BASE_MOSAIC_WIDTH);
@@ -78,43 +68,31 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         mMosaicPaint.setStrokeCap(Paint.Cap.ROUND);
         mMosaicPaint.setStrokeJoin(Paint.Join.ROUND);
     }
-
+    
     public EditView(Context context) {
         this(context, null, 0);
     }
-
+    
     public EditView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
-
+    
     public EditView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initialize(context);
     }
-
+    
     private void initialize(Context context) {
         mPen.setMode(mImage.getMode());
         mGDetector = new GestureDetector(context, new MoveAdapter());
         mSGDetector = new ScaleGestureDetector(context, this);
     }
-
+    
     public void setImageBitmap(Bitmap image) {
         mImage.setBitmap(image);
         invalidate();
     }
-
-    public void setMode(EditMode mode) {
-        // 保存现在的编辑模式
-        mPreMode = mImage.getMode();
-
-        // 设置新的编辑模式
-        mImage.setMode(mode);
-        mPen.setMode(mode);
-
-        // 矫正区域
-        onHoming();
-    }
-
+    
     /**
      * 是否真正修正归位
      */
@@ -122,14 +100,14 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         return mHomingAnimator != null
                 && mHomingAnimator.isRunning();
     }
-
+    
     private void onHoming() {
         invalidate();
         stopHoming();
         startHoming(mImage.getStartHoming(getScrollX(), getScrollY()),
                 mImage.getEndHoming(getScrollX(), getScrollY()));
     }
-
+    
     private void startHoming(CropHoming sHoming, CropHoming eHoming) {
         if (mHomingAnimator == null) {
             mHomingAnimator = new CropHomingAnimator();
@@ -139,77 +117,89 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         mHomingAnimator.setHomingValues(sHoming, eHoming);
         mHomingAnimator.start();
     }
-
+    
     private void stopHoming() {
         if (mHomingAnimator != null) {
             mHomingAnimator.cancel();
         }
     }
-
+    
     public void doRotate() {
         if (!isHoming()) {
             mImage.rotate(-90);
             onHoming();
         }
     }
-
+    
     public void resetClip() {
         mImage.resetClip();
         onHoming();
     }
-
+    
     public void doClip() {
         mImage.clip(getScrollX(), getScrollY());
         setMode(mPreMode);
         onHoming();
     }
-
+    
     public void cancelClip() {
         mImage.toBackupClip();
         setMode(mPreMode);
     }
-
+    
     public void setPenColor(int color) {
         mPen.setColor(color);
     }
-
+    
     public boolean isDoodleEmpty() {
         return mImage.isDoodleEmpty();
     }
-
+    
     public void undoDoodle() {
         mImage.undoDoodle();
         invalidate();
     }
-
+    
     public boolean isMosaicEmpty() {
         return mImage.isMosaicEmpty();
     }
-
+    
     public void undoMosaic() {
         mImage.undoMosaic();
         invalidate();
     }
-
+    
     public EditMode getMode() {
         return mImage.getMode();
     }
-
+    
+    public void setMode(EditMode mode) {
+        // 保存现在的编辑模式
+        mPreMode = mImage.getMode();
+        
+        // 设置新的编辑模式
+        mImage.setMode(mode);
+        mPen.setMode(mode);
+        
+        // 矫正区域
+        onHoming();
+    }
+    
     @Override
     protected void onDraw(Canvas canvas) {
         onDrawImages(canvas);
     }
-
+    
     private void onDrawImages(Canvas canvas) {
         canvas.save();
-
+        
         // clip 中心旋转
         RectF clipFrame = mImage.getClipFrame();
         canvas.rotate(mImage.getRotate(), clipFrame.centerX(), clipFrame.centerY());
-
+        
         // 图片
         mImage.onDrawImage(canvas);
-
+        
         // 马赛克
         if (!mImage.isMosaicEmpty() || (mImage.getMode() == EditMode.MOSAIC && !mPen.isEmpty())) {
             int count = mImage.onDrawMosaicsPath(canvas);
@@ -224,7 +214,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
             }
             mImage.onDrawMosaic(canvas, count);
         }
-
+        
         // 涂鸦
         mImage.onDrawDoodles(canvas);
         if (mImage.getMode() == EditMode.DOODLE && !mPen.isEmpty()) {
@@ -237,22 +227,22 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
             canvas.drawPath(mPen.getPath(), mDoodlePaint);
             canvas.restore();
         }
-
+        
         if (mImage.isFreezing()) {
             // 文字贴片
             mImage.onDrawStickers(canvas);
         }
-
+        
         mImage.onDrawShade(canvas);
-
+        
         canvas.restore();
-
+        
         if (!mImage.isFreezing()) {
             // 文字贴片
             mImage.onDrawStickerClip(canvas);
             mImage.onDrawStickers(canvas);
         }
-
+        
         // 裁剪
         if (mImage.getMode() == EditMode.CLIP) {
             canvas.save();
@@ -261,37 +251,37 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
             canvas.restore();
         }
     }
-
+    
     public Bitmap saveBitmap() {
         mImage.stickAll();
-
+        
         float scale = 1f / mImage.getScale();
-
+        
         RectF frame = new RectF(mImage.getClipFrame());
-
+        
         // 旋转基画布
         Matrix m = new Matrix();
         m.setRotate(mImage.getRotate(), frame.centerX(), frame.centerY());
         m.mapRect(frame);
-
+        
         // 缩放基画布
         m.setScale(scale, scale, frame.left, frame.top);
         m.mapRect(frame);
-
+        
         Bitmap bitmap = Bitmap.createBitmap(Math.round(frame.width()),
                 Math.round(frame.height()), Bitmap.Config.ARGB_8888);
-
+        
         Canvas canvas = new Canvas(bitmap);
-
+        
         // 平移到基画布原点&缩放到原尺寸
         canvas.translate(-frame.left, -frame.top);
         canvas.scale(scale, scale, frame.left, frame.top);
-
+        
         onDrawImages(canvas);
-
+        
         return bitmap;
     }
-
+    
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
@@ -299,36 +289,36 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
             mImage.onWindowChanged(right - left, bottom - top);
         }
     }
-
+    
     public <V extends View & Sticker> void addStickerView(V stickerView, LayoutParams params) {
         if (stickerView != null) {
-
+    
             addView(stickerView, params);
-
+    
             stickerView.registerCallback(this);
             mImage.addSticker(stickerView);
         }
     }
-
+    
     public void addStickerText(EditText text) {
         BaseStickerTextView textView = new BaseStickerTextView(getContext());
-
+        
         textView.setText(text);
-
+        
         LayoutParams layoutParams = new LayoutParams(
                 LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT
         );
-
+        
         // Center of the drawing window.
         layoutParams.gravity = Gravity.CENTER;
-
+        
         textView.setX(getScrollX());
         textView.setY(getScrollY());
-
+        
         addStickerView(textView, layoutParams);
     }
-
+    
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
@@ -336,7 +326,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         return super.onInterceptTouchEvent(ev);
     }
-
+    
     boolean onInterceptTouch(MotionEvent event) {
         if (isHoming()) {
             stopHoming();
@@ -346,7 +336,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         return false;
     }
-
+    
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getActionMasked()) {
@@ -362,20 +352,20 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         return onTouch(event);
     }
-
+    
     boolean onTouch(MotionEvent event) {
-
+        
         if (isHoming()) {
             // Homing
             return false;
         }
-
+        
         mPointerCount = event.getPointerCount();
-
+        
         boolean handled = mSGDetector.onTouchEvent(event);
-
+        
         EditMode mode = mImage.getMode();
-
+        
         if (mode == EditMode.NONE || mode == EditMode.CLIP) {
             handled |= onTouchNONE(event);
         } else if (mPointerCount > 1) {
@@ -384,7 +374,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         } else {
             handled |= onTouchPath(event);
         }
-
+        
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 mImage.onTouchDown(event.getX(), event.getY());
@@ -397,15 +387,14 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
             default:
                 break;
         }
-
+        
         return handled;
     }
-
-
+    
     private boolean onTouchNONE(MotionEvent event) {
         return mGDetector.onTouchEvent(event);
     }
-
+    
     private boolean onTouchPath(MotionEvent event) {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
@@ -420,13 +409,13 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         return false;
     }
-
+    
     private boolean onPathBegin(MotionEvent event) {
         mPen.reset(event.getX(), event.getY());
         mPen.setIdentity(event.getPointerId(0));
         return true;
     }
-
+    
     private boolean onPathMove(MotionEvent event) {
         if (mPen.isIdentity(event.getPointerId(0))) {
             mPen.lineTo(event.getX(), event.getY());
@@ -435,7 +424,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         return false;
     }
-
+    
     private boolean onPathDone() {
         if (mPen.isEmpty()) {
             return false;
@@ -445,7 +434,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         invalidate();
         return true;
     }
-
+    
     @Override
     public void run() {
         // 稳定触发
@@ -453,7 +442,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
             postDelayed(this, 500);
         }
     }
-
+    
     boolean onSteady() {
         if (DEBUG) {
             Log.d(TAG, "onSteady: isHoming=" + isHoming());
@@ -465,14 +454,14 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         return false;
     }
-
+    
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         removeCallbacks(this);
         mImage.release();
     }
-
+    
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
         if (mPointerCount > 1) {
@@ -484,7 +473,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         return false;
     }
-
+    
     @Override
     public boolean onScaleBegin(ScaleGestureDetector detector) {
         if (mPointerCount > 1) {
@@ -493,19 +482,18 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         return false;
     }
-
+    
     @Override
     public void onScaleEnd(ScaleGestureDetector detector) {
         mImage.onScaleEnd();
     }
-
+    
     @Override
     public void onAnimationUpdate(ValueAnimator animation) {
         mImage.onHoming(animation.getAnimatedFraction());
         toApplyHoming((CropHoming) animation.getAnimatedValue());
     }
-
-
+    
     private void toApplyHoming(CropHoming homing) {
         mImage.setScale(homing.scale);
         mImage.setRotate(homing.rotate);
@@ -513,7 +501,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
             invalidate();
         }
     }
-
+    
     private boolean onScrollTo(int x, int y) {
         if (getScrollX() != x || getScrollY() != y) {
             scrollTo(x, y);
@@ -521,19 +509,19 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         return false;
     }
-
+    
     @Override
     public <V extends View & Sticker> void onDismiss(V stickerView) {
         mImage.onDismiss(stickerView);
         invalidate();
     }
-
+    
     @Override
     public <V extends View & Sticker> void onShowing(V stickerView) {
         mImage.onShowing(stickerView);
         invalidate();
     }
-
+    
     @Override
     public <V extends View & Sticker> boolean onRemove(V stickerView) {
         if (mImage != null) {
@@ -546,7 +534,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         return true;
     }
-
+    
     @Override
     public void onAnimationStart(Animator animation) {
         if (DEBUG) {
@@ -554,7 +542,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         mImage.onHomingStart(mHomingAnimator.isRotate());
     }
-
+    
     @Override
     public void onAnimationEnd(Animator animation) {
         if (DEBUG) {
@@ -564,7 +552,7 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
             toApplyHoming(mImage.clip(getScrollX(), getScrollY()));
         }
     }
-
+    
     @Override
     public void onAnimationCancel(Animator animation) {
         if (DEBUG) {
@@ -572,12 +560,12 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         mImage.onHomingCancel(mHomingAnimator.isRotate());
     }
-
+    
     @Override
     public void onAnimationRepeat(Animator animation) {
         // empty implementation.
     }
-
+    
     private boolean onScroll(float dx, float dy) {
         CropHoming homing = mImage.onScroll(getScrollX(), getScrollY(), -dx, -dy);
         if (homing != null) {
@@ -586,58 +574,58 @@ public class EditView extends FrameLayout implements Runnable, ScaleGestureDetec
         }
         return onScrollTo(getScrollX() + Math.round(dx), getScrollY() + Math.round(dy));
     }
-
+    
+    private static class Pen extends EditPath {
+        
+        private int identity = Integer.MIN_VALUE;
+        
+        void reset() {
+            path.reset();
+            identity = Integer.MIN_VALUE;
+        }
+        
+        void reset(float x, float y) {
+            path.reset();
+            path.moveTo(x, y);
+            identity = Integer.MIN_VALUE;
+        }
+        
+        void setIdentity(int identity) {
+            this.identity = identity;
+        }
+        
+        boolean isIdentity(int identity) {
+            return this.identity == identity;
+        }
+        
+        void lineTo(float x, float y) {
+            path.lineTo(x, y);
+        }
+        
+        boolean isEmpty() {
+            return path.isEmpty();
+        }
+        
+        EditPath toPath() {
+            return new EditPath(new Path(path), getMode(), getColor(), getWidth());
+        }
+    }
+    
     private class MoveAdapter extends GestureDetector.SimpleOnGestureListener {
-
+        
         @Override
         public boolean onDown(MotionEvent e) {
             return true;
         }
-
+        
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             return EditView.this.onScroll(distanceX, distanceY);
         }
-
+        
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             return super.onFling(e1, e2, velocityX, velocityY);
-        }
-    }
-
-    private static class Pen extends EditPath {
-
-        private int identity = Integer.MIN_VALUE;
-
-        void reset() {
-            this.path.reset();
-            this.identity = Integer.MIN_VALUE;
-        }
-
-        void reset(float x, float y) {
-            this.path.reset();
-            this.path.moveTo(x, y);
-            this.identity = Integer.MIN_VALUE;
-        }
-
-        void setIdentity(int identity) {
-            this.identity = identity;
-        }
-
-        boolean isIdentity(int identity) {
-            return this.identity == identity;
-        }
-
-        void lineTo(float x, float y) {
-            this.path.lineTo(x, y);
-        }
-
-        boolean isEmpty() {
-            return this.path.isEmpty();
-        }
-
-        EditPath toPath() {
-            return new EditPath(new Path(this.path), getMode(), getColor(), getWidth());
         }
     }
 }

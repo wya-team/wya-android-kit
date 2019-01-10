@@ -26,30 +26,30 @@ import com.wya.uikit.R;
  */
 
 public class WYAInputItem extends LinearLayout {
+    private static final int INPUT_TYPE_PHONE = 1;
+    private static final int INPUT_TYPE_CARD = 2;
+    private static final int INPUT_TYPE_PASSWORD = 3;
+    private static final int INPUT_TYPE_MONEY = 4;
     /**
      * 背景色
      */
     private int backColor = 0;
-
     /**
      * 左边图片
      */
     private Drawable leftDrawable = null;
     private ImageView imgInputItemLeft;
-
     /**
      * 右边图片
      */
     private Drawable rightDrawable = null;
     private ImageView imgInputItemRight;
-
     /**
      * 左边标题颜色/内容
      */
     private ColorStateList leftTextColor = null;
     private String leftText = null;
     private TextView tvInputItemLeft;
-
     /**
      * 编辑框内容
      */
@@ -59,7 +59,6 @@ public class WYAInputItem extends LinearLayout {
     private EditText etInputItemContent;
     private boolean canEdit = false;
     private int contentInputType = 0;
-
     /**
      * 右边编辑框内容
      */
@@ -68,23 +67,16 @@ public class WYAInputItem extends LinearLayout {
     private ColorStateList rightTextColor = null;
     private EditText etInputItemRight;
     private boolean rightCanEdit = false;
-
     /**
      * 底部线条分隔先颜色
      */
     private View lineView;
     private String lineColor = null;
-
-    private static final int INPUT_TYPE_PHONE = 1;
-    private static final int INPUT_TYPE_CARD = 2;
-    private static final int INPUT_TYPE_PASSWORD = 3;
-    private static final int INPUT_TYPE_MONEY = 4;
-
+    
     public WYAInputItem(Context context) {
         this(context, null);
     }
-
-
+    
     public WYAInputItem(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.wya_input_item, this);
@@ -99,90 +91,85 @@ public class WYAInputItem extends LinearLayout {
                     setBackgroundColor(backColor);
                 }
             }
-
+    
             //设置背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
             leftDrawable = a.getDrawable(R.styleable.WYAInputItem_leftImage);
             setLeftBackgroundDrawable(leftDrawable);
-
+    
             //设置右边背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
             rightDrawable = a.getDrawable(R.styleable.WYAInputItem_rightImage);
             setRightBackgroundDrawable(rightDrawable);
-
-
+    
             //设置左边文字的颜色
             leftTextColor = a.getColorStateList(R.styleable.WYAInputItem_leftTextColor);
             if (leftTextColor != null) {
                 setLeftTextColor(leftTextColor);
             }
-
+    
             //设置左边文字内容
             leftText = a.getString(R.styleable.WYAInputItem_leftText);
             if (leftText != null) {
                 setLeftText(leftText);
             }
-
+    
             //设置中间文字内容
             contentText = a.getString(R.styleable.WYAInputItem_contentText);
             if (contentText != null) {
                 setContentText(contentText);
             }
-
+    
             //设置输入样式
             contentInputType = a.getInt(R.styleable.WYAInputItem_contentInputType, 0);
             setContentInputType(contentInputType);
-
-
+    
             //设置中间文字提示内容
             contentHint = a.getString(R.styleable.WYAInputItem_contentHint);
             if (contentHint != null) {
                 setContentHint(contentHint);
             }
-
+    
             //设置文本是否可以编辑
             canEdit = a.getBoolean(R.styleable.WYAInputItem_canEdit, true);
             setContentEdit(canEdit);
-
-
+    
             //设置中间文字的颜色
             contentTextColor = a.getColorStateList(R.styleable.WYAInputItem_contentTextColor);
             if (contentTextColor != null) {
                 setContentTextColor(contentTextColor);
             }
-
-
+    
             //设置右边文字内容
             rightText = a.getString(R.styleable.WYAInputItem_rightText);
             if (rightText != null) {
                 setRightText(rightText);
             }
-
+    
             //设置右边文字提示内容
             rightHint = a.getString(R.styleable.WYAInputItem_rightHint);
             if (rightHint != null) {
                 setRightHint(rightHint);
             }
-
+    
             //设置右边文本是否可以编辑
             rightCanEdit = a.getBoolean(R.styleable.WYAInputItem_rightCanEdit, true);
             setRightEdit(rightCanEdit);
-
+    
             //设置右边文字的颜色
             rightTextColor = a.getColorStateList(R.styleable.WYAInputItem_rightTextColor);
             if (rightTextColor != null) {
                 setRightTextColor(rightTextColor);
             }
-
+    
             //设置分割线的颜色
             lineColor = a.getString(R.styleable.WYAInputItem_lineColor);
             if (lineColor != null) {
                 setLineColor(lineColor);
             }
-
+    
             a.recycle();
         }
     }
-
-
+    
     /**
      * 设置左边的图片
      *
@@ -197,7 +184,7 @@ public class WYAInputItem extends LinearLayout {
             imgInputItemLeft.setVisibility(View.GONE);
         }
     }
-
+    
     /**
      * 设置右边的图片
      *
@@ -212,22 +199,7 @@ public class WYAInputItem extends LinearLayout {
             imgInputItemRight.setVisibility(View.GONE);
         }
     }
-
-    /**
-     * 设置左边文字内容
-     *
-     * @param leftText
-     */
-    private void setLeftText(String leftText) {
-        this.leftText = leftText;
-        if (leftText != null && !"".equals(leftText)) {
-            tvInputItemLeft.setText(leftText);
-            tvInputItemLeft.setVisibility(VISIBLE);
-        } else {
-            tvInputItemLeft.setVisibility(GONE);
-        }
-    }
-
+    
     /**
      * 设置左边文字的颜色
      *
@@ -237,23 +209,7 @@ public class WYAInputItem extends LinearLayout {
         this.leftTextColor = leftTextColor;
         tvInputItemLeft.setTextColor(leftTextColor);
     }
-
-
-    /**
-     * 设置编辑框内容
-     *
-     * @param contentText
-     */
-    private void setContentText(String contentText) {
-        this.contentText = contentText;
-        if (contentText != null) {
-            etInputItemContent.setText(contentText);
-            etInputItemContent.setVisibility(VISIBLE);
-        } else {
-            etInputItemContent.setVisibility(GONE);
-        }
-    }
-
+    
     /**
      * 设置编辑框提示语
      *
@@ -268,8 +224,7 @@ public class WYAInputItem extends LinearLayout {
             etInputItemContent.setVisibility(GONE);
         }
     }
-
-
+    
     /**
      * 是否可以编辑
      *
@@ -281,8 +236,7 @@ public class WYAInputItem extends LinearLayout {
         etInputItemContent.setEnabled(canEdit);
         etInputItemContent.setFocusableInTouchMode(canEdit);
     }
-
-
+    
     /**
      * 设置编辑框文字
      *
@@ -292,7 +246,7 @@ public class WYAInputItem extends LinearLayout {
         this.contentTextColor = contentTextColor;
         etInputItemContent.setTextColor(contentTextColor);
     }
-
+    
     /**
      * 设置编辑框输入格式
      *
@@ -310,298 +264,7 @@ public class WYAInputItem extends LinearLayout {
                 etInputItemContent.setInputType(InputType.TYPE_CLASS_NUMBER);
             } else if (contentInputType == INPUT_TYPE_PASSWORD) {
                 //密码777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777餘杭或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
                 etInputItemContent.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             } else if (contentInputType == INPUT_TYPE_MONEY) {
                 //钱
@@ -609,23 +272,7 @@ public class WYAInputItem extends LinearLayout {
             }
         }
     }
-
-
-    /**
-     * 设置右边编辑框内容
-     *
-     * @param rightText
-     */
-    private void setRightText(String rightText) {
-        this.rightText = rightText;
-        if (rightText != null) {
-            etInputItemRight.setText(rightText);
-            etInputItemRight.setVisibility(VISIBLE);
-        } else {
-            etInputItemRight.setVisibility(GONE);
-        }
-    }
-
+    
     /**
      * 设置右边编辑框提示语
      *
@@ -640,8 +287,7 @@ public class WYAInputItem extends LinearLayout {
             etInputItemRight.setVisibility(GONE);
         }
     }
-
-
+    
     /**
      * 右边编辑框是否可以编辑
      *
@@ -653,8 +299,7 @@ public class WYAInputItem extends LinearLayout {
         etInputItemRight.setEnabled(rightCanEdit);
         etInputItemRight.setFocusableInTouchMode(rightCanEdit);
     }
-
-
+    
     /**
      * 设置右边编辑框文字
      *
@@ -664,8 +309,7 @@ public class WYAInputItem extends LinearLayout {
         this.rightTextColor = rightTextColor;
         etInputItemRight.setTextColor(rightTextColor);
     }
-
-
+    
     /**
      * 设置分隔线颜色
      *
@@ -675,7 +319,7 @@ public class WYAInputItem extends LinearLayout {
         this.lineColor = lineColor;
         lineView.setBackgroundColor(Color.parseColor(lineColor));
     }
-
+    
     /**
      * 获取左边文字内容
      *
@@ -684,7 +328,22 @@ public class WYAInputItem extends LinearLayout {
     public String getLeftText() {
         return leftText;
     }
-
+    
+    /**
+     * 设置左边文字内容
+     *
+     * @param leftText
+     */
+    private void setLeftText(String leftText) {
+        this.leftText = leftText;
+        if (leftText != null && !"".equals(leftText)) {
+            tvInputItemLeft.setText(leftText);
+            tvInputItemLeft.setVisibility(VISIBLE);
+        } else {
+            tvInputItemLeft.setVisibility(GONE);
+        }
+    }
+    
     /**
      * 获取中间编辑框内容
      *
@@ -693,7 +352,22 @@ public class WYAInputItem extends LinearLayout {
     public String getContentText() {
         return contentText;
     }
-
+    
+    /**
+     * 设置编辑框内容
+     *
+     * @param contentText
+     */
+    private void setContentText(String contentText) {
+        this.contentText = contentText;
+        if (contentText != null) {
+            etInputItemContent.setText(contentText);
+            etInputItemContent.setVisibility(VISIBLE);
+        } else {
+            etInputItemContent.setVisibility(GONE);
+        }
+    }
+    
     /**
      * 获取右边编辑框内容
      *
@@ -702,7 +376,22 @@ public class WYAInputItem extends LinearLayout {
     public String getRightText() {
         return rightText;
     }
-
+    
+    /**
+     * 设置右边编辑框内容
+     *
+     * @param rightText
+     */
+    private void setRightText(String rightText) {
+        this.rightText = rightText;
+        if (rightText != null) {
+            etInputItemRight.setText(rightText);
+            etInputItemRight.setVisibility(VISIBLE);
+        } else {
+            etInputItemRight.setVisibility(GONE);
+        }
+    }
+    
     private void initView() {
         tvInputItemLeft = findViewById(R.id.tv_input_item_left);
         imgInputItemLeft = findViewById(R.id.img_input_item_left);
@@ -711,5 +400,5 @@ public class WYAInputItem extends LinearLayout {
         etInputItemRight = findViewById(R.id.et_input_item_right);
         lineView = findViewById(R.id.line_view);
     }
-
+    
 }

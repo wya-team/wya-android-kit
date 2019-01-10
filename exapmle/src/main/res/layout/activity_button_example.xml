@@ -18,8 +18,8 @@
         app:backColor="#108de7"
         app:backColorPress="#0183d7"
         app:fillet="true"
-        app:textColor="@color/white"
-        app:radius="5dp" />
+        app:radius="5dp"
+        app:textColor="@color/white" />
 
     <com.wya.uikit.button.WYAButton
         style="?android:attr/borderlessButtonStyle"
@@ -31,9 +31,9 @@
         app:backColor="#ffffff"
         app:backColorPress="#dedede"
         app:fillet="true"
+        app:radius="5dp"
         app:textColor="@color/black"
-        app:textColorPress="#909090"
-        app:radius="5dp" />
+        app:textColorPress="#909090" />
 
     <com.wya.uikit.button.WYAButton
         style="?android:attr/borderlessButtonStyle"
@@ -61,8 +61,8 @@
             app:backColor="#108de7"
             app:backColorPress="#0183d7"
             app:fillet="true"
-            app:textColor="@color/white"
-            app:radius="5dp" />
+            app:radius="5dp"
+            app:textColor="@color/white" />
 
         <com.wya.uikit.button.WYAButton
             style="?android:attr/borderlessButtonStyle"
@@ -74,9 +74,9 @@
             app:backColor="#ffffff"
             app:backColorPress="#dedede"
             app:fillet="true"
+            app:radius="5dp"
             app:textColor="@color/black"
-            app:textColorPress="#909090"
-            app:radius="5dp" />
+            app:textColorPress="#909090" />
 
         <com.wya.uikit.button.WYAButton
             style="?android:attr/borderlessButtonStyle"
@@ -97,9 +97,9 @@
             android:layout_margin="10dp"
             android:text="按钮"
             android:textSize="12sp"
+            app:backGroundImage="@drawable/stroke_blue_solid_white_r5_bg"
             app:textColor="#108de7"
-            app:textColorPress="#50108de7"
-            app:backGroundImage="@drawable/stroke_blue_solid_white_r5_bg" />
+            app:textColorPress="#50108de7" />
 
     </TableRow>
 

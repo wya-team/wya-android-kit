@@ -70,15 +70,16 @@
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginTop="10dp"
         android:text="拍照"
         android:textSize="@dimen/sp_10"
         app:backColor="#118EE9"
         app:fillet="true"
+        app:radius="5dp"
         app:textColor="#ffffff"
-        app:textColorPress="#50ffffff"
-        app:radius="5dp" />
+        app:textColorPress="#50ffffff" />
+
     <TextView
         android:id="@+id/tv_path"
         android:layout_width="wrap_content"

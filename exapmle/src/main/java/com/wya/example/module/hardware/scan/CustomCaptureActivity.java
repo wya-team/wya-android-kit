@@ -40,6 +40,7 @@ import com.wya.hardware.scan.util.CodeUtils;
 import com.wya.uikit.toolbar.StatusBarUtil;
 
 import static com.wya.hardware.scan.Intents.Scan.RESULT;
+
 /**
  * @date: 2018/12/24 11:24
  * @author: Chunjiang Mao
@@ -49,13 +50,11 @@ import static com.wya.hardware.scan.Intents.Scan.RESULT;
 
 public class CustomCaptureActivity extends CaptureActivity {
     
-    private final int REQUEST_EXTERNAL_STORAGE = 110;
     public final int REQUEST_CODE_PHOTO = 0X02;
-    
+    private final int REQUEST_EXTERNAL_STORAGE = 110;
     private final String PROVIDER_MEDIA = "com.android.providers.media.documents";
     private final String PROVIDER_DOWNLOADS = "com.android.providers.downloads.documents";
     private final String STRING_CONTENT = "content";
-    
     
     @Override
     public int getLayoutId() {

@@ -8,17 +8,16 @@ import android.view.SurfaceHolder;
 import com.wya.hardware.videoplayer.listener.PlayerCallback;
 
 import java.io.IOException;
- /**
-  * @date: 2018/12/6 14:22
-  * @author: Chunjiang Mao
-  * @classname: WYAVideoPlayer
-  * @describe: 只包含最基础的播放器功能，MediaPlayer可以替换成其他框架的播放器
-  */
+
+/**
+ * @date: 2018/12/6 14:22
+ * @author: Chunjiang Mao
+ * @classname: WYAVideoPlayer
+ * @describe: 只包含最基础的播放器功能，MediaPlayer可以替换成其他框架的播放器
+ */
 
 public class WYAVideoPlayer {
-
-    private static final String TAG = "VideoPlayer";
-
+    
     public static final int STATE_ERROR = -1;
     public static final int STATE_IDLE = 0;
     public static final int STATE_PREPARING = 1;
@@ -26,19 +25,14 @@ public class WYAVideoPlayer {
     public static final int STATE_PLAYING = 3;
     public static final int STATE_PAUSED = 4;
     public static final int STATE_PLAYBACK_COMPLETED = 5;
-
+    private static final String TAG = "VideoPlayer";
     private MediaPlayer player;
     private int curState = STATE_IDLE;
-
+    
     private PlayerCallback callback;
     private int currentBufferPercentage;
     private String path;
     private SurfaceHolder surfaceHolder;
-
-    public void setCallback(PlayerCallback playerCallback) {
-        this.callback = playerCallback;
-    }
-
     private MediaPlayer.OnErrorListener mErrorListener = new MediaPlayer.OnErrorListener() {
         @Override
         public boolean onError(MediaPlayer mp, int frameworkErr, int implErr) {
@@ -49,24 +43,28 @@ public class WYAVideoPlayer {
             return true;
         }
     };
-
+    
     public WYAVideoPlayer() {
         setCurrentState(STATE_IDLE);
     }
-
+    
+    public void setCallback(PlayerCallback playerCallback) {
+        callback = playerCallback;
+    }
+    
     public void setDisplay(SurfaceHolder surfaceHolder) {
         this.surfaceHolder = surfaceHolder;
     }
-
+    
+    public String getVideoPath() {
+        return path;
+    }
+    
     public void setVideoPath(String path) {
         this.path = path;
         openVideo();
     }
-
-    public String getVideoPath() {
-        return path;
-    }
-
+    
     public void openVideo() {
         if (path == null || surfaceHolder == null) {
             // not ready for playback just yet, will try again later
@@ -75,7 +73,7 @@ public class WYAVideoPlayer {
         // we shouldn't clear the target state, because somebody might have
         // called start() previously
         reset();
-
+        
         try {
             player = new MediaPlayer();
             player.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
@@ -133,7 +131,7 @@ public class WYAVideoPlayer {
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             player.setScreenOnWhilePlaying(true);
             player.prepareAsync();
-
+            
             // we don't set the target state here either, but preserve the
             // target state that was there before.
             setCurrentState(STATE_PREPARING);
@@ -143,7 +141,7 @@ public class WYAVideoPlayer {
             mErrorListener.onError(player, MediaPlayer.MEDIA_ERROR_UNKNOWN, 0);
         }
     }
-
+    
     public void start() {
         Log.i("DDD", "start");
         if (isInPlaybackState()) {
@@ -151,12 +149,12 @@ public class WYAVideoPlayer {
             setCurrentState(STATE_PLAYING);
         }
     }
-
+    
     public void restart() {
         Log.i("DDD", "restart");
         openVideo();
     }
-
+    
     public void pause() {
         if (isInPlaybackState()) {
             if (player.isPlaying()) {
@@ -165,7 +163,7 @@ public class WYAVideoPlayer {
             }
         }
     }
-
+    
     public void reset() {
         if (player != null) {
             player.reset();
@@ -173,7 +171,7 @@ public class WYAVideoPlayer {
             setCurrentState(STATE_IDLE);
         }
     }
-
+    
     private void setCurrentState(int state) {
         curState = state;
         if (callback != null) {
@@ -192,7 +190,7 @@ public class WYAVideoPlayer {
             }
         }
     }
-
+    
     public void stop() {
         if (player != null) {
             player.stop();
@@ -203,44 +201,44 @@ public class WYAVideoPlayer {
             setCurrentState(STATE_IDLE);
         }
     }
-
+    
     public int getDuration() {
         if (isInPlaybackState()) {
             return player.getDuration();
         }
-
+        
         return -1;
     }
-
+    
     public int getCurrentPosition() {
         if (isInPlaybackState()) {
             return player.getCurrentPosition();
         }
         return 0;
     }
-
+    
     public void seekTo(int progress) {
         if (isInPlaybackState()) {
             player.seekTo(progress);
         }
     }
-
+    
     public boolean isPlaying() {
         return isInPlaybackState() && player.isPlaying();
     }
-
+    
     public int getBufferPercentage() {
         if (player != null) {
             return currentBufferPercentage;
         }
         return 0;
     }
-
+    
     public boolean isInPlaybackState() {
         return (player != null &&
                 curState != STATE_ERROR &&
                 curState != STATE_IDLE &&
                 curState != STATE_PREPARING);
     }
-
+    
 }

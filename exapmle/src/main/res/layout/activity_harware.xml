@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context="com.wya.example.module.hardware.HardwareExampleActivity">
 
 
@@ -18,9 +18,9 @@
         android:textAllCaps="false"
         app:backColor="#118EE9"
         app:fillet="true"
+        app:radius="5dp"
         app:textColor="#ffffff"
-        app:textColorPress="#50ffffff"
-        app:radius="5dp" />
+        app:textColorPress="#50ffffff" />
 
     <com.wya.uikit.button.WYAButton
         android:id="@+id/wya_button_video_player"
@@ -31,8 +31,8 @@
         android:textAllCaps="false"
         app:backColor="#118EE9"
         app:fillet="true"
+        app:radius="5dp"
         app:textColor="#ffffff"
-        app:textColorPress="#50ffffff"
-        app:radius="5dp" />
+        app:textColorPress="#50ffffff" />
 
 </LinearLayout>

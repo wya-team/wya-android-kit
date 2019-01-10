@@ -22,16 +22,19 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 /**
  * @date: 2018/12/10 9:50
  * @author: Chunjiang Mao
- * @classname:  PhoneUtil
+ * @classname: PhoneUtil
  * @describe: 手机信息工具类
  */
 
 public class PhoneUtil {
     private static PhoneUtil phoneUtil;
+    /**
+     * 手机号判断
+     */
+    private static Pattern PHONE_PATTERN = Pattern.compile("^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\\\d{8}$");
     
     public static PhoneUtil getInstance() {
         if (phoneUtil == null) {
@@ -42,6 +45,11 @@ public class PhoneUtil {
             }
         }
         return phoneUtil;
+    }
+    
+    public static boolean isMobileNO(String mobile) {
+        Matcher m = PHONE_PATTERN.matcher(mobile);
+        return m.matches();
     }
     
     /**
@@ -59,6 +67,7 @@ public class PhoneUtil {
         }
         return sdkVersion;
     }
+    
     /**
      * 获取手机系统版本号 6.0.1
      *
@@ -246,7 +255,7 @@ public class PhoneUtil {
      * 获取应用权限 名称列表
      */
     public String[] getAppPermissions(Context context)
-    throws NameNotFoundException {
+            throws NameNotFoundException {
         PackageManager pm = context.getPackageManager();
         PackageInfo packageInfo = pm.getPackageInfo(context.getPackageName(),
                 PackageManager.GET_PERMISSIONS);
@@ -254,7 +263,7 @@ public class PhoneUtil {
     }
     
     public String[] getAppPermissions(PackageInfo packageInfo)
-    throws NameNotFoundException {
+            throws NameNotFoundException {
         return packageInfo.requestedPermissions;
     }
     
@@ -315,15 +324,6 @@ public class PhoneUtil {
         Intent intent = new Intent(Intent.ACTION_DELETE);
         intent.setData(uri);
         context.startActivity(intent);
-    }
-    
-    /**
-     * 手机号判断
-     */
-    private static  Pattern PHONE_PATTERN = Pattern.compile("^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\\\d{8}$");
-    public static boolean isMobileNO(String mobile) {
-        Matcher m = PHONE_PATTERN.matcher(mobile);
-        return m.matches();
     }
     
 }

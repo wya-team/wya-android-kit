@@ -1,17 +1,17 @@
 package com.wya.hardware.videoplayer.listener;
 
 public interface OnVideoControlListener {
-
+    
     /**
      * 返回
      */
     void onBack();
-
+    
     /**
      * 全屏
      */
     void onFullScreen();
-
+    
     /**
      * 错误后的重试
      *
@@ -25,5 +25,5 @@ public interface OnVideoControlListener {
      *                    </ul>
      */
     void onRetry(int errorStatus);
-
+    
 }

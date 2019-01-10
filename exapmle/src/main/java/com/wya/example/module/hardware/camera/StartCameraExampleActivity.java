@@ -26,17 +26,20 @@ import com.wya.utils.utils.StringUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
 
- /**
-  * @date: 2019/1/8 9:52
-  * @author: Chunjiang Mao
-  * @classname: StartCameraExampleActivity
-  * @describe: 相机启动页
-  */
- 
+/**
+ * @date: 2019/1/8 9:52
+ * @author: Chunjiang Mao
+ * @classname: StartCameraExampleActivity
+ * @describe: 相机启动页
+ */
+
 public class StartCameraExampleActivity extends BaseActivity {
-     /**
-      * 权限申请自定义码
-      */
+    public static final int TAKE_PHOTO = 101;
+    public static final int VIDEO = 102;
+    public static final int NO_PERMISSIONS_CAMEAR = 103;
+    /**
+     * 权限申请自定义码
+     */
     private final int GET_PERMISSION_REQUEST = 100;
     @BindView(R.id.image_photo)
     ImageView imagePhoto;
@@ -56,15 +59,12 @@ public class StartCameraExampleActivity extends BaseActivity {
      * 默认可以拍照和录制视频
      */
     private int state = WYACameraView.BUTTON_STATE_BOTH;
-    public static final int TAKE_PHOTO = 101;
-    public static final int VIDEO = 102;
-    public static final int NO_PERMISSIONS_CAMEAR = 103;
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_camera_example_start;
     }
-
+    
     @Override
     protected void initView() {
         setTitle("CameraExample");
@@ -79,7 +79,7 @@ public class StartCameraExampleActivity extends BaseActivity {
             StringUtil.copyString(StartCameraExampleActivity.this, url);
         });
     }
-
+    
     /**
      * 获取权限
      */
@@ -109,7 +109,7 @@ public class StartCameraExampleActivity extends BaseActivity {
             startActivityForResult(intent, 100);
         }
     }
-
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -130,7 +130,7 @@ public class StartCameraExampleActivity extends BaseActivity {
             Toast.makeText(this, "请检查相机权限~", Toast.LENGTH_SHORT).show();
         }
     }
-
+    
     @TargetApi(23)
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -167,7 +167,7 @@ public class StartCameraExampleActivity extends BaseActivity {
             }
         }
     }
-
+    
     @OnClick({R.id.take_photo, R.id.take_video, R.id.take_video_and_photo, R.id.btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -190,5 +190,5 @@ public class StartCameraExampleActivity extends BaseActivity {
                 break;
         }
     }
-
+    
 }

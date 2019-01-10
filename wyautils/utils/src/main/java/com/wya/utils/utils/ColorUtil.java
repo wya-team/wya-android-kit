@@ -7,11 +7,11 @@ import java.util.Random;
 /**
  * @date: 2018/12/8 16:41
  * @author: Chunjiang Mao
- * @classname:  ColorUtil
+ * @classname: ColorUtil
  * @describe: 工具类（color整型、rgb数组、16进制互相转换）
  */
 public class ColorUtil {
-
+    
     /**
      * Color的Int整型转Color的16进制颜色值【方案一】
      * colorInt - -12590395
@@ -22,7 +22,7 @@ public class ColorUtil {
         hexCode = String.format("#%06X", Integer.valueOf(16777215 & colorInt));
         return hexCode;
     }
-
+    
     /**
      * Color的Int整型转Color的16进制颜色值【方案二】
      * colorInt - -12590395
@@ -34,7 +34,7 @@ public class ColorUtil {
         hexCode = rgb2Hex(rgb);
         return hexCode;
     }
-
+    
     /**
      * Color的Int整型转Color的rgb数组
      * colorInt - -12590395
@@ -42,17 +42,17 @@ public class ColorUtil {
      */
     public static int[] int2Rgb(int colorInt) {
         int[] rgb = new int[]{0, 0, 0};
-
+        
         int red = Color.red(colorInt);
         int green = Color.green(colorInt);
         int blue = Color.blue(colorInt);
         rgb[0] = red;
         rgb[1] = green;
         rgb[2] = blue;
-
+        
         return rgb;
     }
-
+    
     /**
      * rgb数组转Color的16进制颜色值
      * rgb - rgb数组——[63,226,197]
@@ -77,7 +77,7 @@ public class ColorUtil {
         }
         return hexCode;
     }
-
+    
     /**
      * Color的16进制颜色值 转 Color的Int整型
      * colorHex - Color的16进制颜色值——#3FE2C5
@@ -88,7 +88,7 @@ public class ColorUtil {
         colorInt = Color.parseColor(colorHex);
         return colorInt;
     }
-
+    
     /**
      * Color的16进制颜色值 转 rgb数组
      * colorHex - Color的16进制颜色值——#3FE2C5
@@ -98,7 +98,7 @@ public class ColorUtil {
         int colorInt = hex2Int(colorHex);
         return int2Rgb(colorInt);
     }
-
+    
     /**
      * Color的rgb数组转Color的Int整型
      * rgb - Color的rgb数组 —— [63,226,197]
@@ -109,25 +109,25 @@ public class ColorUtil {
         colorInt = Color.rgb(rgb[0], rgb[1], rgb[2]);
         return colorInt;
     }
-
+    
     /**
      * 获取十六进制的颜色代码.例如 "#6E36B4" , For HTML ,
      *
      * @return String
      */
-
+    
     public static String getRandColorCode() {
         String r, g, b;
         Random random = new Random();
         r = Integer.toHexString(random.nextInt(256)).toUpperCase();
         g = Integer.toHexString(random.nextInt(256)).toUpperCase();
         b = Integer.toHexString(random.nextInt(256)).toUpperCase();
-
+        
         r = r.length() == 1 ? "0" + r : r;
         g = g.length() == 1 ? "0" + g : g;
         b = b.length() == 1 ? "0" + b : b;
-
-        return "#"+r + g + b;
+        
+        return "#" + r + g + b;
     }
-
+    
 }

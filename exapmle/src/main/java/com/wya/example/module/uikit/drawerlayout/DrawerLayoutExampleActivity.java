@@ -13,13 +13,14 @@ import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
- /**
-  * @date: 2019/1/8 9:56
-  * @author: Chunjiang Mao
-  * @classname: DrawerLayoutExampleActivity
-  * @describe:
-  */
- 
+
+/**
+ * @date: 2019/1/8 9:56
+ * @author: Chunjiang Mao
+ * @classname: DrawerLayoutExampleActivity
+ * @describe:
+ */
+
 public class DrawerLayoutExampleActivity extends BaseActivity {
     
     @BindView(R.id.main_left_drawer_layout)

@@ -10,19 +10,16 @@ import android.view.View;
  * @description :
  */
 public class StickerMoveHelper {
-
+    
     private static final String TAG = "StickerMoveHelper";
-
-    private View mView;
-
-    private float mX, mY;
-
     private static final Matrix M = new Matrix();
-
+    private View mView;
+    private float mX, mY;
+    
     public StickerMoveHelper(View view) {
         mView = view;
     }
-
+    
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:

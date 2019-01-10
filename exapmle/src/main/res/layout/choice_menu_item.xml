@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="44dp"
     android:background="@drawable/choice_menu_item_bg"
-    android:orientation="horizontal"
     android:gravity="center_vertical"
+    android:orientation="horizontal"
     android:paddingLeft="@dimen/dp_12">
 
     <TextView
@@ -12,6 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="111111"
-        android:textSize="16sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 </LinearLayout>

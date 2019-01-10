@@ -24,23 +24,22 @@ import java.util.Map;
  * @description : OptionMenuExampleActivity
  */
 public class OptionMenuExampleActivity extends BaseActivity {
-
+    
+    public static final String TAG = "OptionMenuExampleActivity";
+    List<String> data = new ArrayList<>();
+    List<List<String>> data2 = new ArrayList<>();
+    int[] location1 = new int[2];
     private RelativeLayout showOne, showTwo;
     private int selectPositionOne = 0;
     private int selectPositionTwo = 0;
     private int selectPositionTwo1 = 0;
     private Map<String, Integer> selection = new HashMap<>();
-
-    List<String> data = new ArrayList<>();
-    List<List<String>> data2 = new ArrayList<>();
-    int[] location1 = new int[2];
-    public static final String TAG = "OptionMenuExampleActivity";
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_choice_menu_example;
     }
-
+    
     @Override
     protected void initView() {
         setTitle("菜单(optionmenu)");
@@ -55,7 +54,7 @@ public class OptionMenuExampleActivity extends BaseActivity {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(OptionMenuExampleActivity.this, url);
         });
-
+        
         showOne = (RelativeLayout) findViewById(R.id.show_one);
         showTwo = (RelativeLayout) findViewById(R.id.show_two);
         initData();
@@ -65,7 +64,7 @@ public class OptionMenuExampleActivity extends BaseActivity {
             public void setValueFirst(OptionMenuViewHolder helper, String item) {
                 helper.setText(R.id.menu_title, item);
             }
-
+            
             @Override
             public void setValueSecond(OptionMenuViewHolder helper, String item) {
                 ImageView imageView = helper.getView(R.id.check);
@@ -89,7 +88,7 @@ public class OptionMenuExampleActivity extends BaseActivity {
                     imageView.setVisibility(View.GONE);
                     textView.setTextColor(getResources().getColor(R.color.color_BEBEBE));
                 }
-
+                
                 helper.itemView.setOnClickListener(v -> {
                     if (helper.getLayoutPosition() != 4) {
                         selectPositionTwo = helper.getLayoutPosition();
@@ -97,12 +96,12 @@ public class OptionMenuExampleActivity extends BaseActivity {
                         notifyAdapterData();
                     }
                 });
-
+                
             }
         };
         baseOptionMenu2.setOnFirstAdapterItemClickListener((position, v, menu) -> selectPositionTwo1
                 = position);
-
+        
         BaseOptionMenu<String> baseOptionMenu1 = new BaseOptionMenu<String>(this, data, R.layout
                 .one_choice_menu_item) {
             @Override
@@ -112,21 +111,21 @@ public class OptionMenuExampleActivity extends BaseActivity {
                 view.setSelected(selectPositionOne == helper.getLayoutPosition());
                 helper.itemView.setSelected(selectPositionOne == helper.getLayoutPosition());
             }
-
+            
             @Override
             public void setValueSecond(OptionMenuViewHolder helper, String item) {
-
+            
             }
         };
-
+        
         baseOptionMenu1.setOnFirstAdapterItemClickListener((position, v, menu) -> {
             selectPositionOne = position;
             baseOptionMenu1.notifyAdapterData();
         });
-
+        
         //设置高度
         baseOptionMenu2.setHeight(getResources().getDisplayMetrics().heightPixels / 2);
-
+        
         showOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,16 +134,16 @@ public class OptionMenuExampleActivity extends BaseActivity {
             }
         });
         showTwo.setOnClickListener(v -> baseOptionMenu2.showAsDropDown(showTwo));
-
+        
     }
-
+    
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-
+        
         showOne.getLocationOnScreen(location1);
     }
-
+    
     private void initData() {
         data.add("美食");
         List<String> list1 = new ArrayList<>();
@@ -161,7 +160,7 @@ public class OptionMenuExampleActivity extends BaseActivity {
         list1.add("蛋类及制品");
         list1.add("鱼虾蟹贝类");
         data2.add(list1);
-
+        
         data.add("娱乐");
         List<String> list2 = new ArrayList<>();
         list2.add("歌舞厅");
@@ -175,10 +174,10 @@ public class OptionMenuExampleActivity extends BaseActivity {
         list2.add("保龄球场");
         list2.add("游戏厅");
         data2.add(list2);
-
+        
         data.add("丽人");
         List<String> list3 = new ArrayList<>();
         data2.add(list3);
-
+        
     }
 }

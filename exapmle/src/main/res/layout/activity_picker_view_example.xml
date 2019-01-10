@@ -35,6 +35,7 @@
             android:textSize="@dimen/sp_14"
             tools:text="123123213123" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ymdhms_layout_with"
         android:layout_width="match_parent"
@@ -62,6 +63,7 @@
             android:textSize="@dimen/sp_14"
             tools:text="123123213123" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ymd_layout"
         android:layout_width="match_parent"
@@ -89,7 +91,6 @@
             android:textSize="@dimen/sp_14"
             tools:text="123123213123" />
     </LinearLayout>
-
 
 
     <LinearLayout

@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/choice_menu_item_bg"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:background="@drawable/choice_menu_item_bg"
     android:padding="@dimen/dp_10">
 
     <ImageView
@@ -18,8 +18,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:gravity="center_vertical"
         android:orientation="vertical">
 

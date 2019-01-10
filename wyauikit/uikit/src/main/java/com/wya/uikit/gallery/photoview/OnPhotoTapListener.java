@@ -3,12 +3,12 @@ package com.wya.uikit.gallery.photoview;
 import android.widget.ImageView;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     :
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
  */
 public interface OnPhotoTapListener {
-
+    
     /**
      * A callback to receive where the user taps on a photo. You will only receive a callback if
      * the user taps on the actual photo, tapping on 'whitespace' will be ignored.

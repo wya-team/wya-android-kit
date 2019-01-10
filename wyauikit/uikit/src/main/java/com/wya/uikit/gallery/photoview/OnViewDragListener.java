@@ -1,12 +1,12 @@
 package com.wya.uikit.gallery.photoview;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     :
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
  */
 public interface OnViewDragListener {
-
+    
     /**
      * BaseCallback for when the photo is experiencing a drag event. This cannot be invoked when the
      * user is scaling.

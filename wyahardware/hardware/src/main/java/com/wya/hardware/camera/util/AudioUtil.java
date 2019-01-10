@@ -2,12 +2,13 @@ package com.wya.hardware.camera.util;
 
 import android.content.Context;
 import android.media.AudioManager;
- /**
-  * @date: 2018/12/5 13:55
-  * @author: Chunjiang Mao
-  * @classname: AudioUtil
-  * @describe:
-  */
+
+/**
+ * @date: 2018/12/5 13:55
+ * @author: Chunjiang Mao
+ * @classname: AudioUtil
+ * @describe:
+ */
 
 public class AudioUtil {
     public static void setAudioManage(Context context) {

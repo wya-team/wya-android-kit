@@ -1,4 +1,3 @@
-
 package com.wya.uikit.toolbar.swipeback;
 
 import android.os.Bundle;

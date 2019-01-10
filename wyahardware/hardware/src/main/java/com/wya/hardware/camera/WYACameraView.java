@@ -56,31 +56,12 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     //    private static final String TAG = "JCameraView";
     
     /**
-     * Camera状态机
-     */
-    private CameraMachine machine;
-    
-    /**
-     * 手电筒状态
-     */
-    private boolean typeFlashLight = false;
-    
-    /**
-     * 闪关灯状态
-     */
-    private static final int TYPE_FLASH_AUTO = 0x021;
-    private static final int TYPE_FLASH_ON = 0x022;
-    private static final int TYPE_FLASH_OFF = 0x023;
-    private int typeFlash = TYPE_FLASH_OFF;
-    
-    /**
      * 拍照浏览时候的类型
      */
     public static final int TYPE_PICTURE = 0x001;
     public static final int TYPE_VIDEO = 0x002;
     public static final int TYPE_SHORT = 0x003;
     public static final int TYPE_DEFAULT = 0x004;
-    
     /**
      * 录制视频比特率
      */
@@ -91,7 +72,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     public static final int MEDIA_QUALITY_FUNNY = 4 * 100000;
     public static final int MEDIA_QUALITY_DESPAIR = 2 * 100000;
     public static final int MEDIA_QUALITY_SORRY = 1 * 80000;
-    
     /**
      * 只能拍照
      */
@@ -104,7 +84,21 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
      * 两者都可以
      */
     public static final int BUTTON_STATE_BOTH = 0x103;
-    
+    /**
+     * 闪关灯状态
+     */
+    private static final int TYPE_FLASH_AUTO = 0x021;
+    private static final int TYPE_FLASH_ON = 0x022;
+    private static final int TYPE_FLASH_OFF = 0x023;
+    /**
+     * Camera状态机
+     */
+    private CameraMachine machine;
+    /**
+     * 手电筒状态
+     */
+    private boolean typeFlashLight = false;
+    private int typeFlash = TYPE_FLASH_OFF;
     /**
      * 回调监听
      */
@@ -173,6 +167,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     
     private boolean firstTouch = true;
     private float firstTouchLength = 0;
+    private ErrorListener errorListener;
     
     public WYACameraView(Context context) {
         this(context, null);
@@ -201,6 +196,21 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         initView();
     }
     
+    /**
+     * 删除文件
+     *
+     * @param url
+     * @return
+     */
+    private static boolean deleteFile(String url) {
+        boolean result = false;
+        File file = new File(url);
+        if (file.exists()) {
+            result = file.delete();
+        }
+        return result;
+    }
+    
     private void initData() {
         layoutWidth = getScreenWidth(mContext);
         //缩放梯度
@@ -212,7 +222,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
      * 获取屏幕高
      *
      * @param context
-     *
      * @return
      */
     private int getScreenHeight(Context context) {
@@ -226,7 +235,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
      * 获取屏幕宽
      *
      * @param context
-     *
      * @return
      */
     private int getScreenWidth(Context context) {
@@ -471,6 +479,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     
     /**
      * 对焦框指示器动画
+     *
      * @param x
      * @param y
      */
@@ -505,10 +514,9 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         this.wyaCameraListener = wyaCameraListener;
     }
     
-    private ErrorListener errorListener;
-    
     /**
      * 启动Camera错误回调
+     *
      * @param errorListener
      */
     public void setErrorListener(ErrorListener errorListener) {
@@ -518,14 +526,16 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     
     /**
      * 设置CaptureButton功能（拍照和录像）
+     *
      * @param state
      */
     public void setFeatures(int state) {
-        this.mCaptureLayout.setButtonFeatures(state);
+        mCaptureLayout.setButtonFeatures(state);
     }
     
     /**
      * 设置录制质量
+     *
      * @param quality
      */
     public void setMediaQuality(int quality) {
@@ -534,6 +544,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     
     /**
      * 设置最长录制时间
+     *
      * @param duration
      */
     public void setDuration(int duration) {
@@ -566,22 +577,6 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         mFlashLamp.setVisibility(VISIBLE);
         imageFlashLight.setVisibility(VISIBLE);
         mCaptureLayout.resetCaptureLayout();
-    }
-    
-    /**
-     * 删除文件
-     *
-     * @param url
-     *
-     * @return
-     */
-    private static boolean deleteFile(String url) {
-        boolean result = false;
-        File file = new File(url);
-        if (file.exists()) {
-            result = file.delete();
-        }
-        return result;
     }
     
     @Override
@@ -717,11 +712,11 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     }
     
     public void setLeftClickListener(ClickListener clickListener) {
-        this.leftClickListener = clickListener;
+        leftClickListener = clickListener;
     }
     
     public void setRightClickListener(ClickListener clickListener) {
-        this.rightClickListener = clickListener;
+        rightClickListener = clickListener;
     }
     
     private void setFlashRes() {

@@ -6,9 +6,9 @@ import com.arialyy.aria.core.download.DownloadReceiver;
 import com.arialyy.aria.core.download.DownloadTask;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     :
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
  */
 public class FileManagerUtil {
     public final static int WAIT = 0;
@@ -21,112 +21,108 @@ public class FileManagerUtil {
     public static final int TASK_FAIL = 7;
     public static final int TASK_COMPLETE = 8;
     public static final int TASK_NO_POINT = 9;
-
+    
     private static FileManagerUtil sFileManagerUtil;
     private DownloadReceiver mDownload;
-
+    private OnDownLoaderListener mOnDownLoaderListener;
+    
     public FileManagerUtil() {
         mDownload = Aria.download(this);
         mDownload.register();
     }
-
-
-    private OnDownLoaderListener mOnDownLoaderListener;
-
-
+    
     public void register() {
         mDownload.register();
     }
-
+    
     public void unRegister() {
         mDownload.unRegister();
     }
-
+    
     public DownloadReceiver getDownloadReceiver() {
         return mDownload;
     }
-
+    
     @Download.onWait
     void onWait(DownloadTask task) {
         if (mOnDownLoaderListener != null) {
             mOnDownLoaderListener.onDownloadState(WAIT, task, null);
         }
     }
-
+    
     @Download.onPre
     void onPre(DownloadTask task) {
         if (mOnDownLoaderListener != null) {
             mOnDownLoaderListener.onDownloadState(PREVIOUS, task, null);
         }
     }
-
+    
     @Download.onTaskStart
     void taskStart(DownloadTask task) {
         if (mOnDownLoaderListener != null) {
             mOnDownLoaderListener.onDownloadState(TASK_START, task, null);
         }
     }
-
+    
     @Download.onTaskRunning
     void running(DownloadTask task) {
         if (mOnDownLoaderListener != null) {
             mOnDownLoaderListener.onDownloadState(TASK_RUNNING, task, null);
         }
     }
-
+    
     @Download.onTaskResume
     void taskResume(DownloadTask task) {
         if (mOnDownLoaderListener != null) {
             mOnDownLoaderListener.onDownloadState(TASK_RESUME, task, null);
         }
     }
-
+    
     @Download.onTaskStop
     void taskStop(DownloadTask task) {
         if (mOnDownLoaderListener != null) {
             mOnDownLoaderListener.onDownloadState(TASK_STOP, task, null);
         }
     }
-
+    
     @Download.onTaskCancel
     void taskCancel(DownloadTask task) {
         if (mOnDownLoaderListener != null) {
             mOnDownLoaderListener.onDownloadState(TASK_CANCEL, task, null);
         }
     }
-
+    
     @Download.onTaskFail
     void taskFail(DownloadTask task, Exception e) {
         if (mOnDownLoaderListener != null) {
             mOnDownLoaderListener.onDownloadState(TASK_FAIL, task, e);
         }
     }
-
+    
     @Download.onTaskComplete
     void taskComplete(DownloadTask task) {
         if (mOnDownLoaderListener != null) {
             mOnDownLoaderListener.onDownloadState(TASK_COMPLETE, task, null);
         }
     }
-
+    
     @Download.onNoSupportBreakPoint
     public void onNoSupportBreakPoint(DownloadTask task) {
         if (mOnDownLoaderListener != null) {
             mOnDownLoaderListener.onDownloadState(TASK_NO_POINT, task, null);
         }
     }
-
+    
     public OnDownLoaderListener getOnDownLoaderListener() {
         return mOnDownLoaderListener;
     }
-
+    
     public void setOnDownLoaderListener(OnDownLoaderListener onDownLoaderListener) {
         mOnDownLoaderListener = onDownLoaderListener;
     }
-
+    
     public interface OnDownLoaderListener {
         void onDownloadState(int state, DownloadTask task, Exception e);
     }
-
-
+    
 }

@@ -50,49 +50,34 @@ import static android.os.Build.VERSION_CODES.JELLY_BEAN_MR1;
 @SuppressWarnings("deprecation")
 public class CameraInterface implements Camera.PreviewCallback {
     
+    public static final int TYPE_RECORDER = 0x090;
+    public static final int TYPE_CAPTURE = 0x091;
     private static final String TAG = "MCJ";
-    
     private volatile static CameraInterface mCameraInterface;
-    
-    public static void destroyCameraInterface() {
-        if (mCameraInterface != null) {
-            mCameraInterface = null;
-        }
-    }
-    
+    int handlerTime = 0;
     private Camera mCamera;
     private Camera.Parameters mParams;
     private boolean isPreviewing = false;
-    
     private int selectedCamera = -1;
     private int cameraPostPosition = -1;
     private int cameraFrontPosition = -1;
-    
     private SurfaceHolder mHolder = null;
     private float screenProp = -1.0f;
-    
     private boolean isRecorder = false;
     private MediaRecorder mediaRecorder;
     private String videoFileName;
     private String saveVideoPath;
     private String videoFileAbsPath;
     private Bitmap videoFirstFrame = null;
-    
     private ErrorListener errorListener;
-    
     private ImageView mSwitchView;
     private ImageView mFlashLamp;
-    
     private int previewWidth;
     private int previewHeight;
-    
     private int angle = 0;
     private int cameraAngle = 90;
     private int rotation = 0;
     private byte[] firstframeData;
-    
-    public static final int TYPE_RECORDER = 0x090;
-    public static final int TYPE_CAPTURE = 0x091;
     private int nowScaleRate = 0;
     private int recordScleRate = 0;
     
@@ -105,31 +90,6 @@ public class CameraInterface implements Camera.PreviewCallback {
      */
     private int mediaQuality = WYACameraView.MEDIA_QUALITY_MIDDLE;
     private SensorManager sm = null;
-    
-    /**
-     * 获取CameraInterface单例
-     */
-    public static synchronized CameraInterface getInstance() {
-        if (mCameraInterface == null) {
-            synchronized (CameraInterface.class) {
-                if (mCameraInterface == null) {
-                    mCameraInterface = new CameraInterface();
-                }
-            }
-        }
-        return mCameraInterface;
-    }
-    
-    public void setSwitchView(ImageView mSwitchView, ImageView mFlashLamp) {
-        this.mSwitchView = mSwitchView;
-        this.mFlashLamp = mFlashLamp;
-        if (mSwitchView != null) {
-            cameraAngle = CameraParamUtil.getInstance().getCameraDisplayOrientation(mSwitchView
-                            .getContext(),
-                    selectedCamera);
-        }
-    }
-    
     private SensorEventListener sensorEventListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
@@ -145,6 +105,110 @@ public class CameraInterface implements Camera.PreviewCallback {
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
         }
     };
+    /**
+     * 拍照
+     */
+    private int nowAngle;
+    
+    private CameraInterface() {
+        findAvailableCameras();
+        selectedCamera = cameraPostPosition;
+        saveVideoPath = "";
+    }
+    
+    public static void destroyCameraInterface() {
+        if (mCameraInterface != null) {
+            mCameraInterface = null;
+        }
+    }
+    
+    /**
+     * 获取CameraInterface单例
+     */
+    public static synchronized CameraInterface getInstance() {
+        if (mCameraInterface == null) {
+            synchronized (CameraInterface.class) {
+                if (mCameraInterface == null) {
+                    mCameraInterface = new CameraInterface();
+                }
+            }
+        }
+        return mCameraInterface;
+    }
+    
+    /**
+     * 删除文件
+     *
+     * @param url
+     * @return
+     */
+    private static boolean deleteFile(String url) {
+        boolean result = false;
+        File file = new File(url);
+        if (file.exists()) {
+            result = file.delete();
+        }
+        return result;
+    }
+    
+    private static Rect calculateTapArea(float x, float y, float coefficient, Context context) {
+        float focusAreaSize = 300;
+        int areaSize = Float.valueOf(focusAreaSize * coefficient).intValue();
+        int centerX = (int) (x / getScreenWidth(context) * 2000 - 1000);
+        int centerY = (int) (y / getScreenHeight(context) * 2000 - 1000);
+        int left = clamp(centerX - areaSize / 2, -1000, 1000);
+        int top = clamp(centerY - areaSize / 2, -1000, 1000);
+        RectF rectF = new RectF(left, top, left + areaSize, top + areaSize);
+        return new Rect(Math.round(rectF.left), Math.round(rectF.top), Math.round(rectF.right),
+                Math.round(rectF
+                        .bottom));
+    }
+    
+    /**
+     * 获取屏幕高
+     *
+     * @param context
+     * @return
+     */
+    private static int getScreenHeight(Context context) {
+        DisplayMetrics metric = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metric);
+        return metric.heightPixels;
+    }
+    
+    /**
+     * 获取屏幕宽
+     *
+     * @param context
+     * @return
+     */
+    private static int getScreenWidth(Context context) {
+        DisplayMetrics metric = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metric);
+        return metric.widthPixels;
+    }
+    
+    private static int clamp(int x, int min, int max) {
+        if (x > max) {
+            return max;
+        }
+        if (x < min) {
+            return min;
+        }
+        return x;
+    }
+    
+    public void setSwitchView(ImageView mSwitchView, ImageView mFlashLamp) {
+        this.mSwitchView = mSwitchView;
+        this.mFlashLamp = mFlashLamp;
+        if (mSwitchView != null) {
+            cameraAngle = CameraParamUtil.getInstance().getCameraDisplayOrientation(mSwitchView
+                            .getContext(),
+                    selectedCamera);
+        }
+    }
     
     /**
      * 切换摄像头icon跟随手机角度进行旋转
@@ -284,7 +348,7 @@ public class CameraInterface implements Camera.PreviewCallback {
     }
     
     void setMediaQuality(int quality) {
-        this.mediaQuality = quality;
+        mediaQuality = quality;
     }
     
     @Override
@@ -301,26 +365,13 @@ public class CameraInterface implements Camera.PreviewCallback {
         mCamera.setParameters(params);
     }
     
-    public interface CameraOpenOverCallback {
-        /**
-         * cameraHasOpened
-         */
-        void cameraHasOpened();
-    }
-    
-    private CameraInterface() {
-        findAvailableCameras();
-        selectedCamera = cameraPostPosition;
-        saveVideoPath = "";
-    }
-    
     /**
      * open Camera
      */
     void doOpenCamera(CameraOpenOverCallback callback) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            if (!CheckPermission.isCameraUseable(selectedCamera) && this.errorListener != null) {
-                this.errorListener.onError();
+            if (!CheckPermission.isCameraUseable(selectedCamera) && errorListener != null) {
+                errorListener.onError();
                 return;
             }
         }
@@ -339,17 +390,17 @@ public class CameraInterface implements Camera.PreviewCallback {
     
     private synchronized void openCamera(int id) {
         try {
-            this.mCamera = Camera.open(id);
+            mCamera = Camera.open(id);
         } catch (Exception var3) {
             var3.printStackTrace();
-            if (this.errorListener != null) {
-                this.errorListener.onError();
+            if (errorListener != null) {
+                errorListener.onError();
             }
         }
-        
-        if (Build.VERSION.SDK_INT > JELLY_BEAN_MR1 && this.mCamera != null) {
+    
+        if (Build.VERSION.SDK_INT > JELLY_BEAN_MR1 && mCamera != null) {
             try {
-                this.mCamera.enableShutterSound(false);
+                mCamera.enableShutterSound(false);
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.e(TAG, "enable shutter sound fail");
@@ -365,9 +416,9 @@ public class CameraInterface implements Camera.PreviewCallback {
         }
         doDestroyCamera();
         openCamera(selectedCamera);
-        if (Build.VERSION.SDK_INT > JELLY_BEAN_MR1 && this.mCamera != null) {
+        if (Build.VERSION.SDK_INT > JELLY_BEAN_MR1 && mCamera != null) {
             try {
-                this.mCamera.enableShutterSound(false);
+                mCamera.enableShutterSound(false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -385,7 +436,7 @@ public class CameraInterface implements Camera.PreviewCallback {
         if (holder == null) {
             return;
         }
-        this.mHolder = holder;
+        mHolder = holder;
         if (mCamera != null) {
             try {
                 mParams = mCamera.getParameters();
@@ -474,11 +525,6 @@ public class CameraInterface implements Camera.PreviewCallback {
             Log.i(TAG, "=== Camera  Null===");
         }
     }
-    
-    /**
-     * 拍照
-     */
-    private int nowAngle;
     
     public void takePicture(final TakePictureCallback callback) {
         if (mCamera == null) {
@@ -640,14 +686,14 @@ public class CameraInterface implements Camera.PreviewCallback {
         } catch (IllegalStateException e) {
             e.printStackTrace();
             Log.i(TAG, "startRecord IllegalStateException");
-            if (this.errorListener != null) {
-                this.errorListener.onError();
+            if (errorListener != null) {
+                errorListener.onError();
             }
         } catch (IOException e) {
             e.printStackTrace();
             Log.i(TAG, "startRecord IOException");
-            if (this.errorListener != null) {
-                this.errorListener.onError();
+            if (errorListener != null) {
+                errorListener.onError();
             }
         } catch (RuntimeException e) {
             Log.i(TAG, "startRecord RuntimeException");
@@ -693,22 +739,6 @@ public class CameraInterface implements Camera.PreviewCallback {
         }
     }
     
-    /**
-     * 删除文件
-     *
-     * @param url
-     *
-     * @return
-     */
-    private static boolean deleteFile(String url) {
-        boolean result = false;
-        File file = new File(url);
-        if (file.exists()) {
-            result = file.delete();
-        }
-        return result;
-    }
-    
     private void findAvailableCameras() {
         Camera.CameraInfo info = new Camera.CameraInfo();
         int cameraNum = Camera.getNumberOfCameras();
@@ -726,8 +756,6 @@ public class CameraInterface implements Camera.PreviewCallback {
             }
         }
     }
-    
-    int handlerTime = 0;
     
     public void handleFocus(final Context context, final float x, final float y, final
     FocusCallback callback) {
@@ -770,59 +798,35 @@ public class CameraInterface implements Camera.PreviewCallback {
         }
     }
     
-    private static Rect calculateTapArea(float x, float y, float coefficient, Context context) {
-        float focusAreaSize = 300;
-        int areaSize = Float.valueOf(focusAreaSize * coefficient).intValue();
-        int centerX = (int) (x / getScreenWidth(context) * 2000 - 1000);
-        int centerY = (int) (y / getScreenHeight(context) * 2000 - 1000);
-        int left = clamp(centerX - areaSize / 2, -1000, 1000);
-        int top = clamp(centerY - areaSize / 2, -1000, 1000);
-        RectF rectF = new RectF(left, top, left + areaSize, top + areaSize);
-        return new Rect(Math.round(rectF.left), Math.round(rectF.top), Math.round(rectF.right),
-                Math.round(rectF
-                        .bottom));
-    }
-    
-    /**
-     * 获取屏幕高
-     *
-     * @param context
-     *
-     * @return
-     */
-    private static int getScreenHeight(Context context) {
-        DisplayMetrics metric = new DisplayMetrics();
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        wm.getDefaultDisplay().getMetrics(metric);
-        return metric.heightPixels;
-    }
-    
-    /**
-     * 获取屏幕宽
-     *
-     * @param context
-     *
-     * @return
-     */
-    private static int getScreenWidth(Context context) {
-        DisplayMetrics metric = new DisplayMetrics();
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        wm.getDefaultDisplay().getMetrics(metric);
-        return metric.widthPixels;
-    }
-    
-    private static int clamp(int x, int min, int max) {
-        if (x > max) {
-            return max;
-        }
-        if (x < min) {
-            return min;
-        }
-        return x;
-    }
-    
     void setErrorListener(ErrorListener errorListener) {
         this.errorListener = errorListener;
+    }
+    
+    void registerSensorManager(Context context) {
+        if (sm == null) {
+            sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        }
+        sm.registerListener(sensorEventListener, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager
+                        .SENSOR_DELAY_NORMAL);
+    }
+    
+    void unregisterSensorManager(Context context) {
+        if (sm == null) {
+            sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        }
+        sm.unregisterListener(sensorEventListener);
+    }
+    
+    void isPreview(boolean res) {
+        isPreviewing = res;
+    }
+    
+    public interface CameraOpenOverCallback {
+        /**
+         * cameraHasOpened
+         */
+        void cameraHasOpened();
     }
     
     public interface StopRecordCallback {
@@ -857,25 +861,5 @@ public class CameraInterface implements Camera.PreviewCallback {
          * focusSuccess
          */
         void focusSuccess();
-    }
-    
-    void registerSensorManager(Context context) {
-        if (sm == null) {
-            sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        }
-        sm.registerListener(sensorEventListener, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                SensorManager
-                        .SENSOR_DELAY_NORMAL);
-    }
-    
-    void unregisterSensorManager(Context context) {
-        if (sm == null) {
-            sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        }
-        sm.unregisterListener(sensorEventListener);
-    }
-    
-    void isPreview(boolean res) {
-        this.isPreviewing = res;
     }
 }

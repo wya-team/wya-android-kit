@@ -36,8 +36,8 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_card_icon"
-                app:leftTextColor="@color/black"
                 app:leftText="标题文字"
+                app:leftTextColor="@color/black"
                 app:lineColor="#999999"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_list_selected"
@@ -53,8 +53,8 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_card_icon"
-                app:leftTextColor="@color/black"
                 app:leftText="标题文字"
+                app:leftTextColor="@color/black"
                 app:lineColor="#999999"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
@@ -70,8 +70,8 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_card_icon"
-                app:leftTextColor="@color/black"
                 app:leftText="标题文字"
+                app:leftTextColor="@color/black"
                 app:lineColor="#f4f4f4"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
@@ -87,9 +87,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginBottom="1px"
                 android:background="@color/white"
-                android:layout_marginBottom="1px">
+                android:gravity="center">
 
 
                 <ImageView
@@ -99,7 +99,7 @@
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_marginTop="@dimen/dp_10"
                     android:background="@drawable/icon_list"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -129,23 +129,25 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_10"
                     android:text="详细信息"
                     android:textColor="@color/c999999"
-                    android:padding="@dimen/dp_10"
                     android:textSize="@dimen/sp_14" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/dp_10"
-                    android:background="@mipmap/icon_right_arrow"/>
+                    android:background="@mipmap/icon_right_arrow" />
 
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginBottom="1px"
                 android:background="@color/white"
-                android:layout_marginBottom="1px">
+                android:gravity="center">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -153,8 +155,7 @@
                     android:layout_marginBottom="@dimen/dp_10"
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:background="@drawable/icon_list"
-                    />
+                    android:background="@drawable/icon_list" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -184,15 +185,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_10"
                     android:text="详细信息"
                     android:textColor="@color/c999999"
-                    android:padding="@dimen/dp_10"
                     android:textSize="@dimen/sp_14" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/dp_10"
-                    android:background="@mipmap/icon_right_arrow"/>
+                    android:background="@mipmap/icon_right_arrow" />
 
 
             </TableRow>
@@ -213,8 +215,8 @@
                 app:contentHint=""
                 app:contentText=""
                 app:contentTextColor="@color/black"
-                app:leftTextColor="@color/black"
                 app:leftText="标题文字"
+                app:leftTextColor="@color/black"
                 app:lineColor="#999999"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
@@ -235,8 +237,8 @@
                 app:contentHint=""
                 app:contentText=""
                 app:contentTextColor="@color/black"
-                app:leftTextColor="@color/black"
                 app:leftText="单项列表"
+                app:leftTextColor="@color/black"
                 app:lineColor="#999999"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_list_selected"
@@ -251,8 +253,8 @@
                 app:contentHint=""
                 app:contentText=""
                 app:contentTextColor="@color/black"
-                app:leftTextColor="@color/black"
                 app:leftText="单项列表"
+                app:leftTextColor="@color/black"
                 app:lineColor="#f4f4f4"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_list_selected"
@@ -274,8 +276,8 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_radio_selected"
-                app:leftTextColor="@color/black"
                 app:leftText="多项选择"
+                app:leftTextColor="@color/black"
                 app:lineColor="#999999"
                 app:rightCanEdit="false"
                 app:rightText=""
@@ -290,8 +292,8 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_radio_selected"
-                app:leftTextColor="@color/black"
                 app:leftText="多项选择"
+                app:leftTextColor="@color/black"
                 app:lineColor="#f4f4f4"
                 app:rightCanEdit="false"
                 app:rightText=""
@@ -312,13 +314,13 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_subtract_enable"
-                app:leftTextColor="@color/black"
                 app:leftText="多项选择"
+                app:leftTextColor="@color/black"
                 app:lineColor="#999999"
                 app:rightCanEdit="false"
                 app:rightText=""
                 app:rightTextColor="#868686" />
-            
+
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -328,8 +330,8 @@
                 app:contentText=""
                 app:contentTextColor="@color/black"
                 app:leftImage="@drawable/icon_subtract_enable"
-                app:leftTextColor="@color/black"
                 app:leftText="多项选择"
+                app:leftTextColor="@color/black"
                 app:lineColor="#f4f4f4"
                 app:rightCanEdit="false"
                 app:rightText=""

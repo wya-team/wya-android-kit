@@ -37,6 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/clip_sure"
                 android:layout_width="wrap_content"
@@ -54,8 +55,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/clip_bottom_layout"
-            android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:background="@null"
             android:contentDescription="旋转"
             android:src="@drawable/image_ic_rotate" />
@@ -66,16 +67,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
-            android:paddingTop="16dp"
-            android:paddingBottom="20dp">
+            android:paddingBottom="20dp"
+            android:paddingTop="16dp">
 
             <ImageButton
                 android:id="@+id/ib_clip_cancel"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="40dp"
                 android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp"
                 android:background="@null"
                 android:contentDescription="取消"
                 android:src="@drawable/image_ic_cancel" />

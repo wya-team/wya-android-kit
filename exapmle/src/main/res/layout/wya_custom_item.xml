@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp">
 
 
     <com.wya.uikit.button.WYAButton
         android:id="@+id/wya_button"
-        app:backColor="#108de9"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:text="正常button"
-        app:radius="5dp"
-        android:textAlignment="center"
-        android:drawableLeft="@null"
-        android:textAllCaps="false"
         android:layout_gravity="start"
+        android:drawableLeft="@null"
+        android:text="正常button"
+        android:textAlignment="center"
+        android:textAllCaps="false"
         android:textSize="14sp"
-        app:textColorPress="#50000000"
+        app:backColor="#108de9"
         app:fillet="true"
-        app:textColor="@color/white"/>
+        app:radius="5dp"
+        app:textColor="@color/white"
+        app:textColorPress="#50000000" />
 </LinearLayout>

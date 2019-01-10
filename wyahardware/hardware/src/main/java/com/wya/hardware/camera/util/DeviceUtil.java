@@ -2,15 +2,15 @@ package com.wya.hardware.camera.util;
 
 import android.os.Build;
 
- /**
-  * @date: 2018/12/5 14:12
-  * @author: Chunjiang Mao
-  * @classname: DeviceUtil
-  * @describe:
-  */
- 
-public class DeviceUtil {
+/**
+ * @date: 2018/12/5 14:12
+ * @author: Chunjiang Mao
+ * @classname: DeviceUtil
+ * @describe:
+ */
 
+public class DeviceUtil {
+    
     private static String[] huaweiRongyao = {
             //荣耀6
             "hwH60",
@@ -27,7 +27,7 @@ public class DeviceUtil {
             //x1
             "hwChe2",
     };
-
+    
     public static String getDeviceInfo() {
         String handSetInfo =
                 "手机型号：" + Build.DEVICE +
@@ -35,11 +35,11 @@ public class DeviceUtil {
                         "\nSDK版本：" + Build.VERSION.SDK_INT;
         return handSetInfo;
     }
-
+    
     public static String getDeviceModel() {
         return Build.DEVICE;
     }
-
+    
     public static boolean isHuaWeiRongyao() {
         int length = huaweiRongyao.length;
         for (int i = 0; i < length; i++) {

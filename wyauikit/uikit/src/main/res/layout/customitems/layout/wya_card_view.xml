@@ -15,53 +15,53 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_wya_card_view_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="标题"
             android:layout_weight="1"
             android:padding="10dp"
-            android:textSize="14sp"
-            android:textColor="#000000"/>
+            android:text="标题"
+            android:textColor="#000000"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_wya_card_view_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="右文本"
             android:padding="10dp"
-            android:textSize="14sp"
-            android:textColor="#000000"/>
+            android:text="右文本"
+            android:textColor="#000000"
+            android:textSize="14sp" />
 
     </TableRow>
 
     <View
         android:layout_width="wrap_content"
         android:layout_height="1px"
-        android:background="#eeeeee"
-        android:layout_marginLeft="10dp"></View>
+        android:layout_marginLeft="10dp"
+        android:background="#eeeeee"></View>
 
     <TextView
         android:id="@+id/tv_wya_card_view_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本"
         android:padding="10dp"
-        android:textSize="14sp"
-        android:textColor="#000000"/>
+        android:text="内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本"
+        android:textColor="#000000"
+        android:textSize="14sp" />
 
 
     <TextView
         android:id="@+id/tv_wya_card_view_assist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="辅助说明"
         android:padding="10dp"
-        android:textSize="14sp"
-        android:textColor="#666666"/>
+        android:text="辅助说明"
+        android:textColor="#666666"
+        android:textSize="14sp" />
 
 </LinearLayout>

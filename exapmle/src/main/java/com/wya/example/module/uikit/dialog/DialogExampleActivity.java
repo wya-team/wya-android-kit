@@ -51,33 +51,28 @@ import butterknife.BindView;
 
 public class DialogExampleActivity extends BaseActivity {
     
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
+
     @BindView(R.id.expend_list)
     CustomerExpandableListView expendList;
     @BindView(R.id.tab_loading)
     LinearLayout tabLoading;
-    
     private List<Item> mDatas;
     private DialogExpandableListAdapter adapter;
     private List<String> data = new ArrayList<>();
-    
     private List<ShareItem> shareItems = new ArrayList<>();
     private String[] shareName = {"新浪微博", "微信好友", "生活圈", "QQ", "字号", "刷新", "复制链接", "投诉"};
     private int[] image = {R.drawable.icon_weibo, R.drawable.icon_weixin, R.drawable.icon_pengyouquan, R.drawable.icon_qq, R.drawable.icon_font, R.drawable.icon_refresh, R.drawable.icon_link, R.drawable.icon_complain};
-    
     private DialogListAdapter dialogListAdapter;
-    
     private WYACustomDialog wyaCustomDialog;
     private WYALoadingDialog wyaLoadingDialog;
     private int type;
     private ImageView loading;
     private ImageView loading2;
     private ImageView loading3;
-    
     private int listSize = 50;
-    
-    static {
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-    }
     
     @Override
     protected int getLayoutId() {

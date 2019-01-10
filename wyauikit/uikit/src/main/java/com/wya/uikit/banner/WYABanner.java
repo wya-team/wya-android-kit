@@ -23,16 +23,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     : banner
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description : banner
  */
 public class WYABanner<T> extends RelativeLayout {
+    private static final int BANNER_ALL = 100;
+    private static String TAG = "WYABanner";
     private Context mContext;
     private ViewPager mViewPager;
     private WYAPaginationDot mDot;
     private int num;
-    private static final int BANNER_ALL = 100;
     private List<T> mData = new ArrayList<>();
     private int mBannerPosition;
     private long updateTime = 2000;
@@ -40,41 +41,39 @@ public class WYABanner<T> extends RelativeLayout {
     private boolean auto = true;
     private int itemId = R.layout.banner_default_item;
     private BaseBannerAdapter<T> mBaseBannerAdapter;
-    private static String TAG = "WYABanner";
-
+    
     public WYABanner(Context context) {
         this(context, null);
     }
-
+    
     public WYABanner(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
-
+    
     public WYABanner(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         setGravity(Gravity.BOTTOM);
         init();
     }
-
-
+    
     /**
      * init dotView
      */
     private void init() {
         mUpdateRun = new UpdateRun(this);
-
+    
         mDot = new WYAPaginationDot(mContext, null);
         mDot.setPadding(0, 0, 0, (int) dp2px(5));
-
+    
         LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-
+    
         addView(mDot, -1, layoutParams);
         initViewpager();
     }
-
+    
     /**
      * auto player circle
      */
@@ -84,13 +83,12 @@ public class WYABanner<T> extends RelativeLayout {
             postDelayed(mUpdateRun, updateTime);
         }
     }
-
-
+    
     /**
      * auto play and change viewPager's item
      */
     private void autoChange() {
-
+    
         mBannerPosition = mBannerPosition + 1;
         Log.i(TAG, "autoChange: " + mBannerPosition);
         if (mBannerPosition != BANNER_ALL - 1) {
@@ -99,27 +97,7 @@ public class WYABanner<T> extends RelativeLayout {
             mViewPager.setCurrentItem(num - 1, false);
         }
     }
-
-
-    private class UpdateRun implements Runnable {
-        private WeakReference<WYABanner> mBannerWeakReference;
-
-        public UpdateRun(WYABanner wyaBanner) {
-            mBannerWeakReference = new WeakReference<>(wyaBanner);
-        }
-
-        @Override
-        public void run() {
-            WYABanner wyaBanner = mBannerWeakReference.get();
-
-            if (wyaBanner != null) {
-                autoChange();
-                wyaBanner.startAutoPlay();
-            }
-        }
-    }
-
-
+    
     /**
      * intercept the event to start and stop
      *
@@ -143,7 +121,7 @@ public class WYABanner<T> extends RelativeLayout {
         }
         return super.dispatchTouchEvent(ev);
     }
-
+    
     /**
      * init viewpager
      */
@@ -156,27 +134,137 @@ public class WYABanner<T> extends RelativeLayout {
         BannerPagerAdapter bannerPagerAdapter = new BannerPagerAdapter();
         mViewPager.setAdapter(bannerPagerAdapter);
         mViewPager.addOnPageChangeListener(bannerPagerAdapter);
-
-
+    
     }
-
-
+    
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        
+        if (heightMode == MeasureSpec.AT_MOST) {
+            heightSize = widthSize / 2;
+        }
+        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(heightSize, heightMode));
+    }
+    
+    /**
+     * dp2px
+     *
+     * @param dp dp
+     * @return px
+     */
+    
+    private float dp2px(int dp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources()
+                .getDisplayMetrics());
+    }
+    
+    public WYABanner setUpdateTime(long updateTime) {
+        this.updateTime = updateTime;
+        return this;
+    }
+    
+    /**
+     * cancel auto play
+     */
+    public void cancelAutoPlay() {
+        if (mUpdateRun != null) {
+            removeCallbacks(mUpdateRun);
+        }
+    }
+    
+    public WYABanner setDotVisible(boolean isVisible) {
+        mDot.setVisibility(isVisible ? VISIBLE : INVISIBLE);
+        return this;
+    }
+    
+    public WYABanner autoPlay(boolean isAuto) {
+        auto = isAuto;
+        return this;
+    }
+    
+    public WYABanner setDotBackgroundResource(@DrawableRes int source) {
+        mDot.setDotBackgroundResource(source);
+        return this;
+    }
+    
+    public WYABanner setDotDark() {
+        mDot.setDarkDefault();
+        return this;
+    }
+    
+    /**
+     * scale style
+     *
+     * @param pageMargin  viewpager item margin
+     * @param leftMargin  viewpager marginLeft
+     * @param rightMargin viewpager marginRight
+     * @return banner
+     */
+    public WYABanner setScale(int pageMargin, int leftMargin, int rightMargin) {
+    
+        setClipChildren(false);
+        mViewPager.setClipChildren(false);
+        mViewPager.setPageMargin(pageMargin);
+        mViewPager.setClipChildren(false);
+        mViewPager.setPageTransformer(true, new ScaleInTransformer());
+        LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup
+                .LayoutParams.MATCH_PARENT);
+        layoutParams.leftMargin = leftMargin;
+        layoutParams.rightMargin = rightMargin;
+        mViewPager.setLayoutParams(layoutParams);
+        invalidate();
+        return this;
+    }
+    
+    public void setAdapter(BaseBannerAdapter<T> baseBannerAdapter) {
+        mBaseBannerAdapter = baseBannerAdapter;
+        mData = mBaseBannerAdapter.getData();
+        itemId = mBaseBannerAdapter.getLayoutId();
+        num = mData.size();
+        mDot.setPointNumber(num);
+        
+        startAutoPlay();
+    }
+    
+    private class UpdateRun implements Runnable {
+        private WeakReference<WYABanner> mBannerWeakReference;
+        
+        public UpdateRun(WYABanner wyaBanner) {
+            mBannerWeakReference = new WeakReference<>(wyaBanner);
+        }
+        
+        @Override
+        public void run() {
+            WYABanner wyaBanner = mBannerWeakReference.get();
+            
+            if (wyaBanner != null) {
+                autoChange();
+                wyaBanner.startAutoPlay();
+            }
+        }
+    }
+    
     /**
      * banner adapter
      */
     private class BannerPagerAdapter extends PagerAdapter implements ViewPager
             .OnPageChangeListener {
-
+        
         @Override
         public int getCount() {
             return BANNER_ALL;
         }
-
+        
         @Override
         public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
             return view == o;
         }
-
+        
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
@@ -188,13 +276,13 @@ public class WYABanner<T> extends RelativeLayout {
             mBaseBannerAdapter.convert(view, position, mData.get(position));
             return view;
         }
-
+        
         @Override
         public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object
                 object) {
             container.removeView((View) object);
         }
-
+        
         @Override
         public void finishUpdate(@NonNull ViewGroup container) {
             int position = mViewPager.getCurrentItem();
@@ -208,12 +296,12 @@ public class WYABanner<T> extends RelativeLayout {
             }
             Log.i(TAG, "after: " + position);
         }
-
+        
         @Override
         public void onPageScrolled(int i, float v, int i1) {
-
+        
         }
-
+        
         @Override
         public void onPageSelected(int position) {
             Log.i(TAG, "onPageSelected: " + position);
@@ -221,112 +309,11 @@ public class WYABanner<T> extends RelativeLayout {
             position %= num;
             mDot.setCurrentItem(position);
         }
-
+        
         @Override
         public void onPageScrollStateChanged(int i) {
-
+        
         }
     }
-
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
-        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-
-        if (heightMode == MeasureSpec.AT_MOST) {
-            heightSize = widthSize / 2;
-        }
-        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(heightSize, heightMode));
-    }
-
-
-    /**
-     * dp2px
-     *
-     * @param dp dp
-     * @return px
-     */
-
-    private float dp2px(int dp) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources()
-                .getDisplayMetrics());
-    }
-
-
-
-    public WYABanner setUpdateTime(long updateTime) {
-        this.updateTime = updateTime;
-        return this;
-    }
-
-
-    /**
-     * cancel auto play
-     */
-    public void cancelAutoPlay() {
-        if (mUpdateRun != null) {
-            removeCallbacks(mUpdateRun);
-        }
-    }
-
-    public WYABanner setDotVisible(boolean isVisible) {
-        mDot.setVisibility(isVisible ? VISIBLE : INVISIBLE);
-        return this;
-    }
-
-
-    public WYABanner autoPlay(boolean isAuto) {
-        this.auto = isAuto;
-        return this;
-    }
-
-    public WYABanner setDotBackgroundResource(@DrawableRes int source) {
-        mDot.setDotBackgroundResource(source);
-        return this;
-    }
-
-    public WYABanner setDotDark() {
-        mDot.setDarkDefault();
-        return this;
-    }
-
-    /**
-     * scale style
-     * @param pageMargin viewpager item margin
-     * @param leftMargin viewpager marginLeft
-     * @param rightMargin viewpager marginRight
-     * @return banner
-     */
-    public WYABanner setScale(int pageMargin, int leftMargin, int rightMargin) {
-
-        setClipChildren(false);
-        mViewPager.setClipChildren(false);
-        mViewPager.setPageMargin(pageMargin);
-        mViewPager.setClipChildren(false);
-        mViewPager.setPageTransformer(true, new ScaleInTransformer());
-        LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup
-                .LayoutParams.MATCH_PARENT);
-        layoutParams.leftMargin =  leftMargin;
-        layoutParams.rightMargin = rightMargin;
-        mViewPager.setLayoutParams(layoutParams);
-        invalidate();
-        return this;
-    }
-
-
-    public void setAdapter(BaseBannerAdapter<T> baseBannerAdapter) {
-        mBaseBannerAdapter = baseBannerAdapter;
-        mData = mBaseBannerAdapter.getData();
-        itemId = mBaseBannerAdapter.getLayoutId();
-        num = mData.size();
-        mDot.setPointNumber(num);
-
-        startAutoPlay();
-    }
-
-
+    
 }

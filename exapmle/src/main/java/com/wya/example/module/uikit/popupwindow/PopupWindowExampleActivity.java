@@ -22,23 +22,23 @@ import com.wya.utils.utils.ScreenUtil;
 import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
- /**
-  * @date: 2019/1/8 9:56
-  * @author: Chunjiang Mao
-  * @classname: PopupWindowExampleActivity
-  * @describe: PopupWindowExampleActivity
-  */
- 
-public class PopupWindowExampleActivity extends BaseActivity {
 
+/**
+ * @date: 2019/1/8 9:56
+ * @author: Chunjiang Mao
+ * @classname: PopupWindowExampleActivity
+ * @describe: PopupWindowExampleActivity
+ */
+
+public class PopupWindowExampleActivity extends BaseActivity {
+    
+    public static final int REQUEST_CODE_SCAN = 0X01;
+    public final int REQUEST_CAMERA = 111;
     @BindView(R.id.tv_result)
     TextView tvResult;
     private WYAPopupWindow wyaPopupWindow;
-
     private String url;
-    public static final int REQUEST_CODE_SCAN = 0X01;
-    public final int REQUEST_CAMERA = 111;
-
+    
     @Override
     protected void initView() {
         StatusBarUtil.setLightMode(this);
@@ -48,7 +48,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
         setSecondRightIcon(R.drawable.icon_help);
         setPopupWindow();
     }
-
+    
     private void setPopupWindow() {
         setRightSecondIconClickListener(view -> wyaPopupWindow.show(view, -100, 0));
         wyaPopupWindow = new WYAPopupWindow.Builder(PopupWindowExampleActivity.this).setLayoutRes(R.layout.popopwindow_custom_list, v -> {
@@ -66,7 +66,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
             tabHelp.setOnClickListener(v12 -> startActivity(new Intent(PopupWindowExampleActivity.this, ReadmeActivity.class).putExtra("url", url)));
         }).build();
     }
-
+    
     /**
      * 点击显示联系人按钮相应
      * <p>
@@ -85,13 +85,13 @@ public class PopupWindowExampleActivity extends BaseActivity {
             startScan();
         }
     }
-
+    
     private void startScan() {
         wyaPopupWindow.dismiss();
         Intent intent = new Intent(this, CustomCaptureActivity.class);
         startActivityForResult(intent, REQUEST_CODE_SCAN);
     }
-
+    
     /**
      * 申请相机权限
      */
@@ -118,7 +118,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
                     REQUEST_CAMERA);
         }
     }
-
+    
     @TargetApi(23)
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -149,7 +149,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
             }
         }
     }
-
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -162,13 +162,13 @@ public class PopupWindowExampleActivity extends BaseActivity {
                 default:
                     break;
             }
-
+            
         }
     }
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_popup_window_example;
     }
-
+    
 }

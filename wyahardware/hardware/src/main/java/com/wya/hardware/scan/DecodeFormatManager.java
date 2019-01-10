@@ -15,7 +15,6 @@ package com.wya.hardware.scan;
  * limitations under the License.
  */
 
-
 import android.content.Intent;
 import android.net.Uri;
 
@@ -30,9 +29,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 public final class DecodeFormatManager {
-
-    private static final Pattern COMMA_PATTERN = Pattern.compile(",");
-
+    
     public static final Set<BarcodeFormat> PRODUCT_FORMATS;
     public static final Set<BarcodeFormat> INDUSTRIAL_FORMATS;
     public static final Set<BarcodeFormat> ONE_D_FORMATS;
@@ -40,6 +37,9 @@ public final class DecodeFormatManager {
     public static final Set<BarcodeFormat> DATA_MATRIX_FORMATS = EnumSet.of(BarcodeFormat.DATA_MATRIX);
     public static final Set<BarcodeFormat> AZTEC_FORMATS = EnumSet.of(BarcodeFormat.AZTEC);
     public static final Set<BarcodeFormat> PDF417_FORMATS = EnumSet.of(BarcodeFormat.PDF_417);
+    private static final Pattern COMMA_PATTERN = Pattern.compile(",");
+    private static final Map<String, Set<BarcodeFormat>> FORMATS_FOR_MODE;
+    
     static {
         PRODUCT_FORMATS = EnumSet.of(BarcodeFormat.UPC_A,
                 BarcodeFormat.UPC_E,
@@ -55,7 +55,7 @@ public final class DecodeFormatManager {
         ONE_D_FORMATS = EnumSet.copyOf(PRODUCT_FORMATS);
         ONE_D_FORMATS.addAll(INDUSTRIAL_FORMATS);
     }
-    private static final Map<String,Set<BarcodeFormat>> FORMATS_FOR_MODE;
+    
     static {
         FORMATS_FOR_MODE = new HashMap<>();
         FORMATS_FOR_MODE.put(Intents.Scan.ONE_D_MODE, ONE_D_FORMATS);
@@ -65,9 +65,10 @@ public final class DecodeFormatManager {
         FORMATS_FOR_MODE.put(Intents.Scan.AZTEC_MODE, AZTEC_FORMATS);
         FORMATS_FOR_MODE.put(Intents.Scan.PDF417_MODE, PDF417_FORMATS);
     }
-
-    private DecodeFormatManager() {}
-
+    
+    private DecodeFormatManager() {
+    }
+    
     static Set<BarcodeFormat> parseDecodeFormats(Intent intent) {
         Iterable<String> scanFormats = null;
         CharSequence scanFormatsString = intent.getStringExtra(Intents.Scan.FORMATS);
@@ -76,7 +77,7 @@ public final class DecodeFormatManager {
         }
         return parseDecodeFormats(scanFormats, intent.getStringExtra(Intents.Scan.MODE));
     }
-
+    
     static Set<BarcodeFormat> parseDecodeFormats(Uri inputUri) {
         List<String> formats = inputUri.getQueryParameters(Intents.Scan.FORMATS);
         if (formats != null && formats.size() == 1 && formats.get(0) != null) {
@@ -84,7 +85,7 @@ public final class DecodeFormatManager {
         }
         return parseDecodeFormats(formats, inputUri.getQueryParameter(Intents.Scan.MODE));
     }
-
+    
     private static Set<BarcodeFormat> parseDecodeFormats(Iterable<String> scanFormats, String decodeMode) {
         if (scanFormats != null) {
             Set<BarcodeFormat> formats = EnumSet.noneOf(BarcodeFormat.class);
@@ -102,5 +103,5 @@ public final class DecodeFormatManager {
         }
         return null;
     }
-
+    
 }

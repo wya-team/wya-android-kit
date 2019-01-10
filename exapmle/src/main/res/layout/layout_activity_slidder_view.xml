@@ -27,12 +27,12 @@
         <com.wya.uikit.slidder.WYASlidderView
             style="@style/style_slidder"
             app:slidderDrawable="@drawable/slidder_red_drawable"
+            app:slidderMode="single"
             app:slidderProgressForegroundColor="@color/slidder_foregraound_red_color"
             app:slidderProgressMax="1"
             app:slidderProgressMin="0"
             app:slidderRegionMode="mode_float"
-            app:slidderRegionPadding="@dimen/dp_5"
-            app:slidderMode="single" />
+            app:slidderRegionPadding="@dimen/dp_5" />
 
     </LinearLayout>
 
@@ -45,12 +45,12 @@
         <com.wya.uikit.slidder.WYASlidderView
             style="@style/style_slidder"
             app:slidderDrawable="@drawable/slidder_red_drawable"
+            app:slidderMode="range"
             app:slidderProgressForegroundColor="@color/slidder_foregraound_red_color"
             app:slidderProgressMax="100"
             app:slidderProgressMin="0"
             app:slidderRegionMode="mode_integer"
-            app:slidderRegionPadding="@dimen/dp_10"
-            app:slidderMode="range" />
+            app:slidderRegionPadding="@dimen/dp_10" />
 
     </LinearLayout>
 

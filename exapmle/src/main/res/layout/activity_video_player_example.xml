@@ -3,25 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:background="@color/f4f4f4"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context="com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity">
 
     <com.wya.hardware.videoplayer.WYAVideoView
         android:id="@+id/video_player"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#888">
-    </com.wya.hardware.videoplayer.WYAVideoView>
+        android:background="#888"></com.wya.hardware.videoplayer.WYAVideoView>
 
     <TextView
-        android:text="WYAVideoPlayer视频地址：http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh.yinyuetai.com/4599015ED06F94848EBF877EAAE13886.mp4"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="12dp"
-        android:textSize="12sp"
+        android:text="WYAVideoPlayer视频地址：http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh.yinyuetai.com/4599015ED06F94848EBF877EAAE13886.mp4"
         android:textColor="@color/black"
-        android:layout_height="wrap_content" />
+        android:textSize="12sp" />
 
     <ImageButton
         android:id="@+id/download_file"

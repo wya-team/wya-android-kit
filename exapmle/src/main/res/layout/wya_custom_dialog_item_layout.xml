@@ -7,10 +7,10 @@
         android:id="@+id/tv_grid_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
         android:gravity="center"
+        android:padding="12dp"
         android:textColor="@drawable/btn_c00bfff_click_color"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
 
 </LinearLayout>

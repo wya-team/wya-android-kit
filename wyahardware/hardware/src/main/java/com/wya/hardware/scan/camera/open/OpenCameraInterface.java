@@ -16,7 +16,6 @@ package com.wya.hardware.scan.camera.open;
  * limitations under the License.
  */
 
-
 import android.hardware.Camera;
 import android.util.Log;
 
@@ -25,17 +24,16 @@ import android.util.Log;
  */
 @SuppressWarnings("deprecation")
 public final class OpenCameraInterface {
-
-    private static final String TAG = OpenCameraInterface.class.getName();
-
+    
     /**
      * For {@link #open(int)}, means no preference for which camera to open.
      */
     public static final int NO_REQUESTED_CAMERA = -1;
-
+    private static final String TAG = OpenCameraInterface.class.getName();
+    
     private OpenCameraInterface() {
     }
-
+    
     /**
      * Opens the requested camera with {@link Camera#open(int)}, if one exists.
      *
@@ -45,7 +43,7 @@ public final class OpenCameraInterface {
      * @return handle to {@link OpenCamera} that was opened
      */
     public static OpenCamera open(int cameraId) {
-
+    
         int numCameras = Camera.getNumberOfCameras();
         if (numCameras == 0) {
             Log.w(TAG, "No cameras!");
@@ -55,7 +53,7 @@ public final class OpenCameraInterface {
             Log.w(TAG, "Requested camera does not exist: " + cameraId);
             return null;
         }
-
+    
         if (cameraId <= NO_REQUESTED_CAMERA) {
             cameraId = 0;
             while (cameraId < numCameras) {
@@ -71,7 +69,7 @@ public final class OpenCameraInterface {
                 cameraId = 0;
             }
         }
-
+    
         Log.i(TAG, "Opening camera #" + cameraId);
         Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
         Camera.getCameraInfo(cameraId, cameraInfo);
@@ -84,5 +82,5 @@ public final class OpenCameraInterface {
                 CameraFacing.values()[cameraInfo.facing],
                 cameraInfo.orientation);
     }
-
+    
 }

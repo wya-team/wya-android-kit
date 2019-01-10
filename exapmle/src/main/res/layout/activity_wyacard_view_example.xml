@@ -46,9 +46,9 @@
                 app:assistTextColor="@color/blue"
                 app:backColor="#999999"
                 app:contentTextColor="@color/green"
+                app:radius="5dp"
                 app:rightTextColor="@color/red"
-                app:titleTextColor="#ffffff"
-                app:radius="5dp"></com.wya.uikit.customitems.WYACardView>
+                app:titleTextColor="#ffffff"></com.wya.uikit.customitems.WYACardView>
 
         </LinearLayout>
 

@@ -10,11 +10,15 @@ import android.widget.TextView;
 import com.wya.example.R;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     :
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
  */
 public class ItemFragment extends Fragment {
+    
+    public ItemFragment() {
+        // Required empty public constructor
+    }
     
     public static ItemFragment newInstance(int position) {
         Bundle args = new Bundle();
@@ -22,10 +26,6 @@ public class ItemFragment extends Fragment {
         ItemFragment fragment = new ItemFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-    
-    public ItemFragment() {
-        // Required empty public constructor
     }
     
     @Override

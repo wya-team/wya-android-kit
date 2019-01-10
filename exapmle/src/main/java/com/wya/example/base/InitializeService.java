@@ -16,6 +16,12 @@ public class InitializeService extends IntentService {
         super("InitializeService");
     }
     
+    public static void start(Context context) {
+        Intent intent = new Intent(context, InitializeService.class);
+        intent.setAction(ACTION_APP_CREATE);
+        context.startService(intent);
+    }
+    
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         if (intent != null) {
@@ -28,12 +34,6 @@ public class InitializeService extends IntentService {
     
     private void performInit() {
     
-    }
-    
-    public static void start(Context context) {
-        Intent intent = new Intent(context, InitializeService.class);
-        intent.setAction(ACTION_APP_CREATE);
-        context.startService(intent);
     }
     
 }

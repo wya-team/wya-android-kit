@@ -1,29 +1,28 @@
 package com.wya.uikit.pickerview.wheelview.timer;
 
-
 import com.wya.uikit.pickerview.wheelview.view.WheelView;
 
 import java.util.TimerTask;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     : 平滑滚动实现
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description : 平滑滚动实现
  */
 public final class SmoothScrollTimerTask extends TimerTask {
-
+    
+    private final WheelView wheelView;
     private int realTotalOffset;
     private int realOffset;
     private int offset;
-    private final WheelView wheelView;
-
+    
     public SmoothScrollTimerTask(WheelView wheelView, int offset) {
         this.wheelView = wheelView;
         this.offset = offset;
         realTotalOffset = Integer.MAX_VALUE;
         realOffset = 0;
     }
-
+    
     @Override
     public final void run() {
         if (realTotalOffset == Integer.MAX_VALUE) {
@@ -31,7 +30,7 @@ public final class SmoothScrollTimerTask extends TimerTask {
         }
         //把要滚动的范围细分成10小份，按10小份单位来重绘
         realOffset = (int) ((float) realTotalOffset * 0.1F);
-
+        
         if (realOffset == 0) {
             if (realTotalOffset < 0) {
                 realOffset = -1;
@@ -39,13 +38,13 @@ public final class SmoothScrollTimerTask extends TimerTask {
                 realOffset = 1;
             }
         }
-
+        
         if (Math.abs(realTotalOffset) <= 1) {
             wheelView.cancelFuture();
             wheelView.getHandler().sendEmptyMessage(MessageHandler.WHAT_ITEM_SELECTED);
         } else {
             wheelView.setTotalScrollY(wheelView.getTotalScrollY() + realOffset);
-
+            
             //这里如果不是循环模式，则点击空白位置需要回滚，不然就会出现选到－1 item的 情况
             if (!wheelView.isLoop()) {
                 float itemHeight = wheelView.getItemHeight();

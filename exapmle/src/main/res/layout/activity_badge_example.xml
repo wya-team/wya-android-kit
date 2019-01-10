@@ -23,9 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="@dimen/dp_6"
+            android:paddingBottom="@dimen/dp_6"
             android:paddingRight="@dimen/dp_6"
-            android:paddingBottom="@dimen/dp_6">
+            android:paddingTop="@dimen/dp_6">
 
             <View
                 android:id="@+id/v_img"
@@ -53,8 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/dp_6"
-            android:drawableRight="@drawable/icon_right_arrow"
             android:drawablePadding="@dimen/dp_6"
+            android:drawableRight="@drawable/icon_right_arrow"
             android:gravity="right"
             android:text="extra"
             android:textColor="#A4A4A4"
@@ -70,9 +70,9 @@
         android:background="@drawable/bottom_line_grey"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:paddingBottom="@dimen/dp_6"
         android:paddingLeft="@dimen/dp_6"
-        android:paddingTop="@dimen/dp_6"
-        android:paddingBottom="@dimen/dp_6">
+        android:paddingTop="@dimen/dp_6">
 
         <View
             android:layout_width="@dimen/dp_30"
@@ -112,8 +112,8 @@
         android:background="@drawable/bottom_line_grey"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/dp_6"
-        android:paddingBottom="@dimen/dp_6">
+        android:paddingBottom="@dimen/dp_6"
+        android:paddingTop="@dimen/dp_6">
 
         <TextView
             android:layout_width="wrap_content"
@@ -148,8 +148,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/dp_6"
-            android:drawableRight="@drawable/icon_right_arrow"
             android:drawablePadding="@dimen/dp_6"
+            android:drawableRight="@drawable/icon_right_arrow"
             android:gravity="right"
             android:text="extra"
             android:textColor="#A4A4A4"
@@ -163,8 +163,8 @@
         android:background="@drawable/bottom_line_grey"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/dp_6"
-        android:paddingBottom="@dimen/dp_6">
+        android:paddingBottom="@dimen/dp_6"
+        android:paddingTop="@dimen/dp_6">
 
         <LinearLayout
             android:id="@+id/ll_badge_dot"
@@ -258,8 +258,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/dp_6"
-            android:drawableRight="@drawable/icon_right_arrow"
             android:drawablePadding="@dimen/dp_6"
+            android:drawableRight="@drawable/icon_right_arrow"
             android:gravity="right"
             android:text="extra"
             android:textColor="#A4A4A4"
@@ -274,8 +274,8 @@
         android:background="@drawable/bottom_line_grey"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/dp_6"
-        android:paddingBottom="@dimen/dp_6">
+        android:paddingBottom="@dimen/dp_6"
+        android:paddingTop="@dimen/dp_6">
 
         <TextView
             android:layout_width="0dp"
@@ -298,8 +298,8 @@
         android:background="@drawable/bottom_line_grey"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/dp_6"
-        android:paddingBottom="@dimen/dp_6">
+        android:paddingBottom="@dimen/dp_6"
+        android:paddingTop="@dimen/dp_6">
 
         <TextView
             android:id="@+id/tv_corner_dot"
@@ -323,8 +323,8 @@
         android:background="@drawable/bottom_line_grey"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/dp_6"
-        android:paddingBottom="@dimen/dp_6">
+        android:paddingBottom="@dimen/dp_6"
+        android:paddingTop="@dimen/dp_6">
 
         <TextView
             android:layout_width="wrap_content"

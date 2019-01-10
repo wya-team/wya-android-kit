@@ -58,7 +58,7 @@ public class FileDownFragment extends Fragment {
     private FileManagerUtil mFileManagerUtil;
     private long lastClickTime;
     private IRomUpdateCallback mCallback;
-
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class FileDownFragment extends Fragment {
         unbinder = ButterKnife.bind(this, mView);
         return mView;
     }
-
+    
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -75,7 +75,7 @@ public class FileDownFragment extends Fragment {
         initDown();
         initView();
     }
-
+    
     private void initDown() {
         mFileManagerUtil = new FileManagerUtil();
         mFileManagerUtil.setOnDownLoaderListener(new FileManagerUtil.OnDownLoaderListener() {
@@ -110,15 +110,15 @@ public class FileDownFragment extends Fragment {
                         }
                     }
                 }
-
+    
             }
         });
     }
-
+    
     private void initView() {
         List<DownloadEntity> allNotCompleteTask = mFileManagerUtil.getDownloadReceiver()
                 .getAllNotCompletTask();
-
+        
         mData.clear();
         if (allNotCompleteTask != null) {
             mData.addAll(allNotCompleteTask);
@@ -157,7 +157,7 @@ public class FileDownFragment extends Fragment {
                         .setProgress(R.id.progress, (int) (item.getCurrentProgress() * 100 / item
                                 .getFileSize()))
                         .setText(R.id.file_capacity, item.getConvertFileSize());
-
+    
                 ImageView imageView = helper.getView(R.id.down_file_image);
                 RequestOptions requestOptions = new RequestOptions()
                         .placeholder(R.color.dddddd)
@@ -188,14 +188,14 @@ public class FileDownFragment extends Fragment {
             }
         });
     }
-
+    
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         mFileManagerUtil.unRegister();
         unbinder.unbind();
     }
-
+    
     private String convertSpeed(long speed) {
         if (speed < LENGTH) {
             return speed + "b/s";
@@ -207,7 +207,7 @@ public class FileDownFragment extends Fragment {
         DecimalFormat df = new DecimalFormat(".00");
         return df.format(s) + "mb/s";
     }
-
+    
     public boolean isFastClick() {
         boolean flag = true;
         long currentClickTime = System.currentTimeMillis();

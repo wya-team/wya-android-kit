@@ -21,40 +21,41 @@ import com.wya.uikit.R;
  */
 
 public class WYALoadingDialog extends Dialog {
-   private View view;
-   private final AnimationDrawable animationDrawable;
-   private ColorDrawable colorDrawable;
-   private ImageView imgLoad;
-   private  TextView hintText;
-   @SuppressLint("ResourceType")
-   public WYALoadingDialog(Context activity, boolean canceledOnTouch, boolean cancelable) {
-       super(activity);
-       getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-       view = View.inflate(activity, R.layout.wya_dialog_loading, null);
-       setContentView(view);
-       colorDrawable = new ColorDrawable(0x00000000);
-       getWindow().setBackgroundDrawable(colorDrawable);
-       imgLoad = view.findViewById(R.id.img_load);
-       hintText = view.findViewById(R.id.hintTv);
-       animationDrawable = (AnimationDrawable) imgLoad.getBackground();
-       getWindow().setDimAmount(0);
-       //取消dialog空白处点击消失事件
-       this.setCanceledOnTouchOutside(canceledOnTouch);
-       setCancelable(cancelable);
-   }
-
-   @Override
-   protected void onCreate(Bundle savedInstanceState) {
-       super.onCreate(savedInstanceState);
-       animationDrawable.start();
-   }
-
-   public void setText(String text){
-       if(text != null && !"".equals(text)){
-           hintText.setText(text);
-           hintText.setVisibility(View.VISIBLE);
-       } else {
-           hintText.setVisibility(View.GONE);
-       }
-   }
+    private final AnimationDrawable animationDrawable;
+    private View view;
+    private ColorDrawable colorDrawable;
+    private ImageView imgLoad;
+    private TextView hintText;
+    
+    @SuppressLint("ResourceType")
+    public WYALoadingDialog(Context activity, boolean canceledOnTouch, boolean cancelable) {
+        super(activity);
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        view = View.inflate(activity, R.layout.wya_dialog_loading, null);
+        setContentView(view);
+        colorDrawable = new ColorDrawable(0x00000000);
+        getWindow().setBackgroundDrawable(colorDrawable);
+        imgLoad = view.findViewById(R.id.img_load);
+        hintText = view.findViewById(R.id.hintTv);
+        animationDrawable = (AnimationDrawable) imgLoad.getBackground();
+        getWindow().setDimAmount(0);
+        //取消dialog空白处点击消失事件
+        this.setCanceledOnTouchOutside(canceledOnTouch);
+        setCancelable(cancelable);
+    }
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        animationDrawable.start();
+    }
+    
+    public void setText(String text) {
+        if (text != null && !"".equals(text)) {
+            hintText.setText(text);
+            hintText.setVisibility(View.VISIBLE);
+        } else {
+            hintText.setVisibility(View.GONE);
+        }
+    }
 }

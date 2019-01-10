@@ -30,7 +30,8 @@ import butterknife.OnClick;
  * @description :
  */
 public class QRCodeExampleActivity extends BaseActivity {
-
+    
+    public static final String TAG = "QRCodeExampleActivity";
     @BindView(R.id.qr_code_edit)
     EditText mQrCodeEdit;
     @BindView(R.id.line_code_edit)
@@ -38,14 +39,12 @@ public class QRCodeExampleActivity extends BaseActivity {
     @BindView(R.id.imageview)
     ImageView mImageview;
     private String path;
-
-    public static final String TAG = "QRCodeExampleActivity";
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_qrcode_example;
     }
-
+    
     @Override
     protected void initView() {
         setTitle("生成二维码");
@@ -62,13 +61,13 @@ public class QRCodeExampleActivity extends BaseActivity {
         ButterKnife.bind(this);
         path = getDiskCachePath(this) + "/test.jpg";
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-
+        
         mLineCodeEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+            
             }
-
+            
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() > 80) {
@@ -77,19 +76,18 @@ public class QRCodeExampleActivity extends BaseActivity {
                     mLineCodeEdit.setSelection(80);
                 }
             }
-
+            
             @Override
             public void afterTextChanged(Editable s) {
-
+            
             }
         });
     }
-
+    
     /**
      * 获取cache路径
      *
      * @param context
-     *
      * @return
      */
     public String getDiskCachePath(Context context) {
@@ -100,7 +98,7 @@ public class QRCodeExampleActivity extends BaseActivity {
             return context.getCacheDir().getPath();
         }
     }
-
+    
     @OnClick({R.id.crate_qr_image, R.id.crate_line_image})
     public void onViewClicked(View view) {
         switch (view.getId()) {

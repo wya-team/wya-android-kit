@@ -15,32 +15,35 @@ import com.wya.uikit.R;
 
 import java.lang.reflect.Field;
 import java.util.List;
- /**
-  * @date: 2018/12/26 14:53
-  * @author: Chunjiang Mao
-  * @classname: WYACustomNumberKeyboardView
-  * @describe: 数字键盘
-  */
+
+/**
+ * @date: 2018/12/26 14:53
+ * @author: Chunjiang Mao
+ * @classname: WYACustomNumberKeyboardView
+ * @describe: 数字键盘
+ */
 
 public class WYACustomNumberKeyboardView extends KeyboardView {
     private Context context;
     private Keyboard keyboard;
+    
     public WYACustomNumberKeyboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.context=context;
+        this.context = context;
     }
+    
     /**
      * 重新画一些按键
      */
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        keyboard = this.getKeyboard();
+        keyboard = getKeyboard();
         List<Keyboard.Key> keys = null;
         if (keyboard != null) {
             keys = keyboard.getKeys();
         }
-
+    
         if (keys != null) {
             for (Keyboard.Key key : keys) {
                 // 数字键盘的处理
@@ -51,7 +54,7 @@ public class WYACustomNumberKeyboardView extends KeyboardView {
             }
         }
     }
-
+    
     private void drawKeyBackground(int drawableId, Canvas canvas, Keyboard.Key key) {
         Drawable npd = context.getResources().getDrawable(
                 drawableId);
@@ -63,21 +66,20 @@ public class WYACustomNumberKeyboardView extends KeyboardView {
                 + key.height);
         npd.draw(canvas);
     }
-
+    
     private void drawText(Canvas canvas, Keyboard.Key key) {
         Rect bounds = new Rect();
         Paint paint = new Paint();
         paint.setTextAlign(Paint.Align.CENTER);
-
-
+        
         paint.setAntiAlias(true);
-
+        
         paint.setColor(Color.WHITE);
         if (key.label != null) {
             String label = key.label.toString();
-
+    
             Field field;
-
+    
             if (label.length() > 1 && key.codes.length < 2) {
                 int labelTextSize = 0;
                 try {
@@ -105,7 +107,7 @@ public class WYACustomNumberKeyboardView extends KeyboardView {
                 paint.setTextSize(keyTextSize);
                 paint.setTypeface(Typeface.DEFAULT);
             }
-
+    
             paint.getTextBounds(key.label.toString(), 0, key.label.toString()
                     .length(), bounds);
             canvas.drawText(key.label.toString(), key.x + (key.width / 2),
@@ -115,6 +117,6 @@ public class WYACustomNumberKeyboardView extends KeyboardView {
                     key.x + (key.width - key.icon.getIntrinsicWidth()) / 2 + key.icon.getIntrinsicWidth(), key.y + (key.height - key.icon.getIntrinsicHeight()) / 2 + key.icon.getIntrinsicHeight());
             key.icon.draw(canvas);
         }
-
+        
     }
 }

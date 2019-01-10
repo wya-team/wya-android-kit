@@ -1,20 +1,20 @@
 package com.wya.hardware.camera.listener;
 
- /**
-  * @date: 2018/12/5 13:38
-  * @author: Chunjiang Mao
-  * @classname: TypeListener
-  * @describe:
-  */
+/**
+ * @date: 2018/12/5 13:38
+ * @author: Chunjiang Mao
+ * @classname: TypeListener
+ * @describe:
+ */
 
 public interface TypeListener {
-     /**
-      * cancel
-      */
+    /**
+     * cancel
+     */
     void cancel();
     
-     /**
-      * confirm
-      */
+    /**
+     * confirm
+     */
     void confirm();
 }

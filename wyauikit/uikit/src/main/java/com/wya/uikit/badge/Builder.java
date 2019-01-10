@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+
 /**
  * @author :
  */
@@ -26,35 +27,6 @@ public class Builder {
     private boolean mIsAttach;
     private Drawable mBadgeDrawable;
     private int mBadgeDrawableSize;
-    
-    public static class Gravity {
-        
-        private int gravity;
-        float offsetX;
-        float offsetY;
-        
-        public Gravity(@BadgeGravity int gravity, int offsetX, int offsetY) {
-            this.gravity = gravity;
-            this.offsetX = offsetX;
-            this.offsetY = offsetY;
-        }
-        
-        public int getGravity() {
-            return gravity;
-        }
-        
-        public void setGravity(int gravity) {
-            this.gravity = gravity;
-        }
-        
-        public void setOffsetX(float offsetX) {
-            this.offsetX = offsetX;
-        }
-        
-        public void setOffsetY(float offsetY) {
-            this.offsetY = offsetY;
-        }
-    }
     
     public Builder(Context context) {
         this.mContext = context;
@@ -171,6 +143,35 @@ public class Builder {
         badgeView.updateIsShow(mIsShow);
         badgeView.invalidateBadge();
         return badgeView;
+    }
+    
+    public static class Gravity {
+        
+        float offsetX;
+        float offsetY;
+        private int gravity;
+        
+        public Gravity(@BadgeGravity int gravity, int offsetX, int offsetY) {
+            this.gravity = gravity;
+            this.offsetX = offsetX;
+            this.offsetY = offsetY;
+        }
+        
+        public int getGravity() {
+            return gravity;
+        }
+        
+        public void setGravity(int gravity) {
+            this.gravity = gravity;
+        }
+        
+        public void setOffsetX(float offsetX) {
+            this.offsetX = offsetX;
+        }
+        
+        public void setOffsetY(float offsetY) {
+            this.offsetY = offsetY;
+        }
     }
     
 }

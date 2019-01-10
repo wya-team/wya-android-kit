@@ -59,15 +59,14 @@ import java.util.List;
 
 public class ExampleFragment extends Fragment {
     
-    CustomerExpandableListView expendList;
-    private List<ExampleItem> mDatas;
-    private ExampleExpandableListAdapter adapter;
-    private View view;
-    WYACustomDialog wyaCustomDialog = null;
-    
     private final String UIKIT_URL = "https://github.com/wya-team/wya-android-kit/blob/develop/wyauikit/uikit/src/main/java/com/wya/uikit/";
     private final String HARDWARE_URL = "https://github.com/wya-team/wya-android-kit/blob/develop/wyahardware/hardware/src/main/java/com/wya/hardware/";
     private final String UTILS_URL = "https://github.com/wya-team/wya-android-kit/blob/develop/wyautils/utils/src/main/java/com/wya/utils/utils/README.md";
+    CustomerExpandableListView expendList;
+    WYACustomDialog wyaCustomDialog = null;
+    private List<ExampleItem> mDatas;
+    private ExampleExpandableListAdapter adapter;
+    private View view;
     
     @SuppressLint("NewApi")
     @Override

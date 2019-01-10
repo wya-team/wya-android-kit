@@ -8,27 +8,27 @@
         android:id="@+id/stepper_img_reduce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="6dp"/>
+        android:padding="6dp" />
 
     <EditText
         android:id="@+id/stepper_et_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:inputType="number"
-        android:gravity="center"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
-        android:textSize="14sp"
-        android:text="0"
         android:cursorVisible="false"
-        android:textColor="#333333" />
+        android:gravity="center"
+        android:inputType="number"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:text="0"
+        android:textColor="#333333"
+        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/stepper_img_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="6dp"/>
+        android:padding="6dp" />
 
 
 </TableRow>

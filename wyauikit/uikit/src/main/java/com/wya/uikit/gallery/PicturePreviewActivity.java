@@ -37,7 +37,11 @@ import java.util.List;
  * @description : 图片预览
  */
 public class PicturePreviewActivity extends Activity implements View.OnClickListener {
-
+    
+    public static final int CROP_IMAGE = 1002;
+    private static final String TAG = "PicturePreviewActivity";
+    private static final String MEDIA =
+            "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
     private ImageView pictureLeftBack;
     private TextView pictureTitle;
     private LinearLayout llCheck;
@@ -51,7 +55,6 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
     private RecyclerView selectRecycler;
     private LinearLayout selectListLayout;
     private SelectedRecyclerAdapter mSelectedRecyclerAdapter;
-
     private int type;
     private int position;
     private List<LocalMedia> images = new ArrayList<>();
@@ -62,19 +65,17 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
     private List<String> mCropUrlList = new ArrayList<>();
     private int requestForCode;
     private int max;
-    private static final String TAG = "PicturePreviewActivity";
-    public static final int CROP_IMAGE = 1002;
     private LocalMedia editLocalMedia;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_preview);
-
+        
         setColor();
         getIntentExtra();
         initView();
-
+        
         switch (type) {
             case GalleryConfig.GALLERY:
                 llCheck.setVisibility(View.GONE);
@@ -94,19 +95,19 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             default:
                 break;
         }
-
+        
     }
-
+    
     /**
      * init intent value
      */
     private void getIntentExtra() {
-
+    
         position = getIntent().getIntExtra(GalleryConfig.POSITION, -1);
         type = getIntent().getIntExtra(GalleryConfig.TYPE, GalleryConfig.GALLERY);
         requestForCode = getIntent().getIntExtra(GalleryConfig.PICKER_FOR_RESULT, -1);
         max = getIntent().getIntExtra(GalleryConfig.MAX_NUM, -1);
-
+    
         switch (type) {
             case GalleryConfig.GALLERY:
                 mList = getIntent().getStringArrayListExtra(GalleryConfig.IMAGE_LIST);
@@ -117,7 +118,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                 List<LocalMedia> alllist = DataHelper.getInstance().getImages();
                 images.addAll(alllist);
                 mCropUrlList = DataHelper.getInstance().getCropList();
-
+    
                 //这里的循环可能不是很好，可以把selectionPosition在图片选择时就进行创建添加
                 for (int i = 0; i < mImageSelected.size(); i++) {
                     for (int j = 0; j < images.size(); j++) {
@@ -126,7 +127,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                         }
                     }
                 }
-
+    
                 for (int i = 0; i < images.size(); i++) {
                     String cropPath = images.get(i).getCropPath();
                     if (TextUtils.isEmpty(cropPath)) {
@@ -140,7 +141,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                 break;
         }
     }
-
+    
     private void initView() {
         pictureLeftBack = findViewById(R.id.picture_left_back);
         pictureTitle = findViewById(R.id.picture_title);
@@ -154,27 +155,27 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
         cropEdit = findViewById(R.id.crop_edit);
         selectRecycler = findViewById(R.id.select_recycler);
         selectListLayout = findViewById(R.id.select_list_layout);
-
+        
         initCommitBtn();
         initRecyclerView();
-
+        
         mAdapter = new PreviewPagerAdapter(mList, this);
         previewPager.setAdapter(mAdapter);
         pictureTitle.setText(position + 1 + "/" + mList.size());
         previewPager.setCurrentItem(position);
-
+        
         check.setOnClickListener(this);
         pictureLeftBack.setOnClickListener(this);
         idLlOk.setOnClickListener(this);
         cropEdit.setOnClickListener(this);
-
+        
         previewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int
                     positionOffsetPixels) {
-
+    
             }
-
+            
             @Override
             public void onPageSelected(int positions) {
                 position = positions;
@@ -190,15 +191,15 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                     mSelectedRecyclerAdapter.updateSelected(position, selectedPosition);
                 }
             }
-
+            
             @Override
             public void onPageScrollStateChanged(int state) {
-
+            
             }
         });
-
+        
     }
-
+    
     private void initRecyclerView() {
         mSelectedRecyclerAdapter = new SelectedRecyclerAdapter(mImageSelected, this);
         selectRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager
@@ -213,10 +214,10 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             }
         });
     }
-
+    
     private void initCommitBtn() {
         if (mImageSelected != null) {
-
+    
             if (mImageSelected.size() > 0) {
                 tvImgNum.setText("(" + mImageSelected.size() + ")");
                 tvImgNum.setVisibility(View.VISIBLE);
@@ -229,13 +230,13 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             }
         }
     }
-
+    
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.picture_left_back) {
             onBackPressed();
         }
-
+        
         if (v.getId() == R.id.check) {
             if (check.isChecked()) {
                 if (max == mImageSelected.size()) {
@@ -259,14 +260,14 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             }
             initCommitBtn();
         }
-
+        
         if (v.getId() == R.id.id_ll_ok) {
             //删除不选择的编辑图片
             for (int i = 0; i < mImageSelected.size(); i++) {
                 mCropUrlList.remove(mImageSelected.get(i).getCropPath());
             }
             GalleryUtils.removeAllFile(mCropUrlList);
-
+            
             Intent intent = getIntent();
             Bundle bundle = new Bundle();
             bundle.putSerializable(GalleryConfig.IMAGE_LIST_SELECTED, (Serializable)
@@ -275,7 +276,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             setResult(RESULT_OK, intent);
             finish();
         }
-
+        
         //edit crop
         if (v.getId() == R.id.crop_edit) {
             if (!check.isChecked()) {
@@ -285,7 +286,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                     return;
                 }
             }
-
+    
             int currentItem = previewPager.getCurrentItem();
             editLocalMedia = images.get(currentItem);
             File file;
@@ -293,7 +294,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             String filePath;
             if (TextUtils.isEmpty(cropPath)) {
                 file = new File(editLocalMedia.getPath());
-
+    
             } else {
                 file = new File(cropPath);
             }
@@ -311,7 +312,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                     .forResult(CROP_IMAGE);
         }
     }
-
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -325,14 +326,14 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                 }
                 editLocalMedia.setCropPath(path);
                 mCropUrlList.add(path);
-
+    
                 if (check.isChecked()) {
                     for (int i = 0; i < mImageSelected.size(); i++) {
                         if (mImageSelected.get(i).equals(editLocalMedia)) {
                             mImageSelected.set(i, editLocalMedia);
                         }
                     }
-
+        
                 } else {
                     check.setChecked(true);
                     mImageSelected.add(editLocalMedia);
@@ -340,17 +341,17 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
                     //selected image 0->1
                     selectListLayout.setVisibility(View.VISIBLE);
                 }
-
+    
                 mList.set(position, path);
                 images.set(position, editLocalMedia);
                 mSelectedRecyclerAdapter.updateSelected(position, selectedPosition);
                 mAdapter.updateData(position);
                 initCommitBtn();
-
+    
             }
         }
     }
-
+    
     @Override
     public void onBackPressed() {
         switch (requestForCode) {
@@ -367,11 +368,11 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
         }
         finish();
     }
-
+    
     /**
      * 设置状态栏颜色
      */
-
+    
     public void setColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -398,12 +399,9 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             }
         }
     }
-
-    private static final String MEDIA =
-            "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
-
+    
     private boolean isVideo(String mediaType) {
         return MEDIA.contains(mediaType.toUpperCase());
     }
-
+    
 }

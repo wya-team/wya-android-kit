@@ -6,13 +6,14 @@ import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.utils.utils.StringUtil;
- /**
-  * @date: 2019/1/8 9:53
-  * @author: Chunjiang Mao
-  * @classname: CustomEditTextExampleActivity
-  * @describe: CustomEditTextExampleActivity
-  */
- 
+
+/**
+ * @date: 2019/1/8 9:53
+ * @author: Chunjiang Mao
+ * @classname: CustomEditTextExampleActivity
+ * @describe: CustomEditTextExampleActivity
+ */
+
 public class CustomEditTextExampleActivity extends BaseActivity {
     
     @Override

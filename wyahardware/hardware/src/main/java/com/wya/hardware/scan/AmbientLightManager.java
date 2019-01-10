@@ -16,7 +16,6 @@ package com.wya.hardware.scan;
  * limitations under the License.
  */
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
@@ -35,18 +34,18 @@ import com.wya.hardware.scan.camera.FrontLightMode;
  * @author Nikolaus Huber
  */
 final class AmbientLightManager implements SensorEventListener {
-
+    
     private static final float TOO_DARK_LUX = 45.0f;
     private static final float BRIGHT_ENOUGH_LUX = 450.0f;
-
+    
     private final Context context;
     private CameraManager cameraManager;
     private Sensor lightSensor;
-
+    
     AmbientLightManager(Context context) {
         this.context = context;
     }
-
+    
     void start(CameraManager cameraManager) {
         this.cameraManager = cameraManager;
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -58,7 +57,7 @@ final class AmbientLightManager implements SensorEventListener {
             }
         }
     }
-
+    
     void stop() {
         if (lightSensor != null) {
             SensorManager sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
@@ -67,7 +66,7 @@ final class AmbientLightManager implements SensorEventListener {
             lightSensor = null;
         }
     }
-
+    
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         float ambientLightLux = sensorEvent.values[0];
@@ -79,10 +78,10 @@ final class AmbientLightManager implements SensorEventListener {
             }
         }
     }
-
+    
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // do nothing
     }
-
+    
 }

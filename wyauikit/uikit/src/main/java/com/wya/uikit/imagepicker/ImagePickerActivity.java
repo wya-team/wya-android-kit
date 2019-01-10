@@ -51,6 +51,9 @@ import java.util.List;
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class ImagePickerActivity extends AppCompatActivity implements View.OnClickListener,
         ImageGridAdapter.OnImageSelectedChangedListener {
+    private static final String TAG = "ImagePickerActivity";
+    private static final int PERMISSION_STORAGE = 1000;
+    private static final int PERMISSION_CAMERA = 1001;
     private ImageView pictureLeftBack;
     private TextView pictureTitle;
     private RecyclerView pictureRecycler;
@@ -65,15 +68,12 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     private Drawable mDrawableUp;
     private Drawable mDrawableDown;
     private boolean isDown;
-    private static final String TAG = "ImagePickerActivity";
     private List<LocalMedia> mSelected = new ArrayList<>();
     private List<LocalMedia> mLocalMedia = new ArrayList<>();
     private int maxNum;
     private String imagePath;
     private LocalMediaFolder mCurrentFolder;
-    private static final int PERMISSION_STORAGE = 1000;
-    private static final int PERMISSION_CAMERA = 1001;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,25 +81,25 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         setColor(getResources().getColor(R.color.black));
         int selfPermission = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest
                 .permission.READ_EXTERNAL_STORAGE);
-
+        
         if (selfPermission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest
                     .permission.READ_EXTERNAL_STORAGE}, PERMISSION_STORAGE);
         } else {
             readLocalImage();
         }
-
+        
         maxNum = getIntent().getIntExtra(PickerConfig.IMAGE_NUMBER, 1);
-
+        
         initView();
         initChoiceMenu();
-
+        
     }
-
+    
     /**
      * 设置状态栏颜色
      */
-
+    
     public void setColor(@ColorInt int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -126,7 +126,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             }
         }
     }
-
+    
     /**
      * init folder menu
      */
@@ -142,10 +142,10 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                 Glide.with(ImagePickerActivity.this).load(item.getFirstImagePath())
                         .into(imageView);
             }
-
+    
             @Override
             public void setValueSecond(OptionMenuViewHolder helper, LocalMediaFolder item) {
-
+        
             }
         };
         mBaseOptionMenu.setShadow(false);
@@ -162,7 +162,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                     }
                 });
     }
-
+    
     /**
      * init view
      */
@@ -174,22 +174,22 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         tvPreview = findViewById(R.id.tv_preview);
         tvCommit = findViewById(R.id.tv_commit);
         pickerTitleLayout = findViewById(R.id.picker_title_layout);
-
+    
         pictureTitle.setOnClickListener(this);
         pictureLeftBack.setOnClickListener(this);
         tvPreview.setOnClickListener(this);
         tvCommit.setOnClickListener(this);
-
+    
         initAdapter();
-
+    
         mDrawableUp = getResources().getDrawable(R.drawable.icon_up);
         mDrawableDown = getResources().getDrawable(R.drawable.icon_down);
         mDrawableUp.setBounds(0, 0, mDrawableUp.getMinimumWidth(), mDrawableUp.getMinimumHeight());
         mDrawableDown.setBounds(0, 0, mDrawableDown.getMinimumWidth(), mDrawableDown
                 .getMinimumHeight());
-
+    
     }
-
+    
     /**
      * init recyclerView adapter
      */
@@ -207,7 +207,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                                 .PICKER_GALLERY_RESULT, maxNum);
             }
         });
-
+    
         mGridAdapter.setPhotoClickListener(new ImageGridAdapter.OnTakePhotoClickListener() {
             @Override
             public void onClick() {
@@ -218,11 +218,11 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                 } else {
                     takePhoto();
                 }
-
+    
             }
         });
     }
-
+    
     /**
      * takePhoto
      * folder :/DCIM/UIkit/
@@ -240,14 +240,14 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         } else {
             uri = Uri.fromFile(file);
         }
-
+    
         Intent intent = new Intent();
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         startActivityForResult(intent, PickerConfig.REQUEST_CAMERA);
     }
-
+    
     /**
      * load images
      */
@@ -268,14 +268,14 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                         mBaseOptionMenu.notifyAdapterData();
                         mCurrentFolder = mFolders.get(0);
                     }
-
+    
                 } else {
                     pictureTitle.setText("相册");
                 }
             }
         });
     }
-
+    
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -295,37 +295,37 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
+    
     public float dp2px(int dp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources()
                 .getDisplayMetrics());
     }
-
+    
     @Override
     public void onClick(View v) {
         //show choice menu
         if (v.getId() == R.id.picture_title) {
             changeTitleImageAndStatus();
         }
-
+        
         //back
         if (v.getId() == R.id.picture_left_back) {
             onBackPressed();
         }
-
+        
         //commit
         if (v.getId() == R.id.tv_commit) {
-
+    
             if (mSelected.size() > 0) {
                 //移除没被选中的编辑过的图片
                 for (int i = 0; i < mSelected.size(); i++) {
                     mCropList.remove(mSelected.get(i).getCropPath());
                 }
                 GalleryUtils.removeAllFile(mCropList);
-
+        
                 Intent intent = getIntent();
                 Bundle bundle = new Bundle();
-
+        
                 //                bundle.putSerializable(PickerConfig.IMAGE_SELECTED,
                 // (Serializable) mSelected);
                 bundle.putStringArrayList(PickerConfig.IMAGE_SELECTED, returnImagePaths(mSelected));
@@ -334,7 +334,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                 finish();
             }
         }
-
+        
         //to galley
         if (v.getId() == R.id.tv_preview) {
             if (mSelected.size() > 0) {
@@ -342,9 +342,9 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                         mCropList, PickerConfig.PICKER_GALLERY_PREVIEW, maxNum);
             }
         }
-
+        
     }
-
+    
     @Override
     public void onBackPressed() {
         for (int i = 0; i < mCropList.size(); i++) {
@@ -352,7 +352,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         }
         finish();
     }
-
+    
     /**
      * change title image status
      */
@@ -366,7 +366,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         }
         isDown = !isDown;
     }
-
+    
     /**
      * select image changed
      *
@@ -389,20 +389,20 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         }
         mSelected = mSelectedImages;
     }
-
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        
         //click item to gallery
         if (requestCode == PickerConfig.PICKER_GALLERY_RESULT) {
-            if (resultCode == RESULT_CANCELED ) {
+            if (resultCode == RESULT_CANCELED) {
                 mSelected = DataHelper.getInstance().getImageSelected();
                 mCropList = DataHelper.getInstance().getCropList();
                 change(mSelected);
                 mGridAdapter.notifySelectedData(mSelected);
             }
-
+    
             if (resultCode == RESULT_OK && data != null && data.hasExtra(GalleryConfig
                     .IMAGE_LIST_SELECTED)) {
                 Bundle extras = data.getExtras();
@@ -416,10 +416,10 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                 finish();
             }
         }
-
+        
         //click to gallery button
         if (requestCode == PickerConfig.PICKER_GALLERY_PREVIEW) {
-            if (resultCode == RESULT_CANCELED ) {
+            if (resultCode == RESULT_CANCELED) {
                 mSelected = DataHelper.getInstance().getImageSelected();
                 mCropList = DataHelper.getInstance().getCropList();
                 List<LocalMedia> images = DataHelper.getInstance().getImages();
@@ -431,7 +431,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                 mGridAdapter.bindData(mLocalMedia);
                 mGridAdapter.notifySelectedData(mSelected);
             }
-
+    
             if (resultCode == RESULT_OK && data != null && data.hasExtra(GalleryConfig
                     .IMAGE_LIST_SELECTED)) {
                 Bundle extras = data.getExtras();
@@ -445,11 +445,11 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                 finish();
             }
         }
-
+        
         if (requestCode == PickerConfig.REQUEST_CAMERA && resultCode == RESULT_OK) {
             final File file = new File(imagePath);
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-
+            
             LocalMedia localMedia = new LocalMedia(imagePath, "image/jpg");
             //add all folder
             LocalMediaFolder firstFolder = mFolders.get(0);
@@ -458,21 +458,21 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             firstFolder.setFirstImagePath(imagePath);
             firstFolder.setImageNum(firstFolder.getImageNum() + 1);
             mLocalMedia = firstImages;
-
+            
             //add or new folder's item
             LocalMediaFolder imageFolder = getImageFolder(imagePath, mFolders);
             List<LocalMedia> images = imageFolder.getImages();
             images.add(localMedia);
             imageFolder.setImageNum(imageFolder.getImageNum() + 1);
-
+            
             //updateIsShow
             mGridAdapter.bindData(true, mLocalMedia);
             mBaseOptionMenu.notifyAdapterData();
-
+            
         }
-
+        
     }
-
+    
     /**
      * create LocalMediaFolder to save LocalMedia
      *
@@ -495,9 +495,10 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         imageFolders.add(newFolder);
         return newFolder;
     }
-
+    
     /**
      * return path
+     *
      * @param selected
      * @return
      */
@@ -514,5 +515,5 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         }
         return mPathList;
     }
-
+    
 }

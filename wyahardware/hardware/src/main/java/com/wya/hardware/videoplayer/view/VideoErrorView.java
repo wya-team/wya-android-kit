@@ -12,52 +12,51 @@ import android.widget.TextView;
 import com.wya.hardware.R;
 import com.wya.hardware.videoplayer.listener.OnVideoControlListener;
 
-
- /**
-  * @date: 2018/12/6 14:20
-  * @author: Chunjiang Mao
-  * @classname: VideoErrorView
-  * @describe: 视频错误View
-  */
+/**
+ * @date: 2018/12/6 14:20
+ * @author: Chunjiang Mao
+ * @classname: VideoErrorView
+ * @describe: 视频错误View
+ */
 
 public class VideoErrorView extends FrameLayout {
-
+    
     public static final int STATUS_NORMAL = 0;
     public static final int STATUS_VIDEO_DETAIL_ERROR = 1;
     public static final int STATUS_VIDEO_SRC_ERROR = 2;
     public static final int STATUS_UN_WIFI_ERROR = 3;
     public static final int STATUS_NO_NETWORK_ERROR = 4;
-
+    
     private int curStatus;
-
-    public int getCurStatus() {
-        return curStatus;
-    }
-
     private TextView videoErrorInfo;
     private Button videoErrorRetry;
-
+    private OnVideoControlListener onVideoControlListener;
+    
     public VideoErrorView(Context context) {
         super(context);
         init();
     }
-
+    
     public VideoErrorView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
-
+    
     public VideoErrorView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
-
+    
+    public int getCurStatus() {
+        return curStatus;
+    }
+    
     private void init() {
         LayoutInflater.from(getContext()).inflate(R.layout.video_controller_error, this);
-
+    
         videoErrorInfo = (TextView) findViewById(R.id.video_error_info);
         videoErrorRetry = (Button) findViewById(R.id.video_error_retry);
-
+    
         videoErrorRetry.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,19 +65,19 @@ public class VideoErrorView extends FrameLayout {
                 }
             }
         });
-
+    
         hideError();
     }
-
+    
     public void showError(int status) {
         setVisibility(View.VISIBLE);
-
-        if(curStatus == status) {
+        
+        if (curStatus == status) {
             return;
         }
-
+        
         curStatus = status;
-
+        
         switch (status) {
             case STATUS_VIDEO_DETAIL_ERROR:
                 Log.i("DDD", "showVideoDetailError");
@@ -104,15 +103,13 @@ public class VideoErrorView extends FrameLayout {
                 break;
         }
     }
-
+    
     public void hideError() {
         Log.i("DDD", "hideError");
         setVisibility(GONE);
         curStatus = STATUS_NORMAL;
     }
-
-    private OnVideoControlListener onVideoControlListener;
-
+    
     public void setOnVideoControlListener(OnVideoControlListener onVideoControlListener) {
         this.onVideoControlListener = onVideoControlListener;
     }

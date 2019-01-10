@@ -18,49 +18,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dp_5"
             android:paddingLeft="@dimen/dp_10"
             android:paddingRight="@dimen/dp_10"
-            android:paddingTop="@dimen/dp_10"
-            android:paddingBottom="@dimen/dp_5">
+            android:paddingTop="@dimen/dp_10">
 
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:background="@drawable/iocn_saoyisao"/>
+                android:background="@drawable/iocn_saoyisao" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/sp_14"
-                android:textColor="@drawable/btn_c333333_click_color"
-                android:text="扫一扫"
+                android:paddingLeft="@dimen/dp_10"
                 android:paddingRight="@dimen/dp_10"
-                android:paddingLeft="@dimen/dp_10"/>
+                android:text="扫一扫"
+                android:textColor="@drawable/btn_c333333_click_color"
+                android:textSize="@dimen/sp_14" />
 
         </TableRow>
+
         <TableRow
             android:id="@+id/tab_help"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dp_5"
             android:paddingLeft="@dimen/dp_10"
             android:paddingRight="@dimen/dp_10"
-            android:paddingTop="@dimen/dp_5"
-            android:paddingBottom="@dimen/dp_5">
+            android:paddingTop="@dimen/dp_5">
 
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:background="@drawable/icon_help"/>
+                android:background="@drawable/icon_help" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/sp_14"
-                android:textColor="@drawable/btn_c333333_click_color"
-                android:text="帮助"
+                android:paddingLeft="@dimen/dp_10"
                 android:paddingRight="@dimen/dp_10"
-                android:paddingLeft="@dimen/dp_10"/>
+                android:text="帮助"
+                android:textColor="@drawable/btn_c333333_click_color"
+                android:textSize="@dimen/sp_14" />
 
         </TableRow>
 

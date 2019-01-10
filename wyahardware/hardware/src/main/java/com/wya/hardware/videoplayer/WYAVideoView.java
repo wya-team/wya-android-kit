@@ -31,7 +31,6 @@ import com.wya.hardware.videoplayer.view.VideoSystemOverlay;
 
 import static android.graphics.Color.TRANSPARENT;
 
-
 /**
  * @date: 2018/12/6 14:22
  * @author: Chunjiang Mao
@@ -40,77 +39,79 @@ import static android.graphics.Color.TRANSPARENT;
  */
 
 public class WYAVideoView extends VideoBehaviorView {
-
+    
     private SurfaceView mSurfaceView;
     private View mLoading;
     private VideoControllerView mediaController;
     private VideoSystemOverlay videoSystemOverlay;
     private VideoProgressOverlay videoProgressOverlay;
     private WYAVideoPlayer mMediaPlayer;
-
+    
     private int initWidth;
     private int initHeight;
-
-    public boolean isLock() {
-        return mediaController.isLock();
-    }
-
+    private boolean isBackgroundPause;
+    private NetChangedReceiver netChangedReceiver;
+    
     public WYAVideoView(Context context) {
         super(context);
         init();
     }
-
+    
     public WYAVideoView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
-
+    
     public WYAVideoView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
-
+    
+    public boolean isLock() {
+        return mediaController.isLock();
+    }
+    
     private void init() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         inflater.inflate(R.layout.video_view, this);
-
+    
         mSurfaceView = (SurfaceView) findViewById(R.id.video_surface);
         mLoading = findViewById(R.id.video_loading);
         mediaController = (VideoControllerView) findViewById(R.id.video_controller);
         videoSystemOverlay = (VideoSystemOverlay) findViewById(R.id.video_system_overlay);
         videoProgressOverlay = (VideoProgressOverlay) findViewById(R.id.video_progress_overlay);
-
+    
         initPlayer();
         mSurfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 initWidth = getWidth();
                 initHeight = getHeight();
-
+    
                 if (mMediaPlayer != null) {
                     mMediaPlayer.setDisplay(holder);
                     mMediaPlayer.openVideo();
                 }
             }
-
+    
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+        
             }
-
+    
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
-
+        
             }
         });
-
+    
         registerNetChangedReceiver();
     }
-
+    
     private void initPlayer() {
         mMediaPlayer = new WYAVideoPlayer();
         mMediaPlayer.setCallback(new SimplePlayerCallback() {
-
+    
             @Override
             public void onStateChanged(int curState) {
                 switch (curState) {
@@ -124,17 +125,17 @@ public class WYAVideoView extends VideoBehaviorView {
                         break;
                 }
             }
-
+    
             @Override
             public void onCompletion(MediaPlayer mp) {
                 mediaController.updatePausePlay();
             }
-
+    
             @Override
             public void onError(MediaPlayer mp, int what, int extra) {
                 mediaController.checkShowError(false);
             }
-
+    
             @Override
             public void onLoadingChanged(boolean isShow) {
                 if (isShow) {
@@ -143,7 +144,7 @@ public class WYAVideoView extends VideoBehaviorView {
                     hideLoading();
                 }
             }
-
+    
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
@@ -164,17 +165,15 @@ public class WYAVideoView extends VideoBehaviorView {
         });
         mediaController.setMediaPlayer(mMediaPlayer);
     }
-
+    
     private void showLoading() {
         mLoading.setVisibility(View.VISIBLE);
     }
-
+    
     private void hideLoading() {
         mLoading.setVisibility(View.GONE);
     }
-
-    private boolean isBackgroundPause;
-
+    
     public void onStop() {
         if (mMediaPlayer.isPlaying()) {
             // 如果已经开始且在播放，则暂停同时记录状态
@@ -182,7 +181,7 @@ public class WYAVideoView extends VideoBehaviorView {
             mMediaPlayer.pause();
         }
     }
-
+    
     public void onStart() {
         if (isBackgroundPause) {
             // 如果切换到后台暂停，后又切回来，则继续播放
@@ -190,13 +189,13 @@ public class WYAVideoView extends VideoBehaviorView {
             mMediaPlayer.start();
         }
     }
-
+    
     public void onDestroy() {
         mMediaPlayer.stop();
         mediaController.release();
         unRegisterNetChangedReceiver();
     }
-
+    
     /**
      * 开始播放
      */
@@ -204,20 +203,20 @@ public class WYAVideoView extends VideoBehaviorView {
         if (video == null) {
             return;
         }
-
+    
         mMediaPlayer.reset();
-
+    
         String videoPath = video.getVideoPath();
         mediaController.setVideoInfo(video);
         mMediaPlayer.setVideoPath(videoPath);
     }
-
+    
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
         mediaController.toggleDisplay();
         return super.onSingleTapUp(e);
     }
-
+    
     @Override
     public boolean onDown(MotionEvent e) {
         if (isLock()) {
@@ -225,7 +224,7 @@ public class WYAVideoView extends VideoBehaviorView {
         }
         return super.onDown(e);
     }
-
+    
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
         if (isLock()) {
@@ -233,7 +232,7 @@ public class WYAVideoView extends VideoBehaviorView {
         }
         return super.onScroll(e1, e2, distanceX, distanceY);
     }
-
+    
     @Override
     protected void endGesture(int behaviorType) {
         switch (behaviorType) {
@@ -251,30 +250,30 @@ public class WYAVideoView extends VideoBehaviorView {
                 break;
         }
     }
-
+    
     @Override
     protected void updateSeekUI(int delProgress) {
         videoProgressOverlay.show(delProgress, mMediaPlayer.getCurrentPosition(), mMediaPlayer.getDuration());
     }
-
+    
     @Override
     protected void updateVolumeUI(int max, int progress) {
         videoSystemOverlay.show(VideoSystemOverlay.SystemType.VOLUME, max, progress);
     }
-
+    
     @Override
     protected void updateLightUI(int max, int progress) {
         videoSystemOverlay.show(VideoSystemOverlay.SystemType.BRIGHTNESS, max, progress);
     }
-
+    
     public void setOnVideoControlListener(OnVideoControlListener onVideoControlListener) {
         mediaController.setOnVideoControlListener(onVideoControlListener);
     }
-
+    
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
+        
         if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             getLayoutParams().width = initWidth;
             getLayoutParams().height = initHeight;
@@ -282,11 +281,9 @@ public class WYAVideoView extends VideoBehaviorView {
             getLayoutParams().width = FrameLayout.LayoutParams.MATCH_PARENT;
             getLayoutParams().height = FrameLayout.LayoutParams.MATCH_PARENT;
         }
-
+        
     }
-
-    private NetChangedReceiver netChangedReceiver;
-
+    
     public void registerNetChangedReceiver() {
         if (netChangedReceiver == null) {
             netChangedReceiver = new NetChangedReceiver();
@@ -295,32 +292,13 @@ public class WYAVideoView extends VideoBehaviorView {
             activity.registerReceiver(netChangedReceiver, filter);
         }
     }
-
+    
     public void unRegisterNetChangedReceiver() {
         if (netChangedReceiver != null) {
             activity.unregisterReceiver(netChangedReceiver);
         }
     }
-
-    private class NetChangedReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Parcelable extra = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
-            if (extra != null && extra instanceof NetworkInfo) {
-                NetworkInfo netInfo = (NetworkInfo) extra;
-
-                if (isNetworkConnected(context) && netInfo.getState() != NetworkInfo.State.CONNECTED) {
-                    // 网络连接的情况下只处理连接完成状态
-                    return;
-                }
-
-                mediaController.checkShowError(true);
-            }
-        }
-    }
-
-
+    
     /**
      * 判断是否有网络连接
      */
@@ -335,5 +313,23 @@ public class WYAVideoView extends VideoBehaviorView {
         }
         return false;
     }
-
+    
+    private class NetChangedReceiver extends BroadcastReceiver {
+    
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Parcelable extra = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
+            if (extra != null && extra instanceof NetworkInfo) {
+                NetworkInfo netInfo = (NetworkInfo) extra;
+    
+                if (isNetworkConnected(context) && netInfo.getState() != NetworkInfo.State.CONNECTED) {
+                    // 网络连接的情况下只处理连接完成状态
+                    return;
+                }
+    
+                mediaController.checkShowError(true);
+            }
+        }
+    }
+    
 }

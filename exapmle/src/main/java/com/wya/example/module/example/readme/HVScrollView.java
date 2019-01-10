@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.Scroller;
 
 import java.util.List;
+
 /**
  * @date: 2019/1/4 11:49
  * @author: Chunjiang Mao
@@ -27,77 +28,63 @@ public class HVScrollView extends FrameLayout {
     static final int ANIMATED_SCROLL_GAP = 250;
     
     static final float MAX_SCROLL_FACTOR = 0.5f;
-    
-    private long mLastScroll;
-    
+    /**
+     * Sentinel value for no current active pointer.
+     * Used by {@link #mActivePointerId}.
+     */
+    private static final int INVALID_POINTER = -1;
     private final Rect mTempRect = new Rect();
+    private long mLastScroll;
     private Scroller mScroller;
-    
     /**
      * Flag to indicate that we are moving focus ourselves. This is so the
      * code that watches for focus changes initiated outside this ScrollView
      * knows that it does not have to do anything.
      */
     private boolean mScrollViewMovedFocus;
-    
     /**
      * Position of the last motion event.
      */
     private float mLastMotionY;
     private float mLastMotionX;
-    
     /**
      * True when the layout has changed but the traversal has not come through yet.
      * Ideally the view hierarchy would keep track of this for us.
      */
     private boolean mIsLayoutDirty = true;
-    
     /**
      * The child to give focus to in the event that a child has requested focus while the
      * layout is dirty. This prevents the scroll from being wrong if the child has not been
      * laid out before requesting focus.
      */
     private View mChildToScrollTo = null;
-    
     /**
      * True if the user is currently dragging this ScrollView around. This is
      * not the same as 'is being flinged', which can be checked by
      * mScroller.isFinished() (flinging begins when the user lifts his finger).
      */
     private boolean mIsBeingDragged = false;
-    
     /**
      * Determines speed during touch scrolling
      */
     private VelocityTracker mVelocityTracker;
-    
     /**
      * When set to true, the scroll view measure its child to make it fill the currently
      * visible area.
      */
     private boolean mFillViewport;
-    
     /**
      * Whether arrow scrolling is animated.
      */
     private boolean mSmoothScrollingEnabled = true;
-    
     private int mTouchSlop;
     private int mMinimumVelocity;
     private int mMaximumVelocity;
-    
     /**
      * ID of the active pointer. This is used to retain consistency during
      * drags/flings if multiple pointers are used.
      */
     private int mActivePointerId = INVALID_POINTER;
-    
-    /**
-     * Sentinel value for no current active pointer.
-     * Used by {@link #mActivePointerId}.
-     */
-    private static final int INVALID_POINTER = -1;
-    
     private boolean mFlingEnabled = true;
     
     public HVScrollView(Context context) {
@@ -263,7 +250,7 @@ public class HVScrollView extends FrameLayout {
      * the viewport or not.
      *
      * @param fillViewport True to stretch the content's height to the viewport's
-     * boundaries, false otherwise.
+     *                     boundaries, false otherwise.
      */
     public void setFillViewport(boolean fillViewport) {
         if (fillViewport != mFillViewport) {
@@ -332,7 +319,6 @@ public class HVScrollView extends FrameLayout {
      * it by the view hierarchy.
      *
      * @param event The key event to execute.
-     *
      * @return Return true if the event was handled, else false.
      */
     public boolean executeKeyEvent(KeyEvent event) {
@@ -613,13 +599,12 @@ public class HVScrollView extends FrameLayout {
      * </p>
      *
      * @param topFocus look for a candidate is the one at the top of the bounds
-     * if topFocus is true, or at the bottom of the bounds if topFocus is
-     * false
-     * @param top the top offset of the bounds in which a focusable must be
-     * found
-     * @param bottom the bottom offset of the bounds in which a focusable must
-     * be found
-     *
+     *                 if topFocus is true, or at the bottom of the bounds if topFocus is
+     *                 false
+     * @param top      the top offset of the bounds in which a focusable must be
+     *                 found
+     * @param bottom   the bottom offset of the bounds in which a focusable must
+     *                 be found
      * @return the next focusable component in the bounds or null if none can
      * be found
      */
@@ -766,9 +751,8 @@ public class HVScrollView extends FrameLayout {
      * focus.</p>
      *
      * @param direction the scroll direction: {@link View#FOCUS_UP}
-     * to go the top of the view or
-     * {@link View#FOCUS_DOWN} to go the bottom
-     *
+     *                  to go the top of the view or
+     *                  {@link View#FOCUS_DOWN} to go the bottom
      * @return true if the key event is consumed by this method, false otherwise
      */
     public boolean fullScrollV(int direction) {
@@ -816,11 +800,10 @@ public class HVScrollView extends FrameLayout {
      * the new visible area, the focus is reclaimed by this scrollview.</p>
      *
      * @param direction the scroll direction: {@link View#FOCUS_UP}
-     * to go upward
-     * {@link View#FOCUS_DOWN} to downward
-     * @param top the top offset of the new area to be made visible
-     * @param bottom the bottom offset of the new area to be made visible
-     *
+     *                  to go upward
+     *                  {@link View#FOCUS_DOWN} to downward
+     * @param top       the top offset of the new area to be made visible
+     * @param bottom    the bottom offset of the new area to be made visible
      * @return true if the key event is consumed by this method, false otherwise
      */
     private boolean scrollAndFocusV(int direction, int top, int bottom) {
@@ -883,8 +866,7 @@ public class HVScrollView extends FrameLayout {
      * Handle scrolling in response to an up or down arrow click.
      *
      * @param direction The direction corresponding to the arrow key that was
-     * pressed
-     *
+     *                  pressed
      * @return True if we consumed the event, false otherwise
      */
     public boolean arrowScrollV(int direction) {
@@ -1223,9 +1205,8 @@ public class HVScrollView extends FrameLayout {
      * If rect is off screen, scroll just enough to get it (or at least the
      * first screen size chunk of it) on screen.
      *
-     * @param rect The rectangle.
+     * @param rect      The rectangle.
      * @param immediate True to scroll immediately without animation
-     *
      * @return true if scrolling was performed
      */
     private boolean scrollToChildRect(Rect rect, boolean immediate) {
@@ -1248,7 +1229,6 @@ public class HVScrollView extends FrameLayout {
      * at least the first screen size chunk of it).
      *
      * @param rect The rect.
-     *
      * @return The scroll delta.
      */
     protected int computeScrollDeltaToGetChildRectOnScreenV(Rect rect) {
@@ -1493,8 +1473,8 @@ public class HVScrollView extends FrameLayout {
      * Fling the scroll view
      *
      * @param velocityY The initial velocity in the Y direction. Positive
-     * numbers mean that the finger/cursor is moving down the screen,
-     * which means we want to scroll towards the top.
+     *                  numbers mean that the finger/cursor is moving down the screen,
+     *                  which means we want to scroll towards the top.
      */
     public void fling(int velocityX, int velocityY) {
         if (getChildCount() > 0) {
@@ -1563,6 +1543,6 @@ public class HVScrollView extends FrameLayout {
     }
     
     public void setFlingEnabled(boolean flingEnabled) {
-        this.mFlingEnabled = flingEnabled;
+        mFlingEnabled = flingEnabled;
     }
 }

@@ -33,6 +33,7 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
     
     /**
      * 获取分组的个数
+     *
      * @return
      */
     @Override
@@ -42,6 +43,7 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
     
     /**
      * 获取指定分组中的子选项的个数
+     *
      * @param groupPosition
      * @return
      */
@@ -52,8 +54,8 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
     
     /**
      * 获取指定的分组数据
-     * @param groupPosition
      *
+     * @param groupPosition
      * @return
      */
     @Override
@@ -63,9 +65,9 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
     
     /**
      * 获取指定分组中的指定子选项数据
+     *
      * @param groupPosition
      * @param childPosition
-     *
      * @return
      */
     @Override
@@ -75,8 +77,8 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
     
     /**
      * 获取指定分组的ID, 这个ID必须是唯一的
-     * @param groupPosition
      *
+     * @param groupPosition
      * @return
      */
     @Override
@@ -86,9 +88,9 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
     
     /**
      * 获取子选项的ID, 这个ID必须是唯一的
+     *
      * @param groupPosition
      * @param childPosition
-     *
      * @return
      */
     @Override
@@ -98,6 +100,7 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
     
     /**
      * 分组和子选项是否持有稳定的ID, 就是说底层数据的改变会不会影响到它们
+     *
      * @return
      */
     @Override
@@ -109,9 +112,9 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
      * 获取显示指定组的视图对象
      *
      * @param groupPosition 组位置
-     * @param isExpanded 该组是展开状态还是伸缩状态
-     * @param convertView 重用已有的视图对象
-     * @param parent 返回的视图对象始终依附于的视图组
+     * @param isExpanded    该组是展开状态还是伸缩状态
+     * @param convertView   重用已有的视图对象
+     * @param parent        返回的视图对象始终依附于的视图组
      */
     @SuppressLint("NewApi")
     @Override
@@ -140,12 +143,10 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
      *
      * @param groupPosition 组位置
      * @param childPosition 子元素位置
-     * @param isLastChild 子元素是否处于组中的最后一个
-     * @param convertView 重用已有的视图(View)对象
-     * @param parent 返回的视图(View)对象始终依附于的视图组
-     *
+     * @param isLastChild   子元素是否处于组中的最后一个
+     * @param convertView   重用已有的视图(View)对象
+     * @param parent        返回的视图(View)对象始终依附于的视图组
      * @return
-     *
      * @see android.widget.ExpandableListAdapter#getChildView(int, int, boolean, View,
      * ViewGroup)
      */
@@ -166,9 +167,9 @@ public class DialogExpandableListAdapter extends BaseExpandableListAdapter {
     
     /**
      * 指定位置上的子元素是否可选中
+     *
      * @param groupPosition
      * @param childPosition
-     *
      * @return
      */
     @Override

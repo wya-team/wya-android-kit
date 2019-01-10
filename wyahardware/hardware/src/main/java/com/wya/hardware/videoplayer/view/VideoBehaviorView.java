@@ -14,54 +14,54 @@ import android.widget.FrameLayout;
 /**
  *
  */
- /**
-  * @date: 2018/12/6 14:18
-  * @author: Chunjiang Mao
-  * @classname: VideoBehaviorView
-  * @describe: 视频手势View，注意添加 player.setAudioStreamType(AudioManager.STREAM_MUSIC);
-  */
+
+/**
+ * @date: 2018/12/6 14:18
+ * @author: Chunjiang Mao
+ * @classname: VideoBehaviorView
+ * @describe: 视频手势View，注意添加 player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+ */
 
 public class VideoBehaviorView extends FrameLayout implements GestureDetector.OnGestureListener {
-
-    private GestureDetector mGestureDetector;
-     /**
-      * 进度调节
-      */
+    
+    /**
+     * 进度调节
+     */
     public static final int FINGER_BEHAVIOR_PROGRESS = 0x01;
-     /**
-      * 音量调节
-      */
+    /**
+     * 音量调节
+     */
     public static final int FINGER_BEHAVIOR_VOLUME = 0x02;
-     /**
-      * 亮度调节
-      */
+    /**
+     * 亮度调节
+     */
     public static final int FINGER_BEHAVIOR_BRIGHTNESS = 0x03;
+    protected Activity activity;
+    protected AudioManager am;
+    private GestureDetector mGestureDetector;
     private int mFingerBehavior;
-     /**
-      * 鉴于音量范围值比较小 使用float类型施舍五入处理.
-      */
+    /**
+     * 鉴于音量范围值比较小 使用float类型施舍五入处理.
+     */
     private float mCurrentVolume;
     private int mMaxVolume;
     private int mCurrentBrightness, mMaxBrightness;
-
-    protected Activity activity;
-    protected AudioManager am;
-
+    
     public VideoBehaviorView(Context context) {
         super(context);
         init();
     }
-
+    
     public VideoBehaviorView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
-
+    
     public VideoBehaviorView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
-
+    
     private void init() {
         Context context = getContext();
         if (context instanceof Activity) {
@@ -71,27 +71,27 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
         } else {
             throw new RuntimeException("VideoBehaviorView context must be Activity");
         }
-
+        
         mMaxVolume = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         mMaxBrightness = 255;
     }
-
+    
     protected void endGesture(int behaviorType) {
         // sub
     }
-
+    
     protected void updateSeekUI(int delProgress) {
         // sub
     }
-
+    
     protected void updateVolumeUI(int max, int progress) {
         // sub
     }
-
+    
     protected void updateLightUI(int max, int progress) {
         // sub
     }
-
+    
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         mGestureDetector.onTouchEvent(event);
@@ -106,7 +106,7 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
         }
         return true;
     }
-
+    
     @Override
     public boolean onDown(MotionEvent e) {
         //重置 手指行为
@@ -119,12 +119,12 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
         }
         return false;
     }
-
+    
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
         return false;
     }
-
+    
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
         final int width = getWidth();
@@ -132,7 +132,7 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
         if (width <= 0 || height <= 0) {
             return false;
         }
-
+        
         /**
          * 根据手势起始2个点断言 后续行为. 规则如下:
          *  屏幕切分为正X:
@@ -150,7 +150,7 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
                 mFingerBehavior = FINGER_BEHAVIOR_VOLUME;
             }
         }
-
+        
         switch (mFingerBehavior) {
             case FINGER_BEHAVIOR_PROGRESS: {
                 // 进度变化
@@ -163,14 +163,14 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
             case FINGER_BEHAVIOR_VOLUME: {
                 // 音量变化
                 float progress = mMaxVolume * (distanceY / height) + mCurrentVolume;
-
+    
                 if (progress <= 0) {
                     progress = 0;
                 }
                 if (progress >= mMaxVolume) {
                     progress = mMaxVolume;
                 }
-
+    
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, Math.round(progress), 0);
                 updateVolumeUI(mMaxVolume, Math.round(progress));
                 mCurrentVolume = progress;
@@ -184,50 +184,50 @@ public class VideoBehaviorView extends FrameLayout implements GestureDetector.On
                         Settings.System.putInt(getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE,
                                 Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
                     }
-
+    
                     int progress = (int) (mMaxBrightness * (distanceY / height) + mCurrentBrightness);
-
+    
                     if (progress <= 0) {
                         progress = 0;
                     }
                     if (progress >= mMaxBrightness) {
                         progress = mMaxBrightness;
                     }
-
+    
                     Window window = activity.getWindow();
                     WindowManager.LayoutParams params = window.getAttributes();
                     params.screenBrightness = progress / (float) mMaxBrightness;
                     window.setAttributes(params);
-
+    
                     updateLightUI(mMaxBrightness, progress);
-
+    
                     mCurrentBrightness = progress;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;
-
+    
             }
             default:
                 break;
         }
-
+        
         return false;
     }
-
+    
     @Override
     public void onShowPress(MotionEvent e) {
-
+    
     }
-
+    
     @Override
     public void onLongPress(MotionEvent e) {
-
+    
     }
-
+    
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         return false;
     }
-
+    
 }

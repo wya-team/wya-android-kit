@@ -7,9 +7,9 @@ import com.wya.example.base.BaseApplication;
 import com.wya.utils.utils.ScreenUtil;
 
 public class GestureFlingRightHelper implements GestureDetector.OnGestureListener {
+    private static GestureFlingRightHelper mGfHelper;
     private int minDistance = 180;
     private GestureRightCallBack mGestureCallBack = null;
-    private static GestureFlingRightHelper mGfHelper;
     
     public GestureFlingRightHelper() {
     }

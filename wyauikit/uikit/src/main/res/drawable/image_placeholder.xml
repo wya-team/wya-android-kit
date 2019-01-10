@@ -12,7 +12,8 @@
 
     </item>
     <item>
-        <bitmap android:src="@drawable/icon_photo"
-            android:gravity="center"/>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/icon_photo" />
     </item>
 </layer-list>

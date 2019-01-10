@@ -16,7 +16,6 @@ package com.wya.hardware.scan;
  * limitations under the License.
  */
 
-
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
@@ -39,29 +38,29 @@ import java.util.concurrent.CountDownLatch;
  * @author dswitkin@google.com (Daniel Switkin)
  */
 final class DecodeThread extends Thread {
-
+    
     public static final String BARCODE_BITMAP = "barcode_bitmap";
     public static final String BARCODE_SCALED_FACTOR = "barcode_scaled_factor";
-
+    
     private final CaptureActivity activity;
-    private final Map<DecodeHintType,Object> hints;
-    private Handler handler;
+    private final Map<DecodeHintType, Object> hints;
     private final CountDownLatch handlerInitLatch;
-
+    private Handler handler;
+    
     DecodeThread(CaptureActivity activity,
                  Collection<BarcodeFormat> decodeFormats,
-                 Map<DecodeHintType,?> baseHints,
+                 Map<DecodeHintType, ?> baseHints,
                  String characterSet,
                  ResultPointCallback resultPointCallback) {
-
+    
         this.activity = activity;
         handlerInitLatch = new CountDownLatch(1);
-
+    
         hints = new EnumMap<>(DecodeHintType.class);
         if (baseHints != null) {
             hints.putAll(baseHints);
         }
-
+    
         // The prefs can't change while the thread is running, so pick them up once here.
         if (decodeFormats == null || decodeFormats.isEmpty()) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
@@ -86,14 +85,14 @@ final class DecodeThread extends Thread {
             }
         }
         hints.put(DecodeHintType.POSSIBLE_FORMATS, decodeFormats);
-
+    
         if (characterSet != null) {
             hints.put(DecodeHintType.CHARACTER_SET, characterSet);
         }
         hints.put(DecodeHintType.NEED_RESULT_POINT_CALLBACK, resultPointCallback);
         Log.i("DecodeThread", "Hints: " + hints);
     }
-
+    
     Handler getHandler() {
         try {
             handlerInitLatch.await();
@@ -102,7 +101,7 @@ final class DecodeThread extends Thread {
         }
         return handler;
     }
-
+    
     @Override
     public void run() {
         Looper.prepare();
@@ -110,5 +109,5 @@ final class DecodeThread extends Thread {
         handlerInitLatch.countDown();
         Looper.loop();
     }
-
+    
 }

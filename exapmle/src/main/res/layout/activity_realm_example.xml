@@ -12,9 +12,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
 
         <TextView
@@ -29,41 +29,42 @@
             android:id="@+id/tv_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@drawable/white_r5_bg"
             android:hint="请输入序号（主键）"
             android:inputType="number"
             android:maxLength="8"
             android:padding="10dp"
-            android:textSize="@dimen/sp_14"
-            android:background="@drawable/white_r5_bg"
-            android:layout_marginBottom="@dimen/dp_10"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_10"/>
+            android:textSize="@dimen/sp_14" />
 
         <EditText
             android:id="@+id/tv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="请输入姓名"
-            android:padding="10dp"
-            android:textSize="@dimen/sp_14"
-            android:background="@drawable/white_r5_bg"
             android:layout_marginBottom="@dimen/dp_10"
             android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_10"/>
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@drawable/white_r5_bg"
+            android:hint="请输入姓名"
+            android:padding="10dp"
+            android:textSize="@dimen/sp_14" />
 
         <EditText
             android:id="@+id/tv_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@drawable/white_r5_bg"
             android:hint="请输入年龄"
             android:inputType="number"
             android:maxLength="3"
-            android:textSize="@dimen/sp_14"
             android:padding="10dp"
-            android:background="@drawable/white_r5_bg"
-            android:layout_marginBottom="@dimen/dp_10"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_10"/>
+            android:textSize="@dimen/sp_14" />
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -71,58 +72,58 @@
             <com.wya.uikit.button.WYAButton
                 android:id="@+id/wya_button_add"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
+                android:layout_weight="1"
                 android:text="增"
                 android:textAllCaps="false"
                 app:backColor="#118EE9"
                 app:fillet="true"
+                app:radius="5dp"
                 app:textColor="#ffffff"
-                app:textColorPress="#50ffffff"
-                app:radius="5dp" />
+                app:textColorPress="#50ffffff" />
 
             <com.wya.uikit.button.WYAButton
                 android:id="@+id/wya_button_reduce"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
+                android:layout_weight="1"
                 android:text="删"
                 android:textAllCaps="false"
                 app:backColor="#118EE9"
                 app:fillet="true"
+                app:radius="5dp"
                 app:textColor="#ffffff"
-                app:textColorPress="#50ffffff"
-                app:radius="5dp" />
+                app:textColorPress="#50ffffff" />
 
             <com.wya.uikit.button.WYAButton
                 android:id="@+id/wya_button_update"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
+                android:layout_weight="1"
                 android:text="改"
                 android:textAllCaps="false"
                 app:backColor="#118EE9"
                 app:fillet="true"
+                app:radius="5dp"
                 app:textColor="#ffffff"
-                app:textColorPress="#50ffffff"
-                app:radius="5dp" />
+                app:textColorPress="#50ffffff" />
 
             <com.wya.uikit.button.WYAButton
                 android:id="@+id/wya_button_query"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
+                android:layout_weight="1"
                 android:text="查"
                 android:textAllCaps="false"
                 app:backColor="#118EE9"
                 app:fillet="true"
+                app:radius="5dp"
                 app:textColor="#ffffff"
-                app:textColorPress="#50ffffff"
-                app:radius="5dp" />
+                app:textColorPress="#50ffffff" />
 
         </TableRow>
 

@@ -9,15 +9,15 @@
         android:id="@+id/menu_titles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1111"
         android:layout_centerVertical="true"
+        android:text="1111"
         android:textSize="16sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/color_f6f6f6"/>
+        android:background="@color/color_f6f6f6" />
 
     <ImageView
         android:id="@+id/check"
@@ -25,6 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/icon_list_selected"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="10dp"
+        android:src="@drawable/icon_list_selected" />
 </RelativeLayout>

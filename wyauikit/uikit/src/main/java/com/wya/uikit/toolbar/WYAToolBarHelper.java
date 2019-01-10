@@ -1,6 +1,5 @@
 package com.wya.uikit.toolbar;
 
-
 import android.graphics.Color;
 
 /**
@@ -114,199 +113,197 @@ public class WYAToolBarHelper {
      * 第二个图标资源
      */
     private int secondRightIcon;
-
+    
     public boolean isShowSecondRightIcon() {
         return showSecondRightIcon;
     }
-
+    
     public void setShowSecondRightIcon(boolean showSecondRightIcon) {
         this.showSecondRightIcon = showSecondRightIcon;
     }
-
+    
     public int getSecondRightIcon() {
         return secondRightIcon;
     }
-
+    
     public void setSecondRightIcon(int secondRightIcon) {
         this.secondRightIcon = secondRightIcon;
     }
-
+    
     public int getFirstRightIcon() {
         return firstRightIcon;
     }
-
+    
     public void setFirstRightIcon(int firstRightIcon) {
         this.firstRightIcon = firstRightIcon;
     }
-
+    
     public boolean isShowFirstRightIcon() {
         return showFirstRightIcon;
     }
-
+    
     public void setShowFirstRightIcon(boolean showFirstRightIcon) {
         this.showFirstRightIcon = showFirstRightIcon;
     }
-
+    
     public boolean isShowSecondRightText() {
         return showSecondRightText;
     }
-
+    
     public void setShowSecondRightText(boolean showSecondRightText) {
         this.showSecondRightText = showSecondRightText;
     }
-
+    
     public String getSecondRightText() {
         return secondRightText;
     }
-
+    
     public void setSecondRightText(String secondRightText) {
         this.secondRightText = secondRightText;
     }
-
+    
     public int getSecondRightTextColor() {
         return secondRightTextColor;
     }
-
+    
     public void setSecondRightTextColor(int secondRightTextColor) {
         this.secondRightTextColor = secondRightTextColor;
     }
-
+    
     public int getSecondRightTextSize() {
         return secondRightTextSize;
     }
-
+    
     public void setSecondRightTextSize(int secondRightTextSize) {
         this.secondRightTextSize = secondRightTextSize;
     }
-
-
+    
     public int getFirstRightTextSize() {
         return firstRightTextSize;
     }
-
+    
     public void setFirstRightTextSize(int firstRightTextSize) {
         this.firstRightTextSize = firstRightTextSize;
     }
-
+    
     public int getFirstRightTextColor() {
         return firstRightTextColor;
     }
-
+    
     public void setFirstRightTextColor(int firstRightTextColor) {
         this.firstRightTextColor = firstRightTextColor;
     }
-
+    
     public String getFirstRightText() {
         return firstRightText;
     }
-
+    
     public void setFirstRightText(String firstRightText) {
         this.firstRightText = firstRightText;
     }
-
+    
     public boolean isShowFirstRightText() {
         return showFirstRightText;
     }
-
+    
     public void setShowFirstRightText(boolean showFirstRightText) {
         this.showFirstRightText = showFirstRightText;
     }
-
+    
     public boolean isShowLeftIcon() {
         return showLeftIcon;
     }
-
+    
     public void setShowLeftIcon(boolean showLeftIcon) {
         this.showLeftIcon = showLeftIcon;
     }
-
+    
     public int getLeftIcon() {
         return leftIcon;
     }
-
+    
     public void setLeftIcon(int leftIcon) {
         this.leftIcon = leftIcon;
     }
-
+    
     public boolean isShowLeftText() {
         return showLeftText;
     }
-
+    
     public void setShowLeftText(boolean showLeftText) {
         this.showLeftText = showLeftText;
     }
-
+    
     public int getLeftTextColor() {
         return leftTextColor;
     }
-
+    
     public void setLeftTextColor(int leftTextColor) {
         this.leftTextColor = leftTextColor;
     }
-
+    
     public int getLeftTextSize() {
         return leftTextSize;
     }
-
+    
     public void setLeftTextSize(int leftTextSize) {
         this.leftTextSize = leftTextSize;
     }
-
+    
     public String getLeftText() {
         return leftText;
     }
-
+    
     public void setLeftText(String leftText) {
         this.leftText = leftText;
     }
-
+    
     public int getTitleColor() {
         return titleColor;
     }
-
+    
     public void setTitleColor(int titleColor) {
         this.titleColor = titleColor;
     }
-
+    
     public int getTitleSize() {
         return titleSize;
     }
-
+    
     public void setTitleSize(int titleSize) {
         this.titleSize = titleSize;
     }
-
+    
     public boolean isShow() {
         return show;
     }
-
+    
     public void setShow(boolean show) {
         this.show = show;
     }
-
+    
     public int getBackgroundColor() {
         return backgroundColor;
     }
-
+    
     public void setBackgroundColor(int backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
-
+    
     public String getTitle() {
         return title;
     }
-
+    
     public void setTitle(String title) {
         this.title = title;
     }
-
+    
     public boolean isLight() {
         return isLight;
     }
-
+    
     public void setLight(boolean light) {
         isLight = light;
     }
-
-
+    
 }

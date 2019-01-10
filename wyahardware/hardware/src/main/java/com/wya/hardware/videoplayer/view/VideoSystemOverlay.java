@@ -10,44 +10,38 @@ import android.widget.TextView;
 
 import com.wya.hardware.R;
 
- /**
-  * @date: 2018/12/6 14:20
-  * @author: Chunjiang Mao
-  * @classname: VideoSystemOverlay
-  * @describe: 滑动变化音量|亮度框
-  */
+/**
+ * @date: 2018/12/6 14:20
+ * @author: Chunjiang Mao
+ * @classname: VideoSystemOverlay
+ * @describe: 滑动变化音量|亮度框
+ */
 
 public class VideoSystemOverlay extends FrameLayout {
-
-    public enum SystemType {
-        //
-        VOLUME, BRIGHTNESS
-    }
-
+    
     private TextView mSystemTitle;
     private ImageView mSystemImage;
     private ProgressBar mProgressBar;
-
     public VideoSystemOverlay(Context context) {
         super(context);
         initialize(context);
     }
-
+    
     public VideoSystemOverlay(Context context, AttributeSet attrs) {
         super(context, attrs);
         initialize(context);
     }
-
+    
     private void initialize(Context context) {
         LayoutInflater.from(context).inflate(R.layout.video_overlay_system, this);
-
+        
         mSystemTitle = (TextView) findViewById(R.id.system_ui_title);
         mSystemImage = (ImageView) findViewById(R.id.system_ui_image);
         mProgressBar = (ProgressBar) findViewById(R.id.system_ui_seek_bar);
-
+        
         hide();
     }
-
+    
     public void show(SystemType type, int max, int progress) {
         if (type == SystemType.BRIGHTNESS) {
             mSystemTitle.setText("亮度");
@@ -62,9 +56,14 @@ public class VideoSystemOverlay extends FrameLayout {
         mProgressBar.setProgress(progress);
         setVisibility(VISIBLE);
     }
-
+    
     public void hide() {
         setVisibility(GONE);
     }
-
+    
+    public enum SystemType {
+        //
+        VOLUME, BRIGHTNESS
+    }
+    
 }

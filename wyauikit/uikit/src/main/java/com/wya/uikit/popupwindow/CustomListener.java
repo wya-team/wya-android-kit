@@ -5,13 +5,14 @@ import android.view.View;
 /**
  * @date: 2018/12/13 11:25
  * @author: Chunjiang Mao
- * @classname:  CustomListener
+ * @classname: CustomListener
  * @describe:
  */
 
 public interface CustomListener {
     /**
      * customLayout
+     *
      * @param v
      */
     void customLayout(View v);

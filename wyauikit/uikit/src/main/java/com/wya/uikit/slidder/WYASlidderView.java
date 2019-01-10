@@ -29,6 +29,11 @@ public class WYASlidderView extends View implements IRangeSlidderView {
      */
     private final int SLIDDER_MODE_RANGDE = 0;
     private final int SLIDDER_MODE_SINGLE = 1;
+    /**
+     * region
+     */
+    private final int REGION_MODE_INTEGER = 0;
+    private final int REGION_MODE_FLOAT = 1;
     private int mSlidderMode = SLIDDER_MODE_RANGDE;
     private Paint mProgressPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private RectF mProgressBackgroundRectF = new RectF();
@@ -37,12 +42,6 @@ public class WYASlidderView extends View implements IRangeSlidderView {
     private float mProgressCorners;
     private int mPorgressBackgroundColor;
     private int mProgressForegroundColor;
-    
-    /**
-     * region
-     */
-    private final int REGION_MODE_INTEGER = 0;
-    private final int REGION_MODE_FLOAT = 1;
     private int mRegionMode = REGION_MODE_INTEGER;
     private Drawable mDrawableRegionMin;
     private Drawable mDrawableRegionMax;
@@ -636,62 +635,62 @@ public class WYASlidderView extends View implements IRangeSlidderView {
     
     @Override
     public void setProgressHeight(int height) {
-        this.mProgressHeight = height;
+        mProgressHeight = height;
     }
     
     @Override
     public void setProgressMin(int min) {
-        this.mProgressMin = min;
+        mProgressMin = min;
     }
     
     @Override
     public void setProgressMax(int max) {
-        this.mProgressMax = max;
+        mProgressMax = max;
     }
     
     @Override
     public void setProgressBackgroundColor(int color) {
-        this.mPorgressBackgroundColor = color;
+        mPorgressBackgroundColor = color;
     }
     
     @Override
     public void setProgressForegroundColor(int color) {
-        this.mProgressForegroundColor = color;
+        mProgressForegroundColor = color;
     }
     
     @Override
     public void setSlidderMode(int mode) {
-        this.mSlidderMode = mode;
+        mSlidderMode = mode;
     }
     
     @Override
     public void setRegionBitmapSize(int size) {
-        this.mRegionBitmapSize = size;
+        mRegionBitmapSize = size;
     }
     
     @Override
     public void setRegionPadding(int padding) {
-        this.mRegionPadding = padding;
+        mRegionPadding = padding;
     }
     
     @Override
     public void setRegionTextColor(int textColor) {
-        this.mRegionTextColor = textColor;
+        mRegionTextColor = textColor;
     }
     
     @Override
     public void setRegionTextSize(int textSize) {
-        this.mRegionTextSize = textSize;
+        mRegionTextSize = textSize;
     }
     
     @Override
     public void setRegionDrawableMin(Drawable drawableMin) {
-        this.mDrawableRegionMin = drawableMin;
+        mDrawableRegionMin = drawableMin;
     }
     
     @Override
     public void setRegionDrawableMax(Drawable drawableMax) {
-        this.mDrawableRegionMax = drawableMax;
+        mDrawableRegionMax = drawableMax;
     }
     
 }

@@ -2,10 +2,10 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/segment_item"
     android:layout_width="0dp"
-    android:layout_weight="1"
     android:layout_height="match_parent"
-    android:text="Tab"
-    android:textSize="14sp"
+    android:layout_weight="1"
     android:gravity="center"
+    android:minHeight="30dp"
     android:padding="4dp"
-    android:minHeight="30dp"/>
+    android:text="Tab"
+    android:textSize="14sp" />

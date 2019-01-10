@@ -13,21 +13,21 @@ import com.wya.uikit.R;
  * @description :
  */
 public class BaseStickerImageView extends BaseStickerView {
-
+    
     private ImageView mImageView;
-
+    
     public BaseStickerImageView(Context context) {
         super(context);
     }
-
+    
     public BaseStickerImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-
+    
     public BaseStickerImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
-
+    
     @Override
     public View onCreateContentView(Context context) {
         mImageView = new ImageView(context);

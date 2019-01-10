@@ -1,4 +1,3 @@
-
 package com.wya.uikit.toolbar.swipeback;
 
 import android.app.Activity;
@@ -114,6 +113,15 @@ public class Utils {
         }
     }
     
+    public interface TranslucentListener {
+        
+        /**
+         * onTranslucent
+         */
+        void onTranslucent();
+        
+    }
+    
     static class ConvertInvocationHandler implements InvocationHandler {
         private WeakReference<TranslucentListener> mListener;
         
@@ -133,14 +141,5 @@ public class Utils {
             }
             return null;
         }
-    }
-    
-    public interface TranslucentListener {
-    
-        /**
-         * onTranslucent
-         */
-        void onTranslucent();
-        
     }
 }

@@ -58,20 +58,19 @@ public class BadgeExampleActivity extends BaseActivity {
     
     @BindView(R.id.v_bitmap_dot)
     View vBitmapDot;
-    
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_badge_example;
-    }
-    
     private IBadgeView mDot;
     private IBadgeView mNumDot;
     private IBadgeView mStringDot;
-    
+
     public static void start(Context context) {
         if (null != context) {
             context.startActivity(new Intent(context, BadgeExampleActivity.class));
         }
+    }
+    
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_badge_example;
     }
     
     @Override

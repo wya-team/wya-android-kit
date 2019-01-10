@@ -18,118 +18,112 @@ import java.util.List;
 
 /**
  * @author : XuDonglin
- * e-mail : 465715784@qq.com
- * time   : 2018/12/11
- * desc   :	时间格式化工具类
- * version: 1.0
- * 日期格式包括：年（yyyy）、年月（yyyyMM、yyyy-MM）、年月日（yyyyMMdd、yyyy-MM-dd）、年月日时分（yyyyMMddHHmm、yyyy-MM-dd HH:mm）、年月日时分秒（yyyyMMddHHMISS、yyyy-MM-dd HH:MI:SS）等各种格式。
- *                1. 根据Date时间，转化成上面各种日期格式；
- *           2. 解析两个日期之间的所有月份
- *           3. 解析两个日期之间的所有日期
- *           4. 获取当下年份指定前后数量的年份集合
- *           5. 获取当前日期是一年中的第几周
- *           6. 获取某一年各星期的始终时间
- *           7. 获取某一年的总周数
- *           8. 获取指定日期所在周的第一天或者最后一天
- *           9. 获取某个日期是星期几
- *           10. 验证字符串是否是日期
- *           11. 获得指定日期前后时间段的时间
- *           12. 获得两个日期的时间戳之差
- *           13. 判段两个时间是否为同年同月
- *           14. 判断两个时间的时间差（结果按照格式化输出）
+ *         e-mail : 465715784@qq.com
+ *         time   : 2018/12/11
+ *         desc   :	时间格式化工具类
+ *         version: 1.0
+ *         日期格式包括：年（yyyy）、年月（yyyyMM、yyyy-MM）、年月日（yyyyMMdd、yyyy-MM-dd）、年月日时分（yyyyMMddHHmm、yyyy-MM-dd HH:mm）、年月日时分秒（yyyyMMddHHMISS、yyyy-MM-dd HH:MI:SS）等各种格式。
+ *         1. 根据Date时间，转化成上面各种日期格式；
+ *                   2. 解析两个日期之间的所有月份
+ *                   3. 解析两个日期之间的所有日期
+ *                   4. 获取当下年份指定前后数量的年份集合
+ *                   5. 获取当前日期是一年中的第几周
+ *                   6. 获取某一年各星期的始终时间
+ *                   7. 获取某一年的总周数
+ *                   8. 获取指定日期所在周的第一天或者最后一天
+ *                   9. 获取某个日期是星期几
+ *                   10. 验证字符串是否是日期
+ *                   11. 获得指定日期前后时间段的时间
+ *                   12. 获得两个日期的时间戳之差
+ *                   13. 判段两个时间是否为同年同月
+ *                   14. 判断两个时间的时间差（结果按照格式化输出）
  */
 @SuppressLint("SimpleDateFormat")
 public class DateUtil {
-
+    
     // ==格式到年==
     /**
      * 日期格式，年份，例如：2004，2008
      */
     public static final String DATE_FORMAT_YYYY = "yyyy";
-
-
+    
     // ==格式到年月 ==
     /**
      * 日期格式，年份和月份，例如：200707，200808
      */
     public static final String DATE_FORMAT_YYYYMM = "yyyyMM";
-
+    
     /**
      * 日期格式，年份和月份，例如：200707，2008-08
      */
     public static final String DATE_FORMAT_YYYY_MM = "yyyy-MM";
-
-
+    
     // ==格式到年月日==
     /**
      * 日期格式，年月日，例如：050630，080808
      */
     public static final String DATE_FORMAT_YYMMDD = "yyMMdd";
-
+    
     /**
      * 日期格式，年月日，用横杠分开，例如：06-12-25，08-08-08
      */
     public static final String DATE_FORMAT_YY_MM_DD = "yy-MM-dd";
-
+    
     /**
      * 日期格式，年月日，例如：20050630，20080808
      */
     public static final String DATE_FORMAT_YYYYMMDD = "yyyyMMdd";
-
+    
     /**
      * 日期格式，年月日，用横杠分开，例如：2006-12-25，2008-08-08
      */
     public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
-
+    
     /**
      * 日期格式，年月日，例如：2016.10.05
      */
     public static final String DATE_FORMAT_POINTYYYYMMDD = "yyyy.MM.dd";
-
+    
     /**
      * 日期格式，年月日，例如：2016年10月05日
      */
     public static final String DATE_TIME_FORMAT_YYYY年MM月DD日 = "yyyy年MM月dd日";
-
-
+    
     // ==格式到年月日 时分 ==
-
+    
     /**
      * 日期格式，年月日时分，例如：200506301210，200808081210
      */
     public static final String DATE_FORMAT_YYYYMMDDHHMM = "yyyyMMddHHmm";
-
+    
     /**
      * 日期格式，年月日时分，例如：20001230 12:00，20080808 20:08
      */
     public static final String DATE_TIME_FORMAT_YYYYMMDD_HH_MI = "yyyyMMdd HH:mm";
-
+    
     /**
      * 日期格式，年月日时分，例如：2000-12-30 12:00，2008-08-08 20:08
      */
     public static final String DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI = "yyyy-MM-dd HH:mm";
-
-
+    
     // ==格式到年月日 时分秒==
     /**
      * 日期格式，年月日时分秒，例如：20001230120000，20080808200808
      */
     public static final String DATE_TIME_FORMAT_YYYYMMDDHHMISS = "yyyyMMddHHmmss";
-
+    
     /**
      * 日期格式，年月日时分秒，年月日用横杠分开，时分秒用冒号分开
      * 例如：2005-05-10 23：20：00，2008-08-08 20:08:08
      */
     public static final String DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS = "yyyy-MM-dd HH:mm:ss";
-
-
+    
     // ==格式到年月日 时分秒 毫秒==
     /**
      * 日期格式，年月日时分秒毫秒，例如：20001230120000123，20080808200808456
      */
     public static final String DATE_TIME_FORMAT_YYYYMMDDHHMISSSSS = "yyyyMMddHHmmssSSS";
-
-
+    
     // ==特殊格式==
     /**
      * 日期格式，月日时分，例如：10-05 12:00
@@ -138,8 +132,7 @@ public class DateUtil {
 
 
     /* ************工具方法***************   */
-
-
+    
     /**
      * 时间戳转字符串时间
      *
@@ -151,7 +144,7 @@ public class DateUtil {
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         return sdf.format(new Date(stamp));
     }
-
+    
     /**
      * 时间戳转字符串时间 yyyy-MM-dd HH:mm:ss
      *
@@ -161,7 +154,7 @@ public class DateUtil {
     public static String stamp2date(long stamp) {
         return stamp2date(stamp, DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS);
     }
-
+    
     /**
      * 格式化时间
      *
@@ -179,7 +172,7 @@ public class DateUtil {
         }
         return sdf.format(date);
     }
-
+    
     /**
      * 时间转时间戳
      *
@@ -196,10 +189,7 @@ public class DateUtil {
         }
         return date.getTime();
     }
-
-
-
-
+    
     /**
      * 获取某日期的年份
      *
@@ -211,7 +201,7 @@ public class DateUtil {
         cal.setTime(date);
         return cal.get(Calendar.YEAR);
     }
-
+    
     /**
      * 获取某日期的月份
      *
@@ -223,7 +213,7 @@ public class DateUtil {
         cal.setTime(date);
         return cal.get(Calendar.MONTH) + 1;
     }
-
+    
     /**
      * 获取某日期的日数
      *
@@ -237,7 +227,7 @@ public class DateUtil {
         int day = cal.get(Calendar.DATE);
         return day;
     }
-
+    
     /**
      * 格式化Date时间
      *
@@ -249,7 +239,7 @@ public class DateUtil {
         DateFormat dateFormat = new SimpleDateFormat(timeFromat);
         return dateFormat.format(time);
     }
-
+    
     /**
      * 格式化Timestamp时间
      *
@@ -261,7 +251,7 @@ public class DateUtil {
         SimpleDateFormat df = new SimpleDateFormat(timeFromat);
         return df.format(timestamp);
     }
-
+    
     /**
      * 格式化Date时间
      *
@@ -282,7 +272,7 @@ public class DateUtil {
             }
         }
     }
-
+    
     /**
      * 格式化Date时间
      *
@@ -299,7 +289,7 @@ public class DateUtil {
             return defaultValue;
         }
     }
-
+    
     /**
      * 格式化String时间
      *
@@ -311,17 +301,17 @@ public class DateUtil {
         if (time == null || "".equals(time)) {
             return null;
         }
-
+        
         Date date = null;
         try {
             DateFormat dateFormat = new SimpleDateFormat(timeFromat);
             date = dateFormat.parse(time);
         } catch (Exception e) {
-
+        
         }
         return date;
     }
-
+    
     /**
      * 格式化String时间
      *
@@ -339,7 +329,7 @@ public class DateUtil {
             return defaultValue;
         }
     }
-
+    
     /**
      * 当strTime为2008-9时返回为2008-9-1 00:00格式日期时间，无法转换返回null.
      *
@@ -350,10 +340,10 @@ public class DateUtil {
         if (strTime == null || strTime.trim().length() <= 0) {
             return null;
         }
-
+        
         Date date = null;
         List<String> list = new ArrayList<String>(0);
-
+        
         list.add(DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS);
         list.add(DATE_TIME_FORMAT_YYYYMMDDHHMISSSSS);
         list.add(DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI);
@@ -364,8 +354,7 @@ public class DateUtil {
         list.add(DATE_FORMAT_YYYY_MM);
         list.add(DATE_FORMAT_YYYYMM);
         list.add(DATE_FORMAT_YYYY);
-
-
+        
         for (Iterator iter = list.iterator(); iter.hasNext(); ) {
             String format = (String) iter.next();
             if (strTime.indexOf("-") > 0 && format.indexOf("-") < 0) {
@@ -382,10 +371,10 @@ public class DateUtil {
                 break;
             }
         }
-
+        
         return date;
     }
-
+    
     /**
      * 解析两个日期之间的所有月份
      *
@@ -398,27 +387,27 @@ public class DateUtil {
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM");
         // 返回的月份列表
         String sRet = "";
-
+        
         // 定义一些变量
         Date beginDate = null;
         Date endDate = null;
-
+        
         GregorianCalendar beginGC = null;
         GregorianCalendar endGC = null;
         List<String> list = new ArrayList<String>();
-
+        
         try {
             // 将字符串parse成日期
             beginDate = f.parse(beginDateStr);
             endDate = f.parse(endDateStr);
-
+            
             // 设置日历
             beginGC = new GregorianCalendar();
             beginGC.setTime(beginDate);
-
+            
             endGC = new GregorianCalendar();
             endGC.setTime(endDate);
-
+            
             // 直到两个时间相同
             while (beginGC.getTime().compareTo(endGC.getTime()) <= 0) {
                 sRet = beginGC.get(Calendar.YEAR) + "-"
@@ -433,7 +422,7 @@ public class DateUtil {
             return null;
         }
     }
-
+    
     /**
      * 解析两个日期段之间的所有日期
      *
@@ -444,31 +433,31 @@ public class DateUtil {
     public static List<String> getDayListOfDate(String beginDateStr, String endDateStr) {
         // 指定要解析的时间格式
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-
+        
         // 定义一些变量
         Date beginDate = null;
         Date endDate = null;
-
+        
         Calendar beginGC = null;
         Calendar endGC = null;
         List<String> list = new ArrayList<String>();
-
+        
         try {
             // 将字符串parse成日期
             beginDate = f.parse(beginDateStr);
             endDate = f.parse(endDateStr);
-
+            
             // 设置日历
             beginGC = Calendar.getInstance();
             beginGC.setTime(beginDate);
-
+            
             endGC = Calendar.getInstance();
             endGC.setTime(endDate);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
+            
             // 直到两个时间相同
             while (beginGC.getTime().compareTo(endGC.getTime()) <= 0) {
-
+                
                 list.add(sdf.format(beginGC.getTime()));
                 // 以日为单位，增加时间
                 beginGC.add(Calendar.DAY_OF_MONTH, 1);
@@ -479,7 +468,7 @@ public class DateUtil {
             return null;
         }
     }
-
+    
     /**
      * 获取当下年份指定前后数量的年份集合
      *
@@ -496,7 +485,7 @@ public class DateUtil {
         c = Calendar.getInstance();
         c.setTime(new Date());
         int currYear = Calendar.getInstance().get(Calendar.YEAR);
-
+        
         int startYear = currYear - before;
         int endYear = currYear + behind;
         for (int i = startYear; i < endYear; i++) {
@@ -504,7 +493,7 @@ public class DateUtil {
         }
         return list;
     }
-
+    
     /**
      * 获取当前日期是一年中第几周
      *
@@ -516,10 +505,10 @@ public class DateUtil {
         c.setFirstDayOfWeek(Calendar.MONDAY);
         c.setMinimalDaysInFirstWeek(7);
         c.setTime(date);
-
+        
         return c.get(Calendar.WEEK_OF_YEAR);
     }
-
+    
     /**
      * 获取某一年各星期的始终时间
      * 实例：getWeekList(2016)，第52周(从2016-12-26至2017-01-01)
@@ -532,7 +521,7 @@ public class DateUtil {
         Calendar c = new GregorianCalendar();
         c.set(year, Calendar.DECEMBER, 31, 23, 59, 59);
         int count = getWeekthOfYear(c.getTime());
-
+        
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String dayOfWeekStart = "";
         String dayOfWeekEnd = "";
@@ -542,9 +531,9 @@ public class DateUtil {
             map.put(Integer.valueOf(i), "第" + i + "周(从" + dayOfWeekStart + "至" + dayOfWeekEnd + ")");
         }
         return map;
-
+        
     }
-
+    
     /**
      * 获取某一年的总周数
      *
@@ -557,7 +546,7 @@ public class DateUtil {
         int count = getWeekthOfYear(c.getTime());
         return count;
     }
-
+    
     /**
      * 获取指定日期所在周的第一天
      *
@@ -572,7 +561,7 @@ public class DateUtil {
         c.set(Calendar.DAY_OF_WEEK, c.getFirstDayOfWeek());
         return c.getTime();
     }
-
+    
     /**
      * 获取指定日期所在周的最后一天
      *
@@ -588,7 +577,7 @@ public class DateUtil {
         c.set(Calendar.DAY_OF_WEEK, c.getFirstDayOfWeek() + 6);
         return c.getTime();
     }
-
+    
     /**
      * 获取某年某周的第一天
      *
@@ -601,13 +590,13 @@ public class DateUtil {
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, Calendar.JANUARY);
         c.set(Calendar.DATE, 1);
-
+        
         Calendar cal = (GregorianCalendar) c.clone();
         cal.add(Calendar.DATE, week * 7);
-
+        
         return getFirstDayOfWeek(cal.getTime());
     }
-
+    
     /**
      * 获取某年某周的最后一天
      *
@@ -620,13 +609,13 @@ public class DateUtil {
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, Calendar.JANUARY);
         c.set(Calendar.DATE, 1);
-
+        
         Calendar cal = (GregorianCalendar) c.clone();
         cal.add(Calendar.DATE, week * 7);
-
+        
         return getLastDayOfWeek(cal.getTime());
     }
-
+    
     /**
      * 获取某年某月的第一天
      *
@@ -646,7 +635,7 @@ public class DateUtil {
         c.set(Calendar.MILLISECOND, 0);
         return c.getTime();
     }
-
+    
     /**
      * 获取某年某月的最后一天
      *
@@ -666,7 +655,7 @@ public class DateUtil {
         c.set(Calendar.MILLISECOND, 999);
         return c.getTime();
     }
-
+    
     /**
      * 获取某个日期为星期几
      *
@@ -677,15 +666,15 @@ public class DateUtil {
         String[] weekDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-
+        
         int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
         if (w < 0) {
             w = 0;
         }
-
+        
         return weekDays[w];
     }
-
+    
     /**
      * 获得指定日期的星期几数
      *
@@ -698,7 +687,7 @@ public class DateUtil {
         int weekDay = aCalendar.get(Calendar.DAY_OF_WEEK);
         return weekDay;
     }
-
+    
     /**
      * 验证字符串是否为日期
      * 验证格式:YYYYMMDD、YYYY_MM_DD、YYYYMMDDHHMISS、YYYYMMDD_HH_MI、YYYY_MM_DD_HH_MI、YYYYMMDDHHMISSSSS、YYYY_MM_DD_HH_MI_SS
@@ -710,10 +699,10 @@ public class DateUtil {
         if (strTime == null || strTime.trim().length() <= 0) {
             return false;
         }
-
+        
         Date date = null;
         List<String> list = new ArrayList<String>(0);
-
+        
         list.add(DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS);
         list.add(DATE_TIME_FORMAT_YYYYMMDDHHMISSSSS);
         list.add(DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI);
@@ -721,7 +710,7 @@ public class DateUtil {
         list.add(DATE_TIME_FORMAT_YYYYMMDDHHMISS);
         list.add(DATE_FORMAT_YYYY_MM_DD);
         list.add(DATE_FORMAT_YYYYMMDD);
-
+        
         for (Iterator iter = list.iterator(); iter.hasNext(); ) {
             String format = (String) iter.next();
             if (strTime.indexOf("-") > 0 && format.indexOf("-") < 0) {
@@ -738,14 +727,14 @@ public class DateUtil {
                 break;
             }
         }
-
+        
         if (date != null) {
             Log.i("DateUtil", "生成的日期:" + DateUtil.parseDateToStr(date, DateUtil.DATE_TIME_FORMAT_YYYY_MM_DD_HH_MI_SS, "--null--"));
             return true;
         }
         return false;
     }
-
+    
     /**
      * 将指定日期的时分秒格式为零
      *
@@ -761,7 +750,7 @@ public class DateUtil {
         cal.set(Calendar.MILLISECOND, 0);
         return cal.getTime();
     }
-
+    
     /**
      * 获得指定时间加减参数后的日期(不计算则输入0)
      *
@@ -792,10 +781,10 @@ public class DateUtil {
         c.add(Calendar.SECOND, second);
         //加减毫秒数
         c.add(Calendar.MILLISECOND, millisecond);
-
+        
         return c.getTime();
     }
-
+    
     /**
      * 获得两个日期的时间戳之差
      *
@@ -807,7 +796,7 @@ public class DateUtil {
         long daysBetween = (endDate.getTime() - startDate.getTime() + 1000000) / (3600 * 24 * 1000);
         return daysBetween;
     }
-
+    
     /**
      * 判断二个时间是否为同年同月
      *
@@ -828,7 +817,7 @@ public class DateUtil {
         }
         return flag;
     }
-
+    
     /**
      * 获得两个时间相差距离多少天多少小时多少分多少秒
      *
@@ -842,7 +831,7 @@ public class DateUtil {
         long min = 0;
         long sec = 0;
         try {
-
+            
             long time1 = str1.getTime();
             long time2 = str2.getTime();
             long diff;
@@ -861,7 +850,7 @@ public class DateUtil {
         long[] times = {day, hour, min, sec};
         return times;
     }
-
+    
     /**
      * 两个时间相差距离多少天多少小时多少分多少秒
      *
@@ -898,7 +887,7 @@ public class DateUtil {
         long[] times = {day, hour, min, sec};
         return times;
     }
-
+    
     /**
      * 两个时间之间相差距离多少天
      *
@@ -928,7 +917,7 @@ public class DateUtil {
         }
         return days;
     }
-
+    
     /**
      * 获取指定时间的那天 23:59:59.999 的时间
      *
@@ -944,6 +933,5 @@ public class DateUtil {
         c.set(Calendar.MILLISECOND, 999);
         return c.getTime();
     }
-
-
+    
 }

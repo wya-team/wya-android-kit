@@ -6,15 +6,15 @@ package com.wya.uikit.imagecrop.core;
  * @description : 编辑枚举
  */
 public enum EditMode {
-
+    
     //
     NONE,
     //
     DOODLE,
     //
     MOSAIC,
-
+    
     //裁剪
     CLIP
-
+    
 }

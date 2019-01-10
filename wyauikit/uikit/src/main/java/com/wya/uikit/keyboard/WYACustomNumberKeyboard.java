@@ -32,64 +32,24 @@ public class WYACustomNumberKeyboard {
     private WYACustomNumberKeyboardView keyboardView;
     private EditText editText;
     private boolean isRandom = false;
-
-    public WYACustomNumberKeyboard(Activity activity) {
-        this.activity = activity;
-        keyboardView = activity.findViewById(R.id.keyboard_view);
-    }
-    
-    /**
-     * 点击事件触发
-     * @param editText
-     * @param isRandom
-     */
-    public void attachTo(EditText editText, boolean isRandom) {
-        /*
-        切换键盘需要重新new Keyboard对象，否则键盘不会改变,keyboardView放到构造函数里面，避免每次点击重新new 对象，提高性能
-         */
-        keyboard = new Keyboard(activity, R.xml.keyboard);
-        this.isRandom = isRandom;
-        this.editText = editText;
-        hideSystemSofeKeyboard(activity, editText);
-        showSoftKeyboard();
-    }
-
-
-    private void showSoftKeyboard() {
-        if (keyboard == null) {
-            keyboard = new Keyboard(activity, R.xml.keyboard);
-        }
-        if (keyboardView == null) {
-            keyboardView = activity.findViewById(R.id.keyboard_view);
-        }
-        if (isRandom) {
-            randomKeyboardNumber();
-        } else {
-            keyboardView.setKeyboard(keyboard);
-        }
-        keyboardView.setEnabled(true);
-        keyboardView.setPreviewEnabled(false);
-        keyboardView.setVisibility(View.VISIBLE);
-        keyboardView.setOnKeyboardActionListener(listener);
-    }
-
+    private OnOkClick mOkClick;
+    private OnCancelClick mCancelClick;
     private KeyboardView.OnKeyboardActionListener listener = new KeyboardView.OnKeyboardActionListener() {
         @Override
         public void onPress(int primaryCode) {
-
+        
         }
-
+        
         @Override
         public void onRelease(int primaryCode) {
-
+        
         }
-
+        
         @Override
         public void onKey(int primaryCode, int[] keyCodes) {
             Editable editable = editText.getText();
             int start = editText.getSelectionStart();
-            if (primaryCode == Keyboard.KEYCODE_DELETE)
-            {
+            if (primaryCode == Keyboard.KEYCODE_DELETE) {
                 //key  codes 为-5
                 if (editable != null && editable.length() > 0) {
                     if (start > 0) {
@@ -110,70 +70,125 @@ public class WYACustomNumberKeyboard {
                 editable.insert(start, Character.toString((char) primaryCode));
             }
         }
-
+        
         @Override
         public void onText(CharSequence text) {
-
+        
         }
-
+        
         @Override
         public void swipeLeft() {
-
+        
         }
-
+        
         @Override
         public void swipeRight() {
-
+        
         }
-
+        
         @Override
         public void swipeDown() {
-
+        
         }
-
+        
         @Override
         public void swipeUp() {
-
+        
         }
     };
-
-    public interface OnOkClick {
-        /**
-         * onOkClick
-         */
-        void onOkClick();
+    
+    public WYACustomNumberKeyboard(Activity activity) {
+        this.activity = activity;
+        keyboardView = activity.findViewById(R.id.keyboard_view);
     }
-
-    public interface OnCancelClick {
-        /**
-         * onCancelClick
-         */
-        void onCancelClick();
+    
+    /**
+     * 隐藏系统键盘
+     *
+     * @param editText
+     */
+    private static void hideSystemSofeKeyboard(Context context, EditText editText) {
+        int sdkInt = Build.VERSION.SDK_INT;
+        if (sdkInt >= Build.VERSION_CODES.HONEYCOMB) {
+            try {
+                Class<EditText> cls = EditText.class;
+                Method setShowSoftInputOnFocus;
+                setShowSoftInputOnFocus = cls.getMethod("setShowSoftInputOnFocus", boolean.class);
+                setShowSoftInputOnFocus.setAccessible(true);
+                setShowSoftInputOnFocus.invoke(editText, false);
+                
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            editText.setInputType(InputType.TYPE_NULL);
+        }
+        // 如果软键盘已经显示，则隐藏
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+        }
     }
-
-    private OnOkClick mOkClick;
-    private OnCancelClick mCancelClick;
+    
+    /**
+     * 点击事件触发
+     *
+     * @param editText
+     * @param isRandom
+     */
+    public void attachTo(EditText editText, boolean isRandom) {
+        /*
+        切换键盘需要重新new Keyboard对象，否则键盘不会改变,keyboardView放到构造函数里面，避免每次点击重新new 对象，提高性能
+         */
+        keyboard = new Keyboard(activity, R.xml.keyboard);
+        this.isRandom = isRandom;
+        this.editText = editText;
+        hideSystemSofeKeyboard(activity, editText);
+        showSoftKeyboard();
+    }
+    
+    private void showSoftKeyboard() {
+        if (keyboard == null) {
+            keyboard = new Keyboard(activity, R.xml.keyboard);
+        }
+        if (keyboardView == null) {
+            keyboardView = activity.findViewById(R.id.keyboard_view);
+        }
+        if (isRandom) {
+            randomKeyboardNumber();
+        } else {
+            keyboardView.setKeyboard(keyboard);
+        }
+        keyboardView.setEnabled(true);
+        keyboardView.setPreviewEnabled(false);
+        keyboardView.setVisibility(View.VISIBLE);
+        keyboardView.setOnKeyboardActionListener(listener);
+    }
 
     public void setOnOkClick(OnOkClick onOkClick) {
         this.mOkClick = onOkClick;
     }
-
+    
     public void setOnCancelClick(OnCancelClick onCancelClick) {
         this.mCancelClick = onCancelClick;
     }
-
+    
     public void hideKeyBoard() {
         int visibility = keyboardView.getVisibility();
         if (visibility == KeyboardView.VISIBLE) {
             keyboardView.setVisibility(KeyboardView.GONE);
         }
     }
-
+    
     private boolean isNumber(String str) {
         String wordstr = "0123456789";
         return wordstr.contains(str);
     }
-
+    
     private void randomKeyboardNumber() {
         List<Keyboard.Key> keyList = keyboard.getKeys();
         // 查找出0-9的数字键
@@ -210,36 +225,18 @@ public class WYACustomNumberKeyboard {
         //   hideKeyBoard();
         keyboardView.setKeyboard(keyboard);
     }
-
-    /**
-     * 隐藏系统键盘
-     *
-     * @param editText
-     */
-    private static void hideSystemSofeKeyboard(Context context, EditText editText) {
-        int sdkInt = Build.VERSION.SDK_INT;
-        if (sdkInt >= Build.VERSION_CODES.HONEYCOMB) {
-            try {
-                Class<EditText> cls = EditText.class;
-                Method setShowSoftInputOnFocus;
-                setShowSoftInputOnFocus = cls.getMethod("setShowSoftInputOnFocus", boolean.class);
-                setShowSoftInputOnFocus.setAccessible(true);
-                setShowSoftInputOnFocus.invoke(editText, false);
-
-            } catch (SecurityException e) {
-                e.printStackTrace();
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            editText.setInputType(InputType.TYPE_NULL);
-        }
-        // 如果软键盘已经显示，则隐藏
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) {
-            imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-        }
+    
+    public interface OnOkClick {
+        /**
+         * onOkClick
+         */
+        void onOkClick();
+    }
+    
+    public interface OnCancelClick {
+        /**
+         * onCancelClick
+         */
+        void onCancelClick();
     }
 }

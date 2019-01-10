@@ -26,15 +26,15 @@
             android:id="@+id/picture_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_centerInParent="true"
             android:drawablePadding="2dp"
+            android:drawableRight="@drawable/icon_down"
             android:ellipsize="end"
             android:gravity="center"
             android:maxEms="11"
             android:padding="6dp"
             android:text="所有图片"
-            android:layout_centerInParent="true"
             android:textColor="@color/white"
-            android:drawableRight="@drawable/icon_down"
             android:textSize="17sp" />
 
     </RelativeLayout>
@@ -58,12 +58,12 @@
             android:id="@+id/tv_preview"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:enabled="false"
             android:gravity="center"
             android:padding="10dp"
             android:text="预览"
             android:textColor="@color/color_666"
-            android:textSize="@dimen/sp_14"
-            android:enabled="false"/>
+            android:textSize="@dimen/sp_14" />
 
         <View
             android:layout_width="0dp"
@@ -74,11 +74,11 @@
             android:id="@+id/tv_commit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:enabled="false"
             android:gravity="center"
             android:padding="10dp"
             android:text="确定"
             android:textColor="@color/color_666"
-            android:textSize="@dimen/sp_14"
-            android:enabled="false"/>
+            android:textSize="@dimen/sp_14" />
     </LinearLayout>
 </LinearLayout>

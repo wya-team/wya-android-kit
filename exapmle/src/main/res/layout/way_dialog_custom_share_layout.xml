@@ -41,12 +41,12 @@
         android:id="@+id/cancel"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/white"
         android:gravity="center"
         android:text="取消"
         android:textColor="@drawable/btn_c333333_click_color"
-        android:background="@color/white"
-        android:textSize="16sp"
-        android:layout_marginTop="@dimen/dp_10"/>
+        android:textSize="16sp" />
 
 
 </LinearLayout>

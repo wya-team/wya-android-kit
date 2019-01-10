@@ -119,7 +119,6 @@ public class PickerViewExampleActivity extends BaseActivity {
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         String format = dateFormat.format(date);
                         mYmdhmsText.setText(format);
-
                     }
                 });
                 mCustomTimePicker.setType(new boolean[]{true, true, true, true, true, true})
@@ -133,7 +132,6 @@ public class PickerViewExampleActivity extends BaseActivity {
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         String format = dateFormat.format(date);
                         mYmdhmsTextWith.setText(format);
-
                     }
                 });
                 mCustomTimePicker.setType(new boolean[]{true, true, true, true, true, true})
@@ -147,7 +145,6 @@ public class PickerViewExampleActivity extends BaseActivity {
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                         String format = dateFormat.format(date);
                         mYmdText.setText(format);
-
                     }
                 });
                 mCustomTimePicker.setType(new boolean[]{true, true, true, false, false, false})
@@ -161,7 +158,6 @@ public class PickerViewExampleActivity extends BaseActivity {
                         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
                         String format = dateFormat.format(date);
                         mHmsText.setText(format);
-
                     }
                 });
                 mCustomTimePicker.setType(new boolean[]{false, false, false, true, true, true})
@@ -175,7 +171,6 @@ public class PickerViewExampleActivity extends BaseActivity {
                         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
                         String format = dateFormat.format(date);
                         mHmSpaceText.setText(format);
-
                     }
                 });
                 customTimePicker.setType(new boolean[]{false, false, false, true, true, false})

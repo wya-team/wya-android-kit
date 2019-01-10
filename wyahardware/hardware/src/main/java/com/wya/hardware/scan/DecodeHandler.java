@@ -15,7 +15,6 @@ package com.wya.hardware.scan;
  * limitations under the License.
  */
 
-
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -36,19 +35,30 @@ import java.io.ByteArrayOutputStream;
 import java.util.Map;
 
 final class DecodeHandler extends Handler {
-
+    
     private static final String TAG = DecodeHandler.class.getSimpleName();
-
+    
     private final CaptureActivity activity;
     private final MultiFormatReader multiFormatReader;
     private boolean running = true;
-
-    DecodeHandler(CaptureActivity activity, Map<DecodeHintType,Object> hints) {
+    
+    DecodeHandler(CaptureActivity activity, Map<DecodeHintType, Object> hints) {
         multiFormatReader = new MultiFormatReader();
         multiFormatReader.setHints(hints);
         this.activity = activity;
     }
-
+    
+    private static void bundleThumbnail(PlanarYUVLuminanceSource source, Bundle bundle) {
+        int[] pixels = source.renderThumbnail();
+        int width = source.getThumbnailWidth();
+        int height = source.getThumbnailHeight();
+        Bitmap bitmap = Bitmap.createBitmap(pixels, 0, width, width, height, Bitmap.Config.ARGB_8888);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out);
+        bundle.putByteArray(DecodeThread.BARCODE_BITMAP, out.toByteArray());
+        bundle.putFloat(DecodeThread.BARCODE_SCALED_FACTOR, (float) width / source.getWidth());
+    }
+    
     @Override
     public void handleMessage(Message message) {
         if (message == null || !running) {
@@ -56,14 +66,14 @@ final class DecodeHandler extends Handler {
         }
         if (message.what == R.id.decode) {
             decode((byte[]) message.obj, message.arg1, message.arg2);
-
+    
         } else if (message.what == R.id.quit) {
             running = false;
             Looper.myLooper().quit();
-
+    
         }
     }
-
+    
     /**
      * Decode the data within the viewfinder rectangle, and time how long it took. For efficiency,
      * reuse the same reader objects from one decode to the next.
@@ -95,7 +105,7 @@ final class DecodeHandler extends Handler {
                 multiFormatReader.reset();
             }
         }
-
+    
         Handler handler = activity.getHandler();
         if (rawResult != null) {
             // Don't log the barcode contents for security.
@@ -115,16 +125,5 @@ final class DecodeHandler extends Handler {
             }
         }
     }
-
-    private static void bundleThumbnail(PlanarYUVLuminanceSource source, Bundle bundle) {
-        int[] pixels = source.renderThumbnail();
-        int width = source.getThumbnailWidth();
-        int height = source.getThumbnailHeight();
-        Bitmap bitmap = Bitmap.createBitmap(pixels, 0, width, width, height, Bitmap.Config.ARGB_8888);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out);
-        bundle.putByteArray(DecodeThread.BARCODE_BITMAP, out.toByteArray());
-        bundle.putFloat(DecodeThread.BARCODE_SCALED_FACTOR, (float) width / source.getWidth());
-    }
-
+    
 }

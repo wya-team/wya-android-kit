@@ -8,7 +8,7 @@ import android.view.View;
  * @description :
  */
 public interface OnViewTapListener {
-
+    
     /**
      * A callback to receive where the user taps on a ImageView. You will receive a callback if
      * the user taps anywhere on the view, tapping on 'whitespace' will not be ignored.

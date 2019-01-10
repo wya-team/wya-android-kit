@@ -9,17 +9,17 @@ import android.graphics.RectF;
  * @description :
  */
 public class ElasticRectFEvaluator implements TypeEvaluator<RectF> {
-
+    
     private RectF mRect;
-
+    
     public ElasticRectFEvaluator() {
-
+    
     }
-
+    
     public ElasticRectFEvaluator(RectF reuseRect) {
         mRect = reuseRect;
     }
-
+    
     @Override
     public RectF evaluate(float fraction, RectF startValue, RectF endValue) {
         float left = startValue.left + (endValue.left - startValue.left) * fraction;

@@ -3,12 +3,12 @@ package com.wya.uikit.gallery.photoview;
 import android.view.MotionEvent;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     :
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
  */
 public interface OnSingleFlingListener {
-
+    
     /**
      * A callback to receive where the user flings on a ImageView. You will receive a callback if
      * the user flings anywhere on the view.

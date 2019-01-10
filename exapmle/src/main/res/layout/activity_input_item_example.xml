@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/f4f4f4"
+    android:orientation="vertical"
     tools:context="com.wya.example.module.uikit.customitems.inputitem.InputItemExampleActivity">
 
 
@@ -23,8 +23,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="右侧注释"
-                android:padding="@dimen/dp_10"/>
+                android:padding="@dimen/dp_10"
+                android:text="右侧注释" />
 
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
@@ -33,9 +33,9 @@
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentText="输入内容"
-                app:leftTextColor="@color/black"
                 app:contentTextColor="@color/black"
                 app:leftText="标签"
+                app:leftTextColor="@color/black"
                 app:lineColor="#000000"
                 app:rightCanEdit="false"
                 app:rightText="右侧注释"
@@ -47,9 +47,9 @@
                 app:backColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
-                app:leftTextColor="@color/black"
                 app:contentTextColor="@color/black"
                 app:leftText="标签"
+                app:leftTextColor="@color/black"
                 app:lineColor="#000000"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_eye"
@@ -63,9 +63,9 @@
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentText="输入内容"
-                app:leftTextColor="@color/black"
                 app:contentTextColor="@color/black"
                 app:leftText="标签"
+                app:leftTextColor="@color/black"
                 app:lineColor="#000000"
                 app:rightCanEdit="false"
                 app:rightText="使用说明"
@@ -78,9 +78,9 @@
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentText="输入内容"
-                app:leftTextColor="@color/black"
                 app:contentTextColor="@color/black"
                 app:leftText="标签"
+                app:leftTextColor="@color/black"
                 app:lineColor="#000000"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
@@ -95,9 +95,9 @@
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentText="输入内容"
-                app:leftTextColor="@color/black"
                 app:contentTextColor="@color/black"
                 app:leftText="标签"
+                app:leftTextColor="@color/black"
                 app:lineColor="#000000"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_right_arrow"
@@ -107,8 +107,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="格式"
-                android:padding="@dimen/dp_10"/>
+                android:padding="@dimen/dp_10"
+                android:text="格式" />
 
 
             <com.wya.uikit.customitems.WYAInputItem
@@ -117,15 +117,15 @@
                 app:backColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
-                app:leftTextColor="@color/black"
+                app:contentInputType="phone"
+                app:contentText="18079787890"
                 app:contentTextColor="@color/black"
                 app:leftText="手机号"
-                app:contentText="18079787890"
+                app:leftTextColor="@color/black"
                 app:lineColor="#000000"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_eye"
                 app:rightText=""
-                app:contentInputType="phone"
                 app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
 
 
@@ -135,14 +135,14 @@
                 app:backColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
+                app:contentInputType="card"
                 app:contentText="34312167512682245"
                 app:contentTextColor="@color/black"
-                app:leftTextColor="@color/black"
                 app:leftText="银行卡"
+                app:leftTextColor="@color/black"
                 app:lineColor="#000000"
                 app:rightCanEdit="false"
                 app:rightText=""
-                app:contentInputType="card"
                 app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
 
 
@@ -152,14 +152,14 @@
                 app:backColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
+                app:contentInputType="money"
                 app:contentText="100"
                 app:contentTextColor="@color/black"
-                app:leftTextColor="@color/black"
                 app:leftText="金额    "
+                app:leftTextColor="@color/black"
                 app:lineColor="#000000"
                 app:rightCanEdit="false"
                 app:rightText="元"
-                app:contentInputType="money"
                 app:rightTextColor="@color/black"></com.wya.uikit.customitems.WYAInputItem>
 
             <com.wya.uikit.customitems.WYAInputItem
@@ -168,23 +168,23 @@
                 app:backColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
-                app:leftTextColor="@color/black"
+                app:contentInputType="password"
+                app:contentText="125615"
                 app:contentTextColor="@color/black"
                 app:leftText="密码    "
-                app:contentText="125615"
+                app:leftTextColor="@color/black"
                 app:lineColor="#000000"
                 app:rightCanEdit="false"
                 app:rightImage="@drawable/icon_eye"
                 app:rightText=""
-                app:contentInputType="password"
                 app:rightTextColor="#868686"></com.wya.uikit.customitems.WYAInputItem>
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="不可编辑 禁用"
-                android:padding="@dimen/dp_10"/>
+                android:padding="@dimen/dp_10"
+                android:text="不可编辑 禁用" />
 
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
@@ -192,10 +192,10 @@
                 app:backColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint="我是暗提示"
-                app:leftText="用户名"
-                app:leftTextColor="@color/black"
                 app:contentText="该用户不存在"
                 app:contentTextColor="@color/black"
+                app:leftText="用户名"
+                app:leftTextColor="@color/black"
                 app:lineColor="#000000"
                 app:rightCanEdit="false"
                 app:rightTextColor="#333333"></com.wya.uikit.customitems.WYAInputItem>
@@ -206,9 +206,9 @@
                 app:backColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint="我是暗提示"
+                app:contentTextColor="#868686"
                 app:leftText="标签    "
                 app:leftTextColor="#868686"
-                app:contentTextColor="#868686"
                 app:lineColor="#000000"
                 app:rightCanEdit="false"
                 app:rightText="右侧注释"
@@ -217,8 +217,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="左侧图标"
-                android:padding="@dimen/dp_10"/>
+                android:padding="@dimen/dp_10"
+                android:text="左侧图标" />
 
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"

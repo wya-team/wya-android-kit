@@ -23,7 +23,6 @@ import com.wya.hardware.videoplayer.listener.SimpleOnVideoControlListener;
 
 import java.util.Locale;
 
-
 /**
  * @date: 2018/12/6 14:19
  * @author: Chunjiang Mao
@@ -32,9 +31,9 @@ import java.util.Locale;
  */
 
 public class VideoControllerView extends FrameLayout {
-
+    
     public static final int DEFAULT_SHOW_TIME = 3000;
-
+    
     private View mControllerBack;
     private View mControllerTitle;
     private TextView mVideoTitle;
@@ -46,39 +45,96 @@ public class VideoControllerView extends FrameLayout {
     private ImageView mVideoFullScreen;
     private ImageView mScreenLock;
     private VideoErrorView mErrorView;
-
+    
     private boolean isScreenLock;
     private boolean mShowing;
     private boolean mAllowUnWifiPlay;
     private WYAVideoPlayer mPlayer;
     private IVideoInfo videoInfo;
     private OnVideoControlListener onVideoControlListener;
-
-    public void setOnVideoControlListener(OnVideoControlListener onVideoControlListener) {
-        this.onVideoControlListener = onVideoControlListener;
-    }
-
+    private boolean mDragging;
+    private final Runnable mShowProgress = new Runnable() {
+        @Override
+        public void run() {
+            int pos = setProgress();
+            if (!mDragging && mShowing && mPlayer.isPlaying()) {
+                postDelayed(mShowProgress, 1000 - (pos % 1000));
+            }
+        }
+    };
+    private final Runnable mFadeOut = new Runnable() {
+        @Override
+        public void run() {
+            hide();
+        }
+    };
+    private long mDraggingProgress;
+    private final SeekBar.OnSeekBarChangeListener mSeekListener = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onStartTrackingTouch(SeekBar bar) {
+            show(3600000);
+            
+            mDragging = true;
+            
+            removeCallbacks(mShowProgress);
+        }
+        
+        @Override
+        public void onProgressChanged(SeekBar bar, int progress, boolean fromuser) {
+            if (!fromuser) {
+                return;
+            }
+            
+            long duration = mPlayer.getDuration();
+            mDraggingProgress = (duration * progress) / 1000L;
+            
+            if (mVideoProgress != null) {
+                mVideoProgress.setText(stringForTime((int) mDraggingProgress));
+            }
+        }
+        
+        @Override
+        public void onStopTrackingTouch(SeekBar bar) {
+            mPlayer.seekTo((int) mDraggingProgress);
+            play();
+            mDragging = false;
+            mDraggingProgress = 0;
+            
+            post(mShowProgress);
+        }
+    };
+    private OnClickListener mOnPlayerPauseClick = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            doPauseResume();
+        }
+    };
+    
     public VideoControllerView(Context context) {
         super(context);
         init();
     }
-
+    
     public VideoControllerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
-
+    
     public VideoControllerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
-
+    
+    public void setOnVideoControlListener(OnVideoControlListener onVideoControlListener) {
+        this.onVideoControlListener = onVideoControlListener;
+    }
+    
     private void init() {
         LayoutInflater.from(getContext()).inflate(R.layout.video_media_controller, this);
-
+    
         initControllerPanel();
     }
-
+    
     private void initControllerPanel() {
         // back
         mControllerBack = findViewById(R.id.video_back);
@@ -111,7 +167,7 @@ public class VideoControllerView extends FrameLayout {
                 }
             }
         });
-
+        
         // lock
         mScreenLock = (ImageView) findViewById(R.id.player_lock_screen);
         mScreenLock.setOnClickListener(new OnClickListener() {
@@ -125,7 +181,7 @@ public class VideoControllerView extends FrameLayout {
                 show();
             }
         });
-
+        
         // error
         mErrorView = (VideoErrorView) findViewById(R.id.video_controller_error);
         mErrorView.setOnVideoControlListener(new SimpleOnVideoControlListener() {
@@ -134,20 +190,20 @@ public class VideoControllerView extends FrameLayout {
                 retry(errorStatus);
             }
         });
-
+        
         mPlayerSeekBar.setMax(1000);
     }
-
+    
     public void setMediaPlayer(WYAVideoPlayer player) {
         mPlayer = player;
         updatePausePlay();
     }
-
+    
     public void setVideoInfo(IVideoInfo videoInfo) {
         this.videoInfo = videoInfo;
         mVideoTitle.setText(videoInfo.getVideoTitle());
     }
-
+    
     public void toggleDisplay() {
         if (mShowing) {
             hide();
@@ -162,7 +218,7 @@ public class VideoControllerView extends FrameLayout {
 
     public void show(int timeout) {
         setProgress();
-
+    
         if (!isScreenLock) {
             mControllerBack.setVisibility(VISIBLE);
             mControllerTitle.setVisibility(VISIBLE);
@@ -174,23 +230,23 @@ public class VideoControllerView extends FrameLayout {
             mControllerTitle.setVisibility(GONE);
             mControllerBottom.setVisibility(GONE);
         }
-
+    
         if (!isPortrait(getContext())) {
             mScreenLock.setVisibility(VISIBLE);
         }
-
+    
         mShowing = true;
-
+    
         updatePausePlay();
-
+    
         post(mShowProgress);
-
+    
         if (timeout > 0) {
             removeCallbacks(mFadeOut);
             postDelayed(mFadeOut, timeout);
         }
     }
-
+    
     /**
      * 获得当前屏幕的方向.
      *
@@ -200,13 +256,12 @@ public class VideoControllerView extends FrameLayout {
         int orientation = context.getResources().getConfiguration().orientation;
         return orientation == Configuration.ORIENTATION_PORTRAIT;
     }
-
-
+    
     private void hide() {
         if (!mShowing) {
             return;
         }
-
+        
         if (!isPortrait(getContext())) {
             // 横屏才消失
             mControllerBack.setVisibility(GONE);
@@ -214,31 +269,12 @@ public class VideoControllerView extends FrameLayout {
         mControllerTitle.setVisibility(GONE);
         mControllerBottom.setVisibility(GONE);
         mScreenLock.setVisibility(GONE);
-
+        
         removeCallbacks(mShowProgress);
-
+        
         mShowing = false;
     }
-
-    private final Runnable mFadeOut = new Runnable() {
-        @Override
-        public void run() {
-            hide();
-        }
-    };
-
-    private boolean mDragging;
-    private long mDraggingProgress;
-    private final Runnable mShowProgress = new Runnable() {
-        @Override
-        public void run() {
-            int pos = setProgress();
-            if (!mDragging && mShowing && mPlayer.isPlaying()) {
-                postDelayed(mShowProgress, 1000 - (pos % 1000));
-            }
-        }
-    };
-
+    
     private int setProgress() {
         if (mPlayer == null || mDragging) {
             return 0;
@@ -254,13 +290,13 @@ public class VideoControllerView extends FrameLayout {
             int percent = mPlayer.getBufferPercentage();
             mPlayerSeekBar.setSecondaryProgress(percent * 10);
         }
-
+        
         mVideoProgress.setText(stringForTime(position));
         mVideoDuration.setText(stringForTime(duration));
-
+        
         return position;
     }
-
+    
     /**
      * 将毫秒值转化为时分秒显示
      *
@@ -269,18 +305,18 @@ public class VideoControllerView extends FrameLayout {
      */
     private String stringForTime(int timeMs) {
         int totalSeconds = timeMs / 1000;
-
+    
         int seconds = totalSeconds % 60;
         int minutes = (totalSeconds / 60) % 60;
         int hours = totalSeconds / 3600;
-
+    
         if (hours > 0) {
             return String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds);
         } else {
             return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         }
     }
-
+    
     /**
      * 判断显示错误类型
      */
@@ -288,7 +324,7 @@ public class VideoControllerView extends FrameLayout {
         boolean isConnect = isNetworkConnected(getContext());
         boolean isMobileNet = isMobileConnected(getContext());
         boolean isWifiNet = isWifiConnected(getContext());
-
+    
         if (isConnect) {
             // 如果已经联网
             if (mErrorView.getCurStatus() == VideoErrorView.STATUS_NO_NETWORK_ERROR && !(isMobileNet && !isWifiNet)) {
@@ -311,7 +347,7 @@ public class VideoControllerView extends FrameLayout {
             showError(VideoErrorView.STATUS_NO_NETWORK_ERROR);
         }
     }
-
+    
     /**
      * 判断WIFI网络是否可用
      */
@@ -327,8 +363,7 @@ public class VideoControllerView extends FrameLayout {
         }
         return false;
     }
-
-
+    
     /**
      * 判断是否有网络连接
      */
@@ -343,7 +378,7 @@ public class VideoControllerView extends FrameLayout {
         }
         return false;
     }
-
+    
     /**
      * 判断MOBILE网络是否可用
      */
@@ -359,24 +394,23 @@ public class VideoControllerView extends FrameLayout {
         }
         return false;
     }
-
-
+    
     public void hideErrorView() {
         mErrorView.hideError();
     }
-
+    
     private void reload() {
         mPlayer.restart();
     }
-
+    
     public void release() {
         removeCallbacks(mShowProgress);
         removeCallbacks(mFadeOut);
     }
-
+    
     private void retry(int status) {
         Log.i("DDD", "retry " + status);
-
+        
         switch (status) {
             case VideoErrorView.STATUS_VIDEO_DETAIL_ERROR:
                 // 传递给activity
@@ -412,79 +446,44 @@ public class VideoControllerView extends FrameLayout {
                 break;
         }
     }
-
-    private final SeekBar.OnSeekBarChangeListener mSeekListener = new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onStartTrackingTouch(SeekBar bar) {
-            show(3600000);
-
-            mDragging = true;
-
-            removeCallbacks(mShowProgress);
-        }
-
-        @Override
-        public void onProgressChanged(SeekBar bar, int progress, boolean fromuser) {
-            if (!fromuser) {
-                return;
-            }
-
-            long duration = mPlayer.getDuration();
-            mDraggingProgress = (duration * progress) / 1000L;
-
-            if (mVideoProgress != null) {
-                mVideoProgress.setText(stringForTime((int) mDraggingProgress));
-            }
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar bar) {
-            mPlayer.seekTo((int) mDraggingProgress);
-            play();
-            mDragging = false;
-            mDraggingProgress = 0;
-
-            post(mShowProgress);
-        }
-    };
-
+    
     private void showError(int status) {
         mErrorView.showError(status);
         hide();
-
+        
         // 如果提示了错误，则看需要解锁
         if (isScreenLock) {
             unlock();
         }
     }
-
+    
     public boolean isLock() {
         return isScreenLock;
     }
-
+    
     private void lock() {
         Log.i("DDD", "lock");
         isScreenLock = true;
         mScreenLock.setImageResource(R.drawable.wya_video_player_video_locked);
     }
-
+    
     private void unlock() {
         Log.i("DDD", "unlock");
         isScreenLock = false;
         mScreenLock.setImageResource(R.drawable.wya_video_player_video_unlock);
     }
-
+    
     private void allowUnWifiPlay() {
         Log.i("DDD", "allowUnWifiPlay");
-
+        
         mAllowUnWifiPlay = true;
-
+        
         playFromUnWifiError();
     }
-
+    
     private void playFromUnWifiError() {
         Log.i("DDD", "playFromUnWifiError");
-
+        
         // TODO: 2017/6/19 check me
         if (mPlayer.isInPlaybackState()) {
             mPlayer.start();
@@ -493,14 +492,7 @@ public class VideoControllerView extends FrameLayout {
             mPlayer.restart();
         }
     }
-
-    private OnClickListener mOnPlayerPauseClick = new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            doPauseResume();
-        }
-    };
-
+    
     public void updatePausePlay() {
         if (mPlayer.isPlaying()) {
             mVideoPlayState.setImageResource(R.drawable.icon_pause);
@@ -508,7 +500,7 @@ public class VideoControllerView extends FrameLayout {
             mVideoPlayState.setImageResource(R.drawable.icon_begin);
         }
     }
-
+    
     private void doPauseResume() {
         if (mPlayer.isPlaying()) {
             pause();
@@ -516,27 +508,27 @@ public class VideoControllerView extends FrameLayout {
             play();
         }
     }
-
+    
     private void pause() {
         mPlayer.pause();
         updatePausePlay();
         removeCallbacks(mFadeOut);
     }
-
+    
     private void play() {
         mPlayer.start();
         show();
     }
-
+    
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         toggleVideoLayoutParams();
     }
-
+    
     void toggleVideoLayoutParams() {
         final boolean isPortrait = isPortrait(getContext());
-
+        
         if (isPortrait) {
             mControllerBack.setVisibility(VISIBLE);
             mVideoFullScreen.setVisibility(View.VISIBLE);
@@ -548,5 +540,5 @@ public class VideoControllerView extends FrameLayout {
             }
         }
     }
-
+    
 }

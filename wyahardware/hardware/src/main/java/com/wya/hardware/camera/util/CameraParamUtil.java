@@ -9,22 +9,23 @@ import android.view.WindowManager;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
- /**
-  * @date: 2018/12/5 13:55
-  * @author: Chunjiang Mao
-  * @classname: CameraParamUtil
-  * @describe:
-  */
+
+/**
+ * @date: 2018/12/5 13:55
+ * @author: Chunjiang Mao
+ * @classname: CameraParamUtil
+ * @describe:
+ */
 
 public class CameraParamUtil {
     private static final String TAG = "CameraView";
-    private CameraSizeComparator sizeComparator = new CameraSizeComparator();
     private static CameraParamUtil cameraParamUtil = null;
-
+    private CameraSizeComparator sizeComparator = new CameraSizeComparator();
+    
     private CameraParamUtil() {
-
+    
     }
-
+    
     public static CameraParamUtil getInstance() {
         if (cameraParamUtil == null) {
             cameraParamUtil = new CameraParamUtil();
@@ -33,7 +34,7 @@ public class CameraParamUtil {
             return cameraParamUtil;
         }
     }
-
+    
     public Camera.Size getPreviewSize(List<Camera.Size> list, int th, float rate) {
         Collections.sort(list, sizeComparator);
         int i = 0;
@@ -50,7 +51,7 @@ public class CameraParamUtil {
             return list.get(i);
         }
     }
-
+    
     public Camera.Size getPictureSize(List<Camera.Size> list, int th, float rate) {
         Collections.sort(list, sizeComparator);
         int i = 0;
@@ -67,7 +68,7 @@ public class CameraParamUtil {
             return list.get(i);
         }
     }
-
+    
     private Camera.Size getBestSize(List<Camera.Size> list, float rate) {
         float previewDisparity = 100;
         int index = 0;
@@ -81,13 +82,12 @@ public class CameraParamUtil {
         }
         return list.get(index);
     }
-
-
+    
     private boolean equalRate(Camera.Size s, float rate) {
         float r = (float) (s.width) / (float) (s.height);
         return Math.abs(r - rate) <= 0.2;
     }
-
+    
     public boolean isSupportedFocusMode(List<String> focusList, String focusMode) {
         for (int i = 0; i < focusList.size(); i++) {
             if (focusMode.equals(focusList.get(i))) {
@@ -98,7 +98,7 @@ public class CameraParamUtil {
         Log.i(TAG, "FocusMode not supported " + focusMode);
         return false;
     }
-
+    
     public boolean isSupportedPictureFormats(List<Integer> supportedPictureFormats, int jpeg) {
         for (int i = 0; i < supportedPictureFormats.size(); i++) {
             if (jpeg == supportedPictureFormats.get(i)) {
@@ -109,21 +109,7 @@ public class CameraParamUtil {
         Log.i(TAG, "Formats not supported " + jpeg);
         return false;
     }
-
-    private class CameraSizeComparator implements Comparator<Camera.Size> {
-        @Override
-        public int compare(Camera.Size lhs, Camera.Size rhs) {
-            if (lhs.width == rhs.width) {
-                return 0;
-            } else if (lhs.width > rhs.width) {
-                return 1;
-            } else {
-                return -1;
-            }
-        }
-
-    }
-
+    
     public int getCameraDisplayOrientation(Context context, int cameraId) {
         android.hardware.Camera.CameraInfo info = new android.hardware.Camera.CameraInfo();
         android.hardware.Camera.getCameraInfo(cameraId, info);
@@ -156,5 +142,19 @@ public class CameraParamUtil {
             result = (info.orientation - degrees + 360) % 360;
         }
         return result;
+    }
+    
+    private class CameraSizeComparator implements Comparator<Camera.Size> {
+        @Override
+        public int compare(Camera.Size lhs, Camera.Size rhs) {
+            if (lhs.width == rhs.width) {
+                return 0;
+            } else if (lhs.width > rhs.width) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+        
     }
 }

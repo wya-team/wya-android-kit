@@ -39,9 +39,9 @@ import java.io.IOException;
  */
 @SuppressWarnings("deprecation")
 public final class CameraManager {
-
+    
     private static final String TAG = CameraManager.class.getSimpleName();
-
+    
     private static final int MIN_FRAME_WIDTH = 240;
     private static final int MIN_FRAME_HEIGHT = 240;
     /**
@@ -52,9 +52,14 @@ public final class CameraManager {
      * 675 = 5/8 * 1080
      */
     private static final int MAX_FRAME_HEIGHT = 675;
-
+    
     private final Context context;
     private final CameraConfigurationManager configManager;
+    /**
+     * Preview frames are delivered here, which we pass on to the registered handler. Make sure to
+     * clear the handler so it will only receive one message.
+     */
+    private final PreviewCallback previewCallback;
     private OpenCamera camera;
     private AutoFocusManager autoFocusManager;
     private Rect framingRect;
@@ -64,19 +69,25 @@ public final class CameraManager {
     private int requestedCameraId = OpenCameraInterface.NO_REQUESTED_CAMERA;
     private int requestedFramingRectWidth;
     private int requestedFramingRectHeight;
-
-    /**
-     * Preview frames are delivered here, which we pass on to the registered handler. Make sure to
-     * clear the handler so it will only receive one message.
-     */
-    private final PreviewCallback previewCallback;
-
+    
     public CameraManager(Context context) {
         this.context = context;
-        this.configManager = new CameraConfigurationManager(context);
+        configManager = new CameraConfigurationManager(context);
         previewCallback = new PreviewCallback(configManager);
     }
-
+    
+    private static int findDesiredDimensionInRange(int resolution, int hardMin, int hardMax) {
+        // Target 5/8 of each dimension
+        int dim = 5 * resolution / 8;
+        if (dim < hardMin) {
+            return hardMin;
+        }
+        if (dim > hardMax) {
+            return hardMax;
+        }
+        return dim;
+    }
+    
     /**
      * Opens the camera driver and initializes the hardware parameters.
      *
@@ -92,7 +103,7 @@ public final class CameraManager {
             }
             camera = theCamera;
         }
-
+    
         if (!initialized) {
             initialized = true;
             configManager.initFromCameraParameters(theCamera);
@@ -102,7 +113,7 @@ public final class CameraManager {
                 requestedFramingRectHeight = 0;
             }
         }
-
+    
         Camera cameraObject = theCamera.getCamera();
         Camera.Parameters parameters = cameraObject.getParameters();
         // Save these, temporarily
@@ -127,17 +138,17 @@ public final class CameraManager {
             }
         }
         cameraObject.setPreviewDisplay(holder);
-
+    
     }
-
+    
     public synchronized boolean isOpen() {
         return camera != null;
     }
-
+    
     public OpenCamera getOpenCamera() {
         return camera;
     }
-
+    
     /**
      * Closes the camera driver if still in use.
      */
@@ -151,7 +162,7 @@ public final class CameraManager {
             framingRectInPreview = null;
         }
     }
-
+    
     /**
      * Asks the camera hardware to begin drawing preview frames to the screen.
      */
@@ -163,7 +174,7 @@ public final class CameraManager {
             autoFocusManager = new AutoFocusManager(context, theCamera.getCamera());
         }
     }
-
+    
     /**
      * Tells the camera to stop drawing preview frames.
      */
@@ -178,7 +189,7 @@ public final class CameraManager {
             previewing = false;
         }
     }
-
+    
     /**
      * Convenience method for {@link com.wya.hardware.scan.CaptureActivity}
      *
@@ -199,7 +210,7 @@ public final class CameraManager {
             }
         }
     }
-
+    
     /**
      * A single preview frame will be returned to the handler supplied. The data will arrive as byte[]
      * in the message.obj field, with width and height encoded as message.arg1 and message.arg2,
@@ -215,7 +226,7 @@ public final class CameraManager {
             theCamera.getCamera().setOneShotPreviewCallback(previewCallback);
         }
     }
-
+    
     /**
      * Calculates the framing rect which the UI should draw to show the user where to place the
      * barcode. This target helps with alignment as well as forces the user to hold the device
@@ -233,12 +244,12 @@ public final class CameraManager {
                 // Called early, before init even finished
                 return null;
             }
-
+    
             int width = findDesiredDimensionInRange(screenResolution.x, MIN_FRAME_WIDTH, MAX_FRAME_WIDTH);
             int height = findDesiredDimensionInRange(screenResolution.y, MIN_FRAME_HEIGHT, MAX_FRAME_HEIGHT);
-
-            int size = Math.min(width,height);
-
+    
+            int size = Math.min(width, height);
+            
             int leftOffset = (screenResolution.x - size) / 2;
             int topOffset = (screenResolution.y - size) / 2;
             framingRect = new Rect(leftOffset, topOffset, leftOffset + size, topOffset + size);
@@ -246,19 +257,7 @@ public final class CameraManager {
         }
         return framingRect;
     }
-
-    private static int findDesiredDimensionInRange(int resolution, int hardMin, int hardMax) {
-        // Target 5/8 of each dimension
-        int dim = 5 * resolution / 8;
-        if (dim < hardMin) {
-            return hardMin;
-        }
-        if (dim > hardMax) {
-            return hardMax;
-        }
-        return dim;
-    }
-
+    
     /**
      * Like {@link #getFramingRect} but coordinates are in terms of the preview frame,
      * not UI / screen.
@@ -282,18 +281,17 @@ public final class CameraManager {
 //            rect.right = rect.right * cameraResolution.x / screenResolution.x;
 //            rect.top = rect.top * cameraResolution.y / screenResolution.y;
 //            rect.bottom = rect.bottom * cameraResolution.y / screenResolution.y;
-
+    
             rect.left = rect.left * cameraResolution.y / screenResolution.x;
             rect.right = rect.right * cameraResolution.y / screenResolution.x;
             rect.top = rect.top * cameraResolution.x / screenResolution.y;
             rect.bottom = rect.bottom * cameraResolution.x / screenResolution.y;
-
+    
             framingRectInPreview = rect;
         }
         return framingRectInPreview;
     }
-
-
+    
     /**
      * Allows third party apps to specify the camera ID, rather than determine
      * it automatically based on available cameras and their orientation.
@@ -303,12 +301,12 @@ public final class CameraManager {
     public synchronized void setManualCameraId(int cameraId) {
         requestedCameraId = cameraId;
     }
-
+    
     /**
      * Allows third party apps to specify the scanning rectangle dimensions, rather than determine
      * them automatically based on screen resolution.
      *
-     * @param width The width in pixels to scan.
+     * @param width  The width in pixels to scan.
      * @param height The height in pixels to scan.
      */
     public synchronized void setManualFramingRect(int width, int height) {
@@ -330,13 +328,13 @@ public final class CameraManager {
             requestedFramingRectHeight = height;
         }
     }
-
+    
     /**
      * A factory method to build the appropriate LuminanceSource object based on the format
      * of the preview buffers, as described by Camera.Parameters.
      *
-     * @param data A preview frame.
-     * @param width The width of the image.
+     * @param data   A preview frame.
+     * @param width  The width of the image.
      * @param height The height of the image.
      * @return A PlanarYUVLuminanceSource instance.
      */
@@ -345,12 +343,12 @@ public final class CameraManager {
         if (rect == null) {
             return null;
         }
-        int size = Math.min(width,height);
-        int left = (width-size)/2;
-        int top = (height-size)/2;
+        int size = Math.min(width, height);
+        int left = (width - size) / 2;
+        int top = (height - size) / 2;
         // Go ahead and assume it's YUV rather than die.
         return new PlanarYUVLuminanceSource(data, width, height, left, top,
                 left + size, top + size, false);
     }
-
+    
 }

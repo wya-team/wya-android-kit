@@ -1,6 +1,5 @@
 package com.wya.uikit.imagecrop.core.sticker;
 
-
 import com.wya.uikit.imagecrop.core.EditViewPortrait;
 
 /**

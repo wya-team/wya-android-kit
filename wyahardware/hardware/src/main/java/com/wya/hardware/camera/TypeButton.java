@@ -8,55 +8,55 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.View;
 
- /**
-  * @date: 2018/12/5 14:25
-  * @author: Chunjiang Mao
-  * @classname: TypeButton
-  * @describe: 拍照或录制完成后弹出的确认和返回按钮
-  */
+/**
+ * @date: 2018/12/5 14:25
+ * @author: Chunjiang Mao
+ * @classname: TypeButton
+ * @describe: 拍照或录制完成后弹出的确认和返回按钮
+ */
 
 public class TypeButton extends View {
     public static final int TYPE_CANCEL = 0x001;
     public static final int TYPE_CONFIRM = 0x002;
     private int buttonType;
     private int buttonSize;
-
+    
     private float centerX;
     private float centerY;
     private float buttonRadius;
-
+    
     private Paint mPaint;
     private Path path;
     private float strokeWidth;
-
+    
     private float index;
     private RectF rectF;
-
+    
     public TypeButton(Context context) {
         super(context);
     }
-
+    
     public TypeButton(Context context, int type, int size) {
         super(context);
-        this.buttonType = type;
+        buttonType = type;
         buttonSize = size;
         buttonRadius = size / 2.0f;
         centerX = size / 2.0f;
         centerY = size / 2.0f;
-
+        
         mPaint = new Paint();
         path = new Path();
         strokeWidth = size / 50f;
         index = buttonSize / 12f;
         rectF = new RectF(centerX, centerY - index, centerX + index * 2, centerY + index);
     }
-
+    
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         setMeasuredDimension(buttonSize, buttonSize);
     }
-
+    
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -66,14 +66,14 @@ public class TypeButton extends View {
             mPaint.setColor(0xEEDCDCDC);
             mPaint.setStyle(Paint.Style.FILL);
             canvas.drawCircle(centerX, centerY, buttonRadius, mPaint);
-
+    
             mPaint.setColor(Color.BLACK);
             mPaint.setStyle(Paint.Style.STROKE);
             mPaint.setStrokeWidth(strokeWidth);
-
+    
             path.moveTo(centerX - index / 7, centerY + index);
             path.lineTo(centerX + index, centerY + index);
-
+    
             path.arcTo(rectF, 90, -180);
             path.lineTo(centerX - index, centerY - index);
             canvas.drawPath(path, mPaint);
@@ -84,7 +84,7 @@ public class TypeButton extends View {
             path.lineTo((float) (centerX - index * 1.6), centerY - index);
             path.close();
             canvas.drawPath(path, mPaint);
-
+    
         }
         //如果类型为确认，则绘制绿色勾
         if (buttonType == TYPE_CONFIRM) {
@@ -96,7 +96,7 @@ public class TypeButton extends View {
             mPaint.setStyle(Paint.Style.STROKE);
             mPaint.setColor(0xFF00CC00);
             mPaint.setStrokeWidth(strokeWidth);
-
+    
             path.moveTo(centerX - buttonSize / 6f, centerY);
             path.lineTo(centerX - buttonSize / 21.2f, centerY + buttonSize / 7.7f);
             path.lineTo(centerX + buttonSize / 4.0f, centerY - buttonSize / 8.5f);

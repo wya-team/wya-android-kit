@@ -9,13 +9,12 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 
-
 /**
-  * @date: 2018/12/5 14:18
-  * @author: Chunjiang Mao
-  * @classname: FoucsView
-  * @describe: 对焦框
-  */
+ * @date: 2018/12/5 14:18
+ * @author: Chunjiang Mao
+ * @classname: FoucsView
+ * @describe: 对焦框
+ */
 
 public class FoucsView extends View {
     private int size;
@@ -23,18 +22,18 @@ public class FoucsView extends View {
     private int centerY;
     private int length;
     private Paint mPaint;
-
+    
     public FoucsView(Context context) {
         this(context, null);
     }
-
+    
     public FoucsView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
-
+    
     public FoucsView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.size = getScreenWidth(context) / 3;
+        size = getScreenWidth(context) / 3;
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
@@ -42,9 +41,10 @@ public class FoucsView extends View {
         mPaint.setStrokeWidth(4);
         mPaint.setStyle(Paint.Style.STROKE);
     }
-
+    
     /**
      * 获取屏幕宽
+     *
      * @param context
      * @return
      */
@@ -54,8 +54,7 @@ public class FoucsView extends View {
         wm.getDefaultDisplay().getMetrics(metric);
         return metric.widthPixels;
     }
-
-
+    
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -64,7 +63,7 @@ public class FoucsView extends View {
         length = (int) (size / 2.0) - 2;
         setMeasuredDimension(size, size);
     }
-
+    
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);

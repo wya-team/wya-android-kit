@@ -1,6 +1,5 @@
 package com.wya.example.module.utils.fliedownload;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -37,8 +36,7 @@ import static com.wya.example.module.utils.fliedownload.FileDownloadExampleActiv
  * @Description : 下载完成
  */
 public class DownFileCompleteFragment extends Fragment {
-
-
+    
     @BindView(R.id.down_file_recycler)
     RecyclerView mDownFileRecycler;
     Unbinder unbinder;
@@ -47,7 +45,7 @@ public class DownFileCompleteFragment extends Fragment {
     private List<DownloadEntity> mDownList = new ArrayList<>();
     private FileManagerUtil mFileManagerUtil = new FileManagerUtil();
     private IRomUpdateCallback mCallback;
-
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
@@ -55,7 +53,7 @@ public class DownFileCompleteFragment extends Fragment {
         unbinder = ButterKnife.bind(this, mView);
         return mView;
     }
-
+    
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -69,19 +67,19 @@ public class DownFileCompleteFragment extends Fragment {
             mAdapter.notifyDataSetChanged();
         }
     }
-
+    
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initView();
         mCallback = (FileDownloadExampleActivity) getActivity();
     }
-
+    
     private void initView() {
-
+        
         initRecycler();
     }
-
+    
     private void initRecycler() {
         mAdapter = new BaseQuickAdapter<DownloadEntity, BaseViewHolder>(R.layout
                 .has_down_file_item, mDownList) {
@@ -96,7 +94,7 @@ public class DownFileCompleteFragment extends Fragment {
                         ()) +
                         ".jpg");
                 Glide.with(getActivity()).load(file).apply(requestOptions).into(imageView);
-
+    
                 helper.setText(R.id.file_title, item.getFileName())
                         .setText(R.id.file_capacity, item.getConvertFileSize());
             }
@@ -104,7 +102,7 @@ public class DownFileCompleteFragment extends Fragment {
         mDownFileRecycler.setLayoutManager(new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false));
         mDownFileRecycler.setAdapter(mAdapter);
-
+        
         mAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
@@ -114,14 +112,14 @@ public class DownFileCompleteFragment extends Fragment {
                         .cancelText("取消")
                         .confirmText("删除").build();
                 wyaCustomDialog.show();
-
+    
                 wyaCustomDialog.setNoClickListener(new WYACustomDialog.NoClickListener() {
                     @Override
                     public void onNoClick() {
                         wyaCustomDialog.dismiss();
                     }
                 });
-
+    
                 wyaCustomDialog.setYesClickListener(new WYACustomDialog.YesClickListener() {
                     @Override
                     public void onYesClick() {
@@ -137,13 +135,12 @@ public class DownFileCompleteFragment extends Fragment {
             }
         });
     }
-
+    
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
         mFileManagerUtil.unRegister();
     }
-
-
+    
 }

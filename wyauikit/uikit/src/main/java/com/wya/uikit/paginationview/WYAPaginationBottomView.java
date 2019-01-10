@@ -27,11 +27,12 @@ import android.widget.Toast;
 import com.wya.uikit.R;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     :
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
  */
 public class WYAPaginationBottomView extends FrameLayout implements View.OnClickListener {
+    private static final String TAG = "WYAPaginationBottomView";
     private Context mContext;
     private TextView mButtonLeft;
     private TextView mButtonRight;
@@ -48,19 +49,17 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
     private float mBtnHeight;
     private float mTextSize;
     private int mTextColor;
-    private static final String TAG = "WYAPaginationBottomView";
     private int mSelectColor;
     private OnPageButtonClickListener mOnPageButtonClickListener;
     private onPageSearchListener mPageSearchListener;
     private int mBtnEnableBg = R.drawable.pagination_item_enable;
     private int mBtnBg = R.drawable.pagination_item_click_bg;
     private boolean indexSearch = false;
-
-
+    
     public WYAPaginationBottomView(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
-
+    
     public WYAPaginationBottomView(@NonNull Context context, @Nullable AttributeSet attrs, int
             defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -79,19 +78,18 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
                 .BLACK);
         mSelectColor = typedArray.getColor(R.styleable.WYAPaginationBottomView_selectPageTextColor,
                 Color.BLACK);
-
+        
         typedArray.recycle();
         init();
     }
-
-
+    
     private void init() {
         allNum = 10;
         currentPage = 1;
-
+        
         View view = LayoutInflater.from(mContext).inflate(R.layout.pagination_bottom_view, null);
         addView(view);
-
+        
         mButtonLeft = view.findViewById(R.id.pagination_btn_left);
         mButtonRight = view.findViewById(R.id.pagination_btn_right);
         mPageTextCurrent = view.findViewById(R.id.pagination_show_page_current);
@@ -102,7 +100,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
         mButtonLeft.setOnClickListener(this);
         mButtonRight.setOnClickListener(this);
         pageLayout.setOnClickListener(this);
-
+        
         mButtonLeft.setText(TextUtils.isEmpty(mLeftText) ? "上一页" : mLeftText);
         mButtonRight.setText(TextUtils.isEmpty(mRightText) ? "下一页" : mRightText);
         mButtonLeft.setTextColor(mTextColor);
@@ -113,7 +111,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
         mPageTextAll.setTextSize(px2sp(mTextSize));
         mButtonLeft.setTextSize(px2sp(mTextSize));
         mButtonRight.setTextSize(px2sp(mTextSize));
-
+        
         ViewGroup.LayoutParams layoutParams = mButtonLeft.getLayoutParams();
         if (mBtnWidth != -1f) {
             layoutParams.width = (int) mBtnWidth;
@@ -121,10 +119,10 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
         layoutParams.height = (int) mBtnHeight;
         mButtonLeft.setLayoutParams(layoutParams);
         mButtonRight.setLayoutParams(layoutParams);
-
+        
         searchListener();
     }
-
+    
     /**
      * when you search page
      *
@@ -136,61 +134,56 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
         this.currentPage = currentPage;
         setCurrentPage();
     }
-
-
+    
     public void setButtonLeftTextColor(@ColorInt int color) {
         mButtonLeft.setTextColor(color);
     }
-
+    
     public void setButtonRightTextColor(@ColorInt int color) {
         mButtonRight.setTextColor(color);
     }
-
-
+    
     public void setButtonBackgroundResource(@DrawableRes int resource) {
         mBtnBg = resource;
         mButtonRight.setBackgroundResource(resource);
         mButtonLeft.setBackgroundResource(resource);
     }
-
-
+    
     @Override
     public void setBackgroundResource(@DrawableRes int resource) {
         View child = getChildAt(0);
         child.setBackgroundResource(resource);
     }
-
+    
     @Override
     public void setBackgroundColor(@ColorInt int color) {
         View child = getChildAt(0);
         child.setBackgroundColor(color);
     }
-
+    
     public void setButtonEnableBackgroundResource(@DrawableRes int resource) {
         mBtnEnableBg = resource;
     }
-
-
+    
     public void setButtonVisible(boolean isVisible) {
         mButtonLeft.setVisibility(isVisible ? VISIBLE : INVISIBLE);
         mButtonRight.setVisibility(isVisible ? VISIBLE : INVISIBLE);
     }
-
+    
     public void setNumberVisible(boolean isVisible) {
         pageLayout.setVisibility(isVisible ? VISIBLE : INVISIBLE);
     }
-
+    
     public void setButtonLeftDrawable(Drawable drawable) {
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         mButtonLeft.setCompoundDrawables(drawable, null, null, null);
     }
-
+    
     public void setButtonRightDrawable(Drawable drawable) {
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         mButtonRight.setCompoundDrawables(null, null, drawable, null);
     }
-
-
+    
     /**
      * search listener
      */
@@ -223,7 +216,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
             }
         });
     }
-
+    
     /**
      * set page all numbers
      *
@@ -234,12 +227,12 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
         currentPage = 1;
         setCurrentPage();
     }
-
+    
     @SuppressLint("DefaultLocale")
     private void setCurrentPage() {
         mPageTextCurrent.setText(String.format("%d", currentPage));
         mPageTextAll.setText(String.format("%d", allNum));
-
+        
         if (currentPage == 1) {
             mButtonLeft.setEnabled(false);
             mButtonLeft.setBackgroundResource(mBtnEnableBg);
@@ -247,7 +240,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
             mButtonLeft.setEnabled(true);
             mButtonLeft.setBackgroundResource(mBtnBg);
         }
-
+        
         if (allNum == currentPage) {
             mButtonRight.setEnabled(false);
             mButtonRight.setBackgroundResource(mBtnEnableBg);
@@ -256,7 +249,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
             mButtonRight.setBackgroundResource(mBtnBg);
         }
     }
-
+    
     @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
@@ -281,7 +274,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
                 currentPage++;
                 setCurrentPage();
             }
-
+    
         } else if (i == R.id.pagination_page_layout) {
             if (indexSearch) {
                 pageLayout.setVisibility(GONE);
@@ -292,8 +285,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
             }
         }
     }
-
-
+    
     /**
      * remeasure group and child
      *
@@ -303,9 +295,9 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
+    
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-
+    
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int childHeight = (int) (mBtnHeight + dp2px(20));
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
@@ -321,24 +313,23 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
             default:
                 break;
         }
-
+    
         setMeasuredDimension(widthSize, heightSize);
         measureChildren(widthMeasureSpec, MeasureSpec.makeMeasureSpec(heightSize, heightMode));
     }
-
-
+    
     /**
      * dp2px
      *
      * @param dp dp
      * @return px
      */
-
+    
     public float dp2px(int dp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources()
                 .getDisplayMetrics());
     }
-
+    
     /**
      * px2sp
      *
@@ -348,7 +339,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
     private float px2sp(float pxValue) {
         return pxValue / getResources().getDisplayMetrics().scaledDensity + 0.5f;
     }
-
+    
     /**
      * @param spValue sp
      * @return px
@@ -357,41 +348,19 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
         final float fontScale = getResources().getDisplayMetrics().scaledDensity;
         return spValue * fontScale + 0.5f;
     }
-
+    
     public void setOnPageButtonClickListener(OnPageButtonClickListener onPageButtonClickListener) {
         mOnPageButtonClickListener = onPageButtonClickListener;
     }
-
+    
     public void setPageSearchListener(onPageSearchListener pageSearchListener) {
         mPageSearchListener = pageSearchListener;
     }
-
+    
     public void setIndexSearch(boolean indexSearch) {
         this.indexSearch = indexSearch;
     }
-
-    /**
-     * pageButton click Interface
-     */
-    public interface OnPageButtonClickListener {
-        /**
-         * click callback
-         *
-         * @param type 1:page up 2:page down
-         */
-        void onClick(int type);
-    }
-
-
-    public interface onPageSearchListener {
-        /**
-         * true success false failure
-         * @param page searched page
-         * @return
-         */
-        boolean onSearch(long page);
-    }
-
+    
     /**
      * keyboard status
      *
@@ -407,5 +376,27 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
             imm.hideSoftInputFromWindow(mChangeEdit.getWindowToken(), InputMethodManager
                     .HIDE_NOT_ALWAYS);
         }
+    }
+    
+    /**
+     * pageButton click Interface
+     */
+    public interface OnPageButtonClickListener {
+        /**
+         * click callback
+         *
+         * @param type 1:page up 2:page down
+         */
+        void onClick(int type);
+    }
+    
+    public interface onPageSearchListener {
+        /**
+         * true success false failure
+         *
+         * @param page searched page
+         * @return
+         */
+        boolean onSearch(long page);
     }
 }

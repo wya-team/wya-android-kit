@@ -53,7 +53,7 @@ public class WYAConstants {
             if (context == null) {
                 throw new IllegalStateException("Call `Realm.init(Context)` before creating a RealmConfiguration");
             } else {
-                this.initializeBuilder(context);
+                initializeBuilder(context);
             }
         }
         
@@ -77,7 +77,6 @@ public class WYAConstants {
          * 设置数据库名称
          *
          * @param dbName
-         *
          * @return
          */
         @SuppressLint("NewApi")
@@ -94,7 +93,6 @@ public class WYAConstants {
          * 设置设置主题色
          *
          * @param colorValue
-         *
          * @return
          */
         @SuppressLint("NewApi")
@@ -111,7 +109,6 @@ public class WYAConstants {
          * 设置是否显示log
          *
          * @param isShowLog
-         *
          * @return
          */
         public WYAConstants.Builder isShowLog(boolean isShowLog) {
@@ -123,7 +120,6 @@ public class WYAConstants {
          * 设置是否是debug
          *
          * @param isDebug
-         *
          * @return
          */
         public WYAConstants.Builder isDebug(boolean isDebug) {

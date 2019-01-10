@@ -12,9 +12,9 @@ import com.wya.uikit.pickerview.wheelview.view.WheelView;
 import java.util.Calendar;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     :
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
  */
 public class TimePickerView extends LinearLayout {
     private static final int LMP = LayoutParams.MATCH_PARENT;
@@ -33,7 +33,7 @@ public class TimePickerView extends LinearLayout {
     private OnItemSelectedListener minListener;
     private OnItemSelectedListener secListener;
     private Context mContext;
-
+    
     private Calendar startDate;
     private Calendar endDate;
     private Calendar selectDate;
@@ -66,15 +66,15 @@ public class TimePickerView extends LinearLayout {
     private int mSelectMin;
     private int mSelectSec;
     private boolean isShowType = false;
-
+    
     public TimePickerView(Context context) {
         this(context, null);
     }
-
+    
     public TimePickerView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
-
+    
     public TimePickerView(Context context, @Nullable AttributeSet attrs, int
             defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -83,7 +83,7 @@ public class TimePickerView extends LinearLayout {
         initView();
         setWheelViewVisible();
     }
-
+    
     private void initView() {
         yearWheel = new WheelView(mContext);
         LayoutParams layoutParams1 = new LayoutParams(LWC, LMP);
@@ -103,46 +103,46 @@ public class TimePickerView extends LinearLayout {
         secWheel = new WheelView(mContext);
         LayoutParams layoutParams6 = new LayoutParams(LWC, LMP);
         layoutParams6.weight = 1;
-
+        
         yearWheel.setCyclic(false);
         monthWheel.setCyclic(false);
         dayWheel.setCyclic(false);
         hourWheel.setCyclic(false);
         minWheel.setCyclic(false);
         secWheel.setCyclic(false);
-
+        
         addView(yearWheel, layoutParams1);
         addView(monthWheel, layoutParams2);
         addView(dayWheel, layoutParams3);
         addView(hourWheel, layoutParams4);
         addView(minWheel, layoutParams5);
         addView(secWheel, layoutParams6);
-
+        
         selectDate = Calendar.getInstance();
         startDate = Calendar.getInstance();
         endDate = Calendar.getInstance();
-
+        
         startDate.set(startDate.get(Calendar.YEAR) - 100, 1, 1);
         endDate.set(endDate.get(Calendar.YEAR) + 100, 12, 31);
         setWheelViewAdapter();
     }
-
+    
     public void setRangeTime(Calendar start, Calendar end) {
-        this.startDate = start;
-        this.endDate = end;
+        startDate = start;
+        endDate = end;
     }
-
+    
     public void setSelectDate(Calendar selectDate) {
         this.selectDate = selectDate;
     }
-
+    
     private void setWheelViewAdapter() {
         if (startDate.getTimeInMillis() > endDate.getTimeInMillis()) {
             throw new IllegalArgumentException("startDate cannot bigger than endDate");
         }
         if (selectDate.getTimeInMillis() > endDate.getTimeInMillis()) {
             throw new IllegalArgumentException("selectDate cannot bigger than endDate");
-
+    
         }
         if (selectDate.getTimeInMillis() < startDate.getTimeInMillis()) {
             throw new IllegalArgumentException("selectDate cannot smaller than startDate");
@@ -153,26 +153,25 @@ public class TimePickerView extends LinearLayout {
         mStartHour = startDate.get(Calendar.HOUR);
         mStartMin = startDate.get(Calendar.MINUTE);
         mStartSec = startDate.get(Calendar.SECOND);
-
+        
         mEndYear = endDate.get(Calendar.YEAR);
         mEndMonth = endDate.get(Calendar.MONTH) + 1;
         mEndDay = endDate.get(Calendar.DAY_OF_MONTH);
         mEndHour = endDate.get(Calendar.HOUR);
         mEndMin = endDate.get(Calendar.MINUTE);
         mEndSec = endDate.get(Calendar.SECOND);
-
+        
         mSelectYear = selectDate.get(Calendar.YEAR);
         mSelectMonth = selectDate.get(Calendar.MONTH) + 1;
         mSelectDay = selectDate.get(Calendar.DAY_OF_MONTH);
         mSelectHour = selectDate.get(Calendar.HOUR);
         mSelectMin = selectDate.get(Calendar.MINUTE);
         mSelectSec = selectDate.get(Calendar.SECOND);
-
+        
         yearWheel.setAdapter(new TimePickerAdapter(mStartYear, mEndYear, 1, isShowType ? "年" : ""));
         yearIndex = mSelectYear - mStartYear;
         yearWheel.setCurrentItem(yearIndex);
-
-
+        
         int monthOfYearStart;
         int monthOfYearEnd;
         if (mStartYear == mEndYear) {
@@ -195,7 +194,7 @@ public class TimePickerView extends LinearLayout {
         monthWheel.setAdapter(new TimePickerAdapter(monthOfYearStart, monthOfYearEnd, 1,
                 isShowType ? "月" : ""));
         monthWheel.setCurrentItem(monthIndex);
-
+        
         int dayOfMonthStart;
         int dayOfMonthEnd;
         if (mStartYear == mSelectYear && mSelectYear == mEndYear) {
@@ -230,13 +229,12 @@ public class TimePickerView extends LinearLayout {
             dayOfMonthStart = 1;
             dayOfMonthEnd = getDayOfMonth(mSelectMonth, mSelectYear);
         }
-
+        
         dayWheel.setAdapter(new TimePickerAdapter(dayOfMonthStart, dayOfMonthEnd, 1,
                 isShowType ? "日" : ""));
         dayIndex = mSelectDay - dayOfMonthStart;
         dayWheel.setCurrentItem(dayIndex);
-
-
+        
         yearListener = new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
@@ -261,16 +259,16 @@ public class TimePickerView extends LinearLayout {
                     startMon = 1;
                     endMon = 12;
                 }
-
+    
                 monthWheel.setAdapter(new TimePickerAdapter(startMon, endMon, 1,
                         isShowType ? "月" : ""));
                 int sizeMon = Math.min((endMon - startMon), monthIndex);
                 monthWheel.setCurrentItem(sizeMon);
                 monthListener.onItemSelected(sizeMon);
-
+    
             }
         };
-
+        
         monthListener = new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
@@ -304,36 +302,35 @@ public class TimePickerView extends LinearLayout {
                 dayListener.onItemSelected(dayIndex > sizeDays ? sizeDays : dayIndex);
             }
         };
-
+        
         dayListener = new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
                 dayIndex = index;
             }
         };
-
-
+        
         yearWheel.setOnItemSelectedListener(yearListener);
         monthWheel.setOnItemSelectedListener(monthListener);
         dayWheel.setOnItemSelectedListener(dayListener);
-
+        
         setHourMinSecAdapter();
-
+        
     }
-
+    
     private void setHourMinSecAdapter() {
         hourWheel.setAdapter(new TimePickerAdapter(0, 23, hourSpace, isShowType ? "时" : ""));
         hourIndex = selectDate.get(Calendar.HOUR_OF_DAY) / hourSpace;
         hourWheel.setCurrentItem(hourIndex);
-
+        
         minWheel.setAdapter(new TimePickerAdapter(0, 59, minuteSpace, isShowType ? "分" : ""));
         minIndex = selectDate.get(Calendar.MINUTE) / minuteSpace;
         minWheel.setCurrentItem(minIndex);
-
+        
         secWheel.setAdapter(new TimePickerAdapter(0, 59, secondSpace, isShowType ? "秒" : ""));
         secIndex = selectDate.get(Calendar.SECOND) / secondSpace;
         secWheel.setCurrentItem(secIndex);
-
+        
         hourListener = new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
@@ -356,14 +353,13 @@ public class TimePickerView extends LinearLayout {
         minWheel.setOnItemSelectedListener(minListener);
         secWheel.setOnItemSelectedListener(secListener);
     }
-
+    
     public TimePickerView setType(boolean[] type) {
         this.type = type;
         setWheelViewVisible();
         return this;
     }
-
-
+    
     private void setWheelViewVisible() {
         yearWheel.setVisibility(type[0] ? VISIBLE : GONE);
         monthWheel.setVisibility(type[1] ? VISIBLE : GONE);
@@ -372,7 +368,7 @@ public class TimePickerView extends LinearLayout {
         minWheel.setVisibility(type[4] ? VISIBLE : GONE);
         secWheel.setVisibility(type[5] ? VISIBLE : GONE);
     }
-
+    
     private int getDayOfMonth(int month, int year) {
         int day = 0;
         switch (month) {
@@ -403,58 +399,58 @@ public class TimePickerView extends LinearLayout {
         }
         return day;
     }
-
+    
     public void setHourSpace(int space) {
-        this.hourSpace = space;
+        hourSpace = space;
         setHourMinSecAdapter();
     }
-
+    
     public void setMinuteSpace(int space) {
-        this.minuteSpace = space;
+        minuteSpace = space;
         setHourMinSecAdapter();
     }
-
+    
     public void setSecondSpace(int space) {
-        this.secondSpace = space;
+        secondSpace = space;
         setHourMinSecAdapter();
     }
-
+    
     public int getYear() {
         String item = (String) yearWheel.getAdapter().getItem(yearIndex);
         int getYear = Integer.parseInt(item.replaceAll("年", ""));
         return type[0] ? getYear : 0;
     }
-
+    
     public int getMonth() {
         String month = (String) monthWheel.getAdapter().getItem(monthIndex);
         int getMonth = Integer.parseInt(month.replaceAll("月", ""));
         return type[1] ? getMonth : 0;
     }
-
+    
     public int getDay() {
         String day = (String) dayWheel.getAdapter().getItem(dayIndex);
         int getDay = Integer.parseInt(day.replaceAll("日", ""));
         return type[2] ? getDay : 0;
     }
-
+    
     public int getHour() {
         String hour = (String) hourWheel.getAdapter().getItem(hourIndex);
         int getHour = Integer.parseInt(hour.replaceAll("时", ""));
         return type[3] ? getHour : 0;
     }
-
+    
     public int getMinute() {
         String min = (String) minWheel.getAdapter().getItem(minIndex);
         int getMin = Integer.parseInt(min.replaceAll("分", ""));
         return type[4] ? getMin : 0;
     }
-
+    
     public int getSecond() {
         String sec = (String) secWheel.getAdapter().getItem(secIndex);
         int getSec = Integer.parseInt(sec.replaceAll("秒", ""));
         return type[5] ? getSec : 0;
     }
-
+    
     public void setDividerColor(int color) {
         yearWheel.setDividerColor(color);
         monthWheel.setDividerColor(color);
@@ -463,7 +459,7 @@ public class TimePickerView extends LinearLayout {
         minWheel.setDividerColor(color);
         secWheel.setDividerColor(color);
     }
-
+    
     public void setOuterTextColor(int color) {
         yearWheel.setTextColorOut(color);
         monthWheel.setTextColorOut(color);
@@ -472,7 +468,7 @@ public class TimePickerView extends LinearLayout {
         minWheel.setTextColorOut(color);
         secWheel.setTextColorOut(color);
     }
-
+    
     public void setCenterTextColor(int color) {
         yearWheel.setTextColorCenter(color);
         monthWheel.setTextColorCenter(color);
@@ -481,7 +477,7 @@ public class TimePickerView extends LinearLayout {
         minWheel.setTextColorCenter(color);
         secWheel.setTextColorCenter(color);
     }
-
+    
     public void setTextSize(float size) {
         yearWheel.setTextSize(size);
         monthWheel.setTextSize(size);
@@ -490,11 +486,11 @@ public class TimePickerView extends LinearLayout {
         minWheel.setTextSize(size);
         secWheel.setTextSize(size);
     }
-
+    
     public boolean isShowType() {
         return isShowType;
     }
-
+    
     public void setShowType(boolean showType) {
         isShowType = showType;
         setWheelViewAdapter();

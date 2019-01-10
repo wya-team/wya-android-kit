@@ -1,6 +1,7 @@
 package com.wya.uikit.badge;
 
 import android.support.annotation.IntDef;
+
 @IntDef
 public @interface BadgeGravity {
     

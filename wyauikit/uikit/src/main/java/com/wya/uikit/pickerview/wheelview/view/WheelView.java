@@ -33,42 +33,37 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     :
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
  */
 public class WheelView extends View {
     
-    public enum ACTION { // 点击，滑翔(滑到尽头)，拖拽事件
-        CLICK, FLING, DAGGLE
-    }
-    
-    public enum DividerType { // 分隔线类型
-        FILL, WRAP
-    }
-    
+    /**
+     * 修改这个值可以改变滑行速度
+     */
+    private static final int VELOCITY_FLING = 5;
+    /**
+     * 非中间文字则用此控制高度，压扁形成3d错觉
+     */
+    private static final float SCALE_CONTENT = 0.8F;
+    private final float DEFAULT_TEXT_TARGET_SKEWX = 0.5f;
     /**
      * 分隔线类型
      */
     private DividerType dividerType;
-    
     private Context context;
     private Handler handler;
     private GestureDetector gestureDetector;
     private OnItemSelectedListener onItemSelectedListener;
-    
     private boolean isOptions = false;
     private boolean isCenterLabel = true;
-    
     private ScheduledExecutorService mExecutor = Executors.newSingleThreadScheduledExecutor();
     private ScheduledFuture<?> mFuture;
-    
     private Paint paintOuterText;
     private Paint paintCenterText;
     private Paint paintIndicator;
-    
     private WheelAdapter adapter;
-    
     /**
      * 附加单位
      */
@@ -84,7 +79,6 @@ public class WheelView extends View {
      * 每行高度
      */
     private float itemHeight;
-    
     /**
      * 字体样式，默认是等宽字体
      */
@@ -92,13 +86,11 @@ public class WheelView extends View {
     private int textColorOut;
     private int textColorCenter;
     private int dividerColor;
-    
     /**
      * 条目间距倍数
      */
     private float lineSpacingMultiplier = 2.0F;
     private boolean isLoop;
-    
     /**
      * 第一条线Y坐标值
      */
@@ -111,17 +103,14 @@ public class WheelView extends View {
      * 中间label绘制的Y坐标
      */
     private float centerY;
-    
     /**
      * 当前滚动总高度y值
      */
     private float totalScrollY;
-    
     /**
      * 初始化默认选中项
      */
     private int initPosition;
-    
     /**
      * 选中的Item是第几个
      */
@@ -131,35 +120,25 @@ public class WheelView extends View {
      * 滚动偏移值,用于记录滚动了多少个item
      */
     private int change;
-    
     /**
      * 绘制几个条目，实际上第一项和最后一项Y轴压缩成0%了，所以可见的数目实际为9
      */
     private int itemsVisible = 11;
-    
     /**
      * 控件高度
      */
     private int measuredHeight;
-    
     /**
      * 控件宽度
      */
     private int measuredWidth;
-    
     /**
      * 半径
      */
     private int radius;
-    
     private int mOffset = 0;
     private float previousY = 0;
     private long startTime = 0;
-    
-    /**
-     * 修改这个值可以改变滑行速度
-     */
-    private static final int VELOCITY_FLING = 5;
     private int widthMeasureSpec;
     
     private int mGravity = Gravity.CENTER;
@@ -172,16 +151,9 @@ public class WheelView extends View {
      */
     private int drawOutContentStart = 0;
     /**
-     * 非中间文字则用此控制高度，压扁形成3d错觉
-     */
-    private static final float SCALE_CONTENT = 0.8F;
-    /**
      * 偏移量
      */
     private float centerContentOffset;
-    
-    private final float DEFAULT_TEXT_TARGET_SKEWX = 0.5f;
-    
     public WheelView(Context context) {
         this(context, null);
     }
@@ -379,27 +351,18 @@ public class WheelView extends View {
         }
     }
     
-    public final void setCurrentItem(int currentItem) {
-        //不添加这句,当这个wheelView不可见时,默认都是0,会导致获取到的时间错误
-        this.selectedItem = currentItem;
-        this.initPosition = currentItem;
-        //回归顶部，不然重设setCurrentItem的话位置会偏移的，就会显示出不对位置的数据
-        totalScrollY = 0;
-        invalidate();
-    }
-    
     public final void setOnItemSelectedListener(OnItemSelectedListener onItemSelectedListener) {
         this.onItemSelectedListener = onItemSelectedListener;
+    }
+    
+    public final WheelAdapter getAdapter() {
+        return adapter;
     }
     
     public final void setAdapter(WheelAdapter adapter) {
         this.adapter = adapter;
         remeasure();
         invalidate();
-    }
-    
-    public final WheelAdapter getAdapter() {
-        return adapter;
     }
     
     public final int getCurrentItem() {
@@ -411,6 +374,15 @@ public class WheelView extends View {
             return Math.max(0, Math.min(Math.abs(Math.abs(selectedItem) - adapter.getItemsCount()), adapter.getItemsCount() - 1));
         }
         return Math.max(0, Math.min(selectedItem, adapter.getItemsCount() - 1));
+    }
+    
+    public final void setCurrentItem(int currentItem) {
+        //不添加这句,当这个wheelView不可见时,默认都是0,会导致获取到的时间错误
+        selectedItem = currentItem;
+        initPosition = currentItem;
+        //回归顶部，不然重设setCurrentItem的话位置会偏移的，就会显示出不对位置的数据
+        totalScrollY = 0;
+        invalidate();
     }
     
     public final void onItemSelected() {
@@ -629,8 +601,8 @@ public class WheelView extends View {
     
     /**
      * 递归计算出对应的index
-     * @param index
      *
+     * @param index
      * @return
      */
     private int getLoopMappingIndex(int index) {
@@ -648,7 +620,6 @@ public class WheelView extends View {
      * 获取所显示的数据源
      *
      * @param item data resource
-     *
      * @return 对应显示的字符串
      */
     private String getContentText(Object item) {
@@ -804,7 +775,7 @@ public class WheelView extends View {
     }
     
     public void setGravity(int gravity) {
-        this.mGravity = gravity;
+        mGravity = gravity;
     }
     
     public int getTextWidth(Paint paint, String str) { //calculate text width
@@ -881,5 +852,13 @@ public class WheelView extends View {
     @Override
     public Handler getHandler() {
         return handler;
+    }
+    
+    public enum ACTION { // 点击，滑翔(滑到尽头)，拖拽事件
+        CLICK, FLING, DAGGLE
+    }
+    
+    public enum DividerType { // 分隔线类型
+        FILL, WRAP
     }
 }

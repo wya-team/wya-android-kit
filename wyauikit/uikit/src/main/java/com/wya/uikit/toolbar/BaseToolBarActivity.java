@@ -30,14 +30,6 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     private RelativeLayout toolBar;
     
     private LinearLayout parentLinearLayout;
-    
-    /**
-     * 获取布局文件id
-     *
-     * @return
-     */
-    protected abstract int getLayoutId();
-    
     /**
      * 设置左边点击事件
      */
@@ -67,68 +59,12 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      */
     private RightSecondIconLongClickListener rightSecondIconLongClickListener;
     
-    public interface LeftIconClickListener {
-        /**
-         * 设置左边点击事件
-         *
-         * @param view
-         */
-        void leftIconClick(View view);
-    }
-    
-    public interface LeftTextClickListener {
-        /**
-         * 设置左边点击事件
-         *
-         * @param view
-         */
-        void leftTextClick(View view);
-    }
-    
-    public interface RightFirstTextClickListener {
-        /**
-         * 设置右边文字点击事件
-         *
-         * @param view
-         */
-        void rightFirstTextClick(View view);
-    }
-    
-    public interface RightSecondTextClickListener {
-        /**
-         * 设置右边第二个文字点击事件
-         *
-         * @param view
-         */
-        void rightSecondTextClick(View view);
-    }
-    
-    public interface RightFirstIconClickListener {
-        /**
-         * 设置图片点击事件
-         *
-         * @param view
-         */
-        void rightFirstIconClick(View view);
-    }
-    
-    public interface RightSecondIconClickListener {
-        /**
-         * 设置第二张图片点击事件
-         *
-         * @param view
-         */
-        void rightSecondIconClick(View view);
-    }
-    
-    public interface RightSecondIconLongClickListener {
-        /**
-         * 设置第二张长按点击事件
-         *
-         * @param view
-         */
-        void rightSecondIconLongClick(View view);
-    }
+    /**
+     * 获取布局文件id
+     *
+     * @return
+     */
+    protected abstract int getLayoutId();
     
     /**
      * 设置左边图标点击事件监听
@@ -266,7 +202,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      * 设置标题栏颜色和状态栏颜色
      *
      * @param backgroundColor 标题栏背景颜色
-     * @param isLight 修改状态栏文字图标颜色
+     * @param isLight         修改状态栏文字图标颜色
      */
     public void setBackgroundColor(int backgroundColor, boolean isLight) {
         toolBar.setBackgroundColor(backgroundColor);
@@ -514,7 +450,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 if (leftIconClickListener != null) {
                     leftIconClickListener.leftIconClick(view);
                 } else {
-                    BaseToolBarActivity.this.finish();
+                    finish();
                 }
             }
         });
@@ -525,7 +461,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 if (leftTextClickListener != null) {
                     leftTextClickListener.leftTextClick(view);
                 } else {
-                    BaseToolBarActivity.this.finish();
+                    finish();
                 }
             }
         });
@@ -612,5 +548,68 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+    
+    public interface LeftIconClickListener {
+        /**
+         * 设置左边点击事件
+         *
+         * @param view
+         */
+        void leftIconClick(View view);
+    }
+    
+    public interface LeftTextClickListener {
+        /**
+         * 设置左边点击事件
+         *
+         * @param view
+         */
+        void leftTextClick(View view);
+    }
+    
+    public interface RightFirstTextClickListener {
+        /**
+         * 设置右边文字点击事件
+         *
+         * @param view
+         */
+        void rightFirstTextClick(View view);
+    }
+    
+    public interface RightSecondTextClickListener {
+        /**
+         * 设置右边第二个文字点击事件
+         *
+         * @param view
+         */
+        void rightSecondTextClick(View view);
+    }
+    
+    public interface RightFirstIconClickListener {
+        /**
+         * 设置图片点击事件
+         *
+         * @param view
+         */
+        void rightFirstIconClick(View view);
+    }
+    
+    public interface RightSecondIconClickListener {
+        /**
+         * 设置第二张图片点击事件
+         *
+         * @param view
+         */
+        void rightSecondIconClick(View view);
+    }
+    
+    public interface RightSecondIconLongClickListener {
+        /**
+         * 设置第二张长按点击事件
+         *
+         * @param view
+         */
+        void rightSecondIconLongClick(View view);
     }
 }

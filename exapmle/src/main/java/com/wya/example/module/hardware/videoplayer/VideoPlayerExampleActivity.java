@@ -27,21 +27,21 @@ import static com.wya.example.module.utils.fliedownload.FileDownloadExampleActiv
 import static com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity.FILE_VIDEO_DIR;
 
 public class VideoPlayerExampleActivity extends BaseActivity {
-
+    
+    private static final String MVIDEOPATH =
+            "http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh" +
+                    ".yinyuetai.com/4599015ED06F94848EBF877EAAE13886.mp4";
     @BindView(R.id.video_player)
     WYAVideoView videoPlayer;
     private ViewGroup contentView;
     private VideoDetailInfo info;
-    private static final String MVIDEOPATH =
-            "http://221.228.226.5/14/z/w/y/y/zwyyobhyqvmwslabxyoaixvyubmekc/sh" +
-            ".yinyuetai.com/4599015ED06F94848EBF877EAAE13886.mp4";
     private FileManagerUtil mFileManagerUtil;
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_video_player_example;
     }
-
+    
     @Override
     protected void initView() {
         getSwipeBackLayout().setToChangeWindowTranslucent(false);
@@ -59,23 +59,23 @@ public class VideoPlayerExampleActivity extends BaseActivity {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(VideoPlayerExampleActivity.this, url);
         });
-
+        
         mFileManagerUtil = new FileManagerUtil();
         info = new VideoDetailInfo();
-
+        
         info.videoPath = MVIDEOPATH;
         videoPlayer.setOnVideoControlListener(new SimpleOnVideoControlListener() {
-
+            
             @Override
             public void onRetry(int errorStatus) {
                 videoPlayer.startPlayVideo(info);
             }
-
+            
             @Override
             public void onBack() {
                 onBackPressed();
             }
-
+            
             @Override
             public void onFullScreen() {
                 showToolBar(false);
@@ -85,8 +85,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
         });
         videoPlayer.startPlayVideo(info);
     }
-
-
+    
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -96,25 +95,25 @@ public class VideoPlayerExampleActivity extends BaseActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
     }
-
+    
     @Override
     protected void onStop() {
         super.onStop();
         videoPlayer.onStop();
     }
-
+    
     @Override
     protected void onStart() {
         super.onStart();
         videoPlayer.onStart();
     }
-
+    
     @Override
     protected void onDestroy() {
         super.onDestroy();
         videoPlayer.onDestroy();
     }
-
+    
     @Override
     public void onBackPressed() {
         if (!ScreenUtil.isPortrait(this)) {
@@ -127,7 +126,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
             super.onBackPressed();
         }
     }
-
+    
     @OnClick(R.id.download_file)
     public void onViewClicked() {
         DownloadReceiver downloadReceiver = mFileManagerUtil.getDownloadReceiver();
@@ -136,7 +135,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
                         (MVIDEOPATH)
                         + ".mp4")
                 .start();
-
+        
         File file = new File(FILE_IMG_DIR + "/" + "IMG_" + StringUtil.getSign(MVIDEOPATH) + ".jpg");
         if (!file.exists()) {
             MediaUtils.getImageForVideo(MVIDEOPATH, null);

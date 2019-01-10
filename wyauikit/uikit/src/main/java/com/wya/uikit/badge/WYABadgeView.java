@@ -34,13 +34,10 @@ public class WYABadgeView extends View implements IBadgeView {
     protected RectF mTextRect;
     protected int mTextColor;
     protected int mBadgeNum;
-    private int mOmitNum = 99;
-    private String mOmitText = "···";
     protected String mBadgeText;
     protected float mTextSize;
     protected Paint.FontMetrics mTextFontMetrics;
     protected boolean isOmitMode;
-    
     /**
      * background
      */
@@ -48,28 +45,26 @@ public class WYABadgeView extends View implements IBadgeView {
     protected RectF mBackgroundRect;
     protected int mBackgroundColor;
     protected Drawable mBackgroundDrawable;
-    
     /**
      * bitmap
      */
     protected Drawable mBadgeDrawable;
-    private int mBadgeDrawableSize;
-    
     /**
      * border
      */
     protected Paint mBorderPaint;
     protected int mBgBorderColor;
     protected float mBorderWidth;
-    
-    private boolean mIsAttach = true;
     protected View mTargetView;
-    
     protected int mWidth;
     protected int mHeight;
     protected float mPadding;
     protected PointF mCenter;
     protected Builder.Gravity mGravity;
+    private int mOmitNum = 99;
+    private String mOmitText = "···";
+    private int mBadgeDrawableSize;
+    private boolean mIsAttach = true;
     
     public WYABadgeView(Context context) {
         this(context, null);
@@ -152,13 +147,13 @@ public class WYABadgeView extends View implements IBadgeView {
     
     @Override
     public void setBadgeDrawable(Drawable drawable) {
-        this.mBadgeDrawable = drawable;
+        mBadgeDrawable = drawable;
         //        invalidate();
     }
     
     @Override
     public void setBadgeDrawableSize(int size) {
-        this.mBadgeDrawableSize = size;
+        mBadgeDrawableSize = size;
     }
     
     private void drawBadgeBitmap(Canvas canvas) {
@@ -371,7 +366,7 @@ public class WYABadgeView extends View implements IBadgeView {
     
     @Override
     public void setOmitNum(int omitNum) {
-        this.mOmitNum = omitNum;
+        mOmitNum = omitNum;
         if (mBadgeNum > mOmitNum) {
             setBadgeNum(mBadgeNum);
         }
@@ -445,7 +440,7 @@ public class WYABadgeView extends View implements IBadgeView {
      */
     @Override
     public void setOmitText(String omitText) {
-        this.mOmitText = omitText;
+        mOmitText = omitText;
         if (mBadgeNum > mOmitNum) {
             setBadgeNum(mBadgeNum);
         }
@@ -502,20 +497,25 @@ public class WYABadgeView extends View implements IBadgeView {
     
     @Override
     public void setAttach(boolean isAttach) {
-        this.mIsAttach = isAttach;
+        mIsAttach = isAttach;
+    }
+    
+    @Override
+    public void invalidateBadge() {
+        invalidate();
     }
     
     private class BadgeContainer extends ViewGroup {
+    
+        public BadgeContainer(Context context) {
+            super(context);
+        }
         
         @Override
         protected void dispatchRestoreInstanceState(SparseArray<Parcelable> container) {
             if (!(getParent() instanceof RelativeLayout)) {
                 super.dispatchRestoreInstanceState(container);
             }
-        }
-        
-        public BadgeContainer(Context context) {
-            super(context);
         }
         
         @Override
@@ -575,11 +575,6 @@ public class WYABadgeView extends View implements IBadgeView {
                 setMeasuredDimension(targetView.getMeasuredWidth(), targetView.getMeasuredHeight());
             }
         }
-    }
-    
-    @Override
-    public void invalidateBadge() {
-        invalidate();
     }
     
 }

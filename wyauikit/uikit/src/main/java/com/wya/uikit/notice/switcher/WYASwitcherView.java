@@ -21,12 +21,11 @@ import java.lang.ref.WeakReference;
 public class WYASwitcherView extends ViewSwitcher {
     
     public static final int DEF_ANIMATOR_DIRENCTION = SwitcherViewAnimDirection.DOWN_2_UP;
-    
+    private final static int DEF_ANIMATOR_DURATION = 400;
+    private final static int DEF_SWITCH_DURATION = 3_000;
     private int mAnimDuration;
     private int mAnimDirection;
     private int mSwitchDuration;
-    private final static int DEF_ANIMATOR_DURATION = 400;
-    private final static int DEF_SWITCH_DURATION = 3_000;
     @LayoutRes
     private int mResLayout;
     private AutoSwitcherTask mAutoPlayTask;
@@ -76,7 +75,7 @@ public class WYASwitcherView extends ViewSwitcher {
             mResLayout = resLayout;
             super.setFactory(() -> View.inflate(getContext(), mResLayout, null));
         }
-        if (null != mListener && null != this.getCurrentView()) {
+        if (null != mListener && null != getCurrentView()) {
             mListener.onSwitch(getCurrentView(), mIndex = 0);
         }
         mIndex++;
@@ -179,8 +178,60 @@ public class WYASwitcherView extends ViewSwitcher {
             removeCallbacks(mAutoPlayTask);
         }
         if (mListener != null) {
-            mListener.onSwitch(this.getCurrentView(), mIndex = 0);
+            mListener.onSwitch(getCurrentView(), mIndex = 0);
         }
+    }
+    
+    public void switchToNextView() {
+        if (null != mListener && null != getNextView()) {
+            mListener.onSwitch(getNextView(), mIndex);
+            showNext();
+            mIndex++;
+        }
+    }
+    
+    public int getCurIndex() {
+        return mIndex;
+    }
+    
+    public void setAnimDirection(int direction) {
+        mAnimDirection = direction;
+    }
+    
+    public void setSwitchDuration(int duration) {
+        mAnimDuration = duration;
+    }
+    
+    public void setSwitcheNextViewListener(SwitcherViewListener listener) {
+        mListener = listener;
+    }
+    
+    public boolean isClosable() {
+        return mClosable;
+    }
+    
+    public void setClosable(boolean closable) {
+        mClosable = closable;
+    }
+    
+    public boolean isSkipable() {
+        return mSkipable;
+    }
+    
+    public void setSkipable(boolean skipable) {
+        mSkipable = skipable;
+    }
+    
+    public interface SwitcherViewListener {
+        
+        /**
+         * 切换item
+         *
+         * @param view  :
+         * @param index :
+         */
+        void onSwitch(View view, int index);
+        
     }
     
     private class AutoSwitcherTask implements Runnable {
@@ -200,57 +251,5 @@ public class WYASwitcherView extends ViewSwitcher {
                 }
             }
         }
-    }
-    
-    public void switchToNextView() {
-        if (null != mListener && null != getNextView()) {
-            mListener.onSwitch(this.getNextView(), mIndex);
-            this.showNext();
-            mIndex++;
-        }
-    }
-    
-    public int getCurIndex() {
-        return mIndex;
-    }
-    
-    public void setAnimDirection(int direction) {
-        this.mAnimDirection = direction;
-    }
-    
-    public void setSwitchDuration(int duration) {
-        this.mAnimDuration = duration;
-    }
-    
-    public interface SwitcherViewListener {
-        
-        /**
-         * 切换item
-         *
-         * @param view  :
-         * @param index :
-         */
-        void onSwitch(View view, int index);
-        
-    }
-    
-    public void setSwitcheNextViewListener(SwitcherViewListener listener) {
-        this.mListener = listener;
-    }
-    
-    public void setClosable(boolean closable) {
-        mClosable = closable;
-    }
-    
-    public boolean isClosable() {
-        return mClosable;
-    }
-    
-    public void setSkipable(boolean skipable) {
-        mSkipable = skipable;
-    }
-    
-    public boolean isSkipable() {
-        return mSkipable;
     }
 }

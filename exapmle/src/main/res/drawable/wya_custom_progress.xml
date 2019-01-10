@@ -2,13 +2,15 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@android:id/background">
         <shape android:shape="rectangle">
-            <corners android:radius="20dp"/>
-            <gradient android:startColor="#eeeeee"
-                android:endColor="#eeeeee"/>
+            <corners android:radius="20dp" />
+            <gradient
+                android:endColor="#eeeeee"
+                android:startColor="#eeeeee" />
         </shape>
     </item>
     <item android:id="@android:id/progress">
-        <scale android:scaleWidth="100%"
-            android:drawable="@drawable/wya_custom_progress_bar_ct"   />
+        <scale
+            android:drawable="@drawable/wya_custom_progress_bar_ct"
+            android:scaleWidth="100%" />
     </item>
 </layer-list>

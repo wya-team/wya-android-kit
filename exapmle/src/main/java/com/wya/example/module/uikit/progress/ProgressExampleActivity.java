@@ -10,26 +10,27 @@ import com.wya.uikit.progress.WYAProgress;
 import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
- /**
-  * @date: 2019/1/8 9:56
-  * @author: Chunjiang Mao
-  * @classname: ProgressExampleActivity
-  * @describe: ProgressExampleActivity
-  */
- 
-public class ProgressExampleActivity extends BaseActivity {
 
+/**
+ * @date: 2019/1/8 9:56
+ * @author: Chunjiang Mao
+ * @classname: ProgressExampleActivity
+ * @describe: ProgressExampleActivity
+ */
+
+public class ProgressExampleActivity extends BaseActivity {
+    
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
     @BindView(R.id.wya_progress)
     WYAProgress wyaProgress;
     private int progress = 68;
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.activity_progress_example;
     }
-
+    
     @Override
     protected void initView() {
         setTitle(" 进度条(progressview)");
@@ -37,7 +38,7 @@ public class ProgressExampleActivity extends BaseActivity {
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setRightSecondIconClickListener(view -> {
-            startActivity(new Intent(ProgressExampleActivity.this, ReadmeActivity.class).putExtra("url",url));
+            startActivity(new Intent(ProgressExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
         setRightSecondIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");

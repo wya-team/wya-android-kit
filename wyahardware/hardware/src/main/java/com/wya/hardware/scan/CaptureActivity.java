@@ -95,6 +95,18 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
     private boolean isZoom = true;
     private float oldDistance;
     
+    private static boolean isZXingURL(String dataString) {
+        if (dataString == null) {
+            return false;
+        }
+        for (String url : ZXING_URLS) {
+            if (dataString.startsWith(url)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public ViewfinderView getViewfinderView() {
         return viewfinderView;
     }
@@ -242,18 +254,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
         }
     }
     
-    private static boolean isZXingURL(String dataString) {
-        if (dataString == null) {
-            return false;
-        }
-        for (String url : ZXING_URLS) {
-            if (dataString.startsWith(url)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
     @Override
     protected void onPause() {
         if (handler != null) {
@@ -350,9 +350,9 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
     /**
      * A valid barcode has been found, so give an indication of success and show the results.
      *
-     * @param rawResult The contents of the barcode.
+     * @param rawResult   The contents of the barcode.
      * @param scaleFactor amount by which thumbnail was scaled
-     * @param barcode A greyscale bitmap of the camera data which was decoded.
+     * @param barcode     A greyscale bitmap of the camera data which was decoded.
      */
     public void handleDecode(Result rawResult, Bitmap barcode, float scaleFactor) {
         inactivityTimer.onActivity();
@@ -786,7 +786,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
      * 计算两指间距离
      *
      * @param event
-     *
      * @return
      */
     private float calcFingerSpacing(MotionEvent event) {
@@ -802,7 +801,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
      * @param y
      * @param coefficient
      * @param previewSize
-     *
      * @return
      */
     private Rect calcTapArea(float x, float y, float coefficient, Camera.Size previewSize) {
@@ -821,7 +819,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback 
      * @param x
      * @param min
      * @param max
-     *
      * @return
      */
     private int clamp(int x, int min, int max) {

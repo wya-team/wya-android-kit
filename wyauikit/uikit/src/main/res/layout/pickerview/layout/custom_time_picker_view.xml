@@ -47,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="#ddd" />
+
     <com.wya.uikit.pickerview.TimePickerView
         android:id="@+id/time_picker_view"
         android:layout_width="match_parent"

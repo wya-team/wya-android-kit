@@ -19,7 +19,6 @@ import static com.wya.hardware.camera.WYACameraView.BUTTON_STATE_BOTH;
 import static com.wya.hardware.camera.WYACameraView.BUTTON_STATE_ONLY_CAPTURE;
 import static com.wya.hardware.camera.WYACameraView.BUTTON_STATE_ONLY_RECORDER;
 
-
 /**
  * @date: 2018/12/5 14:11
  * @author: Chunjiang Mao
@@ -28,16 +27,7 @@ import static com.wya.hardware.camera.WYACameraView.BUTTON_STATE_ONLY_RECORDER;
  */
 
 public class CaptureButton extends View {
-
-    /**
-     * 当前按钮状态
-     */
-    private int state;
-    /**
-     * 按钮可执行的功能状态（拍照,录制,两者）
-     */
-    private int buttonState;
-
+    
     /**
      * 空闲状态
      */
@@ -58,7 +48,14 @@ public class CaptureButton extends View {
      * 禁止状态
      */
     public static final int STATE_BAN = 0x005;
-
+    /**
+     * 当前按钮状态
+     */
+    private int state;
+    /**
+     * 按钮可执行的功能状态（拍照,录制,两者）
+     */
+    private int buttonState;
     /**
      * 进度条颜色
      */
@@ -71,13 +68,12 @@ public class CaptureButton extends View {
      * 内圆背景色
      */
     private int insideColor = 0xFFFFFFFF;
-
+    
     /**
      * Touch_Event_Down时候记录的Y值
      */
     private float eventY;
-
-
+    
     private Paint mPaint;
     /**
      * 进度条宽度
@@ -91,7 +87,7 @@ public class CaptureButton extends View {
      * 长安内圆缩小的Size
      */
     private int insideReduceSize;
-
+    
     /**
      * 中心坐标
      */
@@ -113,7 +109,7 @@ public class CaptureButton extends View {
      * 按钮大小
      */
     private int buttonSize;
-
+    
     /**
      * 录制视频的进度
      */
@@ -130,9 +126,9 @@ public class CaptureButton extends View {
      * 记录当前录制的时间
      */
     private int recordedTime;
-
+    
     private RectF rectF;
-
+    
     /**
      * 长按后处理的逻辑Runnable
      */
@@ -145,26 +141,26 @@ public class CaptureButton extends View {
      * 计时器
      */
     private RecordCountDownTimer timer;
-
+    
     public CaptureButton(Context context) {
         super(context);
     }
-
+    
     public CaptureButton(Context context, int size) {
         super(context);
-        this.buttonSize = size;
+        buttonSize = size;
         buttonRadius = size / 2.0f;
-
+        
         buttonOutsideRadius = buttonRadius;
         buttonInsideRadius = buttonRadius * 0.75f;
-
+        
         strokeWidth = size / 15;
         outsideAddSize = size / 5;
         insideReduceSize = size / 8;
-
+        
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-
+        
         progress = 0;
         longPressRunnable = new LongPressRunnable();
         //初始化为空闲状态
@@ -175,10 +171,10 @@ public class CaptureButton extends View {
         duration = 10 * 1000;
         //默认最短录制时间为1.5s
         minDuration = 1500;
-
+        
         centerX = (buttonSize + outsideAddSize * 2) / 2;
         centerY = (buttonSize + outsideAddSize * 2) / 2;
-
+        
         rectF = new RectF(
                 centerX - (buttonRadius + outsideAddSize - strokeWidth / 2),
                 centerY - (buttonRadius + outsideAddSize - strokeWidth / 2),
@@ -187,13 +183,13 @@ public class CaptureButton extends View {
         //录制定时器
         timer = new RecordCountDownTimer(duration, duration / 360);
     }
-
+    
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         setMeasuredDimension(buttonSize + outsideAddSize * 2, buttonSize + outsideAddSize * 2);
     }
-
+    
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -204,7 +200,7 @@ public class CaptureButton extends View {
         //内圆（白色）
         mPaint.setColor(insideColor);
         canvas.drawCircle(centerX, centerY, buttonInsideRadius, mPaint);
-
+        
         //如果状态为录制状态，则绘制录制进度条
         if (state == STATE_RECORDERING) {
             mPaint.setColor(progressColor);
@@ -213,8 +209,7 @@ public class CaptureButton extends View {
             canvas.drawArc(rectF, -90, progress, false, mPaint);
         }
     }
-
-
+    
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -226,7 +221,7 @@ public class CaptureButton extends View {
                 eventY = event.getY();
                 //修改当前状态为点击按下
                 state = STATE_PRESS;
-
+    
                 //判断按钮状态是否为可录制状态
                 if ((buttonState == BUTTON_STATE_ONLY_RECORDER || buttonState == BUTTON_STATE_BOTH)) {
                     //同时延长500启动长按后处理的逻辑Runnable
@@ -250,7 +245,7 @@ public class CaptureButton extends View {
         }
         return true;
     }
-
+    
     /**
      * 当手指松开按钮时候处理的逻辑
      */
@@ -278,7 +273,7 @@ public class CaptureButton extends View {
                 break;
         }
     }
-
+    
     /**
      * 录制结束
      */
@@ -294,7 +289,7 @@ public class CaptureButton extends View {
         }
         resetRecordAnim();  //重制按钮状态
     }
-
+    
     /**
      * 重制状态
      */
@@ -314,6 +309,7 @@ public class CaptureButton extends View {
     
     /**
      * 内圆动画
+     *
      * @param insideStart
      */
     private void startCaptureAnimation(float insideStart) {
@@ -337,7 +333,7 @@ public class CaptureButton extends View {
         insideAnim.setDuration(100);
         insideAnim.start();
     }
-
+    
     /**
      * 内外圆动画
      *
@@ -388,6 +384,7 @@ public class CaptureButton extends View {
     
     /**
      * 更新进度条
+     *
      * @param millisUntilFinished
      */
     private void updateProgress(long millisUntilFinished) {
@@ -397,18 +394,76 @@ public class CaptureButton extends View {
     }
     
     /**
+     * 设置最长录制时间
+     *
+     * @param duration
+     */
+    public void setDuration(int duration) {
+        this.duration = duration;
+        //录制定时器
+        timer = new RecordCountDownTimer(duration, duration / 360);
+    }
+    
+    /**
+     * 设置最短录制时间
+     *
+     * @param duration
+     */
+    public void setMinDuration(int duration) {
+        minDuration = duration;
+    }
+    
+    /**************************************************
+     * 对外提供的API                     *
+     **************************************************/
+    
+    /**
+     * 设置回调接口
+     *
+     * @param captureListener
+     */
+    public void setCaptureListener(CaptureListener captureListener) {
+        this.captureListener = captureListener;
+    }
+    
+    /**
+     * 设置按钮功能（拍照和录像）
+     *
+     * @param state
+     */
+    public void setButtonFeatures(int state) {
+        buttonState = state;
+    }
+    
+    /**
+     * 是否空闲状态
+     *
+     * @return
+     */
+    public boolean isIdle() {
+        return state == STATE_IDLE ? true : false;
+    }
+    
+    /**
+     * 设置状态
+     */
+    public void resetState() {
+        state = STATE_IDLE;
+    }
+    
+    /**
      * 录制视频计时器
      */
     private class RecordCountDownTimer extends CountDownTimer {
         RecordCountDownTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
         }
-
+    
         @Override
         public void onTick(long millisUntilFinished) {
             updateProgress(millisUntilFinished);
         }
-
+    
         @Override
         public void onFinish() {
             updateProgress(0);
@@ -440,59 +495,5 @@ public class CaptureButton extends View {
                     buttonInsideRadius - insideReduceSize
             );
         }
-    }
-
-    /**************************************************
-     * 对外提供的API                     *
-     **************************************************/
-    
-    
-    /**
-     * 设置最长录制时间
-     * @param duration
-     */
-    public void setDuration(int duration) {
-        this.duration = duration;
-        //录制定时器
-        timer = new RecordCountDownTimer(duration, duration / 360);
-    }
-    
-    /**
-     * 设置最短录制时间
-     * @param duration
-     */
-    public void setMinDuration(int duration) {
-        this.minDuration = duration;
-    }
-    
-    /**
-     * 设置回调接口
-     * @param captureListener
-     */
-    public void setCaptureListener(CaptureListener captureListener) {
-        this.captureListener = captureListener;
-    }
-    
-    /**
-     * 设置按钮功能（拍照和录像）
-     * @param state
-     */
-    public void setButtonFeatures(int state) {
-        this.buttonState = state;
-    }
-    
-    /**
-     * 是否空闲状态
-     * @return
-     */
-    public boolean isIdle() {
-        return state == STATE_IDLE ? true : false;
-    }
-    
-    /**
-     * 设置状态
-     */
-    public void resetState() {
-        state = STATE_IDLE;
     }
 }

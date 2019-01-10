@@ -12,35 +12,30 @@ import android.graphics.Path;
  * @description :
  */
 public class EditPath {
-
-    protected Path path;
-
-    private int color = Color.RED;
-
-    private float width = BASE_MOSAIC_WIDTH;
-
-    private EditMode mode = EditMode.DOODLE;
-
+    
     public static final float BASE_DOODLE_WIDTH = 20f;
-
     public static final float BASE_MOSAIC_WIDTH = 72f;
-
+    protected Path path;
+    private int color = Color.RED;
+    private float width = BASE_MOSAIC_WIDTH;
+    private EditMode mode = EditMode.DOODLE;
+    
     public EditPath() {
         this(new Path());
     }
-
+    
     public EditPath(Path path) {
         this(path, EditMode.DOODLE);
     }
-
+    
     public EditPath(Path path, EditMode mode) {
         this(path, mode, Color.RED);
     }
-
+    
     public EditPath(Path path, EditMode mode, int color) {
         this(path, mode, color, BASE_MOSAIC_WIDTH);
     }
-
+    
     public EditPath(Path path, EditMode mode, int color, float width) {
         this.path = path;
         this.mode = mode;
@@ -50,39 +45,39 @@ public class EditPath {
             path.setFillType(Path.FillType.EVEN_ODD);
         }
     }
-
+    
     public Path getPath() {
         return path;
     }
-
+    
     public void setPath(Path path) {
         this.path = path;
     }
-
+    
     public int getColor() {
         return color;
     }
-
+    
     public void setColor(int color) {
         this.color = color;
     }
-
+    
     public EditMode getMode() {
         return mode;
     }
-
+    
     public void setMode(EditMode mode) {
         this.mode = mode;
     }
-
-    public void setWidth(float width) {
-        this.width = width;
-    }
-
+    
     public float getWidth() {
         return width;
     }
-
+    
+    public void setWidth(float width) {
+        this.width = width;
+    }
+    
     public void onDrawDoodle(Canvas canvas, Paint paint) {
         if (mode == EditMode.DOODLE) {
             paint.setColor(color);
@@ -91,14 +86,14 @@ public class EditPath {
             canvas.drawPath(path, paint);
         }
     }
-
+    
     public void onDrawMosaic(Canvas canvas, Paint paint) {
         if (mode == EditMode.MOSAIC) {
             paint.setStrokeWidth(width);
             canvas.drawPath(path, paint);
         }
     }
-
+    
     public void transform(Matrix matrix) {
         path.transform(matrix);
     }

@@ -9,9 +9,9 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@drawable/choice_menu_text_selector"
+        android:gravity="center"
         android:text="啦啦啦啦啦"
-        android:textSize="16sp"
-        android:gravity="center"/>
+        android:textColor="@drawable/choice_menu_text_selector"
+        android:textSize="16sp" />
 
 </LinearLayout>

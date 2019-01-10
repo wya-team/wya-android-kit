@@ -14,12 +14,12 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text=""/>
+        android:text="" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/color_909090"/>
+        android:background="@color/color_909090" />
 
     <com.wya.uikit.tabbar.WYATabBar
         android:id="@+id/tab"

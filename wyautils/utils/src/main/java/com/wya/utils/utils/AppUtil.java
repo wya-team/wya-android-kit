@@ -11,7 +11,7 @@ import android.graphics.drawable.Drawable;
 /**
  * @date: 2018/12/7 14:00
  * @author: Chunjiang Mao
- * @classname:  AppUtil
+ * @classname: AppUtil
  * @describe: 获取App相关的辅助类
  */
 
@@ -31,9 +31,10 @@ public class AppUtil {
         }
         return null;
     }
-
+    
     /**
      * [获取应用程序版本名称信息]
+     *
      * @param context
      * @return 当前应用的版本名称
      */
@@ -48,10 +49,10 @@ public class AppUtil {
         }
         return null;
     }
-
-
+    
     /**
      * [获取应用程序版本名称信息]
+     *
      * @param context
      * @return 当前应用的版本号
      */
@@ -66,10 +67,10 @@ public class AppUtil {
         }
         return 0;
     }
-
-
+    
     /**
      * [获取应用程序版本名称信息]
+     *
      * @param context
      * @return 当前应用的包名
      */
@@ -84,10 +85,10 @@ public class AppUtil {
         }
         return null;
     }
-
-
+    
     /**
      * 获取图标 bitmap
+     *
      * @param context
      */
     public static synchronized Bitmap getBitmap(Context context) {
@@ -107,12 +108,11 @@ public class AppUtil {
         Bitmap bm = bd.getBitmap();
         return bm;
     }
-
-
+    
     /**
      * 判断当前应用是否是debug状态
      */
-
+    
     public static boolean isApkInDebug(Context context) {
         try {
             ApplicationInfo info = context.getApplicationInfo();

@@ -1,42 +1,46 @@
 package com.wya.hardware.camera.listener;
- /**
-  * @date: 2018/12/5 13:35
-  * @author: Chunjiang Mao
-  * @classname: CaptureListener
-  * @describe:
-  */
+
+/**
+ * @date: 2018/12/5 13:35
+ * @author: Chunjiang Mao
+ * @classname: CaptureListener
+ * @describe:
+ */
 
 public interface CaptureListener {
-     /**
-      * takePictures
-      */
+    /**
+     * takePictures
+     */
     void takePictures();
     
-     /**
-      * recordShort
-      * @param time
-      */
+    /**
+     * recordShort
+     *
+     * @param time
+     */
     void recordShort(long time);
     
-     /**
-      * recordStart
-      */
+    /**
+     * recordStart
+     */
     void recordStart();
     
-     /**
-      * recordEnd
-      * @param time
-      */
+    /**
+     * recordEnd
+     *
+     * @param time
+     */
     void recordEnd(long time);
     
-     /**
-      * recordZoom
-      * @param zoom
-      */
+    /**
+     * recordZoom
+     *
+     * @param zoom
+     */
     void recordZoom(float zoom);
     
-     /**
-      * recordError
-      */
+    /**
+     * recordError
+     */
     void recordError();
 }

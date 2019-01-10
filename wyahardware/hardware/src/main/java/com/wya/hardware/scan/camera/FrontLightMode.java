@@ -15,7 +15,6 @@ package com.wya.hardware.scan.camera;
  * limitations under the License.
  */
 
-
 import android.content.SharedPreferences;
 
 import com.wya.hardware.scan.Preferences;
@@ -24,20 +23,26 @@ import com.wya.hardware.scan.Preferences;
  * Enumerates settings of the preference controlling the front light.
  */
 public enum FrontLightMode {
-
-    /** Always on. */
+    
+    /**
+     * Always on.
+     */
     ON,
-    /** On only when ambient light is low. */
+    /**
+     * On only when ambient light is low.
+     */
     AUTO,
-    /** Always off. */
+    /**
+     * Always off.
+     */
     OFF;
-
+    
     private static FrontLightMode parse(String modeString) {
         return modeString == null ? OFF : valueOf(modeString);
     }
-
+    
     public static FrontLightMode readPref(SharedPreferences sharedPrefs) {
         return parse(sharedPrefs.getString(Preferences.KEY_FRONT_LIGHT_MODE, OFF.toString()));
     }
-
+    
 }

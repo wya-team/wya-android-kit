@@ -32,8 +32,8 @@
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="60dp"
                 android:gravity="center"
+                android:minHeight="60dp"
                 android:orientation="vertical">
 
 
@@ -48,7 +48,7 @@
                     android:paddingRight="20dp"
                     android:textColor="#666666"
                     android:textSize="14sp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <EditText
                     android:id="@+id/edit_text"

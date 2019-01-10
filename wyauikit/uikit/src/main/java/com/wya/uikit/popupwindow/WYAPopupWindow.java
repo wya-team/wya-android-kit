@@ -22,18 +22,20 @@ import java.util.List;
 /**
  * @date: 2018/11/21 16:22
  * @author: Chunjiang Mao
- * @classname:  WYAPopupWindow
+ * @classname: WYAPopupWindow
  * @describe: 自定义popupwindow
  */
 
 public class WYAPopupWindow extends PopupWindow {
+    private static final long DURATION = 500;
+    private static final float START_ALPHA = 0.7f;
+    private static final float END_ALPHA = 1f;
     private Activity context;
     private CustomListener customListener;
     private int layoutRes;
     private View contentView;
     private int backgroundImg = R.drawable.popup_window_icon_other_9;
     private LinearLayout llPopupWindow;
-
     private List<String> list = new ArrayList<>();
     private RecyclerView recyclerView;
     private PopupWindListAdapter popupWindListAdapter;
@@ -41,32 +43,10 @@ public class WYAPopupWindow extends PopupWindow {
      * 列表点击监听
      */
     private ListItemClickListener listItemClickListener;
-
-    private static final long DURATION = 500;
-    private static final float START_ALPHA = 0.7f;
-    private static final float END_ALPHA = 1f;
     private float bgAlpha = 1f;
     private boolean bright = false;
     private AnimUtil animUtil;
-
-    public interface ListItemClickListener {
-        /**
-         * 设置确定按钮被点击的接口
-         * @param position
-         */
-        void onListItemClick(int position);
-    }
-
-    /**
-     * 设置列表点击事件
-     *
-     * @param listItemClickListener
-     */
-    public void setListItemClickListener(ListItemClickListener listItemClickListener) {
-        this.listItemClickListener = listItemClickListener;
-    }
-
-
+    
     public WYAPopupWindow(Builder builder) {
         super(builder.context);
         this.context = builder.context;
@@ -76,7 +56,16 @@ public class WYAPopupWindow extends PopupWindow {
         this.layoutRes = builder.layoutRes;
         initView(builder.context);
     }
-
+    
+    /**
+     * 设置列表点击事件
+     *
+     * @param listItemClickListener
+     */
+    public void setListItemClickListener(ListItemClickListener listItemClickListener) {
+        this.listItemClickListener = listItemClickListener;
+    }
+    
     @SuppressLint("NewApi")
     private void initView(Context context) {
         contentView = LayoutInflater.from(context).inflate(layoutRes, null);
@@ -97,16 +86,16 @@ public class WYAPopupWindow extends PopupWindow {
         } else {
             customListener.customLayout(contentView);
         }
-
+        
         setContentView(contentView);
-
+        
         this.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         this.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         // 设置pop透明效果
         this.setBackgroundDrawable(new ColorDrawable(0x0000));
         // 设置pop出入动画
         this.setAnimationStyle(R.style.pop_add);
-
+        
         // 设置pop获取焦点，如果为false点击返回按钮会退出当前Activity，如果pop中有Editor的话，focusable必须要为true
         this.setFocusable(true);
         // 设置pop可点击，为false点击事件无效，默认为true
@@ -121,40 +110,7 @@ public class WYAPopupWindow extends PopupWindow {
             }
         });
     }
-
-    public static final class Builder {
-        private Activity context;
-        private List<String> list = new ArrayList<>();
-        private int layoutRes = R.layout.wya_pop_add;
-        private CustomListener customListener;
-        private int backgroundImg = R.drawable.popup_window_icon_other_9;
-
-        public Builder(Activity context) {
-            this.context = context;
-        }
-
-        public Builder setLayoutRes(int res, CustomListener listener) {
-            this.layoutRes = res;
-            this.customListener = listener;
-            return this;
-        }
-
-        public Builder list(List<String> list) {
-            this.list = list;
-            return this;
-        }
-
-        public Builder backgroundImg(int backgroundImg) {
-            this.backgroundImg = backgroundImg;
-            return this;
-        }
-
-
-        public WYAPopupWindow build() {
-            return new WYAPopupWindow(this);
-        }
-    }
-
+    
     /**
      * 显示popupwindow
      *
@@ -166,7 +122,7 @@ public class WYAPopupWindow extends PopupWindow {
         toggleBright(true);
         this.showAsDropDown(view, offsetX, offsetY);
     }
-
+    
     /**
      * 根据popupwindow修改背景颜色
      */
@@ -183,5 +139,46 @@ public class WYAPopupWindow extends PopupWindow {
         }
         animUtil = new AnimUtil();
         animUtil.startAnimator();
+    }
+    
+    public interface ListItemClickListener {
+        /**
+         * 设置确定按钮被点击的接口
+         *
+         * @param position
+         */
+        void onListItemClick(int position);
+    }
+    
+    public static final class Builder {
+        private Activity context;
+        private List<String> list = new ArrayList<>();
+        private int layoutRes = R.layout.wya_pop_add;
+        private CustomListener customListener;
+        private int backgroundImg = R.drawable.popup_window_icon_other_9;
+        
+        public Builder(Activity context) {
+            this.context = context;
+        }
+        
+        public Builder setLayoutRes(int res, CustomListener listener) {
+            this.layoutRes = res;
+            this.customListener = listener;
+            return this;
+        }
+        
+        public Builder list(List<String> list) {
+            this.list = list;
+            return this;
+        }
+        
+        public Builder backgroundImg(int backgroundImg) {
+            this.backgroundImg = backgroundImg;
+            return this;
+        }
+        
+        public WYAPopupWindow build() {
+            return new WYAPopupWindow(this);
+        }
     }
 }

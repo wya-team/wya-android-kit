@@ -5,28 +5,30 @@ import android.media.MediaPlayer;
 import com.wya.hardware.videoplayer.WYAVideoPlayer;
 
 /**
-  * @date: 2018/12/6 14:18
-  * @author: Chunjiang Mao
-  * @classname: PlayerCallback
-  * @describe: 视频操作回调，是将系统MediaPlayer的常见回调封装了起来
-  */
+ * @date: 2018/12/6 14:18
+ * @author: Chunjiang Mao
+ * @classname: PlayerCallback
+ * @describe: 视频操作回调，是将系统MediaPlayer的常见回调封装了起来
+ */
 
 public interface PlayerCallback {
-
+    
     /**
      * 准备完成
+     *
      * @param mp
      */
     void onPrepared(MediaPlayer mp);
-
+    
     /**
      * 视频size变化
+     *
      * @param mp
      * @param width
      * @param height
      */
     void onVideoSizeChanged(MediaPlayer mp, int width, int height);
-
+    
     /**
      * 缓存更新变化
      *
@@ -34,13 +36,14 @@ public interface PlayerCallback {
      * @param percent 缓冲百分比
      */
     void onBufferingUpdate(MediaPlayer mp, int percent);
-
+    
     /**
      * 播放完成
+     *
      * @param mp
      */
     void onCompletion(MediaPlayer mp);
-
+    
     /**
      * 视频错误
      *
@@ -60,14 +63,14 @@ public interface PlayerCallback {
      *              </ul>
      */
     void onError(MediaPlayer mp, int what, int extra);
-
+    
     /**
      * 视频加载状态变化
      *
      * @param isShow 是否显示loading
      */
     void onLoadingChanged(boolean isShow);
-
+    
     /**
      * 视频状态变化
      * <p><img src="../../../../../../images/mediaplayer_state_diagram.gif"

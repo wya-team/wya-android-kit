@@ -21,27 +21,26 @@ import java.io.File;
 import java.util.List;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     :
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
  */
 public class PreviewPagerAdapter extends PagerAdapter {
+    private static final String TYPE = "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
     private List<String> mList;
     private Context mContext;
     private int changePosition = -1;
-    private static final String TYPE = "MPEG/MPG/DAT/AVI/MOV/ASF/WMV/NAVI/3GP/MKV/FLV/F4V/RMVB/WEBM/MP4";
-
+    
     public PreviewPagerAdapter(List<String> list, Context context) {
         mList = list;
         mContext = context;
     }
-
+    
     public void updateData(int position) {
         changePosition = position;
         notifyDataSetChanged();
     }
-
-
+    
     @Override
     public int getCount() {
         if (mList != null) {
@@ -49,12 +48,12 @@ public class PreviewPagerAdapter extends PagerAdapter {
         }
         return 0;
     }
-
+    
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
     }
-
+    
     @Override
     public int getItemPosition(@NonNull Object object) {
         View view = (View) object;
@@ -65,12 +64,12 @@ public class PreviewPagerAdapter extends PagerAdapter {
             return POSITION_UNCHANGED;
         }
     }
-
+    
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
-
+    
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         final View contentView = LayoutInflater.from(container.getContext())
@@ -79,9 +78,9 @@ public class PreviewPagerAdapter extends PagerAdapter {
         ImageView play = contentView.findViewById(R.id.preview_video_play);
         String imageUrl = mList.get(position);
         Glide.with(mContext).load(imageUrl).into(imageView);
-
+        
         contentView.setTag(position);
-
+        
         String[] split = imageUrl.split("[.]");
         String mediaType = split[split.length - 1];
         play.setVisibility(isVideo(mediaType) ? View.VISIBLE : View.INVISIBLE);
@@ -98,7 +97,7 @@ public class PreviewPagerAdapter extends PagerAdapter {
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     uri = Uri.fromFile(file);
                 }
-
+                
                 intent.setDataAndType(uri, "video/" + mediaType);
                 if (intent.resolveActivity(mContext.getPackageManager()) != null) {
                     mContext.startActivity(intent);
@@ -110,8 +109,7 @@ public class PreviewPagerAdapter extends PagerAdapter {
         container.addView(contentView, 0);
         return contentView;
     }
-
-
+    
     private boolean isVideo(String mediaType) {
         return TYPE.contains(mediaType.toUpperCase());
     }

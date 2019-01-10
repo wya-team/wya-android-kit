@@ -20,11 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     : 图片选择适配器
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description : 图片选择适配器
  */
 public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final String TAG = "ImageGridAdapter";
+    private static final String VIDEO = "video";
+    private static final String IMAGE = "image";
     private Context mContext;
     private List<LocalMedia> mImages;
     private List<LocalMedia> mSelectedImages = new ArrayList<>();
@@ -33,10 +36,6 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private OnImageClickListener mImageClickListener;
     private OnTakePhotoClickListener mPhotoClickListener;
     private int max;
-    private static final String TAG = "ImageGridAdapter";
-    
-    private static final String VIDEO = "video";
-    private static final String IMAGE = "image";
     
     public ImageGridAdapter(Context context, OnImageSelectedChangedListener listener, int max) {
         mContext = context;
@@ -49,7 +48,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
      * updateIsShow data
      *
      * @param hasPhoto take photo item  is Visible
-     * @param images data list
+     * @param images   data list
      */
     public void bindData(boolean hasPhoto, List<LocalMedia> images) {
         this.hasPhoto = hasPhoto;
@@ -173,28 +172,13 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         mPhotoClickListener = photoClickListener;
     }
     
-    class ImageViewHolder extends RecyclerView.ViewHolder {
-        ImageView mImageView;
-        ImageView cropTag;
-        CheckBox mCheckBox;
-        LinearLayout mVideoLayout;
-        TextView mDuration;
-        
-        public ImageViewHolder(@NonNull View itemView) {
-            super(itemView);
-            mImageView = itemView.findViewById(R.id.iv_picture);
-            mCheckBox = itemView.findViewById(R.id.check_box);
-            mVideoLayout = itemView.findViewById(R.id.video_msg);
-            mDuration = itemView.findViewById(R.id.video_duration);
-            cropTag = itemView.findViewById(R.id.crop_tag);
-        }
-    }
-    
-    class PhotoViewHolder extends RecyclerView.ViewHolder {
-        
-        public PhotoViewHolder(@NonNull View itemView) {
-            super(itemView);
-        }
+    private String dateFormate(String duration) {
+        long time = Long.parseLong(duration);
+        String min = String.valueOf(time / 60000);
+        String sec = String.valueOf((time % 60000) / 1000);
+        min = min.length() == 1 ? String.format("%s%s", "0", min) : min;
+        sec = sec.length() == 1 ? String.format("%s%s", "0", sec) : sec;
+        return String.format("%s%s%s", min, ":", sec);
     }
     
     public interface OnImageSelectedChangedListener {
@@ -224,12 +208,27 @@ public class ImageGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         void onClick();
     }
     
-    private String dateFormate(String duration) {
-        long time = Long.parseLong(duration);
-        String min = String.valueOf(time / 60000);
-        String sec = String.valueOf((time % 60000) / 1000);
-        min = min.length() == 1 ? String.format("%s%s", "0", min) : min;
-        sec = sec.length() == 1 ? String.format("%s%s", "0", sec) : sec;
-        return String.format("%s%s%s", min, ":", sec);
+    class ImageViewHolder extends RecyclerView.ViewHolder {
+        ImageView mImageView;
+        ImageView cropTag;
+        CheckBox mCheckBox;
+        LinearLayout mVideoLayout;
+        TextView mDuration;
+        
+        public ImageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            mImageView = itemView.findViewById(R.id.iv_picture);
+            mCheckBox = itemView.findViewById(R.id.check_box);
+            mVideoLayout = itemView.findViewById(R.id.video_msg);
+            mDuration = itemView.findViewById(R.id.video_duration);
+            cropTag = itemView.findViewById(R.id.crop_tag);
+        }
+    }
+    
+    class PhotoViewHolder extends RecyclerView.ViewHolder {
+        
+        public PhotoViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
     }
 }

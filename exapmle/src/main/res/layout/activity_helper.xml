@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context="com.wya.example.module.helper.HelperExampleActivity">
 
     <ScrollView
@@ -27,8 +27,8 @@
                 android:id="@+id/tv_phone_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
                 android:padding="@dimen/dp_10"
+                android:textColor="@color/black"
                 android:textSize="@dimen/sp_14" />
 
             <TextView
@@ -41,14 +41,13 @@
                 android:id="@+id/tv_app_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
                 android:padding="@dimen/dp_10"
+                android:textColor="@color/black"
                 android:textSize="@dimen/sp_14" />
 
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </LinearLayout>

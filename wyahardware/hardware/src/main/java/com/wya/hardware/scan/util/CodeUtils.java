@@ -33,17 +33,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
-
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 public class CodeUtils {
-
+    
     private CodeUtils() {
         throw new AssertionError();
     }
-
-
+    
     /**
      * 解析二维码图片
      *
@@ -55,7 +53,7 @@ public class CodeUtils {
         hints.put(DecodeHintType.CHARACTER_SET, "utf-8");
         return parseQRCode(bitmapPath, hints);
     }
-
+    
     /**
      * 解析二维码图片
      *
@@ -69,11 +67,11 @@ public class CodeUtils {
             return result.getText();
         } catch (Exception e) {
             e.printStackTrace();
-
+    
         }
         return null;
     }
-
+    
     /**
      * 解析一维码/二维码图片
      *
@@ -89,11 +87,11 @@ public class CodeUtils {
         decodeFormats.addAll(DecodeFormatManager.DATA_MATRIX_FORMATS);
         decodeFormats.addAll(DecodeFormatManager.AZTEC_FORMATS);
         decodeFormats.addAll(DecodeFormatManager.PDF417_FORMATS);
-
+    
         hints.put(DecodeHintType.POSSIBLE_FORMATS, decodeFormats);
         return parseCode(bitmapPath, hints);
     }
-
+    
     /**
      * 解析一维码/二维码图片
      *
@@ -112,7 +110,7 @@ public class CodeUtils {
         }
         return null;
     }
-
+    
     /**
      * 压缩图片
      *
@@ -120,7 +118,7 @@ public class CodeUtils {
      * @return
      */
     private static Bitmap compressBitmap(String path) {
-
+    
         BitmapFactory.Options newOpts = new BitmapFactory.Options();
         // 开始读入图片，此时把options.inJustDecodeBounds 设回true了
         //获取原始图片大小
@@ -150,7 +148,7 @@ public class CodeUtils {
         newOpts.inJustDecodeBounds = false;
         return BitmapFactory.decodeFile(path, newOpts);
     }
-
+    
     /**
      * 获取二进制图片
      *
@@ -160,12 +158,12 @@ public class CodeUtils {
     private static BinaryBitmap getBinaryBitmap(@NonNull Bitmap bitmap) {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
-
+    
         int[] pixels = new int[width * height];
         bitmap.getPixels(pixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
         RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
         //得到二进制图片
         return new BinaryBitmap(new HybridBinarizer(source));
     }
-
+    
 }

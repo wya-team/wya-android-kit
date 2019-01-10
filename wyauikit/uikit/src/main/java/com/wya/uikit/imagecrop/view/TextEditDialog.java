@@ -20,17 +20,17 @@ import com.wya.uikit.imagecrop.core.EditText;
  */
 public class TextEditDialog extends Dialog implements View.OnClickListener,
         RadioGroup.OnCheckedChangeListener {
-
+    
     private static final String TAG = "TextEditDialog";
-
+    
     private android.widget.EditText mEditText;
-
+    
     private Callback mCallback;
-
+    
     private EditText mDefaultText;
-
+    
     private EditColorGroup mColorGroup;
-
+    
     public TextEditDialog(Context context, Callback callback) {
         super(context, R.style.ImageTextDialog);
         setContentView(R.layout.image_text_dialog);
@@ -40,19 +40,19 @@ public class TextEditDialog extends Dialog implements View.OnClickListener,
             window.setLayout(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         }
     }
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        
         mColorGroup = findViewById(R.id.cg_colors);
         mColorGroup.setOnCheckedChangeListener(this);
         mEditText = findViewById(R.id.et_text);
-
+        
         findViewById(R.id.tv_cancel).setOnClickListener(this);
         findViewById(R.id.tv_done).setOnClickListener(this);
     }
-
+    
     @Override
     protected void onStart() {
         super.onStart();
@@ -68,15 +68,15 @@ public class TextEditDialog extends Dialog implements View.OnClickListener,
         }
         mColorGroup.setCheckColor(mEditText.getCurrentTextColor());
     }
-
+    
     public void setText(EditText text) {
         mDefaultText = text;
     }
-
+    
     public void reset() {
         setText(new EditText(null, Color.WHITE));
     }
-
+    
     @Override
     public void onClick(View v) {
         int vid = v.getId();
@@ -86,7 +86,7 @@ public class TextEditDialog extends Dialog implements View.OnClickListener,
             dismiss();
         }
     }
-
+    
     private void onDone() {
         String text = mEditText.getText().toString();
         if (!TextUtils.isEmpty(text) && mCallback != null) {
@@ -94,16 +94,17 @@ public class TextEditDialog extends Dialog implements View.OnClickListener,
         }
         dismiss();
     }
-
+    
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         mEditText.setTextColor(mColorGroup.getCheckColor());
     }
-
-    public interface Callback {
     
+    public interface Callback {
+        
         /**
          * onText
+         *
          * @param text
          */
         void onText(EditText text);

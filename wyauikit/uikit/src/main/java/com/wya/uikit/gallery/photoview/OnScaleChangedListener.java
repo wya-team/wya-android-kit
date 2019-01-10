@@ -1,13 +1,12 @@
 package com.wya.uikit.gallery.photoview;
 
-
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     :
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
  */
 public interface OnScaleChangedListener {
-
+    
     /**
      * BaseCallback for when the scale changes
      *

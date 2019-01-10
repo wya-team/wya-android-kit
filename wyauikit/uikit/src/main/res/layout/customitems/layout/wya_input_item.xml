@@ -16,18 +16,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_input_item_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="标题"
-            android:textSize="14sp"
-            android:textColor="#333333"
+            android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"/>
+            android:text="标题"
+            android:textColor="#333333"
+            android:textSize="14sp" />
 
         <com.wya.uikit.customitems.view.MyEditText
             android:id="@+id/et_input_item_content"
@@ -35,26 +35,26 @@
             android:layout_weight="1"
             android:background="@null"
             android:hint="我是提示内容"
+            android:padding="10dp"
             android:textColorHint="#999999"
-            android:textSize="14sp"
-            android:padding="10dp"/>
+            android:textSize="14sp" />
 
         <com.wya.uikit.customitems.view.MyEditText
             android:id="@+id/et_input_item_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="说明"
             android:background="@null"
-            android:textSize="14sp"
+            android:padding="10dp"
+            android:text="说明"
             android:textColor="#999999"
-            android:padding="10dp"/>
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/img_input_item_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </TableRow>
 
@@ -62,8 +62,7 @@
         android:id="@+id/line_view"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#eeeeee"
-        android:layout_marginLeft="10dp">
-    </View>
+        android:layout_marginLeft="10dp"
+        android:background="#eeeeee"></View>
 
 </LinearLayout>

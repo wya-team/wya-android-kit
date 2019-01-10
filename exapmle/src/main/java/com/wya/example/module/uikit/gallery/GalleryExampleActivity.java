@@ -41,14 +41,9 @@ import java.util.ArrayList;
  */
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class GalleryExampleActivity extends AppCompatActivity {
-
-    private RecyclerView imageRecycler;
-    private TextView title;
-    private BaseQuickAdapter<String, BaseViewHolder> mAdapter;
-    private ArrayList<String> images = new ArrayList<>();
+    
     private static final Uri QUERY_URI = MediaStore.Files.getContentUri("external");
     private static final String ORDER_BY = MediaStore.Files.FileColumns.DATE_MODIFIED;
-
     /**
      * 媒体文件数据库字段
      */
@@ -58,22 +53,25 @@ public class GalleryExampleActivity extends AppCompatActivity {
             MediaStore.MediaColumns.MIME_TYPE,
             MediaStore.MediaColumns.WIDTH,
             MediaStore.MediaColumns.HEIGHT};
-
     /**
-     *  图片
+     * 图片
      */
     private static final String SELECTION = MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
             + " AND " + MediaStore.MediaColumns.SIZE + ">0";
-
+    private RecyclerView imageRecycler;
+    private TextView title;
+    private BaseQuickAdapter<String, BaseViewHolder> mAdapter;
+    private ArrayList<String> images = new ArrayList<>();
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery_example);
-
+        
         imageRecycler = findViewById(R.id.image_recycler);
         title = findViewById(R.id.title);
         title.setText("Galley");
-
+        
         mAdapter = new BaseQuickAdapter<String, BaseViewHolder>(R.layout.gallery_image_item,
                 images) {
             @Override
@@ -82,11 +80,11 @@ public class GalleryExampleActivity extends AppCompatActivity {
                 Glide.with(GalleryExampleActivity.this).load(item).into(imageView);
             }
         };
-
+        
         imageRecycler.setLayoutManager(new GridLayoutManager(this, 4));
         imageRecycler.setAdapter(mAdapter);
         imageRecycler.addItemDecoration(new SpaceDecoration(4, 3, false));
-
+        
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -94,9 +92,9 @@ public class GalleryExampleActivity extends AppCompatActivity {
                         images);
             }
         });
-
+        
         int selfPermission = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
-
+        
         if (selfPermission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest
                     .permission.READ_EXTERNAL_STORAGE}, 1000);
@@ -104,7 +102,7 @@ public class GalleryExampleActivity extends AppCompatActivity {
             getData();
         }
     }
-
+    
     private void getData() {
         getSupportLoaderManager().initLoader(1, null, new LoaderManager.LoaderCallbacks<Cursor>() {
             @SuppressLint("WrongThread")
@@ -115,7 +113,7 @@ public class GalleryExampleActivity extends AppCompatActivity {
                         PROJECTION, SELECTION, new String[]{String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE)}, ORDER_BY);
                 return cursorLoader;
             }
-
+            
             @Override
             public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
                 images.clear();
@@ -126,17 +124,17 @@ public class GalleryExampleActivity extends AppCompatActivity {
                         do {
                             String path = cursor.getString
                                     (cursor.getColumnIndexOrThrow(PROJECTION[1]));
-
+                            
                             String pictureType = cursor.getString
                                     (cursor.getColumnIndexOrThrow(PROJECTION[2]));
-
+                            
                             int w = cursor.getInt
                                     (cursor.getColumnIndexOrThrow(PROJECTION[3]));
-
+                            
                             int h = cursor.getInt
                                     (cursor.getColumnIndexOrThrow(PROJECTION[4]));
                             images.add(path);
-
+                            
                             Log.i("1111", "onLoadFinished: " + path);
                         } while (cursor.moveToPrevious());
                         mAdapter.notifyDataSetChanged();
@@ -145,27 +143,27 @@ public class GalleryExampleActivity extends AppCompatActivity {
                     Log.i("111", "onLoadFinished: " + "失败");
                 }
             }
-
+            
             @Override
             public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-
+            
             }
         });
     }
-
+    
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         if (requestCode == 1000) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
+                
                 getData();
-
+                
             } else {
                 Toast.makeText(this, "拒绝", Toast.LENGTH_SHORT).show();
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
+    
 }

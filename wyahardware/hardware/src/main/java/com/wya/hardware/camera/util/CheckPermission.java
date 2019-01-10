@@ -6,18 +6,18 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.util.Log;
 
- /**
-  * @date: 2018/12/5 13:57
-  * @author: Chunjiang Mao
-  * @classname: CheckPermission
-  * @describe: 权限检测
-  */
+/**
+ * @date: 2018/12/5 13:57
+ * @author: Chunjiang Mao
+ * @classname: CheckPermission
+ * @describe: 权限检测
+ */
 
 public class CheckPermission {
     public static final int STATE_RECORDING = -1;
     public static final int STATE_NO_PERMISSION = -2;
     public static final int STATE_SUCCESS = 1;
-
+    
     /**
      * 用于检测是否具有录音权限
      *
@@ -31,7 +31,7 @@ public class CheckPermission {
         short[] point = new short[minBuffer];
         int readSize = 0;
         try {
-
+    
             audioRecord.startRecording();//检测是否可以进入初始化状态
         } catch (Exception e) {
             if (audioRecord != null) {
@@ -52,33 +52,32 @@ public class CheckPermission {
             return STATE_RECORDING;
         } else {
             //检测是否可以获取录音结果
-
+    
             readSize = audioRecord.read(point, 0, point.length);
-
-
+    
             if (readSize <= 0) {
                 if (audioRecord != null) {
                     audioRecord.stop();
                     audioRecord.release();
                     audioRecord = null;
-
+    
                 }
                 Log.d("CheckAudioPermission", "录音的结果为空");
                 return STATE_NO_PERMISSION;
-
+        
             } else {
                 if (audioRecord != null) {
                     audioRecord.stop();
                     audioRecord.release();
                     audioRecord = null;
-
+    
                 }
-
+        
                 return STATE_SUCCESS;
             }
         }
     }
-
+    
     public synchronized static boolean isCameraUseable(int cameraID) {
         boolean canUse = true;
         Camera mCamera = null;

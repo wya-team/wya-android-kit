@@ -3,9 +3,9 @@ package com.wya.example.module.uikit.pickerview;
 import java.util.List;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     : 城市bean类
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description : 城市bean类
  */
 public class Bean {
     

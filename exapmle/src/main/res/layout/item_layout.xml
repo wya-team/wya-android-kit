@@ -1,35 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/child"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/child"
     android:background="@color/f4f4f4"
     android:orientation="vertical">
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginLeft="@dimen/dp_10"
         android:layout_marginRight="@dimen/dp_10"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:padding="@dimen/dp_10"
             android:textColor="@drawable/btn_c666666_click_color"
-            android:textSize="@dimen/sp_14"/>
+            android:textSize="@dimen/sp_14" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/icon_right_arrow"
-            android:layout_marginRight="@dimen/dp_10"/>
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@drawable/icon_right_arrow" />
     </TableRow>
-
 
 
     <include layout="@layout/line_ce_left10"></include>

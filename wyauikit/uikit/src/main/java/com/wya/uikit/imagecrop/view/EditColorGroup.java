@@ -11,15 +11,15 @@ import android.widget.RadioGroup;
  * @description :
  */
 public class EditColorGroup extends RadioGroup {
-
+    
     public EditColorGroup(Context context) {
         super(context);
     }
-
+    
     public EditColorGroup(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-
+    
     public int getCheckColor() {
         int checkedId = getCheckedRadioButtonId();
         EditColorRadio radio = findViewById(checkedId);
@@ -28,7 +28,7 @@ public class EditColorGroup extends RadioGroup {
         }
         return Color.WHITE;
     }
-
+    
     public void setCheckColor(int color) {
         int count = getChildCount();
         for (int i = 0; i < count; i++) {

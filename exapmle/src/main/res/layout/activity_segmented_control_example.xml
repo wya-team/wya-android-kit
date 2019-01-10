@@ -12,11 +12,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
         android:padding="10dp"
         android:text="基本(Simplest)"
         android:textColor="@color/black"
-        android:textSize="@dimen/dp_16"
-        android:layout_marginTop="@dimen/dp_10"/>
+        android:textSize="@dimen/dp_16" />
 
     <com.wya.uikit.segmentedcontrol.WYASegmentedView
         android:id="@+id/segment_normal"
@@ -38,11 +38,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:padding="10dp"
         android:text="选定位置(SelectedIndex)"
         android:textColor="@color/black"
-        android:textSize="@dimen/dp_16"
-        android:layout_marginTop="10dp"/>
+        android:textSize="@dimen/dp_16" />
 
     <com.wya.uikit.segmentedcontrol.WYASegmentedView
         android:id="@+id/segment_more"
@@ -64,11 +64,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:padding="10dp"
         android:text="边框颜色(TintColor)"
         android:textColor="@color/black"
-        android:textSize="@dimen/dp_16"
-        android:layout_marginTop="10dp"/>
+        android:textSize="@dimen/dp_16" />
 
     <com.wya.uikit.segmentedcontrol.WYASegmentedView
         android:id="@+id/segment_color"
@@ -90,11 +90,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
         android:padding="10dp"
         android:text="不可点击(Disable)"
         android:textColor="@color/black"
-        android:textSize="@dimen/dp_16"
-        android:layout_marginTop="@dimen/dp_10"/>
+        android:textSize="@dimen/dp_16" />
 
     <com.wya.uikit.segmentedcontrol.WYASegmentedView
         android:id="@+id/segment_enable"

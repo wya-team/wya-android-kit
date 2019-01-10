@@ -22,13 +22,13 @@ import com.wya.uikit.R;
 import java.util.List;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10 
- *  @description     : 
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description :
  */
 public class WYASegmentedView extends LinearLayout implements View.OnClickListener {
-    private Context mContext;
     private static final String TAG = "SegmentedView";
+    private Context mContext;
     private Paint mPaint;
     private int lineColor;
     private int titleNormalColor;
@@ -42,16 +42,15 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
     private float titleSize;
     private boolean isEnable = true;
     private OnItemClickListener mOnItemClickListener;
-
-
+    
     public WYASegmentedView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
-
+    
     public WYASegmentedView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setOrientation(HORIZONTAL);
-
+        
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable
                 .WYASegmentedView);
         lineColor = typedArray.getColor(R.styleable.WYASegmentedView_lineColor, getResources()
@@ -65,12 +64,12 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
                 getResources().getColor(R.color.segment_default));
         itemNormalColor = typedArray.getColor(R.styleable.WYASegmentedView_itemNormalBackground,
                 getResources().getColor(R.color.white));
-
+        
         strokeWidth = typedArray.getDimension(R.styleable.WYASegmentedView_strokeWidth, dp2px(2));
         titleSize = typedArray.getDimension(R.styleable.WYASegmentedView_titleSize, sp2px(14));
         strokeColor = typedArray.getColor(R.styleable.WYASegmentedView_strokeColor, getResources()
                 .getColor(R.color.segment_default));
-
+        
         radius = typedArray.getDimension(R.styleable.WYASegmentedView_radius, dp2px(10));
         typedArray.recycle();
         mContext = context;
@@ -78,7 +77,7 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
         mPaint.setColor(lineColor);
         initBackground();
     }
-
+    
     /**
      * init segmentView Background
      */
@@ -88,8 +87,7 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
         shape.setStroke((int) strokeWidth, strokeColor);
         setBackgroundDrawable(shape);
     }
-
-
+    
     /**
      * add child item tab
      *
@@ -105,7 +103,7 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
         setItemClicked(0);
         invalidate();
     }
-
+    
     /**
      * add child item tab
      *
@@ -121,7 +119,7 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
         setItemClicked(0);
         invalidate();
     }
-
+    
     /**
      * add child item tab
      *
@@ -130,7 +128,7 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
      * @param size  childCount
      */
     private void addTab(String title, int index, int size) {
-        Log.i(TAG, "addTab: "+getMeasuredHeight());
+        Log.i(TAG, "addTab: " + getMeasuredHeight());
         View view = LayoutInflater.from(mContext).inflate(R.layout.segment_item, this, false);
         view.setOnClickListener(this);
         if ((index + 1) < size) {
@@ -139,14 +137,13 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
             layoutParams.height = LayoutParams.MATCH_PARENT;
             view.setLayoutParams(layoutParams);
         }
-
+    
         addView(view);
         TextView textView = view.findViewById(R.id.segment_item);
         textView.setText(title);
         textView.setTextSize(px2sp(titleSize));
     }
-
-
+    
     /**
      * every child draw a line
      *
@@ -163,7 +160,7 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
                     , mPaint);
         }
     }
-
+    
     /**
      * when the item clicked,change the background
      *
@@ -200,21 +197,18 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
             child.setBackgroundDrawable(layerDrawable);
         }
     }
-
-
+    
     @Override
     protected void dispatchDraw(Canvas canvas) {
         drawLine(canvas);
         super.dispatchDraw(canvas);
     }
-
+    
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         return false;
     }
-
-
-
+    
     @Override
     public void onClick(View v) {
         int childCount = getChildCount();
@@ -229,44 +223,34 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
             }
         }
     }
-
+    
     @Override
     public void setOnClickListener(@Nullable OnClickListener l) {
         throw new RuntimeException("Don't call setOnClickListener for an AdapterView.You " +
                 "probably want setOnItemClickListener instead");
     }
-
+    
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
     }
-
-    public interface OnItemClickListener {
-        /**
-         * itemClicked
-         * @param position
-         */
-        void itemClicked(int position);
-    }
-
-
+    
     @Override
     public void setEnabled(boolean enabled) {
-        this.isEnable = enabled;
+        isEnable = enabled;
     }
-
+    
     /**
      * dp2px
      *
      * @param dp
      * @return
      */
-
+    
     public float dp2px(int dp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources()
                 .getDisplayMetrics());
     }
-
-
+    
     /**
      * px2sp
      *
@@ -276,10 +260,19 @@ public class WYASegmentedView extends LinearLayout implements View.OnClickListen
     public float px2sp(float pxValue) {
         return pxValue / getResources().getDisplayMetrics().scaledDensity + 0.5f;
     }
-
+    
     public float sp2px(float spValue) {
         final float fontScale = getResources().getDisplayMetrics().scaledDensity;
         return spValue * fontScale + 0.5f;
     }
-
+    
+    public interface OnItemClickListener {
+        /**
+         * itemClicked
+         *
+         * @param position
+         */
+        void itemClicked(int position);
+    }
+    
 }

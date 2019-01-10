@@ -20,15 +20,15 @@ import static com.wya.example.module.utils.fliedownload.FileDownloadExampleActiv
  * @description : 下载缓存第一帧图片
  */
 public class MediaUtils {
-
+    
     public static File getOutputMediaFile(String videoPath) {
-
+        
         File mediaFile = null;
         mediaFile = new File(FILE_IMG_DIR + File.separator +
                 "IMG_" + StringUtil.getSign(videoPath) + ".jpg");
         return mediaFile;
     }
-
+    
     /**
      * 获取视频的第一帧图片
      */
@@ -36,7 +36,7 @@ public class MediaUtils {
         LoadVideoImageTask task = new LoadVideoImageTask(listener);
         task.execute(videoPath);
     }
-
+    
     public interface OnLoadVideoImageListener {
         /**
          * 加载图片
@@ -45,14 +45,14 @@ public class MediaUtils {
          */
         void onLoadImage(File file);
     }
-
+    
     public static class LoadVideoImageTask extends AsyncTask<String, Integer, File> {
         private OnLoadVideoImageListener listener;
-
+        
         public LoadVideoImageTask(OnLoadVideoImageListener listener) {
             this.listener = listener;
         }
-
+        
         @Override
         protected File doInBackground(String... params) {
             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
@@ -85,7 +85,7 @@ public class MediaUtils {
             mmr.release();
             return f;
         }
-
+        
         @Override
         protected void onPostExecute(File file) {
             super.onPostExecute(file);
@@ -94,5 +94,5 @@ public class MediaUtils {
             }
         }
     }
-
+    
 }

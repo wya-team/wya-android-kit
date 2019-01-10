@@ -17,13 +17,11 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- *  @author : XuDonglin
- *  @time   : 2019-01-10
- *  @description     : 本地媒体数据加载类
+ * @author : XuDonglin
+ * @time : 2019-01-10
+ * @description : 本地媒体数据加载类
  */
 public class LocalMediaLoader {
-    private FragmentActivity mActivity;
-    
     private static final Uri QUERY_URI = MediaStore.Files.getContentUri("external");
     private static final String ORDER_BY = MediaStore.Files.FileColumns.DATE_ADDED;
     /**
@@ -38,24 +36,25 @@ public class LocalMediaLoader {
             MediaStore.MediaColumns.DATA,
             MediaStore.MediaColumns.MIME_TYPE,
             DURATION};
-    
     /**
      * 图片
      */
     private static final String SELECTION = MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
             + " AND " + MediaStore.MediaColumns.SIZE + ">0";
+    private static final String VIDEO = "video";
+    private FragmentActivity mActivity;
     private long videoMaxS = 0;
     private long videoMinS = 0;
-    
     private OnLoadImageListener mListener;
     
-    private static final String VIDEO = "video";
+    private LocalMediaLoader(FragmentActivity activity) {
+        mActivity = activity;
+    }
     
     /**
      * 全部模式下条件
      *
      * @param timeCondition
-     *
      * @return
      */
     private static String getSelectionArgsForAllMediaCondition(String timeCondition) {
@@ -65,10 +64,6 @@ public class LocalMediaLoader {
                 + (MediaStore.Files.FileColumns.MEDIA_TYPE + "=? AND " + timeCondition) + ")"
                 + " AND " + MediaStore.MediaColumns.SIZE + ">0";
         return condition;
-    }
-    
-    private LocalMediaLoader(FragmentActivity activity) {
-        this.mActivity = activity;
     }
     
     public static LocalMediaLoader create(FragmentActivity activity) {
@@ -159,9 +154,8 @@ public class LocalMediaLoader {
     /**
      * create LocalMediaFolder to save LocalMedia
      *
-     * @param path image path
+     * @param path         image path
      * @param imageFolders folder list
-     *
      * @return
      */
     private LocalMediaFolder getImageFolder(String path, List<LocalMediaFolder> imageFolders) {
@@ -180,21 +174,11 @@ public class LocalMediaLoader {
         return newFolder;
     }
     
-    public interface OnLoadImageListener {
-        /**
-         * completed
-         *
-         * @param localMediaFolders
-         */
-        void completed(List<LocalMediaFolder> localMediaFolders);
-    }
-    
     /**
      * 获取视频(最长或最小时间)
      *
      * @param exMaxLimit
      * @param exMinLimit
-     *
      * @return
      */
     private String getDurationCondition(long exMaxLimit, long exMinLimit) {
@@ -207,5 +191,14 @@ public class LocalMediaLoader {
                 Math.max(exMinLimit, videoMinS),
                 Math.max(exMinLimit, videoMinS) == 0 ? "" : "=",
                 maxS);
+    }
+    
+    public interface OnLoadImageListener {
+        /**
+         * completed
+         *
+         * @param localMediaFolders
+         */
+        void completed(List<LocalMediaFolder> localMediaFolders);
     }
 }

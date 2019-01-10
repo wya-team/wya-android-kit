@@ -6,14 +6,14 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/picker_add_item_bg"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:background="@drawable/picker_add_item_bg" />
 
     <ImageView
         android:id="@+id/image_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/icon_add"
-        android:layout_centerInParent="true"/>
+        android:src="@drawable/icon_add" />
 </com.wya.uikit.imagepicker.SquareRelativeLayout>

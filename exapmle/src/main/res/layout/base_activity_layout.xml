@@ -4,6 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <include layout="@layout/base_toolbar_layout"/>
+    <include layout="@layout/base_toolbar_layout" />
 
 </LinearLayout>

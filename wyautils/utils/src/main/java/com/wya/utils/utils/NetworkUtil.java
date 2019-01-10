@@ -4,15 +4,16 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
- /**
-  * @date: 2018/12/6 11:24
-  * @author: Chunjiang Mao
-  * @classname: NetworkUtil
-  * @describe: 网络判断工具类
-  */
+
+/**
+ * @date: 2018/12/6 11:24
+ * @author: Chunjiang Mao
+ * @classname: NetworkUtil
+ * @describe: 网络判断工具类
+ */
 
 public class NetworkUtil {
-
+    
     /**
      * 判断是否有网络连接
      */
@@ -27,8 +28,7 @@ public class NetworkUtil {
         }
         return false;
     }
-
-
+    
     /**
      * 判断WIFI网络是否可用
      */
@@ -44,7 +44,7 @@ public class NetworkUtil {
         }
         return false;
     }
-
+    
     /**
      * 判断MOBILE网络是否可用
      */
@@ -60,5 +60,5 @@ public class NetworkUtil {
         }
         return false;
     }
-
+    
 }

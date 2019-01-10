@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="iconSize" format="dimension"/>
-    <attr name="iconMargin" format="dimension"/>
-    <attr name="iconSrc" format="reference"/>
-    <attr name="iconLeft" format="reference"/>
-    <attr name="iconRight" format="reference"/>
-    <attr name="duration_max" format="integer"/>
+    <attr name="iconSize" format="dimension" />
+    <attr name="iconMargin" format="dimension" />
+    <attr name="iconSrc" format="reference" />
+    <attr name="iconLeft" format="reference" />
+    <attr name="iconRight" format="reference" />
+    <attr name="duration_max" format="integer" />
     <declare-styleable name="WYACameraView">
-        <attr name="iconSize"/>
-        <attr name="iconMargin"/>
-        <attr name="iconSrc"/>
-        <attr name="iconLeft"/>
-        <attr name="iconRight"/>
-        <attr name="duration_max"/>
+        <attr name="iconSize" />
+        <attr name="iconMargin" />
+        <attr name="iconSrc" />
+        <attr name="iconLeft" />
+        <attr name="iconRight" />
+        <attr name="duration_max" />
     </declare-styleable>
     <!--scan_start-->
     <declare-styleable name="ViewfinderView">
         <attr name="maskColor" format="color" />
         <attr name="frameColor" format="color" />
-        <attr name="cornerColor" format="color"/>
-        <attr name="laserColor" format="color"/>
-        <attr name="resultPointColor" format="color"/>
-        <attr name="labelText" format="string"/>
-        <attr name="labelTextColor" format="color"/>
-        <attr name="labelTextSize" format="dimension"/>
-        <attr name="labelTextPadding" format="dimension"/>
+        <attr name="cornerColor" format="color" />
+        <attr name="laserColor" format="color" />
+        <attr name="resultPointColor" format="color" />
+        <attr name="labelText" format="string" />
+        <attr name="labelTextColor" format="color" />
+        <attr name="labelTextSize" format="dimension" />
+        <attr name="labelTextPadding" format="dimension" />
         <attr name="labelTextLocation" format="enum">
-            <enum name="top" value="0"/>
-            <enum name="bottom" value="1"/>
+            <enum name="top" value="0" />
+            <enum name="bottom" value="1" />
         </attr>
     </declare-styleable>
     <!--scan_end-->

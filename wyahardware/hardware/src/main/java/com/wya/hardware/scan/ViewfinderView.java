@@ -72,11 +72,8 @@ public final class ViewfinderView extends View {
      * 扫描线宽度
      */
     private static final int SCANNER_LINE_HEIGHT = 10;
-    
-    private CameraManager cameraManager;
     private final Paint paint;
     private final TextPaint textPaint;
-    private Bitmap resultBitmap;
     private final int maskColor;
     /**
      * 扫描区域边框颜色
@@ -91,8 +88,12 @@ public final class ViewfinderView extends View {
      */
     private final int cornerColor;
     private final int resultPointColor;
-    private int scannerAlpha;
     private final float labelTextPadding;
+    public int scannerStart = 0;
+    public int scannerEnd = 0;
+    private CameraManager cameraManager;
+    private Bitmap resultBitmap;
+    private int scannerAlpha;
     private TextLocation labelTextLocation;
     /**
      * 扫描区域提示文本
@@ -103,38 +104,14 @@ public final class ViewfinderView extends View {
      */
     private int labelTextColor;
     private float labelTextSize;
-    public int scannerStart = 0;
-    public int scannerEnd = 0;
     private boolean isShowResultPoint = true;
     
     private List<ResultPoint> possibleResultPoints;
     private List<ResultPoint> lastPossibleResultPoints;
     
-    public enum TextLocation {
-        //
-        TOP(0), BOTTOM(1);
-        
-        private int mValue;
-        
-        TextLocation(int value) {
-            mValue = value;
-        }
-        
-        private static TextLocation getFromInt(int value) {
-            
-            for (TextLocation location : TextLocation.values()) {
-                if (location.mValue == value) {
-                    return location;
-                }
-            }
-            
-            return TextLocation.TOP;
-        }
-        
-    }
-    
     /**
      * This constructor is used when the class is built from an XML resource.
+     *
      * @param context
      * @param attrs
      */
@@ -173,15 +150,15 @@ public final class ViewfinderView extends View {
     }
     
     public void setLabelTextColor(int color) {
-        this.labelTextColor = color;
+        labelTextColor = color;
     }
     
     public void setLabelTextColorResource(@ColorRes int id) {
-        this.labelTextColor = ContextCompat.getColor(getContext(), id);
+        labelTextColor = ContextCompat.getColor(getContext(), id);
     }
     
     public void setLabelTextSize(float textSize) {
-        this.labelTextSize = textSize;
+        labelTextSize = textSize;
     }
     
     @SuppressLint("DrawAllocation")
@@ -272,6 +249,7 @@ public final class ViewfinderView extends View {
     
     /**
      * 绘制文本
+     *
      * @param canvas
      * @param frame
      */
@@ -294,6 +272,7 @@ public final class ViewfinderView extends View {
     
     /**
      * 绘制边角
+     *
      * @param canvas
      * @param frame
      */
@@ -315,6 +294,7 @@ public final class ViewfinderView extends View {
     
     /**
      * 绘制扫描线
+     *
      * @param canvas
      * @param frame
      */
@@ -342,8 +322,8 @@ public final class ViewfinderView extends View {
     
     /**
      * 处理颜色模糊
-     * @param color
      *
+     * @param color
      * @return
      */
     public int shadeColor(int color) {
@@ -354,6 +334,7 @@ public final class ViewfinderView extends View {
     
     /**
      * 绘制扫描区边框 Draw a two pixel solid black border inside the framing rect
+     *
      * @param canvas
      * @param frame
      */
@@ -367,6 +348,7 @@ public final class ViewfinderView extends View {
     
     /**
      * 绘制模糊区域 Draw the exterior (i.e. outside the framing rect) darkened
+     *
      * @param canvas
      * @param frame
      * @param width
@@ -408,6 +390,29 @@ public final class ViewfinderView extends View {
                     points.subList(0, size - MAX_RESULT_POINTS / 2).clear();
                 }
             }
+        }
+        
+    }
+    
+    public enum TextLocation {
+        //
+        TOP(0), BOTTOM(1);
+        
+        private int mValue;
+        
+        TextLocation(int value) {
+            mValue = value;
+        }
+        
+        private static TextLocation getFromInt(int value) {
+            
+            for (TextLocation location : TextLocation.values()) {
+                if (location.mValue == value) {
+                    return location;
+                }
+            }
+            
+            return TextLocation.TOP;
         }
         
     }

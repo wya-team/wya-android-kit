@@ -39,10 +39,8 @@ import com.wya.hardware.scan.camera.open.OpenCamera;
 final class CameraConfigurationManager {
     
     private static final String TAG = "CameraConfiguration";
-    
-    private int rotation = 90;
-    
     private final Context context;
+    private int rotation = 90;
     private int cwNeededRotation;
     private int cwRotationFromDisplayToCamera;
     private Point screenResolution;
