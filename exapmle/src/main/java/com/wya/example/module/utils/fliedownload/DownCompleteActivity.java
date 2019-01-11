@@ -1,15 +1,15 @@
 package com.wya.example.module.utils.fliedownload;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.os.Environment;
+import android.os.StatFs;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.text.format.Formatter;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.arialyy.aria.core.download.DownloadEntity;
 import com.arialyy.aria.core.download.DownloadTask;
@@ -18,7 +18,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.wya.example.R;
-import com.wya.uikit.dialog.WYACustomDialog;
+import com.wya.example.base.BaseActivity;
+import com.wya.uikit.toolbar.BaseToolBarActivity;
+import com.wya.utils.utils.DataCleanUtil;
 import com.wya.utils.utils.FileManagerUtil;
 import com.wya.utils.utils.StringUtil;
 
@@ -27,46 +29,71 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import butterknife.OnClick;
 
 import static com.wya.example.module.utils.fliedownload.FlieConfig.FILE_IMG_DIR;
+import static com.wya.example.module.utils.fliedownload.FlieConfig.FILE_VIDEO_DIR;
 import static com.wya.utils.utils.FileManagerUtil.TASK_CANCEL;
 
 /**
  * @author : XuDonglin
- * @time : 2019-01-09
- * @Description : 下载完成
+ * @time : 2019-01-10
+ * @description : 已完成
  */
-public class DownFileCompleteFragment extends Fragment implements IManagerInterface {
-    
+public class DownCompleteActivity extends BaseActivity implements BaseToolBarActivity.RightFirstTextClickListener {
+
     @BindView(R.id.down_file_recycler)
     RecyclerView mDownFileRecycler;
-    Unbinder unbinder;
-    private View mView;
+    @BindView(R.id.down_space)
+    TextView mDownSpace;
+    @BindView(R.id.free_space)
+    TextView mFreeSpace;
+    @BindView(R.id.choose_all_text)
+    TextView mChooseAllText;
+    @BindView(R.id.delete_file_text)
+    TextView mDeleteFileText;
+    @BindView(R.id.edit_layout)
+    LinearLayout mEditLayout;
     private BaseQuickAdapter<DownloadEntity, BaseViewHolder> mAdapter;
     private List<DownloadEntity> mDownList = new ArrayList<>();
     private FileManagerUtil mFileManagerUtil = new FileManagerUtil();
-    private IRomUpdateCallback mCallback;
     private boolean edit = false;
+    /**
+     * -1 没有状态，0全选 1取消全选
+     */
     private int selectState = -1;
     private List<String> mDeleteList = new ArrayList<>();
-    
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
-            savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_down_file_complete, container, false);
-        unbinder = ButterKnife.bind(this, mView);
-        return mView;
+    protected int getLayoutId() {
+        return R.layout.activity_down_complete;
     }
-    
+
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            initData();
-            initDown();
-        }
+    protected void initView() {
+        setTitle("下载完成");
+        setFirstRightText("管理");
+        setRightFirstTextClickListener(this);
+        showFirstRightText(true);
+
+        initDown();
+        initRecycler();
+        initData();
+        initSpace();
+    }
+
+    private void initSpace() {
+        mDownSpace.setText(DataCleanUtil.getFormatSize(DataCleanUtil.getFolderSize(new File
+                (FILE_VIDEO_DIR))));
+        mFreeSpace.setText(getSDAvailableSize());
+    }
+
+    private String getSDAvailableSize() {
+        File path = Environment.getExternalStorageDirectory();
+        StatFs stat = new StatFs(path.getPath());
+        long blockSize = stat.getBlockSize();
+        long availableBlocks = stat.getAvailableBlocks();
+        return Formatter.formatFileSize(this, blockSize * availableBlocks);
     }
 
     private void initData() {
@@ -78,18 +105,6 @@ public class DownFileCompleteFragment extends Fragment implements IManagerInterf
         }
         mAdapter.notifyDataSetChanged();
     }
-    
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initView();
-        mCallback = (FileDownloadExampleActivity) getActivity();
-    }
-    
-    private void initView() {
-        
-        initRecycler();
-    }
 
     private void initDown() {
         mFileManagerUtil.setOnDownLoaderListener(new FileManagerUtil.OnDownLoaderListener() {
@@ -98,10 +113,8 @@ public class DownFileCompleteFragment extends Fragment implements IManagerInterf
                 for (int i = 0; i < mDownList.size(); i++) {
                     if (mDownList.get(i).getKey().equals(task.getKey())) {
                         switch (state) {
-
                             case TASK_CANCEL:
                                 initData();
-                                mAdapter.notifyDataSetChanged();
                                 break;
                             default:
                                 break;
@@ -112,6 +125,7 @@ public class DownFileCompleteFragment extends Fragment implements IManagerInterf
             }
         });
     }
+
     private void initRecycler() {
         mAdapter = new BaseQuickAdapter<DownloadEntity, BaseViewHolder>(R.layout
                 .has_down_file_item, mDownList) {
@@ -123,10 +137,9 @@ public class DownFileCompleteFragment extends Fragment implements IManagerInterf
                         .error(R.color.dddddd)
                         .centerCrop();
                 File file = new File(FILE_IMG_DIR + "/" + "IMG_" + StringUtil.getSign(item.getKey
-                        ()) +
-                        ".jpg");
-                Glide.with(getActivity()).load(file).apply(requestOptions).into(imageView);
-                
+                        ()) + ".jpg");
+                Glide.with(DownCompleteActivity.this).load(file).apply(requestOptions).into(imageView);
+
                 helper.setText(R.id.file_title, item.getFileName())
                         .setText(R.id.file_capacity, item.getConvertFileSize());
 
@@ -139,7 +152,18 @@ public class DownFileCompleteFragment extends Fragment implements IManagerInterf
                         } else {
                             mDeleteList.remove(item.getKey());
                         }
-                        mCallback.deleteItems(mDeleteList, mDownList.size());
+                        if (mDeleteList.size() == mDownList.size()) {
+                            mChooseAllText.setText("取消全选");
+                        } else {
+                            mChooseAllText.setText("全选");
+                        }
+                        if (mDeleteList.size() > 0) {
+                            mDeleteFileText.setEnabled(true);
+                            mDeleteFileText.setText("删除(" + mDeleteList.size() + ")");
+                        } else {
+                            mDeleteFileText.setText("删除");
+                            mDeleteFileText.setEnabled(false);
+                        }
                     }
                 });
                 switch (selectState) {
@@ -154,64 +178,45 @@ public class DownFileCompleteFragment extends Fragment implements IManagerInterf
                 }
             }
         };
-        mDownFileRecycler.setLayoutManager(new LinearLayoutManager(getActivity(),
+        mDownFileRecycler.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false));
         mDownFileRecycler.setAdapter(mAdapter);
-        
-        mAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
-                WYACustomDialog wyaCustomDialog = new WYACustomDialog.Builder(getActivity())
-                        .title("提示")
-                        .message("是否删除视频")
-                        .cancelText("取消")
-                        .confirmText("删除").build();
-                wyaCustomDialog.show();
-                
-                wyaCustomDialog.setNoClickListener(new WYACustomDialog.NoClickListener() {
-                    @Override
-                    public void onNoClick() {
-                        wyaCustomDialog.dismiss();
-                    }
-                });
-                
-                wyaCustomDialog.setYesClickListener(new WYACustomDialog.YesClickListener() {
-                    @Override
-                    public void onYesClick() {
-                        wyaCustomDialog.dismiss();
-                        mFileManagerUtil.getDownloadReceiver().load(mDownList.get(position)
-                                .getKey()).cancel(true);
-                        mDownList.remove(position);
-                        mAdapter.notifyDataSetChanged();
-                        mCallback.update();
-                    }
-                });
-                return false;
-            }
-        });
-    }
-    
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-        mFileManagerUtil.unRegister();
+
     }
 
     @Override
-    public void showEdit(boolean isShow) {
-        if (getUserVisibleHint()) {
-            edit = isShow;
+    public void rightFirstTextClick(View view) {
+        if (mDownList.size() > 0) {
+            selectState = -1;
+            edit = !edit;
+            setFirstRightText(edit ? "取消" : "管理");
             mAdapter.notifyDataSetChanged();
+            mEditLayout.setVisibility(edit ? View.VISIBLE : View.GONE);
         }
     }
 
-    @Override
-    public void selectAll(int state) {
-        if (getUserVisibleHint()) {
-            selectState = state;
-            mDeleteList.clear();
-            mAdapter.notifyDataSetChanged();
+    @OnClick({R.id.choose_all_text, R.id.delete_file_text})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.choose_all_text:
+                selectState = selectState == 0 ? 1 : 0;
+                mChooseAllText.setText(selectState == 0 ? "取消全选" : "全选");
+                mAdapter.notifyDataSetChanged();
+                break;
+            case R.id.delete_file_text:
+                selectState = -1;
+                edit = false;
+                setFirstRightText(edit ? "取消" : "管理");
+                mEditLayout.setVisibility(edit ? View.VISIBLE : View.GONE);
+                for (String url : mDeleteList) {
+                    mFileManagerUtil.getDownloadReceiver().load(url).cancel(true);
+                }
+                mDeleteList.clear();
+                initSpace();
+                break;
+            default:
+                break;
         }
     }
+
 }

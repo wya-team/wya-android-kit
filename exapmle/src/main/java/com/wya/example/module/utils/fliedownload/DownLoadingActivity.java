@@ -1,17 +1,17 @@
 package com.wya.example.module.utils.fliedownload;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.os.Environment;
+import android.os.StatFs;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
+import android.text.format.Formatter;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.arialyy.aria.core.download.DownloadEntity;
 import com.arialyy.aria.core.download.DownloadTarget;
@@ -21,6 +21,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.wya.example.R;
+import com.wya.example.base.BaseActivity;
+import com.wya.uikit.toolbar.BaseToolBarActivity;
+import com.wya.utils.utils.DataCleanUtil;
 import com.wya.utils.utils.FileManagerUtil;
 import com.wya.utils.utils.StringUtil;
 
@@ -30,10 +33,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import butterknife.OnClick;
 
 import static com.wya.example.module.utils.fliedownload.FlieConfig.FILE_IMG_DIR;
+import static com.wya.example.module.utils.fliedownload.FlieConfig.FILE_VIDEO_DIR;
 import static com.wya.utils.utils.FileManagerUtil.TASK_CANCEL;
 import static com.wya.utils.utils.FileManagerUtil.TASK_COMPLETE;
 import static com.wya.utils.utils.FileManagerUtil.TASK_FAIL;
@@ -44,72 +47,94 @@ import static com.wya.utils.utils.FileManagerUtil.TASK_STOP;
 
 /**
  * @author : XuDonglin
- * @time : 2019-01-07
- * @Description : 文件下载中
+ * @time : 2019-01-10
+ * @description : 下载中
  */
-public class FileDownFragment extends Fragment implements IManagerInterface {
+public class DownLoadingActivity extends BaseActivity implements BaseToolBarActivity.RightFirstTextClickListener {
+
     private static final int LENGTH = 1024;
     private static final int MIN_DELAY_TIME = 1000;
     @BindView(R.id.down_file_recycler)
     RecyclerView mDownFileRecycler;
-    Unbinder unbinder;
-    private View mView;
+    @BindView(R.id.down_space)
+    TextView mDownSpace;
+    @BindView(R.id.free_space)
+    TextView mFreeSpace;
+    @BindView(R.id.choose_all_text)
+    TextView mChooseAllText;
+    @BindView(R.id.delete_file_text)
+    TextView mDeleteFileText;
+    @BindView(R.id.edit_layout)
+    LinearLayout mEditLayout;
     private BaseQuickAdapter<DownloadEntity, BaseViewHolder> mAdapter;
-    private List<DownloadEntity> mData = new ArrayList<>();
+    private List<DownloadEntity> mDownList = new ArrayList<>();
     private FileManagerUtil mFileManagerUtil;
     private long lastClickTime;
-    private IRomUpdateCallback mCallback;
     private boolean edit = false;
     private int selectState = -1;
-    private List<String> mEditChoose = new ArrayList<>();
-    
-    
+    private List<String> mDeleteList = new ArrayList<>();
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_file_down, container, false);
-        unbinder = ButterKnife.bind(this, mView);
-        return mView;
+    protected int getLayoutId() {
+        return R.layout.activity_down_loading;
     }
-    
+
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mCallback = (FileDownloadExampleActivity) getActivity();
-        initDown();
-        initView();
+    protected void initView() {
+        setTitle("下载中");
+        setFirstRightText("管理");
+        setRightFirstTextClickListener(this);
+        showFirstRightText(true);
+        initFileDown();
+        initRecyclerView();
+        initSpace();
     }
-    
-    private void initDown() {
+
+    private void initSpace() {
+        mDownSpace.setText(DataCleanUtil.getFormatSize(DataCleanUtil.getFolderSize(new File
+                (FILE_VIDEO_DIR))));
+        mFreeSpace.setText(getSDAvailableSize());
+    }
+
+    private String getSDAvailableSize() {
+        File path = Environment.getExternalStorageDirectory();
+        StatFs stat = new StatFs(path.getPath());
+        long blockSize = stat.getBlockSize();
+        long availableBlocks = stat.getAvailableBlocks();
+        return Formatter.formatFileSize(this, blockSize * availableBlocks);
+    }
+
+    /**
+     * 初始化文件下载
+     */
+    private void initFileDown() {
         mFileManagerUtil = new FileManagerUtil();
         mFileManagerUtil.setOnDownLoaderListener(new FileManagerUtil.OnDownLoaderListener() {
             @Override
             public void onDownloadState(int state, DownloadTask task, Exception e) {
-                for (int i = 0; i < mData.size(); i++) {
-                    if (mData.get(i).getKey().equals(task.getKey())) {
+                for (int i = 0; i < mDownList.size(); i++) {
+                    if (mDownList.get(i).getKey().equals(task.getKey())) {
                         switch (state) {
                             case TASK_START:
-                                mCallback.update();
                                 break;
                             case TASK_RUNNING:
-                                mData.set(i, task.getEntity());
+                                mDownList.set(i, task.getEntity());
                                 mAdapter.notifyItemChanged(i, task.getEntity());
                                 break;
                             case TASK_RESUME:
                                 break;
                             case TASK_COMPLETE:
-                                mData.remove(i);
+                                mDownList.remove(i);
                                 mAdapter.notifyDataSetChanged();
                                 break;
                             case TASK_FAIL:
                                 break;
                             case TASK_STOP:
-                                mData.set(i, task.getEntity());
+                                mDownList.set(i, task.getEntity());
                                 mAdapter.notifyItemChanged(i);
                                 break;
                             case TASK_CANCEL:
-                                getNotcomplete();
+                                getNotComplete();
                                 mAdapter.notifyDataSetChanged();
                                 break;
                             default:
@@ -117,15 +142,15 @@ public class FileDownFragment extends Fragment implements IManagerInterface {
                         }
                     }
                 }
-                
+
             }
         });
     }
-    
-    private void initView() {
-        getNotcomplete();
+
+    private void initRecyclerView() {
+        getNotComplete();
         mAdapter = new BaseQuickAdapter<DownloadEntity, BaseViewHolder>(R.layout.down_file_item,
-                mData) {
+                mDownList) {
             @Override
             protected void convert(BaseViewHolder helper, DownloadEntity item) {
                 ProgressBar progressBar = helper.getView(R.id.progress);
@@ -158,7 +183,7 @@ public class FileDownFragment extends Fragment implements IManagerInterface {
                         .setProgress(R.id.progress, (int) (item.getCurrentProgress() * 100 / item
                                 .getFileSize()))
                         .setText(R.id.file_capacity, item.getConvertFileSize());
-                
+
                 ImageView imageView = helper.getView(R.id.down_file_image);
                 RequestOptions requestOptions = new RequestOptions()
                         .placeholder(R.color.dddddd)
@@ -167,18 +192,31 @@ public class FileDownFragment extends Fragment implements IManagerInterface {
                 File file = new File(FILE_IMG_DIR + "/" + "IMG_" + StringUtil.getSign(item.getKey
                         ()) +
                         ".jpg");
-                Glide.with(getActivity()).load(file).apply(requestOptions).into(imageView);
+                Glide.with(DownLoadingActivity.this).load(file).apply(requestOptions).into
+                        (imageView);
                 helper.addOnClickListener(R.id.down_layout);
                 helper.setGone(R.id.edit_check, edit);
-                helper.setOnCheckedChangeListener(R.id.edit_check, new CompoundButton.OnCheckedChangeListener() {
+                helper.setOnCheckedChangeListener(R.id.edit_check, new CompoundButton
+                        .OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {
-                            mEditChoose.add(item.getKey());
+                            mDeleteList.add(item.getKey());
                         } else {
-                            mEditChoose.remove(item.getKey());
+                            mDeleteList.remove(item.getKey());
                         }
-                        mCallback.deleteItems(mEditChoose, mData.size());
+                        if (mDeleteList.size() == mDownList.size()) {
+                            mChooseAllText.setText("取消全选");
+                        } else {
+                            mChooseAllText.setText("全选");
+                        }
+                        if (mDeleteList.size() > 0) {
+                            mDeleteFileText.setEnabled(true);
+                            mDeleteFileText.setText("删除(" + mDeleteList.size() + ")");
+                        } else {
+                            mDeleteFileText.setText("删除");
+                            mDeleteFileText.setEnabled(false);
+                        }
 
                     }
                 });
@@ -194,13 +232,13 @@ public class FileDownFragment extends Fragment implements IManagerInterface {
                 }
             }
         };
-        mDownFileRecycler.setLayoutManager(new LinearLayoutManager(getActivity(),
+        mDownFileRecycler.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false));
         mDownFileRecycler.setAdapter(mAdapter);
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                DownloadTarget load = mFileManagerUtil.getDownloadReceiver().load(mData.get
+                DownloadTarget load = mFileManagerUtil.getDownloadReceiver().load(mDownList.get
                         (position).getKey());
                 if (!isFastClick()) {
                     if (load.isRunning()) {
@@ -213,23 +251,16 @@ public class FileDownFragment extends Fragment implements IManagerInterface {
         });
     }
 
-    private void getNotcomplete() {
+    private void getNotComplete() {
         List<DownloadEntity> allNotCompleteTask = mFileManagerUtil.getDownloadReceiver()
                 .getAllNotCompletTask();
 
-        mData.clear();
+        mDownList.clear();
         if (allNotCompleteTask != null) {
-            mData.addAll(allNotCompleteTask);
+            mDownList.addAll(allNotCompleteTask);
         }
     }
-    
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        mFileManagerUtil.unRegister();
-        unbinder.unbind();
-    }
-    
+
     private String convertSpeed(long speed) {
         if (speed < LENGTH) {
             return speed + "b/s";
@@ -241,7 +272,7 @@ public class FileDownFragment extends Fragment implements IManagerInterface {
         DecimalFormat df = new DecimalFormat(".00");
         return df.format(s) + "mb/s";
     }
-    
+
     public boolean isFastClick() {
         boolean flag = true;
         long currentClickTime = System.currentTimeMillis();
@@ -253,19 +284,36 @@ public class FileDownFragment extends Fragment implements IManagerInterface {
     }
 
     @Override
-    public void showEdit(boolean isShow) {
-        if (getUserVisibleHint()) {
-            edit = isShow;
+    public void rightFirstTextClick(View view) {
+        if (mDownList.size() > 0) {
+            selectState = -1;
+            edit = !edit;
+            setFirstRightText(edit ? "取消" : "管理");
             mAdapter.notifyDataSetChanged();
+            mEditLayout.setVisibility(edit ? View.VISIBLE : View.GONE);
         }
     }
 
-    @Override
-    public void selectAll(int state) {
-        if (getUserVisibleHint()) {
-            selectState = state;
-            mEditChoose.clear();
-            mAdapter.notifyDataSetChanged();
+    @OnClick({R.id.choose_all_text, R.id.delete_file_text})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.choose_all_text:
+                selectState = selectState == 0 ? 1 : 0;
+                mChooseAllText.setText(selectState == 0 ? "取消全选" : "全选");
+                mAdapter.notifyDataSetChanged();
+                break;
+            case R.id.delete_file_text:
+                selectState = -1;
+                edit = false;
+                setFirstRightText(edit ? "取消" : "管理");
+                mEditLayout.setVisibility(edit ? View.VISIBLE : View.GONE);
+                for (String url : mDeleteList) {
+                    mFileManagerUtil.getDownloadReceiver().load(url).cancel(true);
+                }
+                initSpace();
+                break;
+            default:
+                break;
         }
     }
 }

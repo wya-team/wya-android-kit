@@ -1,40 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/f4f4f4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/f4f4f4"
     android:orientation="vertical"
-    tools:context=".module.utils.fliedownload.FileDownloadExampleActivity">
+    tools:context=".module.utils.fliedownload.FileDownFragment">
 
-    <LinearLayout
-        android:background="@color/white"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/down_file_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/dp_30"
-        android:paddingRight="30dp">
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/down_tab_layout"
-            android:layout_height="44dp"
-            android:layout_width="match_parent"
-            app:tabIndicatorColor="@color/primary_color"
-            app:tabSelectedTextColor="@color/primary_color"
-            app:tabTextColor="@color/black" />
-    </LinearLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/down_viewpager"
         android:layout_height="0dp"
-        android:layout_width="match_parent"
         android:layout_weight="1" />
-
 
     <LinearLayout
         android:id="@+id/edit_layout"
-        android:layout_height="44dp"
         android:layout_width="match_parent"
+        android:layout_height="44dp"
         android:background="@color/white"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
@@ -60,6 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:enabled="false"
             android:gravity="center"
             android:text="删除"
             android:textColor="@color/red"
@@ -67,40 +50,39 @@
     </LinearLayout>
 
     <LinearLayout
-        android:background="@color/dddddd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/dddddd"
         android:gravity="center_horizontal">
 
         <TextView
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="已下载:"
             android:textColor="@color/white"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/down_space"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColor="@color/primary_color"
             android:textSize="12sp"
             tools:text="10MB" />
 
         <TextView
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text=", 剩余空间:"
             android:textColor="@color/white"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/free_space"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColor="@color/primary_color"
             android:textSize="12sp"
             tools:text="1GB" />
     </LinearLayout>
-
 </LinearLayout>

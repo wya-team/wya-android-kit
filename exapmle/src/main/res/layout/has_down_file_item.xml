@@ -7,11 +7,21 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp">
 
+    <CheckBox
+        android:id="@+id/edit_check"
+        style="@style/DownLoadEditCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/down_file_image"
         android:layout_width="120dp"
         android:layout_height="70dp"
         android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/edit_check"
         tools:src="@mipmap/img2" />
 
     <TextView

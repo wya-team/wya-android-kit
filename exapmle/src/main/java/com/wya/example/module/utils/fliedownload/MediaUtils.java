@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
-import static com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity.FILE_IMG_DIR;
+import static com.wya.example.module.utils.fliedownload.FlieConfig.FILE_IMG_DIR;
 
 /**
  * @author : XuDonglin

@@ -76,4 +76,7 @@
         <item name="android:background">@color/white</item>
     </style>
 
+    <style name="DownLoadEditCheckBox" parent="Base.Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/down_file_checkbox_selector</item>
+    </style>
 </resources>

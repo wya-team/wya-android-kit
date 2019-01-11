@@ -404,15 +404,15 @@ public class HVScrollView extends FrameLayout {
         
         switch (action & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_MOVE: {
-            /*
-             * mIsBeingDragged == false, otherwise the shortcut would have caught it. Check
-             * whether the user has moved far enough from his original down touch.
-             */
+                /*
+                 * mIsBeingDragged == false, otherwise the shortcut would have caught it. Check
+                 * whether the user has moved far enough from his original down touch.
+                 */
 
-            /*
-             * Locally do absolute value. mLastMotionY is set to the y value
-             * of the down event.
-             */
+                /*
+                 * Locally do absolute value. mLastMotionY is set to the y value
+                 * of the down event.
+                 */
                 final int activePointerId = mActivePointerId;
                 if (activePointerId == INVALID_POINTER) {
                     // If we don't have a valid id, the touch down wasn't on content.
@@ -443,26 +443,26 @@ public class HVScrollView extends FrameLayout {
                     break;
                 }
 
-            /*
-             * Remember location of down touch.
-             * ACTION_DOWN always refers to pointer index 0.
-             */
+                /*
+                 * Remember location of down touch.
+                 * ACTION_DOWN always refers to pointer index 0.
+                 */
                 mLastMotionY = y;
                 mLastMotionX = x;
                 mActivePointerId = ev.getPointerId(0);
 
-            /*
-             * If being flinged and user touches the screen, initiate drag;
-             * otherwise don't.  mScroller.isFinished should be false when
-             * being flinged.
-             */
+                /*
+                 * If being flinged and user touches the screen, initiate drag;
+                 * otherwise don't.  mScroller.isFinished should be false when
+                 * being flinged.
+                 */
                 mIsBeingDragged = !mScroller.isFinished();
                 break;
             }
             
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-            /* Release the drag */
+                /* Release the drag */
                 mIsBeingDragged = false;
                 mActivePointerId = INVALID_POINTER;
                 break;
@@ -504,10 +504,10 @@ public class HVScrollView extends FrameLayout {
                     return false;
                 }
 
-            /*
-             * If being flinged and user touches, stop the fling. isFinished
-             * will be false if being flinged.
-             */
+                /*
+                 * If being flinged and user touches, stop the fling. isFinished
+                 * will be false if being flinged.
+                 */
                 if (!mScroller.isFinished()) {
                     mScroller.abortAnimation();
                 }

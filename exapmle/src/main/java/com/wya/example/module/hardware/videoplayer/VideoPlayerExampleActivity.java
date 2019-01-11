@@ -9,7 +9,7 @@ import com.arialyy.aria.core.download.DownloadReceiver;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
-import com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity;
+import com.wya.example.module.utils.fliedownload.DownLoadExampleActivity;
 import com.wya.example.module.utils.fliedownload.MediaUtils;
 import com.wya.hardware.videoplayer.WYAVideoView;
 import com.wya.hardware.videoplayer.listener.SimpleOnVideoControlListener;
@@ -23,8 +23,8 @@ import java.io.File;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity.FILE_IMG_DIR;
-import static com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity.FILE_VIDEO_DIR;
+import static com.wya.example.module.utils.fliedownload.FlieConfig.FILE_IMG_DIR;
+import static com.wya.example.module.utils.fliedownload.FlieConfig.FILE_VIDEO_DIR;
 
 /**
  * @date: 2019/1/10 14:22
@@ -147,6 +147,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
         if (!file.exists()) {
             MediaUtils.getImageForVideo(MVIDEOPATH, null);
         }
-        startActivity(new Intent(this, FileDownloadExampleActivity.class));
+        startActivity(new Intent(this, DownLoadExampleActivity.class));
+        finish();
     }
 }

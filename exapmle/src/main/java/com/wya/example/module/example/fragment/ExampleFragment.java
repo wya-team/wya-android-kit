@@ -42,7 +42,7 @@ import com.wya.example.module.uikit.tablayout.TabLayoutExampleActivity;
 import com.wya.example.module.uikit.toast.ToastExampleActivity;
 import com.wya.example.module.uikit.toolbar.ToolBarExampleActivity;
 import com.wya.example.module.utils.dataclean.DataCleanExampleActivity;
-import com.wya.example.module.utils.fliedownload.FileDownloadExampleActivity;
+import com.wya.example.module.utils.fliedownload.DownLoadExampleActivity;
 import com.wya.example.module.utils.image.QRCodeExampleActivity;
 import com.wya.example.module.utils.realm.RealmExampleActivity;
 import com.wya.uikit.dialog.WYACustomDialog;
@@ -263,7 +263,7 @@ public class ExampleFragment extends Fragment {
                 break;
             
             case "下载(utils(FileManagerUtil)":
-                startActivity(new Intent(getActivity(), FileDownloadExampleActivity.class).putExtra("url", UTILS_URL));
+                startActivity(new Intent(getActivity(), DownLoadExampleActivity.class).putExtra("url", UTILS_URL));
                 break;
             case "视频播放(videoplayer)":
                 startActivity(new Intent(getActivity(), VideoPlayerExampleActivity.class).putExtra("url", HARDWARE_URL + "videoplayer" + "/README.md"));
