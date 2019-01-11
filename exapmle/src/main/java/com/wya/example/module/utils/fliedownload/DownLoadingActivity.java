@@ -53,7 +53,7 @@ import static com.wya.utils.utils.FileManagerUtil.TASK_STOP;
 public class DownLoadingActivity extends BaseActivity implements BaseToolBarActivity.RightFirstTextClickListener {
 
     private static final int LENGTH = 1024;
-    private static final int MIN_DELAY_TIME = 1000;
+    private static final int MIN_DELAY_TIME = 500;
     @BindView(R.id.down_file_recycler)
     RecyclerView mDownFileRecycler;
     @BindView(R.id.down_space)
@@ -70,7 +70,7 @@ public class DownLoadingActivity extends BaseActivity implements BaseToolBarActi
     private List<DownloadEntity> mDownList = new ArrayList<>();
     private FileManagerUtil mFileManagerUtil;
     private long lastClickTime;
-    private boolean edit = false;
+    private boolean isEdit = false;
     private int selectState = -1;
     private List<String> mDeleteList = new ArrayList<>();
 
@@ -126,6 +126,23 @@ public class DownLoadingActivity extends BaseActivity implements BaseToolBarActi
                             case TASK_COMPLETE:
                                 mDownList.remove(i);
                                 mAdapter.notifyDataSetChanged();
+                                if (isEdit) {
+                                    mDeleteList.remove(task.getKey());
+                                    if (mDownList.size() == 0) {
+                                        isEdit = false;
+                                        setFirstRightText(isEdit ? "取消" : "管理");
+                                        mEditLayout.setVisibility(isEdit ? View.VISIBLE : View.GONE);
+                                    } else {
+                                        if (mDeleteList.size() > 0) {
+                                            mDeleteFileText.setEnabled(true);
+                                            mDeleteFileText.setText("删除(" + mDeleteList.size() + ")");
+                                        } else {
+                                            mDeleteFileText.setText("删除");
+                                            mDeleteFileText.setEnabled(false);
+                                        }
+                                    }
+
+                                }
                                 break;
                             case TASK_FAIL:
                                 break;
@@ -169,12 +186,6 @@ public class DownLoadingActivity extends BaseActivity implements BaseToolBarActi
                                 .down_progress_res));
                         helper.setText(R.id.speed_pause, convertSpeed(item.getSpeed()));
                         break;
-                    case TASK_COMPLETE:
-                        break;
-                    case TASK_FAIL:
-                        break;
-                    case TASK_CANCEL:
-                        break;
                     default:
                         break;
                 }
@@ -195,7 +206,7 @@ public class DownLoadingActivity extends BaseActivity implements BaseToolBarActi
                 Glide.with(DownLoadingActivity.this).load(file).apply(requestOptions).into
                         (imageView);
                 helper.addOnClickListener(R.id.down_layout);
-                helper.setGone(R.id.edit_check, edit);
+                helper.setGone(R.id.edit_check, isEdit);
                 helper.setOnCheckedChangeListener(R.id.edit_check, new CompoundButton
                         .OnCheckedChangeListener() {
                     @Override
@@ -287,10 +298,10 @@ public class DownLoadingActivity extends BaseActivity implements BaseToolBarActi
     public void rightFirstTextClick(View view) {
         if (mDownList.size() > 0) {
             selectState = -1;
-            edit = !edit;
-            setFirstRightText(edit ? "取消" : "管理");
+            isEdit = !isEdit;
+            setFirstRightText(isEdit ? "取消" : "管理");
             mAdapter.notifyDataSetChanged();
-            mEditLayout.setVisibility(edit ? View.VISIBLE : View.GONE);
+            mEditLayout.setVisibility(isEdit ? View.VISIBLE : View.GONE);
         }
     }
 
@@ -304,9 +315,9 @@ public class DownLoadingActivity extends BaseActivity implements BaseToolBarActi
                 break;
             case R.id.delete_file_text:
                 selectState = -1;
-                edit = false;
-                setFirstRightText(edit ? "取消" : "管理");
-                mEditLayout.setVisibility(edit ? View.VISIBLE : View.GONE);
+                isEdit = false;
+                setFirstRightText(isEdit ? "取消" : "管理");
+                mEditLayout.setVisibility(isEdit ? View.VISIBLE : View.GONE);
                 for (String url : mDeleteList) {
                     mFileManagerUtil.getDownloadReceiver().load(url).cancel(true);
                 }
