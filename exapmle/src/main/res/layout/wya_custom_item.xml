@@ -17,9 +17,10 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="14sp"
-        app:backColor="#108de9"
-        app:fillet="true"
-        app:radius="5dp"
-        app:textColor="@color/white"
-        app:textColorPress="#50000000" />
+        app:buttonBackGroundColorPress="#0183d7"
+        app:buttonBackGroundColor="#108de7"
+        app:buttonFillet="true"
+        app:buttonRadius="5dp"
+        app:buttonTextColor="#ffffff"
+        app:buttonTextColorPress="#50ffffff" />
 </LinearLayout>

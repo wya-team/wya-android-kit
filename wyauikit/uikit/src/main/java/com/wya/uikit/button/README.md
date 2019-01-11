@@ -5,8 +5,8 @@
 ## 属性说明
 属性 | 说明 | 类型 | 默认值
 ---|---|---|---
-backColor|按钮背景颜色|int|-
-backColorPress|按钮按下时背景颜色|int|-
+backGroundColor|按钮背景颜色|int|-
+backGroundColorPress|按钮按下时背景颜色|int|-
 fillet|是否设置圆角或者圆形等样式|boolean|false
 textColor|按钮文字的颜色|ColorStateList|null
 textColorPress|按钮按下时文字的颜色|ColorStateList|null
@@ -23,7 +23,7 @@ backGroundDrawablePress|按钮按下时背景图片|Drawable|null
                android:layout_margin="10dp"
                android:text="硬件（hardware）"
                android:textAllCaps="false"
-               app:backColor="#FF0000"
+               app:backGroundColor="#FF0000"
                app:fillet="true"
                app:textColor="#ffffff"
                app:textColorPress="#50ffffff"

@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import java.lang.ref.WeakReference;
 
 /**
- * @date: 2019/1/10 14:22
+ * @date: 2019/1/10 14:33
  * @author: Chunjiang Mao
  * @classname: SwipeBackListenerAdapter
  * @describe:

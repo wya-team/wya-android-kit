@@ -9,7 +9,7 @@ import android.view.View;
 import com.wya.uikit.R;
 
 /**
- * @date: 2019/1/10 14:17
+ * @date: 2019/1/10 14:33
  * @author: Chunjiang Mao
  * @classname: SwipeBackActivityHelper
  * @describe: 

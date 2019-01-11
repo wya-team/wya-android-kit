@@ -30,7 +30,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint=""
                 app:contentText=""
@@ -47,7 +47,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint=""
                 app:contentText=""
@@ -64,7 +64,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint=""
                 app:contentText=""
@@ -210,7 +210,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint=""
                 app:contentText=""
@@ -232,7 +232,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint=""
                 app:contentText=""
@@ -248,7 +248,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint=""
                 app:contentText=""
@@ -270,7 +270,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint=""
                 app:contentText=""
@@ -286,7 +286,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint=""
                 app:contentText=""
@@ -308,7 +308,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint=""
                 app:contentText=""
@@ -324,7 +324,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint=""
                 app:contentText=""

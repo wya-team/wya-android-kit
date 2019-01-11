@@ -35,11 +35,11 @@
             android:layout_margin="10dp"
             android:text="生成二维码"
             android:textSize="12sp"
-            app:backColor="#108de7"
-            app:backColorPress="#0183d7"
-            app:fillet="true"
-            app:radius="5dp"
-            app:textColor="@color/white" />
+            app:buttonBackGroundColor="#108de7"
+            app:buttonBackGroundColorPress="#0183d7"
+            app:buttonFillet="true"
+            app:buttonRadius="5dp"
+            app:buttonTextColor="@color/white" />
     </LinearLayout>
 
 
@@ -71,11 +71,11 @@
             android:layout_margin="10dp"
             android:text="生成条形码"
             android:textSize="12sp"
-            app:backColor="#108de7"
-            app:backColorPress="#0183d7"
-            app:fillet="true"
-            app:radius="5dp"
-            app:textColor="@color/white" />
+            app:buttonBackGroundColor="#108de7"
+            app:buttonBackGroundColorPress="#0183d7"
+            app:buttonFillet="true"
+            app:buttonRadius="5dp"
+            app:buttonTextColor="@color/white" />
     </LinearLayout>
 
 

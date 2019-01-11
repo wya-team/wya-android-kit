@@ -48,16 +48,16 @@
 
     <!--button attrs-->
     <declare-styleable name="WYAButton">
-        <attr name="backColor" />
-        <attr name="backColorPress" />
-        <attr name="backGroundImage" />
-        <attr name="backGroundImagePress" />
-        <attr name="textColor" />
-        <attr name="textColorPress" />
-        <attr name="fillet" format="boolean" />
-        <attr name="enabled" format="boolean" />
-        <attr name="radius" />
-        <attr name="shape">
+        <attr name="buttonBackGroundColor" format="color" />
+        <attr name="buttonBackGroundColorPress" format="color" />
+        <attr name="buttonBackGroundImage" />
+        <attr name="buttonBackGroundImagePress" />
+        <attr name="buttonTextColor" format="color"/>
+        <attr name="buttonTextColorPress" format="color"/>
+        <attr name="buttonFillet" format="boolean" />
+        <attr name="buttonEnabled" format="boolean" />
+        <attr name="buttonRadius" />
+        <attr name="buttonShape">
             <enum name="rectangle" value="0" />
             <enum name="oval" value="1" />
             <enum name="line" value="2" />
@@ -68,7 +68,7 @@
 
     <!-- custom_item card-->
     <declare-styleable name="WYACardView">
-        <attr name="backColor" />
+        <attr name="backGroundColor" />
         <attr name="backGroundImage" />
         <attr name="titleTextColor" />
         <attr name="rightTextColor" />
@@ -80,7 +80,7 @@
 
     <!-- custom_item input_item-->
     <declare-styleable name="WYAInputItem">
-        <attr name="backColor" />
+        <attr name="backGroundColor" />
         <attr name="leftImage" format="reference" />
         <attr name="rightImage" format="reference" />
         <attr name="leftTextColor" format="color" />

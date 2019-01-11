@@ -66,7 +66,7 @@ public class WYACardView extends LinearLayout {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WYACardView);
         if (a != null) {
             //设置背景色
-            ColorStateList colorList = a.getColorStateList(R.styleable.WYACardView_backColor);
+            ColorStateList colorList = a.getColorStateList(R.styleable.WYACardView_backGroundColor);
             if (colorList != null) {
                 backColor = colorList.getColorForState(getDrawableState(), 0);
                 if (backColor != 0) {

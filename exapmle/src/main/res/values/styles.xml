@@ -76,6 +76,16 @@
         <item name="android:background">@color/white</item>
     </style>
 
+    <!-- switch styles -->
+    <style name="style_button">
+        <item name="android:layout_width">match_parent</item>>
+        <item name="android:layout_height">46dp</item>>
+        <item name="android:layout_margin">10dp</item>
+        <item name="buttonFillet">true</item>
+        <item name="buttonRadius">5dp</item>
+        <item name="buttonTextColor">@color/white</item>
+    </style>
+
     <style name="DownLoadEditCheckBox" parent="Base.Widget.AppCompat.CompoundButton.CheckBox">
         <item name="android:button">@drawable/down_file_checkbox_selector</item>
     </style>

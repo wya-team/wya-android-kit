@@ -7,7 +7,7 @@
 ## 属性说明
 属性 | 说明 | 类型 | 默认值
 ---|---|---|---
-backColor|item背景颜色|int|-
+backGroundColor|item背景颜色|int|-
 titleTextColor|item标题颜色|ColorStateList|null
 rightTextColor|标题右边文字颜色|ColorStateList|null
 assistTextColor|辅助说明文字颜色|ColorStateList|null
@@ -21,7 +21,7 @@ radius|卡片圆角大小|float|0
                android:id="@+id/wya_card_view"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               app:backColor="#999999"
+               app:backGroundColor="#999999"
                app:titleTextColor="#ffffff"
                app:rightTextColor="@color/red"
                app:assistTextColor="@color/blue"
@@ -53,7 +53,7 @@ setTitle|设置卡片标题
 ## 属性说明
 属性 | 说明 | 类型 | 默认值
 ---|---|---|---
-backColor|按钮背景颜色|int|-
+backGroundColor|按钮背景颜色|int|-
 canEdit|是否可以编辑|boolean|false
 fillet|是否设置圆角或者圆形等样式|boolean|false
 contentHint|编辑文本框提示内容|String|null
@@ -72,7 +72,7 @@ rightTextColor|右边辅助文字颜色|int|-
           <com.wya.uikit.customitems.WYAInputItem
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
-                 app:backColor="#ffffff"
+                 app:backGroundColor="#ffffff"
                  app:canEdit="false"
                  app:contentHint="编辑文本提示"
                  app:leftImage="@mipmap/icon_nav_more"

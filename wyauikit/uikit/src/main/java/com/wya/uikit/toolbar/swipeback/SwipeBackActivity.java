@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 /**
- * @date: 2019/1/10 14:22
+ * @date: 2019/1/10 14:33
  * @author: Chunjiang Mao
  * @classname: SwipeBackActivity
  * @describe:

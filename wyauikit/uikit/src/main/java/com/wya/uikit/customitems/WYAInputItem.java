@@ -33,7 +33,7 @@ public class WYAInputItem extends LinearLayout {
     /**
      * 背景色
      */
-    private int backColor = 0;
+    private int backGroundColor = 0;
     /**
      * 左边图片
      */
@@ -84,11 +84,11 @@ public class WYAInputItem extends LinearLayout {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WYAInputItem);
         if (a != null) {
             //设置背景色
-            ColorStateList colorList = a.getColorStateList(R.styleable.WYAInputItem_backColor);
+            ColorStateList colorList = a.getColorStateList(R.styleable.WYAInputItem_backGroundColor);
             if (colorList != null) {
-                backColor = colorList.getColorForState(getDrawableState(), 0);
-                if (backColor != 0) {
-                    setBackgroundColor(backColor);
+                backGroundColor = colorList.getColorForState(getDrawableState(), 0);
+                if (backGroundColor != 0) {
+                    setBackgroundColor(backGroundColor);
                 }
             }
     

@@ -22,20 +22,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_10"
-                app:backColor="@color/white"></com.wya.uikit.customitems.WYACardView>
+                app:backGroundColor="@color/white"></com.wya.uikit.customitems.WYACardView>
 
             <com.wya.uikit.customitems.WYACardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_10"
-                app:backColor="@color/white"
+                app:backGroundColor="@color/white"
                 app:radius="5dp"></com.wya.uikit.customitems.WYACardView>
 
             <com.wya.uikit.customitems.WYACardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_10"
-                app:backColor="@color/white"
+                app:backGroundColor="@color/white"
                 app:imgTitleLeft="@drawable/icon_card_icon"
                 app:radius="5dp"></com.wya.uikit.customitems.WYACardView>
 
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_10"
                 app:assistTextColor="@color/blue"
-                app:backColor="#999999"
+                app:backGroundColor="#999999"
                 app:contentTextColor="@color/green"
                 app:radius="5dp"
                 app:rightTextColor="@color/red"

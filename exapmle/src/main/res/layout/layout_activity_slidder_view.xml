@@ -12,9 +12,7 @@
         android:layout_marginTop="@dimen/dp_10"
         android:background="@color/white">
 
-        <com.wya.uikit.slidder.WYASlidderView
-            style="@style/style_slidder"
-            app:slidderProgressForegroundColor="?attr/slidderProgressForegroundColor" />
+        <com.wya.uikit.slidder.WYASlidderView style="@style/style_slidder" />
 
     </LinearLayout>
 

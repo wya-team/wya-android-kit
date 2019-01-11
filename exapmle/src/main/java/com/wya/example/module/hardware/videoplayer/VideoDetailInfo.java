@@ -3,7 +3,7 @@ package com.wya.example.module.hardware.videoplayer;
 import com.wya.hardware.videoplayer.bean.IVideoInfo;
 
 /**
- * @date: 2019/1/10 14:22
+ * @date: 2019/1/10 14:33
  * @author: Chunjiang Mao
  * @classname: VideoDetailInfo
  * @describe:

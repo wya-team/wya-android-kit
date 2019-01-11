@@ -32,4 +32,10 @@
     <color name="key_ok_color">#1280FA</color>
     <color name="key_ok_color_pressed">#0174f1</color>
 
+
+    <!-- button -->
+    <color name="button_background_color">#108de7</color>
+    <color name="button_background_press_color">#0183d7</color>
+
+
 </resources>

@@ -24,11 +24,11 @@
                 android:layout_margin="10dp"
                 android:text="打开左边"
                 android:textSize="12sp"
-                app:backColor="#108de7"
-                app:backColorPress="#0183d7"
-                app:fillet="true"
-                app:radius="5dp"
-                app:textColor="@color/white" />
+                app:buttonBackGroundColorPress="#0183d7"
+                app:buttonBackGroundColor="#108de7"
+                app:buttonFillet="true"
+                app:buttonRadius="5dp"
+                app:buttonTextColor="@color/white" />
 
             <View
                 android:layout_width="0dp"
@@ -43,11 +43,11 @@
                 android:layout_margin="10dp"
                 android:text="打开右边"
                 android:textSize="12sp"
-                app:backColor="#108de7"
-                app:backColorPress="#0183d7"
-                app:fillet="true"
-                app:radius="5dp"
-                app:textColor="@color/white" />
+                app:buttonBackGroundColorPress="#0183d7"
+                app:buttonBackGroundColor="#108de7"
+                app:buttonFillet="true"
+                app:buttonRadius="5dp"
+                app:buttonTextColor="@color/white" />
         </TableRow>
 
 

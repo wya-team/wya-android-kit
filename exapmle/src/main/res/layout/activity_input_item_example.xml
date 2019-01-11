@@ -29,7 +29,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentText="输入内容"
@@ -44,7 +44,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentTextColor="@color/black"
@@ -59,7 +59,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentText="输入内容"
@@ -74,7 +74,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentText="输入内容"
@@ -91,7 +91,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentText="输入内容"
@@ -114,7 +114,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentInputType="phone"
@@ -132,7 +132,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentInputType="card"
@@ -149,7 +149,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentInputType="money"
@@ -165,7 +165,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="true"
                 app:contentHint="我是暗提示"
                 app:contentInputType="password"
@@ -189,7 +189,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint="我是暗提示"
                 app:contentText="该用户不存在"
@@ -203,7 +203,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint="我是暗提示"
                 app:contentTextColor="#868686"
@@ -223,7 +223,7 @@
             <com.wya.uikit.customitems.WYAInputItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:backColor="#ffffff"
+                app:backGroundColor="#ffffff"
                 app:canEdit="false"
                 app:contentHint=""
                 app:leftImage="@drawable/icon_card_icon"

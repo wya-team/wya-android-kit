@@ -23,17 +23,16 @@ import com.wya.uikit.R;
  * @classname: WYAButton
  * @describe: 自定义button
  */
-
 @SuppressLint("AppCompatCustomView")
 public class WYAButton extends Button {
     /**
      * 按钮的背景色
      */
-    private int backColor = 0;
+    private int backGroundColor = 0;
     /**
      * 按钮被按下时的背景色
      */
-    private int backColorPress = 0;
+    private int backGroundColorPress = 0;
     /**
      * 按钮的背景图片
      */
@@ -55,7 +54,7 @@ public class WYAButton extends Button {
      * 是否设置圆角或者圆形等样式
      */
     private boolean fillet = false;
-    
+
     /**
      * 是否可以点击
      */
@@ -64,59 +63,51 @@ public class WYAButton extends Button {
      * 标示onTouch方法的返回值，用来解决onClick和onTouch冲突问题
      */
     private boolean isCost = true;
-    
+
     /**
      * button角度
      */
     private float radius;
-    
+
     public WYAButton(Context context) {
         this(context, null);
     }
-    
+
     public WYAButton(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
-    
+
     public WYAButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WYAButton, defStyleAttr, 0);
-        
         if (a != null) {
             //设置背景色
-            ColorStateList colorList = a.getColorStateList(R.styleable.WYAButton_backColor);
-            if (colorList != null) {
-                backColor = colorList.getColorForState(getDrawableState(), 0);
-                if (backColor != 0) {
-                    setBackgroundColor(backColor);
-                }
+            backGroundColor = a.getColor(R.styleable.WYAButton_buttonBackGroundColor, getResources().getColor(R.color.button_background_color));
+            if (backGroundColor != 0) {
+                setBackgroundColor(backGroundColor);
             }
             //记录按钮被按下时的背景色
-            ColorStateList colorListPress = a.getColorStateList(R.styleable.WYAButton_backColorPress);
-            if (colorListPress != null) {
-                backColorPress = colorListPress.getColorForState(getDrawableState(), 0);
-            }
-            //记录按钮被按下时的背景图片
-            backGroundDrawablePress = a.getDrawable(R.styleable.WYAButton_backGroundImagePress);
+            backGroundColorPress = a.getColor(R.styleable.WYAButton_buttonBackGroundColorPress, getResources().getColor(R.color.button_background_press_color));
+
             //设置文字的颜色
-            textColor = a.getColorStateList(R.styleable.WYAButton_textColor);
+            textColor = a.getColorStateList(R.styleable.WYAButton_buttonTextColor);
             if (textColor != null) {
                 setTextColor(textColor);
             }
             //记录按钮被按下时文字的颜色
-            textColorPress = a.getColorStateList(R.styleable.WYAButton_textColorPress);
+            textColorPress = a.getColorStateList(R.styleable.WYAButton_buttonTextColorPress);
             //设置圆角或圆形等样式的背景色
-            fillet = a.getBoolean(R.styleable.WYAButton_fillet, false);
+            fillet = a.getBoolean(R.styleable.WYAButton_buttonFillet, false);
             if (fillet) {
                 getGradientDrawable();
-                if (backColor != 0) {
-                    gradientDrawable.setColor(backColor);
+                if (backGroundColor != 0) {
+                    gradientDrawable.setColor(backGroundColor);
                     setBackgroundDrawable(gradientDrawable);
                 }
             }
-            
+
             //设置是否可以点击
-            enabled = a.getBoolean(R.styleable.WYAButton_enabled, true);
+            enabled = a.getBoolean(R.styleable.WYAButton_buttonEnabled, true);
             if (enabled) {
                 setOnTouchListener(new OnTouchListener() {
                     @Override
@@ -125,32 +116,37 @@ public class WYAButton extends Button {
                         return setTouchStyle(event.getAction());
                     }
                 });
-    
+
             } else {
                 setButtonEnabled(enabled);
             }
             //设置圆角矩形的角度，fillet为true时才生效
-            radius = a.getDimension(R.styleable.WYAButton_radius, 0);
+            radius = a.getDimension(R.styleable.WYAButton_buttonRadius, 0);
             if (fillet && radius != 0) {
                 setRadius(radius);
             }
-            
+
             //设置按钮形状，fillet为true时才生效
-            int shape = a.getInteger(R.styleable.WYAButton_shape, 0);
+            int shape = a.getInteger(R.styleable.WYAButton_buttonShape, 0);
             if (fillet && shape != 0) {
                 setShape(shape);
             }
             //设置背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
-            backGroundDrawable = a.getDrawable(R.styleable.WYAButton_backGroundImage);
+            backGroundDrawable = a.getDrawable(R.styleable.WYAButton_buttonBackGroundImage);
+            //记录按钮被按下时的背景图片
+            backGroundDrawablePress = a.getDrawable(R.styleable.WYAButton_buttonBackGroundImagePress);
             if (backGroundDrawable != null) {
                 setBackgroundDrawable(backGroundDrawable);
+                if(backGroundDrawablePress == null){
+                    backGroundDrawablePress = backGroundDrawable;
+                }
             }
             setGravity(Gravity.CENTER);
-            
+
             a.recycle();
         }
     }
-    
+
     /**
      * 设置是否可以点击
      *
@@ -158,7 +154,7 @@ public class WYAButton extends Button {
      */
     private void setButtonEnabled(boolean enabled) {
         if (enabled) {
-            setBackColor(Color.parseColor("#108de7"));
+            setBackGroundColor(Color.parseColor("#108de7"));
             setTextColor(textColor);
             setOnTouchListener(new OnTouchListener() {
                 @Override
@@ -167,14 +163,14 @@ public class WYAButton extends Button {
                     return setTouchStyle(event.getAction());
                 }
             });
-    
+
         } else {
-            setBackColor(Color.parseColor("#DEDEDE"));
+            setBackGroundColor(Color.parseColor("#DEDEDE"));
             setTextColor(Color.parseColor("#909090"));
             setEnabled(enabled);
         }
     }
-    
+
     /**
      * 根据按下或者抬起来改变背景和文字样式
      *
@@ -186,12 +182,12 @@ public class WYAButton extends Button {
      */
     private boolean setTouchStyle(int state) {
         if (state == MotionEvent.ACTION_DOWN) {
-            if (backColorPress != 0) {
+            if (backGroundColorPress != 0) {
                 if (fillet) {
-                    gradientDrawable.setColor(backColorPress);
+                    gradientDrawable.setColor(backGroundColorPress);
                     setBackgroundDrawable(gradientDrawable);
                 } else {
-                    setBackgroundColor(backColorPress);
+                    setBackgroundColor(backGroundColorPress);
                 }
             }
             if (backGroundDrawablePress != null) {
@@ -202,12 +198,12 @@ public class WYAButton extends Button {
             }
         }
         if (state == MotionEvent.ACTION_UP) {
-            if (backColor != 0) {
+            if (backGroundColor != 0) {
                 if (fillet) {
-                    gradientDrawable.setColor(backColor);
+                    gradientDrawable.setColor(backGroundColor);
                     setBackgroundDrawable(gradientDrawable);
                 } else {
-                    setBackgroundColor(backColor);
+                    setBackgroundColor(backGroundColor);
                 }
             }
             if (backGroundDrawable != null) {
@@ -219,7 +215,7 @@ public class WYAButton extends Button {
         }
         return isCost;
     }
-    
+
     /**
      * 重写setOnClickListener方法，解决onTouch和onClick冲突问题
      *
@@ -230,31 +226,31 @@ public class WYAButton extends Button {
         super.setOnClickListener(l);
         isCost = false;
     }
-    
+
     /**
      * 设置按钮的背景色
      *
-     * @param backColor
+     * @param backGroundColor
      */
-    public void setBackColor(int backColor) {
-        this.backColor = backColor;
+    public void setBackGroundColor(int backGroundColor) {
+        this.backGroundColor = backGroundColor;
         if (fillet) {
-            gradientDrawable.setColor(backColor);
+            gradientDrawable.setColor(backGroundColor);
             setBackgroundDrawable(gradientDrawable);
         } else {
-            setBackgroundColor(backColor);
+            setBackgroundColor(backGroundColor);
         }
     }
-    
+
     /**
      * 设置按钮被按下时的背景色
      *
-     * @param backColorPress
+     * @param backGroundColorPress
      */
-    public void setBackColorPress(int backColorPress) {
-        this.backColorPress = backColorPress;
+    public void setBackGroundColorPress(int backGroundColorPress) {
+        this.backGroundColorPress = backGroundColorPress;
     }
-    
+
     /**
      * 设置按钮的背景图片
      *
@@ -264,7 +260,7 @@ public class WYAButton extends Button {
         this.backGroundDrawable = backGroundDrawable;
         setBackgroundDrawable(backGroundDrawable);
     }
-    
+
     /**
      * 设置按钮被按下时的背景图片
      *
@@ -273,7 +269,7 @@ public class WYAButton extends Button {
     public void setBackGroundDrawablePress(Drawable backGroundDrawablePress) {
         this.backGroundDrawablePress = backGroundDrawablePress;
     }
-    
+
     /**
      * 设置文字的颜色
      *
@@ -287,7 +283,7 @@ public class WYAButton extends Button {
         //此处应加super关键字，调用父类的setTextColor方法，否则会造成递归导致内存溢出
         super.setTextColor(ColorStateList.valueOf(textColor));
     }
-    
+
     /**
      * 设置按钮被按下时文字的颜色
      *
@@ -299,7 +295,7 @@ public class WYAButton extends Button {
         }
         this.textColorPress = ColorStateList.valueOf(textColorPress);
     }
-    
+
     /**
      * 设置按钮是否设置圆角或者圆形等样式
      *
@@ -309,7 +305,7 @@ public class WYAButton extends Button {
         this.fillet = fillet;
         getGradientDrawable();
     }
-    
+
     /**
      * 设置圆角按钮的角度
      *
@@ -323,7 +319,7 @@ public class WYAButton extends Button {
         gradientDrawable.setCornerRadius(radius);
         setBackgroundDrawable(gradientDrawable);
     }
-    
+
     /**
      * 设置按钮的形状
      *
@@ -337,13 +333,13 @@ public class WYAButton extends Button {
         gradientDrawable.setShape(shape);
         setBackgroundDrawable(gradientDrawable);
     }
-    
+
     private void getGradientDrawable() {
         if (gradientDrawable == null) {
             gradientDrawable = new GradientDrawable();
         }
     }
-    
+
     @Override
     protected void onDraw(Canvas canvas) {
         Drawable[] drawables = getCompoundDrawables();
@@ -360,12 +356,12 @@ public class WYAButton extends Button {
         }
         super.onDraw(canvas);
     }
-    
+
     @Override
     public void setLayoutParams(ViewGroup.LayoutParams params) {
         super.setLayoutParams(params);
     }
-    
+
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      *
@@ -377,7 +373,7 @@ public class WYAButton extends Button {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
-    
+
     @SuppressLint("NewApi")
     public void setLoading(Context context, Drawable drawableLeft, boolean showText) {
         if (!showText) {

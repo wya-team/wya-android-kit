@@ -27,7 +27,7 @@ import static com.wya.example.module.utils.fliedownload.FlieConfig.FILE_IMG_DIR;
 import static com.wya.example.module.utils.fliedownload.FlieConfig.FILE_VIDEO_DIR;
 
 /**
- * @date: 2019/1/10 14:22
+ * @date: 2019/1/10 14:33
  * @author: Chunjiang Mao
  * @classname: VideoPlayerExampleActivity
  * @describe:

@@ -77,11 +77,12 @@
                 android:layout_weight="1"
                 android:text="增"
                 android:textAllCaps="false"
-                app:backColor="#118EE9"
-                app:fillet="true"
-                app:radius="5dp"
-                app:textColor="#ffffff"
-                app:textColorPress="#50ffffff" />
+                app:buttonBackGroundColor="#108de7"
+                app:buttonBackGroundColorPress="#0183d7"
+                app:buttonFillet="true"
+                app:buttonRadius="5dp"
+                app:buttonTextColor="#ffffff"
+                app:buttonTextColorPress="#50ffffff" />
 
             <com.wya.uikit.button.WYAButton
                 android:id="@+id/wya_button_reduce"
@@ -91,11 +92,12 @@
                 android:layout_weight="1"
                 android:text="删"
                 android:textAllCaps="false"
-                app:backColor="#118EE9"
-                app:fillet="true"
-                app:radius="5dp"
-                app:textColor="#ffffff"
-                app:textColorPress="#50ffffff" />
+                app:buttonBackGroundColor="#108de7"
+                app:buttonBackGroundColorPress="#0183d7"
+                app:buttonFillet="true"
+                app:buttonRadius="5dp"
+                app:buttonTextColor="#ffffff"
+                app:buttonTextColorPress="#50ffffff" />
 
             <com.wya.uikit.button.WYAButton
                 android:id="@+id/wya_button_update"
@@ -105,11 +107,12 @@
                 android:layout_weight="1"
                 android:text="改"
                 android:textAllCaps="false"
-                app:backColor="#118EE9"
-                app:fillet="true"
-                app:radius="5dp"
-                app:textColor="#ffffff"
-                app:textColorPress="#50ffffff" />
+                app:buttonBackGroundColor="#108de7"
+                app:buttonBackGroundColorPress="#0183d7"
+                app:buttonFillet="true"
+                app:buttonRadius="5dp"
+                app:buttonTextColor="#ffffff"
+                app:buttonTextColorPress="#50ffffff" />
 
             <com.wya.uikit.button.WYAButton
                 android:id="@+id/wya_button_query"
@@ -119,11 +122,12 @@
                 android:layout_weight="1"
                 android:text="查"
                 android:textAllCaps="false"
-                app:backColor="#118EE9"
-                app:fillet="true"
-                app:radius="5dp"
-                app:textColor="#ffffff"
-                app:textColorPress="#50ffffff" />
+                app:buttonBackGroundColor="#108de7"
+                app:buttonBackGroundColorPress="#0183d7"
+                app:buttonFillet="true"
+                app:buttonRadius="5dp"
+                app:buttonTextColor="#ffffff"
+                app:buttonTextColorPress="#50ffffff" />
 
         </TableRow>
 

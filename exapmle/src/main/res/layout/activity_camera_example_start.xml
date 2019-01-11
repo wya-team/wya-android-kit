@@ -74,11 +74,11 @@
         android:layout_marginTop="10dp"
         android:text="拍照"
         android:textSize="@dimen/sp_10"
-        app:backColor="#118EE9"
-        app:fillet="true"
-        app:radius="5dp"
-        app:textColor="#ffffff"
-        app:textColorPress="#50ffffff" />
+        app:buttonBackGroundColor="#118EE9"
+        app:buttonFillet="true"
+        app:buttonRadius="5dp"
+        app:buttonTextColor="#ffffff"
+        app:buttonTextColorPress="#50ffffff" />
 
     <TextView
         android:id="@+id/tv_path"
