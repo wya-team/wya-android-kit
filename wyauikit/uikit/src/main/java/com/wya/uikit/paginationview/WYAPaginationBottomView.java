@@ -55,6 +55,10 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
     private int mBtnEnableBg = R.drawable.pagination_item_enable;
     private int mBtnBg = R.drawable.pagination_item_click_bg;
     private boolean indexSearch = false;
+
+    public WYAPaginationBottomView(Context context) {
+        this(context, null);
+    }
     
     public WYAPaginationBottomView(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
@@ -65,7 +69,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
         super(context, attrs, defStyleAttr);
         mContext = context;
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable
-                .WYAPaginationBottomView);
+                .WYAPaginationBottomView, defStyleAttr, R.style.PaginationViewGlobalOption);
         mLeftText = typedArray.getString(R.styleable.WYAPaginationBottomView_leftText);
         mRightText = typedArray.getString(R.styleable.WYAPaginationBottomView_rightText);
         mBtnWidth = typedArray.getDimension(R.styleable.WYAPaginationBottomView_buttonWidth,
@@ -82,7 +86,7 @@ public class WYAPaginationBottomView extends FrameLayout implements View.OnClick
         typedArray.recycle();
         init();
     }
-    
+
     private void init() {
         allNum = 10;
         currentPage = 1;

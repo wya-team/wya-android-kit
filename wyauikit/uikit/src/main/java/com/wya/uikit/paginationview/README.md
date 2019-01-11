@@ -55,7 +55,7 @@ setButtonRightDrawable(Drawable drawable)|设置右侧按钮中的箭头
         app:buttonWidth="50dp"
         app:leftText="上一页"
         app:rightText="下一页"
-        app:selectPageTextColor="@color/blue"
+        app:selectPageTextColor="@color/primary_color"
         app:textColor="@color/black"
         app:textSize="13sp" />
 ````
@@ -75,7 +75,7 @@ setDarkDefault()|设置默认深色背景
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:background="@color/blue"
-        app:dotBackgroundResource="@drawable/pagination_selector_dot"
+        app:dotBackgroundResource="@drawable/pagination_selector_dot_solid"
         app:dotNumber="2" />
 ````
 
