@@ -12,7 +12,7 @@
     <com.wya.uikit.searchbar.WYASearchBar
         android:id="@+id/wya_search_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.wya.uikit.searchbar.WYASearchBar>
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>
