@@ -40,7 +40,7 @@ import static com.wya.utils.utils.FileManagerUtil.TASK_CANCEL;
  * @time : 2019-01-10
  * @description : 已完成
  */
-public class DownCompleteActivity extends BaseActivity implements BaseToolBarActivity.RightFirstTextClickListener {
+public class DownCompleteActivity extends BaseActivity implements BaseToolBarActivity.FirstRightTextClickListener {
 
     @BindView(R.id.down_file_recycler)
     RecyclerView mDownFileRecycler;
@@ -73,7 +73,7 @@ public class DownCompleteActivity extends BaseActivity implements BaseToolBarAct
     protected void initView() {
         setTitle("下载完成");
         setFirstRightText("管理");
-        setRightFirstTextClickListener(this);
+        setFirstRightTextClickListener(this);
         showFirstRightText(true);
 
         initDown();

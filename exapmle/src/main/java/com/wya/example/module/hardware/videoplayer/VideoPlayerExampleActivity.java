@@ -43,7 +43,8 @@ public class VideoPlayerExampleActivity extends BaseActivity {
     private ViewGroup contentView;
     private VideoDetailInfo info;
     private FileManagerUtil mFileManagerUtil;
-    
+    private final String UTILS_URL = "https://github.com/wya-team/wya-android-kit/blob/develop/wyautils/utils/src/main/java/com/wya/utils/utils/README.md";
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_video_player_example;
@@ -58,11 +59,11 @@ public class VideoPlayerExampleActivity extends BaseActivity {
         String url = getIntent().getStringExtra("url");
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
-        setRightSecondIconClickListener(view -> {
+        setSecondRightIconClickListener(view -> {
             startActivity(new Intent(VideoPlayerExampleActivity.this, ReadmeActivity.class)
                     .putExtra("url", url));
         });
-        setRightSecondIconLongClickListener(view -> {
+        setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(VideoPlayerExampleActivity.this, url);
         });
@@ -147,7 +148,7 @@ public class VideoPlayerExampleActivity extends BaseActivity {
         if (!file.exists()) {
             MediaUtils.getImageForVideo(MVIDEOPATH, null);
         }
-        startActivity(new Intent(this, DownLoadExampleActivity.class));
+        startActivity(new Intent(this, DownLoadExampleActivity.class).putExtra("url", UTILS_URL));
         finish();
     }
 }

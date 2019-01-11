@@ -57,10 +57,10 @@ public class NoticeExampleActivity extends BaseActivity {
         noticeText = getResources().getString(R.string.string_uikit_notice_text);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
-        setRightSecondIconClickListener(view -> {
+        setSecondRightIconClickListener(view -> {
             startActivity(new Intent(NoticeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightSecondIconLongClickListener(view -> {
+        setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(NoticeExampleActivity.this, url);
         });
