@@ -25,10 +25,10 @@ public class ToolBarExampleActivity extends BaseActivity {
         String url = getIntent().getStringExtra("url");
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
-        setRightSecondIconClickListener(view -> {
+        setSecondRightIconClickListener(view -> {
             startActivity(new Intent(ToolBarExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
         });
-        setRightSecondIconLongClickListener(view -> {
+        setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(ToolBarExampleActivity.this, url);
         });

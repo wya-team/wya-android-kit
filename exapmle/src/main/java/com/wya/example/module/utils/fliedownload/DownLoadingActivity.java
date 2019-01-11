@@ -50,7 +50,7 @@ import static com.wya.utils.utils.FileManagerUtil.TASK_STOP;
  * @time : 2019-01-10
  * @description : 下载中
  */
-public class DownLoadingActivity extends BaseActivity implements BaseToolBarActivity.RightFirstTextClickListener {
+public class DownLoadingActivity extends BaseActivity implements BaseToolBarActivity.FirstRightTextClickListener {
 
     private static final int LENGTH = 1024;
     private static final int MIN_DELAY_TIME = 500;
@@ -83,7 +83,7 @@ public class DownLoadingActivity extends BaseActivity implements BaseToolBarActi
     protected void initView() {
         setTitle("下载中");
         setFirstRightText("管理");
-        setRightFirstTextClickListener(this);
+        setFirstRightTextClickListener(this);
         showFirstRightText(true);
         initFileDown();
         initRecyclerView();

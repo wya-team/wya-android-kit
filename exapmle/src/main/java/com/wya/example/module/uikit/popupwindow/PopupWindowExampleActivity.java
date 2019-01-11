@@ -50,7 +50,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
     }
     
     private void setPopupWindow() {
-        setRightSecondIconClickListener(view -> wyaPopupWindow.show(view, -100, 0));
+        setSecondRightIconClickListener(view -> wyaPopupWindow.show(view, -100, 0));
         wyaPopupWindow = new WYAPopupWindow.Builder(PopupWindowExampleActivity.this).setLayoutRes(R.layout.popopwindow_custom_list, v -> {
             TableRow tabScan = v.findViewById(R.id.tab_scan);
             TableRow tabHelp = v.findViewById(R.id.tab_help);

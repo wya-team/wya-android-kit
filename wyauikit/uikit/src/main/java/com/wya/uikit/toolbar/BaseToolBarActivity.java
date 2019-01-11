@@ -41,23 +41,23 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     /**
      * 设置右边第一个文字点击事件
      */
-    private RightFirstTextClickListener rightFirstTextClickListener;
+    private FirstRightTextClickListener firstRightTextClickListener;
     /**
      * 设置右边第二个文字点击事件
      */
-    private RightSecondTextClickListener rightSecondTextClickListener;
+    private SecondRightTextClickListener secondRightTextClickListener;
     /**
      * 设置右边第一个图片点击事件
      */
-    private RightFirstIconClickListener rightFirstIconClickListener;
+    private FirstRightIconClickListener firstRightIconClickListener;
     /**
      * 设置右边第二个图片点击事件
      */
-    private RightSecondIconClickListener rightSecondIconClickListener;
+    private SecondRightIconClickListener secondRightIconClickListener;
     /**
      * 设置右边长按点击事件
      */
-    private RightSecondIconLongClickListener rightSecondIconLongClickListener;
+    private SecondRightIconLongClickListener secondRightIconLongClickListener;
     
     /**
      * 获取布局文件id
@@ -87,46 +87,46 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     /**
      * 设置右边第一个文字点击事件
      *
-     * @param rightFirstTextClickListener
+     * @param firstRightTextClickListener
      */
-    public void setRightFirstTextClickListener(RightFirstTextClickListener rightFirstTextClickListener) {
-        this.rightFirstTextClickListener = rightFirstTextClickListener;
+    public void setFirstRightTextClickListener(FirstRightTextClickListener firstRightTextClickListener) {
+        this.firstRightTextClickListener = firstRightTextClickListener;
     }
     
     /**
      * 设置右边第二个文字点击事件监听
      *
-     * @param rightSecondTextClickListener
+     * @param secondRightTextClickListener
      */
-    public void setRightSecondTextClickListener(RightSecondTextClickListener rightSecondTextClickListener) {
-        this.rightSecondTextClickListener = rightSecondTextClickListener;
+    public void setSecondRightTextClickListener(SecondRightTextClickListener secondRightTextClickListener) {
+        this.secondRightTextClickListener = secondRightTextClickListener;
     }
     
     /**
      * 设置右边图片点击事件监听
      *
-     * @param rightFirstIconClickListener
+     * @param firstRightIconClickListener
      */
-    public void setRightFirstIconClickListener(RightFirstIconClickListener rightFirstIconClickListener) {
-        this.rightFirstIconClickListener = rightFirstIconClickListener;
+    public void setFirstRightIconClickListener(FirstRightIconClickListener firstRightIconClickListener) {
+        this.firstRightIconClickListener = firstRightIconClickListener;
     }
     
     /**
      * 设置右边第二个图片点击事件监听
      *
-     * @param rightSecondIconClickListener
+     * @param secondRightIconClickListener
      */
-    public void setRightSecondIconClickListener(RightSecondIconClickListener rightSecondIconClickListener) {
-        this.rightSecondIconClickListener = rightSecondIconClickListener;
+    public void setSecondRightIconClickListener(SecondRightIconClickListener secondRightIconClickListener) {
+        this.secondRightIconClickListener = secondRightIconClickListener;
     }
     
     /**
      * 设置右边第二个图片长按点击事件监听
      *
-     * @param rightSecondIconLongClickListener
+     * @param secondRightIconLongClickListener
      */
-    public void setRightSecondIconLongClickListener(RightSecondIconLongClickListener rightSecondIconLongClickListener) {
-        this.rightSecondIconLongClickListener = rightSecondIconLongClickListener;
+    public void setSecondRightIconLongClickListener(SecondRightIconLongClickListener secondRightIconLongClickListener) {
+        this.secondRightIconLongClickListener = secondRightIconLongClickListener;
     }
     
     @Override
@@ -469,8 +469,8 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         mImgRightSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (rightSecondIconClickListener != null) {
-                    rightSecondIconClickListener.rightSecondIconClick(view);
+                if (secondRightIconClickListener != null) {
+                    secondRightIconClickListener.secondRightIconClick(view);
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "图片2", Toast.LENGTH_SHORT).show();
                 }
@@ -479,8 +479,8 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         mImgRightSecond.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if (rightSecondIconLongClickListener != null) {
-                    rightSecondIconLongClickListener.rightSecondIconLongClick(view);
+                if (secondRightIconLongClickListener != null) {
+                    secondRightIconLongClickListener.secondRightIconLongClick(view);
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "图片2长按", Toast.LENGTH_SHORT).show();
                 }
@@ -490,8 +490,8 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         mImgRightFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (rightFirstIconClickListener != null) {
-                    rightFirstIconClickListener.rightFirstIconClick(view);
+                if (firstRightIconClickListener != null) {
+                    firstRightIconClickListener.firstRightIconClick(view);
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "图片1", Toast.LENGTH_SHORT).show();
                 }
@@ -500,8 +500,8 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         mTvRightSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (rightSecondTextClickListener != null) {
-                    rightSecondTextClickListener.rightSecondTextClick(view);
+                if (secondRightTextClickListener != null) {
+                    secondRightTextClickListener.secondRightTextClick(view);
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "文字2", Toast.LENGTH_SHORT).show();
                 }
@@ -511,8 +511,8 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         mTvRightFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (rightFirstTextClickListener != null) {
-                    rightFirstTextClickListener.rightFirstTextClick(view);
+                if (firstRightTextClickListener != null) {
+                    firstRightTextClickListener.rightFirstTextClick(view);
                 } else {
                     Toast.makeText(BaseToolBarActivity.this, "文字1", Toast.LENGTH_SHORT).show();
                 }
@@ -568,7 +568,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         void leftTextClick(View view);
     }
     
-    public interface RightFirstTextClickListener {
+    public interface FirstRightTextClickListener {
         /**
          * 设置右边文字点击事件
          *
@@ -577,39 +577,39 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         void rightFirstTextClick(View view);
     }
     
-    public interface RightSecondTextClickListener {
+    public interface SecondRightTextClickListener {
         /**
          * 设置右边第二个文字点击事件
          *
          * @param view
          */
-        void rightSecondTextClick(View view);
+        void secondRightTextClick(View view);
     }
     
-    public interface RightFirstIconClickListener {
+    public interface FirstRightIconClickListener {
         /**
          * 设置图片点击事件
          *
          * @param view
          */
-        void rightFirstIconClick(View view);
+        void firstRightIconClick(View view);
     }
     
-    public interface RightSecondIconClickListener {
+    public interface SecondRightIconClickListener {
         /**
          * 设置第二张图片点击事件
          *
          * @param view
          */
-        void rightSecondIconClick(View view);
+        void secondRightIconClick(View view);
     }
     
-    public interface RightSecondIconLongClickListener {
+    public interface SecondRightIconLongClickListener {
         /**
          * 设置第二张长按点击事件
          *
          * @param view
          */
-        void rightSecondIconLongClick(View view);
+        void secondRightIconLongClick(View view);
     }
 }

@@ -62,10 +62,10 @@ setSecondRightIcon | 设置标题右边第二个图标
 showSecondRightIcon | 设置标题右边第二个图标显示
 setLeftIconClickListener | 设置左边图标点击事件监听
 setLeftTextClickListener | 设置左边文字点击事件监听
-setRightFirstTextClickListener | 设置右边第一个文字点击事件监听
-setRightSecondTextClickListener | 设置右边第二个文字点击事件监听
-setRightFirstIconClickListener | 设置右边第一个图片点击事件监听
-setRightSecondIconClickListener | 设置右边第二个图片点击事件监听
-setRightSecondIconLongClickListener | 设置右边第二个图片长按点击事件监听
+setFirstRightTextClickListener | 设置右边第一个文字点击事件监听
+setSecondRightTextClickListener | 设置右边第二个文字点击事件监听
+setFirstRightIconClickListener | 设置右边第一个图片点击事件监听
+setSecondRightIconClickListener | 设置右边第二个图片点击事件监听
+setSecondRightIconLongClickListener | 设置右边第二个图片长按点击事件监听
 
 
