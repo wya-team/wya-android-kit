@@ -107,6 +107,14 @@
         <item name="switchDuration">3000</item>
     </style>
 
+    <!-- style_button_global_option-->
+    <style name="style_button_global_option"></style>
+
+    <!-- style_stepper_global_option-->
+    <style name="style_stepper_global_option"></style>
+
+    <!-- style_progress_global_option-->
+    <style name="style_progress_global_option"></style>
 
     <style name="PaginationViewGlobalOption">
         <item name="buttonHeight">20dp</item>

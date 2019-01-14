@@ -8,9 +8,15 @@
     android:orientation="vertical"
     tools:context="com.wya.example.module.uikit.button.ButtonExampleActivity">
 
+
     <com.wya.uikit.button.WYAButton
-        style="@style/style_button"
-        android:text="主按钮" />
+        android:id="@+id/navigation_dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_margin="10dp"
+        android:text="主按钮"
+        app:buttonRadius="5dp"
+        app:buttonTextColor="@color/white" />
 
     <com.wya.uikit.button.WYAButton
         style="?android:attr/borderlessButtonStyle"

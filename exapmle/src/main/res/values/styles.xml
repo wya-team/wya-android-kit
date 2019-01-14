@@ -79,4 +79,18 @@
     <style name="DownLoadEditCheckBox" parent="Base.Widget.AppCompat.CompoundButton.CheckBox">
         <item name="android:button">@drawable/down_file_checkbox_selector</item>
     </style>
+
+
+    <!-- style_button_global_option-->
+    <style name="style_button_global_option">
+        <item name="buttonFillet">true</item>
+    </style>
+
+    <!-- style_stepper_global_option-->
+    <style name="style_stepper_global_option">
+        <item name="maxNum">100</item>
+        <item name="minNum">0</item>
+        <item name="value">0</item>
+    </style>
+
 </resources>

@@ -8,7 +8,6 @@
     android:orientation="vertical"
     tools:context="com.wya.example.module.uikit.stepper.StepperExampleActivity">
 
-
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,10 +27,7 @@
             android:id="@+id/stepper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/dp_10"
-            app:maxNum="120"
-            app:minNum="0"
-            app:value="0" />
+            android:layout_marginRight="@dimen/dp_10"/>
     </TableRow>
 
     <TableRow

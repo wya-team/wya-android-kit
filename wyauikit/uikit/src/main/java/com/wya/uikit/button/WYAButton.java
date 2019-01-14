@@ -79,7 +79,7 @@ public class WYAButton extends Button {
 
     public WYAButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WYAButton, defStyleAttr, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WYAButton, defStyleAttr, R.style.style_button_global_option);
         if (a != null) {
             //设置背景色
             backGroundColor = a.getColor(R.styleable.WYAButton_buttonBackGroundColor, getResources().getColor(R.color.button_background_color));

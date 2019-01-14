@@ -1,0 +1,196 @@
+<templateSet group="wya_templates">
+  <template name="wyabtn" value="&lt;com.wya.uikit.button.WYAButton&#10;    android:id=&quot;@+id/$id$&quot;&#10;    android:layout_width=&quot;$width$&quot;&#10;    android:layout_height=&quot;$height$&quot;&#10;    android:text=&quot;$text$&quot; &#10;    android:textSize=&quot;$buttonBackGroundColor$&quot;&#10;    app:buttonBackGroundColor=&quot;$buttonBackGroundColor$&quot;&#10;    app:buttonBackGroundColorPress=&quot;$buttonBackGroundColorPress$&quot;&#10;    app:buttonRadius=&quot;$buttonRadius$&quot;&#10;    app:buttonTextColor=&quot;$buttonTextColor$&quot;/&gt;&#10;    " description="WYAButton" toReformat="false" toShortenFQNames="true">
+    <variable name="id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="width" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="height" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="text" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="buttonBackGroundColor" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="buttonBackGroundColorPress" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="buttonRadius" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="buttonTextColor" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="wyasb" value="&lt;com.wya.uikit.searchbar.WYASearchBar&#10;    android:id=&quot;@+id/$id$&quot;&#10;    android:layout_width=&quot;$width$&quot;&#10;    android:layout_height=&quot;$height$&quot; /&gt;" description="WYASearchBar" toReformat="false" toShortenFQNames="true">
+    <variable name="id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="width" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="height" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="wyast" value="&lt;com.wya.uikit.stepper.WYAStepper&#10;    android:id=&quot;@+id/$id$&quot;&#10;    android:layout_width=&quot;$width$&quot;&#10;    android:layout_height=&quot;$height$&quot;/&gt;" description="WYAStepper" toReformat="false" toShortenFQNames="true">
+    <variable name="id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="width" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="height" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="wyabn" value="&lt;com.wya.uikit.banner.WYABanner&#10;    android:id=&quot;@+id/$id$&quot;&#10;    android:layout_width=&quot;match_parent&quot;&#10;    android:layout_height=&quot;wrap_content&quot;/&gt;" description="WYABanner" toReformat="false" toShortenFQNames="true">
+    <variable name="id" expression="" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="XML_TEXT" value="true" />
+    </context>
+  </template>
+  <template name="wyapbv" value=" &lt;com.wya.uikit.paginationview.WYAPaginationBottomView&#10;    android:id=&quot;@+id/$id$&quot;&#10;    android:layout_width=&quot;match_parent&quot;&#10;    android:layout_height=&quot;wrap_content&quot;&#10;    app:buttonHeight=&quot;20dp&quot;&#10;    app:buttonWidth=&quot;50dp&quot;&#10;    app:leftText=&quot;上一页&quot;&#10;    app:rightText=&quot;下一页&quot;&#10;    app:selectPageTextColor=&quot;@color/blue&quot;&#10;    app:textColor=&quot;@color/black&quot;&#10;    app:textSize=&quot;13sp&quot; /&gt;" description="WYAPaginationBottomView" toReformat="false" toShortenFQNames="true">
+    <variable name="id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML_TEXT" value="true" />
+    </context>
+  </template>
+  <template name="wyapd" value="&lt;com.wya.uikit.paginationview.WYAPaginationDot&#10;        android:id=&quot;@+id/pagination_dot&quot;&#10;        android:layout_width=&quot;match_parent&quot;&#10;        android:layout_height=&quot;40dp&quot;&#10;        android:background=&quot;$bg$&quot;&#10;        app:dotBackgroundResource=&quot;$res$&quot;&#10;        app:dotNumber=&quot;$num$&quot; /&gt;" description="WYAPaginationDot" toReformat="false" toShortenFQNames="true">
+    <variable name="bg" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="res" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="num" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML_TEXT" value="true" />
+    </context>
+  </template>
+  <template name="wyasv" value="&lt;com.wya.uikit.segmentedcontrol.WYASegmentedView&#10;        android:id=&quot;@+id/segment_layout&quot;&#10;        android:layout_width=&quot;match_parent&quot;&#10;        android:layout_height=&quot;wrap_content&quot;&#10;        app:titleSelectColor=&quot;$color$&quot;&#10;        app:titleNormalColor=&quot;$color$&quot;&#10;        app:titleSize=&quot;$textSize$&quot;&#10;        app:strokeColor=&quot;$strokeColor$&quot;&#10;        app:strokeWidth=&quot;$strokeWidth$&quot;&#10;        app:radius=&quot;$radius$&quot;&#10;        app:itemSelectBackground=&quot;$selectBg$&quot;&#10;        app:itemNormalBackground=&quot;$nomarlBg$&quot;&#10;        app:lineColor=&quot;$lineColor$&quot;&#10;        app:lineSize=&quot;$lineSize$&quot; /&gt;" description="WYASegmentedView" toReformat="false" toShortenFQNames="true">
+    <variable name="color" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="textSize" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="strokeColor" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="strokeWidth" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="radius" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="selectBg" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="nomarlBg" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="lineColor" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="lineSize" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML_TEXT" value="true" />
+    </context>
+  </template>
+  <template name="wyatb" value="&lt;com.wya.uikit.tabbar.WYATabBar&#10;        android:id=&quot;@+id/$id$&quot;&#10;        android:layout_width=&quot;match_parent&quot;&#10;        android:layout_height=&quot;wrap_content&quot;&#10;        android:layout_alignParentBottom=&quot;true&quot;&#10;        app:itemBackground=&quot;@null&quot;&#10;        app:itemIconTint=&quot;$navigation_select$&quot;&#10;        app:itemTextColor=&quot;$navigation_select$&quot;&#10;        app:menu=&quot;@menu/$navigation$&quot; /&gt;" description="WYATabBar" toReformat="false" toShortenFQNames="true">
+    <variable name="id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="navigation_select" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="navigation" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML_TEXT" value="true" />
+    </context>
+  </template>
+  <template name="wyaipc" value="ImagePickerCreator.create($context$)&#10;        .maxImages($number$)&#10;        .forResult($result$);" description="ImagePicker" toReformat="false" toShortenFQNames="true">
+    <variable name="context" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="number" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="result" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="wyagc" value="GalleryCreator.create($context$)&#10;    .openPreviewGallery($position$, $list$);" description="GalleryCreator" toReformat="false" toShortenFQNames="true">
+    <variable name="context" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="position" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="list" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="wyacrop" value="Crop.create($context$)&#10;        .setImagePath($uri$)&#10;        .saveCropImagePath($savePath$)&#10;        .cropQuality($quality$)&#10;        .forResult($result$);" description="Crop" toReformat="false" toShortenFQNames="true">
+    <variable name="context" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="uri" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="savePath" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="quality" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="result" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="wyacd" value="WYACustomDialog $WYACustomDialogName$ = new WYACustomDialog.Builder($Context$)&#10;        .title(&quot;$title$&quot;)&#10;        .message(&quot;$message$&quot;)&#10;        .width(ScreenUtil.getScreenWidth(this) * 3 / 4)&#10;        .build();&#10;$WYACustomDialogName$.setNoClickListener(new WYACustomDialog.NoClickListener() {&#10;    @Override&#10;    public void onNoClick() {&#10;        $WYACustomDialogName$.dismiss();&#10;    }&#10;});&#10;$WYACustomDialogName$.setYesClickListener(new WYACustomDialog.YesClickListener() {&#10;    @Override&#10;    public void onYesClick() {&#10;        $onYesClick$.&#10;    }&#10;});&#10;$WYACustomDialogName$.show();&#10;" description="WYACustomDialog" toReformat="false" toShortenFQNames="true">
+    <variable name="WYACustomDialogName" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="Context" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="title" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="message" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="onYesClick" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="wyapw" value="WYAPopupWindow $WYAPopupWindow$ = new WYAPopupWindow.Builder($Context$).setLayoutRes(R.layout.$layoutId$, new CustomListener() {&#10;    @Override&#10;    public void customLayout(View v) {&#10;        $customLayout$&#10;    }&#10;}).build();" description="WYAPopupWindow" toReformat="false" toShortenFQNames="true">
+    <variable name="WYAPopupWindow" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="Context" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="layoutId" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="customLayout" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="wyact" value="&lt;com.wya.uikit.customeditext.WYACustomEditText&#10;    android:id=&quot;@+id/$id$&quot;&#10;    android:layout_width=&quot;$width$&quot;&#10;    android:layout_height=&quot;$height$&quot;&#10;    app:hintEditText=&quot;$hintEditText$&quot;&#10;    app:hintText=&quot;$hintText$&quot;&#10;    app:maxNum=&quot;$maxNum$&quot;/&gt;" description="WYACustomEdit" toReformat="false" toShortenFQNames="true">
+    <variable name="id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="width" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="height" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="hintEditText" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="hintText" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="maxNum" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="wyapro" value="&lt;com.wya.uikit.progress.WYAProgress&#10;    android:id=&quot;@+id/$id$&quot;&#10;    android:layout_width=&quot;$width$&quot;&#10;    android:layout_height=&quot;$height$&quot;&#10;    app:circleThickness=&quot;$circleThickness$&quot;&#10;    app:smallCircleEnable=&quot;true&quot; /&gt;" description="WYAProgress" toReformat="false" toShortenFQNames="true">
+    <variable name="id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="width" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="height" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="circleThickness" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="wyabdv" value=" IBadgeView $badgeView$ = new Builder($context$)&#10;                .setText(&quot;$text$&quot;)&#10;                .setGravity(new Builder.Gravity($gravity$,$offsetX$, $offsetY$))&#10;                .setTextSize($textSize$)&#10;                .setAttach($attach$)&#10;                .setBackgroundDrawable($drawable$)&#10;                .create();&#10;        $badgeView$.bindToTarget($target$);" description="BadgeView" toReformat="false" toShortenFQNames="true">
+    <variable name="badgeView" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="context" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="text" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="gravity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="offsetX" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="offsetY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="textSize" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="attach" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="drawable" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="target" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="wyamqtv" value=" &lt;com.wya.uikit.notice.WYAMarqueeTextView&#10;        android:layout_width=&quot;$width$&quot;&#10;        android:layout_height=&quot;$height$&quot;&#10;        android:layout_marginTop=&quot;$marginTop$&quot;&#10;        android:background=&quot;$background$&quot;&#10;        android:drawableLeft=&quot;$drawableLeft$&quot;&#10;        android:drawableRight=&quot;$drawableRight$&quot;&#10;        android:drawablePadding=&quot;$drawablePadding$&quot;&#10;        android:paddingLeft=&quot;$paddingLeft$&quot;&#10;        android:paddingTop=&quot;$paddingTop$&quot;&#10;        android:paddingRight=&quot;$paddingRight$&quot;&#10;        android:paddingBottom=&quot;$paddingBottom$&quot;&#10;        android:text=&quot;$text$&quot;&#10;        android:textColor=&quot;$textColor$&quot;&#10;        android:textSize=&quot;$textSize$&quot;&#10;        app:marqueeSkipable=&quot;$skipable$&quot; /&gt;" description="WYAMarqueeTextView" toReformat="false" toShortenFQNames="true">
+    <variable name="width" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="height" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="marginTop" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="background" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="drawableLeft" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="drawableRight" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="drawablePadding" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="paddingLeft" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="paddingTop" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="paddingRight" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="paddingBottom" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="text" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="textColor" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="textSize" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="skipable" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML_TEXT" value="true" />
+    </context>
+  </template>
+  <template name="wyasl" value="&lt;com.wya.uikit.slidder.WYASlidderView&#10;    android:id=&quot;@+id/$id$&quot;&#10;    android:layout_width=&quot;$width$&quot;&#10;    android:layout_height=&quot;$height$&quot;&#10;    android:layout_gravity=&quot;$gravity$&quot;&#10;    android:layout_marginTop=&quot;$marginTop$&quot;&#10;    android:layout_marginBottom=&quot;$marginBottom$&quot;&#10;    android:paddingLeft=&quot;$paddingLeft$&quot;&#10;    android:paddingRight=&quot;$paddingRight$&quot; /&gt;&#10;" description="WYASlidderView" toReformat="false" toShortenFQNames="true">
+    <variable name="id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="width" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="height" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="gravity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="marginTop" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="marginBottom" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="paddingLeft" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="paddingRight" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML_TEXT" value="true" />
+    </context>
+  </template>
+  <template name="wyaswv" value=" &lt;com.wya.uikit.notice.switcher.WYASwitcherView&#10;            android:layout_width=&quot;$width$&quot;&#10;            android:layout_height=&quot;$height$&quot;&#10;            android:background=&quot;$color$&quot;&#10;            app:animDirection=&quot;$direction$&quot;&#10;            app:switchSkipable=&quot;$skipable$&quot; /&gt;" description="WYASwitcherView" toReformat="false" toShortenFQNames="true">
+    <variable name="width" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="height" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="color" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="direction" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="skipable" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML_TEXT" value="true" />
+    </context>
+  </template>
+</templateSet>
