@@ -83,20 +83,20 @@ public class WYAProgress extends View {
         this(context, attrs, 0);
     }
     
-    public WYAProgress(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public WYAProgress(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         paint = new Paint();
         
         mArgbEvaluator = new ArgbEvaluator();
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WYAProgress);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WYAProgress, defStyleAttr, R.style.style_progress_global_option);
         
         //获取自定义属性和默认值
         circleColor = typedArray.getColor(R.styleable.WYAProgress_circleColor, context.getResources().getColor(R.color.progress_gray));
         
-        progressCircleColor = typedArray.getColor(R.styleable.WYAProgress_progressCircleColor, context.getResources().getColor(R.color.progress_end));
+        progressCircleColor = typedArray.getColor(R.styleable.WYAProgress_progressCircleColor, context.getResources().getColor(R.color.primary_color));
         
-        progressStartColor = typedArray.getColor(R.styleable.WYAProgress_progressStartColor, getResources().getColor(R.color.progress_start));
-        progressEndColor = typedArray.getColor(R.styleable.WYAProgress_progressEndColor, getResources().getColor(R.color.progress_end));
+        progressStartColor = typedArray.getColor(R.styleable.WYAProgress_progressStartColor, getResources().getColor(R.color.primary_color));
+        progressEndColor = typedArray.getColor(R.styleable.WYAProgress_progressEndColor, getResources().getColor(R.color.primary_color));
         
         circleThickness = typedArray.getDimension(R.styleable.WYAProgress_circleThickness, dip2px(context, 10));
         

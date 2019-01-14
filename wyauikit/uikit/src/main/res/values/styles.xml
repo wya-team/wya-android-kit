@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/tools">
+<resources>
 
     <!--dialog:自定义dialog背景全透明无边框theme -->
     <style name="WYACustomDialog" parent="android:style/Theme.Dialog">
@@ -107,4 +107,12 @@
         <item name="switchDuration">3000</item>
     </style>
 
+    <!-- style_button_global_option-->
+    <style name="style_button_global_option"></style>
+
+    <!-- style_stepper_global_option-->
+    <style name="style_stepper_global_option"></style>
+
+    <!-- style_progress_global_option-->
+    <style name="style_progress_global_option"></style>
 </resources>

@@ -65,41 +65,46 @@ public class WYAStepper extends LinearLayout {
     }
     
     public WYAStepper(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
+    }
+
+
+    public WYAStepper(Context context, AttributeSet attrs, int defStyleAttr){
+        super(context, attrs, defStyleAttr);
         LayoutInflater.from(context).inflate(R.layout.wya_stepper, this, true);
         initView();
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WYAStepper);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WYAStepper, defStyleAttr, R.style.style_stepper_global_option);
         if (a != null) {
             //设置减号背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
             reduceDrawable = a.getDrawable(R.styleable.WYAStepper_reduceDrawable);
             setReduceBackgroundDrawable(reduceDrawable);
-    
+
             //记录减号按钮被按下时的背景图片
             reduceDrawablePress = a.getDrawable(R.styleable.WYAStepper_reduceDrawablePress);
-    
+
             //记录减号按钮无法点击时的背景图片
             reduceDisableDrawablePress = a.getDrawable(R.styleable.WYAStepper_reduceDisableDrawablePress);
-    
+
             //设置加号背景图片，若backColor与backGroundDrawable同时存在，则backGroundDrawable将覆盖backColor
             addDrawable = a.getDrawable(R.styleable.WYAStepper_addDrawable);
             setAddBackgroundDrawable(addDrawable);
-    
+
             //记录加号按钮被按下时的背景图片
             addDrawablePress = a.getDrawable(R.styleable.WYAStepper_addDrawablePress);
             //记录加号按钮无法点击时的背景图片
             addDisableDrawablePress = a.getDrawable(R.styleable.WYAStepper_addDisableDrawablePress);
-    
+
             value = a.getInt(R.styleable.WYAStepper_value, 0);
             maxNum = a.getInt(R.styleable.WYAStepper_maxNum, 0);
             minNum = a.getInt(R.styleable.WYAStepper_minNum, 0);
-    
+
             setWidth(maxNum);
-    
+
             setValue(value);
             stepperEtNum.setCursorVisible(false);
             a.recycle();
         }
-        
+
         stepperImgReduce.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View arg0, MotionEvent event) {
@@ -107,14 +112,14 @@ public class WYAStepper extends LinearLayout {
                 return setReduceTouchStyle(event.getAction());
             }
         });
-        
+
         stepperImgReduce.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 reduce();
             }
         });
-        
+
         stepperImgAdd.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View arg0, MotionEvent event) {
@@ -122,24 +127,23 @@ public class WYAStepper extends LinearLayout {
                 return setAddTouchStyle(event.getAction());
             }
         });
-        
+
         stepperImgAdd.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 add();
             }
         });
-        
+
         stepperEtNum.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 stepperEtNum.setCursorVisible(true);
             }
         });
-        
+
         setValueListener();
     }
-    
     private void setWidth(int maxNum) {
         stepperEtNum.setWidth((maxNum + "").length() * dip2px(getContext(), 10));
     }
