@@ -6,7 +6,7 @@
     android:background="@drawable/choice_menu_item_bg"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="@dimen/dp_10">
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/folder_first_image"
