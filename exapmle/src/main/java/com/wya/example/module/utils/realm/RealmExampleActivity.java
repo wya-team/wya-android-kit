@@ -25,6 +25,8 @@ import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @date: 2019/1/8 10:54
  * @author: Chunjiang Mao
@@ -33,7 +35,7 @@ import io.realm.RealmResults;
  */
 
 public class RealmExampleActivity extends BaseActivity {
-    
+
     @BindView(R.id.tv_db_name)
     TextView tvDbName;
     @BindView(R.id.tv_id)
@@ -46,41 +48,38 @@ public class RealmExampleActivity extends BaseActivity {
     RecyclerView recycleView;
     @BindView(R.id.tv_choose)
     TextView tvChoose;
-    
+
     private RealmResults<User> userList;
-    
+
     private Realm realm;
-    
+
     private RealmListAdapter realmListAdapter;
     private List<String> data = new ArrayList<>();
     private int choosePosition;
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_realm_example;
     }
-    
+
     @Override
     protected void initView() {
         setTitle("Realm（增删改查）");
-        
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(RealmExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(RealmExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(RealmExampleActivity.this, url);
         });
-        
         initRealm();
-        
         initRecycleView();
         query();
     }
-    
+
     private void initRecycleView() {
         recycleView.setLayoutManager(new LinearLayoutManager(this));
         realmListAdapter = new RealmListAdapter(this, R.layout.wya_realm_item, data);
@@ -97,12 +96,12 @@ public class RealmExampleActivity extends BaseActivity {
             }
         });
     }
-    
+
     private void initRealm() {
         realm = Realm.getDefaultInstance();
         tvDbName.setText("数据库名称：" + realm.getConfiguration().getRealmFileName());
     }
-    
+
     @OnClick({R.id.wya_button_add, R.id.wya_button_reduce, R.id.wya_button_update, R.id.wya_button_query})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -164,7 +163,7 @@ public class RealmExampleActivity extends BaseActivity {
                 break;
         }
     }
-    
+
     private void query() {
         userList = realm.where(User.class).findAll();
         userList = userList.sort("id");
@@ -175,7 +174,7 @@ public class RealmExampleActivity extends BaseActivity {
         }
         realmListAdapter.setNewData(data);
     }
-    
+
     private void delete() {
         //先查找到数据  
         final RealmResults<User> userList = realm.where(User.class).findAll();
@@ -189,7 +188,7 @@ public class RealmExampleActivity extends BaseActivity {
             });
         }
     }
-    
+
     private void add(RealmObject realmObject) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -199,7 +198,7 @@ public class RealmExampleActivity extends BaseActivity {
             }
         });
     }
-    
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

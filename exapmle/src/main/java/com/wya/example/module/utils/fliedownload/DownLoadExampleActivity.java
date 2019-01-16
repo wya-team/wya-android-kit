@@ -21,6 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
 import static com.wya.example.module.utils.fliedownload.FlieConfig.FILE_VIDEO_DIR;
 
 /**
@@ -50,11 +51,11 @@ public class DownLoadExampleActivity extends BaseActivity {
     protected void initView() {
         setTitle("下载(util(FileManagerUtil)");
 
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");

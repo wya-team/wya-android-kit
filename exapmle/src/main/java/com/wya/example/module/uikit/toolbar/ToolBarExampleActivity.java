@@ -10,6 +10,8 @@ import com.wya.utils.utils.StringUtil;
 
 import butterknife.OnClick;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @date: 2018/11/20 15:00
  * @author: Chunjiang Mao
@@ -18,27 +20,27 @@ import butterknife.OnClick;
  */
 
 public class ToolBarExampleActivity extends BaseActivity {
-    
+
     @Override
     protected void initView() {
         setTitle("导航栏(toolbar)");
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(ToolBarExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(ToolBarExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(ToolBarExampleActivity.this, url);
         });
     }
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_tool_bar_example;
     }
-    
+
     @OnClick({R.id.radio_toolbar_show, R.id.radio_toolbar_unshow, R.id.radio_right_anther_show, R.id.radio_right_anther_unshow, R.id.radio_red, R.id.radio_blue, R.id.radio_greeen, R.id.radio_left_show, R.id.radio_left_unshow, R.id.radio_tv_left_show, R.id.radio_tv_left_unshow, R.id.radio_right_show, R.id.radio_right_unshow, R.id.radio_tv_right_show, R.id.radio_tv_right_unshow, R.id.radio_tv_right_anther_show, R.id.radio_tv_right_anther_unshow})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -107,5 +109,5 @@ public class ToolBarExampleActivity extends BaseActivity {
                 break;
         }
     }
-    
+
 }

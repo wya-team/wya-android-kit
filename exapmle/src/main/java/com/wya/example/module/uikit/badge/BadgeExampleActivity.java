@@ -21,66 +21,68 @@ import com.wya.utils.utils.StringUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @author :
  */
 public class BadgeExampleActivity extends BaseActivity {
-    
+
     @BindView(R.id.ll_dot)
     LinearLayout llDot;
-    
+
     @BindView(R.id.tv_num_dot)
     TextView tvNumDot;
-    
+
     @BindView(R.id.v_string_dot)
     View vStringDot;
-    
+
     @BindView(R.id.v_market_dot_1)
     View vMarketDot1;
-    
+
     @BindView(R.id.v_market_dot_2)
     View vMarketDot2;
-    
+
     @BindView(R.id.v_market_dot_3)
     View vMarketDot3;
-    
+
     @BindView(R.id.v_market_dot_4)
     View vMarketDot4;
-    
+
     @BindView(R.id.v_market_dot_5)
     View vMarketDot5;
-    
+
     @BindView(R.id.ll_corner_dot)
     LinearLayout llCornerDot;
-    
+
     @BindView(R.id.tv_corner_dot)
     TextView tvCornerDot;
-    
+
     @BindView(R.id.v_bitmap_dot)
     View vBitmapDot;
     private IBadgeView mDot;
     private IBadgeView mNumDot;
     private IBadgeView mStringDot;
-    
+
     public static void start(Context context) {
         if (null != context) {
             context.startActivity(new Intent(context, BadgeExampleActivity.class));
         }
     }
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_badge_example;
     }
-    
+
     @Override
     protected void initView() {
         setTitle("徽标数(badge)");
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(BadgeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(BadgeExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
@@ -89,7 +91,7 @@ public class BadgeExampleActivity extends BaseActivity {
         showDot(llDot);
         showBadgeCenterEnd(tvNumDot, 55, true, 50);
         showStringBadge(vStringDot, "new", false);
-        
+
         showBadgeCenterStart(vMarketDot1, "减");
         showBadgeCenterStart(vMarketDot2, "惠");
         showBadgeCenterStart(vMarketDot3, "免");
@@ -99,7 +101,7 @@ public class BadgeExampleActivity extends BaseActivity {
         showBadgeDrawableCenterEnd(tvCornerDot, ContextCompat.getDrawable(this, R.drawable.icon_sale_badge), true);
         showBadgeDrawableCenter(vBitmapDot, ContextCompat.getDrawable(this, R.drawable.icon_on_sale));
     }
-    
+
     @OnClick({R.id.ll_dot_container, R.id.ll_num_dot, R.id.ll_string_dot})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -113,7 +115,7 @@ public class BadgeExampleActivity extends BaseActivity {
                     mNumDot.updateIsShow(false);
                 }
                 break;
-            
+
             case R.id.ll_string_dot:
                 if (null != mStringDot) {
                     mStringDot.updateIsShow(false);
@@ -123,7 +125,7 @@ public class BadgeExampleActivity extends BaseActivity {
                 break;
         }
     }
-    
+
     public void showDot(View view) {
         if (view == null) {
             return;
@@ -134,7 +136,7 @@ public class BadgeExampleActivity extends BaseActivity {
         mDot = builder.create();
         mDot.bindToTarget(view);
     }
-    
+
     public void showBadgeCenterEnd(View view, int num, boolean isOmitMode, int omit) {
         if (view == null) {
             return;
@@ -149,7 +151,7 @@ public class BadgeExampleActivity extends BaseActivity {
         mNumDot = builder.create();
         mNumDot.bindToTarget(view);
     }
-    
+
     public void showStringBadge(View view, String text, boolean isAttach) {
         if (view == null) {
             return;
@@ -162,14 +164,14 @@ public class BadgeExampleActivity extends BaseActivity {
                 .create();
         mStringDot.bindToTarget(view);
     }
-    
+
     public void showBadgeCenterStart(View view, String text) {
         if (view == null) {
             return;
         }
         showBadgeCenterStart(view, text, null, false);
     }
-    
+
     public void showBadgeCenterStart(View view, String text, Drawable badgeDrawable, boolean isAttach) {
         if (view == null) {
             return;
@@ -183,7 +185,7 @@ public class BadgeExampleActivity extends BaseActivity {
                 .create();
         badgeView.bindToTarget(view);
     }
-    
+
     public void showBadgeDrawableCenterEnd(View view, Drawable badgeDrawable, boolean isAttach) {
         if (view == null) {
             return;
@@ -196,7 +198,7 @@ public class BadgeExampleActivity extends BaseActivity {
                 .create();
         badgeView.bindToTarget(view);
     }
-    
+
     public void showBadgeDrawableCenter(View view, Drawable badgeDrawable) {
         if (view == null) {
             return;
@@ -209,6 +211,6 @@ public class BadgeExampleActivity extends BaseActivity {
                 .create();
         badgeView.bindToTarget(view);
     }
-    
+
 }
 

@@ -10,6 +10,8 @@ import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @date: 2018/12/3 18:00
  * @author: Chunjiang Mao
@@ -18,23 +20,23 @@ import butterknife.BindView;
  */
 
 public class StepperExampleActivity extends BaseActivity {
-    
+
     @BindView(R.id.stepper)
     WYAStepper stepper;
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_stepper_example;
     }
-    
+
     @Override
     protected void initView() {
         setTitle("步进器(stepper)");
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(StepperExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(StepperExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");

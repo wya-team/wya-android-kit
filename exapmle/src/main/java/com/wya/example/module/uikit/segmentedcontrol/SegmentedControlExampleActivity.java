@@ -14,13 +14,15 @@ import com.wya.utils.utils.StringUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @author : XuDonglin
  * @time : 2019-01-10
  * @description :
  */
 public class SegmentedControlExampleActivity extends BaseActivity {
-    
+
     @BindView(R.id.segment_normal)
     WYASegmentedView mSegmentNormal;
     @BindView(R.id.segment_more)
@@ -29,24 +31,22 @@ public class SegmentedControlExampleActivity extends BaseActivity {
     WYASegmentedView mSegmentColor;
     @BindView(R.id.segment_enable)
     WYASegmentedView mSegmentEnable;
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_segmented_control_example;
     }
-    
+
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-        
         initTextStyle();
-        
         setTitle("分段控制器(segmentedcontrol)");
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(SegmentedControlExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(SegmentedControlExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
@@ -59,9 +59,9 @@ public class SegmentedControlExampleActivity extends BaseActivity {
                 Toast.makeText(SegmentedControlExampleActivity.this, "标题" + (position + 1), Toast
                         .LENGTH_SHORT).show();
             }
-            
+
         });
-        
+
         mSegmentMore.addTabs(new String[]{"标题1", "标题2", "标题3"});
         mSegmentMore.setOnItemClickListener(new WYASegmentedView.OnItemClickListener() {
             @Override
@@ -71,7 +71,7 @@ public class SegmentedControlExampleActivity extends BaseActivity {
             }
         });
         mSegmentMore.setItemClicked(1);
-        
+
         mSegmentColor.addTabs(new String[]{"标题1", "标题2", "标题3"});
         mSegmentColor.setOnItemClickListener(new WYASegmentedView.OnItemClickListener() {
             @Override
@@ -82,9 +82,9 @@ public class SegmentedControlExampleActivity extends BaseActivity {
         });
         mSegmentEnable.addTabs(new String[]{"标题1", "标题2"});
         mSegmentEnable.setEnabled(false);
-        
+
     }
-    
+
     /**
      * 设置字体不随系统大小
      */
@@ -94,5 +94,5 @@ public class SegmentedControlExampleActivity extends BaseActivity {
         config.setToDefaults();
         res.updateConfiguration(config, res.getDisplayMetrics());
     }
-    
+
 }

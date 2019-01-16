@@ -10,7 +10,7 @@
     </item>
     <item android:id="@android:id/progress">
         <scale
-            android:drawable="@drawable/wya_custom_progress_bar_ct"
+            android:drawable="@drawable/bg_progress_bar"
             android:scaleWidth="100%" />
     </item>
 </layer-list>

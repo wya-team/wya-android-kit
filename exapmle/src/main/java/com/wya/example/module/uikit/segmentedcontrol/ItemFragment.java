@@ -15,11 +15,11 @@ import com.wya.example.R;
  * @description :
  */
 public class ItemFragment extends Fragment {
-    
+
     public ItemFragment() {
         // Required empty public constructor
     }
-    
+
     public static ItemFragment newInstance(int position) {
         Bundle args = new Bundle();
         args.putInt("position", position);
@@ -27,7 +27,7 @@ public class ItemFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,5 +38,5 @@ public class ItemFragment extends Fragment {
         textView.setText("fragment " + position);
         return view;
     }
-    
+
 }

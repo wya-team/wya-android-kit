@@ -24,13 +24,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @author : XuDonglin
  * @time : 2019-01-10
  * @description :
  */
 public class QRCodeExampleActivity extends BaseActivity {
-    
+
     public static final String TAG = "QRCodeExampleActivity";
     @BindView(R.id.qr_code_edit)
     EditText mQrCodeEdit;
@@ -39,20 +41,20 @@ public class QRCodeExampleActivity extends BaseActivity {
     @BindView(R.id.imageview)
     ImageView mImageview;
     private String path;
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_qrcode_example;
     }
-    
+
     @Override
     protected void initView() {
         setTitle("生成二维码");
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(QRCodeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(QRCodeExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
@@ -61,13 +63,13 @@ public class QRCodeExampleActivity extends BaseActivity {
         ButterKnife.bind(this);
         path = getDiskCachePath(this) + "/test.jpg";
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        
+
         mLineCodeEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            
+
             }
-            
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() > 80) {
@@ -76,14 +78,14 @@ public class QRCodeExampleActivity extends BaseActivity {
                     mLineCodeEdit.setSelection(80);
                 }
             }
-            
+
             @Override
             public void afterTextChanged(Editable s) {
-            
+
             }
         });
     }
-    
+
     /**
      * 获取cache路径
      *
@@ -98,7 +100,7 @@ public class QRCodeExampleActivity extends BaseActivity {
             return context.getCacheDir().getPath();
         }
     }
-    
+
     @OnClick({R.id.crate_qr_image, R.id.crate_line_image})
     public void onViewClicked(View view) {
         switch (view.getId()) {
