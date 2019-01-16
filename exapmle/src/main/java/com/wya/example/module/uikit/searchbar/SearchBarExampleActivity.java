@@ -13,6 +13,8 @@ import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @date: 2018/11/22 16:13
  * @author: Chunjiang Mao
@@ -21,20 +23,20 @@ import butterknife.BindView;
  */
 
 public class SearchBarExampleActivity extends BaseActivity {
-    
+
     @BindView(R.id.wya_search_bar)
     WYASearchBar wyaSearchBar;
     @BindView(R.id.parent)
     LinearLayout parent;
-    
+
     @Override
     protected void initView() {
         setTitle("搜索栏(searchBar)");
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(SearchBarExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(SearchBarExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
@@ -42,7 +44,7 @@ public class SearchBarExampleActivity extends BaseActivity {
         });
         setWYASearchBar();
     }
-    
+
     private void setWYASearchBar() {
         wyaSearchBar.setOnClickCancelListener(new WYASearchBar.OnTextClickListener() {
             @Override
@@ -50,7 +52,7 @@ public class SearchBarExampleActivity extends BaseActivity {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
             }
-            
+
             @Override
             public void onClickSearch() {
                 getWyaToast().showShort(wyaSearchBar.getEtSearch());
@@ -64,12 +66,12 @@ public class SearchBarExampleActivity extends BaseActivity {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
         });
-        
+
     }
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_search_bar_example;
     }
-    
+
 }

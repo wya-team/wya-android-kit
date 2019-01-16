@@ -32,6 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
 import static com.wya.example.module.utils.fliedownload.FlieConfig.FILE_VIDEO_DIR;
 
 /**
@@ -40,7 +41,7 @@ import static com.wya.example.module.utils.fliedownload.FlieConfig.FILE_VIDEO_DI
  * @Description : 文件下载
  */
 public class FileDownloadExampleActivity extends BaseActivity implements IRomUpdateCallback {
-    
+
     @BindView(R.id.down_tab_layout)
     TabLayout mDownTabLayout;
     @BindView(R.id.down_viewpager)
@@ -59,30 +60,30 @@ public class FileDownloadExampleActivity extends BaseActivity implements IRomUpd
             ".yinyuetai" +
             ".com/4599015ED06F94848EBF877EAAE13886.mp4";
     private String url2 = "https://video.pc6.com/v/1810/pyqxxjc3.mp4";
-    
+
     private List<Fragment> mFragmentList = new ArrayList<>();
     private boolean isShow = false;
     private List<String> mEditList = new ArrayList<>();
     private FileManagerUtil fileManagerUtil;
     private int selectState = -1;
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_file_download_example;
     }
-    
+
     @Override
     protected void initView() {
         ButterKnife.bind(this);
         fileManagerUtil = new FileManagerUtil();
-        
+
         setTitle("下载(util(FileManagerUtil)");
-        
-        String url = getIntent().getStringExtra("url");
+
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
@@ -98,13 +99,13 @@ public class FileDownloadExampleActivity extends BaseActivity implements IRomUpd
                 changeEditState();
             }
         });
-        
+
         mFragmentList.add(new FileDownFragment());
         mFragmentList.add(new DownFileCompleteFragment());
-        
+
         initSpace();
         initTabLayoutAndViewPager();
-        
+
     }
 
     private void changeEditState() {
@@ -118,7 +119,7 @@ public class FileDownloadExampleActivity extends BaseActivity implements IRomUpd
             }
         }
     }
-    
+
     private void initTabLayoutAndViewPager() {
         WYATabLayoutControl.lineWidth(mDownTabLayout);
         mDownViewpager.setAdapter(new DownPagerAdapter(getSupportFragmentManager()));
@@ -142,13 +143,13 @@ public class FileDownloadExampleActivity extends BaseActivity implements IRomUpd
             }
         });
     }
-    
+
     private void initSpace() {
         mDownSpace.setText(DataCleanUtil.getFormatSize(DataCleanUtil.getFolderSize(new File
                 (FILE_VIDEO_DIR))));
         mFreeSpace.setText(getSDAvailableSize());
     }
-    
+
     private String getSDAvailableSize() {
         File path = Environment.getExternalStorageDirectory();
         StatFs stat = new StatFs(path.getPath());
@@ -156,7 +157,7 @@ public class FileDownloadExampleActivity extends BaseActivity implements IRomUpd
         long availableBlocks = stat.getAvailableBlocks();
         return Formatter.formatFileSize(this, blockSize * availableBlocks);
     }
-    
+
     @Override
     public void update() {
         initSpace();
@@ -196,18 +197,18 @@ public class FileDownloadExampleActivity extends BaseActivity implements IRomUpd
                 break;
         }
     }
-    
+
     class DownPagerAdapter extends FragmentPagerAdapter {
-        
+
         public DownPagerAdapter(FragmentManager fm) {
             super(fm);
         }
-        
+
         @Override
         public Fragment getItem(int i) {
             return mFragmentList.get(i);
         }
-        
+
         @Override
         public int getCount() {
             return 2;

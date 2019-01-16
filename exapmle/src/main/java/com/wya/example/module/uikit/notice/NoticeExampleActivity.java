@@ -15,28 +15,30 @@ import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @author :
  */
 public class NoticeExampleActivity extends BaseActivity {
-    
+
     @BindView(R.id.vs_down2up)
     WYASwitcherView vsDown2Up;
-    
+
     @BindView(R.id.vs_up2down)
     WYASwitcherView vsUp2Down;
-    
+
     @BindView(R.id.ll_closable_switcher)
     LinearLayout llClosableSwitcher;
-    
+
     @BindView(R.id.vs_left2right)
     WYASwitcherView vsLeft2Right;
-    
+
     @BindView(R.id.vs_right2left)
     WYASwitcherView vsRight2Left;
-    
+
     private String noticeText;
-    
+
     public static void start(Activity activity) {
         if (null == activity) {
             return;
@@ -44,21 +46,21 @@ public class NoticeExampleActivity extends BaseActivity {
         Intent intent = new Intent(activity, NoticeExampleActivity.class);
         activity.startActivity(intent);
     }
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.layout_activity_notice_view;
     }
-    
+
     @Override
     protected void initView() {
         setTitle("通告栏(notice)");
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         noticeText = getResources().getString(R.string.string_uikit_notice_text);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(NoticeExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(NoticeExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
@@ -66,9 +68,9 @@ public class NoticeExampleActivity extends BaseActivity {
         });
         showSwitcher();
     }
-    
+
     private void showSwitcher() {
-        
+
         // down2up
         vsDown2Up.setSwitcheNextViewListener(new WYASwitcherView.SwitcherViewListener() {
             @Override
@@ -88,7 +90,7 @@ public class NoticeExampleActivity extends BaseActivity {
             }
         });
         vsDown2Up.inflate(R.layout.item_switch_view).startSwitcher();
-        
+
         // up2down
         vsUp2Down.setSwitcheNextViewListener(new WYASwitcherView.SwitcherViewListener() {
             @Override
@@ -111,7 +113,7 @@ public class NoticeExampleActivity extends BaseActivity {
             }
         });
         vsUp2Down.inflate(R.layout.item_switch_view).startSwitcher();
-        
+
         // left2right
         vsLeft2Right.setSwitcheNextViewListener(new WYASwitcherView.SwitcherViewListener() {
             @Override
@@ -131,7 +133,7 @@ public class NoticeExampleActivity extends BaseActivity {
             }
         });
         vsLeft2Right.inflate(R.layout.item_switch_view).startSwitcher();
-        
+
         // right2left
         vsRight2Left.setSwitcheNextViewListener(new WYASwitcherView.SwitcherViewListener() {
             @Override
@@ -144,6 +146,6 @@ public class NoticeExampleActivity extends BaseActivity {
         });
         vsRight2Left.inflate(R.layout.item_switch_view).startSwitcher();
     }
-    
+
 }
 

@@ -42,6 +42,8 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @date: 2018/11/23 16:23
  * @author: Chunjiang Mao
@@ -50,11 +52,11 @@ import butterknife.BindView;
  */
 
 public class DialogExampleActivity extends BaseActivity {
-    
+
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
-    
+
     @BindView(R.id.expend_list)
     CustomerExpandableListView expendList;
     @BindView(R.id.tab_loading)
@@ -73,12 +75,12 @@ public class DialogExampleActivity extends BaseActivity {
     private ImageView loading2;
     private ImageView loading3;
     private int listSize = 50;
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_dialog_example;
     }
-    
+
     @Override
     protected void initView() {
         type = getIntent().getIntExtra("type", 1);
@@ -88,11 +90,11 @@ public class DialogExampleActivity extends BaseActivity {
             setTitle("活动指示器(dialog)");
             tabLoading.setVisibility(View.VISIBLE);
         }
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(DialogExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(DialogExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
@@ -102,7 +104,7 @@ public class DialogExampleActivity extends BaseActivity {
         initExpandList();
         initLoading();
     }
-    
+
     private void initLoading() {
         loading = (ImageView) findViewById(R.id.loading);
         loading2 = (ImageView) findViewById(R.id.loading2);
@@ -114,9 +116,9 @@ public class DialogExampleActivity extends BaseActivity {
         loading2.startAnimation(animation2);
         loading3.startAnimation(animation3);
     }
-    
+
     private void initExpandList() {
-        
+
         adapter = new DialogExpandableListAdapter(this, mDatas);
         expendList.setAdapter(adapter);
         expendList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -132,7 +134,7 @@ public class DialogExampleActivity extends BaseActivity {
         adapter.notifyDataSetChanged();
         expendList.setGroupIndicator(null);
     }
-    
+
     private void setClick(int groupPosition, int childPosition) {
         String s = mDatas.get(groupPosition).getChild().get(childPosition);
         switch (s) {
@@ -195,7 +197,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     recyclerView.setLayoutManager(new LinearLayoutManager(DialogExampleActivity.this));
                                     dialogListAdapter = new DialogListAdapter(DialogExampleActivity.this, R.layout.wya_custom_dialog_item_layout, data);
                                     recyclerView.setAdapter(dialogListAdapter);
-                                    
+
                                     //RecyclerView条目点击事件
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
@@ -235,7 +237,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     recyclerView.setLayoutManager(new LinearLayoutManager(DialogExampleActivity.this));
                                     dialogListAdapter = new DialogListAdapter(DialogExampleActivity.this, R.layout.wya_custom_dialog_item_layout, data);
                                     recyclerView.setAdapter(dialogListAdapter);
-                                    
+
                                     //RecyclerView条目点击事件
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
@@ -304,7 +306,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     recyclerView.setLayoutManager(new LinearLayoutManager(DialogExampleActivity.this));
                                     dialogListAdapter = new DialogListAdapter(DialogExampleActivity.this, R.layout.wya_custom_dialog_item_layout, data);
                                     recyclerView.setAdapter(dialogListAdapter);
-                                    
+
                                     //RecyclerView条目点击事件
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
@@ -345,7 +347,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     recyclerView.setLayoutManager(new GridLayoutManager(DialogExampleActivity.this, 4));
                                     ShareDialogListAdapter shareDialogListAdapter = new ShareDialogListAdapter(DialogExampleActivity.this, R.layout.wya_share_item, shareItems);
                                     recyclerView.setAdapter(shareDialogListAdapter);
-                                    
+
                                     //RecyclerView条目点击事件
                                     shareDialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
@@ -372,19 +374,19 @@ public class DialogExampleActivity extends BaseActivity {
                 wyaCustomDialog.setYesClickListener(() -> wyaCustomDialog.dismiss());
                 wyaCustomDialog.show();
                 break;
-            
+
             case "菊花加载":
                 wyaLoadingDialog = new WYALoadingDialog(this, false, false);
                 wyaLoadingDialog.show();
                 starTimer(1);
                 break;
-            
+
             case "系统加载":
                 wyaCustomDialog = new WYACustomDialog.Builder(this)
                         .setLayoutId(R.layout.wya_dialog_system_loading, new CustomListener() {
                             @Override
                             public void customLayout(View v) {
-                            
+
                             }
                         })
                         .cancelable(false)
@@ -416,7 +418,7 @@ public class DialogExampleActivity extends BaseActivity {
                 break;
         }
     }
-    
+
     /**
      * 设置计时器
      *
@@ -435,7 +437,7 @@ public class DialogExampleActivity extends BaseActivity {
             }
         }, 3000, TimeUnit.MILLISECONDS);
     }
-    
+
     private void initItems() {
         mDatas = new ArrayList<>();
         List<String> bean1 = new ArrayList<>();
@@ -449,27 +451,27 @@ public class DialogExampleActivity extends BaseActivity {
         Item item1 = new Item();
         item1.setTitle("提示框");
         item1.setChild(bean1);
-        
+
         bean2.add("无标题列表");
         bean2.add("有标题列表");
         bean2.add("自定义");
         Item item2 = new Item();
         item2.setTitle("自定义");
         item2.setChild(bean2);
-        
+
         bean3.add("底部弹出列表");
         bean3.add("底部弹出分享");
         Item item3 = new Item();
         item3.setTitle("底部弹出");
         item3.setChild(bean3);
-        
+
         bean4.add("系统加载");
         bean4.add("菊花加载");
         bean4.add("自定义加载");
         Item item4 = new Item();
         item4.setTitle("加载");
         item4.setChild(bean4);
-        
+
         if (type == 1) {
             mDatas.add(item1);
             mDatas.add(item2);
@@ -478,5 +480,5 @@ public class DialogExampleActivity extends BaseActivity {
             mDatas.add(item4);
         }
     }
-    
+
 }

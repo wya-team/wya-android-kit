@@ -7,6 +7,8 @@ import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.utils.utils.StringUtil;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @date: 2019/1/8 9:53
  * @author: Chunjiang Mao
@@ -15,25 +17,25 @@ import com.wya.utils.utils.StringUtil;
  */
 
 public class CardViewExampleActivity extends BaseActivity {
-    
+
     @Override
     protected void initView() {
         setTitle("卡片(customitems)");
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(CardViewExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(CardViewExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(CardViewExampleActivity.this, url);
         });
     }
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_wyacard_view_example;
     }
-    
+
 }

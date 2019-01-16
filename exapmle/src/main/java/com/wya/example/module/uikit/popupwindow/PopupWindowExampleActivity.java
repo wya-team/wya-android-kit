@@ -24,6 +24,8 @@ import com.wya.utils.utils.StringUtil;
 
 import butterknife.BindView;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @date: 2019/1/8 9:56
  * @author: Chunjiang Mao
@@ -44,7 +46,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
     protected void initView() {
         StatusBarUtil.setLightMode(this);
         setTitle("PopupWindow");
-        url = getIntent().getStringExtra("url");
+        url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setPopupWindow();
@@ -64,7 +66,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
                     return true;
                 }
             });
-            tabHelp.setOnClickListener(v12 -> startActivity(new Intent(PopupWindowExampleActivity.this, ReadmeActivity.class).putExtra("url", url)));
+            tabHelp.setOnClickListener(v12 -> startActivity(new Intent(PopupWindowExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url)));
         }).build();
 
     }

@@ -25,13 +25,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @author : XuDonglin
  * @time : 2019-01-10
  * @description :
  */
 public class PickerViewExampleActivity extends BaseActivity {
-    
+
     private static final String TAG = "PickerViewExampleActivity";
     @BindView(R.id.ymdhms_text)
     TextView mYmdhmsText;
@@ -49,12 +51,12 @@ public class PickerViewExampleActivity extends BaseActivity {
     private List<List<String>> data2 = new ArrayList<>();
     private List<List<List<String>>> data3 = new ArrayList<>();
     private CustomTimePicker mCustomTimePicker;
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_picker_view_example;
     }
-    
+
     @Override
     protected void initView() {
         Resources res = getResources();
@@ -63,12 +65,12 @@ public class PickerViewExampleActivity extends BaseActivity {
         res.updateConfiguration(config, res.getDisplayMetrics());
         ButterKnife.bind(this);
         setTitle("日期选择(pickerview)");
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
             startActivity(new Intent(PickerViewExampleActivity.this, ReadmeActivity.class)
-                    .putExtra("url", url));
+                    .putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
@@ -87,7 +89,7 @@ public class PickerViewExampleActivity extends BaseActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         Bean bean = new Gson().fromJson(data, Bean.class);
         for (int i = 0; i < bean.getData().size(); i++) {
             data1.add(bean.getData().get(i).getName());
@@ -104,9 +106,9 @@ public class PickerViewExampleActivity extends BaseActivity {
             data2.add(list);
             data3.add(listList);
         }
-        
+
     }
-    
+
     @OnClick({R.id.ymdhms_layout, R.id.ymdhms_layout_with, R.id.ymd_layout, R.id.hms_layout, R.id
             .hm_space_layout, R.id.address_layout})
     public void onViewClicked(View view) {
@@ -194,6 +196,6 @@ public class PickerViewExampleActivity extends BaseActivity {
             default:
                 break;
         }
-        
+
     }
 }

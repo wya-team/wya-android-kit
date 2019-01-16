@@ -26,6 +26,8 @@ import com.wya.utils.utils.StringUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @date: 2019/1/8 9:52
  * @author: Chunjiang Mao
@@ -59,27 +61,27 @@ public class StartCameraExampleActivity extends BaseActivity {
      * 默认可以拍照和录制视频
      */
     private int state = WYACameraView.BUTTON_STATE_BOTH;
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_camera_example_start;
     }
-    
+
     @Override
     protected void initView() {
         setTitle("CameraExample");
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(StartCameraExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(StartCameraExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(StartCameraExampleActivity.this, url);
         });
     }
-    
+
     /**
      * 获取权限
      */
@@ -109,7 +111,7 @@ public class StartCameraExampleActivity extends BaseActivity {
             startActivityForResult(intent, 100);
         }
     }
-    
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -130,7 +132,7 @@ public class StartCameraExampleActivity extends BaseActivity {
             Toast.makeText(this, "请检查相机权限~", Toast.LENGTH_SHORT).show();
         }
     }
-    
+
     @TargetApi(23)
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -167,7 +169,7 @@ public class StartCameraExampleActivity extends BaseActivity {
             }
         }
     }
-    
+
     @OnClick({R.id.take_photo, R.id.take_video, R.id.take_video_and_photo, R.id.btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -190,5 +192,5 @@ public class StartCameraExampleActivity extends BaseActivity {
                 break;
         }
     }
-    
+
 }

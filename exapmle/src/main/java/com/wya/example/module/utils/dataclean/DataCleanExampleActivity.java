@@ -13,30 +13,32 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @author : XuDonglin
  * @time : 2019-01-05
  * @desc : 清理缓存
  */
 public class DataCleanExampleActivity extends BaseActivity {
-    
+
     @BindView(R.id.cache_data)
     TextView mCacheData;
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_data_clean;
     }
-    
+
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-        
-        String url = getIntent().getStringExtra("url");
+
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
@@ -45,7 +47,7 @@ public class DataCleanExampleActivity extends BaseActivity {
         setTitle("清理缓存");
         initCache();
     }
-    
+
     private void initCache() {
         try {
             String totalCacheSize = DataCleanUtil.getTotalCacheSize(this);
@@ -54,7 +56,7 @@ public class DataCleanExampleActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
-    
+
     @OnClick(R.id.clean_btn)
     public void onViewClicked() {
         DataCleanUtil.cleanTotalCache(this);

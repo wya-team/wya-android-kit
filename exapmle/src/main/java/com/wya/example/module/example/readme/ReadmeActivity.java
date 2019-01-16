@@ -15,6 +15,8 @@ import com.wya.example.base.BaseActivity;
 
 import butterknife.BindView;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @date: 2019/1/4 11:46
  * @author: Chunjiang Mao
@@ -23,29 +25,29 @@ import butterknife.BindView;
  */
 
 public class ReadmeActivity extends BaseActivity {
-    
+
     @BindView(R.id.web_view)
     WebView webView;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    
+
     private String url = "";
     private boolean skip;
     private int progressMax = 100;
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_readme;
     }
-    
+
     @Override
     protected void initView() {
-        url = getIntent().getStringExtra("url");
+        url = getIntent().getStringExtra(EXTRA_URL);
         skip = getIntent().getBooleanExtra("skip", false);
         setTitle(url.split("/")[url.split("/").length - 1].replace(".md", ""));
         initWebView(url);
     }
-    
+
     @SuppressLint("NewApi")
     private void initWebView(String content) {
         WebSettings settings = webView.getSettings();
@@ -76,12 +78,12 @@ public class ReadmeActivity extends BaseActivity {
         //不显示webview缩放按钮
         settings.setDisplayZoomControls(false);
     }
-    
+
     /**
      * Web视图
      */
     class HelloWebViewClient extends WebViewClient {
-        
+
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             if (skip) {
@@ -89,7 +91,7 @@ public class ReadmeActivity extends BaseActivity {
             }
             return true;
         }
-        
+
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);

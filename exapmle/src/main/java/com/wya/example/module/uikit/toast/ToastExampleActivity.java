@@ -13,6 +13,8 @@ import com.wya.utils.utils.StringUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+
 /**
  * @date: 2018/11/22 14:26
  * @author: Chunjiang Mao
@@ -21,33 +23,33 @@ import butterknife.OnClick;
  */
 
 public class ToastExampleActivity extends BaseActivity {
-    
+
     @BindView(R.id.radio_center)
     RadioButton radioCenter;
     @BindView(R.id.radio_bottom)
     RadioButton radioBottom;
     private int gravity = Gravity.CENTER;
-    
+
     @Override
     protected void initView() {
         setTitle("轻提示(toast)");
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
         setSecondRightIcon(R.drawable.icon_help);
         setSecondRightIconClickListener(view -> {
-            startActivity(new Intent(ToastExampleActivity.this, ReadmeActivity.class).putExtra("url", url));
+            startActivity(new Intent(ToastExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
             getWyaToast().showShort("链接地址复制成功");
             StringUtil.copyString(ToastExampleActivity.this, url);
         });
     }
-    
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_toast_example;
     }
-    
+
     @OnClick({R.id.radio_center, R.id.radio_bottom, R.id.tv_more_custom_text, R.id.tv_normal, R.id.tv_more_text, R.id.tv_long, R.id.tv_custom_success, R.id.tv_custom_fail, R.id.tv_custom_warn, R.id.tv_normal_custom})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -89,5 +91,5 @@ public class ToastExampleActivity extends BaseActivity {
                 break;
         }
     }
-    
+
 }
