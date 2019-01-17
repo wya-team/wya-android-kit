@@ -21,7 +21,7 @@
         <item name="android:windowExitAnimation">@anim/popup_window_add_hide</item>
     </style>
 
-    <style name="GalleryCheckBox" parent="Base.Widget.AppCompat.CompoundButton.CheckBox">
+    <style name="GalleryCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/picture_checkbox_selector</item>
     </style>
 

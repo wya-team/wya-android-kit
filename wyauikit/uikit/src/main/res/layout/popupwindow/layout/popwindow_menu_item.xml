@@ -16,6 +16,6 @@
         android:paddingTop="6dp"
         android:text="测试"
         android:textColor="@drawable/btn_white_click_color"
-        android:textSize="@dimen/sp_14" />
+        android:textSize="14sp" />
 
 </LinearLayout>
