@@ -47,6 +47,7 @@ public class ExampleActivity extends BaseActivity {
         fragmentTransaction.add(R.id.content, exampleFragment);
         fragmentTransaction.add(R.id.content, aboutUsFragment);
         fragmentTransaction.show(exampleFragment).hide(aboutUsFragment).commit();
+
     }
     
     private void setTabBar() {

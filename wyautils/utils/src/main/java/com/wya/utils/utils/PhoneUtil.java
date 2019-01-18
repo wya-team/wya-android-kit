@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.StatFs;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.WindowManager;
 
 import java.io.File;
@@ -35,7 +36,7 @@ public class PhoneUtil {
      * 手机号判断
      */
     private static Pattern PHONE_PATTERN = Pattern.compile("^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\\\d{8}$");
-    
+
     public static PhoneUtil getInstance() {
         if (phoneUtil == null) {
             synchronized (PhoneUtil.class) {
@@ -46,12 +47,12 @@ public class PhoneUtil {
         }
         return phoneUtil;
     }
-    
+
     public static boolean isMobileNO(String mobile) {
         Matcher m = PHONE_PATTERN.matcher(mobile);
         return m.matches();
     }
-    
+
     /**
      * 获取手机系统版本号 API
      *
@@ -67,7 +68,7 @@ public class PhoneUtil {
         }
         return sdkVersion;
     }
-    
+
     /**
      * 获取手机系统版本号 6.0.1
      *
@@ -76,21 +77,21 @@ public class PhoneUtil {
     public String getSDKVersion() {
         return android.os.Build.VERSION.RELEASE;
     }
-    
+
     /**
      * 获取手机型号
      */
     public String getPhoneModel() {
         return android.os.Build.MODEL;
     }
-    
+
     /**
      * 获取手机型号
      */
     public String getMobileBrand() {
         return android.os.Build.BRAND;
     }
-    
+
     /**
      * 获取手机宽度
      */
@@ -100,7 +101,7 @@ public class PhoneUtil {
                 .getSystemService(Context.WINDOW_SERVICE);
         return wm.getDefaultDisplay().getWidth();
     }
-    
+
     /**
      * 获取手机高度
      *
@@ -112,7 +113,7 @@ public class PhoneUtil {
                 .getSystemService(Context.WINDOW_SERVICE);
         return wm.getDefaultDisplay().getHeight();
     }
-    
+
     /**
      * 获取手机imei串号 ,GSM手机的 IMEI 和 CDMA手机的 MEID.
      *
@@ -127,7 +128,7 @@ public class PhoneUtil {
         }
         return tm.getDeviceId();
     }
-    
+
     /**
      * 获取手机sim卡号
      *
@@ -142,7 +143,7 @@ public class PhoneUtil {
         }
         return tm.getSubscriberId();
     }
-    
+
     /**
      * 获取手机号
      *
@@ -157,7 +158,7 @@ public class PhoneUtil {
         }
         return tm.getLine1Number();
     }
-    
+
     /**
      * 判断sd卡是否挂载
      */
@@ -169,7 +170,7 @@ public class PhoneUtil {
             return false;
         }
     }
-    
+
     /**
      * 获取sd卡剩余空间的大小
      */
@@ -185,7 +186,7 @@ public class PhoneUtil {
         // 返回SD卡空闲大小 单位MB
         return (freeBlocks * blockSize) / 1024 / 1024;
     }
-    
+
     /**
      * 获取sd卡空间的总大小
      */
@@ -201,14 +202,14 @@ public class PhoneUtil {
         // 返回SD卡大小  单位MB
         return (allBlocks * blockSize) / 1024 / 1024;
     }
-    
+
     /**
      * 判断是否是平板
      */
     public boolean isTablet(Context context) {
         return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
-    
+
     /**
      * 判断一个apk是否安装
      *
@@ -224,7 +225,7 @@ public class PhoneUtil {
         }
         return true;
     }
-    
+
     /**
      * 拨打电话
      *
@@ -238,7 +239,7 @@ public class PhoneUtil {
             context.startActivity(intent);
         }
     }
-    
+
     /**
      * 打开网页
      */
@@ -250,7 +251,7 @@ public class PhoneUtil {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * 获取应用权限 名称列表
      */
@@ -261,12 +262,12 @@ public class PhoneUtil {
                 PackageManager.GET_PERMISSIONS);
         return getAppPermissions(packageInfo);
     }
-    
+
     public String[] getAppPermissions(PackageInfo packageInfo)
             throws NameNotFoundException {
         return packageInfo.requestedPermissions;
     }
-    
+
     /**
      * 获取手机内安装的应用
      */
@@ -274,7 +275,7 @@ public class PhoneUtil {
         PackageManager pm = context.getPackageManager();
         return pm.getInstalledPackages(0);
     }
-    
+
     /**
      * 获取手机安装非系统应用
      */
@@ -291,7 +292,7 @@ public class PhoneUtil {
         infos = null;
         return apps;
     }
-    
+
     /**
      * 获取安装应用的信息
      */
@@ -305,7 +306,7 @@ public class PhoneUtil {
         appInfos.put("packageName", aif.packageName);
         return appInfos;
     }
-    
+
     /**
      * 打开指定包名的应用
      */
@@ -315,7 +316,7 @@ public class PhoneUtil {
         startIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(startIntent);
     }
-    
+
     /**
      * 卸载指定包名的应用
      */
@@ -325,5 +326,40 @@ public class PhoneUtil {
         intent.setData(uri);
         context.startActivity(intent);
     }
-    
+
+    /**
+     * 获取当前的运营商
+     *
+     * @param context
+     * @return 运营商名字
+     */
+    public static String getOperator(Context context) {
+
+        String ProvidersName = "";
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        String IMSI = telephonyManager.getSubscriberId();
+        Log.i("qweqwes", "运营商代码" + IMSI);
+        if (IMSI != null) {
+            if (IMSI.startsWith("46000") || IMSI.startsWith("46002") || IMSI.startsWith("46007")) {
+                ProvidersName = "中国移动";
+            } else if (IMSI.startsWith("46001") || IMSI.startsWith("46006")) {
+                ProvidersName = "中国联通";
+            } else if (IMSI.startsWith("46003") || IMSI.startsWith("46005")) {
+                ProvidersName = "中国电信";
+            }
+            return ProvidersName;
+        } else {
+            return "没有获取到sim卡信息";
+        }
+    }
+
+    /**
+     * 获取设备名称
+     *
+     * @return 设备名称
+     */
+    public String getDeviceName() {
+        return android.os.Build.DEVICE;
+    }
+
 }
