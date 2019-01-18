@@ -89,7 +89,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
             startActivity(new Intent(ImagePickerExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(ImagePickerExampleActivity.this, url);
         });
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);

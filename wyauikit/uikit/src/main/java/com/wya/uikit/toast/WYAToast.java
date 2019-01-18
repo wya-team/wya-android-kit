@@ -21,16 +21,11 @@ import com.wya.uikit.R;
 public class WYAToast {
     private static Toast toast;
     private static Toast toast_custom;
-    private Context context;
-    
-    public WYAToast(Context context) {
-        this.context = context;
-    }
-    
+
     /**
      * 初始化Toast(消息，时间)
      */
-    private Toast initToast(CharSequence message, int duration) {
+    public static Toast initToast(Context context, CharSequence message, int duration) {
         toast = Toast.makeText(context, message, duration);
         return toast;
     }
@@ -38,49 +33,28 @@ public class WYAToast {
     /**
      * 短时间显示Toast(消息 String等)
      */
-    public void showShort(CharSequence message) {
-        initToast(message, Toast.LENGTH_SHORT).show();
-    }
-    
-    /**
-     * 短时间显示Toast（资源id)
-     */
-    public void showShort(int strResId) {
-        initToast(context.getResources().getText(strResId), Toast.LENGTH_SHORT).show();
+    public static void showShort(Context context, CharSequence message) {
+        initToast(context, message, Toast.LENGTH_SHORT).show();
     }
     
     /**
      * 长时间显示Toast(消息 String等)
      */
-    public void showLong(CharSequence message) {
-        initToast(message, Toast.LENGTH_LONG).show();
+    public static void showLong(Context context, CharSequence message) {
+        initToast(context, message, Toast.LENGTH_LONG).show();
     }
-    
-    /**
-     * 长时间显示Toast（资源id)
-     */
-    public void showLong(int strResId) {
-        initToast(context.getResources().getText(strResId), Toast.LENGTH_LONG).show();
-    }
-    
+
     /**
      * 自定义显示Toast时间(消息 String等，时间)
      */
-    public void show(CharSequence message, int duration) {
-        initToast(message, duration).show();
+    public static void show(Context context, CharSequence message, int duration) {
+        initToast(context, message, duration).show();
     }
-    
-    /**
-     * 自定义显示Toast时间(消息 资源id，时间)
-     */
-    public void show(int strResId, int duration) {
-        initToast(context.getResources().getText(strResId), duration).show();
-    }
-    
+
     /**
      * 显示有image的toast 这是个view
      */
-    public Toast showToastWithImage(final String tvStr, final int imageResource, int gravity) {
+    public static Toast showToastWithImage(Context context, final String tvStr, final int imageResource, int gravity) {
         if (toast_custom == null) {
             toast_custom = new Toast(context);
         }

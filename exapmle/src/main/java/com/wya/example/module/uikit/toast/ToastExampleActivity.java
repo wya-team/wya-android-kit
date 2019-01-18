@@ -40,7 +40,7 @@ public class ToastExampleActivity extends BaseActivity {
             startActivity(new Intent(ToastExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(ToastExampleActivity.this, url);
         });
     }
@@ -54,28 +54,28 @@ public class ToastExampleActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_normal:
-                getWyaToast().showShort("系统提示");
+                showShort("系统提示");
                 break;
             case R.id.tv_more_text:
-                getWyaToast().showShort("我有很多字要提示,需要换行显示，哈哈哈哈哈哈哈。。。");
+                showShort("我有很多字要提示,需要换行显示，哈哈哈哈哈哈哈。。。");
                 break;
             case R.id.tv_long:
-                getWyaToast().showLong("长时间提示");
+                toastShowLong("长时间提示");
                 break;
             case R.id.tv_custom_success:
-                getWyaToast().showToastWithImage("成功提示", R.drawable.icon_succesful, gravity);
+                toastShowLong("成功提示", R.drawable.icon_succesful, gravity);
                 break;
             case R.id.tv_custom_fail:
-                getWyaToast().showToastWithImage("失败提示", R.drawable.icon_fail, gravity);
+                toastShowLong("失败提示", R.drawable.icon_fail, gravity);
                 break;
             case R.id.tv_custom_warn:
-                getWyaToast().showToastWithImage("警告提示", R.drawable.icon_waring, gravity);
+                toastShowLong("警告提示", R.drawable.icon_waring, gravity);
                 break;
             case R.id.tv_normal_custom:
-                getWyaToast().showToastWithImage("自定义普通文字提示", 0, gravity);
+                toastShowLong("自定义普通文字提示", 0, gravity);
                 break;
             case R.id.tv_more_custom_text:
-                getWyaToast().showToastWithImage("我有很多字要提示,需要换行显示，哈哈哈哈哈哈哈。。。", 0, gravity);
+                toastShowLong("我有很多字要提示,需要换行显示，哈哈哈哈哈哈哈。。。", 0, gravity);
                 break;
             case R.id.radio_center:
                 gravity = Gravity.CENTER;

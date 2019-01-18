@@ -57,7 +57,7 @@ public class QRCodeExampleActivity extends BaseActivity {
             startActivity(new Intent(QRCodeExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(QRCodeExampleActivity.this, url);
         });
         ButterKnife.bind(this);

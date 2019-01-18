@@ -28,7 +28,7 @@ public class ButtonExampleActivity extends BaseActivity {
             startActivity(new Intent(ButtonExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(ButtonExampleActivity.this, url);
         });
     }

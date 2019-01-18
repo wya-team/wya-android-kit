@@ -97,7 +97,7 @@ public class DialogExampleActivity extends BaseActivity {
             startActivity(new Intent(DialogExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(DialogExampleActivity.this, url);
         });
         initItems();
@@ -202,7 +202,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            getWyaToast().showShort(data.get(position));
+                                            showShort(data.get(position));
                                         }
                                     });
                                 }
@@ -242,7 +242,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            getWyaToast().showShort(data.get(position));
+                                            showShort(data.get(position));
                                         }
                                     });
                                 }
@@ -311,7 +311,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     dialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            getWyaToast().showShort(data.get(position));
+                                            showShort(data.get(position));
                                         }
                                     });
                                 }
@@ -352,7 +352,7 @@ public class DialogExampleActivity extends BaseActivity {
                                     shareDialogListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                            getWyaToast().showShort(shareItems.get(position).getName() + "");
+                                            showShort(shareItems.get(position).getName()+ "");
                                         }
                                     });
                                 }

@@ -40,7 +40,7 @@ public class PaginationViewExampleActivity extends BaseActivity {
             startActivity(new Intent(PaginationViewExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(PaginationViewExampleActivity.this, url);
         });
         Drawable drawableLeft = getResources().getDrawable(R.drawable.icon_row_right);

@@ -39,7 +39,7 @@ public class StepperExampleActivity extends BaseActivity {
             startActivity(new Intent(StepperExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(StepperExampleActivity.this, url);
         });
     }

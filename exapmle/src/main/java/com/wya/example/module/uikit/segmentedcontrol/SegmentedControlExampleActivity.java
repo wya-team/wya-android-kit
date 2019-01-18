@@ -49,7 +49,7 @@ public class SegmentedControlExampleActivity extends BaseActivity {
             startActivity(new Intent(SegmentedControlExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(SegmentedControlExampleActivity.this, url);
         });
         mSegmentNormal.addTabs(new String[]{"标题1", "标题2"});

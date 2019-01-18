@@ -40,7 +40,7 @@ public class BannerExampleActivity extends BaseActivity {
                     (EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(BannerExampleActivity.this, url);
         });
 

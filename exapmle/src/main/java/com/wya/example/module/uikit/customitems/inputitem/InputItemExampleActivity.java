@@ -29,7 +29,7 @@ public class InputItemExampleActivity extends BaseActivity {
             startActivity(new Intent(InputItemExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(InputItemExampleActivity.this, url);
         });
     }

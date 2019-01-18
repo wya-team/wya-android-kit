@@ -39,7 +39,7 @@ public class SearchBarExampleActivity extends BaseActivity {
             startActivity(new Intent(SearchBarExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(SearchBarExampleActivity.this, url);
         });
         setWYASearchBar();
@@ -55,7 +55,7 @@ public class SearchBarExampleActivity extends BaseActivity {
 
             @Override
             public void onClickSearch() {
-                getWyaToast().showShort(wyaSearchBar.getEtSearch());
+                showShort(wyaSearchBar.getEtSearch());
             }
         });
         wyaSearchBar.setOnTextChangeListener(s -> {

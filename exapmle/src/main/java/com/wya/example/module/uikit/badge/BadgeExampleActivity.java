@@ -85,7 +85,7 @@ public class BadgeExampleActivity extends BaseActivity {
             startActivity(new Intent(BadgeExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(BadgeExampleActivity.this, url);
         });
         showDot(llDot);

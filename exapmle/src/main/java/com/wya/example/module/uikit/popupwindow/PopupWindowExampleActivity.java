@@ -61,7 +61,7 @@ public class PopupWindowExampleActivity extends BaseActivity {
             tabHelp.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    getWyaToast().showShort("链接地址复制成功");
+                    showShort("链接地址复制成功");
                     StringUtil.copyString(PopupWindowExampleActivity.this, url);
                     return true;
                 }

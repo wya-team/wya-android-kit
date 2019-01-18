@@ -77,7 +77,7 @@ public class StartCameraExampleActivity extends BaseActivity {
             startActivity(new Intent(StartCameraExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(StartCameraExampleActivity.this, url);
         });
     }

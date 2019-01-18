@@ -72,7 +72,7 @@ public class RealmExampleActivity extends BaseActivity {
             startActivity(new Intent(RealmExampleActivity.this, ReadmeActivity.class).putExtra(EXTRA_URL, url));
         });
         setSecondRightIconLongClickListener(view -> {
-            getWyaToast().showShort("链接地址复制成功");
+            showShort("链接地址复制成功");
             StringUtil.copyString(RealmExampleActivity.this, url);
         });
         initRealm();
@@ -126,7 +126,7 @@ public class RealmExampleActivity extends BaseActivity {
                 if (isAdd) {
                     add(user);
                 } else {
-                    getWyaToast().showShort("请输入正确的值");
+                    showShort("请输入正确的值");
                 }
                 break;
             case R.id.wya_button_reduce:
@@ -153,7 +153,7 @@ public class RealmExampleActivity extends BaseActivity {
                 if (isAdd2) {
                     add(user2);
                 } else {
-                    getWyaToast().showShort("请输入正确的值");
+                    showShort("请输入正确的值");
                 }
                 break;
             case R.id.wya_button_query:
