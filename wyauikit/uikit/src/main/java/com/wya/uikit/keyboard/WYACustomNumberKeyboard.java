@@ -50,7 +50,7 @@ public class WYACustomNumberKeyboard {
             Editable editable = editText.getText();
             int start = editText.getSelectionStart();
             if (primaryCode == Keyboard.KEYCODE_DELETE) {
-                //key  codes 为-5
+                // key  codes 为-5
                 if (editable != null && editable.length() > 0) {
                     if (start > 0) {
                         editable.delete(start - 1, start);
@@ -222,7 +222,7 @@ public class WYACustomNumberKeyboard {
             newkeyList.get(i).codes[0] = resultList.get(i)
                     .getCode();
         }
-        //   hideKeyBoard();
+        // hideKeyBoard();
         keyboardView.setKeyboard(keyboard);
     }
     

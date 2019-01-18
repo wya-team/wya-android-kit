@@ -50,11 +50,11 @@ public class ExampleActivity extends BaseActivity {
     }
     
     private void setTabBar() {
-        //取消偏移
+        // 取消偏移
         tab.disableShiftMode();
-        //取消item动画
+        // 取消item动画
         tab.enableAnimation(false);
-        //item点击监听
+        // item点击监听
         tab.setOnNavigationItemSelectedListener(item -> {
             fragmentTransaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {

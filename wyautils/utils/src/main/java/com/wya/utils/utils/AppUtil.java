@@ -102,7 +102,7 @@ public class AppUtil {
         } catch (PackageManager.NameNotFoundException e) {
             applicationInfo = null;
         }
-        //xxx根据自己的情况获取drawable
+        // xxx根据自己的情况获取drawable
         Drawable d = packageManager.getApplicationIcon(applicationInfo);
         BitmapDrawable bd = (BitmapDrawable) d;
         Bitmap bm = bd.getBitmap();

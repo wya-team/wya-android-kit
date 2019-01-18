@@ -41,12 +41,12 @@ public class QRCodeUtil {
                 return false;
             }
             
-            //配置参数
+            // 配置参数
             Map<EncodeHintType, Object> hints = new HashMap<>();
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-            //容错级别
+            // 容错级别
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
-            //设置空白边距的宽度
+            // 设置空白边距的宽度
             hints.put(EncodeHintType.MARGIN, 0);
             
             // 图像数据转换，使用了矩阵转换
@@ -73,7 +73,7 @@ public class QRCodeUtil {
                 bitmap = addLogo(bitmap, logoBm);
             }
             
-            //必须使用compress方法将bitmap保存到文件中再进行读取。直接返回的bitmap是没有任何压缩的，内存消耗巨大！
+            // 必须使用compress方法将bitmap保存到文件中再进行读取。直接返回的bitmap是没有任何压缩的，内存消耗巨大！
             return bitmap != null && bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(filePath));
         } catch (WriterException | IOException e) {
             e.printStackTrace();
@@ -94,7 +94,7 @@ public class QRCodeUtil {
             return src;
         }
         
-        //获取图片的宽高
+        // 获取图片的宽高
         int srcWidth = src.getWidth();
         int srcHeight = src.getHeight();
         int logoWidth = logo.getWidth();
@@ -108,7 +108,7 @@ public class QRCodeUtil {
             return src;
         }
         
-        //logo大小为二维码整体大小的1/5
+        // logo大小为二维码整体大小的1/5
         float scaleFactor = srcWidth * 1.0f / 5 / logoWidth;
         Bitmap bitmap = Bitmap.createBitmap(srcWidth, srcHeight, Bitmap.Config.ARGB_8888);
         try {
@@ -139,7 +139,7 @@ public class QRCodeUtil {
         if (TextUtils.isEmpty(content)) {
             return false;
         }
-        //配置参数
+        // 配置参数
         Map<EncodeHintType, Object> hints = new HashMap<>();
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
         // 容错级别 这里选择最高H级别
@@ -150,10 +150,10 @@ public class QRCodeUtil {
             // 图像数据转换，使用了矩阵转换 参数顺序分别为：编码内容，编码类型，生成图片宽度，生成图片高度，设置参数
             BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.CODE_128, widthPix, heightPix, hints);
             
-            //增加：把宽度修改过后的真实的宽度
+            // 增加：把宽度修改过后的真实的宽度
             widthPix = bitMatrix.getWidth();
             int[] pixels = new int[widthPix * heightPix];
-//             下面这里按照条形码的算法，逐个生成条形码的图片，
+            // 下面这里按照条形码的算法，逐个生成条形码的图片，
             // 两个for循环是图片横列扫描的结果
             for (int y = 0; y < heightPix; y++) {
                 for (int x = 0; x < widthPix; x++) {
@@ -168,7 +168,7 @@ public class QRCodeUtil {
             }
             Bitmap bitmap = Bitmap.createBitmap(widthPix, heightPix, Bitmap.Config.ARGB_8888);
             bitmap.setPixels(pixels, 0, widthPix, 0, 0, widthPix, heightPix);
-            //必须使用compress方法将bitmap保存到文件中再进行读取。直接返回的bitmap是没有任何压缩的，内存消耗巨大！
+            // 必须使用compress方法将bitmap保存到文件中再进行读取。直接返回的bitmap是没有任何压缩的，内存消耗巨大！
             return bitmap != null && bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(filePath));
         } catch (WriterException e) {
             e.printStackTrace();

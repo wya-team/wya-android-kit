@@ -63,13 +63,13 @@ public class WYAConstants {
          * @param context
          */
         private void initializeBuilder(Context context) {
-            //默认数据库名称
+            // 默认数据库名称
             dbName = "wyaRealm.realm";
-            //默认白色
+            // 默认白色
             themeColor = Color.parseColor("#ffffff");
-            //默认打印log
+            // 默认打印log
             isShowLog = true;
-            //默认打印log
+            // 默认打印log
             isDebug = false;
         }
         

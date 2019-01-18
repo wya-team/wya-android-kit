@@ -223,7 +223,7 @@ public class DateUtil {
     public static Integer getDay(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        //获取日
+        // 获取日
         int day = cal.get(Calendar.DATE);
         return day;
     }
@@ -767,19 +767,19 @@ public class DateUtil {
     public static Date addDate(Date date, int year, int month, int day, int hour, int minute, int second, int millisecond) {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
-        //加减年数
+        // 加减年数
         c.add(Calendar.YEAR, year);
-        //加减月数
+        // 加减月数
         c.add(Calendar.MONTH, month);
-        //加减天数
+        // 加减天数
         c.add(Calendar.DATE, day);
-        //加减小时数
+        // 加减小时数
         c.add(Calendar.HOUR, hour);
-        //加减分钟数
+        // 加减分钟数
         c.add(Calendar.MINUTE, minute);
-        //加减秒
+        // 加减秒
         c.add(Calendar.SECOND, second);
-        //加减毫秒数
+        // 加减毫秒数
         c.add(Calendar.MILLISECOND, millisecond);
         
         return c.getTime();

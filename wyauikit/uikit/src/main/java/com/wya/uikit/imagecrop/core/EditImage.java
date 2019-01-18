@@ -320,7 +320,7 @@ public class EditImage {
     
                 // cFrame要是一个暂时clipFrame
                 if (mClipWin.isHoming()) {
-                    //  偏移中心
+                    // 偏移中心
                     m.setRotate(getTargetRotate() - getRotate(), mClipFrame.centerX(), mClipFrame.centerY());
                     m.mapRect(cFrame, mClipWin.getOffsetFrame(scrollX, scrollY));
     

@@ -90,7 +90,7 @@ public class WYAProgress extends View {
         mArgbEvaluator = new ArgbEvaluator();
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WYAProgress, defStyleAttr, R.style.style_progress_global_option);
         
-        //获取自定义属性和默认值
+        // 获取自定义属性和默认值
         circleColor = typedArray.getColor(R.styleable.WYAProgress_circleColor, context.getResources().getColor(R.color.progress_gray));
         
         progressCircleColor = typedArray.getColor(R.styleable.WYAProgress_progressCircleColor, context.getResources().getColor(R.color.primary_color));
@@ -103,7 +103,7 @@ public class WYAProgress extends View {
         maxProgress = typedArray.getInt(R.styleable.WYAProgress_maxProgress, 100);
         animationDuration = typedArray.getInt(R.styleable.WYAProgress_animationDuration, 1000);
         
-        //控制颜色渐变的开关
+        // 控制颜色渐变的开关
         progressArgbColor = typedArray.getBoolean(R.styleable.WYAProgress_progressArgbColor, false);
         
         smallCircleEnable = typedArray.getBoolean(R.styleable.WYAProgress_smallCircleEnable, true);
@@ -124,10 +124,10 @@ public class WYAProgress extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //第1步：画出最外层的圆环
+        // 第1步：画出最外层的圆环
         drawOuterFirstCircle(canvas);
         
-        //第2步，画出圆弧
+        // 第2步，画出圆弧
         drawArc(canvas);
     }
     
@@ -137,16 +137,16 @@ public class WYAProgress extends View {
      * @param canvas 画笔
      */
     private void drawOuterFirstCircle(Canvas canvas) {
-        //设置圆的颜色
+        // 设置圆的颜色
         paint.setColor(circleColor);
     
-        //设置只绘制边框
+        // 设置只绘制边框
         paint.setStyle(STROKE);
-        //设置圆的宽度
+        // 设置圆的宽度
         paint.setStrokeWidth(circleThickness);
-        //消除锯齿
+        // 消除锯齿
         paint.setAntiAlias(true);
-        //画出圆
+        // 画出圆
         canvas.drawCircle(center, center, outerFirstCircleRadius, paint);
     }
     
@@ -166,14 +166,14 @@ public class WYAProgress extends View {
         }
         paint.setAntiAlias(true);
     
-        //设置圆弧宽度
+        // 设置圆弧宽度
         paint.setStrokeWidth(circleThickness + 1);
-        //用于定义的圆弧的形状和大小的界限
+        // 用于定义的圆弧的形状和大小的界限
         RectF oval2 = new RectF(center - outerFirstCircleRadius, center - outerFirstCircleRadius, center + outerFirstCircleRadius, center + outerFirstCircleRadius);
     
         double progress;
     
-        //这里画圆环的时候第二个参数为开始角度，0表示右边中线，90表示底部，-outerFirstCircleRadius
+        // 这里画圆环的时候第二个参数为开始角度，0表示右边中线，90表示底部，-outerFirstCircleRadius
         if (currentProgress < maxProgress) {
             progress = currentProgress;
             drawArcByColor(canvas, oval2, progress);

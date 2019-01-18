@@ -44,7 +44,7 @@ public class HelperExampleActivity extends BaseActivity {
                     + "手机型号：" + PhoneUtil.getInstance().getPhoneModel() + "\n"
                     + "手机宽度：" + PhoneUtil.getInstance().getPhoneWidth(getApplicationContext()) + "\n"
                     + "手机高度：" + PhoneUtil.getInstance().getPhoneHeight(getApplicationContext()) + "\n"
-                    //需要动态获取READ_PHONE_STATE权限
+                    // 需要动态获取READ_PHONE_STATE权限
                     //                    + "手机imei串号 ,GSM手机的 IMEI 和 CDMA手机的 MEID.：" + PhoneUtil.getInstance().getPhoneImei(getApplicationContext()) + "\n"
                     //                    + "手机sim卡号：" + PhoneUtil.getInstance().getPhoneSim(getApplicationContext()) + "\n"
                     //                    + "手机号：" + PhoneUtil.getInstance().getPhoneNum(getApplicationContext()) + "\n"

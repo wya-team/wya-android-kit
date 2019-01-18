@@ -56,7 +56,7 @@ public class ReadmeActivity extends BaseActivity {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
-        //解决图片不显示
+        // 解决图片不显示
         settings.setBlockNetworkImage(false);
         webView.setDrawingCacheEnabled(true);
         webView.setWebViewClient(new HelloWebViewClient());
@@ -75,7 +75,7 @@ public class ReadmeActivity extends BaseActivity {
         webView.setInitialScale(150);
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setBuiltInZoomControls(true);
-        //不显示webview缩放按钮
+        // 不显示webview缩放按钮
         settings.setDisplayZoomControls(false);
     }
 
