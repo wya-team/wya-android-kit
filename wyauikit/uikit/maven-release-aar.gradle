@@ -2,8 +2,8 @@
 apply plugin: 'maven'
 // 2.maven-信息
 ext {// ext is a gradle closure allowing the declaration of global properties
-    PUBLISH_GROUP_ID = 'wyauikit.uikit'
-    PUBLISH_ARTIFACT_ID = 'release'
+    PUBLISH_GROUP_ID = 'com.wya.uikit'
+    PUBLISH_ARTIFACT_ID = 'uikit'
     PUBLISH_VERSION = android.defaultConfig.versionName
 }
 // 3.maven-路径
