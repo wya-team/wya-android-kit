@@ -3,7 +3,7 @@ apply plugin: 'maven'
 // 2.maven-信息
 ext {// ext is a gradle closure allowing the declaration of global properties
     PUBLISH_GROUP_ID = 'wyahardware.hardware'
-    PUBLISH_ARTIFACT_ID = 'debug'
+    PUBLISH_ARTIFACT_ID = 'release'
     PUBLISH_VERSION = android.defaultConfig.versionName
 }
 // 3.maven-路径
