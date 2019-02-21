@@ -46,11 +46,11 @@ public class LocalMediaLoader {
     private long videoMaxS = 0;
     private long videoMinS = 0;
     private OnLoadImageListener mListener;
-    
+
     private LocalMediaLoader(FragmentActivity activity) {
         mActivity = activity;
     }
-    
+
     /**
      * 全部模式下条件
      *
@@ -65,25 +65,43 @@ public class LocalMediaLoader {
                 + " AND " + MediaStore.MediaColumns.SIZE + ">0";
         return condition;
     }
-    
+
     public static LocalMediaLoader create(FragmentActivity activity) {
         return new LocalMediaLoader(activity);
     }
-    
-    public void loadImage(final OnLoadImageListener imageListener) {
+
+    public void loadImage(final OnLoadImageListener imageListener, int mediaType) {
         mActivity.getSupportLoaderManager().initLoader(PickerConfig.LOADER_IMAGE, null,
                 new LoaderManager.LoaderCallbacks<Cursor>() {
-                    
+
                     @NonNull
                     @Override
                     public Loader<Cursor> onCreateLoader(int i, @Nullable Bundle bundle) {
-                        CursorLoader cursorLoader = new CursorLoader(mActivity, QUERY_URI,
-                                PROJECTION, getSelectionArgsForAllMediaCondition(getDurationCondition(0, 0)), new
-                                String[]{String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE), String.valueOf
-                                (MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO)}, ORDER_BY);
+                        CursorLoader cursorLoader = null;
+
+                        switch (mediaType) {
+                            case PickerConfig.MEDIA_IMAGE:
+                                cursorLoader = new CursorLoader(mActivity, QUERY_URI,
+                                        PROJECTION, SELECTION, new
+                                        String[]{String.valueOf
+                                        (MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE)}, ORDER_BY);
+                                break;
+                            case PickerConfig.MEDIA_VIDEO:
+                                cursorLoader = new CursorLoader(mActivity, QUERY_URI,
+                                        PROJECTION, SELECTION, new
+                                        String[]{String.valueOf
+                                        (MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO)}, ORDER_BY);
+                                break;
+                            default:
+                                cursorLoader = new CursorLoader(mActivity, QUERY_URI,
+                                        PROJECTION, getSelectionArgsForAllMediaCondition(getDurationCondition(0, 0)), new
+                                        String[]{String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE), String.valueOf
+                                        (MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO)}, ORDER_BY);
+                                break;
+                        }
                         return cursorLoader;
                     }
-                    
+
                     @Override
                     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor
                             cursor) {
@@ -101,7 +119,7 @@ public class LocalMediaLoader {
                                             (cursor.getColumnIndexOrThrow(PROJECTION[2]));
                                     String duration = cursor.getString
                                             (cursor.getColumnIndexOrThrow(PROJECTION[3]));
-                                    
+
                                     LocalMedia localMedia = new LocalMedia(path, pictureType);
                                     //check video is damaged
                                     boolean isDamage = false;
@@ -113,11 +131,11 @@ public class LocalMediaLoader {
                                             isDamage = true;
                                         }
                                     }
-                                    
+
                                     if (!isDamage) {
                                         //add all
                                         mAllLocalMedia.add(localMedia);
-                                        
+
                                         //add single folder
                                         LocalMediaFolder imageFolder = getImageFolder(path,
                                                 mReturnFolders);
@@ -126,31 +144,31 @@ public class LocalMediaLoader {
                                         int imageNum = imageFolder.getImageNum();
                                         imageFolder.setImageNum(imageNum + 1);
                                     }
-                                    
+
                                 } while (cursor.moveToPrevious());
-                                
+
                                 allImageFolder.setImages(mAllLocalMedia);
                                 allImageFolder.setName("相册");
                                 allImageFolder.setImageNum(mAllLocalMedia.size());
                                 allImageFolder.setFirstImagePath(mAllLocalMedia.get(0).getPath());
                                 mReturnFolders.add(0, allImageFolder);
                             }
-                            
+
                         }
-                        
+
                         if (imageListener != null) {
                             imageListener.completed(mReturnFolders);
                         }
-                        
+
                     }
-                    
+
                     @Override
                     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-                    
+
                     }
                 });
     }
-    
+
     /**
      * create LocalMediaFolder to save LocalMedia
      *
@@ -173,7 +191,7 @@ public class LocalMediaLoader {
         imageFolders.add(newFolder);
         return newFolder;
     }
-    
+
     /**
      * 获取视频(最长或最小时间)
      *
@@ -186,13 +204,13 @@ public class LocalMediaLoader {
         if (exMaxLimit != 0) {
             maxS = Math.min(maxS, exMaxLimit);
         }
-        
+
         return String.format(Locale.CHINA, "%d <%s duration and duration <= %d",
                 Math.max(exMinLimit, videoMinS),
                 Math.max(exMinLimit, videoMinS) == 0 ? "" : "=",
                 maxS);
     }
-    
+
     public interface OnLoadImageListener {
         /**
          * completed

@@ -15,6 +15,7 @@ public class ImagePickerCreator {
     private WeakReference<Activity> mActivity;
     private WeakReference<Fragment> mFragment;
     private Intent intent;
+
     
     private ImagePickerCreator(Activity activity) {
         this(activity, null);
@@ -37,9 +38,13 @@ public class ImagePickerCreator {
     public static ImagePickerCreator create(Fragment fragment) {
         return new ImagePickerCreator(fragment);
     }
+
+    public ImagePickerCreator setMediaType(int mediaType) {
+        intent.putExtra(PickerConfig.MEDIA_TYPE, mediaType);
+        return this;
+    }
     
     public ImagePickerCreator forResult(int requestCode) {
-        
         getActivity().startActivityForResult(intent, requestCode);
         return this;
     }

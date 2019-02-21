@@ -73,6 +73,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     private int maxNum;
     private String imagePath;
     private LocalMediaFolder mCurrentFolder;
+    private int mediaType;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,16 +82,16 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         setColor(getResources().getColor(R.color.black));
         int selfPermission = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest
                 .permission.READ_EXTERNAL_STORAGE);
-        
+
+        mediaType = getIntent().getIntExtra(PickerConfig.MEDIA_TYPE, PickerConfig.MEDIA_DEFAULT);
+        maxNum = getIntent().getIntExtra(PickerConfig.IMAGE_NUMBER, 1);
         if (selfPermission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest
                     .permission.READ_EXTERNAL_STORAGE}, PERMISSION_STORAGE);
         } else {
             readLocalImage();
         }
-        
-        maxNum = getIntent().getIntExtra(PickerConfig.IMAGE_NUMBER, 1);
-        
+
         initView();
         initChoiceMenu();
         
@@ -273,7 +274,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                     pictureTitle.setText("相册");
                 }
             }
-        });
+        }, mediaType);
     }
     
     @Override
