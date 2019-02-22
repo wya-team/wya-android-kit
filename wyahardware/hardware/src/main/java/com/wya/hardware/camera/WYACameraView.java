@@ -287,7 +287,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
         mSwitchCamera.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                machine.mySwitch(mVideoView.getHolder(), screenProp);
+                turnCamera();
             }
         });
         //拍照 录像
@@ -368,7 +368,14 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
             }
         });
     }
-    
+
+    /**
+     * 调转摄像头
+     */
+    private void turnCamera() {
+        machine.mySwitch(mVideoView.getHolder(), screenProp);
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -661,7 +668,9 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
             }
         }).start();
     }
-    
+
+
+
     @Override
     public void stopVideo() {
         if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
