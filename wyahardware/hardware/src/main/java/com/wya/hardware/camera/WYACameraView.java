@@ -372,7 +372,7 @@ public class WYACameraView extends FrameLayout implements CameraInterface.Camera
     /**
      * 调转摄像头
      */
-    private void turnCamera() {
+    public void turnCamera() {
         machine.mySwitch(mVideoView.getHolder(), screenProp);
     }
 
