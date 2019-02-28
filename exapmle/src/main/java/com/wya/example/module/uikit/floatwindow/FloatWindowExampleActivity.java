@@ -9,7 +9,6 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
@@ -96,7 +95,8 @@ public class FloatWindowExampleActivity extends BaseActivity {
                 }
 
                 ImageView imageView = new ImageView(this);
-                Glide.with(getApplicationContext()).load("http://pic43.nipic.com/20140711/19187786_140828149528_2.jpg").into(imageView);
+                imageView.setBackgroundResource(R.drawable.floatwindow_icon);
+//                Glide.with(getApplicationContext()).load("http://pic43.nipic.com/20140711/19187786_140828149528_2.jpg").into(imageView);
 
                 FloatWindow
                         .with(getApplicationContext())
