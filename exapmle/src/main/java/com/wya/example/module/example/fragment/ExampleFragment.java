@@ -25,6 +25,7 @@ import com.wya.example.module.uikit.customitems.inputitem.InputItemExampleActivi
 import com.wya.example.module.uikit.customitems.list.ListExampleActivity;
 import com.wya.example.module.uikit.dialog.DialogExampleActivity;
 import com.wya.example.module.uikit.drawerlayout.DrawerLayoutExampleActivity;
+import com.wya.example.module.uikit.floatwindow.FloatWindowExampleActivity;
 import com.wya.example.module.uikit.imagepicker.ImagePickerExampleActivity;
 import com.wya.example.module.uikit.keyboard.KeyboardExampleActivity;
 import com.wya.example.module.uikit.notice.NoticeExampleActivity;
@@ -98,6 +99,7 @@ public class ExampleFragment extends Fragment {
         bean1.add("分页控制器(tablayout)");
         bean1.add("搜索栏(searchBar)");
         bean1.add("气泡(popupwindow)");
+        bean1.add("浮窗(floatwindow)");
         item1.setChild(bean1);
 
         ExampleItem item2 = new ExampleItem();
@@ -199,6 +201,9 @@ public class ExampleFragment extends Fragment {
                 break;
             case "气泡(popupwindow)":
                 startActivity(new Intent(getActivity(), PopupWindowExampleActivity.class).putExtra(EXTRA_URL, UIKIT_URL + "popupwindow" + "/README.md"));
+                break;
+            case "浮窗(floatwindow)":
+                startActivity(new Intent(getActivity(), FloatWindowExampleActivity.class).putExtra(EXTRA_URL, UIKIT_URL + "floatwindow" + "/README.md"));
                 break;
 
             case "按钮(button)":
