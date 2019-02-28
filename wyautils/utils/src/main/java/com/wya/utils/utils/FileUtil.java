@@ -1,6 +1,7 @@
 package com.wya.utils.utils;
 
 import android.graphics.Bitmap;
+import android.media.MediaRecorder;
 import android.os.Environment;
 
 import java.io.BufferedOutputStream;
@@ -87,5 +88,42 @@ public class FileUtil {
             return true;
         }
         return false;
+    }
+
+    private static MediaRecorder mRecorder;
+
+    /**
+     * 开始录音
+     *
+     * @param path 录音文件地址 如: xxx/xxx/record.amr
+     */
+    public static void startRecord(String path) {
+
+        mRecorder = new MediaRecorder();
+        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        //设置封装格式
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFile(path);
+        //设置编码格式
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+
+        try {
+            mRecorder.prepare();
+        } catch (IOException e) {
+        }
+        //录音
+        mRecorder.start();
+    }
+
+    /**
+     * 停止录音
+     */
+    public static void stopRecord() {
+        if (mRecorder == null) {
+            return;
+        }
+        mRecorder.stop();
+        mRecorder.release();
+        mRecorder = null;
     }
 }
