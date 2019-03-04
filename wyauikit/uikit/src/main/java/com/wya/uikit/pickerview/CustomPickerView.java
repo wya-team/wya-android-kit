@@ -134,6 +134,11 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
 		return this;
 	}
 
+	public CustomPickerView setIndex(int index1, int index2, int index3) {
+		option_picker_view.setIndex(index1, index2, index3);
+		return this;
+	}
+
 	public CustomPickerView setOutTextColor(int color) {
 		option_picker_view.setOuterTextColor(color);
 		return this;

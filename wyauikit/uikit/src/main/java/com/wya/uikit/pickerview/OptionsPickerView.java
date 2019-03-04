@@ -193,6 +193,12 @@ public class OptionsPickerView<T> extends LinearLayout {
 		return this;
 	}
 
+	public void setIndex(int index1, int index2, int index3) {
+		mWheelView1.setCurrentItem(index1);
+		mWheelView2.setCurrentItem(index2);
+		mWheelView3.setCurrentItem(index3);
+	}
+
 	public OptionsPickerView setNPData(List<T> data1, List<T> data2, List<T> data3) {
 
 		mWheelView1.setAdapter(new PickerViewAdapter<>(data1));
