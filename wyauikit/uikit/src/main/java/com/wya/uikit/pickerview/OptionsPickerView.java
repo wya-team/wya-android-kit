@@ -25,9 +25,9 @@ public class OptionsPickerView<T> extends LinearLayout {
     private List<T> mData1;
     private List<List<T>> mData2;
     private List<List<List<T>>> mData3;
-    private List<T>mNPData1;
-    private List<T>mNPData2;
-    private List<T>mNPData3;
+    private List<T> mNPData1;
+    private List<T> mNPData2;
+    private List<T> mNPData3;
     private int index1;
     private int index2;
     private int index3;
@@ -234,27 +234,29 @@ public class OptionsPickerView<T> extends LinearLayout {
         setNPIndex(index1, -1);
         return this;
     }
-    public OptionsPickerView setNPIndex(int index1,int index2) {
+
+    public OptionsPickerView setNPIndex(int index1, int index2) {
         setNPIndex(index1, index2, -1);
         return this;
     }
-    public OptionsPickerView setNPIndex(int index1,int index2,int index3) {
+
+    public OptionsPickerView setNPIndex(int index1, int index2, int index3) {
         if (index1 > -1) {
-            if (mNPData1.size() > index1) {
+            if (mNPData1 != null && mNPData1.size() > index1) {
                 mWheelView1.setCurrentItem(index1);
             } else {
                 throw new IndexOutOfBoundsException();
             }
         }
         if (index2 > -1) {
-            if (mNPData2.size() > index2) {
+            if (mNPData2 != null && mNPData2.size() > index2) {
                 mWheelView2.setCurrentItem(index2);
             } else {
                 throw new IndexOutOfBoundsException();
             }
         }
         if (index3 > -1) {
-            if (mNPData3.size() > index3) {
+            if (mNPData3 != null && mNPData3.size() > index3) {
                 mWheelView3.setCurrentItem(index3);
             } else {
                 throw new IndexOutOfBoundsException();
@@ -262,7 +264,6 @@ public class OptionsPickerView<T> extends LinearLayout {
         }
         return this;
     }
-
 
     public OptionsPickerView setDividerColor(int color) {
         mWheelView1.setDividerColor(color);
