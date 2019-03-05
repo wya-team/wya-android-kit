@@ -90,16 +90,19 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
         optionPickerView.setNPData(option1Items, null, null);
     }
 
-    public void setNPIndex(int index1) {
+    public CustomPickerView setNPIndex(int index1) {
         optionPickerView.setNPIndex(index1);
+        return this;
     }
 
-    public void setNPIndex(int index1, int index2) {
+    public CustomPickerView setNPIndex(int index1, int index2) {
         optionPickerView.setNPIndex(index1, index2);
+        return this;
     }
 
-    public void setNPIndex(int index1, int index2, int index3) {
+    public CustomPickerView setNPIndex(int index1, int index2, int index3) {
         optionPickerView.setNPIndex(index1, index2, index3);
+        return this;
     }
 
     public CustomPickerView setCycle(boolean isCycle) {

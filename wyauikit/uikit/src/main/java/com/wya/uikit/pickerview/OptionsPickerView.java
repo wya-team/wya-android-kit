@@ -25,6 +25,9 @@ public class OptionsPickerView<T> extends LinearLayout {
     private List<T> mData1;
     private List<List<T>> mData2;
     private List<List<List<T>>> mData3;
+    private List<T>mNPData1;
+    private List<T>mNPData2;
+    private List<T>mNPData3;
     private int index1;
     private int index2;
     private int index3;
@@ -186,7 +189,9 @@ public class OptionsPickerView<T> extends LinearLayout {
     }
 
     public OptionsPickerView setNPData(List<T> data1, List<T> data2, List<T> data3) {
-
+        mNPData1 = data1;
+        mNPData2 = data2;
+        mNPData3 = data3;
         mWheelView1.setAdapter(new PickerViewAdapter<>(data1));
         if (data2 != null) {
             mWheelView2.setAdapter(new PickerViewAdapter<>(data2));
@@ -235,21 +240,21 @@ public class OptionsPickerView<T> extends LinearLayout {
     }
     public OptionsPickerView setNPIndex(int index1,int index2,int index3) {
         if (index1 > -1) {
-            if (mData1.size() > index1) {
+            if (mNPData1.size() > index1) {
                 mWheelView1.setCurrentItem(index1);
             } else {
                 throw new IndexOutOfBoundsException();
             }
         }
         if (index2 > -1) {
-            if (mData2.size() > index2) {
+            if (mNPData2.size() > index2) {
                 mWheelView2.setCurrentItem(index2);
             } else {
                 throw new IndexOutOfBoundsException();
             }
         }
         if (index3 > -1) {
-            if (mData3.size() > index3) {
+            if (mNPData3.size() > index3) {
                 mWheelView3.setCurrentItem(index3);
             } else {
                 throw new IndexOutOfBoundsException();
