@@ -31,26 +31,26 @@ public class OptionsPickerView<T> extends LinearLayout {
     private OnItemSelectedListener mSelectedListener1;
     private OnItemSelectedListener mSelectedListener2;
     private OnItemSelectedListener mSelectedListener3;
-    
+
     public OptionsPickerView(@NonNull Context context) {
         this(context, null);
     }
-    
+
     public OptionsPickerView(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
-    
+
     public OptionsPickerView(@NonNull Context context, @Nullable AttributeSet attrs, int
             defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         setOrientation(HORIZONTAL);
-        
+
         initView();
     }
-    
+
     private void initView() {
-        
+
         mWheelView1 = new WheelView(mContext);
         mWheelView2 = new WheelView(mContext);
         mWheelView3 = new WheelView(mContext);
@@ -69,32 +69,32 @@ public class OptionsPickerView<T> extends LinearLayout {
         addView(mWheelView1, layoutParams1);
         addView(mWheelView2, layoutParams2);
         addView(mWheelView3, layoutParams3);
-        
+
     }
-    
+
     public OptionsPickerView setData(List<T> option1Items, List<List<T>> option2Items,
                                      List<List<List<T>>> option3Items) {
         mData1 = option1Items;
         mData2 = option2Items;
         mData3 = option3Items;
-        
+
         addLinked();
         return this;
     }
-    
+
     public OptionsPickerView setData(List<T> option1Items, List<List<T>> option2Items) {
         setData(option1Items, option2Items, null);
         return this;
     }
-    
+
     public OptionsPickerView setData(List<T> option1Items) {
         setData(option1Items, null, null);
-        
+
         return this;
     }
-    
+
     private void addLinked() {
-        
+
         mWheelView1.setAdapter(new PickerViewAdapter<>(mData1));
         if (mData2 != null) {
             mWheelView2.setAdapter(new PickerViewAdapter<>(mData2.get(0)));
@@ -105,7 +105,7 @@ public class OptionsPickerView<T> extends LinearLayout {
             mWheelView3.setCurrentItem(0);
         }
         mWheelView1.setCurrentItem(0);
-        
+
         mSelectedListener1 = new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
@@ -136,18 +136,18 @@ public class OptionsPickerView<T> extends LinearLayout {
                 }
             }
         };
-        
+
         mSelectedListener3 = new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
                 index3 = index;
             }
         };
-        
+
         mWheelView1.setOnItemSelectedListener(mSelectedListener1);
         mWheelView2.setOnItemSelectedListener(mSelectedListener2);
         mWheelView3.setOnItemSelectedListener(mSelectedListener3);
-        
+
         if (mData2 == null) {
             mWheelView2.setVisibility(GONE);
         }
@@ -155,38 +155,38 @@ public class OptionsPickerView<T> extends LinearLayout {
             mWheelView3.setVisibility(GONE);
         }
     }
-    
+
     public OptionsPickerView setCycle(boolean isCycle) {
         mWheelView1.setCyclic(isCycle);
         mWheelView2.setCyclic(isCycle);
         mWheelView3.setCyclic(isCycle);
         return this;
     }
-    
+
     public int getIndex1() {
         return index1;
     }
-    
+
     public int getIndex2() {
         return index2;
     }
-    
+
     public int getIndex3() {
         return index3;
     }
-    
+
     public OptionsPickerView setNPData(List<T> data1) {
         setNPData(data1, null);
         return this;
     }
-    
+
     public OptionsPickerView setNPData(List<T> data1, List<T> data2) {
         setNPData(data1, data2, null);
         return this;
     }
-    
+
     public OptionsPickerView setNPData(List<T> data1, List<T> data2, List<T> data3) {
-        
+
         mWheelView1.setAdapter(new PickerViewAdapter<>(data1));
         if (data2 != null) {
             mWheelView2.setAdapter(new PickerViewAdapter<>(data2));
@@ -198,7 +198,7 @@ public class OptionsPickerView<T> extends LinearLayout {
         } else {
             mWheelView3.setVisibility(GONE);
         }
-        
+
         mSelectedListener1 = new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
@@ -217,35 +217,57 @@ public class OptionsPickerView<T> extends LinearLayout {
                 index3 = index;
             }
         };
-        
+
         mWheelView1.setOnItemSelectedListener(mSelectedListener1);
         mWheelView2.setOnItemSelectedListener(mSelectedListener2);
         mWheelView3.setOnItemSelectedListener(mSelectedListener3);
-        
+
         return this;
     }
-    
+
+    public OptionsPickerView setNPIndex(int index1) {
+        setNPIndex(index1, -1);
+        return this;
+    }
+    public OptionsPickerView setNPIndex(int index1,int index2) {
+        setNPIndex(index1, index2, -1);
+        return this;
+    }
+    public OptionsPickerView setNPIndex(int index1,int index2,int index3) {
+        if (index1 > -1) {
+            mWheelView1.setCurrentItem(index1);
+        }
+        if (index2 > -1) {
+            mWheelView2.setCurrentItem(index2);
+        }
+        if (index3 > -1) {
+            mWheelView3.setCurrentItem(index3);
+        }
+        return this;
+    }
+
+
     public OptionsPickerView setDividerColor(int color) {
         mWheelView1.setDividerColor(color);
         mWheelView2.setDividerColor(color);
         mWheelView3.setDividerColor(color);
         return this;
     }
-    
+
     public OptionsPickerView setTextSize(float textSize) {
         mWheelView1.setTextSize(textSize);
         mWheelView2.setTextSize(textSize);
         mWheelView3.setTextSize(textSize);
         return this;
     }
-    
+
     public OptionsPickerView setCenterTextColor(int color) {
         mWheelView1.setTextColorCenter(color);
         mWheelView2.setTextColorCenter(color);
         mWheelView3.setTextColorCenter(color);
         return this;
     }
-    
+
     public OptionsPickerView setOuterTextColor(int color) {
         mWheelView1.setTextColorOut(color);
         mWheelView2.setTextColorOut(color);
