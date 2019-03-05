@@ -235,13 +235,25 @@ public class OptionsPickerView<T> extends LinearLayout {
     }
     public OptionsPickerView setNPIndex(int index1,int index2,int index3) {
         if (index1 > -1) {
-            mWheelView1.setCurrentItem(index1);
+            if (mData1.size() > index1) {
+                mWheelView1.setCurrentItem(index1);
+            } else {
+                throw new IndexOutOfBoundsException();
+            }
         }
         if (index2 > -1) {
-            mWheelView2.setCurrentItem(index2);
+            if (mData2.size() > index2) {
+                mWheelView2.setCurrentItem(index2);
+            } else {
+                throw new IndexOutOfBoundsException();
+            }
         }
         if (index3 > -1) {
-            mWheelView3.setCurrentItem(index3);
+            if (mData3.size() > index3) {
+                mWheelView3.setCurrentItem(index3);
+            } else {
+                throw new IndexOutOfBoundsException();
+            }
         }
         return this;
     }
