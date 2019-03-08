@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -123,6 +124,12 @@ public class PickerViewExampleActivity extends BaseActivity {
                         mYmdhmsText.setText(format);
                     }
                 });
+                Calendar endDate=Calendar.getInstance();
+                Calendar startDate=Calendar.getInstance();
+                endDate.set(endDate.get(Calendar.YEAR) + 100, 12, 31);
+                startDate.set(startDate.get(Calendar.YEAR) - 1, 1, 1);
+                mCustomTimePicker.setSelectDate(startDate);
+                mCustomTimePicker.setRangeTime(startDate,endDate);
                 mCustomTimePicker.setType(new boolean[]{true, true, true, true, true, true})
                         .show();
                 break;

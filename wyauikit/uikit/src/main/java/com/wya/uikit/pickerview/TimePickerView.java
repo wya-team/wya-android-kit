@@ -130,6 +130,7 @@ public class TimePickerView extends LinearLayout {
     public void setRangeTime(Calendar start, Calendar end) {
         startDate = start;
         endDate = end;
+        setWheelViewAdapter();
     }
     
     public void setSelectDate(Calendar selectDate) {
