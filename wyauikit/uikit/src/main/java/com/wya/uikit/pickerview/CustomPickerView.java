@@ -105,6 +105,21 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
         return this;
     }
 
+    public CustomPickerView setIndex(int index1) {
+        optionPickerView.setIndex(index1);
+        return this;
+    }
+
+    public CustomPickerView setIndex(int index1, int index2) {
+        optionPickerView.setIndex(index1, index2);
+        return this;
+    }
+
+    public CustomPickerView setIndex(int index1, int index2, int index3) {
+        optionPickerView.setIndex(index1, index2, index3);
+        return this;
+    }
+
     public CustomPickerView setCycle(boolean isCycle) {
         optionPickerView.setCycle(isCycle);
         return this;

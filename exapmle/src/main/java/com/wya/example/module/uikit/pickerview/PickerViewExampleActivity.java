@@ -196,7 +196,9 @@ public class PickerViewExampleActivity extends BaseActivity {
                     }
                 });
                 customPickerView.setData(data1, data2, data3);
+
                 customPickerView
+                        .setIndex(3,1,1)
                         .setCycle(false)
                         .show();
                 break;

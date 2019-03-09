@@ -244,6 +244,7 @@ public class OptionsPickerView<T> extends LinearLayout {
         if (index1 > -1) {
             if (mNPData1 != null && mNPData1.size() > index1) {
                 mWheelView1.setCurrentItem(index1);
+                mSelectedListener1.onItemSelected(index1);
             } else {
                 throw new IndexOutOfBoundsException();
             }
@@ -258,6 +259,66 @@ public class OptionsPickerView<T> extends LinearLayout {
         if (index3 > -1) {
             if (mNPData3 != null && mNPData3.size() > index3) {
                 mWheelView3.setCurrentItem(index3);
+            } else {
+                throw new IndexOutOfBoundsException();
+            }
+        }
+        return this;
+    }
+
+    public OptionsPickerView setIndex(int index1) {
+        if (index1 > -1) {
+            if (mData1 != null && mData1.size() > index1) {
+//                mWheelView1.setCurrentItem(index1);
+                mSelectedListener1.onItemSelected(index1);
+            } else {
+                throw new IndexOutOfBoundsException();
+            }
+        }
+        return this;
+    }
+
+    public OptionsPickerView setIndex(int index1, int index2) {
+        if (index1 > -1) {
+            if (mData1 != null && mData1.size() > index1) {
+                mWheelView1.setCurrentItem(index1);
+                mSelectedListener1.onItemSelected(index1);
+            } else {
+                throw new IndexOutOfBoundsException();
+            }
+        }
+        if (index2 > -1) {
+            if (mData2 != null && mData2.get(index1).size() > index2) {
+                mWheelView2.setCurrentItem(index2);
+                mSelectedListener2.onItemSelected(index2);
+            } else {
+                throw new IndexOutOfBoundsException();
+            }
+        }
+        return this;
+    }
+
+    public OptionsPickerView setIndex(int index1, int index2, int index3) {
+        if (index1 > -1) {
+            if (mData1 != null && mData1.size() > index1) {
+                mWheelView1.setCurrentItem(index1);
+                mSelectedListener1.onItemSelected(index1);
+            } else {
+                throw new IndexOutOfBoundsException();
+            }
+        }
+        if (index2 > -1) {
+            if (mData2 != null && mData2.get(index1).size() > index2) {
+                mWheelView2.setCurrentItem(index2);
+                mSelectedListener2.onItemSelected(index2);
+            } else {
+                throw new IndexOutOfBoundsException();
+            }
+        }
+        if (index3 > -1) {
+            if (mData3 != null && mData3.get(index1).get(index3).size() > index3) {
+                mWheelView3.setCurrentItem(index3);
+                mSelectedListener3.onItemSelected(index3);
             } else {
                 throw new IndexOutOfBoundsException();
             }
