@@ -325,7 +325,7 @@ public class ImagePickerExampleActivity extends BaseActivity {
                                 mAllList.remove(mAllList.size() - 1);
                                 ImagePickerCreator.create(ImagePickerExampleActivity.this)
                                         .maxImages(num - mAllList.size())
-                                        .setMediaType(PickerConfig.MEDIA_VIDEO)
+                                        .setMediaType(PickerConfig.MEDIA_DEFAULT)
                                         .forResult(PHOTO);
                             }
                         });

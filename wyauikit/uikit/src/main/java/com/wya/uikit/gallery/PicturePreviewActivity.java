@@ -180,15 +180,17 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             public void onPageSelected(int positions) {
                 position = positions;
                 pictureTitle.setText(positions + 1 + "/" + mList.size());
-                LocalMedia localMedia = images.get(positions);
-                String[] split = localMedia.getPath().split("[.]");
-                String mediaType = split[split.length - 1];
-                Log.i(TAG, "onPageSelected: " + isVideo(mediaType));
-                cropEdit.setVisibility(isVideo(mediaType) ? View.GONE : View.VISIBLE);
-                //updateIsShow imageSelected
-                if (mImageSelected.size() > 0) {
-                    check.setChecked(mImageSelected.contains(images.get(positions)));
-                    mSelectedRecyclerAdapter.updateSelected(position, selectedPosition);
+                if (images!=null&&images.size()>0) {
+                    LocalMedia localMedia = images.get(positions);
+                    String[] split = localMedia.getPath().split("[.]");
+                    String mediaType = split[split.length - 1];
+                    Log.i(TAG, "onPageSelected: " + isVideo(mediaType));
+                    cropEdit.setVisibility(isVideo(mediaType) ? View.GONE : View.VISIBLE);
+                    //updateIsShow imageSelected
+                    if (mImageSelected.size() > 0) {
+                        check.setChecked(mImageSelected.contains(images.get(positions)));
+                        mSelectedRecyclerAdapter.updateSelected(position, selectedPosition);
+                    }
                 }
             }
             
