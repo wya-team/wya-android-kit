@@ -97,7 +97,7 @@ public class StartCameraExampleActivity extends BaseActivity {
                     intent.putExtra("duration", Integer.valueOf(etDuration.getText().toString()).intValue() * 1000);
                     startActivityForResult(intent, 100);
                 } else {
-                    //不具有获取权限，需要进行权限申请
+                    // 不具有获取权限，需要进行权限申请
                     ActivityCompat.requestPermissions(StartCameraExampleActivity.this, new String[]{
                             Manifest.permission.WRITE_EXTERNAL_STORAGE,
                             Manifest.permission.CAMERA}, GET_PERMISSION_REQUEST);
@@ -111,7 +111,7 @@ public class StartCameraExampleActivity extends BaseActivity {
                     intent.putExtra("duration", Integer.valueOf(etDuration.getText().toString()).intValue() * 1000);
                     startActivityForResult(intent, 100);
                 } else {
-                    //不具有获取权限，需要进行权限申请
+                    // 不具有获取权限，需要进行权限申请
                     ActivityCompat.requestPermissions(StartCameraExampleActivity.this, new String[]{
                             Manifest.permission.WRITE_EXTERNAL_STORAGE,
                             Manifest.permission.RECORD_AUDIO,
@@ -156,12 +156,12 @@ public class StartCameraExampleActivity extends BaseActivity {
             if (grantResults.length >= 1) {
                 if (state == BUTTON_STATE_ONLY_CAPTURE) {
                     int writeResult = grantResults[0];
-                    //读写内存权限
+                    // 读写内存权限
                     boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;
                     if (!writeGranted) {
                         size++;
                     }
-                    //相机权限
+                    // 相机权限
                     int cameraPermissionResult = grantResults[1];
                     boolean cameraPermissionGranted = cameraPermissionResult == PackageManager.PERMISSION_GRANTED;
                     if (!cameraPermissionGranted) {
@@ -169,20 +169,20 @@ public class StartCameraExampleActivity extends BaseActivity {
                     }
                 } else {
                     int writeResult = grantResults[0];
-                    //读写内存权限
+                    // 读写内存权限
                     boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;
                     if (!writeGranted) {
                         size++;
                     }
 
-                    //相机权限
+                    // 相机权限
                     int cameraPermissionResult = grantResults[1];
                     boolean cameraPermissionGranted = cameraPermissionResult == PackageManager.PERMISSION_GRANTED;
                     if (!cameraPermissionGranted) {
                         size++;
                     }
 
-                    //录音权限
+                    // 录音权限
                     int recordPermissionResult = grantResults[2];
                     boolean recordPermissionGranted = recordPermissionResult == PackageManager.PERMISSION_GRANTED;
                     if (!recordPermissionGranted) {
@@ -195,7 +195,7 @@ public class StartCameraExampleActivity extends BaseActivity {
                     intent.putExtra("duration", Integer.valueOf(etDuration.getText().toString()).intValue() * 1000);
                     startActivityForResult(intent, 100);
                 } else {
-                    //TODO 跳转权限设置页面
+                    // TODO 跳转权限设置页面
                     Toast.makeText(this, "请到设置-权限管理中开启", Toast.LENGTH_SHORT).show();
                 }
             }
