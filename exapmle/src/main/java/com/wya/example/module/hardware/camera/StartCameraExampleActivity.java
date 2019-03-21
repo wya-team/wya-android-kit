@@ -27,6 +27,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
+import static com.wya.hardware.camera.WYACameraView.BUTTON_STATE_BOTH;
+import static com.wya.hardware.camera.WYACameraView.BUTTON_STATE_ONLY_CAPTURE;
 
 /**
  * @date: 2019/1/8 9:52
@@ -60,7 +62,7 @@ public class StartCameraExampleActivity extends BaseActivity {
     /**
      * 默认可以拍照和录制视频
      */
-    private int state = WYACameraView.BUTTON_STATE_BOTH;
+    private int state = BUTTON_STATE_BOTH;
 
     @Override
     protected int getLayoutId() {
@@ -87,22 +89,34 @@ public class StartCameraExampleActivity extends BaseActivity {
      */
     private void getPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager
-                    .PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager
-                            .PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager
-                            .PERMISSION_GRANTED) {
-                Intent intent = new Intent(StartCameraExampleActivity.this, CameraExampleActivity.class);
-                intent.putExtra("state", state);
-                intent.putExtra("duration", Integer.valueOf(etDuration.getText().toString()).intValue() * 1000);
-                startActivityForResult(intent, 100);
+            if (state == BUTTON_STATE_ONLY_CAPTURE) {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                        ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(StartCameraExampleActivity.this, CameraExampleActivity.class);
+                    intent.putExtra("state", state);
+                    intent.putExtra("duration", Integer.valueOf(etDuration.getText().toString()).intValue() * 1000);
+                    startActivityForResult(intent, 100);
+                } else {
+                    // 不具有获取权限，需要进行权限申请
+                    ActivityCompat.requestPermissions(StartCameraExampleActivity.this, new String[]{
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.CAMERA}, GET_PERMISSION_REQUEST);
+                }
             } else {
-                //不具有获取权限，需要进行权限申请
-                ActivityCompat.requestPermissions(StartCameraExampleActivity.this, new String[]{
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.RECORD_AUDIO,
-                        Manifest.permission.CAMERA}, GET_PERMISSION_REQUEST);
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                        && ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+                        && ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(StartCameraExampleActivity.this, CameraExampleActivity.class);
+                    intent.putExtra("state", state);
+                    intent.putExtra("duration", Integer.valueOf(etDuration.getText().toString()).intValue() * 1000);
+                    startActivityForResult(intent, 100);
+                } else {
+                    // 不具有获取权限，需要进行权限申请
+                    ActivityCompat.requestPermissions(StartCameraExampleActivity.this, new String[]{
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.RECORD_AUDIO,
+                            Manifest.permission.CAMERA}, GET_PERMISSION_REQUEST);
+                }
             }
         } else {
             Intent intent = new Intent(StartCameraExampleActivity.this, CameraExampleActivity.class);
@@ -140,23 +154,40 @@ public class StartCameraExampleActivity extends BaseActivity {
         if (requestCode == GET_PERMISSION_REQUEST) {
             int size = 0;
             if (grantResults.length >= 1) {
-                int writeResult = grantResults[0];
-                //读写内存权限
-                boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;
-                if (!writeGranted) {
-                    size++;
-                }
-                //录音权限
-                int recordPermissionResult = grantResults[1];
-                boolean recordPermissionGranted = recordPermissionResult == PackageManager.PERMISSION_GRANTED;
-                if (!recordPermissionGranted) {
-                    size++;
-                }
-                //相机权限
-                int cameraPermissionResult = grantResults[2];
-                boolean cameraPermissionGranted = cameraPermissionResult == PackageManager.PERMISSION_GRANTED;
-                if (!cameraPermissionGranted) {
-                    size++;
+                if (state == BUTTON_STATE_ONLY_CAPTURE) {
+                    int writeResult = grantResults[0];
+                    // 读写内存权限
+                    boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;
+                    if (!writeGranted) {
+                        size++;
+                    }
+                    // 相机权限
+                    int cameraPermissionResult = grantResults[1];
+                    boolean cameraPermissionGranted = cameraPermissionResult == PackageManager.PERMISSION_GRANTED;
+                    if (!cameraPermissionGranted) {
+                        size++;
+                    }
+                } else {
+                    int writeResult = grantResults[0];
+                    // 读写内存权限
+                    boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;
+                    if (!writeGranted) {
+                        size++;
+                    }
+
+                    // 相机权限
+                    int cameraPermissionResult = grantResults[1];
+                    boolean cameraPermissionGranted = cameraPermissionResult == PackageManager.PERMISSION_GRANTED;
+                    if (!cameraPermissionGranted) {
+                        size++;
+                    }
+
+                    // 录音权限
+                    int recordPermissionResult = grantResults[2];
+                    boolean recordPermissionGranted = recordPermissionResult == PackageManager.PERMISSION_GRANTED;
+                    if (!recordPermissionGranted) {
+                        size++;
+                    }
                 }
                 if (size == 0) {
                     Intent intent = new Intent(StartCameraExampleActivity.this, CameraExampleActivity.class);
@@ -164,6 +195,7 @@ public class StartCameraExampleActivity extends BaseActivity {
                     intent.putExtra("duration", Integer.valueOf(etDuration.getText().toString()).intValue() * 1000);
                     startActivityForResult(intent, 100);
                 } else {
+                    // TODO 跳转权限设置页面
                     Toast.makeText(this, "请到设置-权限管理中开启", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -174,13 +206,13 @@ public class StartCameraExampleActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
-                state = WYACameraView.BUTTON_STATE_ONLY_CAPTURE;
+                state = BUTTON_STATE_ONLY_CAPTURE;
                 break;
             case R.id.take_video:
                 state = WYACameraView.BUTTON_STATE_ONLY_RECORDER;
                 break;
             case R.id.take_video_and_photo:
-                state = WYACameraView.BUTTON_STATE_BOTH;
+                state = BUTTON_STATE_BOTH;
                 break;
             case R.id.btn:
                 if ("".equals(etDuration.getText().toString())) {

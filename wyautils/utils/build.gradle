@@ -13,7 +13,7 @@ android {
         minSdkVersion buildConfig.getAt("minSdkVersion")
         targetSdkVersion buildConfig.getAt("targetSdkVersion")
         versionCode 1
-        versionName "0.1.3"
+        versionName "0.1.4"
     }
 
     buildTypes {
