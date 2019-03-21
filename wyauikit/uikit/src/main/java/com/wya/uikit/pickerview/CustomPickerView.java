@@ -170,6 +170,16 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
         return this;
     }
 
+    /**
+     * 设置item行间距
+     * @param space 默认值2f
+     * @return
+     */
+    public CustomPickerView setLineSpace(float space) {
+        optionPickerView.setLineSpace(space);
+        return this;
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.picker_cancel) {

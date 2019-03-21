@@ -496,4 +496,13 @@ public class TimePickerView extends LinearLayout {
         isShowType = showType;
         setWheelViewAdapter();
     }
+
+    public void setLineSpace(float lineSpace) {
+        yearWheel.setLineSpacingMultiplier(lineSpace);
+        monthWheel.setLineSpacingMultiplier(lineSpace);
+        dayWheel.setLineSpacingMultiplier(lineSpace);
+        hourWheel.setLineSpacingMultiplier(lineSpace);
+        minWheel.setLineSpacingMultiplier(lineSpace);
+        secWheel.setLineSpacingMultiplier(lineSpace);
+    }
 }

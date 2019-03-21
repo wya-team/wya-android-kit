@@ -136,6 +136,16 @@ public class CustomTimePicker extends Dialog implements View.OnClickListener {
         return this;
     }
 
+    /**
+     * 设置item 行间距 默认值 2F
+     * @param lineSpace
+     * @return
+     */
+    public CustomTimePicker setLineSpace(float lineSpace) {
+        timePickerView.setLineSpace(lineSpace);
+        return this;
+    }
+
     public void setRangeTime(Calendar start, Calendar end) {
         timePickerView.setRangeTime(start, end);
     }

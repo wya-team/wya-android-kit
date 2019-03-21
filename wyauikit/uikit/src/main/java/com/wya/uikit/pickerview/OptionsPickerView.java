@@ -75,6 +75,13 @@ public class OptionsPickerView<T> extends LinearLayout {
 
     }
 
+    public OptionsPickerView setLineSpace(float space) {
+        mWheelView1.setLineSpacingMultiplier(space);
+        mWheelView2.setLineSpacingMultiplier(space);
+        mWheelView3.setLineSpacingMultiplier(space);
+        return this;
+    }
+
     public OptionsPickerView setData(List<T> option1Items, List<List<T>> option2Items,
                                      List<List<List<T>>> option3Items) {
         mData1 = option1Items;
