@@ -3,7 +3,6 @@ package com.wya.uikit.pickerview;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -162,18 +161,14 @@ public class CustomTimePicker extends Dialog implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.time_picker_sure) {
-            if (!timePickerView.isScroll()) {
-                Calendar calendar = Calendar.getInstance();
-                Log.i(TAG, "onClick: " + timePickerView.getMonth() + " " + timePickerView.getDay() + " " + Calendar.MONTH);
+            Calendar calendar = Calendar.getInstance();
 
-                calendar.set(timePickerView.getYear(), timePickerView.getMonth() - 1,
-                        timePickerView.getDay() == 0 ? 1 : timePickerView.getDay(),
-                        timePickerView.getHour(), timePickerView.getMinute(), timePickerView.getSecond());
+            calendar.set(timePickerView.getYear(), timePickerView.getMonth() - 1, timePickerView.getDay() == 0 ? 1 :
+                    timePickerView.getDay(), timePickerView.getHour(), timePickerView.getMinute(),
+                    timePickerView.getSecond());
 
-                Log.i(TAG, "onClick: " + calendar.getTimeInMillis());
-                mListener.selected(calendar.getTime());
-                dismiss();
-            }
+            mListener.selected(calendar.getTime());
+            dismiss();
 
         }
         if (v.getId() == R.id.time_picker_cancel) {

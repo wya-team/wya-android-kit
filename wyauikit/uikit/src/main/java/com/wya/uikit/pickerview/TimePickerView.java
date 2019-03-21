@@ -417,39 +417,27 @@ public class TimePickerView extends LinearLayout {
     }
     
     public int getYear() {
-        String item = (String) yearWheel.getAdapter().getItem(yearIndex);
-        int getYear = Integer.parseInt(item.replaceAll("年", ""));
-        return type[0] ? getYear : 0;
+       return  yearWheel.getCurrentItem() + mStartYear;
     }
     
     public int getMonth() {
-        String month = (String) monthWheel.getAdapter().getItem(monthIndex);
-        int getMonth = Integer.parseInt(month.replaceAll("月", ""));
-        return type[1] ? getMonth : 0;
+        return monthWheel.getCurrentItem() + mStartMonth;
     }
     
     public int getDay() {
-        String day = (String) dayWheel.getAdapter().getItem(dayIndex);
-        int getDay = Integer.parseInt(day.replaceAll("日", ""));
-        return type[2] ? getDay : 0;
+        return dayWheel.getCurrentItem() + mStartDay;
     }
     
     public int getHour() {
-        String hour = (String) hourWheel.getAdapter().getItem(hourIndex);
-        int getHour = Integer.parseInt(hour.replaceAll("时", ""));
-        return type[3] ? getHour : 0;
+        return hourWheel.getCurrentItem() + mStartHour;
     }
     
     public int getMinute() {
-        String min = (String) minWheel.getAdapter().getItem(minIndex);
-        int getMin = Integer.parseInt(min.replaceAll("分", ""));
-        return type[4] ? getMin : 0;
+        return minWheel.getCurrentItem() + mStartMin;
     }
     
     public int getSecond() {
-        String sec = (String) secWheel.getAdapter().getItem(secIndex);
-        int getSec = Integer.parseInt(sec.replaceAll("秒", ""));
-        return type[5] ? getSec : 0;
+        return secWheel.getCurrentItem() + mStartSec;
     }
     
     public void setDividerColor(int color) {
@@ -515,7 +503,4 @@ public class TimePickerView extends LinearLayout {
         secWheel.setItemsVisible(items);
     }
 
-    public boolean isScroll() {
-        return yearWheel.isScroll() || monthWheel.isScroll() || dayWheel.isScroll() || hourWheel.isScroll() || minWheel.isScroll() || secWheel.isScroll();
-    }
 }

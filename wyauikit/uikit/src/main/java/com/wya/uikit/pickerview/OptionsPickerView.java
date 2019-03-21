@@ -34,6 +34,7 @@ public class OptionsPickerView<T> extends LinearLayout {
     private OnItemSelectedListener mSelectedListener1;
     private OnItemSelectedListener mSelectedListener2;
     private OnItemSelectedListener mSelectedListener3;
+    private int currentItem1, currentItem2, currentItem3;
 
     public OptionsPickerView(@NonNull Context context) {
         this(context, null);
@@ -181,15 +182,33 @@ public class OptionsPickerView<T> extends LinearLayout {
     }
 
     public int getIndex1() {
-        return index1;
+        currentItem1 = mWheelView1.getCurrentItem();
+        return currentItem1;
     }
 
     public int getIndex2() {
-        return index2;
+        if (mData2 == null && mNPData2 == null) {
+            currentItem2 = 0;
+        } else if (mData2 == null && mNPData2 != null) {
+            currentItem2 = mWheelView2.getCurrentItem();
+        } else {
+            currentItem2 = mWheelView2.getCurrentItem() > mData2.get(currentItem1).size() - 1 ?
+                    mData2.get(currentItem1).size() - 1 : mWheelView2.getCurrentItem();
+        }
+        return currentItem2;
     }
 
     public int getIndex3() {
-        return index3;
+        if (mData3 == null && mNPData3 == null) {
+            currentItem3 = 0;
+        } else if (mData3 == null && mNPData3 != null) {
+            currentItem3 = mWheelView3.getCurrentItem();
+        } else {
+            currentItem3 = mWheelView3.getCurrentItem() > mData3.get(currentItem1).get(currentItem2).size() - 1 ?
+                    mData3.get(currentItem1).get(currentItem2).size() - 1 : mWheelView3.getCurrentItem();
+        }
+
+        return currentItem3;
     }
 
     public OptionsPickerView setNPData(List<T> data1) {
@@ -368,7 +387,4 @@ public class OptionsPickerView<T> extends LinearLayout {
         return this;
     }
 
-    public boolean isScorll() {
-        return mWheelView1.isScroll() || mWheelView2.isScroll() || mWheelView3.isScroll();
-    }
 }

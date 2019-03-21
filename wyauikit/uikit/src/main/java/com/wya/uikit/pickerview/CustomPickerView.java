@@ -191,11 +191,8 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
             dismiss();
         }
         if (v.getId() == R.id.picker_sure) {
-            if (mOnChooseItemListener != null&&!optionPickerView.isScorll()) {
-                mOnChooseItemListener.itemSelected(optionPickerView.getIndex1(),
-                        optionPickerView.getIndex2(), optionPickerView.getIndex3());
-                dismiss();
-            }
+            mOnChooseItemListener.itemSelected(optionPickerView.getIndex1(), optionPickerView.getIndex2(), optionPickerView.getIndex3());
+            dismiss();
         }
     }
 
