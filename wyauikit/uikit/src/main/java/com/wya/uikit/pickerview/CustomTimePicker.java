@@ -162,16 +162,19 @@ public class CustomTimePicker extends Dialog implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.time_picker_sure) {
-            Calendar calendar = Calendar.getInstance();
-            Log.i(TAG, "onClick: " + timePickerView.getMonth() + " " + timePickerView.getDay() + " " + Calendar.MONTH);
+            if (!timePickerView.isScroll()) {
+                Calendar calendar = Calendar.getInstance();
+                Log.i(TAG, "onClick: " + timePickerView.getMonth() + " " + timePickerView.getDay() + " " + Calendar.MONTH);
 
-            calendar.set(timePickerView.getYear(), timePickerView.getMonth() - 1,
-                    timePickerView.getDay() == 0 ? 1 : timePickerView.getDay(),
-                    timePickerView.getHour(), timePickerView.getMinute(), timePickerView.getSecond());
+                calendar.set(timePickerView.getYear(), timePickerView.getMonth() - 1,
+                        timePickerView.getDay() == 0 ? 1 : timePickerView.getDay(),
+                        timePickerView.getHour(), timePickerView.getMinute(), timePickerView.getSecond());
 
-            Log.i(TAG, "onClick: " + calendar.getTimeInMillis());
-            mListener.selected(calendar.getTime());
-            dismiss();
+                Log.i(TAG, "onClick: " + calendar.getTimeInMillis());
+                mListener.selected(calendar.getTime());
+                dismiss();
+            }
+
         }
         if (v.getId() == R.id.time_picker_cancel) {
             dismiss();

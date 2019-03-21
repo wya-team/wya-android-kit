@@ -127,7 +127,7 @@ public class PickerViewExampleActivity extends BaseActivity {
                 Calendar endDate=Calendar.getInstance();
                 Calendar startDate=Calendar.getInstance();
                 endDate.set(endDate.get(Calendar.YEAR) + 100, 12, 31);
-                startDate.set(startDate.get(Calendar.YEAR) - 1, 1, 1);
+                startDate.set(startDate.get(Calendar.YEAR) - 1, 0, 1);
                 mCustomTimePicker.setSelectDate(startDate);
                 mCustomTimePicker.setRangeTime(startDate,endDate);
                 mCustomTimePicker.setType(new boolean[]{true, true, true, true, true, true})
@@ -202,7 +202,8 @@ public class PickerViewExampleActivity extends BaseActivity {
                 customPickerView
                         .setIndex(3,1,1)
                         .setCycle(false)
-                        .setLineSpace(2)
+                        .setLineSpace(3)
+                        .setItemsVisible(7)
                         .show();
                 break;
             default:

@@ -367,4 +367,8 @@ public class OptionsPickerView<T> extends LinearLayout {
         mWheelView3.setTextColorOut(color);
         return this;
     }
+
+    public boolean isScorll() {
+        return mWheelView1.isScroll() || mWheelView2.isScroll() || mWheelView3.isScroll();
+    }
 }

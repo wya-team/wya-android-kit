@@ -514,4 +514,8 @@ public class TimePickerView extends LinearLayout {
         minWheel.setItemsVisible(items);
         secWheel.setItemsVisible(items);
     }
+
+    public boolean isScroll() {
+        return yearWheel.isScroll() || monthWheel.isScroll() || dayWheel.isScroll() || hourWheel.isScroll() || minWheel.isScroll() || secWheel.isScroll();
+    }
 }

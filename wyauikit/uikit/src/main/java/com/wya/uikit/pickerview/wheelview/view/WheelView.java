@@ -154,6 +154,8 @@ public class WheelView extends View {
      * 偏移量
      */
     private float centerContentOffset;
+
+    private boolean isScroll = false;
     public WheelView(Context context) {
         this(context, null);
     }
@@ -302,6 +304,7 @@ public class WheelView extends View {
     }
     
     public void smoothScroll(ACTION action) {//平滑滚动的实现
+        setScroll(true);
         cancelFuture();
         if (action == ACTION.FLING || action == ACTION.DAGGLE) {
             mOffset = (int) ((totalScrollY % itemHeight + itemHeight) % itemHeight);
@@ -313,10 +316,13 @@ public class WheelView extends View {
             }
         }
         //停止的时候，位置有偏移，不是全部都能正确停止到中间位置的，这里把文字位置挪回中间去
-        mFuture = mExecutor.scheduleWithFixedDelay(new SmoothScrollTimerTask(this, mOffset), 0, 10, TimeUnit.MILLISECONDS);
+        mFuture = mExecutor.scheduleWithFixedDelay(new SmoothScrollTimerTask(this, mOffset), 0, 10,
+                TimeUnit.MILLISECONDS);
+
     }
     
     public final void scrollBy(float velocityY) {//滚动惯性的实现
+        setScroll(true);
         cancelFuture();
         mFuture = mExecutor.scheduleWithFixedDelay(new InertiaTimerTask(this, velocityY), 0, VELOCITY_FLING, TimeUnit.MILLISECONDS);
     }
@@ -397,6 +403,7 @@ public class WheelView extends View {
                 @Override
                 public void run() {
                     onItemSelectedListener.onItemSelected(getCurrentItem());
+                    setScroll(false);
                 }
             }, 200L);
         }
@@ -854,12 +861,20 @@ public class WheelView extends View {
     public int getInitPosition() {
         return initPosition;
     }
-    
+
     @Override
     public Handler getHandler() {
         return handler;
     }
-    
+
+    public boolean isScroll() {
+        return isScroll;
+    }
+
+    public void setScroll(boolean scroll) {
+        isScroll = scroll;
+    }
+
     public enum ACTION { // 点击，滑翔(滑到尽头)，拖拽事件
         CLICK, FLING, DAGGLE
     }
