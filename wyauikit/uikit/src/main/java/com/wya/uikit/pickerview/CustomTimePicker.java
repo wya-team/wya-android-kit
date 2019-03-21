@@ -136,6 +136,11 @@ public class CustomTimePicker extends Dialog implements View.OnClickListener {
         return this;
     }
 
+    public CustomTimePicker setItemsVisible(int items){
+        timePickerView.setItemsVisible(items);
+        return this;
+    }
+
     /**
      * 设置item 行间距 默认值 2F
      * @param lineSpace

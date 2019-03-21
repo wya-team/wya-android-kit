@@ -82,6 +82,13 @@ public class OptionsPickerView<T> extends LinearLayout {
         return this;
     }
 
+    public OptionsPickerView setItemsVisible(int items){
+        mWheelView1.setItemsVisible(items);
+        mWheelView2.setItemsVisible(items);
+        mWheelView3.setItemsVisible(items);
+        return this;
+    }
+
     public OptionsPickerView setData(List<T> option1Items, List<List<T>> option2Items,
                                      List<List<List<T>>> option3Items) {
         mData1 = option1Items;

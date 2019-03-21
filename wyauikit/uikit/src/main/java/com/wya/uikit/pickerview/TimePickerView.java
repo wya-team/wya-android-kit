@@ -505,4 +505,13 @@ public class TimePickerView extends LinearLayout {
         minWheel.setLineSpacingMultiplier(lineSpace);
         secWheel.setLineSpacingMultiplier(lineSpace);
     }
+
+    public void setItemsVisible(int items){
+        yearWheel.setItemsVisible(items);
+        monthWheel.setItemsVisible(items);
+        dayWheel.setItemsVisible(items);
+        hourWheel.setItemsVisible(items);
+        minWheel.setItemsVisible(items);
+        secWheel.setItemsVisible(items);
+    }
 }

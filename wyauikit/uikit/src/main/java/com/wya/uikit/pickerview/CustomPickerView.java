@@ -180,6 +180,11 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
         return this;
     }
 
+    public CustomPickerView setItemsVisible(int items){
+        optionPickerView.setItemsVisible(items);
+        return this;
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.picker_cancel) {

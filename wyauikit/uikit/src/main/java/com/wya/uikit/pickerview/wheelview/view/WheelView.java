@@ -327,6 +327,12 @@ public class WheelView extends View {
             mFuture = null;
         }
     }
+
+    public void setItemsVisible(int items){
+        itemsVisible = items;
+        invalidate();
+    }
+
     
     /**
      * 设置是否循环滚动
