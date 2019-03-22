@@ -3,7 +3,6 @@
     android:id="@+id/wya_custom_edit_text_parent"
     android:layout_width="match_parent"
     android:layout_height="106dp"
-    android:background="@drawable/white_r5_bg"
     android:minHeight="80dp"
     android:orientation="vertical">
 

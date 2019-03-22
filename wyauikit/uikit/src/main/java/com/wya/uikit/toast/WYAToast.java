@@ -29,14 +29,14 @@ public class WYAToast {
         toast = Toast.makeText(context, message, duration);
         return toast;
     }
-    
+
     /**
      * 短时间显示Toast(消息 String等)
      */
     public static void showShort(Context context, CharSequence message) {
         initToast(context, message, Toast.LENGTH_SHORT).show();
     }
-    
+
     /**
      * 长时间显示Toast(消息 String等)
      */
@@ -65,6 +65,9 @@ public class WYAToast {
         if (imageResource > 0) {
             iv.setVisibility(View.VISIBLE);
             iv.setImageResource(imageResource);
+            if (tvStr.length() > 10) {
+                tv.setMaxWidth(dip2px(context, 140));
+            }
         } else {
             iv.setVisibility(View.GONE);
         }
@@ -76,7 +79,17 @@ public class WYAToast {
         }
         toast_custom.show();
         return toast_custom;
-    
+    }
+
+    /**
+     * dp转px
+     *
+     * @param dp
+     * @return
+     */
+    private static int dip2px(Context context, int dp) {
+        float density = context.getResources().getDisplayMetrics().density;
+        return (int) (dp * density + 0.5);
     }
 }
 

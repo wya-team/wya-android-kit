@@ -22,9 +22,10 @@
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="注销"
+                android:paddingTop="@dimen/dp_10"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
@@ -43,18 +44,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:lineSpacingMultiplier="1.5"
-                    android:paddingBottom="12dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:textColor="#666666"
-                    android:textSize="14sp"
-                    android:visibility="gone" />
+                    android:textSize="16sp"/>
 
                 <EditText
                     android:id="@+id/edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
                     android:background="@drawable/c666666_r4_side_bg"
@@ -62,9 +60,10 @@
                     android:paddingBottom="8dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:paddingTop="8dp"
-                    android:textSize="14sp"
-                    android:visibility="gone" />
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 
@@ -99,7 +98,7 @@
                     android:padding="8dp"
                     android:text="取消"
                     android:textColor="@drawable/btn_c333333_click_color"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
 
                 <View
@@ -119,7 +118,7 @@
                     android:padding="8dp"
                     android:text="确定"
                     android:textColor="@drawable/btn_c00bfff_click_color"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
 
             </LinearLayout>

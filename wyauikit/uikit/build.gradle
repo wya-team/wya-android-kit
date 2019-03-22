@@ -12,7 +12,7 @@ android {
         targetSdkVersion buildConfig.getAt("targetSdkVersion")
 
         versionCode 1
-        versionName "0.1.4"
+        versionName "0.1.5"
     }
 
     buildTypes {
@@ -73,8 +73,6 @@ dependencies {
     annotationProcessor depends.compiler
 
     implementation depends.BaseRecyclerViewAdapterHelper
-    implementation depends.rxbinding
-
 }
 
 // aar打包
