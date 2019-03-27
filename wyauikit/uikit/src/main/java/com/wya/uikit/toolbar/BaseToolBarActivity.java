@@ -179,8 +179,6 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         setSecondRightIcon(wyaToolBarHelper.getSecondRightIcon());
         showSecondRightIcon(wyaToolBarHelper.isShowSecondRightIcon());
 
-        setBackground(R.drawable.icon_camera);
-
         initClick();
     }
 
