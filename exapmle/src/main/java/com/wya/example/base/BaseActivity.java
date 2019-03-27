@@ -33,7 +33,7 @@ public abstract class BaseActivity extends BaseToolBarActivity {
         unbinder = ButterKnife.bind(this);
         startActivityStyle();
         setLeftIcon(R.drawable.icon_backblue);
-        setBackgroundColor(ColorUtil.hex2Int("#ffffff"), true);
+        setBackgroundColor(R.color.white, true);
         initView();
         initGesture();
     }

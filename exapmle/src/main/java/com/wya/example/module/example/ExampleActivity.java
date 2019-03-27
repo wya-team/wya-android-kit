@@ -35,7 +35,7 @@ public class ExampleActivity extends BaseActivity {
         initFragment();
         setTabBar();
         getSwipeBackLayout().setEnableGesture(false);
-        setBackgroundColor(ColorUtil.hex2Int("#f4f4f4"), true);
+        setBackgroundColor(R.color.f4f4f4, true);
     }
     
     private void initFragment() {

@@ -7,7 +7,7 @@
 属性 | 说明 | 类型 | 默认值
 --- | ---  |  ---  |  ---
 show | 是否显示标题栏 | boolean | true
-backgroundColor | 标题栏颜色 | int | Color.parseColor("#ffffff ")
+backgroundColor | 标题栏颜色 | int | R.color.white
 isLight | 是否是明亮的标题栏  | boolean | false
 title | 标题文字 | String | ""
 titleSize | 标题大小 | int | 16
@@ -39,6 +39,10 @@ secondRightIcon | 右边第二章图片资源 | int | -
 
 方法|说明
 ---|---
+setTitle | 设置标题内容
+setBackgroundColor | 设置标题背景顔色
+setBackground | 设置标题背景圖片
+setToolBarHeight | 设置标题高度
 setTitle | 设置标题内容
 setTitleColor | 设置标题颜色
 setTitleSize | 设置标题字体大小
