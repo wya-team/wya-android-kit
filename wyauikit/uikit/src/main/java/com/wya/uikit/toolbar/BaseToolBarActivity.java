@@ -1,17 +1,13 @@
 package com.wya.uikit.toolbar;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.wya.uikit.R;
 import com.wya.uikit.toolbar.swipeback.SwipeBackActivity;
 
@@ -23,12 +19,12 @@ import com.wya.uikit.toolbar.swipeback.SwipeBackActivity;
  */
 
 public abstract class BaseToolBarActivity extends SwipeBackActivity {
-    
+
     private WYAToolBarHelper wyaToolBarHelper;
     private TextView tvTitle, mTvLeft, mTvRightFirst, mTvRightSecond;
-    private ImageView mImgRightFirst, mImgLeft, mImgRightSecond;
+    private ImageView mImgRightFirst, mImgLeft, mImgRightSecond, toolBarImg;
     private RelativeLayout toolBar;
-    
+
     private LinearLayout parentLinearLayout;
     /**
      * 设置左边点击事件
@@ -58,14 +54,14 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      * 设置右边长按点击事件
      */
     private SecondRightIconLongClickListener secondRightIconLongClickListener;
-    
+
     /**
      * 获取布局文件id
      *
      * @return
      */
     protected abstract int getLayoutId();
-    
+
     /**
      * 设置左边图标点击事件监听
      *
@@ -74,7 +70,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setLeftIconClickListener(LeftIconClickListener leftIconClickListener) {
         this.leftIconClickListener = leftIconClickListener;
     }
-    
+
     /**
      * 设置左边点击事件内容和监听
      *
@@ -83,7 +79,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setLeftTextClickListener(LeftTextClickListener leftTextClickListener) {
         this.leftTextClickListener = leftTextClickListener;
     }
-    
+
     /**
      * 设置右边第一个文字点击事件
      *
@@ -92,7 +88,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setFirstRightTextClickListener(FirstRightTextClickListener firstRightTextClickListener) {
         this.firstRightTextClickListener = firstRightTextClickListener;
     }
-    
+
     /**
      * 设置右边第二个文字点击事件监听
      *
@@ -101,7 +97,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setSecondRightTextClickListener(SecondRightTextClickListener secondRightTextClickListener) {
         this.secondRightTextClickListener = secondRightTextClickListener;
     }
-    
+
     /**
      * 设置右边图片点击事件监听
      *
@@ -110,7 +106,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setFirstRightIconClickListener(FirstRightIconClickListener firstRightIconClickListener) {
         this.firstRightIconClickListener = firstRightIconClickListener;
     }
-    
+
     /**
      * 设置右边第二个图片点击事件监听
      *
@@ -119,7 +115,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setSecondRightIconClickListener(SecondRightIconClickListener secondRightIconClickListener) {
         this.secondRightIconClickListener = secondRightIconClickListener;
     }
-    
+
     /**
      * 设置右边第二个图片长按点击事件监听
      *
@@ -128,7 +124,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setSecondRightIconLongClickListener(SecondRightIconLongClickListener secondRightIconLongClickListener) {
         this.secondRightIconLongClickListener = secondRightIconLongClickListener;
     }
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,7 +132,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         setContentView(getLayoutId());
         initWYAActionBar();
     }
-    
+
     /**
      * uikit-ToolBar
      * 初始化控件
@@ -151,40 +147,41 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         mImgRightSecond = (ImageView) findViewById(R.id.img_right_second);
         mImgLeft = (ImageView) findViewById(R.id.img_left);
         toolBar = (RelativeLayout) findViewById(R.id.tool_bar);
-        
+        toolBarImg = (ImageView) findViewById(R.id.tool_bar_img);
+
         showToolBar(wyaToolBarHelper.isShow());
         setBackgroundColor(wyaToolBarHelper.getBackgroundColor(), wyaToolBarHelper.isLight());
         setTitle(wyaToolBarHelper.getTitle());
         setTitleColor(wyaToolBarHelper.getTitleColor());
         setTitleSize(wyaToolBarHelper.getTitleSize());
-        
+
         setLeftText(wyaToolBarHelper.getLeftText());
         setLeftTextSize(wyaToolBarHelper.getLeftTextSize());
         setLeftTextColor(wyaToolBarHelper.getLeftTextColor());
         showLeftText(wyaToolBarHelper.isShowLeftText());
-        
+
         setLeftIcon(wyaToolBarHelper.getLeftIcon());
         showLeftIcon(wyaToolBarHelper.isShowLeftIcon());
-        
+
         showFirstRightText(wyaToolBarHelper.isShowFirstRightText());
         setFirstRightText(wyaToolBarHelper.getFirstRightText());
         setFirstRightTextColor(wyaToolBarHelper.getFirstRightTextColor());
         setFirstRightTextSize(wyaToolBarHelper.getFirstRightTextSize());
-        
+
         showSecondRightText(wyaToolBarHelper.isShowSecondRightText());
         setSecondRightText(wyaToolBarHelper.getSecondRightText());
         setSecondRightTextColor(wyaToolBarHelper.getSecondRightTextColor());
         setSecondRightTextSize(wyaToolBarHelper.getSecondRightTextSize());
-        
+
         setFirstRightIcon(wyaToolBarHelper.getFirstRightIcon());
         showFirstRightIcon(wyaToolBarHelper.isShowFirstRightIcon());
-        
+
         setSecondRightIcon(wyaToolBarHelper.getSecondRightIcon());
         showSecondRightIcon(wyaToolBarHelper.isShowSecondRightIcon());
-        
+
         initClick();
     }
-    
+
     /**
      * 设置标题栏显示
      *
@@ -197,7 +194,17 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             toolBar.setVisibility(View.GONE);
         }
     }
-    
+
+    /**
+     * 设置标题栏的高度
+     *
+     * @param px
+     */
+    public void setToolbarHeight(int px) {
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, px);
+        toolBar.setLayoutParams(lp);
+    }
+
     /**
      * 设置标题栏颜色和状态栏颜色
      *
@@ -205,15 +212,25 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      * @param isLight         修改状态栏文字图标颜色
      */
     public void setBackgroundColor(int backgroundColor, boolean isLight) {
-        toolBar.setBackgroundColor(backgroundColor);
-        StatusBarUtil.setColorForSwipeBack(this, backgroundColor, 0);
+        toolBar.setBackgroundColor(this.getResources().getColor(backgroundColor));
+        StatusBarUtil.setColorForSwipeBack(this, this.getResources().getColor(backgroundColor), 0);
         if (isLight) {
             StatusBarUtil.setLightMode(this);
         } else {
             StatusBarUtil.setDarkMode(this);
         }
     }
-    
+
+    /**
+     * 设置标题栏背景
+     *
+     * @param background
+     */
+    @SuppressLint("NewApi")
+    public void setBackground(int background) {
+        toolBarImg.setBackground(this.getResources().getDrawable(background));
+    }
+
     /**
      * 设置标题内容
      *
@@ -222,7 +239,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setTitle(String title) {
         tvTitle.setText(title);
     }
-    
+
     /**
      * 设置标题颜色
      *
@@ -232,7 +249,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setTitleColor(int titleColor) {
         tvTitle.setTextColor(titleColor);
     }
-    
+
     /**
      * 设置标题字体大小
      *
@@ -241,7 +258,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setTitleSize(int titleSize) {
         tvTitle.setTextSize(titleSize);
     }
-    
+
     /**
      * 设置标题左边文字内容
      *
@@ -250,7 +267,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setLeftText(String leftText) {
         mTvLeft.setText(leftText);
     }
-    
+
     /**
      * 设置标题左边文字大小
      *
@@ -259,7 +276,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setLeftTextSize(int leftTextSize) {
         mTvLeft.setTextSize(leftTextSize);
     }
-    
+
     /**
      * 设置标题左边文字颜色
      *
@@ -268,7 +285,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setLeftTextColor(int leftTextColor) {
         mTvLeft.setTextColor(leftTextColor);
     }
-    
+
     /**
      * 设置是否显示左边文字
      *
@@ -281,7 +298,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             mTvLeft.setVisibility(View.GONE);
         }
     }
-    
+
     /**
      * 设置标题左边图标
      *
@@ -294,7 +311,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             mImgLeft.setVisibility(View.GONE);
         }
     }
-    
+
     /**
      * 设置标题左边图标显示
      *
@@ -307,7 +324,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             mImgLeft.setVisibility(View.GONE);
         }
     }
-    
+
     /**
      * 设置右边第一文字显示
      *
@@ -320,7 +337,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             mTvRightFirst.setVisibility(View.GONE);
         }
     }
-    
+
     /**
      * 设置右边第一文字内容
      *
@@ -329,7 +346,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setFirstRightText(String firstRightText) {
         mTvRightFirst.setText(firstRightText);
     }
-    
+
     /**
      * 设置右边第一文字颜色
      *
@@ -338,7 +355,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setFirstRightTextColor(int firstRightTextColor) {
         mTvRightFirst.setTextColor(firstRightTextColor);
     }
-    
+
     /**
      * 设置右边第一文字大小
      *
@@ -347,7 +364,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setFirstRightTextSize(int firstRightTextSize) {
         mTvRightFirst.setTextSize(firstRightTextSize);
     }
-    
+
     /**
      * 设置右边第二文字显示
      *
@@ -360,7 +377,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             mTvRightSecond.setVisibility(View.GONE);
         }
     }
-    
+
     /**
      * 设置右边第二文字内容
      *
@@ -369,7 +386,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setSecondRightText(String secondRightText) {
         mTvRightSecond.setText(secondRightText);
     }
-    
+
     /**
      * 设置右边第二文字颜色
      *
@@ -378,7 +395,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setSecondRightTextColor(int secondRightTextColor) {
         mTvRightSecond.setTextColor(secondRightTextColor);
     }
-    
+
     /**
      * 设置右边第二文字大小
      *
@@ -387,7 +404,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     public void setSecondRightTextSize(int secondRightTextSize) {
         mTvRightSecond.setTextSize(secondRightTextSize);
     }
-    
+
     /**
      * 设置标题右边第一个图标
      *
@@ -400,7 +417,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             mImgRightFirst.setVisibility(View.GONE);
         }
     }
-    
+
     /**
      * 设置标题右边第一个图标显示
      *
@@ -413,7 +430,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             mImgRightFirst.setVisibility(View.GONE);
         }
     }
-    
+
     /**
      * 设置标题右边第二个图标
      *
@@ -426,7 +443,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             mImgRightSecond.setVisibility(View.GONE);
         }
     }
-    
+
     /**
      * 设置标题右边第二个图标显示
      *
@@ -439,7 +456,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             mImgRightSecond.setVisibility(View.GONE);
         }
     }
-    
+
     /**
      * 左右两边点击事件监听设置
      */
@@ -454,7 +471,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 }
             }
         });
-        
+
         mTvLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -465,7 +482,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 }
             }
         });
-        
+
         mImgRightSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -507,7 +524,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 }
             }
         });
-        
+
         mTvRightFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -519,7 +536,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
             }
         });
     }
-    
+
     /**
      * 将activity的布局添加到住布局中
      *
@@ -530,7 +547,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         //  added the sub-activity layout id in parentLinearLayout
         LayoutInflater.from(this).inflate(layoutResID, parentLinearLayout, true);
     }
-    
+
     /**
      * uikit-ToolBar
      *
@@ -544,12 +561,12 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         viewGroup.addView(parentLinearLayout);
         LayoutInflater.from(this).inflate(layoutResID, parentLinearLayout, true);
     }
-    
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
-    
+
     public interface LeftIconClickListener {
         /**
          * 设置左边点击事件
@@ -558,7 +575,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
          */
         void leftIconClick(View view);
     }
-    
+
     public interface LeftTextClickListener {
         /**
          * 设置左边点击事件
@@ -567,7 +584,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
          */
         void leftTextClick(View view);
     }
-    
+
     public interface FirstRightTextClickListener {
         /**
          * 设置右边文字点击事件
@@ -576,7 +593,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
          */
         void rightFirstTextClick(View view);
     }
-    
+
     public interface SecondRightTextClickListener {
         /**
          * 设置右边第二个文字点击事件
@@ -585,7 +602,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
          */
         void secondRightTextClick(View view);
     }
-    
+
     public interface FirstRightIconClickListener {
         /**
          * 设置图片点击事件
@@ -594,7 +611,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
          */
         void firstRightIconClick(View view);
     }
-    
+
     public interface SecondRightIconClickListener {
         /**
          * 设置第二张图片点击事件
@@ -603,7 +620,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
          */
         void secondRightIconClick(View view);
     }
-    
+
     public interface SecondRightIconLongClickListener {
         /**
          * 设置第二张长按点击事件

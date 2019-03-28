@@ -1,6 +1,7 @@
 package com.wya.uikit.toolbar;
 
 import android.graphics.Color;
+import com.wya.uikit.R;
 
 /**
  * @date: 2018/11/19 13:33
@@ -18,7 +19,7 @@ public class WYAToolBarHelper {
     /**
      * 标题栏颜色
      */
-    private int backgroundColor = Color.parseColor("#ffffff");
+    private int backgroundColor = R.color.white;
     /**
      * 是否是明亮的标题栏
      */

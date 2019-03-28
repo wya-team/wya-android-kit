@@ -2,13 +2,11 @@ package com.wya.example.module.uikit.toolbar;
 
 import android.content.Intent;
 import android.view.View;
-
+import butterknife.OnClick;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.utils.utils.StringUtil;
-
-import butterknife.OnClick;
 
 import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
 
@@ -51,13 +49,13 @@ public class ToolBarExampleActivity extends BaseActivity {
                 showToolBar(false);
                 break;
             case R.id.radio_red:
-                setBackgroundColor(this.getResources().getColor(R.color.red), false);
+                setBackgroundColor(R.color.red, false);
                 break;
             case R.id.radio_blue:
-                setBackgroundColor(this.getResources().getColor(R.color.blue), false);
+                setBackgroundColor(R.color.blue, false);
                 break;
             case R.id.radio_greeen:
-                setBackgroundColor(this.getResources().getColor(R.color.green), true);
+                setBackgroundColor(R.color.green, true);
                 break;
             case R.id.radio_left_show:
                 showLeftIcon(true);
