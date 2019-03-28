@@ -24,7 +24,8 @@
         app:rightText="下一页"
         app:selectPageTextColor="@color/primary_color"
         app:textColor="@color/black"
-        app:textSize="13sp" />
+        app:textSize="13sp"
+        app:buttonHeight="30dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -42,7 +43,9 @@
         app:rightText="下一页"
         app:selectPageTextColor="@color/primary_color"
         app:textColor="@color/black"
-        app:textSize="13sp" />
+        app:textSize="13sp"
+        app:buttonHeight="30dp"
+        app:buttonWidth="80dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -60,7 +63,8 @@
         app:rightText="下一页"
         app:selectPageTextColor="@color/primary_color"
         app:textColor="@color/black"
-        app:textSize="13sp" />
+        app:textSize="13sp"
+        app:buttonHeight="30dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -78,7 +82,8 @@
         app:rightText="下一页"
         app:selectPageTextColor="@color/primary_color"
         app:textColor="@color/black"
-        app:textSize="13sp" />
+        app:textSize="13sp"
+        app:buttonHeight="30dp"/>
 
 
     <TextView
