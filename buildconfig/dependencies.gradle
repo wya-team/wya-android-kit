@@ -25,6 +25,40 @@ ext {
 
     ]
 
+    repositoryConfig = [
+            huaweiMavenUrl: "http://developer.huawei.com/repo"
+    ]
+
+    buildConfig = [
+            compileSdkVersion: 28,
+            buildToolsVersion: "28.0.3",
+
+            minSdkVersion    : 15,
+            targetSdkVersion : 26
+    ]
+
+    pushConfig = [
+            pushVersionCode: 1,
+            pushVersionName: "1.0.0"
+    ]
+
+    hwpushConfig = [
+            hwPushVersionCode: 1000,
+            hwPushVersionName: '2.6.3.301'
+    ]
+
+    mipushConfig = [
+            mipushVersionCode: 1000,
+            mipushVersionName: "3.5.1"
+    ]
+
+    supportVersion = [
+            SupportLibVersion      : "28.0.0",
+            annotationVersion      : "27.1.0",
+            multidexVersion        : "1.0.1",
+            constraintLayoutVersion: "1.1.3"
+    ]
+
     // config
     // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     butterknifeVersion = "8.5.1"
@@ -50,6 +84,15 @@ ext {
             aria_core                    : "com.arialyy.aria:aria-core:${ariaCoreVersion}",
             aria_compiler                : "com.arialyy.aria:aria-compiler:${ariaCoreVersion}",
 
+            hwpush: "com.huawei.android.hms:push:${hwpushConfig.hwPushVersionName}",
+
+
     ]
+
+
+
+
+
+
 
 }
