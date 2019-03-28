@@ -421,23 +421,31 @@ public class TimePickerView extends LinearLayout {
     }
     
     public int getMonth() {
-        return monthWheel.getCurrentItem() + mStartMonth;
+        if (yearWheel.getCurrentItem() == 0) {
+            return monthWheel.getCurrentItem() + mStartMonth;
+        } else {
+            return monthWheel.getCurrentItem() + 1;
+        }
     }
     
     public int getDay() {
-        return dayWheel.getCurrentItem() + mStartDay;
+        if (yearWheel.getCurrentItem() == 0 && monthWheel.getCurrentItem() == 0) {
+            return dayWheel.getCurrentItem() + mStartDay;
+        } else {
+            return dayWheel.getCurrentItem()+1;
+        }
     }
     
     public int getHour() {
-        return hourWheel.getCurrentItem() + mStartHour;
+        return hourWheel.getCurrentItem()*hourSpace;
     }
     
     public int getMinute() {
-        return minWheel.getCurrentItem() + mStartMin;
+        return minWheel.getCurrentItem()*minuteSpace;
     }
     
     public int getSecond() {
-        return secWheel.getCurrentItem() + mStartSec;
+        return secWheel.getCurrentItem()*secondSpace;
     }
     
     public void setDividerColor(int color) {
