@@ -1,1 +1,3 @@
 include ':exapmle', 'wyahelper:helper', 'wyahardware:hardware', 'wyautils:utils', 'wyauikit:uikit'
+include ':hwpush'
+include ':mipush'

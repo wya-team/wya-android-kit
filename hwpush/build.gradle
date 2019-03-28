@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+
+def buildConfig = rootProject.ext.buildConfig
+def depends = rootProject.ext.depends
+def hwpushConfig = rootProject.ext.hwpushConfig
+
+android {
+
+    compileSdkVersion buildConfig.compileSdkVersion
+    buildToolsVersion buildConfig.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdkVersion
+        targetSdkVersion buildConfig.targetSdkVersion
+
+        versionCode hwpushConfig.hwPushVersionCode
+        versionName hwpushConfig.hwPushVersionName
+
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            consumerProguardFiles('proguard-android.txt')
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    dependencies {
+        api depends.hwpush
+    }
+
+}
+repositories {
+    mavenCentral()
+}
+dependencies {
+}
+
+apply from: 'maven-release-aar.gradle'
+
