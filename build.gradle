@@ -23,8 +23,6 @@ allprojects {
         mavenCentral()
         maven { url 'https://jitpack.io' }
         maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
-        maven { url repositoryConfig.huaweiMavenUrl }
-
     }
 }
 
