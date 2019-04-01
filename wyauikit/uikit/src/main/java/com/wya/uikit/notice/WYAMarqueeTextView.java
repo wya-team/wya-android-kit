@@ -2,6 +2,7 @@ package com.wya.uikit.notice;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -96,7 +97,10 @@ public class WYAMarqueeTextView extends AppCompatTextView {
         }
         int mesureText = measureText();
         final int distance = mesureText - mCurStartX;
-        mScroller.startScroll(mCurStartX, 0, distance, 0, mDuration);
+        
+        int duration = (new Double(mDuration * distance * 1.00000
+                / calculateScrollingLen())).intValue();
+        mScroller.startScroll(mCurStartX, 0, distance, 0, duration);
         invalidate();
     }
     
@@ -104,6 +108,16 @@ public class WYAMarqueeTextView extends AppCompatTextView {
         TextPaint paint = getPaint();
         float size = paint.measureText(getText().toString());
         return Double.valueOf(size).intValue();
+    }
+    
+    private int calculateScrollingLen() {
+        TextPaint tp = getPaint();
+        Rect rect = new Rect();
+        String strTxt = getText().toString();
+        tp.getTextBounds(strTxt, 0, strTxt.length(), rect);
+        int scrollingLen = rect.width() + getWidth();
+        rect = null;
+        return scrollingLen;
     }
     
     /**

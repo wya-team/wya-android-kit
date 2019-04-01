@@ -139,20 +139,30 @@
         android:drawableLeft="@drawable/icon_voiceorange"
         android:drawableRight="@drawable/icon_back_notice"
         app:marqueeAutoStart="true"
+        app:marqueeDuration="8000"
         app:marqueeSkipable="true" />
 
     <com.wya.uikit.notice.WYAMarqueeTextView
         style="@style/style_marquee"
         android:drawableLeft="@drawable/icon_voiceorange"
         android:drawableRight="@drawable/icon_cancel_notice"
+        android:text="middle middle middle middle middle middle"
+        app:marqueeAutoStart="true"
         app:marqueeClosable="true"
-        app:marqueeDuration="10000" />
+        app:marqueeDuration="8000" />
 
     <com.wya.uikit.notice.WYAMarqueeTextView
         style="@style/style_marquee"
         android:drawableRight="@drawable/icon_back_notice"
+        android:text="短的 短的短的"
+        app:marqueeAutoStart="true"
+        app:marqueeDuration="8000"
         app:marqueeSkipable="true" />
 
-    <com.wya.uikit.notice.WYAMarqueeTextView style="@style/style_marquee" />
+    <com.wya.uikit.notice.WYAMarqueeTextView
+        style="@style/style_marquee"
+        android:text="middle middle middle middle middle middle middle middle middle middle"
+        app:marqueeAutoStart="true"
+        app:marqueeDuration="8000" />
 
 </LinearLayout>
