@@ -52,8 +52,8 @@
         <attr name="buttonBackGroundColorPress" format="color" />
         <attr name="buttonBackGroundImage" />
         <attr name="buttonBackGroundImagePress" />
-        <attr name="buttonTextColor" format="color"/>
-        <attr name="buttonTextColorPress" format="color"/>
+        <attr name="buttonTextColor" format="color" />
+        <attr name="buttonTextColorPress" format="color" />
         <attr name="buttonFillet" format="boolean" />
         <attr name="buttonEnabled" format="boolean" />
         <attr name="buttonRadius" />
@@ -171,7 +171,9 @@
 
     <!-- marquee attrs -->
     <declare-styleable name="WYAMarqueeTextView">
+        <attr name="marqueeAutoStart" format="boolean" />
         <attr name="marqueeInterval" format="integer" />
+        <attr name="marqueeDuration" format="integer" />
         <attr name="marqueeClosable" format="boolean" />
         <attr name="marqueeSkipable" format="boolean" />
         <attr name="marqueeMode" format="enum">

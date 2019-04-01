@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;
+import com.wya.uikit.notice.WYAMarqueeTextView;
 import com.wya.uikit.notice.switcher.WYASwitcherView;
 import com.wya.utils.utils.StringUtil;
 
@@ -21,24 +22,27 @@ import static com.wya.example.module.example.fragment.ExampleFragment.EXTRA_URL;
  * @author :
  */
 public class NoticeExampleActivity extends BaseActivity {
-
+    
     @BindView(R.id.vs_down2up)
     WYASwitcherView vsDown2Up;
-
+    
     @BindView(R.id.vs_up2down)
     WYASwitcherView vsUp2Down;
-
+    
     @BindView(R.id.ll_closable_switcher)
     LinearLayout llClosableSwitcher;
-
+    
     @BindView(R.id.vs_left2right)
     WYASwitcherView vsLeft2Right;
-
+    
     @BindView(R.id.vs_right2left)
     WYASwitcherView vsRight2Left;
-
+    
+    @BindView(R.id.marquee)
+    WYAMarqueeTextView marquee;
+    
     private String noticeText;
-
+    
     public static void start(Activity activity) {
         if (null == activity) {
             return;
@@ -46,12 +50,12 @@ public class NoticeExampleActivity extends BaseActivity {
         Intent intent = new Intent(activity, NoticeExampleActivity.class);
         activity.startActivity(intent);
     }
-
+    
     @Override
     protected int getLayoutId() {
         return R.layout.layout_activity_notice_view;
     }
-
+    
     @Override
     protected void initView() {
         setTitle("通告栏(notice)");
@@ -68,9 +72,9 @@ public class NoticeExampleActivity extends BaseActivity {
         });
         showSwitcher();
     }
-
+    
     private void showSwitcher() {
-
+        
         // down2up
         vsDown2Up.setSwitcheNextViewListener(new WYASwitcherView.SwitcherViewListener() {
             @Override
@@ -90,7 +94,7 @@ public class NoticeExampleActivity extends BaseActivity {
             }
         });
         vsDown2Up.inflate(R.layout.item_switch_view).startSwitcher();
-
+        
         // up2down
         vsUp2Down.setSwitcheNextViewListener(new WYASwitcherView.SwitcherViewListener() {
             @Override
@@ -113,7 +117,7 @@ public class NoticeExampleActivity extends BaseActivity {
             }
         });
         vsUp2Down.inflate(R.layout.item_switch_view).startSwitcher();
-
+        
         // left2right
         vsLeft2Right.setSwitcheNextViewListener(new WYASwitcherView.SwitcherViewListener() {
             @Override
@@ -133,7 +137,7 @@ public class NoticeExampleActivity extends BaseActivity {
             }
         });
         vsLeft2Right.inflate(R.layout.item_switch_view).startSwitcher();
-
+        
         // right2left
         vsRight2Left.setSwitcheNextViewListener(new WYASwitcherView.SwitcherViewListener() {
             @Override
@@ -146,6 +150,6 @@ public class NoticeExampleActivity extends BaseActivity {
         });
         vsRight2Left.inflate(R.layout.item_switch_view).startSwitcher();
     }
-
+    
 }
 
