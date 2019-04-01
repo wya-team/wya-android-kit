@@ -30,7 +30,7 @@ public class WYAMarqueeTextView extends AppCompatTextView {
     private boolean mSkipable;
     
     private boolean mIsPaused = true;
-    private boolean mIsAutoStart = true;
+    private boolean mIsAutoStart = false;
     private Context mContext;
     
     public WYAMarqueeTextView(Context context) {
