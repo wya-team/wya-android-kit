@@ -11,7 +11,7 @@ android {
         minSdkVersion buildConfig.getAt("minSdkVersion")
         targetSdkVersion buildConfig.getAt("targetSdkVersion")
 
-        versionCode 2
+        versionCode 3
         versionName "0.1.8"
     }
 
