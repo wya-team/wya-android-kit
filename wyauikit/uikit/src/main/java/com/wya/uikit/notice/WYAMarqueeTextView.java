@@ -51,7 +51,7 @@ public class WYAMarqueeTextView extends AppCompatTextView {
     private void parseAttrs(Context context, AttributeSet attrs, int defStyleAtts, int defStyleRes) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WYAMarqueeTextView, defStyleAtts, defStyleRes);
         if (null != typedArray) {
-            mIsAutoStart = typedArray.getBoolean(R.styleable.WYAMarqueeTextView_marqueeAutoStart, true);
+            mIsAutoStart = typedArray.getBoolean(R.styleable.WYAMarqueeTextView_marqueeAutoStart, false);
             mMarqueeInterval = typedArray.getInt(R.styleable.WYAMarqueeTextView_marqueeInterval, MARQUEE_DEFAULT_INTERVAL);
             mDuration = typedArray.getInt(R.styleable.WYAMarqueeTextView_marqueeDuration, MARQUEE_DEFAULT_DURATION);
             mMarqueeMode = typedArray.getInt(R.styleable.WYAMarqueeTextView_marqueeMode, MARQUEE_MODE_REPEAT);
@@ -150,21 +150,21 @@ public class WYAMarqueeTextView extends AppCompatTextView {
         mScroller.startScroll(0, 0, 0, 0, 0);
     }
     
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (mIsAutoStart) {
-            resumeMarquee();
-        }
-    }
-    
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (mIsAutoStart) {
-            pauseMarquee();
-        }
-    }
+    //    @Override
+    //    protected void onAttachedToWindow() {
+    //        super.onAttachedToWindow();
+    //        if (mIsAutoStart) {
+    //            resumeMarquee();
+    //        }
+    //    }
+    //
+    //    @Override
+    //    protected void onDetachedFromWindow() {
+    //        super.onDetachedFromWindow();
+    //        if (mIsAutoStart) {
+    //            pauseMarquee();
+    //        }
+    //    }
     
     public void setMarqueeInterval(int interval) {
         mMarqueeInterval = interval;

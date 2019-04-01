@@ -138,7 +138,7 @@
         style="@style/style_marquee"
         android:drawableLeft="@drawable/icon_voiceorange"
         android:drawableRight="@drawable/icon_back_notice"
-        app:marqueeAutoStart="false"
+        app:marqueeAutoStart="true"
         app:marqueeSkipable="true" />
 
     <com.wya.uikit.notice.WYAMarqueeTextView
