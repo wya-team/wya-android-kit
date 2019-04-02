@@ -239,8 +239,8 @@ public class WYACustomEditText extends RelativeLayout {
      *
      * @return
      */
-    private String getEditText() {
-        return editText;
+    public EditText getEditText() {
+        return etWyaCustomEditText;
     }
     
     /**

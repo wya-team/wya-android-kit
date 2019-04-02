@@ -25,31 +25,12 @@ ext {
 
     ]
 
-    repositoryConfig = [
-            huaweiMavenUrl: "http://developer.huawei.com/repo"
-    ]
-
     buildConfig = [
             compileSdkVersion: 28,
             buildToolsVersion: "28.0.3",
 
             minSdkVersion    : 15,
             targetSdkVersion : 26
-    ]
-
-    pushConfig = [
-            pushVersionCode: 1,
-            pushVersionName: "1.0.0"
-    ]
-
-    hwpushConfig = [
-            hwPushVersionCode: 1000,
-            hwPushVersionName: '2.6.3.301'
-    ]
-
-    mipushConfig = [
-            mipushVersionCode: 1000,
-            mipushVersionName: "3.5.1"
     ]
 
     supportVersion = [
@@ -69,6 +50,7 @@ ext {
 
     gsonVersion = "2.8.5"
     ariaCoreVersion = "3.5.2"
+    ossAndroidSdkVersion = "2.3.0"
 
     depends = [
 
@@ -84,15 +66,7 @@ ext {
             aria_core                    : "com.arialyy.aria:aria-core:${ariaCoreVersion}",
             aria_compiler                : "com.arialyy.aria:aria-compiler:${ariaCoreVersion}",
 
-            hwpush: "com.huawei.android.hms:push:${hwpushConfig.hwPushVersionName}",
-
-
+            oss_android_sdk              : "com.aliyun.dpa:oss-android-sdk:${ossAndroidSdkVersion}"
     ]
-
-
-
-
-
-
 
 }

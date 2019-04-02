@@ -2,6 +2,7 @@ package com.wya.uikit.notice;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -19,15 +20,18 @@ public class WYAMarqueeTextView extends AppCompatTextView {
     public static final int MARQUEE_MODE_REPEAT = 0;
     public static final int MARQUEE_MODE_ONCE = 1;
     private static final int MARQUEE_DEFAULT_INTERVAL = 5000;
+    private static final int MARQUEE_DEFAULT_DURATION = 5000;
     private Scroller mScroller;
     
     private int mCurStartX = 0;
     private int mMarqueeInterval;
+    private int mDuration;
     private int mMarqueeMode;
     private boolean mClosable;
     private boolean mSkipable;
     
     private boolean mIsPaused = true;
+    private boolean mIsAutoStart = false;
     private Context mContext;
     
     public WYAMarqueeTextView(Context context) {
@@ -48,7 +52,9 @@ public class WYAMarqueeTextView extends AppCompatTextView {
     private void parseAttrs(Context context, AttributeSet attrs, int defStyleAtts, int defStyleRes) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WYAMarqueeTextView, defStyleAtts, defStyleRes);
         if (null != typedArray) {
+            mIsAutoStart = typedArray.getBoolean(R.styleable.WYAMarqueeTextView_marqueeAutoStart, false);
             mMarqueeInterval = typedArray.getInt(R.styleable.WYAMarqueeTextView_marqueeInterval, MARQUEE_DEFAULT_INTERVAL);
+            mDuration = typedArray.getInt(R.styleable.WYAMarqueeTextView_marqueeDuration, MARQUEE_DEFAULT_DURATION);
             mMarqueeMode = typedArray.getInt(R.styleable.WYAMarqueeTextView_marqueeMode, MARQUEE_MODE_REPEAT);
             mClosable = typedArray.getBoolean(R.styleable.WYAMarqueeTextView_marqueeClosable, false);
             mSkipable = typedArray.getBoolean(R.styleable.WYAMarqueeTextView_marqueeSkipable, false);
@@ -60,7 +66,9 @@ public class WYAMarqueeTextView extends AppCompatTextView {
         setSingleLine();
         setEllipsize(null);
         setHorizontallyScrolling(true);
-        startMarquee();
+        if (mIsAutoStart) {
+            startMarquee();
+        }
         
         setOnClickListener(view -> {
             if (isClosable()) {
@@ -89,7 +97,9 @@ public class WYAMarqueeTextView extends AppCompatTextView {
         }
         int mesureText = measureText();
         final int distance = mesureText - mCurStartX;
-        final int duration = (Double.valueOf(mMarqueeInterval * distance / mesureText)).intValue();
+        
+        int duration = (new Double(mDuration * distance * 1.00000
+                / calculateScrollingLen())).intValue();
         mScroller.startScroll(mCurStartX, 0, distance, 0, duration);
         invalidate();
     }
@@ -98,6 +108,16 @@ public class WYAMarqueeTextView extends AppCompatTextView {
         TextPaint paint = getPaint();
         float size = paint.measureText(getText().toString());
         return Double.valueOf(size).intValue();
+    }
+    
+    private int calculateScrollingLen() {
+        TextPaint tp = getPaint();
+        Rect rect = new Rect();
+        String strTxt = getText().toString();
+        tp.getTextBounds(strTxt, 0, strTxt.length(), rect);
+        int scrollingLen = rect.width() + getWidth();
+        rect = null;
+        return scrollingLen;
     }
     
     /**
@@ -144,17 +164,21 @@ public class WYAMarqueeTextView extends AppCompatTextView {
         mScroller.startScroll(0, 0, 0, 0, 0);
     }
     
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        resumeMarquee();
-    }
-    
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        pauseMarquee();
-    }
+    //    @Override
+    //    protected void onAttachedToWindow() {
+    //        super.onAttachedToWindow();
+    //        if (mIsAutoStart) {
+    //            resumeMarquee();
+    //        }
+    //    }
+    //
+    //    @Override
+    //    protected void onDetachedFromWindow() {
+    //        super.onDetachedFromWindow();
+    //        if (mIsAutoStart) {
+    //            pauseMarquee();
+    //        }
+    //    }
     
     public void setMarqueeInterval(int interval) {
         mMarqueeInterval = interval;
