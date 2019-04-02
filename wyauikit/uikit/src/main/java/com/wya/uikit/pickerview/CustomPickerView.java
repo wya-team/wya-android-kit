@@ -27,6 +27,7 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
     private TextView pickerTitle, cancel, sure;
     private OnChooseItemListener mOnChooseItemListener;
     private LinearLayout pickerTitleContent;
+    private View mDivider;
 
     public CustomPickerView(@NonNull Context context, OnChooseItemListener onChooseItemListener) {
         this(context, R.style.WYACustomDialog, onChooseItemListener);
@@ -59,6 +60,7 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
         pickerTitle = findViewById(R.id.picker_title);
         sure = findViewById(R.id.picker_sure);
         pickerTitleContent = findViewById(R.id.picker_title_content);
+        mDivider = findViewById(R.id.option_picker_divider);
 
         cancel.setOnClickListener(this);
         sure.setOnClickListener(this);
@@ -167,6 +169,15 @@ public class CustomPickerView<T> extends Dialog implements View.OnClickListener 
 
     public CustomPickerView setCenterTextColor(int color) {
         optionPickerView.setCenterTextColor(color);
+        return this;
+    }
+    public CustomPickerView setTitleDivderColor(int color) {
+        mDivider.setBackgroundColor(color);
+        return this;
+    }
+
+    public CustomPickerView setDividerWidth(float width) {
+        optionPickerView.setDividerWidth(width);
         return this;
     }
 

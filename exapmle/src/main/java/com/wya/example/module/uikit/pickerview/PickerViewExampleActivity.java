@@ -133,6 +133,7 @@ public class PickerViewExampleActivity extends BaseActivity {
                 mCustomTimePicker.setType(new boolean[]{true, true, true, true, true, true})
                         .setLineSpace(3)
                         .setItemsVisible(7)
+                        .setDividerWidth(4)
                         .show();
                 break;
             case R.id.ymdhms_layout_with:
