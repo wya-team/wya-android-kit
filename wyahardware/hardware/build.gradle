@@ -23,6 +23,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -30,7 +35,8 @@ dependencies {
     implementation supportDepends.appcompat_v7
     implementation supportDepends.constraint_layout
     api depends.zxing  // scan
+    implementation depends.oss_android_sdk
 
 }
-//aar打包
+// aar打包
 apply from: 'maven-release-aar.gradle'

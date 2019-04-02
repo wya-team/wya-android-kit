@@ -50,6 +50,7 @@ ext {
 
     gsonVersion = "2.8.5"
     ariaCoreVersion = "3.5.2"
+    ossAndroidSdkVersion = "2.3.0"
 
     depends = [
 
@@ -64,6 +65,8 @@ ext {
             gson                         : "com.google.code.gson:gson:${gsonVersion}",
             aria_core                    : "com.arialyy.aria:aria-core:${ariaCoreVersion}",
             aria_compiler                : "com.arialyy.aria:aria-compiler:${ariaCoreVersion}",
+
+            oss_android_sdk              : "com.aliyun.dpa:oss-android-sdk:${ossAndroidSdkVersion}"
     ]
 
 }
