@@ -28,6 +28,7 @@ public class CustomTimePicker extends Dialog implements View.OnClickListener {
     private TextView timePickerCancel, timePickerTitle, timePickerSure;
     private TimePickerView timePickerView;
     private OnTimePickerSelectedListener mListener;
+    private View mDivider;
 
     public CustomTimePicker(@NonNull Context context, OnTimePickerSelectedListener
             onTimePickerSelectedListener) {
@@ -60,6 +61,7 @@ public class CustomTimePicker extends Dialog implements View.OnClickListener {
         timePickerTitle = findViewById(R.id.time_picker_title);
         timePickerSure = findViewById(R.id.time_picker_sure);
         timePickerTitleContent = findViewById(R.id.time_picker_title_content);
+        mDivider = findViewById(R.id.custom_time_picker_divider);
 
         timePickerCancel.setOnClickListener(this);
         timePickerSure.setOnClickListener(this);
@@ -67,6 +69,10 @@ public class CustomTimePicker extends Dialog implements View.OnClickListener {
 
     public CustomTimePicker setTitle(@NonNull String title) {
         timePickerTitle.setText(title);
+        return this;
+    }
+    public CustomTimePicker setTitleDividerColor(int color) {
+        mDivider.setBackgroundColor(color);
         return this;
     }
 
@@ -92,6 +98,11 @@ public class CustomTimePicker extends Dialog implements View.OnClickListener {
 
     public CustomTimePicker setDividerColor(int color) {
         timePickerView.setDividerColor(color);
+        return this;
+    }
+
+    public CustomTimePicker setDividerWidth(float width) {
+        timePickerView.setDividerStroke(width);
         return this;
     }
 

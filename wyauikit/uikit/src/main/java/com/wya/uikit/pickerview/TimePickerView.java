@@ -511,4 +511,12 @@ public class TimePickerView extends LinearLayout {
         secWheel.setItemsVisible(items);
     }
 
+    public void setDividerStroke(float width) {
+        yearWheel.setDividerStroke(width);
+        monthWheel.setDividerStroke(width);
+        dayWheel.setDividerStroke(width);
+        hourWheel.setDividerStroke(width);
+        minWheel.setDividerStroke(width);
+        secWheel.setDividerStroke(width);
+    }
 }
