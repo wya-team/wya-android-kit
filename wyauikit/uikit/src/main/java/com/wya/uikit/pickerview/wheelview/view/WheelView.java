@@ -826,6 +826,10 @@ public class WheelView extends View {
         this.dividerColor = dividerColor;
         paintIndicator.setColor(dividerColor);
     }
+
+    public void setDividerStroke(float stroke) {
+        paintIndicator.setStrokeWidth(stroke);
+    }
     
     public void setDividerType(DividerType dividerType) {
         this.dividerType = dividerType;

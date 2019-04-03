@@ -387,4 +387,11 @@ public class OptionsPickerView<T> extends LinearLayout {
         return this;
     }
 
+    public OptionsPickerView setDividerWidth(float width) {
+        mWheelView1.setDividerStroke(width);
+        mWheelView2.setDividerStroke(width);
+        mWheelView3.setDividerStroke(width);
+        return this;
+    }
+
 }
