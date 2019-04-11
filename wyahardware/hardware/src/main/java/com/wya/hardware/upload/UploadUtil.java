@@ -15,10 +15,17 @@ public class UploadUtil {
         if (null == ossInfo) {
             return;
         }
-        updloadImage(context, ossInfo, fileName, filePath);
+        upload(context, ossInfo, fileName, filePath);
     }
     
-    public static void updloadImage(Context context, OssInfo ossInfo, String fileName, String filePath) {
+    public static void upload(Context context, OssInfo ossInfo, String fileName, String filePath) {
+        if (null == ossInfo) {
+            return;
+        }
+        upload(context, ossInfo, fileName, filePath, (status, msg, data) -> Log.e("TAG", "[onPostAfter] status = " + status + " , msg = " + msg + " , data = " + data));
+    }
+    
+    public static void upload(Context context, OssInfo ossInfo, String fileName, String filePath, PostAfterInterface postAfter) {
         if (null == ossInfo) {
             return;
         }
@@ -30,6 +37,7 @@ public class UploadUtil {
         OssService ossService = new OssService(context, accessKeyId, accessKeySecret, endpoint, bucketName);
         ossService.initOSSClient();
         String resultUrl = "https://" + ossInfo.getBucket() + "." + ossInfo.getHost() + "/" + fileName;
-        ossService.startUpload(context, fileName, filePath, resultUrl, (status, msg, data) -> Log.e("TAG", "[onPostAfter] status = " + status + " , msg = " + msg + " , data = " + data));
+        ossService.startUpload(context, fileName, filePath, resultUrl, postAfter);
     }
+    
 }
