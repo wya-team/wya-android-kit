@@ -2,14 +2,12 @@
 <metadata>
   <groupId>com.wya.uikit</groupId>
   <artifactId>uikit</artifactId>
+  <version>0.1.10-SNAPSHOT</version>
   <versioning>
-    <release>0.1.10</release>
-    <versions>
-      <version>0.1.8</version>
-      <version>0.1.9</version>
-      <version>0.1.10</version>
-      <version>0.1.10-SNAPSHOT</version>
-    </versions>
+    <snapshot>
+      <timestamp>20190412.093437</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
     <lastUpdated>20190412093437</lastUpdated>
   </versioning>
 </metadata>
