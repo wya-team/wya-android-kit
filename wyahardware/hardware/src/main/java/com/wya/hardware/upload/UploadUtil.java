@@ -36,7 +36,9 @@ public class UploadUtil {
             return;
         }
         
-        upload(context, ossInfo, fileName + "_" + index, filePath, postAfter);
+        String key = ossInfo.getDir() + System.currentTimeMillis() + index + "/" + fileName;
+        ossInfo.setKey(key);
+        upload(context, ossInfo, fileName, filePath, postAfter);
     }
     
 }

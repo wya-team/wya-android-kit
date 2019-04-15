@@ -8,9 +8,9 @@ public interface IOssInfo {
     /**
      * setOSSAccessKeyId
      *
-     * @param OSSAccessKeyId :
+     * @param ossAccessKeyId :
      */
-    void setOSSAccessKeyId(String OSSAccessKeyId);
+    void setOSSAccessKeyId(String ossAccessKeyId);
     
     /**
      * setAccessKeySecret
