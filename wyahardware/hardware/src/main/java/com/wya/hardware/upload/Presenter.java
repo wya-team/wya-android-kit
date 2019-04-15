@@ -3,14 +3,11 @@ package com.wya.hardware.upload;
 import android.content.Context;
 import android.util.Log;
 
-import com.wya.hardware.upload.net.BaseResult;
-import com.wya.hardware.upload.net.BaseSubscriber;
 import com.wya.hardware.upload.net.ResultApi;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * @author :
@@ -19,37 +16,28 @@ public class Presenter {
     
     private ResultApi mResultApi = new ResultApi();
     
-    public void upload(Context context, OssInfo ossInfo, String fileName, String filePath, PostAfterInterface postAfter) {
-        ext(mResultApi.upload(ossInfo, fileName, filePath), new BaseSubscriber<BaseResult>() {
+    public void upload(Context context, OssInfo ossInfo, PostAfterInterface postAfter) {
+        if (null == ossInfo || null == context) {
+            return;
+        }
+        mResultApi.upload(ossInfo, ossInfo.getKey(), ossInfo.getFile()).enqueue(new Callback() {
             @Override
-            public void onNext(BaseResult result) {
-                if (null == result) {
-                    return;
-                }
-                
-                String url = "https://" + ossInfo.getBucket() + "." + ossInfo.getHost() + "/" + fileName;
+            public void onResponse(Call call, Response response) {
                 if (null != postAfter) {
-                    postAfter.onPostAfter(1, "upload success", url);
+                    postAfter.onPostAfter(1, "upload success", ossInfo.getResultUrl());
                 }
-                Log.e("ZCQ", "upload result = " + result.toString());
+                Log.e("TAG", "upload result = " + ossInfo.getResultUrl());
             }
             
             @Override
-            public void onError(Throwable e) {
-                super.onError(e);
+            public void onFailure(Call call, Throwable t) {
+                Log.e("TAG", "upload error = " + t.getMessage());
                 if (null != postAfter) {
-                    postAfter.onPostAfter(0, "upload error", e.getMessage());
+                    postAfter.onPostAfter(0, "upload error", t.getMessage());
                 }
             }
-            
         });
-    }
-    
-    public static <T> void ext(Observable<T> observable, Observer<T> observer) {
-        observable.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
+        
     }
     
 }

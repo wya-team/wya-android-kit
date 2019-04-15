@@ -115,6 +115,26 @@ public class OssInfo {
     
     private String file;
     
+    public String getResultUrl() {
+        return resultUrl;
+    }
+    
+    public void setResultUrl(String resultUrl) {
+        this.resultUrl = resultUrl;
+    }
+    
+    private String resultUrl;
+    
+    public String getSuccess_action_status() {
+        return success_action_status;
+    }
+    
+    public void setSuccess_action_status(String success_action_status) {
+        this.success_action_status = success_action_status;
+    }
+    
+    private String success_action_status;
+    
     @Override
     public String toString() {
         return "OssInfo{" +

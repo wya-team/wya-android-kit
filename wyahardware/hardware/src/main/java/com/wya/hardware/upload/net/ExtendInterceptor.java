@@ -20,15 +20,13 @@ public class ExtendInterceptor implements Interceptor {
         List<String> headers = request.headers("header_extend");
         if (headers != null && headers.size() > 0) {
             if ("upload".equals(headers.get(0).toLowerCase())) {
-                Log.e("ZCQ", "[MyInterceptor] request = " + request.toString());
+                Log.e("TAG", "[ExtendInterceptor] request = " + request.toString());
                 // 替换更新接口根域名
                 builder.removeHeader("header_extend");
                 
                 // 拼接新的请求url，根域名+路径
-                
-                // wyatest
                 String bucket = OssSp.get(BaseApp.getApp()).getBucket();
-                Log.e("ZCQ", "[ExtendInterceptor] bucket = " + bucket);
+                Log.e("TAG", "[ExtendInterceptor] bucket = " + bucket);
                 HttpUrl httpUrl = HttpUrl.parse("https://" + bucket + ".oss-cn-hangzhou.aliyuncs.com/");
                 if (null != httpUrl) {
                     builder.url(httpUrl);
@@ -36,7 +34,6 @@ public class ExtendInterceptor implements Interceptor {
             }
         }
         Request requestBuilder = builder.build();
-        Log.e("ZCQ", "[MyInterceptor] request = " + requestBuilder.toString());
         return chain.proceed(requestBuilder);
     }
 }

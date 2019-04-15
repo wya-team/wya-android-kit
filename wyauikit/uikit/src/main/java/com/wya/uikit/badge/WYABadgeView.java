@@ -561,7 +561,6 @@ public class WYABadgeView extends View implements IBadgeView {
                     case MeasureSpec.AT_MOST:
                         widthSize = MeasureSpec.makeMeasureSpec(widthNeeded, MeasureSpec.AT_MOST);
                         break;
-                    // TODO: 2019/1/7 ZCQ TEST
                     case MeasureSpec.UNSPECIFIED:
                     default:
                         widthSize = MeasureSpec.makeMeasureSpec(widthNeeded, MeasureSpec.EXACTLY);

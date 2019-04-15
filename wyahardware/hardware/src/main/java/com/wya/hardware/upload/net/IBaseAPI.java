@@ -6,6 +6,7 @@ import java.util.Map;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.Headers;
@@ -31,8 +32,7 @@ public interface IBaseAPI {
             "header_extend:upload"
     })
     @POST("https://wyatest.oss-cn-hangzhou.aliyuncs.com/")
-    Observable<BaseResult> upload(@HeaderMap Map<String, String> headerMap, @Part List<MultipartBody.Part> list);
-    
+    Call<Void> upload(@HeaderMap Map<String, String> headerMap, @Part List<MultipartBody.Part> list);
     
     /**
      * 如果不需要多个 BaseUrl, 继续使用初始化时传入 Retrofit 中的默认 BaseUrl, 就不要加上 DOMAIN_NAME_HEADER 这个 Header

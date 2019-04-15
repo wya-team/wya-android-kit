@@ -7,19 +7,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.reactivex.Observable;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.Call;
 
 /**
  * @author :
  */
 public class ResultApi {
     
-    public Observable<BaseResult> upload(OssInfo ossInfo, String fileName, String filePath) {
+    public Call upload(OssInfo ossInfo, String fileName, String filePath) {
         Map<String, String> headerMap = new HashMap<>(16);
         headerMap.put("header_extend", "upload");
+        
         return RetrofitFactory.getInstance().create(IBaseAPI.class).upload(headerMap, generateRequest(ossInfo));
     }
     
@@ -33,7 +34,6 @@ public class ResultApi {
         builder.addFormDataPart("OSSAccessKeyId", ossInfo.getOSSAccessKeyId());
         builder.addFormDataPart("signature", ossInfo.getSignature());
         builder.addFormDataPart("key", ossInfo.getKey());
-        
         File file = new File(ossInfo.getFile());
         RequestBody fileBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         builder.addFormDataPart("file", ossInfo.getFile(), fileBody);
