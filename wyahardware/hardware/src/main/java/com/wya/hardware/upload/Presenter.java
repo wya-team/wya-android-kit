@@ -18,7 +18,6 @@ import io.reactivex.schedulers.Schedulers;
 public class Presenter {
     
     private ResultApi mResultApi = new ResultApi();
-    private PostAfterInterface postAfter;
     
     public void upload(Context context, OssInfo ossInfo, String fileName, String filePath, PostAfterInterface postAfter) {
         ext(mResultApi.upload(ossInfo, fileName, filePath), new BaseSubscriber<BaseResult>() {

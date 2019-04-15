@@ -12,7 +12,7 @@ android {
         minSdkVersion buildConfig.getAt("minSdkVersion")
         targetSdkVersion buildConfig.getAt("targetSdkVersion")
 
-        versionCode 4
+        versionCode 5
         versionName "0.1.7-SNAPSHOT"
     }
 
