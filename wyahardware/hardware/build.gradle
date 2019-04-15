@@ -35,7 +35,21 @@ dependencies {
     implementation supportDepends.appcompat_v7
     implementation supportDepends.constraint_layout
     api depends.zxing  // scan
-    implementation depends.oss_android_sdk
+//    implementation depends.oss_android_sdk
+
+    implementation libs.oss_android_sdk
+
+    // [retrofit]
+    implementation libs.retrofit
+    implementation libs.converter_gson
+    implementation libs.okhttp
+    implementation libs.logging_interceptor
+    implementation libs.converter_scalars
+
+    // [rxjava]
+    implementation libs.rxjava
+    implementation libs.rxandroid
+    implementation libs.adapter_rxjava2
 
 }
 // aar打包

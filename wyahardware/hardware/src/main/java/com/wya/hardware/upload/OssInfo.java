@@ -95,6 +95,26 @@ public class OssInfo {
     
     private String region;
     
+    public String getKey() {
+        return key;
+    }
+    
+    public void setKey(String key) {
+        this.key = key;
+    }
+    
+    public String getFile() {
+        return file;
+    }
+    
+    public void setFile(String file) {
+        this.file = file;
+    }
+    
+    private String key;
+    
+    private String file;
+    
     @Override
     public String toString() {
         return "OssInfo{" +
