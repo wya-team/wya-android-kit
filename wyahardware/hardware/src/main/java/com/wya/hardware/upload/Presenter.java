@@ -18,13 +18,19 @@ import io.reactivex.schedulers.Schedulers;
 public class Presenter {
     
     private ResultApi mResultApi = new ResultApi();
+    private PostAfterInterface postAfter;
     
-    public void upload(Context context, OssInfo ossInfo, String fileName, String filePath) {
+    public void upload(Context context, OssInfo ossInfo, String fileName, String filePath, PostAfterInterface postAfter) {
         ext(mResultApi.upload(ossInfo, fileName, filePath), new BaseSubscriber<BaseResult>() {
             @Override
             public void onNext(BaseResult result) {
                 if (null == result) {
                     return;
+                }
+                
+                String url = "https://" + ossInfo.getBucket() + "." + ossInfo.getHost() + "/" + fileName;
+                if (null != postAfter) {
+                    postAfter.onPostAfter(1, "upload success", url);
                 }
                 Log.e("ZCQ", "upload result = " + result.toString());
             }
@@ -32,6 +38,9 @@ public class Presenter {
             @Override
             public void onError(Throwable e) {
                 super.onError(e);
+                if (null != postAfter) {
+                    postAfter.onPostAfter(0, "upload error", e.getMessage());
+                }
             }
             
         });
