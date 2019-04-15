@@ -1,6 +1,7 @@
 package com.wya.hardware.upload;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.wya.hardware.upload.net.OssSp;
@@ -9,22 +10,25 @@ import com.wya.hardware.upload.net.OssSp;
  */
 public class UploadUtil {
     
-    public static <T extends IOssInfo> void upload(Context context, T iOssInfo, String fileName, String filePath, PostAfterInterface postAfter) {
-        if (null == iOssInfo) {
+    public static <T extends IOssInfo> void upload(Context context, T ossInfo, String fileName, String filePath, PostAfterInterface postAfter) {
+        if (null == ossInfo) {
             return;
         }
         
-        String key = iOssInfo.getDir() + System.currentTimeMillis() + "/" + fileName;
-        Log.e("ZCQ", "[upload] key = " + key);
+        String key = ossInfo.getKey();
+        if (TextUtils.isEmpty(key)) {
+            key = ossInfo.getDir() + System.currentTimeMillis() + "/" + fileName;
+        }
+        Log.e("TAG", "[upload] key = " + key);
         
-        iOssInfo.setKey(key);
-        iOssInfo.setFile(filePath);
-        iOssInfo.setSuccessActionStatus("201");
-        String url = "https://" + iOssInfo.getBucket() + "." + iOssInfo.getHost() + "/" + iOssInfo.getKey();
-        iOssInfo.setResultUrl(url);
+        ossInfo.setKey(key);
+        ossInfo.setFile(filePath);
+        ossInfo.setSuccessActionStatus("201");
+        String url = "https://" + ossInfo.getBucket() + "." + ossInfo.getHost() + "/" + ossInfo.getKey();
+        ossInfo.setResultUrl(url);
         
-        OssSp.get(context).setBucket(iOssInfo.getBucket());
-        new Presenter().upload(context, iOssInfo, postAfter);
+        OssSp.get(context).setBucket(ossInfo.getBucket());
+        new Presenter().upload(context, ossInfo, postAfter);
     }
     
     public static void upload(Context context, OssInfo ossInfo, String fileName, String filePath, int index, PostAfterInterface postAfter) {

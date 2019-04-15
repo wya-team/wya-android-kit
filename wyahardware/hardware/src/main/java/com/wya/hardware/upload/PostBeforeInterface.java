@@ -11,6 +11,6 @@ public interface PostBeforeInterface {
      *
      * @return :
      */
-    OssInfo onPostBefore();
+    IOssInfo onPostBefore();
     
 }
