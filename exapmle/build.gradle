@@ -1,12 +1,8 @@
 apply plugin: 'com.android.application'
-def buildConfig = rootProject.extensions.getByName("ext")
-def supportDepends = rootProject.ext.supportDepends
-def depends = rootProject.ext.depends
 
 android {
 
-    compileSdkVersion buildConfig.getAt("compileSdkVersion")
-    buildToolsVersion buildConfig.getAt("buildToolsVersion")
+    compileSdkVersion build_version.compileSdkVersion
 
     signingConfigs {
         debug {
@@ -25,8 +21,8 @@ android {
 
     defaultConfig {
         applicationId "com.wya.example"
-        minSdkVersion buildConfig.getAt("minSdkVersion")
-        targetSdkVersion buildConfig.getAt("targetSdkVersion")
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
 
         versionCode 1
         versionName "0.1.0"
@@ -54,28 +50,28 @@ buildscript {
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation supportDepends.design
-    implementation supportDepends.support_vector_drawable
-    implementation supportDepends.support_v4
+    implementation libs.design
+    implementation libs.support_vector_drawable
+    implementation libs.support_v4
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    androidTestImplementation(supportDepends.support_annotations) {
+    androidTestImplementation(libs.annotation) {
         force = true
     }
-    implementation supportDepends.appcompat_v7
+    implementation libs.appcompat_v7
 
     // glide
-    implementation depends.glide
-    annotationProcessor depends.compiler
+    implementation libs.glide
+    annotationProcessor libs.compiler
 
-    implementation depends.gson
+    implementation libs.gson
 
-    implementation depends.butterknife
+    implementation libs.butterknife
 
-    annotationProcessor depends.butterknife_compiler
+    annotationProcessor libs.butterknife_compiler
 
-    implementation depends.rxbinding
+    implementation libs.rxbinding
 
-    implementation depends.BaseRecyclerViewAdapterHelper
+    implementation libs.baseRecyclerViewAdapterHelper
 
     implementation project(':wyahelper:helper')
     implementation project(':wyahardware:hardware')

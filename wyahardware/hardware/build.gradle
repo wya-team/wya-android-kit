@@ -1,19 +1,14 @@
 apply plugin: 'com.android.library'
 
-def buildConfig = rootProject.extensions.getByName("ext")
-def supportDepends = rootProject.ext.supportDepends
-def depends = rootProject.ext.depends
-
 android {
 
-    compileSdkVersion buildConfig.getAt("compileSdkVersion")
-    buildToolsVersion buildConfig.getAt("buildToolsVersion")
+    compileSdkVersion build_version.compileSdkVersion
     defaultConfig {
-        minSdkVersion buildConfig.getAt("minSdkVersion")
-        targetSdkVersion buildConfig.getAt("targetSdkVersion")
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
 
         versionCode 8
-        versionName "0.1.8"
+        versionName "0.1.9"
     }
 
     buildTypes {
@@ -32,10 +27,9 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation supportDepends.appcompat_v7
-    implementation supportDepends.constraint_layout
-    api depends.zxing  // scan
-//    implementation depends.oss_android_sdk
+    implementation libs.appcompat_v7
+    implementation libs.constraint_layout
+    api libs.zxing  // scan
 
     implementation libs.oss_android_sdk
 

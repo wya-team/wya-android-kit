@@ -1,6 +1,6 @@
 package com.wya.hardware.upload.net;
 
-import com.wya.hardware.upload.OssInfo;
+import com.wya.hardware.upload.IOssInfo;
 
 import java.io.File;
 import java.util.HashMap;
@@ -17,14 +17,14 @@ import retrofit2.Call;
  */
 public class ResultApi {
     
-    public Call upload(OssInfo ossInfo, String fileName, String filePath) {
+    public <T extends IOssInfo> Call upload(T ossInfo, String fileName, String filePath) {
         Map<String, String> headerMap = new HashMap<>(16);
         headerMap.put("header_extend", "upload");
         
         return RetrofitFactory.getInstance().create(IBaseAPI.class).upload(headerMap, generateRequest(ossInfo));
     }
     
-    private static List<MultipartBody.Part> generateRequest(OssInfo ossInfo) {
+    private static <T extends IOssInfo> List<MultipartBody.Part> generateRequest(T ossInfo) {
         if (null == ossInfo) {
             return null;
         }

@@ -1,77 +1,77 @@
 ext {
 
-    // build config
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    compileSdkVersion = 28
-    buildToolsVersion = "28.0.3"
-    minSdkVersion = 15
-    targetSdkVersion = 28
-
-    // support config
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    supportLibVersion = "28.0.0"
-    constraintLayoutVersion = "1.1.3"
-    supportDepends = [
-
-            support_v4             : "com.android.support:support-v4:${supportLibVersion}",
-            support_v13            : "com.android.support:support-v13:${supportLibVersion}",
-            design                 : "com.android.support:design:${supportLibVersion}",
-            appcompat_v7           : "com.android.support:appcompat-v7:${supportLibVersion}",
-            recyclerview_v7        : "com.android.support:recyclerview-v7:${supportLibVersion}",
-
-            support_annotations    : "com.android.support:support-annotations:${supportLibVersion}",
-            support_vector_drawable: "com.android.support:support-vector-drawable:${supportLibVersion}",
-            constraint_layout      : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
-
-    ]
-
-    buildConfig = [
-            compileSdkVersion: 28,
-            buildToolsVersion: "28.0.3",
-
-            minSdkVersion    : 15,
-            targetSdkVersion : 26
-    ]
-
-    supportVersion = [
-            SupportLibVersion      : "28.0.0",
-            annotationVersion      : "27.1.0",
-            multidexVersion        : "1.0.1",
-            constraintLayoutVersion: "1.1.3"
-    ]
-
-    // config
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    butterknifeVersion = "8.5.1"
-    rxbindingVersion = "2.0.0"
-    baseRecyclerViewAdapterHelperVersion = "2.9.30"
-    coreVersion = "3.3.3"
-    glideVersion = "4.8.0"
-
-    gsonVersion = "2.8.5"
-    ariaCoreVersion = "3.5.2"
-    ossAndroidSdkVersion = "2.3.0"
-
-    depends = [
-
-            butterknife                  : "com.jakewharton:butterknife:${butterknifeVersion}",
-            butterknife_compiler         : "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
-            rxbinding                    : "com.jakewharton.rxbinding2:rxbinding:${rxbindingVersion}",
-            BaseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:${baseRecyclerViewAdapterHelperVersion}",
-            zxing                        : "com.google.zxing:core:${coreVersion}",
-
-            glide                        : "com.github.bumptech.glide:glide:${glideVersion}",
-            compiler                     : "com.github.bumptech.glide:compiler:${glideVersion}",
-            gson                         : "com.google.code.gson:gson:${gsonVersion}",
-            aria_core                    : "com.arialyy.aria:aria-core:${ariaCoreVersion}",
-            aria_compiler                : "com.arialyy.aria:aria-compiler:${ariaCoreVersion}",
-
-            oss_android_sdk              : "com.aliyun.dpa:oss-android-sdk:${ossAndroidSdkVersion}"
-    ]
+//    // build config
+//    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//    compileSdkVersion = 28
+//    buildToolsVersion = "28.0.3"
+//    minSdkVersion = 15
+//    targetSdkVersion = 28
+//
+//    // support config
+//    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//    supportLibVersion = "28.0.0"
+//    constraintLayoutVersion = "1.1.3"
+//    supportDepends = [
+//
+//            support_v4             : "com.android.support:support-v4:${supportLibVersion}",
+//            support_v13            : "com.android.support:support-v13:${supportLibVersion}",
+//            design                 : "com.android.support:design:${supportLibVersion}",
+//            appcompat_v7           : "com.android.support:appcompat-v7:${supportLibVersion}",
+//            recyclerview_v7        : "com.android.support:recyclerview-v7:${supportLibVersion}",
+//
+//            support_annotations    : "com.android.support:support-annotations:${supportLibVersion}",
+//            support_vector_drawable: "com.android.support:support-vector-drawable:${supportLibVersion}",
+//            constraint_layout      : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+//
+//    ]
+//
+//    buildConfig = [
+//            compileSdkVersion: 28,
+//            buildToolsVersion: "28.0.3",
+//
+//            minSdkVersion    : 15,
+//            targetSdkVersion : 26
+//    ]
+//
+//    supportVersion = [
+//            SupportLibVersion      : "28.0.0",
+//            annotationVersion      : "27.1.0",
+//            multidexVersion        : "1.0.1",
+//            constraintLayoutVersion: "1.1.3"
+//    ]
+//
+//    // config
+//    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//    butterknifeVersion = "8.5.1"
+//    rxbindingVersion = "2.0.0"
+//    baseRecyclerViewAdapterHelperVersion = "2.9.30"
+//    coreVersion = "3.3.3"
+//    glideVersion = "4.8.0"
+//
+//    gsonVersion = "2.8.5"
+//    ariaCoreVersion = "3.5.2"
+//    ossAndroidSdkVersion = "2.3.0"
+//
+//    depends = [
+//
+//            butterknife                  : "com.jakewharton:butterknife:${butterknifeVersion}",
+//            butterknife_compiler         : "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
+//            rxbinding                    : "com.jakewharton.rxbinding2:rxbinding:${rxbindingVersion}",
+//            BaseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:${baseRecyclerViewAdapterHelperVersion}",
+//            zxing                        : "com.google.zxing:core:${coreVersion}",
+//
+//            glide                        : "com.github.bumptech.glide:glide:${glideVersion}",
+//            compiler                     : "com.github.bumptech.glide:compiler:${glideVersion}",
+//            gson                         : "com.google.code.gson:gson:${gsonVersion}",
+//            aria_core                    : "com.arialyy.aria:aria-core:${ariaCoreVersion}",
+//            aria_compiler                : "com.arialyy.aria:aria-compiler:${ariaCoreVersion}",
+//
+//            oss_android_sdk              : "com.aliyun.dpa:oss-android-sdk:${ossAndroidSdkVersion}"
+//    ]
 
 
     build_version = [
-            applicationId        : "com.weiyian.oa",
+            applicationId        : "com.wya.example",
             versionCode          : 7,
             versionName          : '1.1.2',
 
@@ -131,6 +131,7 @@ ext {
             rxjavaVersion                : "2.1.3",
             retrofitVersion              : "2.3.0",
             converterGsonVersion         : "2.3.0",
+            gson                         : "2.8.5",
             adapterRxjava2Version        : "2.3.0",
             rxandroidVersion             : "2.0.1",
 
@@ -193,6 +194,7 @@ ext {
 
             annotation                   : "com.android.support:support-annotations:${versions.support}",
             multidex                     : "com.android.support:multidex:${versions.multidex}",
+            support_vector_drawable      : "com.android.support:support-vector-drawable:${versions.support}",
             constraint_layout            : "com.android.support.constraint:constraint-layout:${versions.constraint_layout}",
 
             rxjava                       : "io.reactivex.rxjava2:rxjava:${versions.rxjavaVersion}",
@@ -213,6 +215,7 @@ ext {
             logger                       : "com.orhanobut:logger:${versions.logger}",
             java_webSocket               : "org.java-websocket:Java-WebSocket:${versions.java_webSocket}",
             greendao                     : "org.greenrobot:greendao:${versions.greendao}",
+            gson                         : "com.google.code.gson:gson:${versions.gson}",
 
             eventbus                     : "org.greenrobot:eventbus:${versions.eventbus}",
             crashreport_upgrade          : "com.tencent.bugly:crashreport_upgrade:${versions.crashreport_upgrade}",

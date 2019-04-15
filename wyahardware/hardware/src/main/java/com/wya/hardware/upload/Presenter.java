@@ -14,13 +14,11 @@ import retrofit2.Response;
  */
 public class Presenter {
     
-    private ResultApi mResultApi = new ResultApi();
-    
-    public void upload(Context context, OssInfo ossInfo, PostAfterInterface postAfter) {
+    public <T extends IOssInfo> void upload(Context context, T ossInfo, PostAfterInterface postAfter) {
         if (null == ossInfo || null == context) {
             return;
         }
-        mResultApi.upload(ossInfo, ossInfo.getKey(), ossInfo.getFile()).enqueue(new Callback() {
+        new ResultApi().upload(ossInfo, ossInfo.getKey(), ossInfo.getFile()).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 if (null != postAfter) {

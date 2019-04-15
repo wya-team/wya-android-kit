@@ -104,33 +104,6 @@ public class OssService {
             }
         });
         
-        //        @SuppressWarnings("rawtypes")
-        //        OSSAsyncTask task = mOss.asyncPutObject(putObjectRequest, new OSSCompletedCallback<PutObjectRequest, PutObjectResult>() {
-        //            @Override
-        //            public void onSuccess(PutObjectRequest request, PutObjectResult result) {
-        //                if (null != postAfter) {
-        //                    postAfter.onPostAfter(1, "上传成功", resultUrl);
-        //                }
-        //            }
-        //
-        //            @Override
-        //            public void onFailure(PutObjectRequest request, ClientException clientExcepion, ServiceException serviceException) {
-        //                if (null != clientExcepion) {
-        //                    clientExcepion.printStackTrace();
-        //                    if (null != postAfter) {
-        //                        postAfter.onPostAfter(0, "上传失败 客户端错误，e " + clientExcepion.getCause(), null);
-        //                    }
-        //                }
-        //                if (null != serviceException) {
-        //                    serviceException.printStackTrace();
-        //                    if (null != postAfter) {
-        //                        postAfter.onPostAfter(0, "上传失败 服务端错误，e " + serviceException.getCause(), null);
-        //                    }
-        //                }
-        //            }
-        //        });
-        //
-        //        task.waitUntilFinished();
     }
     
     public void setProgressCallback(ProgressListener progressCallback) {
