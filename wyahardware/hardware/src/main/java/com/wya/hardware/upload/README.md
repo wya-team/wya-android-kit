@@ -5,7 +5,7 @@
 
 ## 用法说明
 
-1. 获取必要参数（如 签名等）, 对应对象OssInfo
+1. 获取必要参数（如 签名等）, 对应对象OssInfo，对象实现IOssInfo接口
 
 ```json
 {
@@ -16,11 +16,11 @@
     "signature": "sM0daXt3aG+DZHrlFDFaP2VvLQU=",
     "expire": 1554278889,
     "bucket": "wyatest",
-    "dir": "oa2/20190403/", 
+    "dir": "oa2/20190403/",  // key
     "region": "oss-cn-hangzhou"
 }
 ```
-> dir // 文件路径 后面拼接时间戳
+> dir // 文件路径 
 
 2. 调用UploadUtil
 ```

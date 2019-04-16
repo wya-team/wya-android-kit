@@ -7,8 +7,8 @@ android {
         minSdkVersion build_version.minSdkVersion
         targetSdkVersion build_version.targetSdkVersion
 
-        versionCode 8
-        versionName "0.1.9"
+        versionCode 9
+        versionName "0.1.9-SNAPSHOT"
     }
 
     buildTypes {

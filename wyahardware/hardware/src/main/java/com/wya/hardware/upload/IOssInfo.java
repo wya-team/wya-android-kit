@@ -92,7 +92,9 @@ public interface IOssInfo {
     /**
      * setSuccessActionStatus
      *
-     * @param successActionStatus :
+     * @param successActionStatus : 201 -- with Response (xml)
+     *                            : 200
+     *                            : 204 -- default
      */
     void setSuccessActionStatus(String successActionStatus);
     
