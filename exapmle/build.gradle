@@ -20,12 +20,12 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.wya.example"
+        applicationId build_version.applicationId
         minSdkVersion build_version.minSdkVersion
         targetSdkVersion build_version.targetSdkVersion
 
-        versionCode 1
-        versionName "0.1.0"
+        versionCode build_version.versionCode
+        versionName build_version.versionName
         vectorDrawables.useSupportLibrary = true
     }
 
