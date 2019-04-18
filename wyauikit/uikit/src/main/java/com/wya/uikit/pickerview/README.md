@@ -23,6 +23,7 @@ setCenterTextColor(int color)|这种选择的文字大小
 
 接口OnChooseItemListener在构造方法中实现，其中的方法itemSelected(int position1, int position2, int position3);返回选择的三个位置。
    - 提供了OptionsPickerView布局，可以直接在布局文件中使用，其中的方法和CustomPickerView中的方法相同。
+-    滚动数据为泛型，如果是个对象，需要实现IPickerViewData接口，在方法getPickerViewText中返回需要展示的字段。
 
 2. CustomTimePicker常用时间选择器样式
 

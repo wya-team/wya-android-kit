@@ -1,18 +1,15 @@
 apply plugin: 'com.android.library'
 
-def buildConfig = rootProject.extensions.getByName("ext")
-def supportDepends = rootProject.ext.supportDepends
-
 android {
 
-    compileSdkVersion buildConfig.getAt("compileSdkVersion")
-    buildToolsVersion buildConfig.getAt("buildToolsVersion")
+    compileSdkVersion build_version.compileSdkVersion
+
     defaultConfig {
-        minSdkVersion buildConfig.getAt("minSdkVersion")
-        targetSdkVersion buildConfig.getAt("targetSdkVersion")
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
 
         versionCode 1
-        versionName "0.1.5"
+        versionName "0.1.5-SNAPSHOT"
     }
 
     buildTypes {
@@ -26,7 +23,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation supportDepends.appcompat_v7
+    implementation libs.appcompat_v7
 }
 
 // aar打包

@@ -1,72 +1,115 @@
 ext {
 
-    // build config
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    compileSdkVersion = 28
-    buildToolsVersion = "28.0.3"
-    minSdkVersion = 15
-    targetSdkVersion = 28
+    build_version = [
+            applicationId    : "com.wya.example",
+            versionCode      : 1,
+            versionName      : "0.1.0",
 
-    // support config
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    supportLibVersion = "28.0.0"
-    constraintLayoutVersion = "1.1.3"
-    supportDepends = [
-
-            support_v4             : "com.android.support:support-v4:${supportLibVersion}",
-            support_v13            : "com.android.support:support-v13:${supportLibVersion}",
-            design                 : "com.android.support:design:${supportLibVersion}",
-            appcompat_v7           : "com.android.support:appcompat-v7:${supportLibVersion}",
-            recyclerview_v7        : "com.android.support:recyclerview-v7:${supportLibVersion}",
-
-            support_annotations    : "com.android.support:support-annotations:${supportLibVersion}",
-            support_vector_drawable: "com.android.support:support-vector-drawable:${supportLibVersion}",
-            constraint_layout      : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
-
-    ]
-
-    buildConfig = [
             compileSdkVersion: 28,
-            buildToolsVersion: "28.0.3",
-
             minSdkVersion    : 15,
-            targetSdkVersion : 26
+            targetSdkVersion : 26,
     ]
 
-    supportVersion = [
-            SupportLibVersion      : "28.0.0",
-            annotationVersion      : "27.1.0",
-            multidexVersion        : "1.0.1",
-            constraintLayoutVersion: "1.1.3"
+    versions = [
+            gradle_retrolambda           : '3.2.5',
+            greendao_gradle_plugin       : '3.2.2',
+            bintray_release              : '0.9',
+            kotlin_gradle_plugin         : "1.3.21",
+            gradle                       : '3.3.1',
+            kotlin_coroutines            : '1.0.0',
+
+            support                      : "28.0.0",
+
+            annotation                   : "27.1.0",
+            multidex                     : "1.0.1",
+            constraint_layout            : "1.1.3",
+
+            retrofit                     : '2.4.0',
+            okhttp                       : '3.11.0',
+            kodein                       : '6.0.1',
+            glide                        : '4.8.0',
+
+            rxjava                       : '2.2.4',
+            rxkotlin                     : '2.2.0',
+            rxandroid                    : '2.0.0',
+            rxbinding                    : '3.0.0-alpha1',
+            leakcanary                   : '1.6.2',
+
+            rxjavaVersion                : "2.1.3",
+            retrofitVersion              : "2.3.0",
+            converterGsonVersion         : "2.3.0",
+            gson                         : "2.8.5",
+            adapterRxjava2Version        : "2.3.0",
+            rxandroidVersion             : "2.0.1",
+
+            okhttpVersion                : "3.9.0",
+            loggingInterceptorVersion    : "3.9.0",
+            converterScalarsVersion      : "2.3.0",
+            rxbindingVersion             : "2.0.0",
+            butterknifeVersion           : "9.0.0",
+
+            baseRecyclerViewAdapterHelper: "2.9.30",
+
+            zxing                        : "3.3.3",
+            aria_core                    : "3.5.2",
+            oss_android_sdk              : "2.3.0",
     ]
 
-    // config
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    butterknifeVersion = "8.5.1"
-    rxbindingVersion = "2.0.0"
-    baseRecyclerViewAdapterHelperVersion = "2.9.30"
-    coreVersion = "3.3.3"
-    glideVersion = "4.8.0"
-
-    gsonVersion = "2.8.5"
-    ariaCoreVersion = "3.5.2"
-    ossAndroidSdkVersion = "2.3.0"
-
-    depends = [
-
-            butterknife                  : "com.jakewharton:butterknife:${butterknifeVersion}",
-            butterknife_compiler         : "com.jakewharton:butterknife-compiler:${butterknifeVersion}",
-            rxbinding                    : "com.jakewharton.rxbinding2:rxbinding:${rxbindingVersion}",
-            BaseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:${baseRecyclerViewAdapterHelperVersion}",
-            zxing                        : "com.google.zxing:core:${coreVersion}",
-
-            glide                        : "com.github.bumptech.glide:glide:${glideVersion}",
-            compiler                     : "com.github.bumptech.glide:compiler:${glideVersion}",
-            gson                         : "com.google.code.gson:gson:${gsonVersion}",
-            aria_core                    : "com.arialyy.aria:aria-core:${ariaCoreVersion}",
-            aria_compiler                : "com.arialyy.aria:aria-compiler:${ariaCoreVersion}",
-
-            oss_android_sdk              : "com.aliyun.dpa:oss-android-sdk:${ossAndroidSdkVersion}"
+    build_plugins = [
+            gradle_retrolambda    : "me.tatarka:gradle-retrolambda:${versions.gradle_retrolambda}",
+            greendao_gradle_plugin: "org.greenrobot:greendao-gradle-plugin:${versions.greendao_gradle_plugin}",
+            bintray_release       : "com.novoda:bintray-release:${versions.bintray_release}",
+            kotlin_gradle_plugin  : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_gradle_plugin}",
+            gradle                : "com.android.tools.build:gradle:${versions.gradle}",
     ]
+
+    maven_url = [
+            jitpack_maven_url: "https://jitpack.io",
+            huawei_maven_url : "http://developer.huawei.com/repo",
+            push_maven_url   : "https://raw.githubusercontent.com/wya-team/wya-android-push/develop/aar",
+            kit_maven_url    : "https://raw.githubusercontent.com/wya-team/wya-android-kit/develop/aar",
+    ]
+
+
+    libs = [
+
+
+            butterknife                  : "com.jakewharton:butterknife:${versions.butterknifeVersion}",
+            butterknife_compiler         : "com.jakewharton:butterknife-compiler:${versions.butterknifeVersion}",
+            rxbinding                    : "com.jakewharton.rxbinding2:rxbinding:${versions.rxbindingVersion}",
+            baseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:${versions.baseRecyclerViewAdapterHelper}",
+            zxing                        : "com.google.zxing:core:${versions.zxing}",
+
+            glide                        : "com.github.bumptech.glide:glide:${versions.glide}",
+            compiler                     : "com.github.bumptech.glide:compiler:${versions.glide}",
+            gson                         : "com.google.code.gson:gson:${versions.gson}",
+            aria_core                    : "com.arialyy.aria:aria-core:${versions.aria_core}",
+            aria_compiler                : "com.arialyy.aria:aria-compiler:${versions.aria_core}",
+
+            oss_android_sdk              : "com.aliyun.dpa:oss-android-sdk:${versions.oss_android_sdk}",
+
+            design                       : "com.android.support:design:${versions.support}",
+            support_v4                   : "com.android.support:support-v4:${versions.support}",
+            appcompat_v7                 : "com.android.support:appcompat-v7:${versions.support}",
+            recyclerview                 : "com.android.support:recyclerview-v7:${versions.support}",
+            cardview                     : "com.android.support:cardview-v7:${versions.support}",
+
+            annotation                   : "com.android.support:support-annotations:${versions.support}",
+            multidex                     : "com.android.support:multidex:${versions.multidex}",
+            support_vector_drawable      : "com.android.support:support-vector-drawable:${versions.support}",
+            constraint_layout            : "com.android.support.constraint:constraint-layout:${versions.constraint_layout}",
+
+            rxjava                       : "io.reactivex.rxjava2:rxjava:${versions.rxjavaVersion}",
+            rxandroid                    : "io.reactivex.rxjava2:rxandroid:${versions.rxandroidVersion}",
+            adapter_rxjava2              : "com.squareup.retrofit2:adapter-rxjava2:${versions.adapterRxjava2Version}",
+            retrofit                     : "com.squareup.retrofit2:retrofit:${versions.retrofitVersion}",
+            converter_gson               : "com.squareup.retrofit2:converter-gson:${versions.converterGsonVersion}",
+
+            okhttp                       : "com.squareup.okhttp3:okhttp:${versions.okhttpVersion}",
+            logging_interceptor          : "com.squareup.okhttp3:logging-interceptor:${versions.loggingInterceptorVersion}",
+            converter_scalars            : "com.squareup.retrofit2:converter-scalars:${versions.converterScalarsVersion}"
+
+    ]
+
 
 }

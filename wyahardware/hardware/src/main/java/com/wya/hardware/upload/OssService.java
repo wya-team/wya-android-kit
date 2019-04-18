@@ -5,50 +5,52 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.alibaba.sdk.android.oss.ClientConfiguration;
-import com.alibaba.sdk.android.oss.ClientException;
 import com.alibaba.sdk.android.oss.OSS;
 import com.alibaba.sdk.android.oss.OSSClient;
-import com.alibaba.sdk.android.oss.ServiceException;
-import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback;
 import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
 import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvider;
-import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
-import com.alibaba.sdk.android.oss.model.PutObjectResult;
 
 /**
  * @author :
  */
 public class OssService {
     
-    private OSS oss;
+    private OSS mOss;
     private String accessKeyId;
     private String bucketName;
     private String accessKeySecret;
     private String endpoint;
+    private String policy;
+    private String signature;
     private Context context;
     
     private ProgressListener mProgressCallback;
     
-    public OssService(Context context, String accessKeyId, String accessKeySecret, String endpoint, String bucketName) {
+    public OssService(Context context, String accessKeyId, String accessKeySecret, String endpoint, String bucketName, String policy, String signature) {
         this.context = context;
         this.endpoint = endpoint;
         this.bucketName = bucketName;
         this.accessKeyId = accessKeyId;
         this.accessKeySecret = accessKeySecret;
+        
+        this.policy = policy;
+        this.signature = signature;
     }
     
     public void initOSSClient() {
         if (TextUtils.isEmpty(accessKeyId) || TextUtils.isEmpty(accessKeySecret)) {
             return;
         }
-        OSSCredentialProvider credentialProvider = new OSSPlainTextAKSKCredentialProvider(accessKeyId, accessKeySecret);
+        
+        OSSCredentialProvider credentialProvider = new OSSPlainTextAKSKCredentialProvider(accessKeyId, signature);
+        
         ClientConfiguration conf = new ClientConfiguration();
         conf.setConnectionTimeout(15 * 1000);
         conf.setSocketTimeout(15 * 1000);
         conf.setMaxConcurrentRequest(8);
         conf.setMaxErrorRetry(2);
-        oss = new OSSClient(context, endpoint, credentialProvider, conf);
+        mOss = new OSSClient(context, endpoint, credentialProvider, conf);
     }
     
     public void initOSSClient(int connectionTimeout, int socketTimeout, int maxConcurrentRequest, int maxErrorRetry) {
@@ -61,7 +63,9 @@ public class OssService {
         conf.setSocketTimeout(socketTimeout);
         conf.setMaxConcurrentRequest(maxConcurrentRequest);
         conf.setMaxErrorRetry(maxErrorRetry);
-        oss = new OSSClient(context, endpoint, credentialProvider, conf);
+        if (null != credentialProvider) {
+            mOss = new OSSClient(context, endpoint, credentialProvider, conf);
+        }
     }
     
     public void startUpload(Context context, String fileName, String filePath, String resultUrl) {
@@ -80,7 +84,7 @@ public class OssService {
             return;
         }
         PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, path);
-        if (null == oss) {
+        if (null == mOss) {
             postAfter.onPostAfter(0, "缺失必要参数", null);
             return;
         }
@@ -100,33 +104,6 @@ public class OssService {
             }
         });
         
-        @SuppressWarnings("rawtypes")
-        OSSAsyncTask task = oss.asyncPutObject(putObjectRequest, new OSSCompletedCallback<PutObjectRequest, PutObjectResult>() {
-            @Override
-            public void onSuccess(PutObjectRequest request, PutObjectResult result) {
-                if (null != postAfter) {
-                    postAfter.onPostAfter(1, "上传成功", resultUrl);
-                }
-            }
-            
-            @Override
-            public void onFailure(PutObjectRequest request, ClientException clientExcepion, ServiceException serviceException) {
-                if (null != clientExcepion) {
-                    clientExcepion.printStackTrace();
-                    if (null != postAfter) {
-                        postAfter.onPostAfter(0, "上传失败 客户端错误，e " + clientExcepion.getCause(), null);
-                    }
-                }
-                if (null != serviceException) {
-                    serviceException.printStackTrace();
-                    if (null != postAfter) {
-                        postAfter.onPostAfter(0, "上传失败 服务端错误，e " + serviceException.getCause(), null);
-                    }
-                }
-            }
-        });
-        
-        task.waitUntilFinished();
     }
     
     public void setProgressCallback(ProgressListener progressCallback) {
