@@ -53,6 +53,11 @@ public class ImagePickerCreator {
         intent.putExtra(PickerConfig.IMAGE_NUMBER, num);
         return this;
     }
+
+    public ImagePickerCreator hasTakePhotoMenu(boolean hasTakePhotoMenu){
+        intent.putExtra(PickerConfig.HAS_PHOTO_FUTURE, hasTakePhotoMenu);
+        return this;
+    }
     
     private Activity getActivity() {
         return mActivity.get();

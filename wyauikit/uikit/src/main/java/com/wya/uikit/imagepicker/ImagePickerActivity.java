@@ -74,6 +74,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     private String imagePath;
     private LocalMediaFolder mCurrentFolder;
     private int mediaType;
+    private boolean hasPhoto=true;//是否具有拍照功能
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +86,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
 
         mediaType = getIntent().getIntExtra(PickerConfig.MEDIA_TYPE, PickerConfig.MEDIA_DEFAULT);
         maxNum = getIntent().getIntExtra(PickerConfig.IMAGE_NUMBER, 1);
+        hasPhoto = getIntent().getBooleanExtra(PickerConfig.HAS_PHOTO_FUTURE, true);
         if (selfPermission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest
                     .permission.READ_EXTERNAL_STORAGE}, PERMISSION_STORAGE);
@@ -159,7 +161,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                         mCurrentFolder = mFolders.get(position);
                         mLocalMedia = mCurrentFolder.getImages();
                         pictureTitle.setText(mCurrentFolder.getName());
-                        mGridAdapter.bindData(position == 0, mLocalMedia);
+                        mGridAdapter.bindData((position == 0)&&hasPhoto, mLocalMedia);
                     }
                 });
     }
@@ -263,7 +265,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                         mLocalMedia.clear();
                         mLocalMedia.addAll(localMediaFolder.getImages());
                         pictureTitle.setText(localMediaFolder.getName());
-                        mGridAdapter.bindData(true, mLocalMedia);
+                        mGridAdapter.bindData(hasPhoto, mLocalMedia);
                         mFolders.clear();
                         mFolders.addAll(localMediaFolders);
                         mBaseOptionMenu.notifyAdapterData();
@@ -467,7 +469,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             imageFolder.setImageNum(imageFolder.getImageNum() + 1);
             
             //updateIsShow
-            mGridAdapter.bindData(true, mLocalMedia);
+            mGridAdapter.bindData(hasPhoto, mLocalMedia);
             mBaseOptionMenu.notifyAdapterData();
             
         }
