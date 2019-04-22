@@ -40,7 +40,7 @@ ext {
             converterGsonVersion         : "2.3.0",
             gson                         : "2.8.5",
             adapterRxjava2Version        : "2.3.0",
-            rxandroidVersion             : "2.0.1",
+            rxandroidVersion             : "2.0.0",
 
             okhttpVersion                : "3.9.0",
             loggingInterceptorVersion    : "3.9.0",
@@ -72,7 +72,6 @@ ext {
 
 
     libs = [
-
 
             butterknife                  : "com.jakewharton:butterknife:${versions.butterknifeVersion}",
             butterknife_compiler         : "com.jakewharton:butterknife-compiler:${versions.butterknifeVersion}",
