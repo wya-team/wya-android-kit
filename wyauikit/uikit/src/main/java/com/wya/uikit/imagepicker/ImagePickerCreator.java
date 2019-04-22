@@ -58,6 +58,11 @@ public class ImagePickerCreator {
         intent.putExtra(PickerConfig.HAS_PHOTO_FUTURE, hasTakePhotoMenu);
         return this;
     }
+
+    public ImagePickerCreator textColor(int color) {
+        intent.putExtra(PickerConfig.TEXT_COLOR, color);
+        return this;
+    }
     
     private Activity getActivity() {
         return mActivity.get();

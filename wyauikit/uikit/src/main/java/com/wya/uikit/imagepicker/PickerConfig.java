@@ -20,6 +20,7 @@ public class PickerConfig {
     public static final String IMAGE_SELECTED = "imageSelected";
     public static final String MEDIA_TYPE = "mediaType";
     public static final String HAS_PHOTO_FUTURE = "hasPhoto";
+    public static final String TEXT_COLOR = "textColor";
 
 
 

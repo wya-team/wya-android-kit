@@ -75,6 +75,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     private LocalMediaFolder mCurrentFolder;
     private int mediaType;
     private boolean hasPhoto=true;//是否具有拍照功能
+    private int textColor;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         mediaType = getIntent().getIntExtra(PickerConfig.MEDIA_TYPE, PickerConfig.MEDIA_DEFAULT);
         maxNum = getIntent().getIntExtra(PickerConfig.IMAGE_NUMBER, 1);
         hasPhoto = getIntent().getBooleanExtra(PickerConfig.HAS_PHOTO_FUTURE, true);
+        textColor = getIntent().getIntExtra(PickerConfig.TEXT_COLOR, R.color.color_orange);
         if (selfPermission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest
                     .permission.READ_EXTERNAL_STORAGE}, PERMISSION_STORAGE);
@@ -381,8 +383,8 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             tvCommit.setText("(" + mSelectedImages.size() + ")" + "确定");
             tvCommit.setEnabled(true);
             tvPreview.setEnabled(true);
-            tvCommit.setTextColor(getResources().getColor(R.color.color_orange));
-            tvPreview.setTextColor(getResources().getColor(R.color.color_orange));
+            tvCommit.setTextColor(getResources().getColor(textColor));
+            tvPreview.setTextColor(getResources().getColor(textColor));
         } else {
             tvCommit.setText("确定");
             tvCommit.setEnabled(false);
