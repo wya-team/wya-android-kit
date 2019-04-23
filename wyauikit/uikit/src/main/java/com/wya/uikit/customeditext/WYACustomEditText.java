@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.wya.uikit.R;
 
 /**
@@ -25,7 +24,7 @@ import com.wya.uikit.R;
  */
 
 public class WYACustomEditText extends RelativeLayout {
-    
+
     /**
      * 背景图片
      */
@@ -58,17 +57,17 @@ public class WYACustomEditText extends RelativeLayout {
      * 编辑框文本提示内容
      */
     private String hintEditText = null;
-    
+
     private int maxNum;
     private LinearLayout wyaCustomEditTextParent;
     private TextView tvHintWyaCustomEditText;
     private EditText etWyaCustomEditText;
     private TextView tvCountWyaCustomEditText;
-    
+
     public WYACustomEditText(Context context) {
         this(context, null);
     }
-    
+
     public WYACustomEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         // 加载布局
@@ -80,48 +79,48 @@ public class WYACustomEditText extends RelativeLayout {
             if (gradientDrawable != null) {
                 setBackgroundDrawable(gradientDrawable);
             }
-    
+
             countTextColor = a.getColorStateList(R.styleable.WYACustomEditText_countTextColor);
             if (countTextColor != null) {
                 setCountTextColor(countTextColor);
             }
-    
+
             hintEditColor = a.getColorStateList(R.styleable.WYACustomEditText_hintEditColor);
             if (hintEditColor != null) {
                 setHintEditColor(hintEditColor);
             }
-    
+
             hintTextColor = a.getColorStateList(R.styleable.WYACustomEditText_hintTextColor);
             if (hintTextColor != null) {
                 setHintTextColor(hintTextColor);
             }
-    
+
             editTextColor = a.getColorStateList(R.styleable.WYACustomEditText_editTextColor);
             if (editTextColor != null) {
                 setEditTextColor(editTextColor);
             }
-    
+
             hintText = a.getString(R.styleable.WYACustomEditText_hintText);
             if (hintText != null && !"".equals(hintText)) {
                 setHintText(hintText);
             }
-    
+
             editText = a.getString(R.styleable.WYACustomEditText_editText);
             if (editText != null) {
                 setEditText(editText);
             }
-    
+
             hintEditText = a.getString(R.styleable.WYACustomEditText_hintEditText);
             if (hintEditText != null) {
                 setHintEditText(hintEditText);
             }
-    
+
             maxNum = a.getInt(R.styleable.WYACustomEditText_maxNum, 100);
             setTextNumCount();
             a.recycle();
         }
     }
-    
+
     /**
      * 设置输入数字统计
      */
@@ -131,12 +130,12 @@ public class WYACustomEditText extends RelativeLayout {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-    
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-        
+
             }
-    
+
             @Override
             public void afterTextChanged(Editable s) {
                 Editable editable = etWyaCustomEditText.getText();
@@ -162,7 +161,7 @@ public class WYACustomEditText extends RelativeLayout {
             }
         });
     }
-    
+
     /**
      * 设置编辑框背景图片
      *
@@ -172,7 +171,7 @@ public class WYACustomEditText extends RelativeLayout {
         this.gradientDrawable = gradientDrawable;
         wyaCustomEditTextParent.setBackgroundDrawable(gradientDrawable);
     }
-    
+
     /**
      * 设置编辑框文本提示内容
      *
@@ -182,7 +181,7 @@ public class WYACustomEditText extends RelativeLayout {
         this.hintEditText = hintEditText;
         etWyaCustomEditText.setHint(hintEditText);
     }
-    
+
     /**
      * 设置提示文本
      *
@@ -193,7 +192,7 @@ public class WYACustomEditText extends RelativeLayout {
         tvHintWyaCustomEditText.setVisibility(View.VISIBLE);
         tvHintWyaCustomEditText.setText(hintText);
     }
-    
+
     /**
      * 设置编辑文本字体颜色
      *
@@ -203,7 +202,7 @@ public class WYACustomEditText extends RelativeLayout {
         this.editTextColor = editTextColor;
         etWyaCustomEditText.setTextColor(editTextColor);
     }
-    
+
     /**
      * 设置提示字体颜色
      *
@@ -213,7 +212,7 @@ public class WYACustomEditText extends RelativeLayout {
         this.hintTextColor = hintTextColor;
         tvHintWyaCustomEditText.setTextColor(hintTextColor);
     }
-    
+
     /**
      * 设置编辑文本提示字体颜色
      *
@@ -242,7 +241,7 @@ public class WYACustomEditText extends RelativeLayout {
     public EditText getEditText() {
         return etWyaCustomEditText;
     }
-    
+
     /**
      * 设置编辑框文本
      *
@@ -252,7 +251,7 @@ public class WYACustomEditText extends RelativeLayout {
         this.editText = editText;
         etWyaCustomEditText.setText(editText);
     }
-    
+
     private void initView() {
         wyaCustomEditTextParent = findViewById(R.id.wya_custom_edit_text_parent);
         tvHintWyaCustomEditText = findViewById(R.id.tv_hint_wya_custom_edit_text);

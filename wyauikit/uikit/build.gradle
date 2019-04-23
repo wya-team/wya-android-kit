@@ -9,7 +9,7 @@ android {
         targetSdkVersion build_version.targetSdkVersion
 
         versionCode 4
-        versionName "0.1.10-SNAPSHOT"
+        versionName "0.1.11-SNAPSHOT"
     }
 
     buildTypes {

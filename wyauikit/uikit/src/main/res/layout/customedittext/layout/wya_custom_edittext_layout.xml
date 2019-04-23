@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/wya_custom_edit_text_parent"
-    android:layout_width="match_parent"
-    android:layout_height="106dp"
-    android:minHeight="80dp"
-    android:orientation="vertical">
-
+              android:id="@+id/wya_custom_edit_text_parent"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:minHeight="80dp"
+              android:orientation="vertical">
 
     <TableRow
         android:layout_width="match_parent"
@@ -23,7 +22,7 @@
             android:text="提示"
             android:textColor="#000"
             android:textSize="14sp"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
         <EditText
             android:id="@+id/et_wya_custom_edit_text"
@@ -33,7 +32,7 @@
             android:padding="10dp"
             android:scrollbars="vertical"
             android:textColor="#000"
-            android:textSize="14sp" />
+            android:textSize="14sp"/>
 
     </TableRow>
 
@@ -46,6 +45,6 @@
         android:paddingRight="10dp"
         android:text="0/100"
         android:textColor="#999"
-        android:textSize="10sp" />
+        android:textSize="10sp"/>
 
 </LinearLayout>
