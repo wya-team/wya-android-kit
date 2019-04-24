@@ -10,7 +10,6 @@ import com.wya.example.R;
 import com.wya.example.module.utils.GestureFlingRightHelper;
 import com.wya.uikit.toast.WYAToast;
 import com.wya.uikit.toolbar.BaseToolBarActivity;
-import com.wya.utils.utils.ColorUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

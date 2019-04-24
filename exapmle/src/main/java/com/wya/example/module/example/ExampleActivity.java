@@ -8,7 +8,6 @@ import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.fragment.AboutUsFragment;
 import com.wya.example.module.example.fragment.ExampleFragment;
 import com.wya.uikit.tabbar.WYATabBar;
-import com.wya.utils.utils.ColorUtil;
 
 import butterknife.BindView;
 
