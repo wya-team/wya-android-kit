@@ -29,6 +29,20 @@ public class UploadUtil {
         upload(context, ossInfo, fileName, filePath, postAfter);
     }
     
+    public static void upload(Context context, PostBeforeInterface postBefore, String fileName, String filePath, int index, PostAfterInterface postAfter) {
+        IOssInfo ossInfo = null;
+        if (null != postBefore) {
+            ossInfo = postBefore.onPostBefore();
+        }
+        if (null == ossInfo) {
+            return;
+        }
+        
+        String key = ossInfo.getDir() + System.currentTimeMillis() + index + "/" + fileName;
+        ossInfo.setKey(key);
+        upload(context, ossInfo, fileName, filePath, postAfter);
+    }
+    
     public static <T extends IOssInfo> void upload(Context context, T ossInfo, String fileName, String filePath, PostAfterInterface postAfter) {
         if (null == ossInfo) {
             return;
@@ -48,6 +62,7 @@ public class UploadUtil {
         }
         
         OssSp.get(context).setBucket(ossInfo.getBucket());
+        OssSp.get(context).setHoset(ossInfo.getHost());
         new Presenter().upload(context, ossInfo, postAfter);
     }
     

@@ -96,7 +96,7 @@ public class WYACustomEditText extends RelativeLayout {
                 setHintTextColor(hintTextColor);
             }
     
-            editTextColor = a.getColorStateList(R.styleable.WYACustomEditText_editTextColor);
+            editTextColor = a.getColorStateList(R.styleable.WYACustomEditText_ced_editTextColor);
             if (editTextColor != null) {
                 setEditTextColor(editTextColor);
             }

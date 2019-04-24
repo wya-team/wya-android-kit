@@ -186,7 +186,7 @@
     <declare-styleable name="WYACustomEditText">
         <attr name="backGroundImage" format="reference" />
         <attr name="hintTextColor" format="color" />
-        <attr name="editTextColor" format="color" />
+        <attr name="ced_editTextColor" format="color" />
         <attr name="hintEditColor" format="color" />
         <attr name="hintText" />
         <attr name="editText" />
