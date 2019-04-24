@@ -62,7 +62,6 @@ public class UploadUtil {
         }
         
         OssSp.get(context).setBucket(ossInfo.getBucket());
-        OssSp.get(context).setHoset(ossInfo.getHost());
         new Presenter().upload(context, ossInfo, postAfter);
     }
     
