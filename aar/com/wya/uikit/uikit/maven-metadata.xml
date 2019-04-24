@@ -11,10 +11,6 @@
       <version>0.1.10-SNAPSHOT</version>
       <version>0.1.11-SNAPSHOT</version>
     </versions>
-<<<<<<< HEAD
-    <lastUpdated>20190424092129</lastUpdated>
-=======
     <lastUpdated>20190423084210</lastUpdated>
->>>>>>> c072bc8c841ea25735d3a49b950fd423ba7fddb1
   </versioning>
 </metadata>

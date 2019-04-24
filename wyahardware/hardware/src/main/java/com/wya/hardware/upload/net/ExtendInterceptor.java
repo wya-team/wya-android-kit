@@ -13,7 +13,6 @@ import okhttp3.Response;
  * @author :
  */
 public class ExtendInterceptor implements Interceptor {
-    
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
@@ -37,5 +36,4 @@ public class ExtendInterceptor implements Interceptor {
         Request requestBuilder = builder.build();
         return chain.proceed(requestBuilder);
     }
-    
 }
