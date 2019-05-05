@@ -33,7 +33,7 @@ public class WYAMarqueeTextView extends AppCompatTextView {
     private boolean mIsPaused = true;
     private boolean mIsAutoStart = false;
     private Context mContext;
-    
+
     public WYAMarqueeTextView(Context context) {
         this(context, null);
     }
@@ -206,6 +206,14 @@ public class WYAMarqueeTextView extends AppCompatTextView {
     
     public void setSkipable(boolean clickable) {
         mSkipable = clickable;
+    }
+
+    public int getmDuration() {
+        return mDuration;
+    }
+
+    public void setmDuration(int mDuration) {
+        this.mDuration = mDuration;
     }
     
 }

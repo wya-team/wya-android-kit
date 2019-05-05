@@ -5,6 +5,7 @@
     <attr name="maxNum" format="integer" />
     <attr name="rightText" format="string" />
     <attr name="lineColor" format="color" />
+    <attr name="textColor" format="color" />
 
     <!--segment attrs-->
     <declare-styleable name="WYASegmentedView">
@@ -25,7 +26,7 @@
         <attr name="textSize" format="dimension" />
         <attr name="buttonWidth" format="dimension" />
         <attr name="buttonHeight" format="dimension" />
-        <attr name="textColor" format="color" />
+        <attr name="textColor"/>
         <attr name="leftText" format="string" />
         <attr name="rightText" />
         <attr name="selectPageTextColor" format="color" />
@@ -186,7 +187,7 @@
     <declare-styleable name="WYACustomEditText">
         <attr name="backGroundImage" format="reference" />
         <attr name="hintTextColor" format="color" />
-        <attr name="editTextColor" format="color" />
+        <attr name="textColor"/>
         <attr name="hintEditColor" format="color" />
         <attr name="hintText" />
         <attr name="editText" />
