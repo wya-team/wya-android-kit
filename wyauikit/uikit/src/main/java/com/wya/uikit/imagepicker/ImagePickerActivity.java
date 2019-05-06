@@ -383,8 +383,8 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             tvCommit.setText("(" + mSelectedImages.size() + ")" + "确定");
             tvCommit.setEnabled(true);
             tvPreview.setEnabled(true);
-            tvCommit.setTextColor(getResources().getColor(textColor));
-            tvPreview.setTextColor(getResources().getColor(textColor));
+            tvCommit.setTextColor(getResources().getColor(R.color.highlight_text_color));
+            tvPreview.setTextColor(getResources().getColor(R.color.highlight_text_color));
         } else {
             tvCommit.setText("确定");
             tvCommit.setEnabled(false);

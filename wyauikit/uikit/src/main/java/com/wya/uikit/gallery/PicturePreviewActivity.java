@@ -223,7 +223,7 @@ public class PicturePreviewActivity extends Activity implements View.OnClickList
             if (mImageSelected.size() > 0) {
                 tvImgNum.setText("(" + mImageSelected.size() + ")");
                 tvImgNum.setVisibility(View.VISIBLE);
-                tvOk.setTextColor(getResources().getColor(R.color.color_orange));
+                tvOk.setTextColor(getResources().getColor(R.color.highlight_text_color));
                 idLlOk.setEnabled(true);
             } else {
                 tvImgNum.setVisibility(View.GONE);

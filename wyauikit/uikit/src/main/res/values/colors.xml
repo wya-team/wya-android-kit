@@ -26,6 +26,9 @@
     <color name="slidder_foregraound_red_color">#FC0D1B</color>
     <color name="slidder_foreground_default_color">#1F90E6</color>
     <color name="slidder_background_default_color">#DDDDDD</color>
+    
+    <!--imagepicker/gallery-->
+    <color name="highlight_text_color">#E0FF6100</color>
 
 
     <!-- keyboard -->
