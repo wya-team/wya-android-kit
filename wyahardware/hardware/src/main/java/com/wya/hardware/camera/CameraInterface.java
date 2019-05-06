@@ -524,6 +524,7 @@ public class CameraInterface implements Camera.PreviewCallback {
         } else {
             Log.i(TAG, "=== Camera  Null===");
         }
+        sm = null;
     }
     
     public void takePicture(final TakePictureCallback callback) {

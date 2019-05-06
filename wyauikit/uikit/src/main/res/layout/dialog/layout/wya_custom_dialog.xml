@@ -43,10 +43,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:lineSpacingMultiplier="1.5"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:textColor="#666666"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_10"
                     android:textSize="16sp"/>
 
                 <EditText

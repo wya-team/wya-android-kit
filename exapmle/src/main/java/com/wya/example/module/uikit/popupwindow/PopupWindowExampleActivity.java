@@ -16,7 +16,6 @@ import com.wya.example.module.example.readme.ReadmeActivity;
 import com.wya.example.module.hardware.scan.CustomCaptureActivity;
 import com.wya.hardware.scan.Intents;
 import com.wya.uikit.dialog.WYACustomDialog;
-import com.wya.uikit.popupwindow.CustomListener;
 import com.wya.uikit.popupwindow.WYAPopupWindow;
 import com.wya.uikit.toolbar.StatusBarUtil;
 import com.wya.utils.utils.ScreenUtil;
