@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.wya.helper</groupId>
+  <artifactId>helper</artifactId>
+  <versioning>
+    <versions>
+      <version>0.1.5-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20190514094214</lastUpdated>
+  </versioning>
+</metadata>
