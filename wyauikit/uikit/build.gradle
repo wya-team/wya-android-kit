@@ -78,6 +78,3 @@ dependencies {
 
 // aar打包
 apply from: 'maven-release-aar.gradle'
-repositories {
-    mavenCentral()
-}

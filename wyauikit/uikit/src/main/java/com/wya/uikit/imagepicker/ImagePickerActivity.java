@@ -85,14 +85,14 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         hasPhoto = getIntent().getBooleanExtra(PickerConfig.HAS_PHOTO_FUTURE, true);
         textColor = getIntent().getIntExtra(PickerConfig.TEXT_COLOR, R.color.color_orange);
         
-        requestStoragePermissions();
+        checkStoragePermissions();
         
         initView();
         initChoiceMenu();
     }
     
     @SuppressLint("CheckResult")
-    private void requestCameraPermissions() {
+    private void checkCameraPermissions() {
         new RxPermissions(this).request(Manifest.permission.CAMERA)
                 .subscribe(aBoolean -> {
                             if (aBoolean) {
@@ -105,7 +105,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     }
     
     @SuppressLint("CheckResult")
-    private void requestStoragePermissions() {
+    private void checkStoragePermissions() {
         new RxPermissions(this).request(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe(aBoolean -> {
                             if (aBoolean) {
@@ -229,7 +229,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
             }
         });
         
-        mGridAdapter.setPhotoClickListener(this::requestCameraPermissions);
+        mGridAdapter.setPhotoClickListener(this::checkCameraPermissions);
     }
     
     /**
