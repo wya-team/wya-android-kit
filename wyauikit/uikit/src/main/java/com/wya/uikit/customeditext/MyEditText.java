@@ -33,12 +33,6 @@ public class MyEditText extends EditText {
     public MyEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context.getApplicationContext(), attrs, defStyleAttr);
     }
-//
-//    @Override
-//    public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-//        return null;
-//    }
-
 
     @Override
     protected void onDetachedFromWindow() {
