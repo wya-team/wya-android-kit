@@ -1,8 +1,8 @@
 package com.wya.uikit.imagepicker;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -10,11 +10,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -31,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.wya.uikit.R;
 import com.wya.uikit.gallery.DataHelper;
 import com.wya.uikit.gallery.GalleryConfig;
@@ -50,9 +48,8 @@ import java.util.List;
  */
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class ImagePickerActivity extends AppCompatActivity implements View.OnClickListener,
-        ImageGridAdapter.OnImageSelectedChangedListener {
+                                                                      ImageGridAdapter.OnImageSelectedChangedListener {
     private static final String TAG = "ImagePickerActivity";
-    private static final int PERMISSION_STORAGE = 1000;
     private static final int PERMISSION_CAMERA = 1001;
     private ImageView pictureLeftBack;
     private TextView pictureTitle;
@@ -74,7 +71,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
     private String imagePath;
     private LocalMediaFolder mCurrentFolder;
     private int mediaType;
-    private boolean hasPhoto=true;//是否具有拍照功能
+    private boolean hasPhoto = true;//是否具有拍照功能
     private int textColor;
     
     @Override
@@ -82,23 +79,42 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_picker);
         setColor(getResources().getColor(R.color.black));
-        int selfPermission = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest
-                .permission.READ_EXTERNAL_STORAGE);
-
+        
         mediaType = getIntent().getIntExtra(PickerConfig.MEDIA_TYPE, PickerConfig.MEDIA_DEFAULT);
         maxNum = getIntent().getIntExtra(PickerConfig.IMAGE_NUMBER, 1);
         hasPhoto = getIntent().getBooleanExtra(PickerConfig.HAS_PHOTO_FUTURE, true);
         textColor = getIntent().getIntExtra(PickerConfig.TEXT_COLOR, R.color.color_orange);
-        if (selfPermission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest
-                    .permission.READ_EXTERNAL_STORAGE}, PERMISSION_STORAGE);
-        } else {
-            readLocalImage();
-        }
-
+        
+        checkStoragePermissions();
+        
         initView();
         initChoiceMenu();
-        
+    }
+    
+    @SuppressLint("CheckResult")
+    private void checkCameraPermissions() {
+        new RxPermissions(this).request(Manifest.permission.CAMERA)
+                .subscribe(aBoolean -> {
+                            if (aBoolean) {
+                                takePhoto();
+                            } else {
+                                Toast.makeText(this, "拍照权限被拒绝", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                );
+    }
+    
+    @SuppressLint("CheckResult")
+    private void checkStoragePermissions() {
+        new RxPermissions(this).request(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .subscribe(aBoolean -> {
+                            if (aBoolean) {
+                                readLocalImage();
+                            } else {
+                                Toast.makeText(this, "读取内存卡权限被拒绝", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                );
     }
     
     /**
@@ -147,10 +163,10 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                 Glide.with(ImagePickerActivity.this).load(item.getFirstImagePath())
                         .into(imageView);
             }
-    
+            
             @Override
             public void setValueSecond(OptionMenuViewHolder helper, LocalMediaFolder item) {
-        
+            
             }
         };
         mBaseOptionMenu.setShadow(false);
@@ -163,7 +179,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                         mCurrentFolder = mFolders.get(position);
                         mLocalMedia = mCurrentFolder.getImages();
                         pictureTitle.setText(mCurrentFolder.getName());
-                        mGridAdapter.bindData((position == 0)&&hasPhoto, mLocalMedia);
+                        mGridAdapter.bindData((position == 0) && hasPhoto, mLocalMedia);
                     }
                 });
     }
@@ -179,20 +195,20 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         tvPreview = findViewById(R.id.tv_preview);
         tvCommit = findViewById(R.id.tv_commit);
         pickerTitleLayout = findViewById(R.id.picker_title_layout);
-    
+        
         pictureTitle.setOnClickListener(this);
         pictureLeftBack.setOnClickListener(this);
         tvPreview.setOnClickListener(this);
         tvCommit.setOnClickListener(this);
-    
+        
         initAdapter();
-    
+        
         mDrawableUp = getResources().getDrawable(R.drawable.icon_up);
         mDrawableDown = getResources().getDrawable(R.drawable.icon_down);
         mDrawableUp.setBounds(0, 0, mDrawableUp.getMinimumWidth(), mDrawableUp.getMinimumHeight());
         mDrawableDown.setBounds(0, 0, mDrawableDown.getMinimumWidth(), mDrawableDown
                 .getMinimumHeight());
-    
+        
     }
     
     /**
@@ -212,20 +228,8 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                                 .PICKER_GALLERY_RESULT, maxNum);
             }
         });
-    
-        mGridAdapter.setPhotoClickListener(new ImageGridAdapter.OnTakePhotoClickListener() {
-            @Override
-            public void onClick() {
-                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest
-                        .permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(ImagePickerActivity.this, new
-                            String[]{Manifest.permission.CAMERA}, PERMISSION_CAMERA);
-                } else {
-                    takePhoto();
-                }
-    
-            }
-        });
+        
+        mGridAdapter.setPhotoClickListener(this::checkCameraPermissions);
     }
     
     /**
@@ -245,7 +249,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         } else {
             uri = Uri.fromFile(file);
         }
-    
+        
         Intent intent = new Intent();
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -273,32 +277,12 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                         mBaseOptionMenu.notifyAdapterData();
                         mCurrentFolder = mFolders.get(0);
                     }
-    
+                    
                 } else {
                     pictureTitle.setText("相册");
                 }
             }
         }, mediaType);
-    }
-    
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == PERMISSION_STORAGE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                readLocalImage();
-            } else {
-                Toast.makeText(this, "读取内存卡权限被拒绝", Toast.LENGTH_SHORT).show();
-            }
-        }
-        if (requestCode == PERMISSION_CAMERA) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                takePhoto();
-            } else {
-                Toast.makeText(this, "拍照权限被拒绝", Toast.LENGTH_SHORT).show();
-            }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
     
     public float dp2px(int dp) {
@@ -320,17 +304,17 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
         
         //commit
         if (v.getId() == R.id.tv_commit) {
-    
+            
             if (mSelected.size() > 0) {
                 //移除没被选中的编辑过的图片
                 for (int i = 0; i < mSelected.size(); i++) {
                     mCropList.remove(mSelected.get(i).getCropPath());
                 }
                 GalleryUtils.removeAllFile(mCropList);
-        
+                
                 Intent intent = getIntent();
                 Bundle bundle = new Bundle();
-        
+                
                 //                bundle.putSerializable(PickerConfig.IMAGE_SELECTED,
                 // (Serializable) mSelected);
                 bundle.putStringArrayList(PickerConfig.IMAGE_SELECTED, returnImagePaths(mSelected));
@@ -407,7 +391,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                 change(mSelected);
                 mGridAdapter.notifySelectedData(mSelected);
             }
-    
+            
             if (resultCode == RESULT_OK && data != null && data.hasExtra(GalleryConfig
                     .IMAGE_LIST_SELECTED)) {
                 Bundle extras = data.getExtras();
@@ -436,7 +420,7 @@ public class ImagePickerActivity extends AppCompatActivity implements View.OnCli
                 mGridAdapter.bindData(mLocalMedia);
                 mGridAdapter.notifySelectedData(mSelected);
             }
-    
+            
             if (resultCode == RESULT_OK && data != null && data.hasExtra(GalleryConfig
                     .IMAGE_LIST_SELECTED)) {
                 Bundle extras = data.getExtras();

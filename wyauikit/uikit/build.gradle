@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
 
@@ -70,6 +72,8 @@ dependencies {
     annotationProcessor libs.compiler
 
     implementation libs.baseRecyclerViewAdapterHelper
+    api libs.rxpermissions
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 // aar打包

@@ -59,7 +59,7 @@ import java.util.List;
  */
 
 public class ExampleFragment extends Fragment {
-
+    
     private final String UIKIT_URL = "https://github.com/wya-team/wya-android-kit/blob/develop/wyauikit/uikit/src/main/java/com/wya/uikit/";
     private final String HARDWARE_URL = "https://github.com/wya-team/wya-android-kit/blob/develop/wyahardware/hardware/src/main/java/com/wya/hardware/";
     private final String UTILS_URL = "https://github.com/wya-team/wya-android-kit/blob/develop/wyautils/utils/src/main/java/com/wya/utils/utils/README.md";
@@ -68,9 +68,9 @@ public class ExampleFragment extends Fragment {
     private List<ExampleItem> mDatas;
     private ExampleExpandableListAdapter adapter;
     private View view;
-
+    
     public static final String EXTRA_URL = "EXTRA_URL";
-
+    
     @SuppressLint("NewApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,12 +79,12 @@ public class ExampleFragment extends Fragment {
         initView();
         return view;
     }
-
+    
     protected void initView() {
         initItems();
         initExpandList();
     }
-
+    
     private void initItems() {
         mDatas = new ArrayList<>();
         ExampleItem item1 = new ExampleItem();
@@ -101,7 +101,7 @@ public class ExampleFragment extends Fragment {
         bean1.add("气泡(popupwindow)");
         bean1.add("浮窗(floatwindow)");
         item1.setChild(bean1);
-
+        
         ExampleItem item2 = new ExampleItem();
         item2.setTitle("数据录入");
         List<String> bean2 = new ArrayList<>();
@@ -115,7 +115,7 @@ public class ExampleFragment extends Fragment {
         bean2.add("软键盘(keyboard)");
         bean2.add("拍照录制视频(camera)");
         item2.setChild(bean2);
-
+        
         ExampleItem item3 = new ExampleItem();
         item3.setTitle("数据展示");
         List<String> bean3 = new ArrayList<>();
@@ -127,7 +127,7 @@ public class ExampleFragment extends Fragment {
         bean3.add("通告栏(notice)");
         bean3.add("二维码(utils(QRCodeUtil))");
         item3.setChild(bean3);
-
+        
         ExampleItem item4 = new ExampleItem();
         item4.setTitle("操作反馈");
         List<String> bean4 = new ArrayList<>();
@@ -136,7 +136,7 @@ public class ExampleFragment extends Fragment {
         bean4.add("进度条(progressview)");
         bean4.add("轻提示(toast)");
         item4.setChild(bean4);
-
+        
         ExampleItem item5 = new ExampleItem();
         item5.setTitle("其他");
         List<String> bean5 = new ArrayList<>();
@@ -145,14 +145,14 @@ public class ExampleFragment extends Fragment {
         bean5.add("清理缓存(utils(DataCleanUtil))");
         bean5.add("数据库基本使用(realm)");
         item5.setChild(bean5);
-
+        
         mDatas.add(item1);
         mDatas.add(item2);
         mDatas.add(item3);
         mDatas.add(item4);
         mDatas.add(item5);
     }
-
+    
     private void initExpandList() {
         expendList = view.findViewById(R.id.expend_list);
         adapter = new ExampleExpandableListAdapter(getActivity(), mDatas);
@@ -171,7 +171,7 @@ public class ExampleFragment extends Fragment {
         adapter.notifyDataSetChanged();
         expendList.setGroupIndicator(null);
     }
-
+    
     private void setClick(int groupPosition, int childPosition) {
         String s = mDatas.get(groupPosition).getChild().get(childPosition);
         switch (s) {
@@ -205,7 +205,7 @@ public class ExampleFragment extends Fragment {
             case "浮窗(floatwindow)":
                 startActivity(new Intent(getActivity(), FloatWindowExampleActivity.class).putExtra(EXTRA_URL, UIKIT_URL + "floatwindow" + "/README.md"));
                 break;
-
+            
             case "按钮(button)":
                 startActivity(new Intent(getActivity(), ButtonExampleActivity.class).putExtra(EXTRA_URL, UIKIT_URL + "button" + "/README.md"));
                 break;
@@ -233,7 +233,7 @@ public class ExampleFragment extends Fragment {
             case "拍照录制视频(camera)":
                 startActivity(new Intent(getActivity(), StartCameraExampleActivity.class).putExtra(EXTRA_URL, HARDWARE_URL + "camera" + "/README.md"));
                 break;
-
+            
             case "徽标数(badge)":
                 startActivity(new Intent(getActivity(), BadgeExampleActivity.class).putExtra(EXTRA_URL, UIKIT_URL + "badge" + "/README.md"));
                 break;
@@ -255,7 +255,7 @@ public class ExampleFragment extends Fragment {
             case "二维码(utils(QRCodeUtil))":
                 startActivity(new Intent(getActivity(), QRCodeExampleActivity.class).putExtra(EXTRA_URL, UTILS_URL));
                 break;
-
+            
             case "弹框(dialog(WYACustomDialog))":
                 startActivity(new Intent(getActivity(), DialogExampleActivity.class).putExtra("type", 1).putExtra(EXTRA_URL, UIKIT_URL + "dialog" + "/README.md"));
                 break;
@@ -268,7 +268,7 @@ public class ExampleFragment extends Fragment {
             case "轻提示(toast)":
                 startActivity(new Intent(getActivity(), ToastExampleActivity.class).putExtra(EXTRA_URL, UIKIT_URL + "toast" + "/README.md"));
                 break;
-
+            
             case "下载(utils(FileManagerUtil)":
                 startActivity(new Intent(getActivity(), DownLoadExampleActivity.class).putExtra(EXTRA_URL, UTILS_URL));
                 break;
@@ -283,7 +283,7 @@ public class ExampleFragment extends Fragment {
                 break;
             default:
                 break;
-
+            
         }
     }
 }
