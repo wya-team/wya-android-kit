@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="color_BEBEBE">#BEBEBE</color>
+    <color name="bg_item_dragging_active_state">#ffff9999</color>
+    <color name="bg_item_dragging_state">#ffffdddd</color>
+    <color name="bg_item_normal_state">#fff0f0f0</color>
+    <color name="bg_swipe_item_neutral">@android:color/transparent</color>
+
 </resources>

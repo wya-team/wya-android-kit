@@ -2,7 +2,6 @@ package com.wya.example.module.uikit.gallery;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -11,9 +10,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +25,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.wya.example.R;
 import com.wya.uikit.gallery.GalleryCreator;
 import com.wya.uikit.imagepicker.SpaceDecoration;
@@ -92,15 +90,20 @@ public class GalleryExampleActivity extends AppCompatActivity {
                         images);
             }
         });
-        
-        int selfPermission = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
-        
-        if (selfPermission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest
-                    .permission.READ_EXTERNAL_STORAGE}, 1000);
-        } else {
-            getData();
-        }
+        checkPermissions();
+    }
+    
+    @SuppressLint("CheckResult")
+    private void checkPermissions() {
+        new RxPermissions(this).request(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .subscribe(aBoolean -> {
+                            if (aBoolean) {
+                                getData();
+                            } else {
+                                Toast.makeText(this, "权限被拒绝", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                );
     }
     
     private void getData() {
@@ -149,21 +152,6 @@ public class GalleryExampleActivity extends AppCompatActivity {
             
             }
         });
-    }
-    
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == 1000) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                
-                getData();
-                
-            } else {
-                Toast.makeText(this, "拒绝", Toast.LENGTH_SHORT).show();
-            }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
     
 }

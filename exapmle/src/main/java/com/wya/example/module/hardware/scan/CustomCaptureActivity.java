@@ -16,11 +16,10 @@
 package com.wya.example.module.hardware.scan;
 
 import android.Manifest;
-import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.hardware.Camera;
 import android.net.Uri;
@@ -28,12 +27,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.wya.example.R;
 import com.wya.hardware.scan.CaptureActivity;
 import com.wya.hardware.scan.util.CodeUtils;
@@ -51,7 +50,6 @@ import static com.wya.hardware.scan.Intents.Scan.RESULT;
 public class CustomCaptureActivity extends CaptureActivity {
     
     public final int REQUEST_CODE_PHOTO = 0X02;
-    private final int REQUEST_EXTERNAL_STORAGE = 110;
     private final String PROVIDER_MEDIA = "com.android.providers.media.documents";
     private final String PROVIDER_DOWNLOADS = "com.android.providers.downloads.documents";
     private final String STRING_CONTENT = "content";
@@ -95,46 +93,17 @@ public class CustomCaptureActivity extends CaptureActivity {
         }
     }
     
-    private void checkExternalStoragePermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE) && ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                //不具有获取权限，需要进行权限申请
-                startPhotoCode();
-            } else {
-                // 第一次申请，就直接申请
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        REQUEST_EXTERNAL_STORAGE);
-            }
-        } else {
-            startPhotoCode();
-        }
-    }
-    
-    @TargetApi(23)
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_EXTERNAL_STORAGE) {
-            int size = 0;
-            if (grantResults.length >= 1) {
-                int writeResult = grantResults[0];
-                //读写内存权限
-                boolean writeGranted = writeResult == PackageManager.PERMISSION_GRANTED;
-                if (!writeGranted) {
-                    size++;
-                }
-                int recordPermissionResult = grantResults[1];
-                boolean recordPermissionGranted = recordPermissionResult == PackageManager.PERMISSION_GRANTED;
-                if (!recordPermissionGranted) {
-                    size++;
-                }
-                if (size == 0) {
-                    startPhotoCode();
-                } else {
-                    Toast.makeText(this, "请到设置-权限管理中开启", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
+    @SuppressLint("CheckResult")
+    private void checkPermissions() {
+        new RxPermissions(this).request(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .subscribe(aBoolean -> {
+                            if (aBoolean) {
+                                startPhotoCode();
+                            } else {
+                                Toast.makeText(this, "请到设置-权限管理中开启", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                );
     }
     
     public void onClick(View v) {
@@ -147,7 +116,7 @@ public class CustomCaptureActivity extends CaptureActivity {
                 finish();
                 break;
             case R.id.ll_right:
-                checkExternalStoragePermissions();
+                checkPermissions();
                 break;
             default:
                 break;

@@ -1,6 +1,8 @@
 package com.wya.example.base;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.arialyy.aria.core.Aria;
 import com.wya.helper.WYAConstants;
@@ -72,5 +74,11 @@ public class BaseApplication extends Application {
                 //是否是debug
                 .isDebug(AppUtil.isApkInDebug(getApplicationContext()))
                 .build();
+    }
+    
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }
