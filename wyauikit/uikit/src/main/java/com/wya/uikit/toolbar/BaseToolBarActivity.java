@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,10 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     private RelativeLayout toolBar;
 
     private LinearLayout parentLinearLayout;
+    /**
+     * 设置左边点击事件
+     */
+    private TitleClickListener titleClickListener;
     /**
      * 设置左边点击事件
      */
@@ -61,6 +66,15 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      * @return
      */
     protected abstract int getLayoutId();
+
+    /**
+     * 设置标题点击事件监听
+     *
+     * @param titleClickListener
+     */
+    public void setTitleClickListener(TitleClickListener titleClickListener) {
+        this.titleClickListener = titleClickListener;
+    }
 
     /**
      * 设置左边图标点击事件监听
@@ -461,6 +475,15 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
      * 左右两边点击事件监听设置
      */
     private void initClick() {
+        tvTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (titleClickListener != null) {
+                    titleClickListener.titleClick(view);
+                }
+            }
+        });
+
         mImgLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -489,7 +512,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 if (secondRightIconClickListener != null) {
                     secondRightIconClickListener.secondRightIconClick(view);
                 } else {
-                    Toast.makeText(BaseToolBarActivity.this, "图片2", Toast.LENGTH_SHORT).show();
+                    Log.d("TAG", "图片2");
                 }
             }
         });
@@ -499,7 +522,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 if (secondRightIconLongClickListener != null) {
                     secondRightIconLongClickListener.secondRightIconLongClick(view);
                 } else {
-                    Toast.makeText(BaseToolBarActivity.this, "图片2长按", Toast.LENGTH_SHORT).show();
+                    Log.d("TAG", "图片2长按");
                 }
                 return true;
             }
@@ -510,7 +533,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 if (firstRightIconClickListener != null) {
                     firstRightIconClickListener.firstRightIconClick(view);
                 } else {
-                    Toast.makeText(BaseToolBarActivity.this, "图片1", Toast.LENGTH_SHORT).show();
+                    Log.d("TAG", "图片1");
                 }
             }
         });
@@ -520,7 +543,7 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
                 if (secondRightTextClickListener != null) {
                     secondRightTextClickListener.secondRightTextClick(view);
                 } else {
-                    Toast.makeText(BaseToolBarActivity.this, "文字2", Toast.LENGTH_SHORT).show();
+                    Log.d("TAG", "文字2");
                 }
             }
         });
@@ -565,6 +588,15 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    public interface TitleClickListener {
+        /**
+         * 设置标题
+         *
+         * @param view
+         */
+        void titleClick(View view);
     }
 
     public interface LeftIconClickListener {
