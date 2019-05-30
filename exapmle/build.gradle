@@ -68,13 +68,13 @@ dependencies {
 
     // glide
     implementation libs.glide
-    annotationProcessor libs.compiler
+    kapt libs.compiler
 
     implementation libs.gson
 
     implementation libs.butterknife
 
-    annotationProcessor libs.butterknife_compiler
+    kapt libs.butterknife_compiler
 
     implementation libs.rxbinding
 
