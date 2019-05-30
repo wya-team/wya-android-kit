@@ -26,7 +26,7 @@ public class WYAToast {
      * 初始化Toast(消息，时间)
      */
     public static Toast initToast(Context context, CharSequence message, int duration) {
-        toast = Toast.makeText(context, message, duration);
+        toast = Toast.makeText(context.getApplicationContext(), message, duration);
         return toast;
     }
 
@@ -56,9 +56,9 @@ public class WYAToast {
      */
     public static Toast showToastWithImage(Context context, final String tvStr, final int imageResource, int gravity) {
         if (toast_custom == null) {
-            toast_custom = new Toast(context);
+            toast_custom = new Toast(context.getApplicationContext());
         }
-        View view = LayoutInflater.from(context).inflate(R.layout.wya_custom_toast_layout, null);
+        View view = LayoutInflater.from(context.getApplicationContext()).inflate(R.layout.wya_custom_toast_layout, null);
         TextView tv = view.findViewById(R.id.tv_toast_custom);
         tv.setText(TextUtils.isEmpty(tvStr) ? "" : tvStr);
         ImageView iv = view.findViewById(R.id.img_toast_custom);
@@ -66,7 +66,7 @@ public class WYAToast {
             iv.setVisibility(View.VISIBLE);
             iv.setImageResource(imageResource);
             if (tvStr.length() > 10) {
-                tv.setMaxWidth(dip2px(context, 140));
+                tv.setMaxWidth(dip2px(context.getApplicationContext(), 140));
             }
         } else {
             iv.setVisibility(View.GONE);
