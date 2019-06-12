@@ -53,7 +53,7 @@ ext {
             zxing                        : "3.3.3",
             aria_core                    : "3.5.2",
             oss_android_sdk              : "2.3.0",
-            rxpermissions                : "0.10.2",
+            rxpermissions                : "1.0.0",
     ]
 
     build_plugins = [
@@ -94,6 +94,7 @@ ext {
             recyclerview                 : "com.android.support:recyclerview-v7:${versions.support}",
             cardview                     : "com.android.support:cardview-v7:${versions.support}",
 
+            support_fragment             : "com.android.support:support-fragment:${versions.support}",
             annotation                   : "com.android.support:support-annotations:${versions.support}",
             multidex                     : "com.android.support:multidex:${versions.multidex}",
             support_vector_drawable      : "com.android.support:support-vector-drawable:${versions.support}",
@@ -109,7 +110,7 @@ ext {
             logging_interceptor          : "com.squareup.okhttp3:logging-interceptor:${versions.loggingInterceptorVersion}",
             converter_scalars            : "com.squareup.retrofit2:converter-scalars:${versions.converterScalarsVersion}",
             kotlin_stdlib_jdk7           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin_gradle_plugin}",
-            rxpermissions                : "com.github.tbruyelle:rxpermissions:${versions.rxpermissions}",
+            rxpermissions                : "com.wya.utils:rxpermissions:${versions.rxpermissions}",
 
     ]
 

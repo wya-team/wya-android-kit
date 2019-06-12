@@ -4,6 +4,9 @@ apply plugin: 'kotlin-android'
 apply plugin: "kotlin-kapt"
 apply plugin: 'realm-android'
 
+// [AspectJ]
+apply plugin: 'com.hujiang.android-aspectjx'
+
 android {
 
     compileSdkVersion build_version.compileSdkVersion
@@ -88,7 +91,9 @@ dependencies {
     implementation project(':wyahardware:hardware')
     implementation project(':wyauikit:uikit')
     implementation project(':wyautils:utils')
+    implementation project(':rxpermissions')
 //    implementation project(':library')
+
 }
 // apply from: '../buildconfig/quality/quality.gradle'
 

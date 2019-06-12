@@ -1,1 +1,4 @@
 include ':exapmle', 'wyahelper:helper', 'wyahardware:hardware', 'wyautils:utils', 'wyauikit:uikit'
+
+include ':rxpermissions'
+project(':rxpermissions').projectDir = new File('wyautils/rxpermissions')

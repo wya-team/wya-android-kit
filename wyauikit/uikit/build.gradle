@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: "kotlin-kapt"
 
 android {
 
@@ -69,11 +70,11 @@ dependencies {
 
     // glide
     implementation libs.glide
-    annotationProcessor libs.compiler
+    kapt libs.compiler
 
     implementation libs.baseRecyclerViewAdapterHelper
-    api libs.rxpermissions
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation project(':rxpermissions')
 }
 
 // aar打包
