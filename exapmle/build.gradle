@@ -5,7 +5,7 @@ apply plugin: "kotlin-kapt"
 apply plugin: 'realm-android'
 
 // [ARouter]
-//apply plugin: 'com.weiyian.android'
+apply plugin: 'com.weiyian.android'
 
 kapt {
     arguments {
@@ -21,7 +21,7 @@ buildscript {
     }
 
     dependencies {
-//        classpath 'com.weiyian.android:router-auto-register:1.0.0'
+        classpath 'com.weiyian.android:router-auto-register:1.0.5'
     }
 }
 
@@ -111,6 +111,9 @@ dependencies {
     implementation project(':wyautils:utils')
     implementation project(':rxpermissions')
 
-//    implementation 'com.weiyian.android:router-api:1.0.1'
+    // Router
+    kapt 'com.weiyian.android:router-compiler:1.0.1'
+    implementation project(':router-api')
+    implementation project(':router-annotation')
 
 }
