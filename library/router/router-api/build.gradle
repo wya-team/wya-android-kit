@@ -43,8 +43,8 @@ android {
 }
 
 dependencies {
-    annotationProcessor 'com.weiyian.android:router-compiler:1.0.0'
-    api 'com.weiyian.android:router-annotation:1.0.0'
+    annotationProcessor 'com.weiyian.android:router-compiler:1.0.1'
+    api 'com.weiyian.android:router-annotation:1.0.1'
     implementation "com.android.support:support-v4:${SUPPORT_LIB_VERSION}"
 }
 
