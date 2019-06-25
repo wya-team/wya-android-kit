@@ -65,11 +65,11 @@ ext {
     ]
 
     maven_url = [
-            jitpack_maven_url: "https://jitpack.io",
-            huawei_maven_url : "http://developer.huawei.com/repo",
-            push_maven_url   : "https://raw.githubusercontent.com/wya-team/wya-android-push/develop/aar",
-            kit_maven_url    : "https://raw.githubusercontent.com/wya-team/wya-android-kit/develop/aar/snapshot",
-//            kit_maven_url    : "https://raw.githubusercontent.com/wya-team/wya-android-kit/develop/aar/release",
+            jitpack_maven_url     : "https://jitpack.io",
+            huawei_maven_url      : "http://developer.huawei.com/repo",
+            push_maven_url        : "https://raw.githubusercontent.com/wya-team/wya-android-push/develop/aar",
+            kit_maven_url_release         : "https://raw.githubusercontent.com/wya-team/wya-android-kit/develop/aar/release",
+            kit_maven_url_snapshot: "https://raw.githubusercontent.com/wya-team/wya-android-kit/develop/aar/snapshot",
     ]
 
 

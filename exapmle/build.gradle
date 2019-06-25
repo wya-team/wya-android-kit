@@ -5,7 +5,7 @@ apply plugin: "kotlin-kapt"
 apply plugin: 'realm-android'
 
 // [ARouter]
-apply plugin: 'com.alibaba.arouter'
+//apply plugin: 'com.weiyian.android'
 
 kapt {
     arguments {
@@ -15,12 +15,13 @@ kapt {
 
 buildscript {
     repositories {
-        maven { url maven_url.kit_maven_url }
+        maven { url maven_url.kit_maven_url_release }
+        maven { url maven_url.kit_maven_url_snapshot }
         google()
     }
 
     dependencies {
-        classpath 'com.weiyian.android:router-auto-register:1.0.0'
+//        classpath 'com.weiyian.android:router-auto-register:1.0.0'
     }
 }
 
@@ -110,6 +111,6 @@ dependencies {
     implementation project(':wyautils:utils')
     implementation project(':rxpermissions')
 
-    implementation 'com.weiyian.android:router-api:1.0.1'
+//    implementation 'com.weiyian.android:router-api:1.0.1'
 
 }
