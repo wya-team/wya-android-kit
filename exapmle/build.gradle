@@ -104,7 +104,7 @@ dependencies {
 // [ARouter]
 buildscript {
     repositories {
-        maven { url "file:///Users/zengcei/Desktop/weiyian/code/wya-android-kit/aar/snapshot" }
+        maven { url maven_url.kit_maven_url }
         google()
     }
 
