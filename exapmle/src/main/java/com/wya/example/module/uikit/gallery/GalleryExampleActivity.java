@@ -25,7 +25,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.weiyian.android.rxpermissions.RxPermissions;
+import com.alibaba.android.rxpermissions.RxPermissions;
 import com.wya.example.R;
 import com.wya.uikit.gallery.GalleryCreator;
 import com.wya.uikit.imagepicker.SpaceDecoration;

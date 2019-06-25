@@ -1,0 +1,22 @@
+apply plugin: 'maven'
+
+ext {
+    KEY_PUBLISH_GROUP_ID = PUBLISH_GROUP_ID
+    KEY_PUBLISH_ARTIFACT_ID = PUBLISH_ARTIFACT_ID
+    KEY_PUBLISH_VERSION = PUBLISH_VERSION
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            def deployPath = file("../" + getProperty('aar.deployPath'))
+            repository(url: "file://${deployPath.absolutePath}")
+
+            pom.project {
+                groupId KEY_PUBLISH_GROUP_ID
+                artifactId KEY_PUBLISH_ARTIFACT_ID
+                version KEY_PUBLISH_VERSION
+            }
+        }
+    }
+}
