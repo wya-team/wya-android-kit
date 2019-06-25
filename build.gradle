@@ -27,9 +27,7 @@ allprojects {
         mavenCentral()
         maven { url 'https://jitpack.io' }
         maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
-        maven { url "/Users/zengcei/Desktop/weiyian/code/wya-android-kit/aar/snapshot" }
         maven { url maven_url.kit_maven_url_release }
-        maven { url maven_url.kit_maven_url_snapshot }
     }
 }
 

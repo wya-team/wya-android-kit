@@ -15,7 +15,6 @@ kapt {
 
 buildscript {
     repositories {
-        maven { url maven_url.kit_maven_url_release }
         maven { url maven_url.kit_maven_url_snapshot }
         google()
     }
@@ -112,7 +111,7 @@ dependencies {
     implementation project(':rxpermissions')
 
     // Router
-    kapt 'com.weiyian.android:router-compiler:1.0.1'
+//    kapt 'com.weiyian.android:router-compiler:1.0.1'
     implementation project(':router-api')
     implementation project(':router-annotation')
 
