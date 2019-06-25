@@ -1,10 +1,10 @@
-package com.alibaba.android.arouter.core;
+package com.weiyian.android.router.core;
 
-import com.alibaba.android.arouter.facade.template.IInterceptor;
-import com.alibaba.android.arouter.facade.template.IProvider;
-import com.alibaba.android.arouter.facade.template.IRouteGroup;
-import com.alibaba.android.arouter.base.UniqueKeyTreeMap;
-import com.alibaba.android.arouter.facade.model.RouteMeta;
+import com.weiyian.android.router.base.UniqueKeyTreeMap;
+import com.weiyian.android.router.facade.model.RouteMeta;
+import com.weiyian.android.router.facade.template.IInterceptor;
+import com.weiyian.android.router.facade.template.IProvider;
+import com.weiyian.android.router.facade.template.IRouteGroup;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,15 +22,15 @@ class Warehouse {
     // Cache route and metas
     static Map<String, Class<? extends IRouteGroup>> groupsIndex = new HashMap<>();
     static Map<String, RouteMeta> routes = new HashMap<>();
-
+    
     // Cache provider
     static Map<Class, IProvider> providers = new HashMap<>();
     static Map<String, RouteMeta> providersIndex = new HashMap<>();
-
+    
     // Cache interceptor
     static Map<Integer, Class<? extends IInterceptor>> interceptorsIndex = new UniqueKeyTreeMap<>("More than one interceptors use same priority [%s]");
     static List<IInterceptor> interceptors = new ArrayList<>();
-
+    
     static void clear() {
         routes.clear();
         groupsIndex.clear();

@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.base;
+package com.weiyian.android.router.base;
 
 import java.util.TreeMap;
 

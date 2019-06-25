@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.compiler.processor;
+package com.weiyian.android.router.compiler.processor;
 
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
@@ -9,9 +9,9 @@ import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import com.alibaba.android.arouter.compiler.utils.Consts;
-import com.alibaba.android.arouter.facade.annotation.Autowired;
-import com.alibaba.android.arouter.facade.enums.TypeKind;
+import com.weiyian.android.router.compiler.utils.Consts;
+import com.weiyian.android.router.facade.annotation.Autowired;
+import com.weiyian.android.router.facade.enums.TypeKind;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
@@ -46,16 +46,16 @@ import static javax.lang.model.element.Modifier.PUBLIC;
 @SupportedAnnotationTypes({Consts.ANNOTATION_TYPE_AUTOWIRED})
 public class AutowiredProcessor extends BaseProcessor {
     private Map<TypeElement, List<Element>> parentAndChild = new HashMap<>();   // Contain field need autowired and his super class.
-    private static final ClassName ARouterClass = ClassName.get("com.alibaba.android.arouter.launcher", "ARouter");
+    private static final ClassName ARouterClass = ClassName.get("com.weiyian.android.router.launcher", "ARouter");
     private static final ClassName AndroidLog = ClassName.get("android.util", "Log");
-
+    
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
-
+        
         logger.info(">>> AutowiredProcessor init. <<<");
     }
-
+    
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
         if (CollectionUtils.isNotEmpty(set)) {
@@ -63,16 +63,16 @@ public class AutowiredProcessor extends BaseProcessor {
                 logger.info(">>> Found autowired field, start... <<<");
                 categories(roundEnvironment.getElementsAnnotatedWith(Autowired.class));
                 generateHelper();
-
+                
             } catch (Exception e) {
                 logger.error(e);
             }
             return true;
         }
-
+        
         return false;
     }
-
+    
     private void generateHelper() throws IOException, IllegalAccessException {
         TypeElement type_ISyringe = elementUtils.getTypeElement(Consts.ISYRINGE);
         TypeElement type_JsonService = elementUtils.getTypeElement(Consts.JSON_SERVICE);
@@ -80,10 +80,10 @@ public class AutowiredProcessor extends BaseProcessor {
         TypeMirror activityTm = elementUtils.getTypeElement(Consts.ACTIVITY).asType();
         TypeMirror fragmentTm = elementUtils.getTypeElement(Consts.FRAGMENT).asType();
         TypeMirror fragmentTmV4 = elementUtils.getTypeElement(Consts.FRAGMENT_V4).asType();
-
+        
         // Build input param name.
         ParameterSpec objectParamSpec = ParameterSpec.builder(TypeName.OBJECT, "target").build();
-
+        
         if (MapUtils.isNotEmpty(parentAndChild)) {
             for (Map.Entry<TypeElement, List<Element>> entry : parentAndChild.entrySet()) {
                 // Build method : 'inject'
@@ -91,34 +91,34 @@ public class AutowiredProcessor extends BaseProcessor {
                         .addAnnotation(Override.class)
                         .addModifiers(PUBLIC)
                         .addParameter(objectParamSpec);
-
+                
                 TypeElement parent = entry.getKey();
                 List<Element> childs = entry.getValue();
-
+                
                 String qualifiedName = parent.getQualifiedName().toString();
                 String packageName = qualifiedName.substring(0, qualifiedName.lastIndexOf("."));
                 String fileName = parent.getSimpleName() + Consts.NAME_OF_AUTOWIRED;
-
+                
                 logger.info(">>> Start process " + childs.size() + " field in " + parent.getSimpleName() + " ... <<<");
-
+                
                 TypeSpec.Builder helper = TypeSpec.classBuilder(fileName)
                         .addJavadoc(Consts.WARNING_TIPS)
                         .addSuperinterface(ClassName.get(type_ISyringe))
                         .addModifiers(PUBLIC);
-
+                
                 FieldSpec jsonServiceField = FieldSpec.builder(TypeName.get(type_JsonService.asType()), "serializationService", Modifier.PRIVATE).build();
                 helper.addField(jsonServiceField);
-
+                
                 injectMethodBuilder.addStatement("serializationService = $T.getInstance().navigation($T.class)", ARouterClass, ClassName.get(type_JsonService));
                 injectMethodBuilder.addStatement("$T substitute = ($T)target", ClassName.get(parent), ClassName.get(parent));
-
+                
                 // Generate method body, start inject.
                 for (Element element : childs) {
                     Autowired fieldConfig = element.getAnnotation(Autowired.class);
                     String fieldName = element.getSimpleName().toString();
                     if (types.isSubtype(element.asType(), iProvider)) {  // It's provider
                         if ("".equals(fieldConfig.name())) {    // User has not set service path, then use byType.
-
+                            
                             // Getter
                             injectMethodBuilder.addStatement(
                                     "substitute." + fieldName + " = $T.getInstance().navigation($T.class)",
@@ -134,7 +134,7 @@ public class AutowiredProcessor extends BaseProcessor {
                                     fieldConfig.name()
                             );
                         }
-
+                        
                         // Validater
                         if (fieldConfig.required()) {
                             injectMethodBuilder.beginControlFlow("if (substitute." + fieldName + " == null)");
@@ -154,7 +154,7 @@ public class AutowiredProcessor extends BaseProcessor {
                         } else {
                             throw new IllegalAccessException("The field [" + fieldName + "] need autowired from intent, its parent must be activity or fragment!");
                         }
-
+                        
                         statement = buildStatement(originalValue, statement, typeUtils.typeExchange(element), isActivity);
                         if (statement.startsWith("serializationService.")) {   // Not mortals
                             injectMethodBuilder.beginControlFlow("if (null != serializationService)");
@@ -170,7 +170,7 @@ public class AutowiredProcessor extends BaseProcessor {
                         } else {
                             injectMethodBuilder.addStatement(statement, StringUtils.isEmpty(fieldConfig.name()) ? fieldName : fieldConfig.name());
                         }
-
+                        
                         // Validator
                         if (fieldConfig.required() && !element.asType().getKind().isPrimitive()) {  // Primitive wont be check.
                             injectMethodBuilder.beginControlFlow("if (null == substitute." + fieldName + ")");
@@ -180,26 +180,26 @@ public class AutowiredProcessor extends BaseProcessor {
                         }
                     }
                 }
-
+                
                 helper.addMethod(injectMethodBuilder.build());
-
+                
                 // Generate autowire helper
                 JavaFile.builder(packageName, helper.build()).build().writeTo(mFiler);
-
+                
                 logger.info(">>> " + parent.getSimpleName() + " has been processed, " + fileName + " has been generated. <<<");
             }
-
+            
             logger.info(">>> Autowired processor stop. <<<");
         }
     }
-
+    
     private String buildCastCode(Element element) {
         if (typeUtils.typeExchange(element) == TypeKind.SERIALIZABLE.ordinal()) {
             return CodeBlock.builder().add("($T) ", ClassName.get(element.asType())).build().toString();
         }
         return "";
     }
-
+    
     private String buildStatement(String originalValue, String statement, int type, boolean isActivity) {
         switch (TypeKind.values()[type]) {
             case BOOLEAN:
@@ -239,10 +239,10 @@ public class AutowiredProcessor extends BaseProcessor {
                 statement = "serializationService.parseObject(substitute." + (isActivity ? "getIntent()." : "getArguments().") + (isActivity ? "getStringExtra($S)" : "getString($S)") + ", new " + Consts.TYPE_WRAPPER + "<$T>(){}.getType())";
                 break;
         }
-
+        
         return statement;
     }
-
+    
     /**
      * Categories field, find his papa.
      *
@@ -252,12 +252,12 @@ public class AutowiredProcessor extends BaseProcessor {
         if (CollectionUtils.isNotEmpty(elements)) {
             for (Element element : elements) {
                 TypeElement enclosingElement = (TypeElement) element.getEnclosingElement();
-
+                
                 if (element.getModifiers().contains(Modifier.PRIVATE)) {
                     throw new IllegalAccessException("The inject fields CAN NOT BE 'private'!!! please check field ["
                             + element.getSimpleName() + "] in class [" + enclosingElement.getQualifiedName() + "]");
                 }
-
+                
                 if (parentAndChild.containsKey(enclosingElement)) { // Has categries
                     parentAndChild.get(enclosingElement).add(element);
                 } else {
@@ -266,7 +266,7 @@ public class AutowiredProcessor extends BaseProcessor {
                     parentAndChild.put(enclosingElement, childs);
                 }
             }
-
+            
             logger.info("categories finished.");
         }
     }

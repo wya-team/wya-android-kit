@@ -1,6 +1,6 @@
-package com.alibaba.android.arouter.compiler.utils;
+package com.weiyian.android.router.compiler.utils;
 
-import com.alibaba.android.arouter.facade.enums.TypeKind;
+import com.weiyian.android.router.facade.enums.TypeKind;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.type.TypeMirror;
@@ -15,18 +15,18 @@ import javax.lang.model.util.Types;
  * @since 2017/2/21 下午1:06
  */
 public class TypeUtils {
-
+    
     private Types types;
     private TypeMirror parcelableType;
     private TypeMirror serializableType;
-
+    
     public TypeUtils(Types types, Elements elements) {
         this.types = types;
-
+        
         parcelableType = elements.getTypeElement(Consts.PARCELABLE).asType();
         serializableType = elements.getTypeElement(Consts.SERIALIZABLE).asType();
     }
-
+    
     /**
      * Diagnostics out the true java type
      *
@@ -35,12 +35,12 @@ public class TypeUtils {
      */
     public int typeExchange(Element element) {
         TypeMirror typeMirror = element.asType();
-
+        
         // Primitive
         if (typeMirror.getKind().isPrimitive()) {
             return element.asType().getKind().ordinal();
         }
-
+        
         switch (typeMirror.toString()) {
             case Consts.BYTE:
                 return TypeKind.BYTE.ordinal();

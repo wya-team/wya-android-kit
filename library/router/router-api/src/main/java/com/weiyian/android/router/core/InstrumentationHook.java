@@ -1,18 +1,18 @@
-package com.alibaba.android.arouter.core;
+package com.weiyian.android.router.core;
 
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.alibaba.android.arouter.utils.Consts;
-import com.alibaba.android.arouter.utils.TextUtils;
+import com.weiyian.android.router.launcher.ARouter;
+import com.weiyian.android.router.utils.Consts;
+import com.weiyian.android.router.utils.TextUtils;
 
 import java.lang.reflect.Field;
 
 /**
  * Use ARouter.getInstance().inject(this) now!
- *
+ * <p>
  * Hook the instrumentation, inject values for activity's field.
  * Support normal activity only, not contain unit test.
  *
@@ -37,14 +37,14 @@ public class InstrumentationHook extends Instrumentation {
      */
     public Activity newActivity(ClassLoader cl, String className,
                                 Intent intent)
-            throws InstantiationException, IllegalAccessException,
-            ClassNotFoundException {
-
-//        return (Activity)cl.loadClass(className).newInstance();
-
+    throws InstantiationException, IllegalAccessException,
+           ClassNotFoundException {
+        
+        //        return (Activity)cl.loadClass(className).newInstance();
+        
         Class<?> targetActivity = cl.loadClass(className);
         Object instanceOfTarget = targetActivity.newInstance();
-
+        
         if (ARouter.canAutoInject()) {
             String[] autoInjectParams = intent.getStringArrayExtra(ARouter.AUTO_INJECT);
             if (null != autoInjectParams && autoInjectParams.length > 0) {
@@ -62,7 +62,7 @@ public class InstrumentationHook extends Instrumentation {
                 }
             }
         }
-
+        
         return (Activity) instanceOfTarget;
     }
 }

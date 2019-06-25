@@ -1,9 +1,9 @@
-package com.alibaba.android.arouter.facade.service;
+package com.weiyian.android.router.facade.service;
 
 import android.content.Context;
 
-import com.alibaba.android.arouter.facade.Postcard;
-import com.alibaba.android.arouter.facade.template.IProvider;
+import com.weiyian.android.router.facade.Postcard;
+import com.weiyian.android.router.facade.template.IProvider;
 
 /**
  * Pretreatment service used for check if need navigation.

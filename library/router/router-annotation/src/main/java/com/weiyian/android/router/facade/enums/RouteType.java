@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.facade.enums;
+package com.weiyian.android.router.facade.enums;
 
 /**
  * Type of route enum.
@@ -10,7 +10,7 @@ package com.alibaba.android.arouter.facade.enums;
 public enum RouteType {
     ACTIVITY(0, "android.app.Activity"),
     SERVICE(1, "android.app.Service"),
-    PROVIDER(2, "com.alibaba.android.arouter.facade.template.IProvider"),
+    PROVIDER(2, "com.weiyian.android.router.facade.template.IProvider"),
     CONTENT_PROVIDER(-1, "android.app.ContentProvider"),
     BOARDCAST(-1, ""),
     METHOD(-1, ""),

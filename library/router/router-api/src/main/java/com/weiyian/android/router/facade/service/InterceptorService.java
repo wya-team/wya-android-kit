@@ -1,8 +1,8 @@
-package com.alibaba.android.arouter.facade.service;
+package com.weiyian.android.router.facade.service;
 
-import com.alibaba.android.arouter.facade.Postcard;
-import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
-import com.alibaba.android.arouter.facade.template.IProvider;
+import com.weiyian.android.router.facade.Postcard;
+import com.weiyian.android.router.facade.callback.InterceptorCallback;
+import com.weiyian.android.router.facade.template.IProvider;
 
 /**
  * Interceptor service
@@ -12,7 +12,7 @@ import com.alibaba.android.arouter.facade.template.IProvider;
  * @since 2017/2/23 下午2:06
  */
 public interface InterceptorService extends IProvider {
-
+    
     /**
      * Do interceptions
      */

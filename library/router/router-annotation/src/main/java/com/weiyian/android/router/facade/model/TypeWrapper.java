@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.facade.model;
+package com.weiyian.android.router.facade.model;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -12,13 +12,13 @@ import java.lang.reflect.Type;
  */
 public class TypeWrapper<T> {
     protected final Type type;
-
+    
     protected TypeWrapper() {
         Type superClass = getClass().getGenericSuperclass();
-
+        
         type = ((ParameterizedType) superClass).getActualTypeArguments()[0];
     }
-
+    
     public Type getType() {
         return type;
     }

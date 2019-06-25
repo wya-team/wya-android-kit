@@ -1,12 +1,12 @@
-package com.alibaba.android.arouter.core;
+package com.weiyian.android.router.core;
 
 import android.content.Context;
 import android.util.LruCache;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.facade.template.ISyringe;
-import com.alibaba.android.arouter.utils.Consts;
-import com.alibaba.android.arouter.facade.service.AutowiredService;
+import com.weiyian.android.router.facade.annotation.Route;
+import com.weiyian.android.router.facade.service.AutowiredService;
+import com.weiyian.android.router.facade.template.ISyringe;
+import com.weiyian.android.router.utils.Consts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +22,13 @@ import java.util.List;
 public class AutowiredServiceImpl implements AutowiredService {
     private LruCache<String, ISyringe> classCache;
     private List<String> blackList;
-
+    
     @Override
     public void init(Context context) {
         classCache = new LruCache<>(66);
         blackList = new ArrayList<>();
     }
-
+    
     @Override
     public void autowire(Object instance) {
         String className = instance.getClass().getName();

@@ -1,22 +1,22 @@
-package com.alibaba.android.arouter.core;
+package com.weiyian.android.router.core;
 
 import android.content.Context;
 import android.net.Uri;
 
-import com.alibaba.android.arouter.exception.HandlerException;
-import com.alibaba.android.arouter.exception.NoRouteFoundException;
-import com.alibaba.android.arouter.facade.Postcard;
-import com.alibaba.android.arouter.facade.template.IInterceptorGroup;
-import com.alibaba.android.arouter.facade.template.IProvider;
-import com.alibaba.android.arouter.facade.template.IProviderGroup;
-import com.alibaba.android.arouter.facade.template.IRouteGroup;
-import com.alibaba.android.arouter.facade.template.IRouteRoot;
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.alibaba.android.arouter.utils.Consts;
-import com.alibaba.android.arouter.utils.MapUtils;
-import com.alibaba.android.arouter.utils.TextUtils;
-import com.alibaba.android.arouter.facade.enums.TypeKind;
-import com.alibaba.android.arouter.facade.model.RouteMeta;
+import com.weiyian.android.router.exception.HandlerException;
+import com.weiyian.android.router.exception.NoRouteFoundException;
+import com.weiyian.android.router.facade.Postcard;
+import com.weiyian.android.router.facade.enums.TypeKind;
+import com.weiyian.android.router.facade.model.RouteMeta;
+import com.weiyian.android.router.facade.template.IInterceptorGroup;
+import com.weiyian.android.router.facade.template.IProvider;
+import com.weiyian.android.router.facade.template.IProviderGroup;
+import com.weiyian.android.router.facade.template.IRouteGroup;
+import com.weiyian.android.router.facade.template.IRouteRoot;
+import com.weiyian.android.router.launcher.ARouter;
+import com.weiyian.android.router.utils.Consts;
+import com.weiyian.android.router.utils.MapUtils;
+import com.weiyian.android.router.utils.TextUtils;
 
 import java.util.Locale;
 import java.util.Map;
@@ -92,7 +92,7 @@ public class LogisticsCenter {
     /**
      * method for arouter-auto-register plugin to register Providers
      *
-     * @param providerGroup IProviderGroup implementation class in the package: com.alibaba.android.arouter.core.routers
+     * @param providerGroup IProviderGroup implementation class in the package: routers
      * @author billy.qi <a href="mailto:qiyilike@163.com">Contact me.</a>
      * @since 2017-12-06
      */

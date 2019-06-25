@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.thread;
+package com.weiyian.android.router.thread;
 
 import java.util.concurrent.CountDownLatch;
 

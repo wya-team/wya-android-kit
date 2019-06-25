@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.compiler.processor;
+package com.weiyian.android.router.compiler.processor;
 
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
@@ -8,8 +8,8 @@ import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.WildcardTypeName;
-import com.alibaba.android.arouter.compiler.utils.Consts;
-import com.alibaba.android.arouter.facade.annotation.Interceptor;
+import com.weiyian.android.router.compiler.utils.Consts;
+import com.weiyian.android.router.facade.annotation.Interceptor;
 
 import org.apache.commons.collections4.CollectionUtils;
 

@@ -1,8 +1,8 @@
-package com.alibaba.android.arouter.facade.model;
+package com.weiyian.android.router.facade.model;
 
-import com.alibaba.android.arouter.facade.annotation.Autowired;
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.facade.enums.RouteType;
+import com.weiyian.android.router.facade.annotation.Autowired;
+import com.weiyian.android.router.facade.annotation.Route;
+import com.weiyian.android.router.facade.enums.RouteType;
 
 import java.util.Map;
 
@@ -25,12 +25,12 @@ public class RouteMeta {
     private int extra;              // Extra data
     private Map<String, Integer> paramsType;  // Param type
     private String name;
-
+    
     private Map<String, Autowired> injectConfig;  // Cache inject config.
-
+    
     public RouteMeta() {
     }
-
+    
     /**
      * For versions of 'compiler' less than 1.0.7, contain 1.0.7
      *
@@ -45,7 +45,7 @@ public class RouteMeta {
     public static RouteMeta build(RouteType type, Class<?> destination, String path, String group, int priority, int extra) {
         return new RouteMeta(type, null, destination, null, path, group, null, priority, extra);
     }
-
+    
     /**
      * For versions of 'compiler' greater than 1.0.7
      *
@@ -61,7 +61,7 @@ public class RouteMeta {
     public static RouteMeta build(RouteType type, Class<?> destination, String path, String group, Map<String, Integer> paramsType, int priority, int extra) {
         return new RouteMeta(type, null, destination, null, path, group, paramsType, priority, extra);
     }
-
+    
     /**
      * Type
      *
@@ -72,7 +72,7 @@ public class RouteMeta {
     public RouteMeta(Route route, Class<?> destination, RouteType type) {
         this(type, null, destination, route.name(), route.path(), route.group(), null, route.priority(), route.extras());
     }
-
+    
     /**
      * Type
      *
@@ -84,7 +84,7 @@ public class RouteMeta {
     public RouteMeta(Route route, Element rawType, RouteType type, Map<String, Integer> paramsType) {
         this(type, rawType, null, route.name(), route.path(), route.group(), paramsType, route.priority(), route.extras());
     }
-
+    
     /**
      * Type
      *
@@ -108,95 +108,95 @@ public class RouteMeta {
         this.priority = priority;
         this.extra = extra;
     }
-
+    
     public Map<String, Integer> getParamsType() {
         return paramsType;
     }
-
+    
     public RouteMeta setParamsType(Map<String, Integer> paramsType) {
         this.paramsType = paramsType;
         return this;
     }
-
+    
     public Map<String, Autowired> getInjectConfig() {
         return injectConfig;
     }
-
+    
     public void setInjectConfig(Map<String, Autowired> injectConfig) {
         this.injectConfig = injectConfig;
     }
-
+    
     public Element getRawType() {
         return rawType;
     }
-
+    
     public RouteMeta setRawType(Element rawType) {
         this.rawType = rawType;
         return this;
     }
-
+    
     public RouteType getType() {
         return type;
     }
-
+    
     public RouteMeta setType(RouteType type) {
         this.type = type;
         return this;
     }
-
+    
     public Class<?> getDestination() {
         return destination;
     }
-
+    
     public RouteMeta setDestination(Class<?> destination) {
         this.destination = destination;
         return this;
     }
-
+    
     public String getPath() {
         return path;
     }
-
+    
     public RouteMeta setPath(String path) {
         this.path = path;
         return this;
     }
-
+    
     public String getGroup() {
         return group;
     }
-
+    
     public RouteMeta setGroup(String group) {
         this.group = group;
         return this;
     }
-
+    
     public int getPriority() {
         return priority;
     }
-
+    
     public RouteMeta setPriority(int priority) {
         this.priority = priority;
         return this;
     }
-
+    
     public int getExtra() {
         return extra;
     }
-
+    
     public RouteMeta setExtra(int extra) {
         this.extra = extra;
         return this;
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
-
+    
     @Override
     public String toString() {
         return "RouteMeta{" +

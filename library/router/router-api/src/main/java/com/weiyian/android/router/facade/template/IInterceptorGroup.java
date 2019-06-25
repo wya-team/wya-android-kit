@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.facade.template;
+package com.weiyian.android.router.facade.template;
 
 import java.util.Map;
 

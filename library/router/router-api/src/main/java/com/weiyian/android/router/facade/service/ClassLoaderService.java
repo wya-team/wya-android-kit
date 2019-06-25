@@ -1,7 +1,6 @@
-package com.alibaba.android.arouter.facade.service;
+package com.weiyian.android.router.facade.service;
 
-import com.alibaba.android.arouter.facade.template.IProvider;
-
+import com.weiyian.android.router.facade.template.IProvider;
 /**
  * Get class by user, maybe someone use InstantRun and other tech will move dex files.
  *

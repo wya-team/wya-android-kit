@@ -1,4 +1,4 @@
-package com.alibaba.android.rxpermissions
+package com.weiyian.android.rxpermissions
 
 import android.annotation.TargetApi
 import android.content.pm.PackageManager

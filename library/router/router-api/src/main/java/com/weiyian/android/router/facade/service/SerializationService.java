@@ -1,6 +1,6 @@
-package com.alibaba.android.arouter.facade.service;
+package com.weiyian.android.router.facade.service;
 
-import com.alibaba.android.arouter.facade.template.IProvider;
+import com.weiyian.android.router.facade.template.IProvider;
 
 import java.lang.reflect.Type;
 
@@ -12,10 +12,10 @@ import java.lang.reflect.Type;
  * @since 2017/4/10 下午1:43
  */
 public interface SerializationService extends IProvider {
-
+    
     /**
      * Parse json to object
-     *
+     * <p>
      * USE @parseObject PLEASE
      *
      * @param input json string
@@ -24,7 +24,7 @@ public interface SerializationService extends IProvider {
      */
     @Deprecated
     <T> T json2Object(String input, Class<T> clazz);
-
+    
     /**
      * Object to json
      *
@@ -32,7 +32,7 @@ public interface SerializationService extends IProvider {
      * @return json string
      */
     String object2Json(Object instance);
-
+    
     /**
      * Parse json to object
      *

@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.compiler.entity;
+package com.weiyian.android.router.compiler.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 

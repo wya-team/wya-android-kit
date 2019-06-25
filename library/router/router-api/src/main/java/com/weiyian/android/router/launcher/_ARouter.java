@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.launcher;
+package com.weiyian.android.router.launcher;
 
 import android.app.Activity;
 import android.app.Application;
@@ -12,24 +12,24 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.exception.HandlerException;
-import com.alibaba.android.arouter.exception.InitException;
-import com.alibaba.android.arouter.exception.NoRouteFoundException;
-import com.alibaba.android.arouter.facade.Postcard;
-import com.alibaba.android.arouter.thread.DefaultPoolExecutor;
-import com.alibaba.android.arouter.core.InstrumentationHook;
-import com.alibaba.android.arouter.core.LogisticsCenter;
-import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
-import com.alibaba.android.arouter.facade.callback.NavigationCallback;
-import com.alibaba.android.arouter.facade.service.AutowiredService;
-import com.alibaba.android.arouter.facade.service.DegradeService;
-import com.alibaba.android.arouter.facade.service.InterceptorService;
-import com.alibaba.android.arouter.facade.service.PathReplaceService;
-import com.alibaba.android.arouter.facade.service.PretreatmentService;
-import com.alibaba.android.arouter.facade.template.ILogger;
-import com.alibaba.android.arouter.utils.Consts;
-import com.alibaba.android.arouter.utils.DefaultLogger;
-import com.alibaba.android.arouter.utils.TextUtils;
+import com.weiyian.android.router.core.InstrumentationHook;
+import com.weiyian.android.router.core.LogisticsCenter;
+import com.weiyian.android.router.exception.HandlerException;
+import com.weiyian.android.router.exception.InitException;
+import com.weiyian.android.router.exception.NoRouteFoundException;
+import com.weiyian.android.router.facade.Postcard;
+import com.weiyian.android.router.facade.callback.InterceptorCallback;
+import com.weiyian.android.router.facade.callback.NavigationCallback;
+import com.weiyian.android.router.facade.service.AutowiredService;
+import com.weiyian.android.router.facade.service.DegradeService;
+import com.weiyian.android.router.facade.service.InterceptorService;
+import com.weiyian.android.router.facade.service.PathReplaceService;
+import com.weiyian.android.router.facade.service.PretreatmentService;
+import com.weiyian.android.router.facade.template.ILogger;
+import com.weiyian.android.router.thread.DefaultPoolExecutor;
+import com.weiyian.android.router.utils.Consts;
+import com.weiyian.android.router.utils.DefaultLogger;
+import com.weiyian.android.router.utils.TextUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -52,22 +52,22 @@ final class _ARouter {
     private volatile static ThreadPoolExecutor executor = DefaultPoolExecutor.getInstance();
     private static Handler mHandler;
     private static Context mContext;
-
+    
     private static InterceptorService interceptorService;
-
+    
     private _ARouter() {
     }
-
+    
     protected static synchronized boolean init(Application application) {
         mContext = application;
         LogisticsCenter.init(mContext, executor);
         logger.info(Consts.TAG, "ARouter init success!");
         hasInit = true;
         mHandler = new Handler(Looper.getMainLooper());
-
+        
         return true;
     }
-
+    
     /**
      * Destroy arouter, it can be used only in debug mode.
      */
@@ -80,7 +80,7 @@ final class _ARouter {
             logger.error(Consts.TAG, "Destroy can be used in debug mode only!");
         }
     }
-
+    
     protected static _ARouter getInstance() {
         if (!hasInit) {
             throw new InitException("ARouterCore::Init::Invoke init(context) first!");
@@ -95,42 +95,42 @@ final class _ARouter {
             return instance;
         }
     }
-
+    
     static synchronized void openDebug() {
         debuggable = true;
         logger.info(Consts.TAG, "ARouter openDebug");
     }
-
+    
     static synchronized void openLog() {
         logger.showLog(true);
         logger.info(Consts.TAG, "ARouter openLog");
     }
-
+    
     @Deprecated
     static synchronized void enableAutoInject() {
         autoInject = true;
     }
-
+    
     @Deprecated
     static boolean canAutoInject() {
         return autoInject;
     }
-
+    
     @Deprecated
     static void attachBaseContext() {
         Log.i(Consts.TAG, "ARouter start attachBaseContext");
         try {
             Class<?> mMainThreadClass = Class.forName("android.app.ActivityThread");
-
+            
             // Get current main thread.
             Method getMainThread = mMainThreadClass.getDeclaredMethod("currentActivityThread");
             getMainThread.setAccessible(true);
             Object currentActivityThread = getMainThread.invoke(null);
-
+            
             // The field contain instrumentation.
             Field mInstrumentationField = mMainThreadClass.getDeclaredField("mInstrumentation");
             mInstrumentationField.setAccessible(true);
-
+            
             // Hook current instrumentation
             mInstrumentationField.set(currentActivityThread, new InstrumentationHook());
             Log.i(Consts.TAG, "ARouter hook instrumentation success!");
@@ -138,42 +138,42 @@ final class _ARouter {
             Log.e(Consts.TAG, "ARouter hook instrumentation failed! [" + ex.getMessage() + "]");
         }
     }
-
+    
     static synchronized void printStackTrace() {
         logger.showStackTrace(true);
         logger.info(Consts.TAG, "ARouter printStackTrace");
     }
-
+    
     static synchronized void setExecutor(ThreadPoolExecutor tpe) {
         executor = tpe;
     }
-
+    
     static synchronized void monitorMode() {
         monitorMode = true;
         logger.info(Consts.TAG, "ARouter monitorMode on");
     }
-
+    
     static boolean isMonitorMode() {
         return monitorMode;
     }
-
+    
     static boolean debuggable() {
         return debuggable;
     }
-
+    
     static void setLogger(ILogger userLogger) {
         if (null != userLogger) {
             logger = userLogger;
         }
     }
-
+    
     static void inject(Object thiz) {
         AutowiredService autowiredService = ((AutowiredService) ARouter.getInstance().build("/arouter/service/autowired").navigation());
         if (null != autowiredService) {
             autowiredService.autowire(thiz);
         }
     }
-
+    
     /**
      * Build postcard by path and default group
      */
@@ -188,7 +188,7 @@ final class _ARouter {
             return build(path, extractGroup(path));
         }
     }
-
+    
     /**
      * Build postcard by uri
      */
@@ -203,7 +203,7 @@ final class _ARouter {
             return new Postcard(uri.getPath(), extractGroup(uri.getPath()), uri, null);
         }
     }
-
+    
     /**
      * Build postcard by path and group
      */
@@ -218,7 +218,7 @@ final class _ARouter {
             return new Postcard(path, group);
         }
     }
-
+    
     /**
      * Extract the default group from path.
      */
@@ -226,7 +226,7 @@ final class _ARouter {
         if (TextUtils.isEmpty(path) || !path.startsWith("/")) {
             throw new HandlerException(Consts.TAG + "Extract the default group failed, the path must be start with '/' and contain more than 2 '/'!");
         }
-
+        
         try {
             String defaultGroup = path.substring(1, path.indexOf("/", 1));
             if (TextUtils.isEmpty(defaultGroup)) {
@@ -239,27 +239,27 @@ final class _ARouter {
             return null;
         }
     }
-
+    
     static void afterInit() {
         // Trigger interceptor init, use byName.
         interceptorService = (InterceptorService) ARouter.getInstance().build("/arouter/service/interceptor").navigation();
     }
-
+    
     protected <T> T navigation(Class<? extends T> service) {
         try {
             Postcard postcard = LogisticsCenter.buildProvider(service.getName());
-
+            
             // Compatible 1.0.5 compiler sdk.
             // Earlier versions did not use the fully qualified name to get the service
             if (null == postcard) {
                 // No service, or this service in old version.
                 postcard = LogisticsCenter.buildProvider(service.getSimpleName());
             }
-
+            
             if (null == postcard) {
                 return null;
             }
-
+            
             LogisticsCenter.completion(postcard);
             return (T) postcard.getProvider();
         } catch (NoRouteFoundException ex) {
@@ -267,7 +267,7 @@ final class _ARouter {
             return null;
         }
     }
-
+    
     /**
      * Use router navigation.
      *
@@ -282,12 +282,12 @@ final class _ARouter {
             // Pretreatment failed, navigation canceled.
             return null;
         }
-
+        
         try {
             LogisticsCenter.completion(postcard);
         } catch (NoRouteFoundException ex) {
             logger.warning(Consts.TAG, ex.getMessage());
-
+            
             if (debuggable()) {
                 // Show friendly tips for user.
                 runInMainThread(new Runnable() {
@@ -299,7 +299,7 @@ final class _ARouter {
                     }
                 });
             }
-
+            
             if (null != callback) {
                 callback.onLost(postcard);
             } else {
@@ -309,14 +309,14 @@ final class _ARouter {
                     degradeService.onLost(context, postcard);
                 }
             }
-
+            
             return null;
         }
-
+        
         if (null != callback) {
             callback.onFound(postcard);
         }
-
+        
         if (!postcard.isGreenChannel()) {   // It must be run in async thread, maybe interceptor cost too mush time made ANR.
             interceptorService.doInterceptions(postcard, new InterceptorCallback() {
                 /**
@@ -328,7 +328,7 @@ final class _ARouter {
                 public void onContinue(Postcard postcard) {
                     _navigation(context, postcard, requestCode, callback);
                 }
-
+                
                 /**
                  * Interrupt process, pipeline will be destory when this method called.
                  *
@@ -339,26 +339,26 @@ final class _ARouter {
                     if (null != callback) {
                         callback.onInterrupt(postcard);
                     }
-
+                    
                     logger.info(Consts.TAG, "Navigation failed, termination by interceptor : " + exception.getMessage());
                 }
             });
         } else {
             return _navigation(context, postcard, requestCode, callback);
         }
-
+        
         return null;
     }
-
+    
     private Object _navigation(final Context context, final Postcard postcard, final int requestCode, final NavigationCallback callback) {
         final Context currentContext = null == context ? mContext : context;
-
+        
         switch (postcard.getType()) {
             case ACTIVITY:
                 // Build intent
                 final Intent intent = new Intent(currentContext, postcard.getDestination());
                 intent.putExtras(postcard.getExtras());
-
+                
                 // Set flags.
                 int flags = postcard.getFlags();
                 if (-1 != flags) {
@@ -366,13 +366,13 @@ final class _ARouter {
                 } else if (!(currentContext instanceof Activity)) {    // Non activity, need less one flag.
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 }
-
+                
                 // Set Actions
                 String action = postcard.getAction();
                 if (!TextUtils.isEmpty(action)) {
                     intent.setAction(action);
                 }
-
+                
                 // Navigation in main looper.
                 runInMainThread(new Runnable() {
                     @Override
@@ -380,7 +380,7 @@ final class _ARouter {
                         startActivity(requestCode, currentContext, intent, postcard, callback);
                     }
                 });
-
+                
                 break;
             case PROVIDER:
                 return postcard.getProvider();
@@ -395,7 +395,7 @@ final class _ARouter {
                     } else if (instance instanceof android.support.v4.app.Fragment) {
                         ((android.support.v4.app.Fragment) instance).setArguments(postcard.getExtras());
                     }
-
+                    
                     return instance;
                 } catch (Exception ex) {
                     logger.error(Consts.TAG, "Fetch fragment instance error, " + TextUtils.formatStackTrace(ex.getStackTrace()));
@@ -405,10 +405,10 @@ final class _ARouter {
             default:
                 return null;
         }
-
+        
         return null;
     }
-
+    
     /**
      * Be sure execute in main thread.
      *
@@ -421,7 +421,7 @@ final class _ARouter {
             runnable.run();
         }
     }
-
+    
     /**
      * Start activity
      *
@@ -437,11 +437,11 @@ final class _ARouter {
         } else {
             ActivityCompat.startActivity(currentContext, intent, postcard.getOptionsBundle());
         }
-
+        
         if ((-1 != postcard.getEnterAnim() && -1 != postcard.getExitAnim()) && currentContext instanceof Activity) {    // Old version.
             ((Activity) currentContext).overridePendingTransition(postcard.getEnterAnim(), postcard.getExitAnim());
         }
-
+        
         if (null != callback) { // Navigation over.
             callback.onArrival(postcard);
         }

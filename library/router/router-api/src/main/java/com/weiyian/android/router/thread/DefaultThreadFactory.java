@@ -1,9 +1,9 @@
-package com.alibaba.android.arouter.thread;
+package com.weiyian.android.router.thread;
 
 import android.support.annotation.NonNull;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.alibaba.android.arouter.utils.Consts;
+import com.weiyian.android.router.launcher.ARouter;
+import com.weiyian.android.router.utils.Consts;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -17,18 +17,18 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class DefaultThreadFactory implements ThreadFactory {
     private static final AtomicInteger poolNumber = new AtomicInteger(1);
-
+    
     private final AtomicInteger threadNumber = new AtomicInteger(1);
     private final ThreadGroup group;
     private final String namePrefix;
-
+    
     public DefaultThreadFactory() {
         SecurityManager s = System.getSecurityManager();
         group = (s != null) ? s.getThreadGroup() :
                 Thread.currentThread().getThreadGroup();
         namePrefix = "ARouter task pool No." + poolNumber.getAndIncrement() + ", thread No.";
     }
-
+    
     public Thread newThread(@NonNull Runnable runnable) {
         String threadName = namePrefix + threadNumber.getAndIncrement();
         ARouter.logger.info(Consts.TAG, "Thread production, name is [" + threadName + "]");
@@ -39,7 +39,7 @@ public class DefaultThreadFactory implements ThreadFactory {
         if (thread.getPriority() != Thread.NORM_PRIORITY) { //优先级为normal
             thread.setPriority(Thread.NORM_PRIORITY);
         }
-
+        
         // 捕获多线程处理中的异常
         thread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override

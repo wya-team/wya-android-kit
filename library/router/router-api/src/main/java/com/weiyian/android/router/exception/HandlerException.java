@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.exception;
+package com.weiyian.android.router.exception;
 
 /**
  * 主流程的处理异常

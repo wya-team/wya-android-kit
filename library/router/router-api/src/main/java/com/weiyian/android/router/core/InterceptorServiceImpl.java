@@ -1,17 +1,17 @@
-package com.alibaba.android.arouter.core;
+package com.weiyian.android.router.core;
 
 import android.content.Context;
 
-import com.alibaba.android.arouter.exception.HandlerException;
-import com.alibaba.android.arouter.facade.Postcard;
-import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
-import com.alibaba.android.arouter.facade.service.InterceptorService;
-import com.alibaba.android.arouter.facade.template.IInterceptor;
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.alibaba.android.arouter.thread.CancelableCountDownLatch;
-import com.alibaba.android.arouter.utils.Consts;
-import com.alibaba.android.arouter.utils.MapUtils;
-import com.alibaba.android.arouter.facade.annotation.Route;
+import com.weiyian.android.router.exception.HandlerException;
+import com.weiyian.android.router.facade.Postcard;
+import com.weiyian.android.router.facade.annotation.Route;
+import com.weiyian.android.router.facade.callback.InterceptorCallback;
+import com.weiyian.android.router.facade.service.InterceptorService;
+import com.weiyian.android.router.facade.template.IInterceptor;
+import com.weiyian.android.router.launcher.ARouter;
+import com.weiyian.android.router.thread.CancelableCountDownLatch;
+import com.weiyian.android.router.utils.Consts;
+import com.weiyian.android.router.utils.MapUtils;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -27,18 +27,18 @@ import java.util.concurrent.TimeUnit;
 public class InterceptorServiceImpl implements InterceptorService {
     private static boolean interceptorHasInit;
     private static final Object interceptorInitLock = new Object();
-
+    
     @Override
     public void doInterceptions(final Postcard postcard, final InterceptorCallback callback) {
         if (null != Warehouse.interceptors && Warehouse.interceptors.size() > 0) {
-
+            
             checkInterceptorsInitStatus();
-
+            
             if (!interceptorHasInit) {
                 callback.onInterrupt(new HandlerException("Interceptors initialization takes too much time."));
                 return;
             }
-
+            
             LogisticsCenter.executor.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -62,7 +62,7 @@ public class InterceptorServiceImpl implements InterceptorService {
             callback.onContinue(postcard);
         }
     }
-
+    
     /**
      * Excute interceptor
      *
@@ -80,24 +80,24 @@ public class InterceptorServiceImpl implements InterceptorService {
                     counter.countDown();
                     _excute(index + 1, counter, postcard);  // When counter is down, it will be execute continue ,but index bigger than interceptors size, then U know.
                 }
-
+                
                 @Override
                 public void onInterrupt(Throwable exception) {
                     // Last interceptor excute over with fatal exception.
-
+                    
                     postcard.setTag(null == exception ? new HandlerException("No message.") : exception.getMessage());    // save the exception message for backup.
                     counter.cancel();
                     // Be attention, maybe the thread in callback has been changed,
                     // then the catch block(L207) will be invalid.
                     // The worst is the thread changed to main thread, then the app will be crash, if you throw this exception!
-//                    if (!Looper.getMainLooper().equals(Looper.myLooper())) {    // You shouldn't throw the exception if the thread is main thread.
-//                        throw new HandlerException(exception.getMessage());
-//                    }
+                    //                    if (!Looper.getMainLooper().equals(Looper.myLooper())) {    // You shouldn't throw the exception if the thread is main thread.
+                    //                        throw new HandlerException(exception.getMessage());
+                    //                    }
                 }
             });
         }
     }
-
+    
     @Override
     public void init(final Context context) {
         LogisticsCenter.executor.execute(new Runnable() {
@@ -114,11 +114,11 @@ public class InterceptorServiceImpl implements InterceptorService {
                             throw new HandlerException(Consts.TAG + "ARouter init interceptor error! name = [" + interceptorClass.getName() + "], reason = [" + ex.getMessage() + "]");
                         }
                     }
-
+                    
                     interceptorHasInit = true;
-
+                    
                     ARouter.logger.info(Consts.TAG, "ARouter interceptors init over.");
-
+                    
                     synchronized (interceptorInitLock) {
                         interceptorInitLock.notifyAll();
                     }
@@ -126,7 +126,7 @@ public class InterceptorServiceImpl implements InterceptorService {
             }
         });
     }
-
+    
     private static void checkInterceptorsInitStatus() {
         synchronized (interceptorInitLock) {
             while (!interceptorHasInit) {

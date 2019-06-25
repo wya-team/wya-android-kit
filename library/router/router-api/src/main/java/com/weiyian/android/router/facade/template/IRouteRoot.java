@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.facade.template;
+package com.weiyian.android.router.facade.template;
 
 import java.util.Map;
 
@@ -10,9 +10,10 @@ import java.util.Map;
  * @since 16/8/23 16:36
  */
 public interface IRouteRoot {
-
+    
     /**
      * Load routes to input
+     *
      * @param routes input
      */
     void loadInto(Map<String, Class<? extends IRouteGroup>> routes);

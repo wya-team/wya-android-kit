@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.facade.enums;
+package com.weiyian.android.router.facade.enums;
 
 /**
  * Kind of field type.

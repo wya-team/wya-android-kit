@@ -1,9 +1,8 @@
-package com.alibaba.android.arouter.facade.template;
+package com.weiyian.android.router.facade.template;
 
-import com.alibaba.android.arouter.facade.model.RouteMeta;
+import com.weiyian.android.router.facade.model.RouteMeta;
 
 import java.util.Map;
-
 /**
  * Template of provider group.
  *

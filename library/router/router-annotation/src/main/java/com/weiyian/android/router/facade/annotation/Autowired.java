@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.facade.annotation;
+package com.weiyian.android.router.facade.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

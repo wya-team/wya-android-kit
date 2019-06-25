@@ -19,7 +19,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import com.alibaba.android.rxpermissions.RxPermissions
+import com.weiyian.android.rxpermissions.RxPermissions
 import com.wya.example.R
 import com.wya.example.base.BaseActivity
 import com.wya.example.module.example.fragment.ExampleFragment

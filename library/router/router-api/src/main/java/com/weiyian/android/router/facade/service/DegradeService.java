@@ -1,9 +1,9 @@
-package com.alibaba.android.arouter.facade.service;
+package com.weiyian.android.router.facade.service;
 
 import android.content.Context;
 
-import com.alibaba.android.arouter.facade.Postcard;
-import com.alibaba.android.arouter.facade.template.IProvider;
+import com.weiyian.android.router.facade.Postcard;
+import com.weiyian.android.router.facade.template.IProvider;
 
 /**
  * Provide degrade service for router, you can do something when route has lost.
@@ -13,7 +13,7 @@ import com.alibaba.android.arouter.facade.template.IProvider;
  * @since 2016/9/22 14:51
  */
 public interface DegradeService extends IProvider {
-
+    
     /**
      * Router has lost.
      *

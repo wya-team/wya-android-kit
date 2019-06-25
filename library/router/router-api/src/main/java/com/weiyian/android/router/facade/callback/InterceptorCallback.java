@@ -1,7 +1,6 @@
-package com.alibaba.android.arouter.facade.callback;
+package com.weiyian.android.router.facade.callback;
 
-import com.alibaba.android.arouter.facade.Postcard;
-
+import com.weiyian.android.router.facade.Postcard;
 /**
  * The callback of interceptor.
  *
@@ -10,14 +9,14 @@ import com.alibaba.android.arouter.facade.Postcard;
  * @since 16/8/4 17:36
  */
 public interface InterceptorCallback {
-
+    
     /**
      * Continue process
      *
      * @param postcard route meta
      */
     void onContinue(Postcard postcard);
-
+    
     /**
      * Interrupt process, pipeline will be destroy when this method called.
      *

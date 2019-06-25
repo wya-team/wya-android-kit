@@ -1,4 +1,4 @@
-package com.alibaba.android.arouter.facade;
+package com.weiyian.android.router.facade;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,11 +11,11 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.util.SparseArray;
 
-import com.alibaba.android.arouter.facade.callback.NavigationCallback;
-import com.alibaba.android.arouter.facade.model.RouteMeta;
-import com.alibaba.android.arouter.facade.service.SerializationService;
-import com.alibaba.android.arouter.facade.template.IProvider;
-import com.alibaba.android.arouter.launcher.ARouter;
+import com.weiyian.android.router.facade.callback.NavigationCallback;
+import com.weiyian.android.router.facade.model.RouteMeta;
+import com.weiyian.android.router.facade.service.SerializationService;
+import com.weiyian.android.router.facade.template.IProvider;
+import com.weiyian.android.router.launcher.ARouter;
 
 import java.io.Serializable;
 import java.util.ArrayList;

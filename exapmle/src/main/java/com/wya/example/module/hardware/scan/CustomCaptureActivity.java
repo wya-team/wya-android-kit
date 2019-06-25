@@ -32,7 +32,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.alibaba.android.rxpermissions.RxPermissions;
+import com.weiyian.android.rxpermissions.RxPermissions;
 import com.wya.example.R;
 import com.wya.hardware.scan.CaptureActivity;
 import com.wya.hardware.scan.util.CodeUtils;

@@ -1,14 +1,14 @@
-package com.alibaba.android.arouter.launcher;
+package com.weiyian.android.router.launcher;
 
 import android.app.Application;
 import android.content.Context;
 import android.net.Uri;
 
-import com.alibaba.android.arouter.exception.InitException;
-import com.alibaba.android.arouter.facade.Postcard;
-import com.alibaba.android.arouter.facade.callback.NavigationCallback;
-import com.alibaba.android.arouter.facade.template.ILogger;
-import com.alibaba.android.arouter.utils.Consts;
+import com.weiyian.android.router.exception.InitException;
+import com.weiyian.android.router.facade.Postcard;
+import com.weiyian.android.router.facade.callback.NavigationCallback;
+import com.weiyian.android.router.facade.template.ILogger;
+import com.weiyian.android.router.utils.Consts;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -23,14 +23,14 @@ public final class ARouter {
     // Key of raw uri
     public static final String RAW_URI = "NTeRQWvye18AkPd6G";
     public static final String AUTO_INJECT = "wmHzgD4lOj5o4241";
-
+    
     private volatile static ARouter instance = null;
     private volatile static boolean hasInit = false;
     public static ILogger logger;
-
+    
     private ARouter() {
     }
-
+    
     /**
      * Init, it must be call before used router.
      */
@@ -39,15 +39,15 @@ public final class ARouter {
             logger = _ARouter.logger;
             _ARouter.logger.info(Consts.TAG, "ARouter init start.");
             hasInit = _ARouter.init(application);
-
+            
             if (hasInit) {
                 _ARouter.afterInit();
             }
-
+            
             _ARouter.logger.info(Consts.TAG, "ARouter init over.");
         }
     }
-
+    
     /**
      * Get instance of router. A
      * All feature U use, will be starts here.
@@ -66,32 +66,32 @@ public final class ARouter {
             return instance;
         }
     }
-
+    
     public static synchronized void openDebug() {
         _ARouter.openDebug();
     }
-
+    
     public static boolean debuggable() {
         return _ARouter.debuggable();
     }
-
+    
     public static synchronized void openLog() {
         _ARouter.openLog();
     }
-
+    
     public static synchronized void printStackTrace() {
         _ARouter.printStackTrace();
     }
-
+    
     public static synchronized void setExecutor(ThreadPoolExecutor tpe) {
         _ARouter.setExecutor(tpe);
     }
-
+    
     public synchronized void destroy() {
         _ARouter.destroy();
         hasInit = false;
     }
-
+    
     /**
      * The interface is not stable enough, use 'ARouter.inject();';
      */
@@ -99,12 +99,12 @@ public final class ARouter {
     public static synchronized void enableAutoInject() {
         _ARouter.enableAutoInject();
     }
-
+    
     @Deprecated
     public static boolean canAutoInject() {
         return _ARouter.canAutoInject();
     }
-
+    
     /**
      * The interface is not stable enough, use 'ARouter.inject();';
      */
@@ -112,26 +112,26 @@ public final class ARouter {
     public static void attachBaseContext() {
         _ARouter.attachBaseContext();
     }
-
+    
     public static synchronized void monitorMode() {
         _ARouter.monitorMode();
     }
-
+    
     public static boolean isMonitorMode() {
         return _ARouter.isMonitorMode();
     }
-
+    
     public static void setLogger(ILogger userLogger) {
         _ARouter.setLogger(userLogger);
     }
-
+    
     /**
      * Inject params and services.
      */
     public void inject(Object thiz) {
         _ARouter.inject(thiz);
     }
-
+    
     /**
      * Build the roadmap, draw a postcard.
      *
@@ -140,7 +140,7 @@ public final class ARouter {
     public Postcard build(String path) {
         return _ARouter.getInstance().build(path);
     }
-
+    
     /**
      * Build the roadmap, draw a postcard.
      *
@@ -151,7 +151,7 @@ public final class ARouter {
     public Postcard build(String path, String group) {
         return _ARouter.getInstance().build(path, group);
     }
-
+    
     /**
      * Build the roadmap, draw a postcard.
      *
@@ -160,7 +160,7 @@ public final class ARouter {
     public Postcard build(Uri url) {
         return _ARouter.getInstance().build(url);
     }
-
+    
     /**
      * Launch the navigation by type
      *
@@ -171,7 +171,7 @@ public final class ARouter {
     public <T> T navigation(Class<? extends T> service) {
         return _ARouter.getInstance().navigation(service);
     }
-
+    
     /**
      * Launch the navigation.
      *

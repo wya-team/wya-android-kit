@@ -1,8 +1,8 @@
-package com.alibaba.android.arouter.compiler.processor;
+package com.weiyian.android.router.compiler.processor;
 
-import com.alibaba.android.arouter.compiler.utils.Consts;
-import com.alibaba.android.arouter.compiler.utils.Logger;
-import com.alibaba.android.arouter.compiler.utils.TypeUtils;
+import com.weiyian.android.router.compiler.utils.Consts;
+import com.weiyian.android.router.compiler.utils.Logger;
+import com.weiyian.android.router.compiler.utils.TypeUtils;
 
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -35,39 +35,39 @@ public abstract class BaseProcessor extends AbstractProcessor {
     String moduleName = null;
     // If need generate router doc
     boolean generateDoc;
-
+    
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
-
+        
         mFiler = processingEnv.getFiler();
         types = processingEnv.getTypeUtils();
         elementUtils = processingEnv.getElementUtils();
         typeUtils = new TypeUtils(types, elementUtils);
         logger = new Logger(processingEnv.getMessager());
-
+        
         // Attempt to get user configuration [moduleName]
         Map<String, String> options = processingEnv.getOptions();
         if (MapUtils.isNotEmpty(options)) {
             moduleName = options.get(Consts.KEY_MODULE_NAME);
             generateDoc = Consts.VALUE_ENABLE.equals(options.get(Consts.KEY_GENERATE_DOC_NAME));
         }
-
+        
         if (StringUtils.isNotEmpty(moduleName)) {
             moduleName = moduleName.replaceAll("[^0-9a-zA-Z_]+", "");
-
+            
             logger.info("The user has configuration the module name, it was [" + moduleName + "]");
         } else {
             logger.error(Consts.NO_MODULE_NAME_TIPS);
             throw new RuntimeException("ARouter::Compiler >>> No module name, for more information, look at gradle log.");
         }
     }
-
+    
     @Override
     public SourceVersion getSupportedSourceVersion() {
         return SourceVersion.latestSupported();
     }
-
+    
     @Override
     public Set<String> getSupportedOptions() {
         return new HashSet<String>() {{

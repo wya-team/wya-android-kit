@@ -28,7 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.alibaba.android.rxpermissions.RxPermissions;
+import com.weiyian.android.rxpermissions.RxPermissions;
 import com.wya.uikit.R;
 import com.wya.uikit.gallery.DataHelper;
 import com.wya.uikit.gallery.GalleryConfig;

@@ -1,7 +1,7 @@
-package com.alibaba.android.arouter.facade.template;
+package com.weiyian.android.router.facade.template;
 
-import com.alibaba.android.arouter.facade.Postcard;
-import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
+import com.weiyian.android.router.facade.Postcard;
+import com.weiyian.android.router.facade.callback.InterceptorCallback;
 
 /**
  * Used for inject custom logic when navigation.
@@ -11,7 +11,7 @@ import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
  * @since 16/8/23 13:56
  */
 public interface IInterceptor extends IProvider {
-
+    
     /**
      * The operation of this interceptor.
      *

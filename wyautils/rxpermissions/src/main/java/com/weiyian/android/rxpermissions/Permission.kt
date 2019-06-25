@@ -1,4 +1,4 @@
-package com.alibaba.android.rxpermissions
+package com.weiyian.android.rxpermissions
 
 import android.util.Log
 import io.reactivex.Observable

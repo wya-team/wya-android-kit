@@ -1,7 +1,6 @@
-package com.alibaba.android.arouter.facade.callback;
+package com.weiyian.android.router.facade.callback;
 
-import com.alibaba.android.arouter.facade.Postcard;
-
+import com.weiyian.android.router.facade.Postcard;
 /**
  * Easy to use navigation callback.
  *
@@ -14,15 +13,15 @@ public abstract class NavCallback implements NavigationCallback {
     public void onFound(Postcard postcard) {
         // Do nothing
     }
-
+    
     @Override
     public void onLost(Postcard postcard) {
         // Do nothing
     }
-
+    
     @Override
     public abstract void onArrival(Postcard postcard);
-
+    
     @Override
     public void onInterrupt(Postcard postcard) {
         // Do nothing

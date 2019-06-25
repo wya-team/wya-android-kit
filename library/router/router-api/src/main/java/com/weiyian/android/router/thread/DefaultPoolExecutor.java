@@ -1,8 +1,8 @@
-package com.alibaba.android.arouter.thread;
+package com.weiyian.android.router.thread;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.alibaba.android.arouter.utils.Consts;
-import com.alibaba.android.arouter.utils.TextUtils;
+import com.weiyian.android.router.launcher.ARouter;
+import com.weiyian.android.router.utils.Consts;
+import com.weiyian.android.router.utils.TextUtils;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -27,9 +27,9 @@ public class DefaultPoolExecutor extends ThreadPoolExecutor {
     private static final int INIT_THREAD_COUNT = CPU_COUNT + 1;
     private static final int MAX_THREAD_COUNT = INIT_THREAD_COUNT;
     private static final long SURPLUS_THREAD_LIFE = 30L;
-
+    
     private static volatile DefaultPoolExecutor instance;
-
+    
     public static DefaultPoolExecutor getInstance() {
         if (null == instance) {
             synchronized (DefaultPoolExecutor.class) {
@@ -46,7 +46,7 @@ public class DefaultPoolExecutor extends ThreadPoolExecutor {
         }
         return instance;
     }
-
+    
     private DefaultPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, new RejectedExecutionHandler() {
             @Override
@@ -55,7 +55,7 @@ public class DefaultPoolExecutor extends ThreadPoolExecutor {
             }
         });
     }
-
+    
     /*
      *  线程执行结束，顺便看一下有么有什么乱七八糟的异常
      *

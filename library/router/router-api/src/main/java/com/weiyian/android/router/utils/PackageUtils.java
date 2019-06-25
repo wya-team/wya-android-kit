@@ -1,11 +1,11 @@
-package com.alibaba.android.arouter.utils;
+package com.weiyian.android.router.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
-import com.alibaba.android.arouter.launcher.ARouter;
+import com.weiyian.android.router.launcher.ARouter;
 
 /**
  * Android package utils
@@ -17,19 +17,19 @@ import com.alibaba.android.arouter.launcher.ARouter;
 public class PackageUtils {
     private static String NEW_VERSION_NAME;
     private static int NEW_VERSION_CODE;
-
+    
     public static boolean isNewVersion(Context context) {
         PackageInfo packageInfo = getPackageInfo(context);
         if (null != packageInfo) {
             String versionName = packageInfo.versionName;
             int versionCode = packageInfo.versionCode;
-
+            
             SharedPreferences sp = context.getSharedPreferences(Consts.AROUTER_SP_CACHE_KEY, Context.MODE_PRIVATE);
             if (!versionName.equals(sp.getString(Consts.LAST_VERSION_NAME, null)) || versionCode != sp.getInt(Consts.LAST_VERSION_CODE, -1)) {
                 // new version
                 NEW_VERSION_NAME = versionName;
                 NEW_VERSION_CODE = versionCode;
-
+                
                 return true;
             } else {
                 return false;
@@ -38,14 +38,14 @@ public class PackageUtils {
             return true;
         }
     }
-
+    
     public static void updateVersion(Context context) {
         if (!android.text.TextUtils.isEmpty(NEW_VERSION_NAME) && NEW_VERSION_CODE != 0) {
             SharedPreferences sp = context.getSharedPreferences(Consts.AROUTER_SP_CACHE_KEY, Context.MODE_PRIVATE);
             sp.edit().putString(Consts.LAST_VERSION_NAME, NEW_VERSION_NAME).putInt(Consts.LAST_VERSION_CODE, NEW_VERSION_CODE).apply();
         }
     }
-
+    
     private static PackageInfo getPackageInfo(Context context) {
         PackageInfo packageInfo = null;
         try {
@@ -53,7 +53,7 @@ public class PackageUtils {
         } catch (Exception ex) {
             ARouter.logger.error(Consts.TAG, "Get package info error.");
         }
-
+        
         return packageInfo;
     }
 }

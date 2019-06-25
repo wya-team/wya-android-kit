@@ -1,8 +1,8 @@
-package com.alibaba.android.arouter.facade.service;
+package com.weiyian.android.router.facade.service;
 
 import android.net.Uri;
 
-import com.alibaba.android.arouter.facade.template.IProvider;
+import com.weiyian.android.router.facade.template.IProvider;
 
 /**
  * Preprocess your path
@@ -12,14 +12,14 @@ import com.alibaba.android.arouter.facade.template.IProvider;
  * @since 2016/12/9 16:48
  */
 public interface PathReplaceService extends IProvider {
-
+    
     /**
      * For normal path.
      *
      * @param path raw path
      */
     String forString(String path);
-
+    
     /**
      * For uri type.
      *

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.alibaba.android.rxpermissions.RxPermissions;
+import com.weiyian.android.rxpermissions.RxPermissions;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.readme.ReadmeActivity;

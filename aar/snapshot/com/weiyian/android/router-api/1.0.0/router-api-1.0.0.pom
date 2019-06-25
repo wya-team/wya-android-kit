@@ -8,9 +8,9 @@
   <packaging>aar</packaging>
   <dependencies>
     <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>arouter-annotation</artifactId>
-      <version>1.0.6</version>
+      <groupId>com.weiyian.android</groupId>
+      <artifactId>router-annotation</artifactId>
+      <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
