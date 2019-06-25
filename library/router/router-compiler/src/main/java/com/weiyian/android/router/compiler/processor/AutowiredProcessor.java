@@ -58,6 +58,8 @@ public class AutowiredProcessor extends BaseProcessor {
     
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+        logger.info(">>> AutowiredProcessor process <<<");
+    
         if (CollectionUtils.isNotEmpty(set)) {
             try {
                 logger.info(">>> Found autowired field, start... <<<");
@@ -85,6 +87,7 @@ public class AutowiredProcessor extends BaseProcessor {
         ParameterSpec objectParamSpec = ParameterSpec.builder(TypeName.OBJECT, "target").build();
         
         if (MapUtils.isNotEmpty(parentAndChild)) {
+            logger.error("[AutowiredProcessor] [generateHelper] parentAndChild = " + parentAndChild.size());
             for (Map.Entry<TypeElement, List<Element>> entry : parentAndChild.entrySet()) {
                 // Build method : 'inject'
                 MethodSpec.Builder injectMethodBuilder = MethodSpec.methodBuilder(Consts.METHOD_INJECT)

@@ -2,7 +2,7 @@ package com.weiyian.android.router.register.utils
 
 class RegisterExtension {
 
-    static final String PLUGIN_NAME = "com.weiyian.router"
+    static final String PLUGIN_NAME = "com.weiyian.android"
     /**
      * The register code is generated into this class
      */

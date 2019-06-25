@@ -168,7 +168,7 @@ final class _ARouter {
     }
     
     static void inject(Object thiz) {
-        AutowiredService autowiredService = ((AutowiredService) ARouter.getInstance().build("/arouter/service/autowired").navigation());
+        AutowiredService autowiredService = ((AutowiredService) ARouter.getInstance().build("/router/service/autowired").navigation());
         if (null != autowiredService) {
             autowiredService.autowire(thiz);
         }
@@ -242,7 +242,7 @@ final class _ARouter {
     
     static void afterInit() {
         // Trigger interceptor init, use byName.
-        interceptorService = (InterceptorService) ARouter.getInstance().build("/arouter/service/interceptor").navigation();
+        interceptorService = (InterceptorService) ARouter.getInstance().build("/router/service/interceptor").navigation();
     }
     
     protected <T> T navigation(Class<? extends T> service) {

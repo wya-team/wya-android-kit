@@ -20,6 +20,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @since 16/8/16 14:36
  */
 public final class ARouter {
+    
     // Key of raw uri
     public static final String RAW_URI = "NTeRQWvye18AkPd6G";
     public static final String AUTO_INJECT = "wmHzgD4lOj5o4241";

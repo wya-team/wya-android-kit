@@ -14,7 +14,9 @@ import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
+import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
@@ -34,7 +36,7 @@ public abstract class BaseProcessor extends AbstractProcessor {
     // Module name, maybe its 'app' or others
     String moduleName = null;
     // If need generate router doc
-    boolean generateDoc;
+    boolean generateDoc = true;
     
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
@@ -61,6 +63,12 @@ public abstract class BaseProcessor extends AbstractProcessor {
             logger.error(Consts.NO_MODULE_NAME_TIPS);
             throw new RuntimeException("ARouter::Compiler >>> No module name, for more information, look at gradle log.");
         }
+    }
+    
+    @Override
+    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+        logger.error("[BaseProcessor] [process]");
+        return false;
     }
     
     @Override

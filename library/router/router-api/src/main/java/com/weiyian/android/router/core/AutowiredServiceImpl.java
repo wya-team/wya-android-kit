@@ -18,7 +18,7 @@ import java.util.List;
  * @version 1.0
  * @since 2017/2/28 下午6:08
  */
-@Route(path = "/arouter/service/autowired")
+@Route(path = "/router/service/autowired")
 public class AutowiredServiceImpl implements AutowiredService {
     private LruCache<String, ISyringe> classCache;
     private List<String> blackList;

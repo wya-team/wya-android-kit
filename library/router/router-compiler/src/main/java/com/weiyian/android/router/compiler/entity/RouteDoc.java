@@ -30,31 +30,31 @@ public class RouteDoc {
     private int mark;
     @JSONField(ordinal = 8)
     private List<Param> params;
-
+    
     public String getGroup() {
         return group;
     }
-
+    
     public void setGroup(String group) {
         this.group = group;
     }
-
+    
     public String getPath() {
         return path;
     }
-
+    
     public void setPath(String path) {
         this.path = path;
     }
-
+    
     public String getPrototype() {
         return prototype;
     }
-
+    
     public void setPrototype(String prototype) {
         this.prototype = prototype;
     }
-
+    
     public void addPrototype(String prototype) {
         if (StringUtils.isNotEmpty(getPrototype())) {
             setPrototype(prototype);
@@ -62,49 +62,49 @@ public class RouteDoc {
             setPrototype(getPrototype() + ", " + prototype);
         }
     }
-
+    
     public String getClassName() {
         return className;
     }
-
+    
     public void setClassName(String className) {
         this.className = className;
     }
-
+    
     public String getDescription() {
         return description;
     }
-
+    
     public void setDescription(String description) {
         if (StringUtils.isNotEmpty(description)) {
             this.description = description;
         }
     }
-
+    
     public String getType() {
         return type;
     }
-
+    
     public void setType(String type) {
         this.type = type;
     }
-
+    
     public int getMark() {
         return mark;
     }
-
+    
     public void setMark(int mark) {
         this.mark = mark;
     }
-
+    
     public List<Param> getParams() {
         return params;
     }
-
+    
     public void setParams(List<Param> params) {
         this.params = params;
     }
-
+    
     public static class Param {
         @JSONField(ordinal = 1)
         private String key;
@@ -114,37 +114,37 @@ public class RouteDoc {
         private String description;
         @JSONField(ordinal = 4)
         private boolean required;
-
+        
         public String getKey() {
             return key;
         }
-
+        
         public void setKey(String key) {
             this.key = key;
         }
-
+        
         public String getType() {
             return type;
         }
-
+        
         public void setType(String type) {
             this.type = type;
         }
-
+        
         public String getDescription() {
             return description;
         }
-
+        
         public void setDescription(String description) {
             if (StringUtils.isNotEmpty(description)) {
                 this.description = description;
             }
         }
-
+        
         public boolean isRequired() {
             return required;
         }
-
+        
         public void setRequired(boolean required) {
             this.required = required;
         }

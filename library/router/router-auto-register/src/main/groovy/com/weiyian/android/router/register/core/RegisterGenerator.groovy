@@ -7,6 +7,7 @@ import jdk.internal.org.objectweb.asm.ClassVisitor
 import jdk.internal.org.objectweb.asm.ClassWriter
 import jdk.internal.org.objectweb.asm.MethodVisitor
 import org.apache.commons.io.IOUtils
+import org.objectweb.asm.*
 
 import java.util.jar.JarEntry
 import java.util.jar.JarFile

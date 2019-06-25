@@ -9,7 +9,7 @@ ext {
 uploadArchives {
     repositories {
         mavenDeployer {
-            def deployPath = file("../" + getProperty('aar.deployPath'))
+            def deployPath = file(getProperty('aar.deployPath'))
             repository(url: "file://${deployPath.absolutePath}")
 
             pom.project {

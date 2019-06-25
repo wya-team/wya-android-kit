@@ -54,6 +54,7 @@ import static javax.lang.model.element.Modifier.PUBLIC;
 @AutoService(Processor.class)
 @SupportedAnnotationTypes({Consts.ANNOTATION_TYPE_ROUTE, Consts.ANNOTATION_TYPE_AUTOWIRED})
 public class RouteProcessor extends BaseProcessor {
+    
     private Map<String, Set<RouteMeta>> groupMap = new HashMap<>(); // ModuleName and routeMeta.
     private Map<String, String> rootMap = new TreeMap<>();  // Map of root metas, used for generate class file in order.
     
@@ -63,21 +64,15 @@ public class RouteProcessor extends BaseProcessor {
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
-        
         if (generateDoc) {
             try {
-                docWriter = mFiler.createResource(
-                        StandardLocation.SOURCE_OUTPUT,
-                        Consts.PACKAGE_OF_GENERATE_DOCS,
-                        "arouter-map-of-" + moduleName + ".json"
-                ).openWriter();
+                docWriter = mFiler.createResource(StandardLocation.SOURCE_OUTPUT, Consts.PACKAGE_OF_GENERATE_DOCS, "router-map-of-" + moduleName + ".json").openWriter();
             } catch (IOException e) {
                 logger.error("Create doc writer failed, because " + e.getMessage());
             }
         }
         
         iProvider = elementUtils.getTypeElement(Consts.IPROVIDER).asType();
-        
         logger.info(">>> RouteProcessor init. <<<");
     }
     
