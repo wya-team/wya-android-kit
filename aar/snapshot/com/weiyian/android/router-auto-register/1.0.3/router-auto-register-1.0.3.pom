@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.weiyian.android</groupId>
   <artifactId>router-auto-register</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.3</version>
   <dependencies>
     <dependency>
       <groupId>com.android.tools.build</groupId>

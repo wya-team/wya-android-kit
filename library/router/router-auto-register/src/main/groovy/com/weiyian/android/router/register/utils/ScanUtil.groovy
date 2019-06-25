@@ -24,9 +24,6 @@ class ScanUtil {
                 if (entryName.startsWith(RegisterExtension.ROUTER_CLASS_PACKAGE_NAME)) {
                     InputStream inputStream = file.getInputStream(jarEntry)
                     registerInterfaces(inputStream)
-
-                    Logger.e('[ScanUtil] [scanJarFile] [entryName start with com/alibaba/android/arouter/routes/ ] entryName = ' + entryName)
-
                     inputStream.close()
                     // [com/alibaba/android/arouter/core/LogisticsCenter]
                 } else if (RegisterExtension.GENERATE_TO_CLASS_FILE_NAME == entryName) {

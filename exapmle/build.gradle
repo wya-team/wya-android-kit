@@ -13,6 +13,17 @@ kapt {
     }
 }
 
+buildscript {
+    repositories {
+        maven { url maven_url.kit_maven_url }
+        google()
+    }
+
+    dependencies {
+        classpath 'com.weiyian.android:router-auto-register:1.0.0'
+    }
+}
+
 android {
 
     compileSdkVersion build_version.compileSdkVersion
@@ -99,17 +110,6 @@ dependencies {
     implementation project(':wyautils:utils')
     implementation project(':rxpermissions')
 
+    implementation 'com.weiyian.android:router-api:1.0.1'
+
 }
-
-// [ARouter]
-buildscript {
-    repositories {
-        maven { url maven_url.kit_maven_url }
-        google()
-    }
-
-    dependencies {
-        classpath 'com.weiyian.android:router-auto-register:1.0.0'
-    }
-}
-
