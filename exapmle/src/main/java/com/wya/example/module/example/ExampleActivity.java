@@ -3,8 +3,6 @@ package com.wya.example.module.example;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-import com.weiyian.android.router.facade.annotation.Autowired;
-import com.weiyian.android.router.facade.annotation.Route;
 import com.wya.example.R;
 import com.wya.example.base.BaseActivity;
 import com.wya.example.module.example.fragment.AboutUsFragment;
@@ -20,7 +18,6 @@ import butterknife.BindView;
  * @describe: ExampleActivity
  */
 
-@Route(path = "main/main")
 public class ExampleActivity extends BaseActivity {
     
     @BindView(R.id.tab)
@@ -30,9 +27,6 @@ public class ExampleActivity extends BaseActivity {
     private ExampleFragment exampleFragment;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    
-    @Autowired
-    public String key;
     
     @Override
     protected void initView() {
