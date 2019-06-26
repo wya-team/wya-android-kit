@@ -18,12 +18,11 @@ ext {
 }
 
 android {
-    compileSdkVersion Integer.parseInt(COMPILE_SDK_VERSION)
-    buildToolsVersion BUILDTOOLS_VERSION
+    compileSdkVersion build_version.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion Integer.parseInt(MIN_SDK_VERSION)
-        targetSdkVersion Integer.parseInt(TARGET_SDK_VERSION)
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -52,7 +51,9 @@ dependencies {
 
     kapt project(':router-compiler')
     api project(':router-annotation')
-    implementation "com.android.support:support-v4:${SUPPORT_LIB_VERSION}"
+//    implementation "com.android.support:support-v4:${SUPPORT_LIB_VERSION}"
+
+    implementation libs.support_v4
 }
 
 apply from: '../bintray.gradle'
