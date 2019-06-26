@@ -2,7 +2,7 @@
 
 ## 使用
 
-> `build.gradle`中添加 
+> `build.gradle`中添加
 
 ```groovy
 
@@ -16,7 +16,7 @@ kapt {
 
 buildscript {
     repositories {
-        maven { url maven_url.kit_maven_url_snapshot }  //
+        maven { url 'https://raw.githubusercontent.com/wya-team/wya-android-kit/develop/aar/snapshot' }  // kit 库地址
     }
 
     dependencies {
@@ -27,10 +27,10 @@ buildscript {
 
 dependencies{
 
-    kapt 'com.weiyian.android:router-compiler:1.0.2'
+    kapt 'com.weiyian.android:router-compiler:1.0.2' // kotlin 使用 kapt , java 使用 annotationProcessor
     implementation 'com.weiyian.android:router-api:1.0.2'
     implementation 'com.weiyian.android:router-annotation:1.0.2'
-    
+
 }
 
 ```
