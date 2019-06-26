@@ -8,7 +8,7 @@
   <packaging>aar</packaging>
   <dependencies>
     <dependency>
-      <groupId>wya-android-kit</groupId>
+      <groupId>com.weiyian.android</groupId>
       <artifactId>router-annotation</artifactId>
       <version>1.0.0</version>
       <scope>compile</scope>
