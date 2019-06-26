@@ -6,10 +6,6 @@ ext {
     libraryName = 'ARouter register gradle plugin'
     libraryDescription = 'A gradle plugin used for arouter route map register'
     libraryVersion = arouter_register_version
-
-    PUBLISH_GROUP_ID = 'com.weiyian.android'
-    PUBLISH_ARTIFACT_ID = 'router-auto-register'
-    PUBLISH_VERSION = "1.0.0"
 }
 
 

@@ -15,14 +15,12 @@ kapt {
 
 buildscript {
     repositories {
-//        maven { url maven_url.kit_maven_url_release }
-        maven { url maven_url.kit_maven_url_snapshot }
-//        maven { url "file:///Users/zengcei/Desktop/weiyian/code/wya-android-kit/aar/snapshot" }
+        maven { url maven_url.kit_maven_url_release }
         google()
     }
 
     dependencies {
-        classpath 'com.weiyian.android:router-auto-register:1.0.1'
+        classpath 'com.weiyian.android:router-auto-register:1.0.0'
     }
 }
 
@@ -112,9 +110,9 @@ dependencies {
     implementation project(':wyautils:utils')
     implementation project(':rxpermissions')
 
-    // Router
-    kapt 'com.weiyian.android:router-compiler:1.0.1'
-    implementation 'com.weiyian.android:router-api:1.0.1'
-    implementation 'com.weiyian.android:router-annotation:1.0.1'
+    // router
+//    kapt 'com.weiyian.android:router-compiler:1.0.0'
+//    implementation 'com.weiyian.android:router-api:1.0.0'
+//    implementation 'com.weiyian.android:router-annotation:1.0.0'
 
 }

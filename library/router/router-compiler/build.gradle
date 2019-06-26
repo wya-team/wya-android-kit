@@ -6,10 +6,6 @@ ext {
     libraryName = 'ARouter compiler'
     libraryDescription = 'A compiler for ARouter to find route'
     libraryVersion = arouter_main_version
-
-    PUBLISH_GROUP_ID = 'com.weiyian.android'
-    PUBLISH_ARTIFACT_ID = 'router-compiler'
-    PUBLISH_VERSION = "1.0.0"
 }
 
 compileJava {
