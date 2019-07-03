@@ -13,17 +13,6 @@ kapt {
     }
 }
 
-buildscript {
-    repositories {
-//        maven { url maven_url.kit_maven_url_release }
-        maven { url maven_url.kit_maven_url_snapshot }
-        google()
-    }
-
-    dependencies {
-        classpath 'com.weiyian.android:router-auto-register:1.0.2'
-    }
-}
 
 android {
 
@@ -70,12 +59,6 @@ android {
 
 }
 
-buildscript {
-    repositories {
-        google()
-        jcenter()
-    }
-}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation libs.design
@@ -112,8 +95,8 @@ dependencies {
     implementation project(':rxpermissions')
 
     // router
-    kapt 'com.weiyian.android:router-compiler:1.0.2'
-    implementation 'com.weiyian.android:router-api:1.0.2'
-    implementation 'com.weiyian.android:router-annotation:1.0.2'
+    kapt 'com.weiyian.android:router-compiler:1.0.3-SNAPSHOT'
+    implementation 'com.weiyian.android:router-api:1.0.3-SNAPSHOT'
+    implementation 'com.weiyian.android:router-annotation:1.0.3-SNAPSHOT'
 
 }
