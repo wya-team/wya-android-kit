@@ -46,7 +46,7 @@ ext {
             loggingInterceptorVersion    : "3.9.0",
             converterScalarsVersion      : "2.3.0",
             rxbindingVersion             : "2.0.0",
-            butterknifeVersion           : "9.0.0",
+            butterknifeVersion           : "8.5.1",
 
             baseRecyclerViewAdapterHelper: "2.9.30",
 
