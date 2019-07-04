@@ -51,7 +51,7 @@ ext {
             baseRecyclerViewAdapterHelper: "2.9.30",
 
             zxing                        : "3.3.3",
-            aria_core                    : "3.5.2",
+            aria_core                    : "3.6.4",
             oss_android_sdk              : "2.3.0",
             rxpermissions                : "1.0.0",
     ]

@@ -215,7 +215,7 @@ public class FileDownFragment extends Fragment implements IManagerInterface {
 
     private void getNotcomplete() {
         List<DownloadEntity> allNotCompleteTask = mFileManagerUtil.getDownloadReceiver()
-                .getAllNotCompletTask();
+                .getAllCompleteTask();
 
         mData.clear();
         if (allNotCompleteTask != null) {

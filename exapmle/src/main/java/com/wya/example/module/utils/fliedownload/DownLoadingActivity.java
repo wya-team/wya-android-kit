@@ -264,7 +264,7 @@ public class DownLoadingActivity extends BaseActivity implements BaseToolBarActi
 
     private void getNotComplete() {
         List<DownloadEntity> allNotCompleteTask = mFileManagerUtil.getDownloadReceiver()
-                .getAllNotCompletTask();
+                .getAllCompleteTask();
 
         mDownList.clear();
         if (allNotCompleteTask != null) {

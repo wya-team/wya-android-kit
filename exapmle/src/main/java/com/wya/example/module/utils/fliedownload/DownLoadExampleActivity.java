@@ -90,7 +90,7 @@ public class DownLoadExampleActivity extends BaseActivity {
 
     private void initNum() {
         List<DownloadEntity> allNotCompletTask = mFileManagerUtil.getDownloadReceiver()
-                .getAllNotCompletTask();
+                .getAllNotCompleteTask();
         List<DownloadEntity> allCompleteTask = mFileManagerUtil.getDownloadReceiver()
                 .getAllCompleteTask();
         if (allNotCompletTask != null) {

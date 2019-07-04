@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: "kotlin-kapt"
 
 android {
 
@@ -25,7 +28,7 @@ dependencies {
     implementation libs.appcompat_v7
     api libs.zxing
     api libs.aria_core
-    annotationProcessor libs.aria_compiler
+    kapt libs.aria_compiler
 }
 
 apply from: 'maven-release-aar.gradle'
