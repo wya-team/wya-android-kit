@@ -76,7 +76,6 @@ dependencies {
     implementation libs.baseRecyclerViewAdapterHelper
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(':rxpermissions')
-//    implementation 'com.weiyian.android:rxpermissions:1.0.4-SNAPSHOT'
 
 }
 
