@@ -92,7 +92,8 @@ dependencies {
     implementation project(':wyahardware:hardware')
     implementation project(':wyauikit:uikit')
     implementation project(':wyautils:utils')
-    implementation project(':rxpermissions')
+//    implementation project(':rxpermissions')
+    implementation 'com.weiyian.android:rxpermissions:1.0.4-SNAPSHOT'
 
     // router
     kapt 'com.weiyian.android:router-compiler:1.0.3-SNAPSHOT'

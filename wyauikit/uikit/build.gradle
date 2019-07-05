@@ -12,7 +12,7 @@ android {
         targetSdkVersion build_version.targetSdkVersion
 
         versionCode 7
-        versionName "0.1.16-SNAPSHOT"
+        versionName "0.1.17-SNAPSHOT"
     }
 
     buildTypes {
@@ -75,7 +75,9 @@ dependencies {
 
     implementation libs.baseRecyclerViewAdapterHelper
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation project(':rxpermissions')
+//    implementation project(':rxpermissions')
+    implementation 'com.weiyian.android:rxpermissions:1.0.4-SNAPSHOT'
+
 }
 
 // aar打包
