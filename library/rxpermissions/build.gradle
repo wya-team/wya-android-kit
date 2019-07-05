@@ -11,7 +11,7 @@ android {
         targetSdkVersion build_version.targetSdkVersion
 
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.0-SNAPSHOT"
     }
     buildTypes {
         release {

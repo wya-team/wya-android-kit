@@ -4,7 +4,7 @@ apply plugin: 'maven'
 ext {// ext is a gradle closure allowing the declaration of global properties
     PUBLISH_GROUP_ID = 'com.weiyian.android'
     PUBLISH_ARTIFACT_ID = 'rxpermissions'
-    PUBLISH_VERSION = android.defaultConfig.versionName + "-SNAPSHOT"
+    PUBLISH_VERSION = android.defaultConfig.versionName
 }
 // 3.maven-路径
 uploadArchives {

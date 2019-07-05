@@ -90,7 +90,7 @@ dependencies {
 
     implementation project(':wyahelper:helper')
     implementation project(':wyahardware:hardware')
-    implementation project(':wyauikit:uikit')
+//    implementation project(':wyauikit:uikit')
     implementation project(':wyautils:utils')
     implementation project(':rxpermissions')
 
