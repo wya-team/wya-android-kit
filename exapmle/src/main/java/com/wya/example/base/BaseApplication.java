@@ -5,7 +5,9 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.arialyy.aria.core.Aria;
+import com.wya.example.module.uikit.photoview.TestImageLoader;
 import com.wya.helper.WYAConstants;
+import com.wya.uikit.photoview.preview.ZoomMediaLoader;
 import com.wya.utils.utils.AppUtil;
 
 import io.realm.Realm;
@@ -38,6 +40,7 @@ public class BaseApplication extends Application {
         InitializeService.start(this);
         initRealm();
         Aria.init(this);
+        ZoomMediaLoader.getInstance().init(new TestImageLoader());
     }
     
     /**

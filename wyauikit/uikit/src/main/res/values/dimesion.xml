@@ -4,4 +4,5 @@
     <dimen name="image_color_margin">6dp</dimen>
     <dimen name="image_mode_space">32dp</dimen>
     <dimen name="dp_2">2dp</dimen>
+    <dimen name="yms_dimens_50_px">25.0dp</dimen>
 </resources>

@@ -237,4 +237,14 @@
 
     <attr name="SwipeBackLayoutStyle" format="reference" />
 
+
+    <!-- photo view attrs -->
+    <declare-styleable name="BezierBannerView">
+        <attr name="selectedColor" format="color"/>
+        <attr name="unSelectedColor" format="color"/>
+        <attr name="selectedRaduis" format="dimension"/>
+        <attr name="unSelectedRaduis" format="dimension"/>
+        <attr name="spacing" format="dimension"/>
+    </declare-styleable>
+
 </resources>

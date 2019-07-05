@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.wya.example">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.wya.example">
     <!-- 2018.12.6 Mao Chunjiang videoplayer start -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 2018.12.6 Mao Chunjiang videoplayer end -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 2018.12.5 Mao Chunjiang camera start -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!-- 2018.12.6 Mao Chunjiang videoplayer end -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- 2018.12.5 Mao Chunjiang camera start -->
     <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
     <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
-        tools:ignore="ProtectedPermissions" />
+        tools:ignore="ProtectedPermissions"/>
 
     <application
         android:name=".base.BaseApplication"
@@ -27,71 +27,73 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:theme,android:name">
-        <activity android:name=".module.uikit.floatwindow.FloatWindowExampleActivity"></activity>
+        <activity android:name=".module.uikit.photoview.PhotoViewExampleActivity">
+        </activity>
+        <activity android:name=".module.uikit.floatwindow.FloatWindowExampleActivity"/>
         <activity
             android:name=".module.example.ExampleActivity"
             android:theme="@style/ExampleTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".module.helper.HelperExampleActivity" />
-        <activity android:name=".module.uikit.toolbar.ToolBarExampleActivity" />
-        <activity android:name=".module.uikit.dialog.DialogExampleActivity" />
-        <activity android:name=".module.uikit.tabbar.TabBarExampleActivity" />
-        <activity android:name=".module.uikit.segmentedcontrol.SegmentedControlExampleActivity" />
-        <activity android:name=".module.uikit.popupwindow.PopupWindowExampleActivity" />
-        <activity android:name=".module.uikit.toast.ToastExampleActivity" />
-        <activity android:name=".module.uikit.searchbar.SearchBarExampleActivity" />
-        <activity android:name=".module.uikit.paginationview.PaginationViewExampleActivity" />
-        <activity android:name=".module.uikit.keyboard.KeyboardExampleActivity" />
+        <activity android:name=".module.helper.HelperExampleActivity"/>
+        <activity android:name=".module.uikit.toolbar.ToolBarExampleActivity"/>
+        <activity android:name=".module.uikit.dialog.DialogExampleActivity"/>
+        <activity android:name=".module.uikit.tabbar.TabBarExampleActivity"/>
+        <activity android:name=".module.uikit.segmentedcontrol.SegmentedControlExampleActivity"/>
+        <activity android:name=".module.uikit.popupwindow.PopupWindowExampleActivity"/>
+        <activity android:name=".module.uikit.toast.ToastExampleActivity"/>
+        <activity android:name=".module.uikit.searchbar.SearchBarExampleActivity"/>
+        <activity android:name=".module.uikit.paginationview.PaginationViewExampleActivity"/>
+        <activity android:name=".module.uikit.keyboard.KeyboardExampleActivity"/>
         <activity
             android:name=".module.uikit.badge.BadgeExampleActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".module.uikit.optionmenu.OptionMenuExampleActivity" />
-        <activity android:name=".module.uikit.button.ButtonExampleActivity" />
-        <activity android:name=".module.uikit.gallery.GalleryExampleActivity" />
-        <activity android:name=".module.uikit.customitems.cardview.CardViewExampleActivity" />
-        <activity android:name=".module.uikit.customitems.grid.GridExampleActivity" />
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:name=".module.uikit.optionmenu.OptionMenuExampleActivity"/>
+        <activity android:name=".module.uikit.button.ButtonExampleActivity"/>
+        <activity android:name=".module.uikit.gallery.GalleryExampleActivity"/>
+        <activity android:name=".module.uikit.customitems.cardview.CardViewExampleActivity"/>
+        <activity android:name=".module.uikit.customitems.grid.GridExampleActivity"/>
         <activity
             android:name=".module.uikit.customitems.inputitem.InputItemExampleActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity
             android:name=".module.uikit.imagepicker.ImagePickerExampleActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".module.uikit.stepper.StepperExampleActivity" />
-        <activity android:name=".module.uikit.banner.BannerExampleActivity" />
-        <activity android:name=".module.uikit.progress.ProgressExampleActivity" />
-        <activity android:name=".module.uikit.notice.NoticeExampleActivity" />
-        <activity android:name=".module.hardware.camera.StartCameraExampleActivity" />
-        <activity android:name=".module.hardware.camera.CameraExampleActivity" />
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name=".module.uikit.stepper.StepperExampleActivity"/>
+        <activity android:name=".module.uikit.banner.BannerExampleActivity"/>
+        <activity android:name=".module.uikit.progress.ProgressExampleActivity"/>
+        <activity android:name=".module.uikit.notice.NoticeExampleActivity"/>
+        <activity android:name=".module.hardware.camera.StartCameraExampleActivity"/>
+        <activity android:name=".module.hardware.camera.CameraExampleActivity"/>
         <activity
             android:name=".module.hardware.videoplayer.VideoPlayerExampleActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity android:name=".module.uikit.pickerview.PickerViewExampleActivity" />
-        <activity android:name=".module.utils.realm.RealmExampleActivity" />
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity android:name=".module.uikit.pickerview.PickerViewExampleActivity"/>
+        <activity android:name=".module.utils.realm.RealmExampleActivity"/>
         <activity
             android:name=".module.utils.image.QRCodeExampleActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".module.uikit.customedittext.CustomEditTextExampleActivity" />
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name=".module.uikit.customedittext.CustomEditTextExampleActivity"/>
         <activity
             android:name=".module.uikit.slidder.SlidderViewExampleActivity"
-            android:theme="@style/KitTheme" />
-        <activity android:name=".module.utils.fliedownload.FileDownloadExampleActivity" />
-        <activity android:name=".module.uikit.tablayout.TabLayoutExampleActivity" />
-        <activity android:name=".module.uikit.drawerlayout.DrawerLayoutExampleActivity" />
-        <activity android:name=".module.example.readme.ReadmeActivity" />
-        <activity android:name=".module.uikit.customitems.list.ListExampleActivity" />
-        <activity android:name=".module.hardware.scan.CustomCaptureActivity" />
+            android:theme="@style/KitTheme"/>
+        <activity android:name=".module.utils.fliedownload.FileDownloadExampleActivity"/>
+        <activity android:name=".module.uikit.tablayout.TabLayoutExampleActivity"/>
+        <activity android:name=".module.uikit.drawerlayout.DrawerLayoutExampleActivity"/>
+        <activity android:name=".module.example.readme.ReadmeActivity"/>
+        <activity android:name=".module.uikit.customitems.list.ListExampleActivity"/>
+        <activity android:name=".module.hardware.scan.CustomCaptureActivity"/>
 
-        <service android:name=".base.InitializeService" />
+        <service android:name=".base.InitializeService"/>
 
-        <activity android:name=".module.utils.dataclean.DataCleanExampleActivity" />
-        <activity android:name=".module.utils.fliedownload.DownLoadExampleActivity" />
-        <activity android:name=".module.utils.fliedownload.DownLoadingActivity" />
-        <activity android:name=".module.utils.fliedownload.DownCompleteActivity" />
+        <activity android:name=".module.utils.dataclean.DataCleanExampleActivity"/>
+        <activity android:name=".module.utils.fliedownload.DownLoadExampleActivity"/>
+        <activity android:name=".module.utils.fliedownload.DownLoadingActivity"/>
+        <activity android:name=".module.utils.fliedownload.DownCompleteActivity"/>
     </application>
 
 </manifest>

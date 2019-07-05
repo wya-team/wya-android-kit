@@ -31,6 +31,7 @@ import com.wya.example.module.uikit.keyboard.KeyboardExampleActivity;
 import com.wya.example.module.uikit.notice.NoticeExampleActivity;
 import com.wya.example.module.uikit.optionmenu.OptionMenuExampleActivity;
 import com.wya.example.module.uikit.paginationview.PaginationViewExampleActivity;
+import com.wya.example.module.uikit.photoview.PhotoViewExampleActivity;
 import com.wya.example.module.uikit.pickerview.PickerViewExampleActivity;
 import com.wya.example.module.uikit.popupwindow.PopupWindowExampleActivity;
 import com.wya.example.module.uikit.progress.ProgressExampleActivity;
@@ -107,6 +108,7 @@ public class ExampleFragment extends Fragment {
         List<String> bean2 = new ArrayList<>();
         bean2.add("按钮(button)");
         bean2.add("日期选择(pickerview)");
+        bean2.add("图片浏览(photoview)");
         bean2.add("图片选择器(imagepicker)");
         bean2.add("多行输入(customeditext)");
         bean2.add("文本输入(customitems(WYAInputItem))");
@@ -211,6 +213,9 @@ public class ExampleFragment extends Fragment {
                 break;
             case "日期选择(pickerview)":
                 startActivity(new Intent(getActivity(), PickerViewExampleActivity.class).putExtra(EXTRA_URL, UIKIT_URL + "pickerview" + "/README.md"));
+                break;
+            case "图片浏览(photoview)":
+                startActivity(new Intent(getActivity(), PhotoViewExampleActivity.class).putExtra(EXTRA_URL, UIKIT_URL + "pickerview" + "/README.md"));
                 break;
             case "图片选择器(imagepicker)":
                 startActivity(new Intent(getActivity(), ImagePickerExampleActivity.class).putExtra(EXTRA_URL, UIKIT_URL + "imagepicker" + "/README.md"));
