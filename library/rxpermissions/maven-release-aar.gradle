@@ -1,7 +1,7 @@
 apply plugin: 'maven'
 
 group = 'com.weiyian.android'
-version = '1.0.4-SNAPSHOT'
+version = '1.0.5-SNAPSHOT'
 
 uploadArchives {
     repositories {
