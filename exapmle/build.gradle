@@ -90,8 +90,8 @@ dependencies {
 
     implementation project(':wyahelper:helper')
     implementation project(':wyahardware:hardware')
-//    implementation project(':wyauikit:uikit')
-    implementation 'com.wya.uikit:uikit:0.1.17-SNAPSHOT'
+    implementation project(':wyauikit:uikit')
+//    implementation 'com.wya.uikit:uikit:0.1.19-SNAPSHOT'
     implementation project(':wyautils:utils')
 //    implementation project(':rxpermissions')
     implementation 'com.weiyian.android:rxpermissions:1.0.4-SNAPSHOT'
