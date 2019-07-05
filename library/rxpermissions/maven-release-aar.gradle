@@ -2,9 +2,9 @@
 apply plugin: 'maven'
 // 2.maven-信息
 ext {// ext is a gradle closure allowing the declaration of global properties
-    PUBLISH_GROUP_ID = 'com.wya.utils'
+    PUBLISH_GROUP_ID = 'com.weiyian.android'
     PUBLISH_ARTIFACT_ID = 'rxpermissions'
-    PUBLISH_VERSION = android.defaultConfig.versionName
+    PUBLISH_VERSION = android.defaultConfig.versionName + "-SNAPSHOT"
 }
 // 3.maven-路径
 uploadArchives {
