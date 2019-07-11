@@ -1,0 +1,106 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    compileSdkVersion build_version.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
+        versionCode build_version.versionCode
+        versionName build_version.versionName
+
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // [support]
+    implementation libs.appcompat_v7
+    implementation libs.design
+    implementation libs.recyclerview
+
+    api libs.kotlin_stdlib_jdk7
+    api libs.kotlin_coroutines
+
+    // [jetpack]
+    api libs.arch_comp_extension
+    api libs.arch_comp_java8
+    api libs.arch_comp_livedata_rx
+
+//    [room]
+//    api libs.arch_comp_room
+//    api libs.arch_comp_room_rxjava
+//    kapt libs.arch_comp_room_compiler
+
+    // [retrofit]
+    api libs.retrofit
+    api libs.retrofit_gson
+    api libs.adapter_rxjava2
+
+    // [rx]
+    api libs.rxkotlin
+    api libs.rxandroid
+
+
+    api libs.rxbinding
+
+//    api libs.rxbinding_core
+//    api libs.rxbinding_appcompat
+//    api libs.rxbinding_recyclerview
+    api libs.rxbinding_recyclerview_v7
+//    api libs.rxpermissions
+//    api libs.rxweaver // error 全局处理
+
+    // [autodispose]
+    api libs.autodispose
+    api libs.autodispose_ktx
+    api libs.autodispose_android_ktx
+    api libs.autodispose_archs_ktx
+
+    // [arrow]
+    api libs.arrow
+
+    // [okhttp]
+    api libs.okhttp
+    api libs.okhttp_logging
+
+    // [logger]
+    api libs.timber
+
+    // [Kodein]
+    api libs.kodein
+    api libs.kodein_android
+    api libs.kodein_support // or api libs.kodein_androidx
+}
+
+apply from: 'maven-release-aar.gradle'

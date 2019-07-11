@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion build_version.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+    }
+    buildTypes {
+        release {
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//    compile "com.android.support:support-annotations:$rootProject.ext.supportVersion"
+//    implementation libs.annotation
+    implementation 'com.android.support:support-annotations:23.1.1'
+    implementation libs.kotlin_stdlib
+//    api project(":circleprogress")
+//    implementation "com.weiyian.android:circleprogress:1.0.0"
+//    implementation project(":circleprogress")
+
+}
+repositories {
+    mavenCentral()
+}
+
+apply from: 'maven-release-aar.gradle'

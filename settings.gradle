@@ -14,3 +14,42 @@ project(':router-api').projectDir = new File('library/router/router-api')
 
 include ':router-auto-register'
 project(':router-auto-register').projectDir = new File('library/router/router-auto-register')
+
+include 'bugly'
+project(':bugly').projectDir = new File('library/bugly')
+
+include ':light'
+project(':light').projectDir = new File('library/light')
+
+include ':loadsir'
+project(':loadsir').projectDir = new File('library/loadsir')
+
+include ':mvvm'
+project(':mvvm').projectDir = new File('library/mvvm')
+
+include ':mock'
+project(':mock').projectDir = new File('library/mock')
+
+include ':net'
+project(':net').projectDir = new File('library/net')
+
+include ':saripaar'
+project(':saripaar').projectDir = new File('library/saripaar')
+
+include ':circleprogress'
+project(':circleprogress').projectDir = new File('library/widget/circleprogress')
+
+include ':count'
+project(':count').projectDir = new File('library/widget/count')
+
+include ':floating'
+project(':floating').projectDir = new File('library/widget/floating')
+
+include ':fuzzy'
+project(':fuzzy').projectDir = new File('library/widget/fuzzy')
+
+include ':index'
+project(':index').projectDir = new File('library/widget/index')
+
+include ':xpopup'
+project(':xpopup').projectDir = new File('library/widget/xpopup')
