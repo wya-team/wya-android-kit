@@ -25,6 +25,9 @@ public class BannerExampleActivity extends BaseActivity {
 
     private WYABanner<Integer> mWYABanner;
     private WYABanner<Integer> mWYABanner2;
+    private WYABanner<Integer> mScaleBanner;
+    private List<Integer> data = new ArrayList<>();
+
     @Override
     protected void initView() {
         
@@ -42,8 +45,8 @@ public class BannerExampleActivity extends BaseActivity {
         });
         
         data.add(R.mipmap.img1);
-//        data.add(R.mipmap.img2);
-        //        data.add(R.mipmap.img3);
+        data.add(R.mipmap.img2);
+        data.add(R.mipmap.img3);
         
         mWYABanner = (WYABanner<Integer>) findViewById(R.id.banner);
         mWYABanner2 = (WYABanner<Integer>) findViewById(R.id.banner2);
@@ -84,9 +87,6 @@ public class BannerExampleActivity extends BaseActivity {
             }
         });
     }
-    private WYABanner<Integer> mScaleBanner;
-
-    private List<Integer> data = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
