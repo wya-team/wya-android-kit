@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion build_version.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
+        versionCode 363
+        versionName "3.6.3"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+    task intoJar(type: Copy) {
+        delete 'build/libs/CalendarView.jar'
+        from('build/intermediates/bundles/release/')
+        into('build/libs/')
+        include('classes.jar')
+        rename('classes.jar', 'CalendarView.jar')
+    }
+    intoJar.dependsOn(build)
+}
+
+dependencies {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation libs.appcompat_v7
+    implementation libs.recyclerview_v7
+    testImplementation test_libs.junit
+}

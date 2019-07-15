@@ -1,0 +1,28 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion build_version.compileSdkVersion
+
+    lintOptions {
+        abortOnError false
+    }
+    defaultConfig {
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation libs.support_annotations
+    implementation libs.kotlin_stdlib
+}
+
+apply from: 'maven-release-aar.gradle'

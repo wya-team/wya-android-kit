@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-    implementation libs.annotation
+    implementation libs.support_annotations
     implementation libs.appcompat_v7
     implementation libs.kotlin_stdlib
 }

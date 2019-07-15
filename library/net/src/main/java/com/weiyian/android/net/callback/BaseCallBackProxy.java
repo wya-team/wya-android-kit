@@ -50,7 +50,6 @@ public abstract class BaseCallBackProxy<T extends ApiResult<R>, R> implements IT
             rawType = ((ParameterizedType) rawType).getRawType();
         }
         
-        Log.e("TAG", "[BaseCallBackProxy] [getType] rawType = " + rawType);
         return $Gson$Types.newParameterizedTypeWithOwner(null, rawType, typeArguments);
     }
     

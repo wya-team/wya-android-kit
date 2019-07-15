@@ -89,18 +89,14 @@ public class HttpLoggingInterceptor implements Interceptor {
         // 执行请求，计算请求时间
         long startNs = System.nanoTime();
         Response response;
-        // TODO: 2019-05-20 ZCQ TEST
         try {
             response = chain.proceed(request);
         } catch (Exception e) {
-            Log.e("TAG", "[HttpLoggingInterceptor] [intercept] [e] = " + e.getMessage());
+            e.printStackTrace();
             log("<-- HTTP FAILED: " + e);
             throw e;
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
-        
-        // Logc.e(tag, "+++++++++++++++++++++++++++end+++++++++++耗时:" + tookMs + "毫秒");
-        
         // 响应日志拦截
         return logForResponse(response, tookMs);
     }
@@ -133,7 +129,7 @@ public class HttpLoggingInterceptor implements Interceptor {
                 }
             }
         } catch (Exception e) {
-            Log.e("TAG", "[HttpLoggingInterceptor] [logForRequest] [e] = " + e.getMessage());
+            e.printStackTrace();
             e(e);
         } finally {
             log("--> END " + request.method());
@@ -170,7 +166,7 @@ public class HttpLoggingInterceptor implements Interceptor {
                 log(" ");
             }
         } catch (Exception e) {
-            Log.e("TAG", "[HttpLoggingInterceptor] [logForResponse] [e] = " + e.getMessage());
+            e.printStackTrace();
             e(e);
         } finally {
             log("<-- END HTTP");
@@ -215,7 +211,6 @@ public class HttpLoggingInterceptor implements Interceptor {
                 log("\tbody:" + URLDecoder.decode(replacer(result), UTF8.name()));
             }
         } catch (Exception e) {
-            Log.e("TAG", "[HttpLoggingInterceptor] [bodyToString] [e] = " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -227,13 +222,12 @@ public class HttpLoggingInterceptor implements Interceptor {
             data = data.replaceAll("\\+", "%2B");
             data = URLDecoder.decode(data, "utf-8");
         } catch (Exception e) {
-            Log.e("TAG", "[HttpLoggingInterceptor] [replacer] [e] = " + e.getMessage());
             e.printStackTrace();
         }
         return data;
     }
     
-    public void e(java.lang.Throwable t) {
+    public void e(Throwable t) {
         if (isLogEnable) {
             t.printStackTrace();
         }

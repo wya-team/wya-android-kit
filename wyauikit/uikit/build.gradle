@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: "kotlin-kapt"
 
 android {
@@ -67,7 +67,7 @@ dependencies {
 
     implementation libs.appcompat_v7
     implementation libs.design
-    implementation libs.recyclerview
+    implementation libs.recyclerview_v7
 
     // glide
     implementation libs.glide

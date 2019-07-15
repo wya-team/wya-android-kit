@@ -1,11 +1,8 @@
 package com.weiyian.android.net.func
 
-import android.util.Log
-
 import com.weiyian.android.net.exception.ApiException
 import com.weiyian.android.net.exception.ServerException
 import com.weiyian.android.net.model.ApiResult
-
 import io.reactivex.annotations.NonNull
 import io.reactivex.functions.Function
 
@@ -18,7 +15,6 @@ class HandleFuc<T> : Function<ApiResult<T>, T?> {
         when {
             ApiException.isSuccess(result) -> when {
                 null != result.data -> {
-                    Log.e("TAG", "[HandleFuc] [apply] result = $result")
                     return result.data!!
                 }
             }

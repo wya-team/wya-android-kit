@@ -24,7 +24,7 @@ android {
 
 dependencies {
 
-    implementation libs.recyclerview
+    implementation libs.recyclerview_v7
     implementation libs.kotlin_stdlib
 }
 repositories {

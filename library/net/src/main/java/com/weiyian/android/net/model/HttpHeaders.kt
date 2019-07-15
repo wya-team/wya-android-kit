@@ -2,7 +2,6 @@ package com.weiyian.android.net.model
 
 import android.os.Build
 import android.text.TextUtils
-import android.util.Log
 import com.weiyian.android.net.HttpClient
 import org.json.JSONObject
 import java.io.Serializable
@@ -75,7 +74,7 @@ class HttpHeaders : Serializable {
                 jsonObject.put(key, value)
             }
         } catch (e: Exception) {
-            Log.e("TAG", "[HttpHeaders] [toJSONString] [e] = " + e.message)
+            e.printStackTrace()
         }
 
         return jsonObject.toString()
@@ -126,7 +125,7 @@ class HttpHeaders : Serializable {
                         val resId = webUserAgentField.get(null) as Int
                         webUserAgent = HttpClient.getContext().getString(resId)
                     } catch (e: Exception) {
-                        Log.e("TAG", "[HttpHeaders] [getUserAgent] [e] = " + e.message)
+                        e.printStackTrace()
                     }
 
                     if (TextUtils.isEmpty(webUserAgent)) {
@@ -174,11 +173,11 @@ class HttpHeaders : Serializable {
             }
 
         fun getDate(gmtTime: String): Long {
-            try {
-                return parseGMTToMillis(gmtTime)
+            return try {
+                parseGMTToMillis(gmtTime)
             } catch (e: Exception) {
-                Log.e("TAG", "[HttpHeaders] [getDate] [e] = " + e.message)
-                return 0
+                e.printStackTrace()
+                0
             }
 
         }
@@ -188,23 +187,21 @@ class HttpHeaders : Serializable {
         }
 
         fun getExpiration(expiresTime: String): Long {
-            try {
-                return parseGMTToMillis(expiresTime)
+            return try {
+                parseGMTToMillis(expiresTime)
             } catch (e: ParseException) {
-                Log.e("TAG", "[HttpHeaders] [getExpiration] [e] = " + e.message)
-                return -1
+                e.printStackTrace()
+                -1
             }
-
         }
 
         fun getLastModified(lastModified: String): Long {
-            try {
-                return parseGMTToMillis(lastModified)
+            return try {
+                parseGMTToMillis(lastModified)
             } catch (e: Exception) {
-                Log.e("TAG", "[HttpHeaders] [getLastModified] [e] = " + e.message)
-                return 0
+                e.printStackTrace()
+                0
             }
-
         }
 
         fun getCacheControl(cacheControl: String?, pragma: String?): String? {

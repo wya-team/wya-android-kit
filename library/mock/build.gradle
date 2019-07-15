@@ -16,7 +16,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath build_plugins.kotlin_gradle_plugin
+        classpath classpath.kotlin_gradle_plugin
     }
 }
 

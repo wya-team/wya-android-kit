@@ -62,7 +62,6 @@ fun setOnClickEvent(view: View, consumer: ViewClickConsumer, time: Long?) {
 fun closeSoftInputWhenClick(view: View, closed: Boolean = false) {
     RxView.clicks(view)
             .subscribe {
-                Log.e("TAG", "... closed = ${closed}")
                 if (closed) {
                     val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                     imm.hideSoftInputFromWindow(view.windowToken, 0)

@@ -25,7 +25,7 @@ android {
 
 dependencies {
     implementation libs.appcompat_v7
-    implementation libs.recyclerview
+    implementation libs.recyclerview_v7
     implementation 'com.github.promeg:tinypinyin:1.0.0'
     implementation libs.kotlin_stdlib
 }

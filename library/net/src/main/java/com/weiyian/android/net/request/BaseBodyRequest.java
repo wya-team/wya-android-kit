@@ -61,14 +61,14 @@ public abstract class BaseBodyRequest<R extends BaseBodyRequest> extends BaseReq
      */
     public R upString(String string) {
         this.string = string;
-        this.mediaType = okhttp3.MediaType.parse("text/plain");
+        this.mediaType = MediaType.parse("text/plain");
         return (R) this;
     }
     
     public R upString(String string, String mediaType) {
         this.string = string;
         Utils.INSTANCE.checkNotNull(mediaType, "mediaType==null");
-        this.mediaType = okhttp3.MediaType.parse(mediaType);
+        this.mediaType = MediaType.parse(mediaType);
         return (R) this;
     }
     
@@ -143,7 +143,7 @@ public abstract class BaseBodyRequest<R extends BaseBodyRequest> extends BaseReq
             return apiService.postBody(url, this.requestBody);
         } else if (this.json != null) {
             // 上传的Json
-            RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), this.json);
+            RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), this.json);
             return apiService.postJson(url, body);
         } else if (this.object != null) {
             // 自定义的请求object
@@ -154,7 +154,7 @@ public abstract class BaseBodyRequest<R extends BaseBodyRequest> extends BaseReq
             return apiService.postBody(url, body);
         } else if (this.bs != null) {
             // 上传的字节数据
-            RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/octet-stream"), this.bs);
+            RequestBody body = RequestBody.create(MediaType.parse("application/octet-stream"), this.bs);
             return apiService.postBody(url, body);
         }
         if (params.fileParamsMap.isEmpty()) {

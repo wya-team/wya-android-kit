@@ -48,7 +48,6 @@ public class CustomBodyRequest extends BaseBodyRequest<CustomBodyRequest> {
                 subscriber.onNext(result);
                 subscriber.onComplete();
             } catch (Exception e) {
-                Log.e("TAG", "[CustomBodyRequest] [next] [e] = " + e.getMessage());
                 subscriber.onError(e);
             }
         });

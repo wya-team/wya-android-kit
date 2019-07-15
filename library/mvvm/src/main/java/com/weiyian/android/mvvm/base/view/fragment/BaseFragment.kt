@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +17,6 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel> : InjectionFrag
     protected lateinit var viewModel: VM
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        if (mIsFragmentVisible && !mIsFirst) {
-            onFragmentVisibleChange(true)
-        }
         rootView = LayoutInflater.from(context).inflate(layoutId, container, false)
         return rootView!!
     }
@@ -32,7 +28,6 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel> : InjectionFrag
         initView()
     }
 
-    // TODO ZCQ TEST
     open fun initBinding(rootView: View) {
         binding = DataBindingUtil.bind(rootView)!!
         with(binding) {
@@ -42,7 +37,6 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel> : InjectionFrag
     }
 
     open fun initView() {
-
     }
 
     override fun onDestroyView() {
@@ -53,32 +47,4 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel> : InjectionFrag
 
     abstract fun initViewModel()
 
-
-    private var mIsFragmentVisible: Boolean = false
-    var mIsFirst: Boolean = false
-
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-
-        Log.e("TAG", "[BaseFragment] [setUserVisibleHint] isVisibleToUser = $isVisibleToUser")
-
-        if (isVisibleToUser) {
-            mIsFragmentVisible = true
-        }
-        if (rootView == null) {
-            return
-        }
-        if (!mIsFirst && mIsFragmentVisible) {
-            onFragmentVisibleChange(true)
-            return
-        }
-        if (mIsFragmentVisible) {
-            onFragmentVisibleChange(false)
-            mIsFragmentVisible = false
-        }
-    }
-
-    open fun onFragmentVisibleChange(isVisible: Boolean) {
-
-    }
 }

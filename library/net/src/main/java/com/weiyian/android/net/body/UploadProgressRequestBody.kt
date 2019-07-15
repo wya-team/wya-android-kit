@@ -1,6 +1,5 @@
 package com.weiyian.android.net.body
 
-import android.util.Log
 import com.weiyian.android.net.callback.ProgressResponseCallBack
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -37,7 +36,7 @@ class UploadProgressRequestBody : RequestBody {
         return try {
             delegate.contentLength()
         } catch (e: IOException) {
-            Log.e("TAG", "[UploadProgressRequestBody] [contentLength] [e] = " + e.message)
+            e.printStackTrace()
             -1
         }
     }

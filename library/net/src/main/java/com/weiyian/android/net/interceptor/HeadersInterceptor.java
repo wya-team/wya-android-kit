@@ -1,7 +1,5 @@
 package com.weiyian.android.net.interceptor;
 
-import android.util.Log;
-
 import com.weiyian.android.net.model.HttpHeaders;
 
 import java.io.IOException;
@@ -33,7 +31,7 @@ public class HeadersInterceptor implements Interceptor {
                 builder.header(entry.getKey(), entry.getValue()).build();
             }
         } catch (Exception e) {
-            Log.e("TAG", "[HeadersInterceptor] [intercept] [e] = " + e.getMessage());
+            e.printStackTrace();
         }
         return chain.proceed(builder.build());
         

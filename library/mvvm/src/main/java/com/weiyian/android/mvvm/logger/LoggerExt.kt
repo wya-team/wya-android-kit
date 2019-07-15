@@ -5,11 +5,11 @@ import com.weiyian.android.mvvm.functional.Supplier
 import timber.log.Timber
 
 fun Application.initLogger(isDebug: Boolean = true) {
-    if (isDebug)
+    if (isDebug) {
         Timber.plant(Timber.DebugTree())
-    else
+    } else {
         Timber.plant(CrashReportingTree())
-
+    }
     log { "initLogger successfully, isDebug = $isDebug" }
 }
 

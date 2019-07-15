@@ -43,7 +43,6 @@ abstract class BaseProgressDialogCallBack<T> : BaseCallBack<T>, ProgressCancelLi
         }
         val view = mILoading?.view ?: return
         view.setOnClickListener {
-            Log.e("TAG", "[BaseProgressDialogCallBack] [click ....  dismiss]")
             if (isCancel) {
                 mILoading?.dismissLoading()
                 onCancelProgress()
@@ -80,7 +79,6 @@ abstract class BaseProgressDialogCallBack<T> : BaseCallBack<T>, ProgressCancelLi
     }
 
     override fun onStart() {
-        Log.e("TAG", "[BaseProgressDialogCallBack] [onStart]")
     }
 
     override fun onLoading() {
@@ -88,30 +86,24 @@ abstract class BaseProgressDialogCallBack<T> : BaseCallBack<T>, ProgressCancelLi
     }
 
     override fun onData(data: Any) {
-        Log.e("TAG", "[BaseProgressDialogCallBack] [onData] date = $data")
     }
 
     override fun onDataEmpty(message: String) {
-        Log.e("TAG", "[BaseProgressDialogCallBack] [onDataEmpty] message = $ message")
     }
 
     override fun onCompleted() {
-        Log.e("TAG", "[BaseProgressDialogCallBack] [onCompleted]")
         dismissProgress()
     }
 
     override fun onError(e: ApiException?) {
-        Log.e("TAG", "[BaseProgressDialogCallBack] [onError] e = " + e?.message)
         dismissProgress()
     }
 
     override fun onNetworkError() {
-        Log.e("TAG", "[BaseProgressDialogCallBack] [onNetworkError]")
         dismissProgress()
     }
 
     override fun onCancelProgress() {
-        Log.e("TAG", "[BaseProgressDialogCallBack] [onCancelProgress]")
         disposed?.let {
             if (!disposed?.isDisposed!!) {
                 disposed?.dispose()

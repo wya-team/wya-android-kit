@@ -53,13 +53,13 @@ public class HttpsUtils {
             sslParams.trustManager = trustManager;
             return sslParams;
         } catch (NoSuchAlgorithmException e) {
-            Log.e("TAG", "[HttpsUtils] [getSslSocketFactory] [e] = " + e.getMessage());
+            e.printStackTrace();
             throw new AssertionError(e);
         } catch (KeyManagementException e) {
-            Log.e("TAG", "[HttpsUtils] [getSslSocketFactory] [e] = " + e.getMessage());
+            e.printStackTrace();
             throw new AssertionError(e);
         } catch (KeyStoreException e) {
-            Log.e("TAG", "[HttpsUtils] [getSslSocketFactory] [e] = " + e.getMessage());
+            e.printStackTrace();
             throw new AssertionError(e);
         }
     }
@@ -81,7 +81,7 @@ public class HttpsUtils {
                         certificate.close();
                     }
                 } catch (Exception e) {
-                    Log.e("TAG", "[HttpsUtils] [prepareTrustManager] [e] = " + e.getMessage());
+                    e.printStackTrace();
                     HttpLog.e(e);
                 }
             }
@@ -90,7 +90,7 @@ public class HttpsUtils {
             trustManagerFactory.init(keyStore);
             return trustManagerFactory.getTrustManagers();
         } catch (Exception e) {
-            Log.e("TAG", "[HttpsUtils] [prepareTrustManager] [e] = " + e.getMessage());
+            e.printStackTrace();
             HttpLog.e(e);
         }
         return null;
@@ -107,7 +107,7 @@ public class HttpsUtils {
             keyManagerFactory.init(clientKeyStore, password.toCharArray());
             return keyManagerFactory.getKeyManagers();
         } catch (Exception e) {
-            Log.e("TAG", "[HttpsUtils] [prepareKeyManager] [e] = " + e.getMessage());
+            e.printStackTrace();
             HttpLog.e(e);
         }
         return null;
@@ -133,7 +133,7 @@ public class HttpsUtils {
         
         @Override
         public X509Certificate[] getAcceptedIssuers() {
-            return new java.security.cert.X509Certificate[]{};
+            return new X509Certificate[]{};
         }
     }
     
@@ -158,7 +158,7 @@ public class HttpsUtils {
             try {
                 defaultTrustManager.checkServerTrusted(chain, authType);
             } catch (Exception e) {
-                Log.e("TAG", "[HttpsUtils] [checkServerTrusted] [e] = " + e.getMessage());
+                e.printStackTrace();
                 localTrustManager.checkServerTrusted(chain, authType);
             }
         }

@@ -58,14 +58,12 @@ public abstract class BaseCallBack<T> implements IType<T> {
     
     @Override
     public Type getType() {
-        Log.e("TAG", "[BaseCallBack] [getType] = " + Utils.INSTANCE.findNeedClass(getClass()));
         // 获取需要解析的泛型T类型
         return Utils.INSTANCE.findNeedClass(getClass());
     }
     
     public Type getRawType() {
         // 获取需要解析的泛型T raw类型
-        Log.e("TAG", "[BaseCallBack] [getType] = " + Utils.INSTANCE.findRawType(getClass()));
         return Utils.INSTANCE.findRawType(getClass());
     }
     

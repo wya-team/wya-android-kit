@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion build_version.compileSdkVersion
@@ -22,29 +21,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation libs.appcompat_v7
-    implementation libs.recyclerview
+    implementation libs.recyclerview_v7
     implementation libs.design
     implementation 'com.lxj:easyadapter:1.0.0'
     implementation libs.kotlin_stdlib
-}
-
-publish {
-    userOrg = 'li-xiaojun'
-    groupId = 'com.lxj'
-    artifactId = 'xpopup'
-    publishVersion = '1.4.1'
-    repoName = 'jrepo'
-    desc = '功能强大，UI简洁，交互优雅的通用弹窗！可以替代Dialog，PopupWindow，PopupMenu，BottomSheet，DrawerLayout等组件，自带十几种效果良好的动画， 支持完全的UI和动画自定义！'
-    website = 'https://github.com/li-xiaojun/XPopup'
-}
-repositories {
-    mavenCentral()
 }
 
 apply from: 'maven-release-aar.gradle'

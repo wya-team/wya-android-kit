@@ -133,7 +133,6 @@ public class FileUtil {
             try {
                 stream.close();
             } catch (Exception e) {
-                Log.e("TAG", "[FileUtil] [closeStream] [e] = " + e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -162,7 +161,6 @@ public class FileUtil {
             
             return sb.toString();
         } catch (Exception e) {
-            Log.e("TAG", "[FileUtil] [loadFromAssets] [e] = " + e.getMessage());
             e.printStackTrace();
         } finally {
             closeStream(reader);
@@ -183,7 +181,6 @@ public class FileUtil {
                 file.delete();
             }
         } catch (Exception e) {
-            Log.e("TAG", "[FileUtil] [deleteFile] [e] = " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -602,9 +599,7 @@ public class FileUtil {
                     }
                 }
             } catch (Exception e) {
-                Log.e("TAG", "[FileUtil] [getThumbnail] [e] = " + e.getMessage());
-                if (DEBUG)
-                    Log.e(TAG, "getThumbnail", e);
+                e.printStackTrace();
             } finally {
                 if (cursor != null)
                     cursor.close();

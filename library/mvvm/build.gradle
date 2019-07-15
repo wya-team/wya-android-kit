@@ -42,27 +42,19 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     // [support]
     implementation libs.appcompat_v7
     implementation libs.design
-    implementation libs.recyclerview
+    implementation libs.recyclerview_v7
 
     api libs.kotlin_stdlib_jdk7
     api libs.kotlin_coroutines
 
-    // [jetpack]
     api libs.arch_comp_extension
     api libs.arch_comp_java8
     api libs.arch_comp_livedata_rx
 
-//    [room]
-//    api libs.arch_comp_room
-//    api libs.arch_comp_room_rxjava
-//    kapt libs.arch_comp_room_compiler
-
-    // [retrofit]
+    // [Retrofit]
     api libs.retrofit
     api libs.retrofit_gson
     api libs.adapter_rxjava2
@@ -70,37 +62,33 @@ dependencies {
     // [rx]
     api libs.rxkotlin
     api libs.rxandroid
-
-
     api libs.rxbinding
 
-//    api libs.rxbinding_core
-//    api libs.rxbinding_appcompat
-//    api libs.rxbinding_recyclerview
     api libs.rxbinding_recyclerview_v7
-//    api libs.rxpermissions
-//    api libs.rxweaver // error 全局处理
 
-    // [autodispose]
+    // [Autodispose]
     api libs.autodispose
     api libs.autodispose_ktx
     api libs.autodispose_android_ktx
     api libs.autodispose_archs_ktx
 
-    // [arrow]
-    api libs.arrow
+    // [Arrow]
+    api libs.arrow_core
 
-    // [okhttp]
+    // [Okhttp]
     api libs.okhttp
-    api libs.okhttp_logging
+    api libs.logging_interceptor
 
-    // [logger]
+    // [Logger]
     api libs.timber
 
     // [Kodein]
-    api libs.kodein
-    api libs.kodein_android
-    api libs.kodein_support // or api libs.kodein_androidx
+    api libs.kodein_di_generic_jvm
+    api libs.kodein_di_framework_android_core
+    api libs.kodein_di_framework_android_support
+
+    implementation 'me.tatarka.bindingcollectionadapter:bindingcollectionadapter:1.1.0'
+    implementation 'me.tatarka.bindingcollectionadapter:bindingcollectionadapter-recyclerview:1.1.0'
 }
 
 apply from: 'maven-release-aar.gradle'

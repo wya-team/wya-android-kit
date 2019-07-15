@@ -1,6 +1,5 @@
 package com.weiyian.android.net.body
 
-import android.util.Log
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import okhttp3.internal.Util
@@ -26,7 +25,7 @@ object RequestBodyUtils {
                 return try {
                     inputStream.available().toLong()
                 } catch (e: IOException) {
-                    Log.e("TAG", "[RequestBodyUtils] [contentLength] [e] = " + e.message)
+                    e.printStackTrace()
                     0
                 }
 

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.Resources
 import android.net.ConnectivityManager
 import android.os.Looper
-import android.util.Log
 import com.weiyian.android.net.body.UploadProgressRequestBody
 import io.reactivex.annotations.NonNull
 import okhttp3.MultipartBody
@@ -115,7 +114,7 @@ object Utils {
             close != null -> try {
                 closeThrowException(close)
             } catch (e: Exception) {
-                Log.e("TAG", "[Utils] [close] [e] = " + e.message)
+                e.printStackTrace()
             }
         }
     }
