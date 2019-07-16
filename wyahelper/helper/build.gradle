@@ -36,4 +36,4 @@ ext {
     PUBLISH_ARTIFACT_ID = 'helper'
     PUBLISH_VERSION = android.defaultConfig.versionName
 }
-apply from: '../../maven-release-repos.gradle'
+apply from: '../../gradle/maven-release-repos.gradle'
