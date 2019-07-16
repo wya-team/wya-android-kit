@@ -30,11 +30,14 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation libs.appcompat_v7
     implementation libs.kotlin_stdlib
 }
-repositories {
-    mavenCentral()
+
+ext {
+    PUBLISH_GROUP_ID = 'com.weiyian.android'
+    PUBLISH_ARTIFACT_ID = 'circleprogress'
+    PUBLISH_VERSION = android.defaultConfig.versionName
 }
 
-apply from: 'maven-release-aar.gradle'
+apply from: '../../../maven-release-repos.gradle'

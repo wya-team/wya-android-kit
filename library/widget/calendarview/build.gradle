@@ -41,3 +41,11 @@ dependencies {
     implementation libs.recyclerview_v7
     testImplementation test_libs.junit
 }
+
+ext {
+    PUBLISH_GROUP_ID = 'com.weiyian.android'
+    PUBLISH_ARTIFACT_ID = 'calendarview'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+
+apply from: '../../../maven-release-repos.gradle'

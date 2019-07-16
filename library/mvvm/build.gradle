@@ -91,4 +91,10 @@ dependencies {
     implementation 'me.tatarka.bindingcollectionadapter:bindingcollectionadapter-recyclerview:1.1.0'
 }
 
-apply from: 'maven-release-aar.gradle'
+ext {
+    PUBLISH_GROUP_ID = 'com.weiyian.android'
+    PUBLISH_ARTIFACT_ID = 'mvvm'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+
+apply from: '../../maven-release-repos.gradle'

@@ -39,4 +39,10 @@ repositories {
     mavenCentral()
 }
 
-apply from: 'maven-release-aar.gradle'
+ext {
+    PUBLISH_GROUP_ID = 'com.weiyian.android'
+    PUBLISH_ARTIFACT_ID = 'floating'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+
+apply from: '../../../maven-release-repos.gradle'

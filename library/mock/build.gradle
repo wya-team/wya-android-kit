@@ -19,9 +19,3 @@ buildscript {
         classpath classpath.kotlin_gradle_plugin
     }
 }
-
-repositories {
-    mavenCentral()
-}
-
-//apply from: 'maven-release-aar.gradle'

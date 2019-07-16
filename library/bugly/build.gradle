@@ -33,4 +33,16 @@ dependencies {
     implementation libs.kotlin_stdlib
 }
 
-apply from: 'maven-release-aar.gradle'
+ext {
+    PUBLISH_GROUP_ID = 'com.weiyian.android'
+    PUBLISH_ARTIFACT_ID = 'bugly'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+
+ext {
+    PUBLISH_GROUP_ID = 'com.weiyian.android'
+    PUBLISH_ARTIFACT_ID = 'bugly'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+
+apply from: '../../maven-release-repos.gradle'
