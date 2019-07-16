@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.wya.uikit</groupId>
+  <artifactId>uikit</artifactId>
+  <versioning>
+    <versions>
+      <version>0.1.20-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20190705065247</lastUpdated>
+  </versioning>
+</metadata>

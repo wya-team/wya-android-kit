@@ -14,5 +14,5 @@ compileJava {
 }
 
 apply from: '../bintray.gradle'
-apply from: '../maven-release-aar.gradle'
+apply from: '../maven-release-repos.gradle'
 

@@ -31,4 +31,10 @@ dependencies {
     kapt libs.aria_compiler
 }
 
-apply from: 'maven-release-aar.gradle'
+ext {
+    PUBLISH_GROUP_ID = 'com.wya.utils'
+    PUBLISH_ARTIFACT_ID = 'utils'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+
+apply from: '../../maven-release-repos.gradle'

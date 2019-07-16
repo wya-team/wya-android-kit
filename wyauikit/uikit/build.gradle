@@ -79,5 +79,10 @@ dependencies {
 
 }
 
-// aar打包
-apply from: 'maven-release-aar.gradle'
+ext {
+    PUBLISH_GROUP_ID = 'com.wya.uikit'
+    PUBLISH_ARTIFACT_ID = 'uikit'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+
+apply from: '../../maven-release-repos.gradle'
