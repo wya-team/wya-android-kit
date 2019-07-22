@@ -30,8 +30,7 @@ android {
 }
 
 dependencies {
-    implementation libs.appcompat_v7
-    implementation libs.kotlin_stdlib
+    api libs.appcompat_v7
 }
 
 ext {

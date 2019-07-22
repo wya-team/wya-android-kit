@@ -5,6 +5,9 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.arialyy.aria.core.Aria;
+import com.weiyian.android.loadsir.callback.ProgressCallback;
+import com.weiyian.android.loadsir.core.LoadSir;
+import com.wya.example.module.library.loadsir.EmptyCallback;
 import com.wya.example.module.uikit.photoview.TestImageLoader;
 import com.wya.helper.WYAConstants;
 import com.wya.uikit.photoview.preview.ZoomMediaLoader;
@@ -41,8 +44,18 @@ public class BaseApplication extends Application {
         initRealm();
         Aria.init(this);
         ZoomMediaLoader.getInstance().init(new TestImageLoader());
+
+        initLoadSir();
     }
-    
+
+    private void initLoadSir() {
+        LoadSir.Companion.beginBuilder()
+                .addCallback(new EmptyCallback())
+                .addCallback(new ProgressCallback.Builder().build())
+                .setDefaultCallback(ProgressCallback.class)
+                .commit();
+    }
+
     /**
      * 初始化数据库
      */

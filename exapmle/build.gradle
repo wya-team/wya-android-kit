@@ -66,37 +66,24 @@ dependencies {
     implementation libs.support_vector_drawable
     implementation libs.support_v4
     implementation libs.constraint_layout
-    androidTestImplementation(libs.support_annotations) {
-        force = true
-    }
     implementation libs.appcompat_v7
-
-    // glide
     implementation libs.glide
     kapt libs.compiler
-
     implementation libs.gson
-
     implementation libs.butterknife
-
     kapt libs.butterknife_compiler
-
     implementation libs.rxbinding
-
+    implementation libs.multidex
     implementation libs.baseRecyclerViewAdapterHelper
-
-    // kotlin
-    implementation libs.kotlin_stdlib_jdk7
 
     implementation project(':helper')
     implementation project(':hardware')
     implementation project(':uikit')
     implementation project(':utils')
     implementation project(':rxpermissions')
+    implementation project(':loadsir')
 
-    // router
     kapt libs.router_compiler
     implementation libs.router_api
     implementation libs.router_annotation
-
 }

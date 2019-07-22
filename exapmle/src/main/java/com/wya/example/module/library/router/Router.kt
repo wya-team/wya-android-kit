@@ -1,4 +1,4 @@
-package com.wya.example.module.library
+package com.wya.example.module.library.router
 
 import android.app.Application
 import android.net.Uri

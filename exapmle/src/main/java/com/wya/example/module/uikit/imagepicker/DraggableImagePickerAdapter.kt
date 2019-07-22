@@ -71,11 +71,11 @@ class DraggableImagePickerAdapter(private val mContext: Context, private val ima
 
         Glide.with(mContext).load(url).into(viewHolder.mImageView)
         viewHolder.mImageView.setOnClickListener {
-            mOnItemClickListener?.onItemClick(position)
+            mOnItemClickListener.onItemClick(position)
         }
 
         viewHolder.delete.setOnClickListener {
-            mOnItemClickListener?.onDelete(position)
+            mOnItemClickListener.onDelete(position)
         }
 
         // drag

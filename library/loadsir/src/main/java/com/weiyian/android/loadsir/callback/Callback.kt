@@ -67,7 +67,7 @@ abstract class Callback : Serializable {
         val oos: ObjectOutputStream
         var obj: Any? = null
         try {
-            oos = ObjectOutputStream(bao)
+            oos = ObjectOutputStream(bao as OutputStream?)
             oos.writeObject(this)
             oos.close()
             val bis = ByteArrayInputStream(bao.toByteArray())

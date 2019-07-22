@@ -23,8 +23,7 @@ android {
 
 dependencies {
     api project(":circleprogress")
-    implementation libs.support_annotations
-    implementation libs.kotlin_stdlib
+    api libs.support_annotations
 }
 
 
