@@ -49,5 +49,11 @@ dependencies {
     implementation libs.adapter_rxjava2
 
 }
-// aar打包
-apply from: 'maven-release-aar.gradle'
+
+ext {
+    PUBLISH_GROUP_ID = 'com.wya.hardware'
+    PUBLISH_ARTIFACT_ID = 'hardware'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+
+apply from: '../../maven-release-repos.gradle'

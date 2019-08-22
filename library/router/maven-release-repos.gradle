@@ -1,0 +1,13 @@
+apply plugin: 'maven'
+
+group = 'com.weiyian.android'
+version = '1.0.3-SNAPSHOT'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            def deployPath = file("../" + getProperty('repos.deployPath'))
+            repository(url: "file://${deployPath.absolutePath}")
+        }
+    }
+}

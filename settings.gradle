@@ -1,7 +1,7 @@
 include ':exapmle', 'wyahelper:helper', 'wyahardware:hardware', 'wyautils:utils', 'wyauikit:uikit'
 
 include ':rxpermissions'
-project(':rxpermissions').projectDir = new File('wyautils/rxpermissions')
+project(':rxpermissions').projectDir = new File('library/rxpermissions')
 
 include ':router-annotation'
 project(':router-annotation').projectDir = new File('library/router/router-annotation')

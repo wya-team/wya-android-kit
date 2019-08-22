@@ -12,7 +12,7 @@ android {
         targetSdkVersion build_version.targetSdkVersion
 
         versionCode 7
-        versionName "0.1.14-SNAPSHOT"
+        versionName "0.1.20-SNAPSHOT"
     }
 
     buildTypes {
@@ -39,6 +39,7 @@ android {
                             'src/main/res/layout/toolbar',
                             'src/main/res/layout/dialog',
                             'src/main/res/layout/popupwindow',
+                            'src/main/res/layout/photoview',
                             'src/main/res/layout/toast',
                             'src/main/res/layout/searchbar',
                             'src/main/res/layout/segmentcontrol',
@@ -75,7 +76,13 @@ dependencies {
     implementation libs.baseRecyclerViewAdapterHelper
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(':rxpermissions')
+
 }
 
-// aar打包
-apply from: 'maven-release-aar.gradle'
+ext {
+    PUBLISH_GROUP_ID = 'com.wya.uikit'
+    PUBLISH_ARTIFACT_ID = 'uikit'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+
+apply from: '../../maven-release-repos.gradle'

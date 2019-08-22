@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.wya.hardware</groupId>
+  <artifactId>hardware</artifactId>
+  <versioning>
+    <versions>
+      <version>0.1.5-SNAPSHOT</version>
+      <version>0.1.6-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20190716074345</lastUpdated>
+  </versioning>
+</metadata>
