@@ -292,8 +292,12 @@ public class TimePickerView extends LinearLayout {
                     }
                 } else {
                     daystarts = 1;
-                    dayends = getDayOfMonth(monthIndex + 1, yearIndex + mStartYear);
-                    Log.i(TAG, "onItemSelected: ");
+                    if (yearIndex == 0) {
+                        dayends = getDayOfMonth(monthIndex + mStartMonth, yearIndex + mStartYear);
+                    } else {
+
+                        dayends = getDayOfMonth(monthIndex + 1, yearIndex + mStartYear);
+                    }
                 }
                 Log.i(TAG, "onItemSelected: " + monthIndex + " " + (yearIndex + mStartYear));
                 dayWheel.setAdapter(new TimePickerAdapter(daystarts, dayends, 1, isShowType ? "日"

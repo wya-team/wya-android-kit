@@ -10,10 +10,10 @@ buildscript {
         maven { url maven_url.kit_maven_url_snapshot }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.android.tools.build:gradle:3.4.2'
         classpath "io.realm:realm-gradle-plugin:5.8.0"
         classpath build_plugins.kotlin_gradle_plugin
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin: $kotlin_version"
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         classpath 'com.weiyian.android:router-auto-register:1.0.3-SNAPSHOT'
 
