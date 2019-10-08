@@ -27,6 +27,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:theme,android:name">
+
         <activity android:name=".module.uikit.photoview.PhotoViewExampleActivity">
         </activity>
         <activity android:name=".module.uikit.floatwindow.FloatWindowExampleActivity"/>
