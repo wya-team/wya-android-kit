@@ -11,8 +11,8 @@ android {
         minSdkVersion build_version.minSdkVersion
         targetSdkVersion build_version.targetSdkVersion
 
-        versionCode 7
-        versionName "0.1.20-SNAPSHOT"
+        versionCode 15
+        versionName "0.1.15"
     }
 
     buildTypes {
