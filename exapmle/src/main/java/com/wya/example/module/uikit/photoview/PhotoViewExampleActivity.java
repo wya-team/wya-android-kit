@@ -62,7 +62,7 @@ public class PhotoViewExampleActivity extends BaseActivity {
 
     private void initData() {
         imageItems = new ArrayList<>();
-        imageItems.add("https://wyatest.oss-cn-hangzhou.aliyuncs.com/image/172/20190613/141510/image_0.jpg");
+        imageItems.add("https://xls-imgs.oss-cn-hangzhou.aliyuncs.com/image/193/20191125/1443856176/image_0.gif");
         imageItems.add("https://wyatest.oss-cn-hangzhou.aliyuncs.com/image/172/20190613/142305/image_0.jpg");
         imageItems.add("https://wyatest.oss-cn-hangzhou.aliyuncs.com/image/172/20190613/141510/image_0.jpg");
         imageItems.add("https://wyatest.oss-cn-hangzhou.aliyuncs.com/image/172/20190613/141510/image_0.jpg");
