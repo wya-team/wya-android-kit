@@ -30,7 +30,7 @@ public class BannerExampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        
         setTitle("轮播图(banner)");
         String url = getIntent().getStringExtra(EXTRA_URL);
         showSecondRightIcon(true);
@@ -43,15 +43,15 @@ public class BannerExampleActivity extends BaseActivity {
             showShort("链接地址复制成功");
             StringUtil.copyString(BannerExampleActivity.this, url);
         });
-
+        
         data.add(R.mipmap.img1);
         data.add(R.mipmap.img2);
         data.add(R.mipmap.img3);
-
+        
         mWYABanner = (WYABanner<Integer>) findViewById(R.id.banner);
         mWYABanner2 = (WYABanner<Integer>) findViewById(R.id.banner2);
         mScaleBanner = (WYABanner<Integer>) findViewById(R.id.scale_banner);
-
+        
         mWYABanner.setUpdateTime(2000)
                 .setDotVisible(true)
                 //				.setDotDark()
@@ -63,7 +63,7 @@ public class BannerExampleActivity extends BaseActivity {
                 imageView.setImageResource(item);
             }
         });
-
+        
         mScaleBanner.setUpdateTime(2000)
                 .setDotVisible(true)
                 //				.setDotDark()
@@ -76,7 +76,7 @@ public class BannerExampleActivity extends BaseActivity {
                 imageView.setImageResource(item);
             }
         });
-
+        
         mWYABanner2.setUpdateTime(2000)
                 .setDotVisible(true)
                 .setDotDark()

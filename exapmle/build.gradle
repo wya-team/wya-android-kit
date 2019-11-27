@@ -1,7 +1,9 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
+
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: "kotlin-kapt"
+
 apply plugin: 'realm-android'
 
 // [ARouter]
@@ -60,43 +62,28 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation libs.design
     implementation libs.support_vector_drawable
     implementation libs.support_v4
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    androidTestImplementation(libs.annotation) {
-        force = true
-    }
+    implementation libs.constraint_layout
     implementation libs.appcompat_v7
-
-    // glide
     implementation libs.glide
     kapt libs.compiler
-
     implementation libs.gson
-
     implementation libs.butterknife
-
     kapt libs.butterknife_compiler
-
     implementation libs.rxbinding
-
+    implementation libs.multidex
     implementation libs.baseRecyclerViewAdapterHelper
 
-    // kotlin
-    implementation libs.kotlin_stdlib_jdk7
-//    implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.21"
-
-    implementation project(':wyahelper:helper')
-    implementation project(':wyahardware:hardware')
-    implementation project(':wyauikit:uikit')
-    implementation project(':wyautils:utils')
+    implementation project(':helper')
+    implementation project(':hardware')
+    implementation project(':uikit')
+    implementation project(':utils')
     implementation project(':rxpermissions')
+    implementation project(':loadsir')
 
-    // router
-    kapt 'com.weiyian.android:router-compiler:1.0.3-SNAPSHOT'
-    implementation 'com.weiyian.android:router-api:1.0.3-SNAPSHOT'
-    implementation 'com.weiyian.android:router-annotation:1.0.3-SNAPSHOT'
-
+    kapt libs.router_compiler
+    implementation libs.router_api
+    implementation libs.router_annotation
 }

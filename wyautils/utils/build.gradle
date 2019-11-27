@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: "kotlin-kapt"
 
 android {
@@ -37,4 +37,4 @@ ext {
     PUBLISH_VERSION = android.defaultConfig.versionName
 }
 
-apply from: '../../maven-release-repos.gradle'
+apply from: '../../gradle/maven-release-repos.gradle'

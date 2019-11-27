@@ -15,6 +15,7 @@ import com.wya.example.module.example.bean.ExampleItem;
 import com.wya.example.module.example.view.CustomerExpandableListView;
 import com.wya.example.module.hardware.camera.StartCameraExampleActivity;
 import com.wya.example.module.hardware.videoplayer.VideoPlayerExampleActivity;
+import com.wya.example.module.library.loadsir.LoadSirExampleActivity;
 import com.wya.example.module.uikit.badge.BadgeExampleActivity;
 import com.wya.example.module.uikit.banner.BannerExampleActivity;
 import com.wya.example.module.uikit.button.ButtonExampleActivity;
@@ -128,6 +129,7 @@ public class ExampleFragment extends Fragment {
         bean3.add("列表(list)");
         bean3.add("通告栏(notice)");
         bean3.add("二维码(utils(QRCodeUtil))");
+        bean3.add("loadSir");
         item3.setChild(bean3);
         
         ExampleItem item4 = new ExampleItem();
@@ -273,7 +275,10 @@ public class ExampleFragment extends Fragment {
             case "轻提示(toast)":
                 startActivity(new Intent(getActivity(), ToastExampleActivity.class).putExtra(EXTRA_URL, UIKIT_URL + "toast" + "/README.md"));
                 break;
-            
+            case "loadSir":
+                startActivity(new Intent(getActivity(), LoadSirExampleActivity.class));
+
+                break;
             case "下载(utils(FileManagerUtil)":
                 startActivity(new Intent(getActivity(), DownLoadExampleActivity.class).putExtra(EXTRA_URL, UTILS_URL));
                 break;

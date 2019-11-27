@@ -9,6 +9,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.wya.example.R;
 import com.wya.uikit.photoview.preview.loader.IZoomMediaLoader;
 import com.wya.uikit.photoview.preview.loader.MySimpleTarget;
+import com.wya.uikit.photoview.preview.wight.SmoothImageView;
 
 /**
  * Created by yangc on 2017/9/4.
@@ -27,6 +28,9 @@ public class TestImageLoader implements IZoomMediaLoader {
 
     @Override
     public void displayGifImage(@NonNull Fragment context, @NonNull String path, ImageView imageView, @NonNull final MySimpleTarget simpleTarget) {
+        ((SmoothImageView)imageView).setZoomable(true);
+        Glide.with(context).load(path).apply(new RequestOptions().error(R.drawable.icon_camera)).into(imageView);
+        simpleTarget.onResourceReady();
     }
     @Override
     public void onStop(@NonNull Fragment context) {

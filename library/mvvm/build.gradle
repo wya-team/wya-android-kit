@@ -1,0 +1,100 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    compileSdkVersion build_version.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
+        versionCode build_version.versionCode
+        versionName build_version.versionName
+
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    // [support]
+    implementation libs.appcompat_v7
+    implementation libs.design
+    implementation libs.recyclerview_v7
+
+    api libs.kotlin_stdlib_jdk7
+    api libs.kotlin_coroutines
+
+    api libs.arch_comp_extension
+    api libs.arch_comp_java8
+    api libs.arch_comp_livedata_rx
+
+    // [Retrofit]
+    api libs.retrofit
+    api libs.retrofit_gson
+    api libs.adapter_rxjava2
+
+    // [rx]
+    api libs.rxkotlin
+    api libs.rxandroid
+    api libs.rxbinding
+
+    api libs.rxbinding_recyclerview_v7
+
+    // [Autodispose]
+    api libs.autodispose
+    api libs.autodispose_ktx
+    api libs.autodispose_android_ktx
+    api libs.autodispose_archs_ktx
+
+    // [Arrow]
+    api libs.arrow_core
+
+    // [Okhttp]
+    api libs.okhttp
+    api libs.logging_interceptor
+
+    // [Logger]
+    api libs.timber
+
+    // [Kodein]
+    api libs.kodein_di_generic_jvm
+    api libs.kodein_di_framework_android_core
+    api libs.kodein_di_framework_android_support
+
+    implementation 'me.tatarka.bindingcollectionadapter:bindingcollectionadapter:1.1.0'
+    implementation 'me.tatarka.bindingcollectionadapter:bindingcollectionadapter-recyclerview:1.1.0'
+}
+
+ext {
+    PUBLISH_GROUP_ID = 'com.weiyian.android'
+    PUBLISH_ARTIFACT_ID = 'mvvm'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+
+apply from: '../../gradle/maven-release-repos.gradle'

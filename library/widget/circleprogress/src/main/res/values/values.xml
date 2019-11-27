@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <drawable name="select_bule_color">#00bfff</drawable>
+    <drawable name="select_bule_color2">#5000bfff</drawable>
+    <drawable name="select_c4D56F9_color">#4D56F9</drawable>
+    <drawable name="select_c4D56F9_color2">#504D56F9</drawable>
+    <drawable name="select_c1890FF_color">#1890FF</drawable>
+    <drawable name="select_c1890FF_color2">#501890FF</drawable>
+    <drawable name="select_c999999_color">#999999</drawable>
+    <drawable name="select_c999999_color2">#50999999</drawable>
+    <drawable name="select_c333333_color">#333333</drawable>
+    <drawable name="select_c333333_color2">#50333333</drawable>
+    <drawable name="select_white_color">#ffffff</drawable>
+    <drawable name="select_white_color2">#50ffffff</drawable>
+    <drawable name="select_black_color">#000000</drawable>
+    <drawable name="select_black_color2">#50000000</drawable>
+
+
+    <color name="cpv_default_color">#D41A23</color>
+    <dimen name="cpv_default_thickness">4dp</dimen>
+    <integer name="cpv_default_progress">0</integer>
+    <integer name="cpv_default_max_progress">100</integer>
+    <bool name="cpv_default_is_indeterminate">false</bool>
+    <bool name="cpv_default_anim_autostart">false</bool>
+    <integer name="cpv_default_anim_duration">4000</integer>
+    <integer name="cpv_default_anim_swoop_duration">5000</integer>
+    <integer name="cpv_default_anim_sync_duration">500</integer>
+    <integer name="cpv_default_anim_steps">3</integer>
+    <integer name="cpv_default_start_angle">-90</integer>
+
+</resources>

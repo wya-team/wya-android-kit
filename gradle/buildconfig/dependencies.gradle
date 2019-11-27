@@ -1,0 +1,274 @@
+ext {
+
+    singning_configs = [
+            keyAlias     : 'wya',
+            keyPassword  : 'wya123',
+            storeFile    : file("$rootDir/wya.jks"),
+            storePassword: 'wya123'
+    ]
+
+    build_version = [
+            applicationId    : "com.weiyian.example",
+            versionCode      : 7,
+            versionName      : '1.1.2',
+
+            compileSdkVersion: 28,
+            minSdkVersion    : 15,
+            targetSdkVersion : 28,
+
+            // [GreenDao]
+            schemaVersion    : 2,
+            daoPackage       : 'com.weiyian.oa.data.local.db.generated',
+    ]
+
+    maven_url = [
+            jitpack_maven_url     : "https://jitpack.io",
+            huawei_maven_url      : "http://developer.huawei.com/repo",
+            push_maven_url        : "https://raw.githubusercontent.com/wya-team/wya-android-push/master/aar",
+            kit_maven_url_release : "https://raw.githubusercontent.com/wya-team/wya-android-kit/develop/aar/release",
+            kit_maven_url_snapshot: "https://raw.githubusercontent.com/wya-team/wya-android-kit/develop/aar/snapshot",
+            kodein_maven_url      : "https://dl.bintray.com/kodein-framework/Kodein-DI/"
+    ]
+
+    versions = [
+            kotlin                       : '1.3.40',
+            kotlinx_coroutines_core      : '1.1.1',
+
+            hwpush                       : "2.6.3.301",
+            push                         : "1.0.0",
+
+            kotlin_coroutines            : '1.0.0',
+            support                      : "28.0.0",
+            lifecycle                    : "1.1.0",
+
+            annotation                   : "27.1.0",
+            multidex                     : "1.0.3",
+            constraint_layout            : "1.1.3",
+            retrofit                     : '2.4.0',
+            okhttp                       : '3.12.0',
+            kodein                       : '6.1.0',
+            glide                        : '4.8.0',
+            dsladapter                   : '0.8.4',
+
+            rxjava                       : '2.2.4',
+            rxkotlin                     : '2.2.0',
+            rxandroid                    : '2.1.0',
+            rxbinding                    : '2.2.0',
+            autodispose                  : '1.0.0-RC1',
+
+            converter_gson               : "2.3.0",
+            adapter_rxjava2              : "2.3.0",
+            logging_interceptor          : "3.9.0",
+            converter_scalars            : "2.3.0",
+            butterknife                  : "9.0.0",
+
+            smartRefreshLayout           : "1.1.0-alpha-7",
+            baseRecyclerViewAdapterHelper: "2.9.30",
+            logger                       : "2.2.0",
+            java_webSocket               : "1.3.9",
+            greendao                     : "3.2.2",
+            eventbus                     : "3.1.1",
+            crashreport_upgrade          : "1.3.6",
+            nativecrashreport            : "3.3.1",
+            tinker_android_lib           : "1.9.9",
+            shimmerlayout                : "2.1.0",
+
+            rxpermissions                : "1.0.5-SNAPSHOT",
+            live_event_bus               : "1.4.2",
+            disklrucache                 : "2.0.2",
+            router                       : "1.0.3-SNAPSHOT",
+
+            uikit                        : "0.1.20-SNAPSHOT",
+            hardware                     : "0.1.10",
+            helper                       : "0.1.5",
+            utils                        : "0.1.5",
+            koin_android                 : "1.0.1",
+
+            kotlin_test_junit            : "1.3.31",
+            robolectric                  : "3.6.1",
+            shadows_support_v4           : "3.4-rc2",
+            shadows_multidex             : "3.3.2",
+            mockito_core                 : "2.23.0",
+            expect_kt                    : "1.0.0",
+
+            persistentCookieJar          : "v1.0.1",
+            rxjava2_debug                : "1.4.0",
+            tinypinyin                   : "1.0.0",
+            easyadapter                  : "1.0.0",
+
+            zxing                        : "3.3.3",
+            aria_core                    : "3.6.4",
+            oss_android_sdk              : "2.3.0",
+
+            gson                         : "2.8.5",
+
+    ]
+
+    classpath_versions = [
+            gradle_retrolambda            : '3.2.5',
+            greendao_gradle_plugin        : '3.2.2',
+            bintray_release               : '0.9',
+            gradle                        : '3.3.1',
+
+            gradle_android_plugin_aspectjx: '2.0.4',
+            gradle_bintray_plugin         : '1.8.4',
+            android_maven_gradle_plugin   : '2.1',
+            router_auto_register          : '1.0.2',
+            tinker_support                : "1.1.5",
+    ]
+
+    classpath = [
+            kotlin_gradle_plugin          : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
+            kotlin_android_extensions     : "org.jetbrains.kotlin:kotlin-android-extensions:${versions.kotlin}",
+
+            gradle_retrolambda            : "me.tatarka:gradle-retrolambda:${classpath_versions.gradle_retrolambda}",
+            gradle                        : "com.android.tools.build:gradle:${classpath_versions.gradle}",
+            gradle_android_plugin_aspectjx: "com.hujiang.aspectjx:gradle-android-plugin-aspectjx:${classpath_versions.gradle_android_plugin_aspectjx}",
+            gradle_bintray_plugin         : "com.jfrog.bintray.gradle:gradle-bintray-plugin:${classpath_versions.gradle_bintray_plugin}",
+
+            greendao_gradle_plugin        : "org.greenrobot:greendao-gradle-plugin:${classpath_versions.greendao_gradle_plugin}",
+            bintray_release               : "com.novoda:bintray-release:${classpath_versions.bintray_release}",
+            android_maven_gradle_plugin   : "com.github.dcendents:android-maven-gradle-plugin:${classpath_versions.android_maven_gradle_plugin}",
+            router_auto_register          : "com.weiyian.android:router-auto-register:${classpath_versions.router_auto_register}",
+            tinker_support                : "com.tencent.bugly:tinker-support:${classpath_versions.tinker_support}",
+    ]
+
+    libs = [
+            design                             : "com.android.support:design:${versions.support}",
+            support_v4                         : "com.android.support:support-v4:${versions.support}",
+            appcompat_v7                       : "com.android.support:appcompat-v7:${versions.support}",
+            recyclerview_v7                    : "com.android.support:recyclerview-v7:${versions.support}",
+            cardview_v7                        : "com.android.support:cardview-v7:${versions.support}",
+            support_fragment                   : "com.android.support:support-fragment:${versions.support}",
+
+            support_annotations                : "com.android.support:support-annotations:${versions.support}",
+            multidex                           : "com.android.support:multidex:${versions.multidex}",
+            constraint_layout                  : "com.android.support.constraint:constraint-layout:${versions.constraint_layout}",
+            rxjava                             : "io.reactivex.rxjava2:rxjava:${versions.rxjava}",
+            rxandroid                          : "io.reactivex.rxjava2:rxandroid:${versions.rxandroid}",
+
+            adapter_rxjava2                    : "com.squareup.retrofit2:adapter-rxjava2:${versions.adapter_rxjava2}",
+            retrofit                           : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+            converter_gson                     : "com.squareup.retrofit2:converter-gson:${versions.converter_gson}",
+            okhttp                             : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+            logging_interceptor                : "com.squareup.okhttp3:logging-interceptor:${versions.logging_interceptor}",
+            converter_scalars                  : "com.squareup.retrofit2:converter-scalars:${versions.converter_scalars}",
+            rxbinding                          : "com.jakewharton.rxbinding2:rxbinding:${versions.rxbinding}",
+            butterknife                        : "com.jakewharton:butterknife:${versions.butterknife}",
+            butterknife_compiler               : "com.jakewharton:butterknife-compiler:${versions.butterknife}",
+            smartRefreshLayout                 : "com.scwang.smartrefresh:SmartRefreshLayout:${versions.smartRefreshLayout}",
+
+            baseRecyclerViewAdapterHelper      : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${versions.baseRecyclerViewAdapterHelper}",
+            logger                             : "com.orhanobut:logger:${versions.logger}",
+            java_webSocket                     : "org.java-websocket:Java-WebSocket:${versions.java_webSocket}",
+            greendao                           : "org.greenrobot:greendao:${versions.greendao}",
+            eventbus                           : "org.greenrobot:eventbus:${versions.eventbus}",
+            crashreport_upgrade                : "com.tencent.bugly:crashreport_upgrade:${versions.crashreport_upgrade}",
+            nativecrashreport                  : "com.tencent.bugly:nativecrashreport:${versions.nativecrashreport}",
+            tinker_android_lib                 : "com.tencent.tinker:tinker-android-lib:${versions.tinker_android_lib}",
+            shimmerlayout                      : "io.supercharge:shimmerlayout:${versions.shimmerlayout}",
+            hwpush                             : "com.huawei.android.hms:push:${versions.hwpush}",
+            push                               : "com.weiyian.push:push:${versions.push}",
+
+            glide                              : "com.github.bumptech.glide:glide:${versions.glide}",
+            compiler                           : "com.github.bumptech.glide:compiler:${versions.glide}",
+            annotations                        : "com.github.bumptech.glide:annotations:${versions.glide}",
+            okhttp3_integration                : "com.github.bumptech.glide:okhttp3-integration:${versions.glide}",
+            arrow_core                         : "io.arrow-kt:arrow-core:0.7.3",
+
+            // [Kotlin]
+            kotlin_stdlib_jdk7                 : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
+            kotlinx_coroutines_core            : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1",
+            kotlin_stdlib                      : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}",
+            kotlin_coroutines                  : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.kotlin_coroutines}",
+
+            retrofit_gson                      : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+
+            rxkotlin                           : "io.reactivex.rxjava2:rxkotlin:${versions.rxkotlin}",
+            rxbinding_core                     : "com.jakewharton.rxbinding3:rxbinding-core:${versions.rxbinding}",
+            rxbinding_appcompat                : "com.jakewharton.rxbinding3:rxbinding-appcompat:${versions.rxbinding}",
+            rxbinding_recyclerview             : "com.jakewharton.rxbinding3:rxbinding-recyclerview:${versions.rxbinding}",
+            rxbinding_recyclerview_v7          : "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:${versions.rxbinding}",
+
+            autodispose                        : "com.uber.autodispose:autodispose-android:${versions.autodispose}",
+            autodispose_ktx                    : "com.uber.autodispose:autodispose-ktx:${versions.autodispose}",
+            autodispose_android_ktx            : "com.uber.autodispose:autodispose-android-ktx:${versions.autodispose}",
+            autodispose_archs_ktx              : "com.uber.autodispose:autodispose-android-archcomponents-ktx:${versions.autodispose}",
+
+            // [Kodein]
+            kodein_di_generic_jvm              : "org.kodein.di:kodein-di-generic-jvm:${versions.kodein}",
+            kodein_di_framework_android_core   : "org.kodein.di:kodein-di-framework-android-core:${versions.kodein}",
+            kodein_di_framework_android_support: "org.kodein.di:kodein-di-framework-android-support:${versions.kodein}",
+
+            timber                             : "com.jakewharton.timber:timber:4.7.1",
+
+            arch_comp_extension                : "android.arch.lifecycle:extensions:1.1.0",
+            arch_comp_java8                    : "android.arch.lifecycle:common-java8:1.1.0",
+            arch_comp_compiler                 : "android.arch.lifecycle:compiler:1.1.0",
+            arch_comp_viewmodel                : "android.arch.lifecycle:viewmodel:1.1.0",
+            arch_comp_livedata                 : "android.arch.lifecycle:livedata:1.1.0",
+            arch_comp_livedata_rx              : "android.arch.lifecycle:reactivestreams:1.1.0",
+
+            rxpermissions                      : "com.weiyian.android:rxpermissions:${versions.rxpermissions}",
+            live_event_bus                     : "com.jeremyliao:live-event-bus:${versions.live_event_bus}",
+            disklrucache                       : "com.jakewharton:disklrucache:${versions.disklrucache}",
+
+            router_annotation                  : "com.weiyian.android:router-annotation:${versions.router}",
+            router_compiler                    : "com.weiyian.android:router-compiler:${versions.router}",
+            router_api                         : "com.weiyian.android:router-api:${versions.router}",
+
+            uikit                              : "com.wya.uikit:uikit:${versions.uikit}",
+            hardware                           : "com.wya.hardware:hardware:${versions.hardware}",
+            helper                             : "com.wya.helper:helper:${versions.helper}",
+            utils                              : "com.wya.utils:utils:${versions.utils}",
+
+            koin_android                       : "org.koin:koin-android:${versions.koin_android}",
+            koin_android_scope                 : "org.koin:koin-android-scope:${versions.koin_android}",
+            koin_android_viewmodel             : "org.koin:koin-android-viewmodel:${versions.koin_android}",
+
+            persistentCookieJar                : "com.github.franmontiel:PersistentCookieJar:${versions.persistentCookieJar}",
+            rxjava2_debug                      : "com.akaita.java:rxjava2-debug:${versions.rxjava2_debug}",
+            tinypinyin                         : "com.github.promeg:tinypinyin:${versions.tinypinyin}",
+            easyadapter                        : "com.lxj:easyadapter:${versions.easyadapter}",
+
+            support_vector_drawable            : "com.android.support:support-vector-drawable:${versions.support}",
+            gson                               : "com.google.code.gson:gson:${versions.gson}",
+            aria_core                          : "com.arialyy.aria:aria-core:${versions.aria_core}",
+            aria_compiler                      : "com.arialyy.aria:aria-compiler:${versions.aria_core}",
+            oss_android_sdk                    : "com.aliyun.dpa:oss-android-sdk:${versions.oss_android_sdk}",
+
+            zxing                              : "com.google.zxing:core:${versions.zxing}",
+
+    ]
+
+    test_versions = [
+            pandora           : "v2.0.3",
+            stetho            : "1.5.1",
+            stetho_okhttp3    : "1.3.1",
+            leakcanary_android: "1.6.3",
+
+            junit             : '4.12',
+            kotlin_test_junit : "1.3.31",
+            robolectric       : "3.6.1",
+            shadows_support_v4: "3.4-rc2",
+            shadows_multidex  : "3.3.2",
+            mockito_core      : "2.23.0",
+            expect_kt         : "1.0.0",
+    ]
+
+    test_libs = [
+            pandora           : "com.github.whataa:pandora:${test_versions.pandora}",
+            stetho            : "com.facebook.stetho:stetho:${test_versions.stetho}",
+            stetho_okhttp3    : "com.facebook.stetho:stetho-okhttp3:${test_versions.stetho_okhttp3}",
+            leakcanary_android: "com.squareup.leakcanary:leakcanary-android:${test_versions.leakcanary_android}",
+
+            junit             : "junit:junit:${test_versions.junit}",
+            kotlin_test_junit : "org.jetbrains.kotlin:kotlin-test-junit:${test_versions.kotlin_test_junit}",
+            robolectric       : "org.robolectric:robolectric:${test_versions.robolectric}",
+            shadows_support_v4: "org.robolectric:shadows-support-v4:${test_versions.shadows_support_v4}",
+            shadows_multidex  : "org.robolectric:shadows-multidex:${test_versions.shadows_multidex}",
+            mockito_core      : "org.mockito:mockito-core:${test_versions.mockito_core}",
+            expect_kt         : "com.nhaarman:expect.kt:${test_versions.expect_kt}",
+    ]
+
+}

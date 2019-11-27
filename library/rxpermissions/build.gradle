@@ -23,9 +23,9 @@ android {
 
 dependencies {
     api libs.rxjava
-    implementation libs.annotation
+    implementation libs.support_annotations
     implementation libs.support_fragment
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.41"
+    implementation libs.kotlin_stdlib_jdk7
 }
 repositories {
     mavenCentral()

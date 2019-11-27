@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion build_version.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
+
+        versionCode 1
+        versionName "1.0.0"
+        consumerProguardFiles 'consumer-proguard-rules.pro'
+    }
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation libs.support_annotations
+    implementation libs.appcompat_v7
+    implementation libs.kotlin_stdlib
+}
+repositories {
+    mavenCentral()
+}
+
+ext {
+    PUBLISH_GROUP_ID = 'com.weiyian.android'
+    PUBLISH_ARTIFACT_ID = 'floating'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+
+apply from: '../../../gradle/maven-release-repos.gradle'

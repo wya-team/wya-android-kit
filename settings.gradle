@@ -1,7 +1,28 @@
-include ':exapmle', 'wyahelper:helper', 'wyahardware:hardware', 'wyautils:utils', 'wyauikit:uikit'
+include ':exapmle'
 
-include ':rxpermissions'
-project(':rxpermissions').projectDir = new File('library/rxpermissions')
+include 'bugly'
+project(':bugly').projectDir = new File('library/bugly')
+
+include ':loadsir'
+project(':loadsir').projectDir = new File('library/loadsir')
+
+include ':mvvm'
+project(':mvvm').projectDir = new File('library/mvvm')
+
+include ':mock'
+project(':mock').projectDir = new File('library/mock')
+
+include ':net'
+project(':net').projectDir = new File('library/net')
+
+include ':router-annotation'
+project(':router-annotation').projectDir = new File('library/router/router-annotation')
+
+include ':router-api'
+project(':router-api').projectDir = new File('library/router/router-api')
+
+include ':router-auto-register'
+project(':router-auto-register').projectDir = new File('library/router/router-auto-register')
 
 include ':router-annotation'
 project(':router-annotation').projectDir = new File('library/router/router-annotation')
@@ -14,3 +35,46 @@ project(':router-api').projectDir = new File('library/router/router-api')
 
 include ':router-auto-register'
 project(':router-auto-register').projectDir = new File('library/router/router-auto-register')
+
+include ':router-compiler'
+project(':router-compiler').projectDir = new File('library/router/router-compiler')
+
+include ':rxpermissions'
+project(':rxpermissions').projectDir = new File('library/rxpermissions')
+
+include ':saripaar'
+project(':saripaar').projectDir = new File('library/saripaar')
+
+include ':calendarview'
+project(':calendarview').projectDir = new File('library/widget/calendarview')
+
+include ':circleprogress'
+project(':circleprogress').projectDir = new File('library/widget/circleprogress')
+
+include ':count'
+project(':count').projectDir = new File('library/widget/count')
+
+include ':floating'
+project(':floating').projectDir = new File('library/widget/floating')
+
+include ':fuzzy'
+project(':fuzzy').projectDir = new File('library/widget/fuzzy')
+
+include ':index'
+project(':index').projectDir = new File('library/widget/index')
+
+include ':xpopup'
+project(':xpopup').projectDir = new File('library/widget/xpopup')
+
+include ':hardware'
+project(':hardware').projectDir = new File('wyahardware/hardware')
+
+include ':helper'
+project(':helper').projectDir = new File('wyahelper/helper')
+
+include ':uikit'
+project(':uikit').projectDir = new File('wyauikit/uikit')
+
+include ':utils'
+project(':utils').projectDir = new File('wyautils/utils')
+

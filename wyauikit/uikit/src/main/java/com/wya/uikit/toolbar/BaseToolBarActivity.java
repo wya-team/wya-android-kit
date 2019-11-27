@@ -2,13 +2,18 @@ package com.wya.uikit.toolbar;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.wya.uikit.R;
 import com.wya.uikit.toolbar.swipeback.SwipeBackActivity;
 
@@ -25,8 +30,9 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     private TextView tvTitle, mTvLeft, mTvRightFirst, mTvRightSecond;
     private ImageView mImgRightFirst, mImgLeft, mImgRightSecond, toolBarImg;
     private RelativeLayout toolBar;
+    private FrameLayout mContentLayout;
 
-    private LinearLayout parentLinearLayout;
+    private View content;
     /**
      * 设置左边点击事件
      */
@@ -142,8 +148,18 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initContentView(R.layout.base_toolbar_layout);
-        setContentView(getLayoutId());
+        ViewGroup rootView = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.base_layout, null);
+
+        mContentLayout = rootView.findViewById(R.id.content_layout);
+        View view = View.inflate(this, getLayoutId(), null);
+        if (view != null) {
+            setContent(view);
+            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
+            mContentLayout.addView(view, layoutParams);
+        }
+
+        setContentView(rootView);
         initWYAActionBar();
     }
 
@@ -560,34 +576,19 @@ public abstract class BaseToolBarActivity extends SwipeBackActivity {
         });
     }
 
-    /**
-     * 将activity的布局添加到住布局中
-     *
-     * @param layoutResID
-     */
-    @Override
-    public void setContentView(@LayoutRes int layoutResID) {
-        //  added the sub-activity layout id in parentLinearLayout
-        LayoutInflater.from(this).inflate(layoutResID, parentLinearLayout, true);
-    }
 
-    /**
-     * uikit-ToolBar
-     *
-     * @param layoutResID
-     */
-    private void initContentView(int layoutResID) {
-        ViewGroup viewGroup = (ViewGroup) findViewById(android.R.id.content);
-        viewGroup.removeAllViews();
-        parentLinearLayout = new LinearLayout(this);
-        parentLinearLayout.setOrientation(LinearLayout.VERTICAL);
-        viewGroup.addView(parentLinearLayout);
-        LayoutInflater.from(this).inflate(layoutResID, parentLinearLayout, true);
-    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    public View getContent() {
+        return content;
+    }
+
+    public void setContent(View content) {
+        this.content = content;
     }
 
     public interface TitleClickListener {
